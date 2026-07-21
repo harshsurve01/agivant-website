@@ -33,13 +33,13 @@
 }
 
 .glowLeft {
-  top: 3%;
-  left: -20%;
+  top: -18%;
+  left: -16%;
   width: clamp(340px, 34vw, 600px);
   height: clamp(340px, 34vw, 600px);
   background: radial-gradient(
     circle,
-    color-mix(in srgb, var(--color-bg-gradient-start) 85%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg-gradient-start) 55%, transparent) 0%,
     transparent 72%
   );
 }
@@ -51,7 +51,7 @@
   height: clamp(380px, 38vw, 680px);
   background: radial-gradient(
     circle,
-    color-mix(in srgb, var(--color-bg-gradient-end) 75%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg-gradient-end) 55%, transparent) 0%,
     transparent 72%
   );
   /* Offset from the left glow's cycle so the two never breathe in
@@ -74,26 +74,32 @@
 }
 
 /* --------------------------------------------------------------------
-   Decorative ellipse stroke. Static this sprint — the Hero Timeline
-   (Sprint 5) animates it later. Scales via viewBox + clamp()'d sizing
-   rather than a fixed px box, so it stays proportional across desktop
-   widths without a redraw.
+   Decorative ellipse stroke — an exported Figma asset (see
+   HeroBackground.tsx), not generated geometry. Centered via
+   percentage positioning + transform rather than a fixed pixel
+   offset, so it stays aligned with the Hero composition at any
+   desktop resolution. Sized as a percentage of the Hero's own width
+   (not a fixed px box); `aspect-ratio` reserves the correct proportion
+   before the asset loads, and next/image's `fill` + `object-fit:
+   contain` inside that box does the actual responsive scaling while
+   preserving the artwork's native aspect ratio. Static this sprint —
+   the Hero Timeline (Sprint 5) animates it later.
    -------------------------------------------------------------------- */
 .ellipseStroke {
   position: absolute;
   z-index: 2;
-  right: clamp(-80px, -4vw, -20px);
-  bottom: clamp(-60px, -6vw, -20px);
-  width: clamp(360px, 34vw, 620px);
-  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  aspect-ratio: 620 / 360; /* matches the exported asset's own ratio —
+    update if a re-export ships with different native dimensions */
   opacity: 0.7;
   pointer-events: none;
-  /* Mirrors the ellipse across its own horizontal axis — same box,
-     same right/bottom offsets, just the arc bulging the other way.
-     scaleY (not rotate(180deg)) so it flips vertically only; a 180°
-     rotation would've also mirrored it left-right, which wasn't the
-     problem. */
-  transform: scaleX(-1);
+}
+
+.ellipseStrokeImage {
+  object-fit: contain;
 }
 
 /* --------------------------------------------------------------------

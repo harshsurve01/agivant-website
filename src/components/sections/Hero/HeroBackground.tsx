@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import styles from "./HeroBackground.module.css";
 
 export interface HeroBackgroundProps {
@@ -11,7 +12,10 @@ export interface HeroBackgroundProps {
  * HeroBackground
  *
  * Sprint 1 of the Hero Experience: the two breathing ambient glows and
- * the static decorative ellipse stroke. Nothing else lives here —
+ * the static decorative ellipse stroke — the latter an exported
+ * Figma asset (hero-ellipse-stroke.svg), referenced by path rather
+ * than redrawn as CSS or inline SVG geometry, so it stays
+ * pixel-perfect with the design file. Nothing else lives here —
  * no particles (HeroParticles, Sprint 2), no headline motion
  * (HeroHeadlineExperience / HeroRotatingPhrase, Sprints 3–4), no
  * orchestrating timeline (Hero Timeline, Sprint 5 — architecture only
@@ -41,29 +45,25 @@ export function HeroBackground({ children }: HeroBackgroundProps) {
       <div className={styles.glowLeft} aria-hidden="true" />
       <div className={styles.glowRight} aria-hidden="true" />
 
-      {/* TODO(figma): exact ellipse position/radius/stroke-width.
-          Placeholder geometry below approximates the legacy hero.css
-          .hero__curve reference (lower-right, ~620x360) until the
-          real spec lands — same "measured off the last known-good
-          reference, flagged for a follow-up swap" approach already
-          used elsewhere in Hero.module.css. Static this sprint per
-          spec; the Hero Timeline (Sprint 5) animates it later. */}
-      <svg
-        className={styles.ellipseStroke}
-        viewBox="0 0 620 360"
-        fill="none"
-        aria-hidden="true"
-        preserveAspectRatio="xMidYMid meet"
-      >
-        <ellipse
-          cx="310"
-          cy="180"
-          rx="300"
-          ry="160"
-          stroke="var(--color-border-strong)"
-          strokeWidth="1.5"
+      {/* Decorative design asset, not generated geometry — exported
+          directly from Figma. Treated exactly like the ampd-wordmark
+          asset in Hero.tsx: referenced by path, not redrawn as CSS or
+          SVG markup here, so it stays pixel-perfect with the source
+          file and any future re-export just replaces the file on
+          disk with zero code changes.
+          TODO: drop the real export at /public/images/hero/hero-ellipse-stroke.svg —
+          this path doesn't exist yet, same placeholder status as
+          ampd-wordmark.svg until the asset is supplied. */}
+      <div className={styles.ellipseStroke}>
+        <Image
+          src="/images/hero/hero-ellipse-stroke.svg"
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 60vw, 90vw"
+          className={styles.ellipseStrokeImage}
+          aria-hidden="true"
         />
-      </svg>
+      </div>
 
       <div className={styles.contentLayer}>{children}</div>
     </div>
