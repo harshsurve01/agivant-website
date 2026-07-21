@@ -40,7 +40,7 @@
 
 .heading {
   font-weight: var(--font-weight-regular);
-  font-size: 5rem; /* was 80px literal — Container already caps column width, so a fixed rem holds proportion across 1280-1920px without clamp() */
+  font-size: 4rem; /* 64px, was 5rem/80px (-20%) per design review — Container already caps column width, so a fixed rem holds proportion across 1280-1920px without clamp() */
   line-height: 1.2;
   letter-spacing: var(--letter-spacing-tight);
   color: var(--color-text-primary);
@@ -64,7 +64,7 @@
 }
 
 .assetImage {
-  height: 5.625rem; /* was 90px literal */
+  height: 4.5rem; /* 72px, was 5.625rem/90px (-20%) — kept proportional to .heading's reduced font-size so it still sits correctly inline */
   width: auto;
 }
 
@@ -75,14 +75,14 @@
 .tagline {
   margin-top: var(--space-8); /* was space-6 — Figma shows more breathing room below the heading */
   font-weight: var(--font-weight-medium);
-  font-size: 2.5rem; /* was 40px literal */
+  font-size: 2rem; /* 32px, was 2.5rem/40px (-20%) per design review */
   line-height: 1.27; /* Figma: 127% */
   color: var(--color-text-primary);
 }
 
 .description {
   margin-top: var(--space-4); /* smaller gap than heading->tagline since these two lines are visually grouped */
-  font-size: 1.5rem; /* was 24px literal */
+  font-size: 1.25rem; /* 20px, was 1.5rem/24px (-17%) per design review */
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
   /* was container-sm (640px) — against the widened heading, that read
@@ -96,7 +96,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--space-4);
+  gap: var(--space-8);
   margin-top: var(--space-12); /* was space-8 — Figma shows a larger gap between description and the CTA row */
 }
 

@@ -88,18 +88,18 @@
 .ellipseStroke {
   position: absolute;
   z-index: 2;
-  top: 50%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 60%;
   aspect-ratio: 620 / 360; /* matches the exported asset's own ratio —
     update if a re-export ships with different native dimensions */
-  opacity: 0.7;
+  opacity: 1;
   pointer-events: none;
 }
 
 .ellipseStrokeImage {
-  object-fit: contain;
+  /* object-fit: contain; */
 }
 
 /* --------------------------------------------------------------------

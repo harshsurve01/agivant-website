@@ -103,14 +103,14 @@
      floor. The floor keeps the divider visually separated without
      collapsing spacing to zero. Nav label text itself is untouched;
      only the whitespace around it adapts. */
-  margin-left: clamp(1rem, 1.46vw, 1.75rem); /* 28px at baseline */
-  margin-right: clamp(2rem, 4.9vw, 5.875rem); /* 94px at baseline */
+  margin-left: clamp(0.875rem, 1.24vw, 1.5rem); /* 24px at baseline, was 28px (-15%) per design review */
+  margin-right: clamp(1.75rem, 4.17vw, 5rem); /* 80px at baseline, was 94px (-15%) per design review */
 }
 
 .dividerEnd {
   /* Mirror of dividerStart; same fluid rationale. */
-  margin-left: clamp(2rem, 4.9vw, 5.875rem); /* 94px at baseline */
-  margin-right: clamp(1rem, 1.46vw, 1.75rem); /* 28px at baseline */
+  margin-left: clamp(1.75rem, 4.17vw, 5rem); /* 80px at baseline, was 94px (-15%) per design review */
+  margin-right: clamp(0.875rem, 1.24vw, 1.5rem); /* 24px at baseline, was 28px (-15%) per design review */
 }
 
 .nav {

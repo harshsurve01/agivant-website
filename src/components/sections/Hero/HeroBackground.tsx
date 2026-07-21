@@ -51,19 +51,23 @@ export function HeroBackground({ children }: HeroBackgroundProps) {
           SVG markup here, so it stays pixel-perfect with the source
           file and any future re-export just replaces the file on
           disk with zero code changes.
+          Rendered at its own intrinsic size — width/height below are
+          the asset's native dimensions (next/image requires them
+          without `fill`), not a display size this component chooses;
+          nothing here scales, crops, or constrains the artwork.
           TODO: drop the real export at /public/images/hero/hero-ellipse-stroke.svg —
           this path doesn't exist yet, same placeholder status as
-          ampd-wordmark.svg until the asset is supplied. */}
-      <div className={styles.ellipseStroke}>
-        <Image
-          src="/images/hero/hero-ellipse-stroke.svg"
-          alt=""
-          fill
-          sizes="(min-width: 1024px) 60vw, 90vw"
-          className={styles.ellipseStrokeImage}
-          aria-hidden="true"
-        />
-      </div>
+          ampd-wordmark.svg until the asset is supplied. Swap the
+          width/height below for its real intrinsic dimensions once
+          it lands. */}
+      <Image
+        src="/images/hero/hero-ellipse-stroke.svg"
+        alt=""
+        width={620}
+        height={360}
+        className={styles.ellipseStroke}
+        aria-hidden="true"
+      />
 
       <div className={styles.contentLayer}>{children}</div>
     </div>

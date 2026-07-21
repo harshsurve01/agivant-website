@@ -1,5 +1,10 @@
 import clsx from "clsx";
 import { getFooterContent } from "@/data/footer";
+// TODO(path): adjust this import to match wherever Container actually
+// lives in this project (e.g. "@/components/layout/Container"). Assumed
+// here to match the barrel-export convention used elsewhere (see the
+// Button import in FooterCTA.tsx).
+import { Container } from "@/components/ui/Container";
 import { FooterCTA } from "./FooterCTA";
 import { FooterNavigation } from "./FooterNavigation";
 import { FooterBrandmark } from "./FooterBrandmark";
@@ -37,6 +42,15 @@ export interface FooterProps {
  * one visual responsibility (heading + buttons, navigation, decorative
  * brandmark, copyright).
  *
+ * Horizontal content width is delegated entirely to the shared Container
+ * component (size="2xl"), matching every other major section (Header,
+ * Hero, etc.). Footer.module.css no longer owns any horizontal padding
+ * or max-width — only background, overflow, positioning, and vertical
+ * spacing. Three independent Container instances wrap the CTA+navigation
+ * row, FooterBrandmark, and the copyright line respectively, so all
+ * three visual zones align to the same content grid as the rest of the
+ * site.
+ *
  * Server Component: async, no "use client", no hooks, no state, no
  * event handlers. Data is fetched here (today: static; future: Headless
  * WordPress) and passed down as props — children never fetch their own
@@ -57,16 +71,22 @@ export async function Footer({
 
   return (
     <footer className={clsx(styles.footer, styles[variant])}>
-      <div className={styles.top}>
+      <Container size="2xl" className={styles.top}>
         <FooterCTA heading={content.heading} buttons={content.buttons} />
         {showNavigation ? (
           <FooterNavigation links={content.navigation} />
         ) : null}
-      </div>
+      </Container>
 
-      {showBrandmark ? <FooterBrandmark /> : null}
+      {showBrandmark ? (
+        <Container size="xl">
+          <FooterBrandmark />
+        </Container>
+      ) : null}
 
-      <FooterCopyright text={content.copyright} />
+      <Container size="xl">
+        <FooterCopyright text={content.copyright} />
+      </Container>
     </footer>
   );
 }

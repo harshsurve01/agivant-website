@@ -2,6 +2,13 @@
    FooterBrandmark.module.css
    Owns presentation of the decorative background wordmark only. Purely
    visual — carries no layout responsibility beyond filling its own box.
+
+   Deliberately width: 100% (of its parent), not 100vw. FooterBrandmark
+   is rendered inside a Container in Footer.tsx, so it should fill that
+   Container's content width like every other footer zone — it does NOT
+   break out to the viewport edge. (A width:100vw / translateX(-50%)
+   full-bleed trick previously lived here; removed because it fought the
+   Container wrapper and always rendered edge-to-edge regardless of it.)
    ========================================================================== */
 
 .brandmark {
