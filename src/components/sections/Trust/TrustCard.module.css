@@ -1,0 +1,71 @@
+/* ==========================================================================
+   TrustCard.module.css
+   Owns this card's own visual identity: container, shadow, spacing,
+   and typography. Does not know about the stack stage, active state,
+   or animation — Trust.module.css owns all of that.
+
+   PENDING FIGMA: radius/shadow/padding below use EXISTING design
+   tokens as a placeholder — not lifted from a spec, since only card 1
+   was available at implementation time.
+   ========================================================================== */
+
+.card {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-bg-secondary, var(--color-bg-primary)); /* TODO(figma): confirm exact background */
+  border-radius: var(--radius-xl, var(--radius-lg)); /* TODO(figma): confirm exact corner radius */
+  box-shadow: var(--shadow-md, var(--shadow-sm)); /* TODO(figma): confirm exact shadow */
+  /* Height is intentionally not set directly — it stays content-driven
+     so cards 2/3 (longer/shorter copy) size correctly in the stack.
+     109px vertical padding is arithmetic, not a token: Figma's card is
+     403px tall; title (90px) + description (70px) + the 24px gap below
+     leaves 219px of padding, split evenly. Horizontal padding has no
+     corresponding Figma measurement yet, so it stays on the existing
+     token pending confirmation. */
+  padding: 109px var(--space-8); /* TODO(figma): confirm exact horizontal padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6); /* was space-4 — widened to match the padding arithmetic above */
+  text-align: center;
+}
+
+.badgeSlot {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+}
+
+.title {
+  margin: 0;
+  /* Figma's title frame is 1039 x 90 for one line — 90px resolves
+     cleanly to 72px font-size at 1.25 line-height (72 * 1.25 = 90),
+     the same cross-check pattern used on the AnnouncementBar CTA. */
+  font-size: var(--font-size-6xl, 72px); /* TODO(figma): confirm token name if --font-size-6xl doesn't exist in the scale */
+  line-height: 1.25;
+  font-weight: var(--font-weight-bold, var(--font-weight-semibold));
+  color: var(--trust-accent, var(--color-text-primary));
+  /* Matches this card's measured text width; non-binding for cards
+     with shorter/longer titles, but keeps this card's proportions
+     faithful to Figma. */
+  max-width: 1039px;
+}
+
+.description {
+  margin: 0;
+  /* 542px is Figma's authored wrap width (this is a deliberate reading
+     measure, not the text's natural width) — used directly rather than
+     converted to ch, since ch would drift from the true wrap point as
+     the font renders. */
+  max-width: 542px;
+  /* Reuses the 24px size already confirmed on the AnnouncementBar CTA
+     (var(--font-size-xl)) rather than the smaller var(--font-size-md)
+     used before. Line-height is derived: two lines at 70px total means
+     35px per line ÷ 24px font-size = 1.4583 — no token lands on that
+     exactly, so it's left unrounded (same approach as the
+     AnnouncementBar's 1.15). */
+  font-size: var(--font-size-xl);
+  line-height: 1.4583;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+}

@@ -1,0 +1,97 @@
+/* ==========================================================================
+   LifecycleItem.module.css
+
+   Status pill and chevron are positioned absolutely, anchored to the
+   card's top-right and bottom-right corners respectively. This is
+   deliberate, not a shortcut: it's what makes one .item class work for
+   both the short collapsed rows (where bottom-right ends up reading as
+   roughly vertically centered, since the row itself is short) and the
+   much taller expanded Architect card (where the chevron correctly
+   lands near the bottom, by the end of the description, matching the
+   Figma) — without needing separate open/closed layout rules for
+   those two glyphs.
+
+   PENDING FIGMA: padding/gap/color values below are existing tokens
+   used as placeholders, not lifted from a spec.
+   ========================================================================== */
+
+.item {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg, 1rem); 
+  background-color: var(--color-bg-secondary, #f5f3ff); /* TODO(figma): confirm collapsed-row background */
+  transition: background-color var(--transition-fast);
+}
+
+.itemOpen {
+  background-color: var(--color-bg-primary);
+}
+
+.itemHeading {
+  /* Resets the <h3> wrapper so it doesn't add its own margin/size —
+     the button inside carries all the visual styling. */
+  margin: 0;
+  font: inherit;
+}
+
+.trigger {
+  width: 100%;
+  padding: var(--space-6); /* TODO(figma): confirm exact card padding */
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  font: inherit;
+  color: inherit;
+}
+
+.trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-sm);
+}
+
+.title {
+  display: block;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  letter-spacing: var(--letter-spacing-wide, 0.02em); /* collapsed rows read visually letter-spaced in the Figma */
+}
+
+.itemOpen .title {
+  color: var(--color-accent-primary, #8500DF); /* TODO(design-tokens): confirm brand-purple token name */
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-xl);
+  letter-spacing: normal;
+}
+
+.statusSlot {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+}
+
+.chevron {
+  position: absolute;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-accent-primary, #8500DF); /* TODO(design-tokens): confirm brand-purple token name */
+  pointer-events: none; /* purely decorative — the whole row is already the click target via .trigger */
+}
+
+.panel {
+  padding-inline: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+
+.description {
+  max-width: 40rem;
+  margin-inline: auto;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  text-align: center;
+}

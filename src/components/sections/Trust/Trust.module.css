@@ -1,0 +1,83 @@
+/* ==========================================================================
+   Trust.module.css
+   Owns the section's overall layout, the stack stage, and spacing only.
+   Individual card/badge/progress visuals live in their own modules —
+   this file never reaches into their internals.
+
+   STACK STAGE: .stackItem elements all share the same CSS Grid cell
+   (grid-area: 1 / 1 / -1 / -1), so the stage's height is driven by the
+   tallest card and swapping which card is "active" later is a
+   data-active + opacity change — never a layout change. This is what
+   makes the future GSAP sequence possible without touching markup.
+
+   PENDING FIGMA: only the active-card frame exists today. Padding and
+   the background layer's eventual glow/gradient are left as TODOs
+   below rather than guessed.
+   ========================================================================== */
+
+.trust {
+  position: relative;
+  width: 100%;
+  padding-block: var(--space-16, var(--space-10)); /* TODO(figma): confirm exact section padding */
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* Intentionally unstyled beyond positioning. This layer exists only
+     so a future GSAP pass has a placeholder to fill with the Figma's
+     blurred glow — adding a gradient/blur here now would be guessing
+     at an effect that hasn't been implemented yet. */
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centers card+dots as a group within Container, since the card no longer stretches to fill it (see .stackStage) */
+  gap: var(--space-8); /* confirmed via Figma: gap between card's right edge and progress dots */
+}
+
+.stackStage {
+  display: grid;
+  /* Card frame measures 1240px wide in Figma — capping here (rather
+     than on .card) means every .stackItem, and therefore every card,
+     shares the same width ceiling without each TrustCard needing to
+     set it individually. */
+  width: 100%;
+  max-width: 1240px;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.stackItem {
+  /* Every card occupies this same grid cell — see file header. */
+  grid-area: 1 / 1 / -1 / -1;
+}
+
+.stackItem[data-active="false"] {
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.stackItem[data-active="true"] {
+  opacity: 1;
+  z-index: 1;
+}

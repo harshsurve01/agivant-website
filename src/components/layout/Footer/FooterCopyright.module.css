@@ -1,0 +1,18 @@
+/* ==========================================================================
+   FooterCopyright.module.css
+   Owns the copyright line's own presentation and centering. No
+   section-level positioning — that's Footer.module.css's job.
+   ========================================================================== */
+
+.copyright {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}

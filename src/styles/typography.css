@@ -1,0 +1,96 @@
+/* ==========================================================================
+   typography.css
+   Global, element-level typography ONLY. Maps type tokens from
+   variables.css onto real HTML elements so plain content (a <p> pulled
+   from headless WordPress, a bare <h2>, etc.) is styled correctly even
+   before any component wraps it.
+
+   Explicitly OUT OF SCOPE for this file:
+   - Utility classes (.heading-*, .text-*, .font-*)
+   - Responsive typography overrides
+   Both belong in each component's CSS Module, where the specific visual
+   scale for that component's context is actually known.
+   ========================================================================== */
+
+html {
+  font-family: var(--font-family-base);
+  font-size: 100%; /* 16px root, respects user browser settings */
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--color-text-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
+}
+
+h1 {
+  font-size: var(--font-size-5xl);
+}
+
+h2 {
+  font-size: var(--font-size-4xl);
+}
+
+h3 {
+  font-size: var(--font-size-3xl);
+}
+
+h4 {
+  font-size: var(--font-size-2xl);
+}
+
+h5 {
+  font-size: var(--font-size-xl);
+}
+
+h6 {
+  font-size: var(--font-size-lg);
+}
+
+p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+small {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+a {
+  color: var(--color-text-link);
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-hover-primary);
+}
+
+strong,
+b {
+  font-weight: var(--font-weight-semibold);
+}
+
+code,
+pre {
+  font-family: var(--font-family-mono);
+}

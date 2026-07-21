@@ -1,0 +1,50 @@
+/* ==========================================================================
+   animations.css
+   Shared motion tokens for the project's interaction layer (distinct
+   from variables.css's --transition-* tokens, which are general-
+   purpose fades/color transitions). These are specifically for the
+   premium micro-interaction system introduced with the Button Motion
+   System, kept here so Hero/Footer CTAs and any future component can
+   reuse the same vocabulary instead of each hardcoding its own
+   duration/ease.
+   ========================================================================== */
+
+:root {
+  /* Used by CSS-driven layers (glow opacity, rolling text, icon
+     motion, press/elevation transitions) — deliberately snappier than
+     variables.css's --transition-base (250ms), matching the spec's
+     "restrained, precise" brief rather than the slower fades used
+     elsewhere (e.g. sticky-header engagement). */
+  --motion-fast-duration: 200ms;
+  --motion-fast-ease: cubic-bezier(0.4, 0, 0.2, 1); /* same curve as
+    variables.css's --easing-standard, referenced as a literal here so
+    this file has no dependency ordering requirement on variables.css */
+
+  /* Reference only: the actual magnetic-hover spring is driven by
+     GSAP's quickTo (see useMagneticHover.ts), which doesn't read CSS
+     custom properties — these describe the equivalent feel for any
+     future spot that reimplements a similar spring in pure CSS. */
+  --motion-spring-duration: 500ms;
+  --motion-spring-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------
+   Global reduced-motion safety net. Belt-and-suspenders alongside the
+   per-hook `matchMedia` checks in useMagneticHover / useCursorGlow
+   (which skip attaching listeners entirely, so they never produce a
+   transform or custom property to begin with) and the component-level
+   @media block in ButtonMotion.module.css. This project-wide rule
+   catches anything else, present or future, that animates via
+   transition/animation without its own explicit reduced-motion
+   handling.
+   -------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

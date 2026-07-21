@@ -1,0 +1,204 @@
+/* ==========================================================================
+   variables.css
+   Single source of truth for design tokens.
+   Derived from the Agivant homepage design (logo mark, hero, CTAs).
+   No selectors targeting elements live here — tokens only.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------
+     1. COLOR — BRAND
+     Corrected: the design uses exactly ONE purple, not two separate
+     indigo/violet families. --color-purple-500 is the single source of
+     truth for it — there is no tonal scale (no -50/-100/-300/-600/-700
+     siblings) to keep in sync.
+
+     Interactive states (hover/active/focus-ring) below are computed
+     from that one value via color-mix() rather than stored as separate
+     hardcoded hex values, so "only one purple" stays true even at the
+     token-definition level — updating --color-purple-500 updates every
+     state that derives from it automatically. color-mix() has full
+     support in current evergreen browsers (Chrome 111+, Safari 16.2+,
+     Firefox 113+); flag if this project needs to support older engines.
+
+     Accent = red used sparingly (logo mark, dot accent on "Amp'd") —
+     unchanged, not part of this correction.
+     ------------------------------------------------------------------ */
+  --color-purple-500: #8500DF; /* base — the only purple in the system */
+  --color-purple-hover:  color-mix(in srgb, var(--color-purple-500) 85%, black);
+  --color-purple-active: color-mix(in srgb, var(--color-purple-500) 70%, black);
+
+  --color-accent-500: #DC2626; /* base */
+  --color-accent-600: #B91C1C;
+
+  /* ------------------------------------------------------------------
+     2. COLOR — NEUTRALS
+     Used for text, borders, dividers, surfaces.
+     Corrected: black is true #000000, not an off-black.
+     ------------------------------------------------------------------ */
+  --color-black:   #000000;
+  --color-black-active: color-mix(in srgb, var(--color-black) 85%, white); /* computed, not a separate stored hex */
+  --color-neutral-700: #000000;
+  --color-neutral-600: #000000;
+  --color-neutral-500: #000000;
+  --color-neutral-300: #D1D5DB;
+  --color-neutral-200: #E5E7EB;
+  --color-neutral-100: #F3F4F6;
+  --color-neutral-50:  #FAFAFA;
+  --color-white:   #FFFFFF;
+
+  /* ------------------------------------------------------------------
+     3. COLOR — SEMANTIC (what components should actually consume)
+     Components should reference these, not raw palette values above,
+     so a future rebrand only ever touches this block.
+     ------------------------------------------------------------------ */
+  --color-text-primary:   var(--color-black);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-muted:     var(--color-neutral-500);
+  --color-text-inverse:   var(--color-white);
+  --color-text-link:      var(--color-purple-500);
+
+  --color-bg-primary:     var(--color-white);
+  --color-bg-secondary:   #FAF8F6;   /* warm off-white section bg */
+  --color-bg-inverse:     var(--color-black);
+  --color-bg-gradient-start: #EDBF79; /* hero gradient, violet edge — TODO(figma): revisit alongside single-purple correction */
+  --color-bg-gradient-end:   #EDBF79; /* hero gradient, peach edge */
+
+  --color-border-default: var(--color-neutral-200);
+  --color-border-strong:  var(--color-neutral-300);
+
+  --color-brand-primary: var(--color-purple-500);
+  --color-brand-accent:  var(--color-accent-500);
+
+  /* Interactive states */
+  --color-hover-primary: var(--color-purple-hover);
+  --color-hover-accent:  var(--color-accent-600);
+  --color-hover-inverse: var(--color-neutral-700);
+
+  --color-focus-ring: color-mix(in srgb, var(--color-purple-500) 45%, transparent);
+
+  /* ------------------------------------------------------------------
+     4. TYPOGRAPHY
+     Corrected: Poppins throughout for all text and elements (not
+     Inter). Poppins is a Google Font, not a system font — it must
+     actually be loaded (e.g. via next/font/google in the root layout)
+     for this stack to take effect; until then, browsers silently fall
+     back to the next name in the stack. --font-family-mono is
+     unaffected — Poppins doesn't cover code/monospace content.
+     ------------------------------------------------------------------ */
+
+--font-family-base: var(--font-poppins), sans-serif;
+--font-family-heading: var(--font-poppins), sans-serif;
+--font-family-mono: "Roboto Mono", monospace;
+
+  --font-weight-regular:  400;
+  --font-weight-medium:   500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     700;
+
+  /* Fluid-ready fixed scale (rem based, 16px root) */
+  --font-size-xs:   0.75rem;   /* 12px */
+  --font-size-sm:   0.875rem;  /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-md:   1.125rem;  /* 18px */
+  --font-size-lg:   1.25rem;   /* 20px */
+  --font-size-xl:   1.5rem;    /* 24px */
+  --font-size-2xl:  1.875rem;  /* 30px */
+  --font-size-3xl:  2.25rem;   /* 36px */
+  --font-size-4xl:  2.75rem;   /* 44px */
+  --font-size-5xl:  3.5rem;    /* 56px  — hero heading */
+  --font-size-6xl:  4.25rem;   /* 68px  — large hero heading */
+
+  --line-height-tight:  1.1;
+  --line-height-snug:   1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.65;
+
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.02em;
+  --letter-spacing-wider: 0.06em;
+
+  /* ------------------------------------------------------------------
+     5. SPACING SCALE
+     4px base unit. Consistent scale prevents ad-hoc magic numbers
+     across every future page/component.
+     ------------------------------------------------------------------ */
+  --space-1:  0.25rem;  /* 4px */
+  --space-2:  0.5rem;   /* 8px */
+  --space-3:  0.75rem;  /* 12px */
+  --space-4:  1rem;     /* 16px */
+  --space-5:  1.25rem;  /* 20px */
+  --space-6:  1.5rem;   /* 24px */
+  --space-8:  2rem;     /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+  --space-40: 10rem;    /* 160px */
+
+  /* ------------------------------------------------------------------
+     6. BORDER RADIUS
+     Includes a "full" pill token — used heavily on this design's CTAs.
+     ------------------------------------------------------------------ */
+  --radius-none: 0;
+  --radius-sm:   0.25rem;  /* 4px */
+  --radius-md:   0.5rem;   /* 8px */
+  --radius-lg:   1rem;     /* 16px */
+  --radius-xl:   1.5rem;   /* 24px */
+  --radius-full: 9999px;   /* pill buttons */
+
+  /* ------------------------------------------------------------------
+     7. SHADOWS
+     ------------------------------------------------------------------ */
+  --shadow-sm: 0 1px 2px rgba(10, 10, 10, 0.06);
+  --shadow-md: 0 4px 12px rgba(10, 10, 10, 0.08);
+  --shadow-lg: 0 12px 24px rgba(10, 10, 10, 0.10);
+  --shadow-xl: 0 24px 48px rgba(10, 10, 10, 0.14);
+  --shadow-focus: 0 0 0 3px var(--color-focus-ring);
+
+  /* ------------------------------------------------------------------
+     8. TRANSITIONS
+     ------------------------------------------------------------------ */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+  --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ------------------------------------------------------------------
+     9. Z-INDEX LAYERS
+     Named layers prevent arbitrary z-index wars between components.
+     ------------------------------------------------------------------ */
+  --z-base:      0;
+  --z-dropdown:  100;
+  --z-sticky:    200;
+  --z-header:    300;
+  --z-overlay:   400;
+  --z-modal:     500;
+  --z-toast:     600;
+  --z-tooltip:   700;
+
+  /* ------------------------------------------------------------------
+     10. CONTAINER WIDTHS
+     ------------------------------------------------------------------ */
+  --container-sm:  640px;
+  --container-md:  768px;
+  --container-lg:  1024px;
+  --container-xl:  1280px;
+  --container-2xl: 1440px;
+  --container-max: 1600px;
+  --container-padding-inline: var(--space-6);
+
+  /* ------------------------------------------------------------------
+     11. BREAKPOINTS (reference values — CSS custom properties cannot
+     be used inside @media queries, so these document the values that
+     utilities.css / component media queries must mirror manually)
+     ------------------------------------------------------------------ */
+  --breakpoint-mobile:  480px;
+  --breakpoint-tablet:  768px;
+  --breakpoint-laptop:  1024px;
+  --breakpoint-desktop: 1280px;
+  --breakpoint-wide:    1440px;
+}

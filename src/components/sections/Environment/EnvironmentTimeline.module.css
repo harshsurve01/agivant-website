@@ -1,0 +1,33 @@
+/* ==========================================================================
+   EnvironmentTimeline.module.css
+
+   Height is intentionally not fixed to the measured 420px timeline
+   column — the list's height is a function of its five items' natural
+   line height, and forcing 420px would either clip a longer title or
+   leave unexplained empty space. Width is what the 333px column frame
+   actually constrains, so only width participates in the Experience
+   grid's fr ratio (see EnvironmentExperience.module.css); this file
+   just handles internal list spacing.
+   ========================================================================== */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6); /* TODO(figma): confirm exact domain-label-to-list gap */
+  width: 100%;
+}
+
+.domainLabel {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-link);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3); /* TODO(figma): confirm exact row gap */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

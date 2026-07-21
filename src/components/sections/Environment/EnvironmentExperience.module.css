@@ -1,0 +1,29 @@
+/* ==========================================================================
+   EnvironmentExperience.module.css
+
+   Two-column layout: timeline on the left, card on the right. Column
+   widths use the measured Figma frames (timeline 333, card 714) as a
+   ratio (~1 : 2.14), not their literal px values, so the proportion
+   holds at any container width — same reasoning as AIStackGrid's
+   fr-based column widths.
+
+   PENDING FIGMA: gap uses an existing token as a placeholder — the
+   supplied screenshots gave frame sizes, not the gap between the
+   timeline and card columns.
+   ========================================================================== */
+
+.experience {
+  display: grid;
+  grid-template-columns: 1fr 2.14fr; /* TODO(figma): ratio derived from measured column widths (333:714) */
+  align-items: start;
+  gap: var(--space-8); /* TODO(figma): confirm exact timeline-to-card gap */
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .experience {
+    /* Side-by-side stops making sense once the timeline column would
+       be narrower than its own numbered list can comfortably wrap. */
+    grid-template-columns: 1fr;
+  }
+}

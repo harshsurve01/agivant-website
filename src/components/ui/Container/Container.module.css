@@ -1,0 +1,43 @@
+/* ==========================================================================
+   Container.module.css
+   Owns exactly three things: max-width, horizontal centering, horizontal
+   padding. No display mode, no vertical spacing, no color, no typography —
+   those are the responsibility of whatever is rendered inside this
+   Container, or of a sibling layout component (Stack, Section, etc.).
+
+   Every max-width value below is a reference to an existing token in
+   variables.css. Nothing here is hardcoded.
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--container-padding-inline);
+}
+
+.sm {
+  max-width: var(--container-sm);
+}
+
+.md {
+  max-width: var(--container-md);
+}
+
+.lg {
+  max-width: var(--container-lg);
+}
+
+.xl {
+  max-width: var(--container-xl);
+}
+
+/* CSS Modules class names can't be valid CSS identifiers starting with a
+   digit, so the "2xl" size uses a camelCase key here and is mapped from
+   the public `size="2xl"` prop value inside Container.tsx. */
+.twoXl {
+  max-width: var(--container-2xl);
+}
+
+.full {
+  max-width: none;
+}

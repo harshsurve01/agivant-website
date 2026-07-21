@@ -1,0 +1,60 @@
+/* ==========================================================================
+   Environment.module.css
+   Owns section-level layout and spacing only — heading typography
+   lives in EnvironmentHeader, the timeline/card layout in
+   EnvironmentExperience, card visuals in EnvironmentCard. This file
+   just stacks and spaces those pieces, same division of responsibility
+   as AIStack.module.css.
+
+   PENDING FIGMA: gaps below use existing design tokens as placeholders.
+   The supplied screenshots gave frame sizes (section 1440×900, heading
+   955×172, timeline column 333×420, card 714×369) but not the gaps
+   between those blocks, so this file doesn't invent exact px values —
+   see AIStack.module.css for the same precedent.
+   ========================================================================== */
+
+.environment {
+  width: 100%;
+  background-color: var(--color-bg-primary);
+  padding-block: var(--space-24); /* TODO(figma): confirm exact section vertical rhythm */
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12); /* TODO(figma): confirm gap between header and the timeline/card experience */
+  width: 100%;
+  /* 1440px section frame expressed as a max-width rather than a fixed
+     width, so the section stays fluid below that breakpoint instead of
+     forcing horizontal scroll or clipping. */
+  max-width: 90rem;
+  margin-inline: auto;
+}
+
+.ctaRow {
+  display: grid;
+  /* Mirrors .experience's timeline:card column ratio (see
+     EnvironmentExperience.module.css) so the CTA can align to the
+     card's own column without lifting that ratio out of
+     EnvironmentExperience or duplicating state into this Server
+     Component — same reasoning as the original flex-end approach,
+     just a different alignment target now that measurement shows
+     the button is centered under the card, not flush to its right
+     edge (card center and button center both measure to ~940-942px
+     from the frame's left edge in the Figma reference). */
+  grid-template-columns: 1fr 2.14fr;
+  width: 100%;
+  /* .inner's flex `gap` already applies var(--space-12) above every
+     child, including this row. Figma's card-to-CTA gap measures to
+     ~40px (--space-10), so this nets the inherited gap down to that
+     total rather than stacking an additional margin on top of it —
+     confirmed by pixel-measuring both the current implementation
+     (~58px total) and the Figma reference (~40px total). */
+  margin-top: calc(var(--space-10) - var(--space-12));
+}
+
+.ctaRow > a {
+  grid-column: 2;
+  justify-self: center;
+}

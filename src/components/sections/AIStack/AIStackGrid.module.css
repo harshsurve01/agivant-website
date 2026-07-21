@@ -1,0 +1,72 @@
+/* ==========================================================================
+   AIStackGrid.module.css
+
+   Layout strategy: a 3-column CSS Grid with the first item spanning
+   two rows. Grid auto-placement then flows every subsequent item into
+   the two remaining columns, two rows deep — reproducing the Figma's
+   bento layout (one wide card on the left, two stacked pairs on the
+   right) without any per-card position data. If card order in
+   data/ai-stack.ts changes, this layout's shape changes with it; see
+   that file's ordering note.
+
+   COLUMN WIDTHS: measured Figma card widths (left ≈651, top-middle
+   ≈523, right ≈317) give a ratio of ~2.05 : 1.65 : 1 — the columns
+   are NOT equal, unlike the previous repeat(3, 1fr). Expressed as fr
+   units below so the ratio holds at any viewport width rather than
+   locking in the measured px values themselves.
+
+   ROW HEIGHTS: intentionally left as implicit/auto rather than fixed
+   or fr-based. The measured heights (middle column 318+521, right
+   column 413+413) don't reduce to one consistent row-height ratio
+   that both columns could share on a common grid track, and the
+   measured left-card height (308) looks like a partial selection —
+   every supplied screenshot shows the left card spanning the full
+   grid height, not a third of it. Auto rows let each row size to its
+   tallest content, which tracks the Figma proportions closely without
+   forcing a number that doesn't actually reconcile.
+
+   PENDING FIGMA: gap uses an existing token as a placeholder — the
+   supplied screenshot gave an overall frame size, not the gap between
+   cards.
+   ========================================================================== */
+
+.grid {
+  display: grid;
+  grid-template-columns: 2.05fr 1.65fr 1fr; /* TODO(figma): ratio derived from measured card widths (651:523:317); confirm against a full inspector export */
+  gap: var(--space-6); /* TODO(figma): confirm exact card gap */
+  width: 100%;
+}
+
+.gridItem {
+  /* Card fills its grid cell; actual visual styling (background,
+     border, ribbon art) lives in AIStackCard, not here — this file
+     only decides where the cell sits. */
+  display: flex;
+}
+
+.gridItem:first-child {
+  grid-row: span 2;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    /* the 3-column ratio has no meaning once we're down to 2 columns */
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gridItem:first-child {
+    grid-row: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Spanning rows makes no sense once every card is alone in its own
+     column — collapse back to a plain single-column stack. */
+  .gridItem:first-child {
+    grid-row: auto;
+  }
+}

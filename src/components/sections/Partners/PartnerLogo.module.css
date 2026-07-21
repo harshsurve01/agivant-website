@@ -1,0 +1,16 @@
+.logo {
+  /*
+   * !important is required here, not stylistic preference: next/image
+   * writes width/height (from PartnerLogo.tsx's width={140} height={40}
+   * props) as an inline style attribute on the rendered <img>, and
+   * inline styles always win over an external stylesheet regardless of
+   * class specificity. Without !important, these two rules never
+   * actually apply, only max-width/max-height do, which constrains one
+   * axis but not the other and triggers Next's aspect-ratio warning.
+   */
+  width: auto !important;
+  height: auto !important;
+  max-width: 140px; /* TODO(figma): confirm exact per-logo bounding box — the measured 1233.74×89.35 frame covers all four logos combined, not one */
+  max-height: 32px; /* TODO(figma): confirm exact logo height */
+  object-fit: contain;
+}

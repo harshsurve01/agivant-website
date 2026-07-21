@@ -1,0 +1,96 @@
+/* ==========================================================================
+   utilities.css
+   Truly global helpers ONLY — classes that are context-free and apply
+   the same way regardless of which component uses them.
+
+   Explicitly OUT OF SCOPE for this file:
+   - Layout primitives (.container, .flex, .grid, .gap-*)
+   - Spacing helpers (.mt-*, .mb-*, .px-*, .py-*)
+   - Visual styling (.rounded-*, .shadow-*, .bg-*)
+   These are component concerns now. A Container, Section, Stack, or Card
+   React component (built with CSS Modules, consuming tokens from
+   variables.css) replaces what these classes used to do — with the
+   added benefit of typed props instead of memorizing class names.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------
+   Section rhythm
+   Kept as a true global helper because every page section — regardless
+   of which component renders inside it — shares the same vertical
+   rhythm. This is a page-composition concern, not a component concern.
+   -------------------------------------------------------------------- */
+.section {
+  padding-block: var(--space-24);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-block: var(--space-12);
+  }
+}
+
+/* --------------------------------------------------------------------
+   Generic transition helper
+   Only kept because it's genuinely generic (no component-specific
+   timing/property assumptions baked in). Component-specific transitions
+   still belong in that component's CSS Module.
+   -------------------------------------------------------------------- */
+.transition {
+  transition: all var(--transition-base);
+}
+
+/* --------------------------------------------------------------------
+   Accessibility utilities
+   -------------------------------------------------------------------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  z-index: var(--z-toast);
+  background: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* Consistent, brand-colored focus ring for keyboard navigation.
+   Applies to every focusable element app-wide, so it stays global
+   rather than being redefined per component. */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+/* --------------------------------------------------------------------
+   Responsive visibility
+   -------------------------------------------------------------------- */
+.hide-mobile {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .hide-mobile {
+    display: revert;
+  }
+
+  .hide-desktop {
+    display: none;
+  }
+}

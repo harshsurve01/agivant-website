@@ -1,0 +1,49 @@
+/* ==========================================================================
+   LifecycleHeader.module.css
+
+   PENDING FIGMA: font sizes below use existing type-scale tokens as
+   placeholders. The supplied Figma gave bounding-box dimensions
+   (e.g. "Heading Frame 1278 x 186"), not point sizes — TODOs mark
+   where an exact token/value still needs confirming.
+   ========================================================================== */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 55rem; /* approximates the ~1245px column measured in the Figma inspector, expressed responsively rather than as a fixed pixel width */
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: var(--font-size-3xl); /* TODO(figma): confirm exact eyebrow size */
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+  text-decoration: line-through;
+  text-decoration-color: var(--color-accent-primary, #8500DF); /* TODO(design-tokens): confirm brand-purple token name */
+  text-decoration-thickness: 2px;
+}
+
+.heading {
+  font-size: var(--font-size-4xl); /* TODO(figma): confirm exact heading size */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+
+.highlight {
+  color: var(--color-accent-primary, #8500DF); /* TODO(design-tokens): confirm brand-purple token name */
+}
+
+.description {
+  margin-top: var(--space-2);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: var(--font-size-2xl);
+  }
+}

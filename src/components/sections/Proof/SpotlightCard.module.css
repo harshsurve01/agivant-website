@@ -1,0 +1,156 @@
+/* ==========================================================================
+   SpotlightCard.module.css
+
+   Owns the card's own visual presentation only — its size and grid
+   position come from the parent slot wrapper in SpotlightContainer,
+   same division of responsibility as PartnerLogo not owning its own
+   placement inside PartnerLogoStrip's .slot.
+
+   FIGMA FIX (visual refinement pass): the card is a TWO-LAYER
+   construction in Figma, not a single flat surface stacked in a flex
+   column:
+
+     Layer 1 — .artwork: the ribbon/gradient image, badge, and corner
+     icon. This layer fills the ENTIRE card (position: absolute,
+     inset: 0), not just a 40%-height strip — the wave art is meant to
+     extend behind the content panel, not stop where the panel starts.
+
+     Layer 2 — .body: an elevated, semi-transparent panel positioned
+     absolutely over the LOWER portion of the artwork (not flowed
+     below it in normal layout). `background-color` is a translucent
+     white + `backdrop-filter: blur(...)` rather than a solid fill, so
+     the ribbon artwork stays subtly visible through the panel — this
+     is the floating/glass depth effect visible in the Figma screens
+     and it also directly addresses "artwork occupies too much
+     vertical space": the clear, unobstructed artwork reveal is now
+     only the top ~34–36% of the card (`.body`'s `top` offset), with
+     the rest of the artwork visible faintly *through* the panel
+     rather than fully covered by an opaque box.
+
+   This two-layer split is also why nothing here needs to change when
+   Phase 4's hover animation lands: the artwork layer and the panel
+   layer already exist as independent, absolutely-positioned nodes
+   that can be animated independently later.
+
+   Values below (blur radius, panel opacity, top offset, radii) use
+   existing tokens/plausible placeholders — no exact px/opacity was
+   supplied for this section's card sizes, unlike Partners/Environment.
+   ========================================================================== */
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  /* No background here — Layer 1 (.artwork) IS the card's base surface. */
+  box-shadow: var(--shadow-sm);
+}
+
+.artwork {
+  /* FIGMA FIX: was `height: 40%` inside a flex column (flat, single
+     layer). Now fills the whole card so the content panel can float
+     over part of it and let it show through. */
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.badge {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 2;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.corner {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.body {
+  /* FIGMA FIX: Layer 2 — an elevated glass panel, not the next block
+     in a flex column. Positioned to start a bit above the card's
+     midpoint so the artwork's clear reveal area shrinks (fixing
+     "artwork occupies too much vertical space") while the panel
+     itself floats over the remaining artwork with translucency. */
+  position: absolute;
+  z-index: 1;
+  top: 35%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2); /* FIGMA FIX: tighter than --space-3 to match Figma's denser body */
+  padding: var(--space-5) var(--space-6); /* FIGMA FIX: reduced from flat --space-6 on all sides */
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background-color: var(--color-glass-white, rgba(255, 255, 255, 0.72));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-primary);
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-top: var(--space-1); /* FIGMA FIX: reduced from --space-2 to tighten density */
+}
+
+.metricValue {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-brand-primary);
+}
+
+.metricLabel {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
+.footer {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-link);
+}

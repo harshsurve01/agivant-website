@@ -1,0 +1,167 @@
+/* ==========================================================================
+   ButtonMotion.module.css
+   Owns the interaction layer's LAYOUT only: magnetic-hover wrapper,
+   cursor glow, rolling-text masks, icon layout, and each layer's
+   resting state. It does NOT own the hover/press animation itself —
+   every :hover / :active rule that used to live here has moved into
+   the single GSAP timeline in ButtonMotion.tsx (playHover +
+   handlePressStart/End), per the brief: "GSAP owns behaviour only."
+   Timing/easing values are still pulled from the shared tokens defined
+   in motion.css — Agivant's project-wide Motion Design System — so
+   this vocabulary stays reusable by future components, not hardcoded
+   per-file, even though the values are now read by JS instead of CSS.
+   ========================================================================== */
+
+/* Layer 1 host. Un-styled beyond inline-flex: no padding, margin, or
+   border, so it contributes zero size to the box model — the button
+   inside still determines the rendered height on its own.
+
+   No resting `transform` declared here on purpose. `gsap.quickTo(el,
+   "x"/"y", ...)` in useMagneticHover writes directly to this element's
+   transform every frame; a CSS `transform: translate3d(...)` rule
+   would just be overwritten (GSAP is the one authoring the compositor
+   layer here, same as it authors x/y on the button for the press
+   tween — CSS still triggers a GPU layer for it via `will-change`
+   below, GSAP just owns the values). */
+.magneticWrap {
+  display: inline-flex;
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------
+   Applied alongside .button/.primary|.dark/.sm|.lg via the same
+   `className` merge point Button already exposed.
+   -------------------------------------------------------------------- */
+.motion {
+  position: relative;
+  overflow: hidden; /* clips the cursor-glow to the button's own
+                        border-radius: full pill, inherited from
+                        .button — not redeclared here */
+  will-change: transform, box-shadow;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); /* resting state for Layer 5;
+    GSAP tweens this toward --shadow-md on hover and back on leave —
+    declared here as a real (zero) shadow, not `none`, so GSAP always
+    has two shadow values of matching shape to interpolate between. */
+}
+
+/* --------------------------------------------------------------------
+   Layer 2: cursor-follow glow.
+   --glow-x / --glow-y are written by useCursorGlow as percentages
+   relative to the button's own box. Opacity is intentionally NOT
+   controlled here — it's part of the GSAP hover timeline in
+   ButtonMotion.tsx, so the glow fades in/out on the exact same clock
+   as the rolling text, icon, and shadow instead of racing them on its
+   own CSS-transition clock.
+   -------------------------------------------------------------------- */
+.glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* ~10% intensity, tight radius, fast falloff — a living surface,
+     not a spotlight. Apple/Linear/Vercel-subtle, not RGB-gaming-
+     subtle: if it's consciously noticeable as "a glow," it's too
+     strong. */
+  background: radial-gradient(
+    120px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    color-mix(in srgb, var(--color-white) 30%, transparent),
+    transparent 70%
+  );
+  opacity: 0; /* resting state; GSAP tweens this to 1 on hover */
+}
+
+/* --------------------------------------------------------------------
+   Layer 3: rolling text — layout only.
+   Each character gets its own mask (overflow: hidden) containing two
+   stacked identical glyphs. The resting transform (clone parked one
+   full glyph-height below) is set here so there's a correct static
+   state before JS ever runs (no-JS / reduced-motion fallback); the
+   roll itself — both the enter and the reverse — is a GSAP tween on
+   `yPercent`, driven by ButtonMotion.tsx's playHover, matching the
+   original PHP button.js timeline.
+   -------------------------------------------------------------------- */
+.rollingWrap {
+  display: inline-flex;
+}
+
+.charMask {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  /* No forced line-height here — the roll is percentage-based, so it
+     works correctly at whatever line-height this inherits. Forcing
+     line-height: 1 would risk clipping descenders (g/y/p) depending
+     on the font's actual glyph metrics. Doesn't affect the button's
+     own rendered height — that's still governed entirely by
+     Button.module.css's padding + line-height, independent of this
+     inner span's size. */
+  white-space: pre; /* preserves spaces converted to \u00A0 by
+                        RollingText without them collapsing */
+}
+
+.charInner,
+.charClone {
+  display: block;
+  /* No `transition` here on purpose — GSAP writes `transform`
+     directly, frame by frame, along its own eased curve (power3.out).
+     A CSS transition layered on top of already-eased values would
+     just double-smooth and add lag. */
+}
+
+.charClone {
+  position: absolute;
+  inset: 0;
+  /* No resting `transform` declared here on purpose. GSAP's `y` (parsed
+     from any existing transform) and `yPercent` are separate, additive
+     transform components — if this class also declared
+     `transform: translateY(100%)`, GSAP would parse that into its
+     internal `y` on first touch and then add its own `yPercent: 100`
+     on top, landing at 200% instead of 100%. Letting the mount-effect
+     `gsap.set(..., { yPercent: 100 })` in ButtonMotion.tsx be the ONLY
+     source of the resting transform avoids the stacking entirely.
+     No-JS / reduced-motion fallback: without JS this element simply
+     renders at its natural (untransformed) position, stacked on top
+     of `.charInner` inside the mask — acceptable since reduced-motion
+     never builds a timeline that would reveal it anyway. */
+}
+
+/* --------------------------------------------------------------------
+   Layer 4: icon — layout only. Motion (x offset + rotate, synchronized
+   with the rolling text) is part of the same GSAP timeline in
+   ButtonMotion.tsx, not a CSS transition.
+   -------------------------------------------------------------------- */
+.icon {
+  display: inline-flex;
+}
+
+/* --------------------------------------------------------------------
+   Accessible label: the real, unsplit text, visually hidden but
+   always present in the accessibility tree — independent of whatever
+   the decorative rolling-text DOM is doing.
+   -------------------------------------------------------------------- */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------
+   Reduced motion: nothing to neutralize here anymore — glow opacity,
+   shadow, and press are all GSAP tweens now, and ButtonMotion.tsx's
+   reducedMotionRef bails out of every one of them (playHover,
+   handlePressStart/End) before a single tween is created, the same
+   way useMagneticHover / useCursorGlow already bail out before
+   attaching a listener. This block stays only as the CSS-side
+   safety net motion.css's project-wide rule already backs up.
+   -------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .motion,
+  .glow {
+    transition: none;
+  }
+}

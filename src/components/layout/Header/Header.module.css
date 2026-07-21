@@ -1,0 +1,189 @@
+/* ==========================================================================
+   Header.module.css
+   Owns layout, spacing, and alignment only. Height is intentionally
+   never set directly — it emerges from padding + line-height of the
+   content inside, matching how the Figma's Auto Layout actually works.
+
+   PENDING FIGMA: padding-block values below use EXISTING design tokens
+   as a placeholder — not lifted from a spec, since none was available
+   at implementation time.
+   ========================================================================== */
+
+.header {
+  /* Spacing above the header (e.g. below AnnouncementBar) — left here
+     for now, but worth revisiting whether this belongs in a parent
+     page-shell instead, since Header's own docs above say it doesn't
+     own what's above it. Converted to a token; not relocated. */
+  margin-top: var(--space-5, 1.25rem); /* was 20px literal */
+  width: 100%;
+  /* height and display:flex/align-items were removed here: they
+     hardcoded a fixed height that contradicted the "height emerges
+     from padding" rule documented above, and could clip content if
+     nav wraps or type sizing changes. .inner's padding already
+     produces the correct height on its own. */
+  background-color: var(--color-bg-primary); /* TODO(figma): confirm exact background */
+
+  /* Sticky: engages once header's own top edge reaches the viewport
+     top (see HeaderShell's sentinel/IntersectionObserver). No height,
+     spacing, or typography value here changes when it engages — only
+     .stuck below adds blur/border/shadow. */
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+
+  /* Un-stuck by default: transparent border reserves the same 1px box
+     the stuck state will occupy, so its arrival doesn't shift layout
+     by a border-width. Literal 200ms/ease-out per spec ("subtle...
+     around 200ms") rather than --transition-base (250ms), since this
+     is a specific, stated behavioral requirement, not a general
+     component transition. */
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 200ms ease-out,
+    backdrop-filter 200ms ease-out,
+    border-color 200ms ease-out,
+    box-shadow 200ms ease-out;
+}
+
+.sentinel {
+  /* Zero-height, zero-width: exists only as an IntersectionObserver
+     target marking the exact scroll position of header's natural top
+     edge. Not part of layout or the visual design in any way. */
+  position: relative;
+  block-size: 0;
+  inline-size: 0;
+}
+
+.stuck {
+  /* Semi-transparent background is required for backdrop-filter to
+     have anything to blur — color-mix over the existing
+     --color-bg-primary token, same derivation pattern variables.css
+     already uses for hover/active states, so this isn't a new color,
+     just a computed variant of the one already in use. */
+  background-color: color-mix(in srgb, var(--color-bg-primary) 85%, transparent);
+  backdrop-filter: blur(18px); /* TODO(figma): confirm exact blur radius, no spec value given */
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom-color: var(--color-border-default); /* reuses divider's existing border token */
+  box-shadow: var(--shadow-sm); /* reuses existing "subtle" shadow token */
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* No uniform gap here on purpose: Figma's spacing is asymmetric
+     around each divider (28px to Logo/CTA, 94px to nav), so spacing
+     is carried by the dividers' own margins instead — see
+     .dividerStart / .dividerEnd below. */
+
+  /* Height is a natural result of this padding + the line-height of the
+     logo/nav/button inside — never set as an explicit height value. */
+  padding-block: var(--space-4); /* TODO(figma): confirm exact vertical padding */
+}
+
+.dividerStart,
+.dividerEnd {
+  width: 1px;
+  align-self: stretch;
+  flex-shrink: 0;
+  background-color: var(--color-border-default); /* TODO(figma): confirm divider color, borrowed from AnnouncementBar's border token */
+}
+
+.dividerStart {
+  /* Logo -> divider: 28px. divider -> nav: 94px at the Figma baseline
+     (assumed ~1920px desktop frame). These were literal, non-shrinking
+     rem values — on narrower desktop widths (e.g. a 1280-1440px
+     MacBook Air viewport) that fixed total pushed the header past the
+     viewport, since flex children never got smaller than this fixed
+     spacing plus every nav label's un-wrapped width.
+     clamp(min, preferred-in-vw, max) keeps the value pixel-identical
+     to Figma (5.875rem / 1.75rem) at the baseline width and above —
+     it never exceeds spec — but lets it compress fluidly, with no
+     media-query breakpoints, as the viewport narrows toward the
+     floor. The floor keeps the divider visually separated without
+     collapsing spacing to zero. Nav label text itself is untouched;
+     only the whitespace around it adapts. */
+  margin-left: clamp(1rem, 1.46vw, 1.75rem); /* 28px at baseline */
+  margin-right: clamp(2rem, 4.9vw, 5.875rem); /* 94px at baseline */
+}
+
+.dividerEnd {
+  /* Mirror of dividerStart; same fluid rationale. */
+  margin-left: clamp(2rem, 4.9vw, 5.875rem); /* 94px at baseline */
+  margin-right: clamp(1rem, 1.46vw, 1.75rem); /* 28px at baseline */
+}
+
+.nav {
+  /* Nav sits between Logo and CTA; it does not stretch to fill space on
+     its own so the three-way space-between split above stays intact. */
+  flex: 0 1 auto;
+
+  /* .nav is a flex item of .inner (display: flex). Without this, its
+     default min-width: auto would floor it at its full content width
+     (every label, unwrapped) and it could never shrink at all — same
+     class of bug fixed on AnnouncementBar's .viewport. This lets it
+     shrink as far as the fluid gap below allows before label text
+     itself becomes the limiting factor. */
+  min-width: 0;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  /* Fluid, same rationale as the divider margins: pixel-identical to
+     the 2rem (32px) Figma baseline at/above that width, compresses
+     smoothly below it, no breakpoints. */
+  gap: clamp(1rem, 1.67vw, 2rem); /* 32px at baseline */
+}
+
+.navLink {
+  font-size: var(--font-size-md); /* was 17.5px literal — 0.5px off font-size-md (18px), consolidated to the token */
+  font-weight: var(--font-weight-semibold); /* was 600 literal */
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+
+  /* Positioning context for the ::after underline only — does not
+     change navLink's own box, so it doesn't affect nav's height or
+     the header's derived total height. */
+  position: relative;
+}
+
+.navLink:hover {
+  color: var(--color-hover-primary);
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  /* 2px literal gap between text baseline and underline — no token
+     exists for an offset this specific, same "documented literal"
+     precedent as the divider margins and sticky padding. Does not
+     affect layout: the pseudo-element is absolutely positioned, so it
+     never participates in nav's height calculation. */
+  bottom: -2px;
+  inline-size: 100%;
+  block-size: 1px;
+  background-color: currentColor;
+
+  /* scaleX (not width or border-bottom) so growth/collapse is a pure
+     transform — no layout shift, no reflow, no text movement, exactly
+     as specified. transform-origin: left means it grows left→right on
+     hover and, on leave, the same transform interpolates back through
+     the same states — visually the right edge retreats first, i.e.
+     right→left, without needing separate enter/exit rules. */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease-out; /* within spec's 180–220ms window */
+}
+
+.navLink:hover::after {
+  transform: scaleX(1);
+}
+
+.navLink:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-sm);
+}

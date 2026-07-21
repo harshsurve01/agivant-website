@@ -1,0 +1,27 @@
+/* ==========================================================================
+   Logo.module.css
+   Owns only how the logo link/image behaves as an inline element —
+   no page positioning, no margin. Height is governed by a token so it
+   scales consistently with the rest of the type/spacing system rather
+   than an arbitrary pixel value.
+   ========================================================================== */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  /* Dedicated brand-asset token — deliberately not a generic --space-*
+     token, since the logo's size is a brand decision, not a step in
+     the layout spacing scale. Matches the Image's current intrinsic
+     height={32} in Logo.tsx; update both together if the real asset's
+     dimensions differ. */
+  --logo-height: 2rem; /* TODO(figma): confirm exact logo height */
+
+}
+
+.image {
+  height: var(--logo-height);
+  /* Explicitly auto (not omitted) alongside an explicit height: this
+     is what next/image needs to preserve aspect ratio when only one
+     axis is CSS-driven. */
+  width: auto;
+}

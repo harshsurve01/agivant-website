@@ -1,0 +1,46 @@
+/* ==========================================================================
+   ProofSection.module.css
+
+   Owns section-level layout and spacing only — heading/description/CTA
+   typography lives in ProofContent, spotlight layout in
+   SpotlightContainer. Same division of responsibility as
+   Partners.module.css.
+
+   Content Frame measured 1302 × 648. Left Content measured 454 × 374
+   (~35% of the frame width); the remaining width is the spotlight area
+   (two 400px card columns + internal gap — see SpotlightContainer).
+
+   FIGMA FIX (visual refinement pass): the gap below was var(--space-8)
+   (32px), which made the two-column math overshoot the frame —
+   454 + 32 + 824 = 1310px, 8px wider than the measured 1302px frame,
+   and the extra width landed entirely in the spotlight column (the
+   visible "spotlight is too wide" bug). var(--space-6) (24px) is the
+   value that makes the columns sum to exactly 1302:
+   454 + 24 + 824 = 1302.
+   ========================================================================== */
+
+.proof {
+  width: 100%;
+  background-color: var(--color-bg-primary);
+  padding-block: var(--space-24); /* TODO(figma): confirm exact section vertical rhythm */
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 454px) minmax(0, 824px);
+  /* FIGMA FIX: was `align-items: center`, which vertically centered the
+     left column against the full 648px-tall card stack — that's why the
+     heading/description/CTA rendered noticeably lower than Figma, where
+     the left content's top edge lines up with the top of the cards. */
+  align-items: start;
+  gap: var(--space-6); /* 24px — see file header math */
+  width: 100%;
+  max-width: 1302px; /* Content Frame measured 1302 × 648 */
+  margin-inline: auto;
+}
+
+@media (max-width: 1024px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+}

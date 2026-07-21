@@ -1,0 +1,111 @@
+/* ==========================================================================
+   Hero.module.css
+   Owns layout, spacing, and typography for the hero content. The
+   background layer is deliberately empty (no gradient/SVG/glow) — that
+   decoration is a later iteration, tracked by the TODO(figma) below.
+
+   No z-index is used to stack .content above .background: .background
+   is position: absolute (removed from flow) and .content is a normal,
+   later sibling in the markup, so it paints on top by document order
+   alone — no z-index token needed for this.
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-bg-primary); /* TODO(figma): decorative gradient/curves/glow arrive in a later iteration */
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding-block: var(--space-24); /* TODO(figma): confirm exact vertical spacing */
+  /* No max-width here on purpose: Container (default size="xl", 1280px)
+     already caps the available width. Stacking var(--container-lg)
+     (1024px) on top of that was double-constraining the column, which
+     is why the heading/description read as too narrow against the
+     Figma — the heading in particular needs the full Container width
+     to wrap where the Figma wraps it, without increasing font-size. */
+  width: 100%;
+}
+
+.heading {
+  font-weight: var(--font-weight-regular);
+  font-size: 5rem; /* was 80px literal — Container already caps column width, so a fixed rem holds proportion across 1280-1920px without clamp() */
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
+}
+
+/*
+  Each heading line is an explicit block so line breaks come from
+  markup structure, not viewport-dependent text wrap. Kept as a plain
+  block span (not a <div>) so the parent stays a single <h1> with
+  inline-safe children — this also gives the future GSAP pass a
+  stable, isolated node per line to animate without further markup
+  changes.
+*/
+.headingLine {
+  display: block;
+}
+
+.assetWrapper {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.assetImage {
+  height: 5.625rem; /* was 90px literal */
+  width: auto;
+}
+
+.highlight {
+  font-weight: var(--font-weight-bold);
+}
+
+.tagline {
+  margin-top: var(--space-8); /* was space-6 — Figma shows more breathing room below the heading */
+  font-weight: var(--font-weight-medium);
+  font-size: 2.5rem; /* was 40px literal */
+  line-height: 1.27; /* Figma: 127% */
+  color: var(--color-text-primary);
+}
+
+.description {
+  margin-top: var(--space-4); /* smaller gap than heading->tagline since these two lines are visually grouped */
+  font-size: 1.5rem; /* was 24px literal */
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  /* was container-sm (640px) — against the widened heading, that read
+     narrower than the Figma's description block proportionally is.
+     container-md keeps it comfortably readable while filling more of
+     the available column width, matching the Figma more closely. */
+  ;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-12); /* was space-8 — Figma shows a larger gap between description and the CTA row */
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: var(--font-size-3xl);
+  }
+
+  .content {
+    padding-block: var(--space-12);
+  }
+}

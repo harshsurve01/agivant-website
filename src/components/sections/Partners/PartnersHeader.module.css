@@ -1,0 +1,59 @@
+/* ==========================================================================
+   PartnersHeader.module.css
+
+   Heading frame measured 849.81 × 180 against a 1442-wide section
+   (~59% of section width) — expressed as a rem max-width, same
+   approach as EnvironmentHeader.module.css, so it holds its intended
+   line break rather than reflowing early.
+
+   Description frame measured 813.59 × 96 (~56% of section width).
+
+   PENDING TOKENS: Figma specifies 64px/Poppins SemiBold for the
+   heading. The current type scale has no exact 64px step
+   (--font-size-5xl is 56px, --font-size-6xl is 68px) — using 6xl as
+   the closer of the two pending confirmation, same "closest existing
+   token, flagged" approach used for Environment's card padding. The
+   30px description size matches --font-size-2xl exactly, no gap there.
+   ========================================================================== */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4); /* TODO(figma): confirm exact gap between heading and description */
+  max-width: 53rem; /* ~849.81/1442 of the section frame */
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-6xl); /* TODO(figma): measured 64px — no exact token match (56px/68px available), confirm */
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+
+.headingLine {
+  display: block;
+}
+
+.highlight {
+  color: var(--color-text-link);
+}
+
+.description {
+  max-width: 51rem; /* ~813.59/1442 of the section frame */
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-2xl); /* 30px — exact match to the measured description size */
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: var(--font-size-3xl);
+  }
+
+  .description {
+    font-size: var(--font-size-lg);
+  }
+}

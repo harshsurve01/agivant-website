@@ -1,0 +1,36 @@
+/* ==========================================================================
+   PartnerLogoStrip.module.css
+
+   Strip frame measured 1233.74 × 89.35 against a 1442-wide section.
+   Four equal-width grid columns (not flex) so every slot's width,
+   centering, and separator spacing stays identical — the Figma note
+   is explicit this is one strip, not four cards.
+
+   PENDING FIGMA: strip background/radius/padding below are placeholder
+   tokens — the screenshot shows a very light rounded surface, but no
+   exact fill color, radius, or padding was measured (the 1233.74×89.35
+   frame appears to cover the logos themselves, not the surrounding
+   surface).
+   ========================================================================== */
+
+.strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* TODO: hardcoded to the current 4-partner design, same "ratio for the known content" precedent as EnvironmentExperience's column widths — revisit if slot count becomes dynamic */
+  align-items: center;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-secondary);
+  padding-block: var(--space-6); /* TODO(figma): confirm exact strip surface padding */
+}
+
+.slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--space-6); /* TODO(figma): confirm exact inter-logo spacing */
+  border-left: 1px solid var(--color-border-default);
+}
+
+.slot:first-child {
+  border-left: none;
+}

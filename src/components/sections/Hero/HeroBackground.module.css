@@ -1,0 +1,126 @@
+/* ==========================================================================
+   HeroBackground.module.css
+   Sprint 1 only: layout/positioning for the two ambient glows and the
+   static decorative ellipse stroke. Nothing here touches Hero's own
+   layout, spacing, or typography — those stay entirely in
+   Hero.module.css, untouched. Colors are pulled from variables.css's
+   existing --color-bg-gradient-start/-end pair (the project's violet/
+   peach hero tokens) rather than new hardcoded hex values.
+   ========================================================================== */
+
+.experience {
+  position: relative;
+  width: 100%;
+  /* Local stacking context for this component's own layers — Hero's
+     own .hero already provides position: relative + overflow: hidden
+     at the section level (see Hero.module.css), which is what clips
+     these glows naturally at the viewport edge. */
+}
+
+/* --------------------------------------------------------------------
+   Left + right ambient glows. Generous negative offsets so they read
+   as soft light bleeding in from off-canvas, not visible circles —
+   per spec: "very soft... only partially visible."
+   -------------------------------------------------------------------- */
+.glowLeft,
+.glowRight {
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(90px);
+  animation: heroGlowBreathe 8s ease-in-out infinite alternate;
+}
+
+.glowLeft {
+  top: 3%;
+  left: -20%;
+  width: clamp(340px, 34vw, 600px);
+  height: clamp(340px, 34vw, 600px);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-bg-gradient-start) 85%, transparent) 0%,
+    transparent 72%
+  );
+}
+
+.glowRight {
+  top: 4%;
+  right: -18%;
+  width: clamp(380px, 38vw, 680px);
+  height: clamp(380px, 38vw, 680px);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-bg-gradient-end) 75%, transparent) 0%,
+    transparent 72%
+  );
+  /* Offset from the left glow's cycle so the two never breathe in
+     lockstep — reads as ambient atmosphere, not a mechanical pulse. */
+  animation-delay: -4s;
+}
+
+/* Scale 1 -> 1.04 -> 1, opacity subtly along with it, 8s (within the
+   spec's 6-10s window), infinite, alternate — exactly per spec. */
+@keyframes heroGlowBreathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.68;
+  }
+}
+
+/* --------------------------------------------------------------------
+   Decorative ellipse stroke. Static this sprint — the Hero Timeline
+   (Sprint 5) animates it later. Scales via viewBox + clamp()'d sizing
+   rather than a fixed px box, so it stays proportional across desktop
+   widths without a redraw.
+   -------------------------------------------------------------------- */
+.ellipseStroke {
+  position: absolute;
+  z-index: 2;
+  right: clamp(-80px, -4vw, -20px);
+  bottom: clamp(-60px, -6vw, -20px);
+  width: clamp(360px, 34vw, 620px);
+  height: auto;
+  opacity: 0.7;
+  pointer-events: none;
+  /* Mirrors the ellipse across its own horizontal axis — same box,
+     same right/bottom offsets, just the arc bulging the other way.
+     scaleY (not rotate(180deg)) so it flips vertically only; a 180°
+     rotation would've also mirrored it left-right, which wasn't the
+     problem. */
+  transform: scaleX(-1);
+}
+
+/* --------------------------------------------------------------------
+   Content layer. Establishes its own stacking context above both
+   decorative layers via z-index alone — no changes to Container or
+   .content's own layout rules, which still live entirely in
+   Hero.module.css / Hero.tsx, completely untouched by this file.
+   -------------------------------------------------------------------- */
+.contentLayer {
+  position: relative;
+  z-index: 3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glowLeft,
+  .glowRight {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .glowLeft,
+  .glowRight {
+    filter: blur(60px);
+  }
+
+  .ellipseStroke {
+    width: clamp(260px, 60vw, 420px);
+  }
+}

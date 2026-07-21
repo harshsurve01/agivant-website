@@ -1,0 +1,42 @@
+/* ==========================================================================
+   AIStackHeader.module.css
+
+   PENDING FIGMA: font sizes below use existing type-scale tokens as
+   placeholders — the supplied screenshot didn't include a Figma
+   inspector panel for this block, so no point sizes are confirmed.
+   ========================================================================== */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4); /* TODO(figma): confirm exact gap between heading and description */
+  max-width: 42rem; /* TODO(figma): confirm exact column width */
+  text-align: center;
+}
+
+.heading {
+  font-size: var(--font-size-4xl); /* TODO(figma): confirm exact heading size */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+
+.headingLine {
+  display: block;
+}
+
+.highlight {
+  color: var(--color-accent-primary, #8500DF); /* TODO(design-tokens): confirm brand-purple token name */
+}
+
+.description {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: var(--font-size-2xl);
+  }
+}

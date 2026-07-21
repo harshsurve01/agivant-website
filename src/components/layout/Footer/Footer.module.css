@@ -1,0 +1,32 @@
+/* ==========================================================================
+   Footer.module.css
+   Owns section-level layout only: the outer box, the top CTA/navigation
+   row, and spacing between the three visual zones (CTA+nav / brandmark /
+   copyright). Visual presentation of each zone lives in that zone's own
+   CSS Module — this file never reaches into a child's internals.
+   ========================================================================== */
+
+.footer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-bg-primary);
+  padding: var(--space-24) var(--container-padding-inline) var(--space-12);
+}
+
+/* Reserved for future variant styling. Currently identical to .footer —
+   kept as its own class (rather than folded into .footer) so a future
+   ".minimal" class can be introduced alongside it without restructuring
+   the component that applies it. */
+.default {
+}
+
+.top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-16);
+  flex-wrap: wrap;
+}

@@ -1,0 +1,56 @@
+/* ==========================================================================
+   FooterCTA.module.css
+   Owns the heading and button-row presentation within the CTA zone.
+   No section-level positioning — that's Footer.module.css's job.
+   ========================================================================== */
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  max-width: 876.81px; /* Figma: Heading Frame width */
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-semibold);
+  /* Figma calls for 80px / 118px line-height. Neither exists in the
+     token scale today (--font-size-6xl is 68px; the closest available
+     line-height is --line-height-normal at 1.5). Using the closest
+     existing tokens for this static Phase 2 pass rather than inventing
+     new values — revisit alongside a token addition in Phase 3
+     pixel-perfect refinement. */
+  font-size: var(--font-size-6xl);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.buttonLink {
+  text-decoration: none;
+}
+
+.buttonLink:hover {
+  color: inherit;
+}
+.headingLine {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+}
+
+.ampdWordmark {
+    height: 5rem;   /* adjust to match the Figma */
+    width: auto;
+    display: inline-block;
+    vertical-align: baseline;
+}

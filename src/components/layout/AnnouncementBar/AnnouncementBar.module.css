@@ -1,0 +1,168 @@
+/* ==========================================================================
+   AnnouncementBar.module.css
+
+   Owns the visual presentation and marquee animation for the announcement bar.
+
+   Architecture:
+
+   AnnouncementBar
+      ↓
+   Container
+      ↓
+   Viewport (clips overflow)
+      ↓
+   Track (animated)
+      ↓
+   Item(s)
+
+   ========================================================================== */
+
+.announcementBar {
+  width: 100%;
+  height: 5.217rem; /* 83.47px */
+  display: flex;
+  align-items: center;
+
+  background-color: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+/* ----------------------------------------------------------
+   Clips the moving track.
+---------------------------------------------------------- */
+
+.viewport {
+  width: 100%;
+  overflow: hidden;
+
+  /* Root-cause fix for page-wide horizontal overflow:
+     .viewport is a flex item of .announcementBar (display: flex).
+     Flex items default to min-width: auto, which resolves to their
+     CONTENT-BASED minimum size — and .track (width: max-content,
+     repeated many times over for the marquee loop) is far wider than
+     the screen. Without this override, that oversized content-based
+     minimum wins over `width: 100%`, so .viewport (and therefore
+     .announcementBar, and therefore the whole document) grows to fit
+     the marquee track instead of clipping it, producing horizontal
+     scroll on the entire page — not just this component.
+     min-width: 0 removes that content-based floor, so `overflow:
+     hidden` + `width: 100%` can actually do their job: the track is
+     free to be arbitrarily wide and animate off-screen, but it can
+     never push this element — or the page — past 100% of its
+     container. This is a real fix, not a masking overflow-x: hidden
+     hack: it corrects the sizing behavior at its source. */
+  min-width: 0;
+}
+
+/* ----------------------------------------------------------
+   Marquee Track
+---------------------------------------------------------- */
+
+.track {
+  display: flex;
+  align-items: center;
+
+  width: max-content;
+
+  white-space: nowrap;
+
+  will-change: transform;
+
+  animation: announcement-marquee 30s linear infinite;
+}
+
+/* Pause animation on hover */
+
+.viewport:hover .track {
+  animation-play-state: paused;
+}
+
+/* ----------------------------------------------------------
+   Individual Announcement
+---------------------------------------------------------- */
+
+.item {
+  display: flex;
+  align-items: center;
+
+  gap: var(--space-4);
+
+  flex-shrink: 0;
+
+  /* Large spacing before the next repeated item */
+  padding-inline-end: 8rem;
+
+  min-height: var(--space-10);
+
+  padding-block: var(--space-2);
+}
+
+/* ----------------------------------------------------------
+   Text
+---------------------------------------------------------- */
+
+.text {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-regular);
+
+  line-height: 1.15;
+
+  letter-spacing: var(--letter-spacing-normal);
+
+  color: var(--color-text-secondary);
+
+  white-space: nowrap;
+}
+
+/* ----------------------------------------------------------
+   CTA
+---------------------------------------------------------- */
+.cta,
+.cta:link,
+.cta:visited,
+.cta:hover,
+.cta:active {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.15;
+  letter-spacing: var(--letter-spacing-normal);
+
+  color: var(--color-text-primary);
+
+  text-decoration: underline;
+  text-underline-offset: 2px;
+
+  white-space: nowrap;
+
+  flex-shrink: 0;
+
+  text-decoration-color: currentColor;
+}
+.ctaIcon {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+
+  transition: transform var(--transition-fast);
+}
+
+.cta:hover .ctaIcon {
+  transform: translateX(8px);
+}
+/* ----------------------------------------------------------
+   Marquee Animation
+---------------------------------------------------------- */
+
+@keyframes announcement-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}

@@ -1,0 +1,55 @@
+/* ==========================================================================
+   ProofContent.module.css
+
+   Left Content frame measured 454 × 374 against the 1302px content
+   frame. Owns heading/description/CTA typography and their own
+   internal spacing only — nothing about where this column sits
+   relative to the spotlight experience (that's ProofSection's job:
+   see the align-items/gap fix in ProofSection.module.css that stops
+   this column from rendering lower than Figma).
+
+   PENDING FIGMA: heading/description sizes below use the closest
+   existing type-scale tokens pending exact px confirmation — no
+   explicit measurement was supplied for this section's type sizes,
+   unlike Partners/Environment where exact px values were given.
+   ========================================================================== */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5); /* FIGMA FIX: tightened from --space-6 — Figma's heading/description/CTA sit closer together than 374px of gap-6 spacing produced */
+  max-width: 454px; /* Left Content measured 454 × 374 */
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-5xl); /* TODO(figma): confirm exact heading size */
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+.highlight {
+  color: var(--color-brand-primary);
+}
+
+.headingLine {
+  display: block;
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg); /* TODO(figma): confirm exact description size */
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: var(--font-size-3xl);
+  }
+
+  .description {
+    font-size: var(--font-size-base);
+  }
+}

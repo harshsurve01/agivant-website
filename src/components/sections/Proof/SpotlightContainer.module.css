@@ -1,0 +1,76 @@
+/* ==========================================================================
+   SpotlightContainer.module.css
+
+   Large Card measured 400 × 648. Top Right / Bottom Right Cards each
+   measured 400 × 304. 304 × 2 + 40 = 648, so the internal gap between
+   the two stacked right-hand cards is 40px (--space-10) — that's the
+   value that makes the stacked pair's total height match the large
+   card's height exactly, which the grid below relies on (the large
+   card spans both rows).
+
+   FIGMA FIX (visual refinement pass): nothing below previously pinned
+   the container to an actual 824×648 shape — `height: 100%` resolved
+   against an ancestor chain (SpotlightExperience → ProofSection .inner)
+   that never declares an explicit height, so it collapsed to `auto`
+   and every card's real height came from its own content (image % +
+   text length) instead of the measured frame. That's the root cause
+   of "featured card is wider than Figma" and "top/bottom cards are
+   too wide and too short" — the aspect-ratio below is what actually
+   locks the 824×648 proportion (two 400px columns + 40px gap wide,
+   648px tall), independent of content length. Slot children still get
+   their height for free via CSS Grid's default `align-items: stretch`
+   now that the container itself has a real height to stretch into.
+
+   `overflow: hidden` is deliberate now, not a Phase 4 addition: this
+   is the clipping boundary the architecture calls out — the surface
+   the other two cards will animate OUT of view against once the
+   spotlight hover behavior exists. It has no visible effect today
+   since nothing moves yet, but the boundary itself is part of the
+   approved architecture, not the animation.
+   ========================================================================== */
+
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: var(--space-10); /* 40px */
+  width: 100%;
+  max-width: 824px; /* two 400px card columns + 40px gap, measured against the 1302px content frame */
+  aspect-ratio: 824 / 648; /* FIGMA FIX: pins the measured frame proportion */
+  overflow: hidden;
+}
+
+.largeSlot {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  min-height: 0;
+}
+
+.topRightSlot {
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 0;
+}
+
+.bottomRightSlot {
+  grid-column: 2;
+  grid-row: 2;
+  min-height: 0;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    max-width: none;
+    aspect-ratio: auto; /* stacked single-column layout has its own natural height */
+  }
+
+  .largeSlot,
+  .topRightSlot,
+  .bottomRightSlot {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}

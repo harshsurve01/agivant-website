@@ -1,0 +1,33 @@
+/* ==========================================================================
+   FooterNavigation.module.css
+   Owns the navigation list's own presentation (spacing between links,
+   link styling). No section-level positioning — that's Footer.module.css.
+   ========================================================================== */
+
+.nav {
+  width: 147px; /* Figma: Navigation frame width */
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  /* Figma specifies a 29px gap. Closest existing tokens are --space-6
+     (24px) and --space-8 (32px); using --space-6 here rather than
+     inventing a new value — revisit in Phase 3 pixel-perfect refinement. */
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.link:hover {
+  color: var(--color-hover-primary);
+}

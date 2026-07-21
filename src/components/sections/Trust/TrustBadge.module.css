@@ -1,0 +1,27 @@
+/* ==========================================================================
+   TrustBadge.module.css
+   Owns the badge's own visual identity only. Color is themed via the
+   `--trust-accent` custom property set by an ancestor (falls back to
+   the default text color when no ancestor sets one), so this component
+   stays reusable anywhere a labeled pill is needed.
+   ========================================================================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  /* Figma measures this pill at 106 x 33 for "Trusted". Height: 8px
+     padding-block per side (16px) + ~16.8px line box (14px font at
+     ~1.2 line-height) ≈ 33px. Width isn't set directly — it has to
+     stay label-dependent for "Amplified" / "Connected" — so
+     padding-inline is tuned to land "Trusted" near 106px instead. */
+  padding-inline: var(--space-5, 20px); /* TODO(figma): confirm --space-5 exists in the scale; using 20px literal fallback */
+  padding-block: var(--space-2);
+  border-radius: var(--radius-full, 999px);
+  background-color: var(--color-bg-primary); /* TODO(figma): confirm exact badge background */
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.08)); /* TODO(figma): confirm exact badge shadow */
+  font-size: var(--font-size-sm, 14px);
+  line-height: 1.2;
+  font-weight: var(--font-weight-semibold);
+  color: var(--trust-accent, var(--color-text-primary));
+  white-space: nowrap;
+}

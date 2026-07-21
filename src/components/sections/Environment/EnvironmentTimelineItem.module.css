@@ -1,0 +1,46 @@
+.item {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: var(--space-3); /* TODO(figma): confirm exact number/divider/title gap */
+  color: var(--color-text-muted);
+}
+
+.step {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: inherit;
+  font-variant-numeric: tabular-nums; /* keeps two-digit numbers from shifting the divider */
+}
+
+.divider {
+  width: 1px;
+  height: var(--space-6); /* TODO(figma): confirm exact divider height */
+  background-color: transparent; /* only the active row shows a divider in Figma — inactive rows render number + title with no line, confirmed by zoomed pixel inspection */
+  /* Kept as a plain background-color today, not a gradient or
+     animated fill — the future progressive-line-fill treatment
+     changes this rule, not this element's existence. */
+}
+
+.title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: inherit;
+}
+
+.itemActive {
+  color: var(--color-text-primary);
+}
+
+.itemActive .step {
+  color: var(--color-text-primary);
+}
+
+.itemActive .title {
+  color: var(--color-text-link);
+  font-weight: var(--font-weight-semibold);
+}
+
+.itemActive .divider {
+  background-color: var(--color-text-link);
+}

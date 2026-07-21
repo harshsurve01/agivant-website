@@ -1,0 +1,60 @@
+/* ==========================================================================
+   EnvironmentCard.module.css
+
+   aspect-ratio (not a fixed height) reproduces the measured 714×369
+   card frame's proportion — it holds the shape at any column width
+   the Experience grid gives this card, rather than locking in 369px
+   and either clipping content or leaving dead space at other
+   viewport widths. Same "ratio, not px" approach as AIStackCard's
+   sizing.
+
+   .faceFront / .faceBack: the front sits in normal flow (so it
+   establishes .faceStack's size); the back is absolutely positioned
+   over it and hidden with visibility+opacity rather than display:none.
+   That distinction matters for the future flip: display:none removes
+   an element from layout entirely, so a flip transform would have
+   nothing to animate to. visibility+opacity keeps the node laid out
+   and flip-ready while still being invisible and non-interactive
+   today (pointer-events: none, aria-hidden set in EnvironmentCardFace).
+   ========================================================================== */
+
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 714 / 369; /* TODO(figma): measured from the supplied screenshot, not an exported spec value — still unconfirmed */
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--color-bg-secondary);
+  /* Soft warm glow bleeding past the card's bottom-right corner —
+     confirmed against the Figma reference by sampling pixels beyond
+     the card's own edge (a genuine warm tint, not compression noise).
+     Implemented as box-shadow rather than a pseudo-element because
+     box-shadow paints outside the border box and isn't clipped by
+     this element's own overflow:hidden, so the glow can bleed past
+     the rounded corner without restructuring .faceStack's clipping.
+     Reuses the existing hero gradient's peach token instead of
+     inventing a new color. */
+  box-shadow: 40px 40px 90px -20px color-mix(in srgb, var(--color-bg-gradient-end) 55%, transparent);
+}
+
+.faceStack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.faceFront {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.faceBack {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}

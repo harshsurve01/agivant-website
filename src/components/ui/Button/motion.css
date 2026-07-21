@@ -1,0 +1,58 @@
+/* ==========================================================================
+   motion.css
+   Agivant's shared Motion Design System — first-class alongside
+   variables.css's color/spacing/type tokens, not a Button-local file.
+   Every future component that introduces interaction (Cards, Hero,
+   Navigation, Footer, whatever comes next) should reach for these
+   tokens rather than hardcoding its own duration/ease, the same way
+   components already reach into variables.css instead of hardcoding
+   a color.
+
+   Distinct from variables.css's --transition-* tokens, which are
+   general-purpose fades/color transitions (e.g. a link's color on
+   hover). These are specifically for the premium micro-interaction
+   vocabulary: quick, precise, GPU-cheap — transform/opacity/custom
+   properties only, per the system's performance rule.
+   ========================================================================== */
+
+:root {
+  /* Standard interaction timing — glow opacity, rolling text, icon
+     motion, press/elevation transitions. Deliberately snappier than
+     variables.css's --transition-base (250ms), matching the "precise,
+     restrained" brief rather than the slower fades used elsewhere
+     (e.g. sticky-header engagement). */
+  --motion-fast-duration: 200ms;
+  --motion-fast-ease: cubic-bezier(0.4, 0, 0.2, 1); /* same curve as
+    variables.css's --easing-standard, written as a literal here so
+    this file has no load-order dependency on variables.css */
+
+  /* Magnetic-style pulls (Button today; any future draggable/hover-
+     attracted element later) are driven by a per-frame rAF lerp
+     rather than a CSS transition — see useMagneticHover.ts — so there
+     is no duration/ease pair to centralize for that specific
+     mechanism. This factor is the shared "how soft is the settle"
+     knob: lower = softer spring, higher = snappier catch-up. Kept
+     here, not hardcoded in the hook, so a future non-Button magnetic
+     element uses the same feel by default. */
+  --motion-magnet-ease: 0.15;
+}
+
+/* --------------------------------------------------------------------
+   Global reduced-motion safety net. Belt-and-suspenders alongside the
+   per-hook `matchMedia` checks (useMagneticHover / useCursorGlow skip
+   attaching listeners entirely, so they never produce a transform or
+   custom property to begin with) and any component-level
+   @media (prefers-reduced-motion: reduce) block. This project-wide
+   rule catches anything else, present or future, that animates via
+   transition/animation without its own explicit handling.
+   -------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

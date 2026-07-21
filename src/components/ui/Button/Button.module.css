@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Button.module.css
+   Owns everything about the button's own visual presentation: background,
+   border, radius, typography, padding, cursor, hover/active/disabled
+   states, and transitions. It does NOT own margin, position, or how it's
+   placed relative to siblings — that's the parent's job.
+
+   Every value below references an existing token from variables.css.
+   Nothing is hardcoded.
+   ========================================================================== */
+
+.button {
+  /* inline-flex + centering is content alignment *inside* the button
+     (text, and later an icon) — not page layout. It's what lets a
+     future icon sit correctly next to the label without extra markup. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  white-space: nowrap;
+
+  border-radius: var(--radius-full);
+  /* Transparent border reserves space now so a future "outline" variant
+     can add a real border color without shifting layout. */
+  border: 1px solid transparent;
+
+  cursor: pointer;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base),
+    opacity var(--transition-base);
+}
+
+/* --------------------------------------------------------------------
+   Variants
+   -------------------------------------------------------------------- */
+.primary {
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+}
+
+.primary:hover:not(:disabled) {
+  background-color: var(--color-hover-primary);
+}
+
+.primary:active:not(:disabled) {
+  background-color: var(--color-purple-active);
+}
+
+.dark {
+  background-color: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+}
+
+.dark:hover:not(:disabled) {
+  background-color: var(--color-hover-inverse);
+}
+
+.dark:active:not(:disabled) {
+  background-color: var(--color-black-active);
+}
+
+/* --------------------------------------------------------------------
+   Sizes
+   Named by design-system scale (sm / lg), not by where they're used.
+   -------------------------------------------------------------------- */
+.sm {
+  padding: var(--space-2) var(--space-5);
+  font-size: var(--font-size-sm);
+}
+
+.lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--font-size-base);
+}
+
+/* --------------------------------------------------------------------
+   Disabled state
+   -------------------------------------------------------------------- */
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* --------------------------------------------------------------------
+   Focus-visible
+   Keyboard-only focus ring, consistent with the rest of the design
+   system's focus treatment.
+   -------------------------------------------------------------------- */
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}

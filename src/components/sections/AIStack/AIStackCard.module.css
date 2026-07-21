@@ -1,0 +1,78 @@
+/* ==========================================================================
+   AIStackCard.module.css
+
+   Four stacked layers via position: absolute + inset: 0 on the first
+   three, with .content and .badgeLayer using position: relative/
+   absolute respectively so they paint above .background and .ribbon
+   by document order and stacking context — same "no z-index needed
+   for this" reasoning as Hero.module.css's .background/.content
+   split. .badgeLayer is the one layer that does need an explicit
+   z-index, since it must sit above .content's own text, not just
+   above the background layers.
+
+   PENDING FIGMA: padding/radius/border below use existing tokens as
+   placeholders — the supplied screenshot didn't include a Figma
+   inspector panel for individual card measurements.
+   ========================================================================== */
+
+.card {
+  position: relative;
+  isolation: isolate; /* keeps this card's z-index layers scoped to itself, not the page */
+  width: 100%;
+  min-height: 12rem;
+  overflow: hidden;
+  border-radius: var(--radius-lg, 1rem); /* TODO(design-tokens): confirm token name */
+  border: 1px solid var(--color-border-default);
+  background-color: var(--color-bg-primary);
+  padding: var(--space-6); /* TODO(figma): confirm exact card padding */
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-bg-primary); /* TODO(figma): confirm — may be a subtle gradient rather than flat color */
+}
+
+.ribbon {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ribbonImage {
+  object-fit: contain;
+  /* Driven by --ribbon-position, set inline per-card in AIStackCard.tsx
+     from AIStackCardData. Defaults to "bottom" so cards that don't
+     specify a position keep the current behavior. This keeps ribbon
+     placement a per-card *data* concern rather than requiring a new
+     CSS selector (.card--variant) per card. */
+  object-position: var(--ribbon-position, bottom);
+  opacity: 0.9; /* TODO(figma): confirm exact ribbon opacity/blend */
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 85%; /* keeps text clear of the badge's top-right corner */
+}
+
+.title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--accent-color, var(--color-accent-primary, #8500DF));
+}
+
+.description {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.badgeLayer {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 1; /* the one layer that must sit above .content, not just above the background */
+}
