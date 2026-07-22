@@ -34,12 +34,8 @@ export async function Header() {
         <div className={styles.inner}>
           <Logo />
 
-          {/* Divider: Figma shows a 1px vertical rule between Logo and
-              nav, and again between nav and the CTA. Spacing around
-              each divider is asymmetric (28px to its Logo/CTA side,
-              94px to its nav side), so .inner's gap is 0 and each
-              divider carries its own margins — see Header.module.css. */}
-          <span className={styles.dividerStart} aria-hidden="true" />
+      
+         
 
           <nav aria-label="Primary" className={styles.nav}>
             <ul className={styles.navList}>
@@ -53,9 +49,9 @@ export async function Header() {
             </ul>
           </nav>
 
-          <span className={styles.dividerEnd} aria-hidden="true" />
+         
 
-          <Button variant="primary" size="sm">
+          <Button variant="primary" size="lg" >
             Get Amp&apos;d!
           </Button>
         </div>

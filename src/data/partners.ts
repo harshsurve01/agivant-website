@@ -1,15 +1,13 @@
+// data/partners.ts
+import { existsSync } from "fs";
+import path from "path";
+
 /**
  * data/partners.ts
  *
- * CMS-ready data layer for the Partners section. Every shape here is
- * designed to be the exact JSON contract a future Headless WordPress
- * (or any headless CMS) response would return — so swapping the body
- * of each getter below from a static object to a `fetch()` call is
- * the only change needed later. No component imports fetch/query
- * logic directly; they only import these types and getters.
+ * CMS-ready data layer for the Partners section.
  */
 
-/** One partner brand's logo asset. Maps to an ACF/WP "logo" field group. */
 export interface PartnerLogo {
   id: string;
   name: string;
@@ -18,19 +16,6 @@ export interface PartnerLogo {
     alt: string;
   };
   website?: string;
-}
-
-/**
- * One visual slot in the strip. `logos` holds every logo that will
- * ever cycle through this slot; today only `logos[0]` is rendered.
- * `delay` is the future stagger offset (ms) for that slot's fade-up/
- * rise-in animation — unused today, but part of the contract so the
- * animation work later is additive, not a data-model migration.
- */
-export interface PartnerLogoSlot {
-  id: string;
-  delay: number;
-  logos: PartnerLogo[];
 }
 
 interface PartnersHeaderContent {
@@ -46,14 +31,6 @@ interface PartnersCTA {
   href: string;
 }
 
-/* --------------------------------------------------------------------
-   Static content (today's "CMS response").
-   Each getter is async and awaited independently in Partners.tsx via
-   Promise.all — this is intentional so that swapping any one of these
-   for a real WP REST/GraphQL call later doesn't change the calling
-   component at all.
-   -------------------------------------------------------------------- */
-
 async function getPartnersHeaderContent(): Promise<PartnersHeaderContent> {
   return {
     heading: {
@@ -65,149 +42,158 @@ async function getPartnersHeaderContent(): Promise<PartnersHeaderContent> {
   };
 }
 
-// Exported name matches Partners.tsx's import (`getPartnersHeader`).
 export const getPartnersHeader = getPartnersHeaderContent;
 
-async function getPartnerLogoSlotsContent(): Promise<PartnerLogoSlot[]> {
-  return [
-    /**
-     * Slot 1 — Glean is logos[0] (today's visible logo). AWS and Azure
-     * are queued behind it for the future shift animation; nothing
-     * renders them yet, PartnerLogoShift only reads logos[0].
-     */
-    {
-      id: "slot-glean",
-      delay: 0,
-      logos: [
-        {
-          id: "glean",
-          name: "Glean",
-          image: {
-            src: "/images/partners/glean.png",
-            alt: "Glean",
-          },
-          website: "https://www.glean.com",
-        },
-        {
-          id: "aws",
-          name: "AWS",
-          image: {
-            src: "/images/partners/aws.png",
-            alt: "AWS",
-          },
-          website: "https://aws.amazon.com",
-        },
-        {
-          id: "azure",
-          name: "Azure",
-          image: {
-            src: "/images/partners/azure.png",
-            alt: "Azure",
-          },
-          website: "https://azure.microsoft.com",
-        },
-      ],
+/**
+ * The full partner roster, in a fixed display order. Add/remove
+ * partners here only; getPartnerLogoPairs() below adapts
+ * automatically to whichever of these actually have a real asset
+ * file on disk, and chunks them into the 4 card slots' pairs.
+ */
+const ALL_PARTNER_LOGOS: PartnerLogo[] = [
+  {
+    id: "glean",
+    name: "Glean",
+    image: { src: "/images/partners/glean.png", alt: "Glean" },
+    website: "https://www.glean.com",
+  },
+  {
+    id: "servicenow",
+    name: "ServiceNow",
+    image: { src: "/images/partners/servicenow.png", alt: "ServiceNow" },
+    website: "https://www.servicenow.com",
+  },
+  {
+    id: "gemini-enterprise",
+    name: "Gemini Enterprise",
+    image: {
+      src: "/images/partners/gemini-enterprise.svg",
+      alt: "Gemini Enterprise",
     },
-    /**
-     * Slot 2 — ServiceNow visible today; Salesforce and Shopify queued.
-     */
-    {
-      id: "slot-servicenow",
-      delay: 150,
-      logos: [
-        {
-          id: "servicenow",
-          name: "ServiceNow",
-          image: {
-            src: "/images/partners/servicenow.png",
-            alt: "ServiceNow",
-          },
-          website: "https://www.servicenow.com",
-        },
-        {
-          id: "salesforce",
-          name: "Salesforce",
-          image: {
-            src: "/images/partners/salesforce.png",
-            alt: "Salesforce",
-          },
-          website: "https://www.salesforce.com",
-        },
-        {
-          id: "shopify",
-          name: "Shopify",
-          image: {
-            src: "/images/partners/shopify.png",
-            alt: "Shopify",
-          },
-          website: "https://www.shopify.com",
-        },
-      ],
-    },
-    /**
-     * Slot 3 — Gemini Enterprise visible today; Databricks and
-     * TigerGraph queued.
-     */
-    {
-      id: "slot-gemini-enterprise",
-      delay: 300,
-      logos: [
-        {
-          id: "gemini-enterprise",
-          name: "Gemini Enterprise",
-          image: {
-            src: "/images/partners/gemini-enterprise.png",
-            alt: "Gemini Enterprise",
-          },
-          website: "https://cloud.google.com",
-        },
-        {
-          id: "databricks",
-          name: "Databricks",
-          image: {
-            src: "/images/partners/databricks.png",
-            alt: "Databricks",
-          },
-          website: "https://www.databricks.com",
-        },
-        {
-          id: "tigergraph",
-          name: "TigerGraph",
-          image: {
-            src: "/images/partners/tigergraph.png",
-            alt: "TigerGraph",
-          },
-          website: "https://www.tigergraph.com",
-        },
-      ],
-    },
-    /**
-     * Slot 4 — NVIDIA visible today. Only one logo supplied for this
-     * slot; `logos` stays a single-item array (not padded with
-     * duplicates) so the future animation naturally has nothing to
-     * cycle to here until a second partner is added — no data-model
-     * change needed when that happens, just a new array entry.
-     */
-    {
-      id: "slot-nvidia",
-      delay: 450,
-      logos: [
-        {
-          id: "nvidia",
-          name: "NVIDIA",
-          image: {
-            src: "/images/partners/nvidia.png",
-            alt: "NVIDIA",
-          },
-          website: "https://www.nvidia.com",
-        },
-      ],
-    },
-  ];
+    website: "https://cloud.google.com",
+  },
+  {
+    id: "nvidia",
+    name: "NVIDIA",
+    image: { src: "/images/partners/nvidia.png", alt: "NVIDIA" },
+    website: "https://www.nvidia.com",
+  },
+  {
+    id: "aws",
+    name: "AWS",
+    image: { src: "/images/partners/aws.png", alt: "AWS" },
+    website: "https://aws.amazon.com",
+  },
+  {
+    id: "azure",
+    name: "Azure",
+    image: { src: "/images/partners/azure.png", alt: "Azure" },
+    website: "https://azure.microsoft.com",
+  },
+  {
+    id: "salesforce",
+    name: "Salesforce",
+    image: { src: "/images/partners/salesforce.png", alt: "Salesforce" },
+    website: "https://www.salesforce.com",
+  },
+  {
+    id: "shopify",
+    name: "Shopify",
+    image: { src: "/images/partners/shopify.png", alt: "Shopify" },
+    website: "https://www.shopify.com",
+  },
+  {
+    id: "databricks",
+    name: "Databricks",
+    image: { src: "/images/partners/databricks.png", alt: "Databricks" },
+    website: "https://www.databricks.com",
+  },
+];
+
+/**
+ * Whether a logo's asset actually exists under /public. Filtering on
+ * this — rather than trusting ALL_PARTNER_LOGOS blindly — guarantees
+ * "never use placeholder logos": only assets that are actually
+ * present ever enter a slot's sequence.
+ */
+function assetExists(publicSrc: string): boolean {
+  const absolutePath = path.join(process.cwd(), "public", publicSrc);
+  return existsSync(absolutePath);
 }
 
-// Exported name matches Partners.tsx's import (`getPartnerLogoSlots`).
-export const getPartnerLogoSlots = getPartnerLogoSlotsContent;
+/** Exactly two logos — everything one LogoShift instance holds. */
+export type PartnerLogoPair = [PartnerLogo, PartnerLogo];
+
+// Fixed at 4 — the Figma card is exactly 4 static slots, each owning
+// one independent LogoShift instance, which in turn owns exactly one
+// logo pair (per the Framer component's "one logo pair per instance"
+// model — not an arbitrary-length rotation).
+const SLOT_COUNT = 4;
+const PAIR_SIZE = 2;
+
+/**
+ * Builds the 4 fixed pairs consumed by the 4 LogoShift instances:
+ * the first 8 asset-verified logos, taken in fixed roster order and
+ * chunked consecutively — [0,1], [2,3], [4,5], [6,7]. Deterministic,
+ * never randomized, never duplicated as filler.
+ *
+ * SLOT_COUNT * PAIR_SIZE (8) vs. the current 9-item roster: one logo
+ * is left over and intentionally not shown, rather than force-fitting
+ * it into an instance that's only supposed to hold two. Whichever
+ * logo sorts last in ALL_PARTNER_LOGOS (currently Databricks) is the
+ * one held in reserve. This is a roster-size fact, not a design
+ * decision — the fix is either trimming the roster to exactly 8, or
+ * extending the card to a 5th slot; flagged below via a dev warning
+ * so it's never silently forgotten.
+ */
+async function getPartnerLogoPairsContent(): Promise<PartnerLogoPair[]> {
+  const availableLogos = ALL_PARTNER_LOGOS.filter((logo) =>
+    assetExists(logo.image.src)
+  );
+
+  if (process.env.NODE_ENV !== "production") {
+    const missing = ALL_PARTNER_LOGOS.filter(
+      (logo) => !assetExists(logo.image.src)
+    );
+    if (missing.length > 0) {
+      console.warn(
+        `[Partners] Skipping ${missing.length} logo(s) with missing asset file(s): ${missing
+          .map((logo) => `${logo.id} (${logo.image.src})`)
+          .join(", ")}`
+      );
+    }
+
+    const capacity = SLOT_COUNT * PAIR_SIZE;
+    if (availableLogos.length > capacity) {
+      const leftover = availableLogos.slice(capacity);
+      console.warn(
+        `[Partners] ${leftover.length} logo(s) held in reserve, not shown — ` +
+          `${SLOT_COUNT} slots × ${PAIR_SIZE} logos/pair = ${capacity} capacity, ` +
+          `but ${availableLogos.length} logos are available: ${leftover
+            .map((logo) => logo.id)
+            .join(", ")}. Trim the roster to ${capacity} or add a 5th slot.`
+      );
+    } else if (availableLogos.length < capacity) {
+      console.warn(
+        `[Partners] Only ${availableLogos.length} logo(s) available — fewer ` +
+          `than the ${capacity} needed to fill all ${SLOT_COUNT} slots. Some ` +
+          `slots will be omitted rather than given an incomplete pair.`
+      );
+    }
+  }
+
+  const pairs: PartnerLogoPair[] = [];
+  for (let slot = 0; slot < SLOT_COUNT; slot++) {
+    const a = availableLogos[slot * PAIR_SIZE];
+    const b = availableLogos[slot * PAIR_SIZE + 1];
+    if (!a || !b) break; // not enough logos left to complete this pair
+    pairs.push([a, b]);
+  }
+
+  return pairs;
+}
+
+export const getPartnerLogoPairs = getPartnerLogoPairsContent;
 
 async function getPartnersCTAContent(): Promise<PartnersCTA> {
   return {
@@ -216,5 +202,4 @@ async function getPartnersCTAContent(): Promise<PartnersCTA> {
   };
 }
 
-// Exported name matches Partners.tsx's import (`getPartnersCTA`).
 export const getPartnersCTA = getPartnersCTAContent;

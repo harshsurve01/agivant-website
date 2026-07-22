@@ -5,18 +5,52 @@
    AIStackCard. This file just stacks and spaces those pieces, same
    division of responsibility as Lifecycle.module.css.
 
+   DECORATIVE GRADIENT: the reference screenshot shows a soft glow in
+   the section's top-right, blending brand purple into a warm gold
+   (#EDBF79). That's a section-background effect, not something any
+   individual card owns, so it lives here as a ::before layer rather
+   than in AIStackCard or AIStackGrid. .aiStack gets `position:
+   relative` + `overflow: hidden` so the gradient can be sized/placed
+   freely without pushing the section's actual width or leaking past
+   its edges.
+
    PENDING FIGMA: gaps below use existing design tokens as placeholders,
    not lifted from a spec — the supplied screenshot gave a single
-   overall frame size (1442 x 1348), not the gaps between blocks.
+   overall frame size (1442 x 1348), not the gaps between blocks. The
+   gradient's exact stops/size/opacity are similarly a best-effort
+   match to the screenshot, not a confirmed Figma export.
    ========================================================================== */
 
 .aiStack {
+  position: relative;
+  overflow: hidden;
   width: 100%;
   background-color: var(--color-bg-primary);
   padding-block: var(--space-24); /* TODO(figma): confirm exact section vertical rhythm */
 }
 
+.aiStack::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 45rem; /* TODO(figma): confirm exact glow size */
+  height: 45rem;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    circle at top right,
+    var(--color-accent-primary, #8500df) 0%,
+    #edbf79 55%,
+    transparent 75%
+  );
+  opacity: 0.25; /* TODO(figma): confirm exact glow opacity */
+  filter: blur(80px); /* TODO(figma): confirm exact blur amount */
+}
+
 .inner {
+  position: relative;
+  z-index: 1; /* sits above ::before so the gradient stays a background glow, not an overlay on content */
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -32,7 +32,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 2.05fr 1.65fr 1fr; /* TODO(figma): ratio derived from measured card widths (651:523:317); confirm against a full inspector export */
+  grid-template-columns: 0.6fr 1fr 1fr; /* TODO(figma): ratio derived from measured card widths (651:523:317); confirm against a full inspector export */
   gap: var(--space-6); /* TODO(figma): confirm exact card gap */
   width: 100%;
 }

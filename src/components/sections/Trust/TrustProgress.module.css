@@ -1,8 +1,9 @@
 /* ==========================================================================
    TrustProgress.module.css
-   Owns dot visuals only. No transition/animation properties — the
-   active dot's state is set by a class swap, not a keyframe, and stays
-   that way until a future GSAP pass decides otherwise.
+   Owns dot visuals only. No transition/animation properties here — the
+   active dot's fill/pulse is driven frame-by-frame by TrustAnimation
+   (GSAP), not a CSS keyframe or transition, so scroll direction stays
+   frame-accurate in both directions.
    ========================================================================== */
 
 .progress {
@@ -17,11 +18,12 @@
   width: var(--space-2);
   height: var(--space-2);
   border-radius: var(--radius-full, 999px);
-  background-color: var(--color-border-default); /* TODO(figma): confirm exact inactive dot color */
+  background-color: #4f4f4f; /* TODO(figma): confirm exact inactive dot color */
+  will-change: transform, background-color, width, height;
 }
 
 .dotActive {
   width: var(--space-3);
   height: var(--space-3);
-  background-color: var(--color-text-primary); /* TODO(figma): confirm exact active dot color */
+  background-color: #222222; /* TODO(figma): confirm exact active dot color */
 }

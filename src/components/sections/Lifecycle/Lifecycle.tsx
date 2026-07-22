@@ -27,13 +27,15 @@ import styles from "./Lifecycle.module.css";
  * here.
  *
  * The connector between the accordion and the summary card is a
- * static chevron only (per spec: no animation in this pass). It's
- * rendered here rather than owned by either neighboring component
- * since it's purely a layout/transition device between them, not
- * content either one owns. A later pass can promote it to a shared,
- * animated Chevron UI component without this section's markup
- * needing to change — see LifecycleItem.tsx for the matching note on
- * its own static chevrons.
+ * 3-arrow chevron stack with a looping, CSS-only opacity chase (each
+ * arrow peaks in turn, top to bottom, to read as forward motion — see
+ * Lifecycle.module.css's .connectorArrow1/2/3 + @keyframes
+ * connectorChase). It's rendered here rather than owned by either
+ * neighboring component since it's purely a layout/transition device
+ * between them, not content either one owns. Pure CSS rather than
+ * GSAP/JS: the effect is a fixed, non-scroll-driven loop, so it
+ * doesn't need this file to become a Client Component — see
+ * LifecycleItem.tsx for the matching note on its own static chevrons.
  */
 export async function Lifecycle() {
   const [header, stages, summary] = await Promise.all([
@@ -44,6 +46,13 @@ export async function Lifecycle() {
 
   return (
     <section className={styles.lifecycle}>
+      {/* Two ambient blobs, decorative only. Left is a flat brand-purple
+          wash; right reuses the same 4-stop brand gradient as
+          TrustCard's ::before blob. Both sit behind .inner via z-index
+          and are clipped to the section by .lifecycle's overflow:hidden. */}
+      <div className={styles.ellipseLeft} aria-hidden="true" />
+      <div className={styles.ellipseRight} aria-hidden="true" />
+
       {/* Container's default size="xl" (1280px) is used here, same as
           Hero and Header — close enough to the ~1245px column measured
           in the Figma inspector that introducing a one-off max-width
@@ -60,21 +69,30 @@ export async function Lifecycle() {
           <LifecycleAccordion stages={stages} />
 
           <div className={styles.connector} aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" className={styles.connectorIcon}>
+            <svg viewBox="0 0 24 30" fill="none" className={styles.connectorIcon}>
               <path
-                d="M5 8L12 15L19 8"
+                className={styles.connectorArrow1}
+                d="M5 5L12 12L19 5"
                 stroke="currentColor"
-                strokeWidth="1.5"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
+                className={styles.connectorArrow2}
                 d="M5 13L12 20L19 13"
                 stroke="currentColor"
-                strokeWidth="1.5"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                opacity="0.5"
+              />
+              <path
+                className={styles.connectorArrow3}
+                d="M5 21L12 28L19 21"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>

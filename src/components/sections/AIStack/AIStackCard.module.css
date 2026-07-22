@@ -1,18 +1,31 @@
 /* ==========================================================================
    AIStackCard.module.css
 
-   Four stacked layers via position: absolute + inset: 0 on the first
-   three, with .content and .badgeLayer using position: relative/
-   absolute respectively so they paint above .background and .ribbon
-   by document order and stacking context — same "no z-index needed
-   for this" reasoning as Hero.module.css's .background/.content
-   split. .badgeLayer is the one layer that does need an explicit
-   z-index, since it must sit above .content's own text, not just
-   above the background layers.
+   LAYOUT CHANGE: the ribbon image used to be `position: absolute;
+   inset: 0` over the whole card, with each card's `ribbonPosition`
+   (object-position: "bottom" | "top" | ...) deciding where inside
+   that box the art sat. That made the ribbon *overlap* the text, and
+   whether it visually read as "above" or "below" the content was
+   just whichever object-position a given card happened to pass —
+   which is why cards were inconsistent with each other.
 
-   PENDING FIGMA: padding/radius/border below use existing tokens as
-   placeholders — the supplied screenshot didn't include a Figma
-   inspector panel for individual card measurements.
+   Now: .content and .ribbon are normal-flow flex children, in that
+   DOM order. The ribbon is *always* the thing rendered underneath
+   the text, for every card, with no per-card position value able to
+   flip that. object-position is still supported (for how the art is
+   cropped/anchored *within* its own box), but it no longer controls
+   whether the ribbon sits above or below the copy — that's now
+   structural, not data-driven.
+
+   .background stays absolute + inset: 0 as a true background layer
+   (behind both .content and .ribbon, which are static/normal-flow
+   and therefore paint on top of it in DOM order — no z-index needed
+   there). .badgeLayer stays absolute, pinned to the corner, and is
+   the only remaining z-indexed layer since it must clear both.
+
+   PENDING FIGMA: padding/radius/border/ribbon-height below use
+   existing tokens as placeholders — the supplied screenshot didn't
+   include a Figma inspector panel for individual card measurements.
    ========================================================================== */
 
 .card {
@@ -25,6 +38,8 @@
   border: 1px solid var(--color-border-default);
   background-color: var(--color-bg-primary);
   padding: var(--space-6); /* TODO(figma): confirm exact card padding */
+  display: flex;
+  flex-direction: column;
 }
 
 .background {
@@ -33,29 +48,12 @@
   background-color: var(--color-bg-primary); /* TODO(figma): confirm — may be a subtle gradient rather than flat color */
 }
 
-.ribbon {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.ribbonImage {
-  object-fit: contain;
-  /* Driven by --ribbon-position, set inline per-card in AIStackCard.tsx
-     from AIStackCardData. Defaults to "bottom" so cards that don't
-     specify a position keep the current behavior. This keeps ribbon
-     placement a per-card *data* concern rather than requiring a new
-     CSS selector (.card--variant) per card. */
-  object-position: var(--ribbon-position, bottom);
-  opacity: 0.9; /* TODO(figma): confirm exact ribbon opacity/blend */
-}
-
 .content {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  max-width: 85%; /* keeps text clear of the badge's top-right corner */
+  flex-shrink: 0; /* text keeps its natural height; ribbon takes the rest */
 }
 
 .title {
@@ -70,9 +68,27 @@
   color: var(--color-text-secondary);
 }
 
+.ribbon {
+  position: relative;
+  flex: 1; /* fills whatever space is left below .content, so short vs
+              long descriptions don't change where the ribbon starts */
+  min-height: 6rem; /* TODO(figma): confirm minimum ribbon height on small/short cards */
+  pointer-events: none;
+}
+
+.ribbonImage {
+  object-fit: cover;
+  /* Still per-card via --ribbon-position (AIStackCard.tsx), but now
+     it only controls cropping/anchoring *inside* the ribbon's own
+     box — it can no longer make the art overlap or sit above the
+     text, since the box itself is always below .content. */
+  object-position: var(--ribbon-position, bottom);
+  opacity: 0.9; /* TODO(figma): confirm exact ribbon opacity/blend */
+}
+
 .badgeLayer {
   position: absolute;
   top: var(--space-4);
   right: var(--space-4);
-  z-index: 1; /* the one layer that must sit above .content, not just above the background */
+  z-index: 2;
 }

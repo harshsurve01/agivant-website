@@ -10,12 +10,63 @@
    ========================================================================== */
 
 .lifecycle {
+  position: relative;
   width: 100%;
   background-color: var(--color-bg-primary);
   padding-block: var(--space-24); /* TODO(figma): confirm exact section vertical rhythm */
+  overflow: hidden; /* clips both ambient ellipses below to the section edge, same as Trust.module.css's .trust */
+}
+
+/* Left ambient blob: solid brand-purple wash, anchored to the section's
+   upper-left. Unlike .ellipseRight below, this one is a single flat
+   color (no gradient stops) — per spec, only the right blob carries
+   the multi-stop brand gradient. */
+.ellipseLeft {
+  position: absolute;
+  top: 20%;
+  left: -19%;
+  width: 49rem;
+  height: 49rem;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-accent-primary, #8500df) 55%, transparent) 0%,
+    transparent 65%
+  );
+  filter: blur(90px);
+  opacity: 0.5;
+}
+
+/* Right ambient blob: same 4-stop gradient as TrustCard's ::before blob
+   (0% #B31AEF, 31% #F6048D, 78% #F88C54, 100% #FF7670) — reused
+   verbatim here rather than re-derived, since it's the same brand
+   gradient, not a section-specific one. Anchored opposite the purple
+   blob so the two read as a left/right pair framing the content. */
+.ellipseRight {
+  position: absolute;
+  top: 15%;
+  right: -14%;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #b31aef 0%,
+    #f6048d 31%,
+    #f88c54 78%,
+    #ff7670 100%
+  );
+  filter: blur(90px);
+  opacity: 0.4;
 }
 
 .inner {
+  position: relative; /* stacks above the two ellipses, which are z-index: 0 */
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,9 +77,50 @@
   display: flex;
   justify-content: center;
   color: var(--color-accent-primary, #8500DF); /* TODO(design-tokens): confirm the real brand-purple token name — no accent token was visible in the files seen so far, this is a placeholder */
+  /* .inner's gap (var(--space-12)) applies uniformly to every child,
+     so this negative margin is what shrinks the space above/below
+     *only* the connector — the header/accordion and summary/CTA gaps
+     stay untouched since they don't have this margin applied.
+     TODO(figma): confirm exact connector-to-neighbor spacing. */
+  margin-block: calc(-1 * var(--space-8));
 }
 
 .connectorIcon {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2.5rem;
+  height: 3rem;
+}
+
+/* Chase animation: each arrow cycles low -> full -> low opacity, but
+   staggered so the peak travels top-to-bottom, arrow1 -> arrow2 ->
+   arrow3, reading as continuous forward motion rather than 3 things
+   blinking independently. All three share one keyframe timeline;
+   animation-delay staggers arrow2/arrow3 to peak progressively later
+   than arrow1, so the top arrow always reaches full opacity first and
+   is already fading by the time the next one peaks. */
+.connectorArrow1,
+.connectorArrow2,
+.connectorArrow3 {
+  animation: connectorChase 1.5s ease-in-out infinite;
+}
+
+.connectorArrow1 {
+  animation-delay: 0s;
+}
+
+.connectorArrow2 {
+  animation-delay: 0.25s;
+}
+
+.connectorArrow3 {
+  animation-delay: 0.5s;
+}
+
+@keyframes connectorChase {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
 }

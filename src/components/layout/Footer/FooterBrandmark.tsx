@@ -25,7 +25,7 @@ export function FooterBrandmark() {
   return (
     <div className={styles.brandmark} aria-hidden="true">
       <Image
-        src="/images/logo/agivant-logo.svg" // TODO: replace with the real supplied asset
+        src="/images/logo/Agivant-Home-Page-Liquid-Footer.svg" // TODO: replace with the real supplied asset
         alt=""
         width={1442} // TODO: replace with real asset's intrinsic width
         height={298} // TODO: replace with real asset's intrinsic height

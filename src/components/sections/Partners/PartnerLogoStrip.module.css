@@ -1,33 +1,28 @@
 /* ==========================================================================
    PartnerLogoStrip.module.css
 
-   Strip frame measured 1233.74 × 89.35 against a 1442-wide section.
-   Four equal-width grid columns (not flex) so every slot's width,
-   centering, and separator spacing stays identical — the Figma note
-   is explicit this is one strip, not four cards.
-
-   PENDING FIGMA: strip background/radius/padding below are placeholder
-   tokens — the screenshot shows a very light rounded surface, but no
-   exact fill color, radius, or padding was measured (the 1233.74×89.35
-   frame appears to cover the logos themselves, not the surrounding
-   surface).
+   A single static horizontal card holding one slot per LogoShift
+   instance. The card and the slots never move — only each slot's
+   LogoShift content animates. Column count is driven by however many
+   pairs are passed in (PartnerLogoStrip.tsx sets grid-template-columns
+   inline); .strip's own rule is just a sensible 4-up fallback.
    ========================================================================== */
 
 .strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* TODO: hardcoded to the current 4-partner design, same "ratio for the known content" precedent as EnvironmentExperience's column widths — revisit if slot count becomes dynamic */
+  grid-template-columns: repeat(4, 1fr);
   align-items: center;
   width: 100%;
   border-radius: var(--radius-lg);
   background-color: var(--color-bg-secondary);
-  padding-block: var(--space-6); /* TODO(figma): confirm exact strip surface padding */
+  padding-block: var(--space-6);
 }
 
 .slot {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-inline: var(--space-6); /* TODO(figma): confirm exact inter-logo spacing */
+  padding-inline: var(--space-6);
   border-left: 1px solid var(--color-border-default);
 }
 

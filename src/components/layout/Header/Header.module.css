@@ -81,37 +81,8 @@
   padding-block: var(--space-4); /* TODO(figma): confirm exact vertical padding */
 }
 
-.dividerStart,
-.dividerEnd {
-  width: 1px;
-  align-self: stretch;
-  flex-shrink: 0;
-  background-color: var(--color-border-default); /* TODO(figma): confirm divider color, borrowed from AnnouncementBar's border token */
-}
 
-.dividerStart {
-  /* Logo -> divider: 28px. divider -> nav: 94px at the Figma baseline
-     (assumed ~1920px desktop frame). These were literal, non-shrinking
-     rem values — on narrower desktop widths (e.g. a 1280-1440px
-     MacBook Air viewport) that fixed total pushed the header past the
-     viewport, since flex children never got smaller than this fixed
-     spacing plus every nav label's un-wrapped width.
-     clamp(min, preferred-in-vw, max) keeps the value pixel-identical
-     to Figma (5.875rem / 1.75rem) at the baseline width and above —
-     it never exceeds spec — but lets it compress fluidly, with no
-     media-query breakpoints, as the viewport narrows toward the
-     floor. The floor keeps the divider visually separated without
-     collapsing spacing to zero. Nav label text itself is untouched;
-     only the whitespace around it adapts. */
-  margin-left: clamp(0.875rem, 1.24vw, 1.5rem); /* 24px at baseline, was 28px (-15%) per design review */
-  margin-right: clamp(1.75rem, 4.17vw, 5rem); /* 80px at baseline, was 94px (-15%) per design review */
-}
 
-.dividerEnd {
-  /* Mirror of dividerStart; same fluid rationale. */
-  margin-left: clamp(1.75rem, 4.17vw, 5rem); /* 80px at baseline, was 94px (-15%) per design review */
-  margin-right: clamp(0.875rem, 1.24vw, 1.5rem); /* 24px at baseline, was 28px (-15%) per design review */
-}
 
 .nav {
   /* Nav sits between Logo and CTA; it does not stretch to fill space on
@@ -133,7 +104,7 @@
   /* Fluid, same rationale as the divider margins: pixel-identical to
      the 2rem (32px) Figma baseline at/above that width, compresses
      smoothly below it, no breakpoints. */
-  gap: clamp(1rem, 1.67vw, 2rem); /* 32px at baseline */
+  gap: 4rem; /* was 44px literal — 2.75rem = 44px at 16px root font-size */
 }
 
 .navLink {

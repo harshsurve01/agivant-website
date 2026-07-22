@@ -32,7 +32,14 @@ interface LifecycleItemProps {
  * activation is native — no keyboard handler needed. aria-expanded
  * reflects isOpen, aria-controls points at the matching panel id, and
  * the panel itself carries role="region" + aria-labelledby back to the
- * button, which is the standard WAI-ARIA accordion pattern.
+ * button, which is the standard WAI-ARIA accordion pattern. The panel
+ * no longer uses the native `hidden` attribute (which snapped
+ * instantly with no transition) — it's animated open/closed via CSS
+ * grid-template-rows instead (see LifecycleItem.module.css's .panel /
+ * .panelOpen). Since that leaves the panel in the DOM at all times
+ * (just visually collapsed to 0 height), aria-hidden={!isOpen} takes
+ * over hidden's job of keeping the collapsed panel's text out of the
+ * accessibility tree.
  *
  * The chevron is a static glyph only (per spec: no animated chevron in
  * this pass) — it swaps between two fixed paths based on isOpen rather
@@ -99,10 +106,12 @@ export function LifecycleItem({
         id={panelId}
         role="region"
         aria-labelledby={buttonId}
-        className={styles.panel}
-        hidden={!isOpen}
+        aria-hidden={!isOpen}
+        className={`${styles.panel} ${isOpen ? styles.panelOpen : ""}`}
       >
-        <p className={styles.description}>{stage.description}</p>
+        <div className={styles.panelContent}>
+          <p className={styles.description}>{stage.description}</p>
+        </div>
       </div>
     </div>
   );

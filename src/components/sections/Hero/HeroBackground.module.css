@@ -39,8 +39,8 @@
   height: clamp(340px, 34vw, 600px);
   background: radial-gradient(
     circle,
-    color-mix(in srgb, var(--color-bg-gradient-start) 55%, transparent) 0%,
-    transparent 72%
+    color-mix(in srgb, var(--color-bg-gradient-start) 85%, transparent) 0%,
+    transparent 78%
   );
 }
 
@@ -51,8 +51,8 @@
   height: clamp(380px, 38vw, 680px);
   background: radial-gradient(
     circle,
-    color-mix(in srgb, var(--color-bg-gradient-end) 55%, transparent) 0%,
-    transparent 72%
+    color-mix(in srgb, var(--color-bg-gradient-end) 85%, transparent) 0%,
+    transparent 82%
   );
   /* Offset from the left glow's cycle so the two never breathe in
      lockstep — reads as ambient atmosphere, not a mechanical pulse. */

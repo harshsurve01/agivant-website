@@ -12,9 +12,18 @@
 .card {
   position: relative;
   width: 100%;
+  overflow: hidden; /* clips the gradient blob below to the card's rounded corner */
+  /* Was `top: 10%` here — a manual nudge to compensate for the card
+     sitting too high in the viewport. Removed: that was really a
+     symptom of .trust not filling the viewport (fixed in
+     Trust.module.css). Keeping a manual offset here would have thrown
+     this card out of alignment with the peeking cards behind it,
+     which all share the same grid cell. */
   background-color: var(--color-bg-secondary, var(--color-bg-primary)); /* TODO(figma): confirm exact background */
   border-radius: var(--radius-xl, var(--radius-lg)); /* TODO(figma): confirm exact corner radius */
-  box-shadow: var(--shadow-md, var(--shadow-sm)); /* TODO(figma): confirm exact shadow */
+  /* Heavier than a typical card shadow on purpose — this card is meant
+     to read as physically lifted off the ones stacked behind it. */
+  box-shadow: var(--shadow-xl, var(--shadow-lg)); /* TODO(figma): confirm exact shadow */
   /* Height is intentionally not set directly — it stays content-driven
      so cards 2/3 (longer/shorter copy) size correctly in the stack.
      109px vertical padding is arithmetic, not a token: Figma's card is
@@ -34,17 +43,47 @@
   position: absolute;
   top: var(--space-6);
   right: var(--space-6);
+  z-index: 1; /* above the .card::before blob */
+}
+
+/* Ambient gradient blob, identical on every card — same colors, same
+   stops, same position, regardless of that card's accentColor. Figma
+   spec: 0% #B31AEF, 31% #F6048D, 78% #F88C54, 100% #FF7670. Blurred
+   heavily and kept low-opacity so it reads as a soft wash, not a hard
+   shape; .card's overflow:hidden clips it to the rounded corner. */
+.card::before {
+  content: "";
+  position: absolute;
+  left: -10%;
+  bottom: -70%;
+  width: 35%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    #b31aef 40%,
+    #f6048d 21%,
+    #f88c54 78%,
+    #ff7670 100%
+  );
+  filter: blur(70px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .title {
   margin: 0;
+  position: relative;
+  z-index: 1; /* above the .card::before blob */
   /* Figma's title frame is 1039 x 90 for one line — 90px resolves
      cleanly to 72px font-size at 1.25 line-height (72 * 1.25 = 90),
      the same cross-check pattern used on the AnnouncementBar CTA. */
   font-size: var(--font-size-6xl, 72px); /* TODO(figma): confirm token name if --font-size-6xl doesn't exist in the scale */
   line-height: 1.25;
   font-weight: var(--font-weight-bold, var(--font-weight-semibold));
-  color: var(--trust-accent, var(--color-text-primary));
+  /* Fixed across every card — color uniformity, not per-card accent. */
+  color: var(--trust-accent, var(--color-purple-500));
   /* Matches this card's measured text width; non-binding for cards
      with shorter/longer titles, but keeps this card's proportions
      faithful to Figma. */
@@ -53,6 +92,8 @@
 
 .description {
   margin: 0;
+  position: relative;
+  z-index: 1; /* above the .card::before blob */
   /* 542px is Figma's authored wrap width (this is a deliberate reading
      measure, not the text's natural width) — used directly rather than
      converted to ch, since ch would drift from the true wrap point as

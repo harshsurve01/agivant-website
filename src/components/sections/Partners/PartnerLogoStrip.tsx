@@ -1,33 +1,41 @@
-import { PartnerLogoShift } from "./PartnerLogoShift";
-import type { PartnerLogoSlot } from "@/data/partners";
+// PartnerLogoStrip.tsx
+import { LogoShift } from "./LogoShift";
+import type { PartnerLogoPair } from "@/data/partners";
 import styles from "./PartnerLogoStrip.module.css";
 
 interface PartnerLogoStripProps {
-  slots: PartnerLogoSlot[];
+  /** One pair per slot — handed to its own independent LogoShift
+   *  instance untouched. However many pairs are provided is how many
+   *  slots render; the grid isn't hardcoded to exactly 4. */
+  pairs: PartnerLogoPair[];
 }
+
+// 120ms between each slot's first transition (0ms, 120ms, 240ms,
+// 360ms, ...) — the entire wave mechanism. Every cycle after the
+// first is each LogoShift's own concern; this component doesn't
+// coordinate anything beyond this one initial offset per slot.
+const STAGGER_MS = 120;
 
 /**
  * PartnerLogoStrip
  *
- * Owns the strip's layout: one continuous surface holding all logo
- * slots side by side with subtle separators between them — not four
- * separate cards. Equal-width grid columns (not a flex row with
- * gaps) keep every slot's alignment and separator spacing identical
- * regardless of each logo's natural width, matching the Figma note:
- * "maintain equal logo alignment, equal spacing, centered logos...
- * do not create card-like spacing."
- *
- * No animation lives here — this component only lays out the slots.
- * Each slot's future fade/rise behavior belongs to PartnerLogoShift.
- *
- * Server-renderable: no "use client", no hooks, no state.
+ * Server Component. The card itself — background, radius, padding,
+ * the column grid, and the divider between slots — never moves and
+ * never re-renders once mounted. No "use client", no hooks, no
+ * shared timeline, no marquee/carousel/scroll of any kind: it just
+ * lays out one slot per pair and gives each one a LogoShift with a
+ * staggered start, exactly the "drop multiple instances side by
+ * side, control how many sit in a row" model.
  */
-export function PartnerLogoStrip({ slots }: PartnerLogoStripProps) {
+export function PartnerLogoStrip({ pairs }: PartnerLogoStripProps) {
   return (
-    <div className={styles.strip}>
-      {slots.map((slot) => (
-        <div key={slot.id} className={styles.slot}>
-          <PartnerLogoShift slot={slot} />
+    <div
+      className={styles.strip}
+      style={{ gridTemplateColumns: `repeat(${pairs.length}, 1fr)` }}
+    >
+      {pairs.map((pair, slotIndex) => (
+        <div key={pair[0].id} className={styles.slot}>
+          <LogoShift pair={pair} initialDelayMs={slotIndex * STAGGER_MS} />
         </div>
       ))}
     </div>

@@ -1,0 +1,25 @@
+/* ==========================================================================
+   LogoShift.module.css
+
+   .slot is the clipping viewport: fixed size, overflow hidden, never
+   itself moves or resizes. Only what's inside it (.layer) animates.
+   ========================================================================== */
+
+.slot {
+  position: relative;
+  width: 100%;
+  height: 40px; /* TODO(figma): confirm against real partner logo assets */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity, filter;
+}

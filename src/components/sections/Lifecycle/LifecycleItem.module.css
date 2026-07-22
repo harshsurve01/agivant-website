@@ -18,13 +18,23 @@
 .item {
   position: relative;
   width: 100%;
-  border-radius: var(--radius-lg, 1rem); 
-  background-color: var(--color-bg-secondary, #f5f3ff); /* TODO(figma): confirm collapsed-row background */
-  transition: background-color var(--transition-fast);
+  border-radius: var(--radius-lg, 1rem);
+  /* Glass card: translucent fill + backdrop blur so Lifecycle's two
+     ambient ellipses (Lifecycle.module.css) show through softly
+     instead of being fully hidden behind an opaque row. Opacity here
+     (55%) is deliberately low enough that the blur reads, but high
+     enough that body text stays legible over the blob colors.
+     TODO(figma): confirm collapsed-row background/opacity. */
+  background-color: color-mix(in srgb,#ffffff00 55%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); /* Safari requires the prefix */
+  border: 2px solid #fff; /* faint glass edge */
+  transition: background-color var(--transition-slow, 200ms) ease-in-out;
 }
 
 .itemOpen {
-  background-color: var(--color-bg-primary);
+
+  background-color: #ffffff00;
 }
 
 .itemHeading {
@@ -53,8 +63,8 @@
 
 .title {
   display: block;
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-regular);
   color: var(--color-text-primary);
   letter-spacing: var(--letter-spacing-wide, 0.02em); /* collapsed rows read visually letter-spaced in the Figma */
 }
@@ -62,7 +72,7 @@
 .itemOpen .title {
   color: var(--color-accent-primary, #8500DF); /* TODO(design-tokens): confirm brand-purple token name */
   font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   letter-spacing: normal;
 }
 
@@ -83,8 +93,25 @@
 }
 
 .panel {
+  /* Animates open/closed via grid-template-rows (0fr <-> 1fr) rather
+     than the old hidden attribute, which snapped instantly with no
+     transition. This approach animates to the panel's real content
+     height without JS ever measuring pixels — the grid track just
+     grows/shrinks to fit .panelContent, and .panelContent's
+     overflow:hidden clips it mid-transition. */
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panelOpen {
+  grid-template-rows: 1fr;
+}
+
+.panelContent {
+  overflow: hidden;
+  min-height: 0; /* some browsers default a grid item's intrinsic min-height to content size, which would fight the 0fr collapse */
   padding-inline: var(--space-6);
-  padding-bottom: var(--space-6);
 }
 
 .description {
@@ -94,4 +121,18 @@
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
   text-align: center;
+}
+
+.panel .description {
+  padding-bottom: var(--space-6);
+  /* Fades in after the row has started expanding rather than
+     appearing the instant the row opens — the slight delay (150ms)
+     is what makes the reveal feel premium rather than mechanical. */
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.panelOpen .description {
+  opacity: 1;
+  transition: opacity 350ms ease 150ms;
 }

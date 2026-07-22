@@ -2,37 +2,48 @@ import { Container } from "@/components/ui/Container";
 import { getTrustCards } from "@/data/trust";
 import { TrustCard } from "./TrustCard";
 import { TrustProgress } from "./TrustProgress";
+import { TrustAnimation } from "./TrustAnimation";
 import styles from "./Trust.module.css";
 
 /**
  * Trust
  *
  * The "Trust Ribbon" section: a stack of enterprise-trust cards with a
- * progress indicator, designed as the structural foundation for a
- * future GSAP cinematic sequence that cycles through the stack.
+ * progress indicator, cycled by a cinematic GSAP + ScrollTrigger
+ * sequence (see TrustAnimation).
  *
  * Trust owns overall layout, the stack stage (the element every card
- * shares), spacing, composition, and the data-* attributes a future
- * animation will hook into. It does NOT own how a card, badge, or
+ * shares), spacing, composition, and the data-* attributes the
+ * animation layer hooks into. It does NOT own how a card, badge, or
  * progress dot looks — those are TrustCard's, TrustBadge's, and
- * TrustProgress's concerns respectively, each with its own module.
+ * TrustProgress's concerns respectively, each with its own module —
+ * and it does NOT own the animation itself, which lives entirely in
+ * TrustAnimation as a client-only, DOM-driven layer on top of this
+ * markup. Nothing below changed shape to accommodate that layer beyond
+ * a few data-* hooks and one new sibling component.
  *
- * Only the first card is active today (static, no animation). The
- * other two are already in the DOM — via data-active, not a truncated
- * array — so a later GSAP pass can transition between them without
- * any markup change.
+ * All three cards are always in the DOM — via data-active, not a
+ * truncated array — so TrustAnimation can transition between them
+ * without any markup change, and so the section still renders
+ * correctly (card 1 visible) before JS hydrates or with
+ * prefers-reduced-motion.
  *
  * Server Component: no "use client", no hooks, no state, no effects.
+ * TrustAnimation is the one client boundary, mounted as a sibling.
  */
 export async function Trust() {
   const cards = await getTrustCards();
 
   return (
-    <section className={styles.trust} aria-labelledby="trust-heading">
-      {/* Dedicated background layer: exists only so a future GSAP pass
-          has somewhere to put the Figma's blurred glow/gradient. Left
-          unstyled beyond positioning rather than guessed at. */}
-      <div className={styles.background} aria-hidden="true" />
+    <section className={styles.trust} aria-labelledby="trust-heading" data-trust-root>
+      {/* Dedicated background layer. TrustAnimation targets it via
+          data-trust-glow to drive the ambient glow's accent color as
+          the active card changes. */}
+      <div className={styles.background} aria-hidden="true" data-trust-glow />
+
+      {/* Static ambient ellipse, top-left — decorative only, does not
+          participate in the scroll animation. */}
+      <div className={styles.ellipse} aria-hidden="true" />
 
       <Container size="2xl">
         <h2 id="trust-heading" className={styles.srOnly}>
@@ -59,9 +70,17 @@ export async function Trust() {
             ))}
           </div>
 
-          <TrustProgress total={cards.length} activeIndex={0} />
+          <div className={styles.progressSlot}>
+            <TrustProgress total={cards.length} activeIndex={0} />
+          </div>
         </div>
       </Container>
+
+      {/* Behavior-only: renders nothing, drives the DOM above via GSAP. */}
+      <TrustAnimation
+        totalCards={cards.length}
+        accentColors={cards.map((card) => card.accentColor)}
+      />
     </section>
   );
 }

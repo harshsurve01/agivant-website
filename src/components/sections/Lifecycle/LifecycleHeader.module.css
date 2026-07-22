@@ -17,18 +17,39 @@
 }
 
 .eyebrow {
-  font-size: var(--font-size-3xl); /* TODO(figma): confirm exact eyebrow size */
+  position: relative;
+  display: inline-block;
+
+  font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-regular);
   color: var(--color-text-secondary);
-  text-decoration: line-through;
-  text-decoration-color: var(--color-accent-primary, #8500DF); /* TODO(design-tokens): confirm brand-purple token name */
-  text-decoration-thickness: 2px;
+
+  /* Remove the native line-through */
+  text-decoration: none;
+}
+
+.eyebrow::after {
+  content: "";
+  position: absolute;
+
+  left: -2%;
+  width: 104%;
+
+  top: 50%;
+
+  height: 4px;
+  background: var(--color-accent-primary, #8500DF);
+
+  transform: rotate(-4deg);
+  transform-origin: center;
+
+  border-radius: 999px;
 }
 
 .heading {
   font-size: var(--font-size-4xl); /* TODO(figma): confirm exact heading size */
   font-weight: var(--font-weight-bold);
-  line-height: 1.2;
+  line-height: 1.4;
   color: var(--color-text-primary);
 }
 

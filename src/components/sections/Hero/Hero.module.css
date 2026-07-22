@@ -41,7 +41,7 @@
 .heading {
   font-weight: var(--font-weight-regular);
   font-size: 4rem; /* 64px, was 5rem/80px (-20%) per design review — Container already caps column width, so a fixed rem holds proportion across 1280-1920px without clamp() */
-  line-height: 1.2;
+  line-height: 1.4;
   letter-spacing: var(--letter-spacing-tight);
   color: var(--color-text-primary);
 }
