@@ -86,7 +86,7 @@ export function LogoShift({
 
   const layerARef = useRef<HTMLDivElement>(null);
   const layerBRef = useRef<HTMLDivElement>(null);
-  const timerRef = useRef<number>();
+  const timerRef = useRef<number>(0);
   const activeIsARef = useRef(true);
   const reducedMotionRef = useRef(false);
 
