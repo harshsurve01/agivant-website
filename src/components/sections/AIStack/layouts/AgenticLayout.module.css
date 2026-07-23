@@ -1,0 +1,75 @@
+/* ==========================================================================
+   AgenticLayout.module.css
+
+   Owns ONLY this card's composition: text placement, spacing, and the
+   ribbon's size/bleed. Chrome (border, radius, overflow clipping,
+   background fill, badge) lives one level up in AIStackCardShell —
+   this file never touches any of that.
+
+   PENDING FIGMA: padding/gap/ribbon min-height below use existing
+   tokens as placeholders — no inspector export was supplied for this
+   card specifically.
+   ========================================================================== */
+
+.layout {
+  position: relative;
+  /* paints above the shell's .background layer */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--space-6);
+  gap: var(--space-4);
+  /* Direct child of the shell's `.content` (which is preserve-3d).
+     This box itself has two children — `.text` and `.ribbon` — that
+     need to sit at different depths, so it has to stay a 3D
+     participant too, or they'd flatten onto this element's own
+     plane. */
+  transform-style: preserve-3d;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex-shrink: 0; /* text keeps its natural height; ribbon takes the rest */
+  /* `.title` and `.description` below get different translateZ
+     values from EACH OTHER, not just from `.ribbon`. Without
+     preserve-3d here, both would collapse onto whatever plane `.text`
+     itself ends up on. */
+  transform-style: preserve-3d;
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  /* Depth order (nearest → farthest) is badge, title, description,
+     ribbon, background — set in AIStackCardShell + here. */
+  transform: translateZ(40px);
+  max-width: calc(100% - 7rem);
+  padding-top: var(--space-1);
+  
+   /* TODO(figma): confirm exact shadow for text block */
+}
+
+.description {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  transform: translateZ(24px);
+}
+
+.ribbon {
+  position: relative;
+  flex: 1; /* fills remaining height below the text block */
+  min-height: 12rem; /* TODO(figma): confirm minimum ribbon height */
+  /* Bleed to the card's own edges — the shell clips this with its
+     border-radius + overflow: hidden, so it never escapes the card. */
+  margin-inline: calc(var(--space-6) * -1);
+  margin-bottom: calc(var(--space-6) * -1);
+  pointer-events: none;
+  transform: translateZ(8px);
+}
+
+.ribbonImage {
+  object-fit: cover;
+}

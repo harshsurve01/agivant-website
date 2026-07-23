@@ -45,18 +45,24 @@
   grid-column: 1;
   grid-row: 1 / span 2;
   min-height: 0;
+  /* Now a GSAP transform target (see SpotlightExperience.tsx) — the
+     hover interaction animates x/y/scale, not grid placement, so this
+     is a compositor-only perf hint, not a layout change. */
+  will-change: transform;
 }
 
 .topRightSlot {
   grid-column: 2;
   grid-row: 1;
   min-height: 0;
+  will-change: transform;
 }
 
 .bottomRightSlot {
   grid-column: 2;
   grid-row: 2;
   min-height: 0;
+  will-change: transform;
 }
 
 @media (max-width: 1024px) {

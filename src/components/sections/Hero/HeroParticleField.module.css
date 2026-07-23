@@ -1,0 +1,34 @@
+/* ==========================================================================
+   HeroParticleField.module.css
+
+   Positioning + stacking only. The canvas itself is drawn entirely in
+   JS (HeroParticleField.tsx) — this file has no drawing-related rules,
+   just where the layer sits and which design token its particles use.
+   ========================================================================== */
+
+.container {
+  position: absolute;
+  inset: 0;
+  z-index: 2; /* between the ambient glows (z-index: 1) and the
+    decorative ellipse stroke / content layer — the ellipse stroke sits
+    later in HeroBackground's markup at the same z-index tier, so it
+    still paints on top of the particle field by document order,
+    exactly like Hero's own .content/.background relationship. */
+  pointer-events: auto; /* cursor tracking happens on this same element
+    via a JS listener in HeroParticleField.tsx, not for hit-testing —
+    this must stay click/hover-transparent so CTAs beneath it in
+    .contentLayer remain fully interactive. */
+  overflow: hidden;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* Theme-aware particle color: HeroParticleField.tsx reads this via
+     getComputedStyle(canvas).color rather than hardcoding a fill —
+     keeps particles on-token without duplicating a color value here
+     and in JS. */
+  color: var(--color-text-primary);
+  
+}

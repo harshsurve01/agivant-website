@@ -1,27 +1,30 @@
 /* ==========================================================================
    EnvironmentCard.module.css
 
-   aspect-ratio (not a fixed height) reproduces the measured 714×369
-   card frame's proportion — it holds the shape at any column width
-   the Experience grid gives this card, rather than locking in 369px
-   and either clipping content or leaving dead space at other
-   viewport widths. Same "ratio, not px" approach as AIStackCard's
-   sizing.
+   `.card` now renders inside EnvironmentCardDeck's `.slot`, which is
+   already sized to the deck's own aspect-ratio box (see
+   EnvironmentCardDeck.module.css) — this fills that box with
+   width/height: 100% rather than declaring its own aspect-ratio a
+   second time, so the two never round to a fractional pixel apart.
 
    .faceFront / .faceBack: the front sits in normal flow (so it
    establishes .faceStack's size); the back is absolutely positioned
    over it and hidden with visibility+opacity rather than display:none.
-   That distinction matters for the future flip: display:none removes
-   an element from layout entirely, so a flip transform would have
-   nothing to animate to. visibility+opacity keeps the node laid out
-   and flip-ready while still being invisible and non-interactive
+   That distinction matters for a future per-card flip: display:none
+   removes an element from layout entirely, so a flip transform would
+   have nothing to animate to. visibility+opacity keeps the node laid
+   out and flip-ready while still being invisible and non-interactive
    today (pointer-events: none, aria-hidden set in EnvironmentCardFace).
+   Note this is now independent of the deck's own peel-away exit —
+   that's the deck moving the whole card, this is a within-card flip
+   that isn't wired up yet.
    ========================================================================== */
 
 .card {
   position: relative;
-  width: 100%;
-  aspect-ratio: 714 / 369; /* TODO(figma): measured from the supplied screenshot, not an exported spec value — still unconfirmed */
+  width: 70%;
+  height: 100%;
+  left:15%;
   border-radius: var(--radius-lg);
   overflow: hidden;
   background-color: var(--color-bg-secondary);
@@ -34,7 +37,7 @@
      the rounded corner without restructuring .faceStack's clipping.
      Reuses the existing hero gradient's peach token instead of
      inventing a new color. */
-  box-shadow: 40px 40px 90px -20px color-mix(in srgb, var(--color-bg-gradient-end) 55%, transparent);
+  box-shadow: 40px 40px 90px -20px color-mix(in srgb, var(--shadow-color) 55%, transparent);
 }
 
 .faceStack {

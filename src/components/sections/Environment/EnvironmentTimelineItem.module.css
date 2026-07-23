@@ -1,32 +1,94 @@
+/* ==========================================================================
+   EnvironmentTimelineItem.module.css
+
+   --dot-size is read by EnvironmentTimeline.module.css's .line/.lineFill
+   positioning math — if this value changes, that file's line no
+   longer centers on the dots. Declared here (not duplicated as a
+   literal in both files) so there's exactly one place that can drift.
+   ========================================================================== */
+
 .item {
+  --dot-size: 10px;
+  position: relative;
   display: grid;
-  grid-template-columns: auto auto 1fr;
-  align-items: center;
-  gap: var(--space-3); /* TODO(figma): confirm exact number/divider/title gap */
+  grid-template-columns: var(--dot-size) 1fr;
+  align-items: start;
+  column-gap: var(--space-4); /* TODO(figma): confirm exact dot-to-title gap */
   color: var(--color-text-muted);
+}
+
+.dot {
+  /* Sits in the grid's own first column, on top of EnvironmentTimeline's
+     shared .line — z-index isn't needed since .line lives in an
+     earlier sibling in a different stacking context (.track's
+     position:relative + normal paint order already puts .list, and
+     everything in it, above .line). */
+  width: var(--dot-size);
+  height: var(--dot-size);
+  margin-top: calc((var(--font-size-md) * var(--line-height-relaxed, 1.5) - var(--dot-size)) / 2); /* centers the dot on the title row's line-box, not the row's top edge */
+  border-radius: 50%;
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border-default);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2); /* TODO(figma): confirm exact title-to-stat gap */
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3); /* TODO(figma): confirm exact number-to-title gap */
 }
 
 .step {
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
   color: inherit;
-  font-variant-numeric: tabular-nums; /* keeps two-digit numbers from shifting the divider */
-}
-
-.divider {
-  width: 1px;
-  height: var(--space-6); /* TODO(figma): confirm exact divider height */
-  background-color: transparent; /* only the active row shows a divider in Figma — inactive rows render number + title with no line, confirmed by zoomed pixel inspection */
-  /* Kept as a plain background-color today, not a gradient or
-     animated fill — the future progressive-line-fill treatment
-     changes this rule, not this element's existence. */
+  font-variant-numeric: tabular-nums; /* keeps two-digit numbers from shifting the title */
 }
 
 .title {
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-regular);
   color: inherit;
 }
+
+.stat {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  /* Only ever rendered for the active item (see the component), so no
+     enter/exit animation is defined here yet — it appears/disappears
+     with the row's own re-render as `isActive` moves between stages. */
+}
+
+.statValue {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-link);
+}
+
+.statLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+/* ---- past (already scrolled through) ---- */
+
+.itemPast .dot {
+  background-color: var(--color-text-link);
+  border-color: var(--color-text-link);
+}
+
+.itemPast {
+  color: var(--color-text-primary);
+}
+
+/* ---- active (current stage) ---- */
 
 .itemActive {
   color: var(--color-text-primary);
@@ -41,6 +103,36 @@
   font-weight: var(--font-weight-semibold);
 }
 
-.itemActive .divider {
+.itemActive .dot {
+  position: relative;
   background-color: var(--color-text-link);
+  border-color: var(--color-text-link);
+}
+
+.itemActive .dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--color-text-link);
+  animation: envDotPulse 1.8s ease-out infinite;
+}
+
+@keyframes envDotPulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .itemActive .dot::after {
+    animation: none;
+    opacity: 0.5;
+    transform: scale(1.4);
+  }
 }

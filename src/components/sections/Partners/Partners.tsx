@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { PartnersHeader } from "./PartnersHeader";
-import { PartnerLogoStrip } from "./PartnerLogoStrip";
+import { PartnerLogoStrip, type PartnerLogoSlotTiming } from "./PartnerLogoStrip";
 import {
   getPartnersHeader,
   getPartnerLogoPairs,
@@ -11,6 +11,19 @@ import {
 } from "@/data/partners";
 import { ArrowUpRight } from "@/components/ui/Icon/ArrowUpRight";
 import styles from "./Partners.module.css";
+
+// Each slot's own hold time, indexed 1:1 with the pairs returned by
+// getPartnerLogoPairs(). This is the "dedicated timer per slot": slot
+// 0 shifts every 2.2s, slot 1 every 3.4s, etc. — independent cadences
+// rather than one shared interval. TODO(figma/content): move this to
+// data/partners.ts alongside the pairs once per-partner timing is
+// confirmed with design, rather than hardcoding it here.
+const PARTNER_SLOT_TIMINGS: PartnerLogoSlotTiming[] = [
+  { holdMs: 3400 },
+  { holdMs: 2200 },
+  { holdMs: 2800 },
+  { holdMs: 4000 },
+];
 
 /**
  * Partners
@@ -38,7 +51,7 @@ export async function Partners() {
         <div className={styles.inner}>
           <PartnersHeader heading={header.heading} description={header.description} />
 
-          <PartnerLogoStrip pairs={pairs} />
+          <PartnerLogoStrip pairs={pairs} slotTimings={PARTNER_SLOT_TIMINGS} />
 
           <Link href={cta.href}>
             <Button variant="primary" size="lg" rightIcon={<ArrowUpRight />}>

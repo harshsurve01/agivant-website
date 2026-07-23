@@ -1,0 +1,84 @@
+/* ==========================================================================
+   EnvironmentCardDeck.module.css
+
+   .deck reuses EnvironmentCard's own aspect-ratio box as the frame
+   size for the whole stack (every .slot is absolutely positioned to
+   fill it) — the deck's footprint should match a single card's
+   footprint exactly, not add extra height for the cards stacked
+   behind it.
+
+   Depth formula, once per data-state rather than per stage index, so
+   this scales to any stages.length:
+     active   — top of stack, full size, strongest shadow.
+     upcoming — pushed back along Y/Z and scaled down per --depth,
+       fading slightly with depth so the stack reads as "receding"
+       rather than as flat overlapping duplicates.
+     exited   — rotates and slides off (peel-away), fading to fully
+       transparent; kept above "upcoming" in z-index while animating
+       so the peel visibly passes over the next card instead of
+       diving behind it immediately.
+
+   PENDING FIGMA: stagger distance, scale falloff, peel angle/distance,
+   and shadow values below are motion-design choices with no static
+   screenshot to measure — same "confirm once real motion spec exists"
+   caveat as every other TODO(figma) in this project, just for timing/
+   motion rather than layout this time.
+   ========================================================================== */
+
+.deck {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 714 / 369; /* matches EnvironmentCard's own frame so the deck's footprint equals one card's footprint */
+  perspective: 1400px;
+}
+
+.slot {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%; /* cards recede/peel from the bottom, like a hand of cards */
+  transition:
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.5s ease,
+    filter 0.5s ease;
+  will-change: transform, opacity;
+}
+
+.slot[data-state="active"] {
+  transform: translate3d(0, 0, 0) scale(1) rotateX(0deg);
+  opacity: 1;
+  z-index: 40;
+  filter: drop-shadow(24px 32px 48px rgba(0, 0, 0, 0.22));
+}
+
+.slot[data-state="upcoming"] {
+  transform: translate3d(0, calc(var(--depth) * 16px), calc(var(--depth) * -60px))
+    scale(calc(1 - var(--depth) * 0.045)) rotateX(calc(var(--depth) * -2deg));
+  opacity: calc(1 - var(--depth) * 0.16);
+  z-index: calc(30 - var(--depth));
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.12));
+  pointer-events: none;
+}
+
+.slot[data-state="exited"] {
+  transform: translate3d(calc(var(--depth) * -6%), calc(var(--depth) * -36%), 40px)
+    rotateZ(calc(var(--depth) * -0.5deg));
+  opacity: 0;
+  z-index: 50;
+  filter: drop-shadow(8px 12px 24px rgba(0, 0, 0, 0.15));
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slot {
+    transition: opacity 0.3s ease;
+  }
+
+  .slot[data-state="upcoming"],
+  .slot[data-state="active"] {
+    transform: none;
+  }
+
+  .slot[data-state="exited"] {
+    transform: none;
+  }
+}

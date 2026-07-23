@@ -40,7 +40,7 @@ export function ProofContent({ heading, description, cta }: ProofContentProps) {
       <p className={styles.description}>{description}</p>
 
       <Link href={cta.href}>
-        <Button variant="dark" size="sm" rightIcon={<ArrowUpRight />}>
+        <Button variant="dark" size="lg" rightIcon={<ArrowUpRight />}>
           {cta.label}
         </Button>
       </Link>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { Cube } from "@/components/ui/Icon/Cube";
 import { EnvironmentHeader } from "./EnvironmentHeader";
 import { EnvironmentExperience } from "./EnvironmentExperience";
 import {
@@ -8,36 +9,45 @@ import {
   getEnvironmentStages,
   getEnvironmentCTA,
 } from "@/data/environment";
-import { Cube } from "@/components/ui/Icon/Cube";
 import styles from "./Environment.module.css";
 
 /**
  * Environment
  *
- * The "What's Inside The Amp'd Build Environment?" section: heading
- * block, the Timeline/Card experience, and a closing CTA. Owns
- * section-level layout, composition, spacing, and data loading — it
- * does not own the heading's content (EnvironmentHeader), the
- * timeline/card synchronization (EnvironmentExperience, the only
- * Client Component in this section), or any single stage's content
- * shape (data/environment.ts).
+ * The "What's Inside The Amp'd Build Environment?" section. Owns
+ * section-level background/spacing and data loading only — layout of
+ * the header/timeline/card/CTA stack, and the pin + scroll-sync that
+ * ties them together, now all live inside EnvironmentExperience (see
+ * that file's doc comment). This component's job has shrunk to:
+ * fetch the three data sources, then compose them into
+ * EnvironmentExperience.
  *
- * The CTA lives here rather than in EnvironmentHeader or
- * EnvironmentExperience because it isn't part of either — it's static
- * section content (label/href from data), not something driven by
- * active-stage state, so it has no reason to live inside the Client
- * Component boundary. Same reasoning as AIStack's own CTA placement.
- * It's visually aligned under the card column (see .ctaRow in
- * Environment.module.css) via a simple flex right-align rather than a
- * grid synced to EnvironmentExperience's internal column widths — an
- * exact sync would mean either lifting those column widths out of
- * EnvironmentExperience (breaking its ownership of that layout) or
- * duplicating the ratio in two files. The right-align gets visually
- * close without either tradeoff; see the TODO(figma) on .ctaRow.
+ * WHY EnvironmentHeader AND THE CTA ARE INSTANTIATED HERE, NOT INSIDE
+ * EnvironmentExperience:
+ * EnvironmentExperience is a Client Component ("use client") because
+ * it owns the scroll listener that drives the pin/sync. A Client
+ * Component file cannot *import* a Server Component and render it as
+ * its own JSX — doing so would pull that component into the client
+ * bundle the moment it's imported, silently turning it into a client
+ * component in practice even without its own "use client" directive.
+ * That would quietly violate "EnvironmentHeader should remain a
+ * Server Component."
+ *
+ * The correct boundary-crossing pattern is composition via props:
+ * this Server Component renders <EnvironmentHeader /> and the CTA's
+ * <Link>/<Button /> itself, then passes the *already-rendered* result
+ * into EnvironmentExperience as the `header`/`cta` props (typed
+ * ReactNode). React treats that JSX as an opaque, pre-rendered slot —
+ * EnvironmentExperience places it inside the pinned layout without
+ * ever importing or re-rendering it on the client. Same reasoning as
+ * the standard "children as a slot across the server/client boundary"
+ * pattern in the App Router.
+ *
+ * The CTA has no dedicated component (it's just Link + Button, same
+ * as before this refactor) — it doesn't need one, since it's static
+ * content with no shape worth naming beyond `EnvironmentCTAData`.
  *
  * Server Component: no "use client", no hooks, no state, no effects.
- * It's async because it awaits its data sources directly — the same
- * pattern already used by Hero, Lifecycle, and AIStack.
  */
 export async function Environment() {
   const [header, stages, cta] = await Promise.all([
@@ -49,19 +59,19 @@ export async function Environment() {
   return (
     <section className={styles.environment}>
       <Container>
-        <div className={styles.inner}>
-          <EnvironmentHeader heading={header.heading} description={header.description} />
-
-          <EnvironmentExperience stages={stages} />
-
-          <div className={styles.ctaRow}>
+        <EnvironmentExperience
+          header={
+            <EnvironmentHeader heading={header.heading} description={header.description} />
+          }
+          stages={stages}
+          cta={
             <Link href={cta.href}>
               <Button variant="primary" size="lg" rightIcon={<Cube />}>
                 {cta.label}
               </Button>
             </Link>
-          </div>
-        </div>
+          }
+        />
       </Container>
     </section>
   );

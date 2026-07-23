@@ -11,6 +11,7 @@ import CubeIcon from "@/assets/icons/cube.svg";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
 import { HeroBackground } from "./HeroBackground";
 import styles from "./Hero.module.css";
+import { RotatingWords } from "./RotatingWords";
 
 /**
  * Hero
@@ -77,7 +78,7 @@ export async function Hero() {
               <span className={styles.headingLine}>
                 {/* Only rotatingWords[0] is rendered — rotation itself
                     is a future GSAP feature, not implemented here. */}
-                <span className={styles.highlight}>{rotatingWords[0]}</span>
+                <RotatingWords words={rotatingWords} className={styles.highlight}/>
               </span>
             </h1>
 

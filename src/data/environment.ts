@@ -21,6 +21,14 @@
  * it would lose the per-group heading and make it impossible for
  * EnvironmentCardFace to style or reorder groups independently later.
  *
+ * STAT MODELING NOTE: `stat` is new — the vertical timeline now shows
+ * a single per-step metric next to whichever stage is currently
+ * active (e.g. "12 blueprints mapped"). Modeled as one {value, label}
+ * pair, not a list: the timeline has room for exactly one stat per
+ * step in the reference behavior, and a list would need its own
+ * layout decision that hasn't been specified. Optional on the type
+ * because it's unconfirmed for four of the five stages (see below).
+ *
  * Today: resolves instantly with hardcoded mock data.
  * Later:  will `fetch()` a WordPress REST/GraphQL endpoint and return
  *         the same shape.
@@ -43,6 +51,11 @@ export interface EnvironmentStageSection {
   body: string;
 }
 
+export interface EnvironmentStageStat {
+  value: string;
+  label: string;
+}
+
 export interface EnvironmentStage {
   id: string;
   /** Zero-padded display number ("01", "02"...) — kept as a string
@@ -51,6 +64,11 @@ export interface EnvironmentStage {
   step: string;
   title: string;
   sections: EnvironmentStageSection[];
+  /** Shown next to this stage's timeline row only while it's active.
+   *  TODO(content): no stat was visible in the supplied screenshot for
+   *  ANY stage — every value below is a placeholder, not confirmed
+   *  copy. See the per-stage TODOs. */
+  stat: EnvironmentStageStat;
 }
 
 export interface EnvironmentCTAData {
@@ -70,14 +88,14 @@ const mockEnvironmentHeader: EnvironmentHeaderData = {
 
 /**
  * Order matters: EnvironmentTimeline renders these in sequence as the
- * numbered stage list, and EnvironmentExperience currently defaults
- * its active stage to index 0 ("Architect") — see that component's
- * comment on why the setter is unused today.
+ * numbered stage list, and EnvironmentExperience's scroll-sync maps
+ * scroll progress directly onto this array's index order.
  *
  * CONTENT NOTE: only "Architect" has confirmed section copy — it's
  * the one stage expanded in the supplied screenshot. The other four
- * stages' `sections` below are explicitly marked as placeholders, not
- * real copy; do not treat them as confirmed content.
+ * stages' `sections` (and every stage's `stat`) below are explicitly
+ * marked as placeholders, not real copy; do not treat them as
+ * confirmed content.
  */
 const mockEnvironmentStages: EnvironmentStage[] = [
   {
@@ -94,6 +112,8 @@ const mockEnvironmentStages: EnvironmentStage[] = [
         body: "Spec authoring and technical design",
       },
     ],
+    // TODO(content): placeholder — no stat shown in the supplied screenshot.
+    stat: { value: "12", label: "blueprints mapped" },
   },
   {
     id: "build",
@@ -107,6 +127,8 @@ const mockEnvironmentStages: EnvironmentStage[] = [
         body: "Placeholder — real copy pending",
       },
     ],
+    // TODO(content): placeholder pending real stat.
+    stat: { value: "48", label: "components shipped" },
   },
   {
     id: "tune",
@@ -119,6 +141,8 @@ const mockEnvironmentStages: EnvironmentStage[] = [
         body: "Placeholder — real copy pending",
       },
     ],
+    // TODO(content): placeholder pending real stat.
+    stat: { value: "99.2%", label: "test coverage" },
   },
   {
     id: "operate",
@@ -131,6 +155,8 @@ const mockEnvironmentStages: EnvironmentStage[] = [
         body: "Placeholder — real copy pending",
       },
     ],
+    // TODO(content): placeholder pending real stat.
+    stat: { value: "99.99%", label: "uptime" },
   },
   {
     id: "evolve",
@@ -143,6 +169,8 @@ const mockEnvironmentStages: EnvironmentStage[] = [
         body: "Placeholder — real copy pending",
       },
     ],
+    // TODO(content): placeholder pending real stat.
+    stat: { value: "6", label: "iterations per quarter" },
   },
 ];
 

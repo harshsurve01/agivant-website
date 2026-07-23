@@ -9,6 +9,10 @@
    data/ai-stack.ts changes, this layout's shape changes with it; see
    that file's ordering note.
 
+   .gridItem stays `display: flex` (default align-items: stretch) so
+   its child — AIStackCardShell's outer wrapper — stretches to fill
+   the full height of its grid cell, including the row-span-2 cell.
+
    COLUMN WIDTHS: measured Figma card widths (left ≈651, top-middle
    ≈523, right ≈317) give a ratio of ~2.05 : 1.65 : 1 — the columns
    are NOT equal, unlike the previous repeat(3, 1fr). Expressed as fr
@@ -39,8 +43,8 @@
 
 .gridItem {
   /* Card fills its grid cell; actual visual styling (background,
-     border, ribbon art) lives in AIStackCard, not here — this file
-     only decides where the cell sits. */
+     border, ribbon art) lives in AIStackCardShell/layouts, not here —
+     this file only decides where the cell sits. */
   display: flex;
 }
 

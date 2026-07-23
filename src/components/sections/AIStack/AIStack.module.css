@@ -2,8 +2,8 @@
    AIStack.module.css
    Owns section-level layout and spacing only — heading typography lives
    in AIStackHeader, grid placement in AIStackGrid, card visuals in
-   AIStackCard. This file just stacks and spaces those pieces, same
-   division of responsibility as Lifecycle.module.css.
+   AIStackCardShell/layouts. This file just stacks and spaces those
+   pieces, same division of responsibility as Lifecycle.module.css.
 
    DECORATIVE GRADIENT: the reference screenshot shows a soft glow in
    the section's top-right, blending brand purple into a warm gold
@@ -32,7 +32,7 @@
 .aiStack::before {
   content: "";
   position: absolute;
-  top: -20%;
+  top: 20%;
   right: -10%;
   width: 45rem; /* TODO(figma): confirm exact glow size */
   height: 45rem;
@@ -50,7 +50,7 @@
 
 .inner {
   position: relative;
-  z-index: 1; /* sits above ::before so the gradient stays a background glow, not an overlay on content */
+  /* z-index: 1; sits above ::before so the gradient stays a background glow, not an overlay on content */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,5 +61,5 @@
   /* Screenshots show clearly more space above the CTA than between
      header and grid, so this is split out from .inner's shared gap
      rather than forcing both gaps to the same value. */
-  margin-top: var(--space-16); /* TODO(figma): confirm exact grid-to-CTA spacing */
+  margin-top: var(--space-4); /* TODO(figma): confirm exact grid-to-CTA spacing */
 }

@@ -1,0 +1,109 @@
+/* ==========================================================================
+   AIStackCardShell.module.css
+
+   Owns ONLY shared card chrome: perspective, the rotating preserve-3d
+   surface, border/radius/overflow clipping, the background fill, and
+   the badge's fixed position. No title/description/image styling
+   lives here — every layout's own module.css owns that, and each
+   receives an unpadded, full-size `.content` box to compose into.
+
+   .wrapper carries `perspective` on the PARENT of the rotating
+   element (not the element itself) — 3D perspective has to originate
+   from an ancestor for rotateX/rotateY on the child to read as actual
+   depth rather than a flat skew.
+
+   PENDING FIGMA: border radius/padding-adjacent sizing below reuse
+   existing tokens as placeholders — no inspector export was supplied
+   for card chrome specifically.
+   ========================================================================== */
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 12rem;
+  perspective: 1200px; /* TODO(figma): confirm exact tilt depth */
+  /* Clipping/chrome lives here rather than on `.shell` on purpose:
+     `.wrapper` is the perspective ROOT — it never itself rotates and
+     never itself carries `transform-style: preserve-3d`, so putting
+     "grouping" properties (overflow, isolation, etc.) on it can't
+     trigger the preserve-3d-flattening rule below. If these lived on
+     `.shell` instead (the element that actually has preserve-3d),
+     they'd silently force its used transform-style back to `flat`
+     and collapse every layered child onto one plane — which is
+     exactly the bug this comment is here to prevent regressing. */
+  isolation: isolate; /* keeps this card's z-index layers scoped to itself */
+  overflow: hidden;
+  /* Matches `.shell`'s own border-radius below so the static clip
+     mask lines up with the rotating border's rounded corners — this
+     radius has no visible border of its own here, it just shapes the
+     clip. */
+  border-radius: var(--radius-lg, 1rem); /* TODO(design-tokens): confirm token name */
+  /* Fallback backdrop only: at extreme tilt angles `.shell`'s rotated
+     edges can momentarily expose a sliver of the static clip box
+     behind them. Not the card's visible surface color — `.background`
+     (on `.shell`, translateZ'd with everything else) is. */
+ 
+}
+
+.shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* The visible border lives here, not on `.wrapper`, so it rotates
+     as part of the physical card instead of sitting still as a
+     window frame around tilting content. `border`/`border-radius`
+     aren't grouping properties (unlike overflow/isolation above), so
+     they're safe on a preserve-3d element. */
+  border-radius: var(--radius-lg, 1rem); /* TODO(design-tokens): confirm token name */
+  border: 1px solid var(--color-border-default);
+  /* This is the ONLY element that rotates, and therefore the ONLY
+     element that may carry `transform-style: preserve-3d` without a
+     co-located grouping property (see `.wrapper` above). Every
+     descendant that needs its own depth — the badge/background here,
+     and each layout's title/description/ribbon — resolves its
+     translateZ against the 3D rendering context this establishes.
+     Do NOT add overflow, isolation, filter, opacity<1, clip-path, or
+     mask here; any of those silently flattens this element back to
+     `transform-style: flat`, per the CSS Transforms grouping-property
+     rules, even though `preserve-3d` is still written in the CSS. */
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  /* Deepest layer: pushed backward so every other layer visibly
+     separates from it as the card tilts. */
+  transform: translateZ(-24px);
+  background-color: var(--color-bg-secondary); /* TODO(figma): confirm — may be a subtle gradient rather than flat color */
+}
+
+.badgeLayer {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 2; /* clears both .background and any layout content */
+  /* Closest layer to the viewer, per the desired depth order (badge
+     > title > description > ribbon > background). No preserve-3d
+     needed here — the badge itself has no 3D children — just a
+     translateZ offset on this element. */
+  transform: translateZ(64px);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  /* This is the hand-off point from shell to layout. The shell has
+     no idea what's inside `children`, but it still has to keep the
+     3D context open — without `preserve-3d` here, ANY translateZ a
+     layout applies to its own title/description/ribbon gets
+     flattened right back onto this box, because transform-style
+     defaults to `flat` and is not inherited. This one declaration is
+     what lets "each layout owns its own translateZ" actually work. */
+  transform-style: preserve-3d;
+}

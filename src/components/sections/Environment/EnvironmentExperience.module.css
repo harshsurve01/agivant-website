@@ -1,29 +1,140 @@
 /* ==========================================================================
    EnvironmentExperience.module.css
 
-   Two-column layout: timeline on the left, card on the right. Column
-   widths use the measured Figma frames (timeline 333, card 714) as a
-   ratio (~1 : 2.14), not their literal px values, so the proportion
-   holds at any container width — same reasoning as AIStackGrid's
-   fr-based column widths.
+   .pinTrack / .pinStage implement the pin: see EnvironmentExperience.tsx's
+   "PIN MECHANICS" comment for why this is a sticky element inside an
+   oversized track rather than any kind of JS scroll-hijack.
 
-   PENDING FIGMA: gap uses an existing token as a placeholder — the
-   supplied screenshots gave frame sizes, not the gap between the
-   timeline and card columns.
+   Two-column layout inside the pinned stage: timeline on the left,
+   card deck on the right. Column widths use the measured Figma frames
+   (timeline 333, card 714) as a ratio (~1 : 2.14), not their literal
+   px values, so the proportion holds at any container width — same
+   reasoning as AIStackGrid's fr-based column widths.
    ========================================================================== */
+
+.pinTrack {
+  position: relative;
+  /* Was 80% with no margin-inline: auto — a block at 80% width and no
+     auto margins sits flush against its containing block's left edge,
+     not centered. That's what produced the left-anchored layout with
+     dead space on the right: .pinTrack itself, not just something
+     inside it, was the wrong width. Full width here; centering and
+     the actual content max-width now live on .stageInner below, same
+     as Environment.module.css's old .inner did before the pin/CTA
+     refactor moved that responsibility into this file. */
+  width: 100%;
+  /* One viewport-height of scroll per stage. --stage-count is set
+     inline by EnvironmentExperience.tsx so this file never hardcodes
+     the stage count. */
+  height: calc(var(--stage-count, 5) * 100vh);
+  /* Single source of truth for the timeline:card column ratio,
+     consumed by both .experience and .ctaRow below, so the CTA can
+     align under the card column without duplicating the ratio as a
+     literal in a second place. */
+  --environment-grid-cols: 1fr 2fr; /* TODO(figma): ratio derived from measured column widths (333:714) */
+}
+
+.pinStage {
+  position: sticky;
+  top: 0;
+  /* NOTE: relies on no ancestor between this element and the viewport
+     setting `overflow` to anything other than `visible`, and none
+     setting `transform`/`filter`/`contain` either — any of those
+     creates a new containing block for `position: sticky` and breaks
+     the pin. Environment.tsx's own ancestors (.environment,
+     <Container>) don't set any of these today. */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* The pinned stack's actual content box: header, the timeline/card
+   experience, and the CTA all stack here as a centered flex column.
+   This is what previously lived in Environment.module.css as `.inner`
+   — moved here because all three of those pieces are now composed
+   inside EnvironmentExperience (see that file's doc comment), so
+   their shared layout belongs in the stylesheet that owns the pinned
+   stage, not in the parent Server Component that no longer renders
+   a wrapping div of its own. */
+.stageInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12); /* TODO(figma): confirm gap between header and the timeline/card experience */
+  width: 100%;
+  /* 1440px section frame expressed as a max-width rather than a fixed
+     width, so the section stays fluid below that breakpoint instead
+     of forcing horizontal scroll or clipping. */
+  max-width: 90rem;
+  margin-inline: auto;
+}
 
 .experience {
   display: grid;
-  grid-template-columns: 1fr 2.14fr; /* TODO(figma): ratio derived from measured column widths (333:714) */
-  align-items: start;
-  gap: var(--space-8); /* TODO(figma): confirm exact timeline-to-card gap */
+  grid-template-columns: var(--environment-grid-cols);
+  align-items: center;
+  /* Widened from the previous --space-8: re-measuring the supplied
+     screenshot (card's left edge vs. the timeline column's widest
+     label, "Engineering Domain") put the gap closer to ~110-115px at
+     the reference's 1440px frame width than the ~32px --space-8 gave.
+     --space-16 isn't an exact match either — no inspector export was
+     supplied — but it's meaningfully closer than what was here
+     before. */
+  gap: var(--space-1); /* TODO(figma): confirm exact timeline-to-card gap */
   width: 100%;
 }
 
+/* Moved from Environment.module.css's old `.ctaRow` — same reasoning
+   as `.stageInner` above: the CTA is now composed as a sibling of
+   `.experience` inside this same pinned stack (see
+   EnvironmentExperience.tsx), not laid out independently by
+   Environment. Reuses `.pinTrack`'s --environment-grid-cols instead
+   of a second literal `1fr 2fr`, so the button's column always
+   matches the card's column even if the ratio above changes. */
+.ctaRow {
+  display: grid;
+  grid-template-columns: var(--environment-grid-cols);
+  width: 100%;
+  /* .stageInner's flex `gap` already applies var(--space-12) above
+     every child, including this row. Figma's card-to-CTA gap measures
+     to ~40px (--space-10), so this nets the inherited gap down to
+     that total rather than stacking an additional margin on top of it
+     — confirmed by pixel-measuring both the current implementation
+     (~58px total) and the Figma reference (~40px total). */
+  margin-top: calc(var(--space-10) - var(--space-12));
+}
+
+.ctaRow > a {
+  grid-column: 2;
+  justify-self: center;
+}
+
 @media (max-width: 900px) {
+  .pinTrack {
+    /* The pin/scroll-sync effect depends on the two columns being
+       side by side so the deck has somewhere to sit "beside" the
+       timeline while it's pinned; once they stack, pin the same way
+       a single-viewport section would rather than holding scroll
+       hostage for stages.length viewport-heights with a layout that
+       no longer reads as one synchronized view. */
+    height: auto;
+  }
+
+  .pinStage {
+    position: relative;
+    top: auto;
+    height: auto;
+  }
+
   .experience {
-    /* Side-by-side stops making sense once the timeline column would
-       be narrower than its own numbered list can comfortably wrap. */
     grid-template-columns: 1fr;
+  }
+
+  .ctaRow {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaRow > a {
+    grid-column: 1;
   }
 }

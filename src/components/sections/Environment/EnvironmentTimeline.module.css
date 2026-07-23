@@ -1,6 +1,13 @@
 /* ==========================================================================
    EnvironmentTimeline.module.css
 
+   .track establishes the positioning context the line/dots share with
+   the list: .line is absolutely positioned within it, sized to span
+   from the first dot's center to the last dot's center (see the
+   left/top math below, which mirrors .dot's own geometry in
+   EnvironmentTimelineItem.module.css — the two files have to agree on
+   dot size/gap or the line drifts off-center).
+
    Height is intentionally not fixed to the measured 420px timeline
    column — the list's height is a function of its five items' natural
    line height, and forcing 420px would either clip a longer title or
@@ -15,19 +22,67 @@
   flex-direction: column;
   gap: var(--space-6); /* TODO(figma): confirm exact domain-label-to-list gap */
   width: 100%;
+  /* .timeline is a direct child of .experience's CSS Grid
+     (grid-template-columns: var(--environment-grid-cols)). Grid items
+     default to min-width: auto, which floors this column's width at
+     its content's min-content size — not the 1fr track it's assigned.
+     Once padding-left below plus the larger domainLabel/title font
+     sizes pushed that min-content size past the 1fr share, the grid
+     track refused to shrink and grew instead, dragging .experience,
+     .stageInner, and the page wider than the viewport (the horizontal
+     overflow). min-width: 0 lets this column actually shrink to its
+     assigned track width instead of forcing the grid to grow. */
+  min-width: 0;
+  padding-left: 50px;
 }
 
 .domainLabel {
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-link);
 }
 
+.track {
+  position: relative;
+}
+
+.line {
+  position: absolute;
+  /* Centered on the dot: EnvironmentTimelineItem.module.css sets
+     --dot-size: 10px, so half of that centers the 1px-wide track on
+     the dot's own midpoint. */
+  left: calc(var(--dot-size, 10px) / 2 - 0.5px);
+  /* Starts/ends at the vertical center of the first/last dot, not the
+     top/bottom of the list — a line running the list's full height
+     would visibly overshoot past the last dot's center. --item-gap
+     matches .list's own `gap` below so this stays correct if that
+     value ever changes. */
+  top: calc(var(--dot-size, 10px) / 2);
+  bottom: calc(var(--dot-size, 10px) / 2);
+  width: 1px;
+  background-color: var(--color-border-default);
+  
+}
+
+.lineFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-text-link);
+  /* Height is set inline per-render from `progress` (see
+     EnvironmentTimeline.tsx) — this just needs to not fight that with
+     a transition that lags behind fast scrolling. */
+     
+}
+
 .list {
+  --item-gap: var(--space-8); /* TODO(figma): confirm exact row gap; must match .line's top/bottom math above */
   display: flex;
   flex-direction: column;
-  gap: var(--space-3); /* TODO(figma): confirm exact row gap */
+  gap: var(--item-gap);
   list-style: none;
   margin: 0;
   padding: 0;
+  
 }

@@ -1,0 +1,60 @@
+/* ==========================================================================
+   DataEngineeringLayout.module.css
+
+   PENDING FIGMA: padding/gap/ribbon min-height below use existing
+   tokens as placeholders — no inspector export was supplied for this
+   card specifically.
+   ========================================================================== */
+
+.layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--space-6);
+  gap: var(--space-4);
+  /* Direct child of the shell's preserve-3d `.content`; keeps that
+     3D context open so `.text` and `.ribbon` below can sit at
+     different depths instead of collapsing onto one plane. */
+  transform-style: preserve-3d;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex-shrink: 0;
+  /* `.title` and `.description` need independent depths from each
+     other, so this wrapper has to stay a 3D participant too. */
+  transform-style: preserve-3d;
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  /* Depth order (nearest → farthest) is badge, title, description,
+     ribbon, background — set in AIStackCardShell + here. */
+  transform: translateZ(40px);
+}
+
+.description {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  transform: translateZ(24px);
+}
+
+.ribbon {
+  position: relative;
+  flex: 1;
+  min-height: 7rem; /* TODO(figma): confirm minimum ribbon height */
+  margin-inline: calc(var(--space-6) * -1);
+  margin-bottom: calc(var(--space-6) * -1);
+  pointer-events: none;
+  transform: translateZ(8px);
+}
+
+.ribbonImage {
+  object-fit: cover;
+}

@@ -17,6 +17,15 @@
  * with markup embedded in it — same discipline as Hero's and
  * Lifecycle's title objects.
  *
+ * LAYOUT FIELD: `layout` on AIStackCardData selects which handcrafted
+ * layout component (components/AIStack/layouts/*) renders this card's
+ * composition. It's a small closed set of design-driven values
+ * ("agentic" | "aiml" | "cloud" | "data" | "mlops"), one per Figma
+ * card — NOT derived from `id`, so the resolver never needs
+ * if(card.id)/switch(card.id) branching. See
+ * components/AIStack/layouts/index.ts for the registry this maps
+ * into.
+ *
  * Today: resolves instantly with hardcoded mock data.
  * Later:  will `fetch()` a WordPress REST/GraphQL endpoint and return
  *         the same shape.
@@ -34,6 +43,8 @@ export interface AIStackHeaderData {
   description: string;
 }
 
+export type AIStackCardLayout = "agentic" | "aiml" | "cloud" | "data" | "mlops";
+
 export interface AIStackCardData {
   id: string;
   title: string;
@@ -42,6 +53,8 @@ export interface AIStackCardData {
   backgroundImage: string;
   accentColor: string;
   ribbonPosition?: string; // CSS object-position value, e.g. "bottom", "top right"
+  /** Which handcrafted layout component renders this card. */
+  layout: AIStackCardLayout;
 }
 
 export interface AIStackCTAData {
@@ -79,6 +92,7 @@ const mockAIStackCards: AIStackCardData[] = [
     // for where the real per-card export should land.
     backgroundImage: "/images/ai-stack/agentic-ai-agentops-ribbon.svg",
     accentColor: "#7c3aed", // TODO(design-tokens): confirm brand-purple token name, see other sections' same TODO
+    layout: "agentic",
   },
   {
     id: "ai-ml-engineering",
@@ -88,6 +102,7 @@ const mockAIStackCards: AIStackCardData[] = [
     badge: "AI / ML",
     backgroundImage: "/images/ai-stack/ai-ml-ribbon.svg",
     accentColor: "#7c3aed",
+    layout: "aiml",
   },
   {
     id: "cloud-platform-engineering",
@@ -97,6 +112,7 @@ const mockAIStackCards: AIStackCardData[] = [
     badge: "Cloud",
     backgroundImage: "/images/ai-stack/cloud-platform-engineering-ribbon.svg",
     accentColor: "#7c3aed",
+    layout: "cloud",
   },
   {
     id: "ai-ready-data-engineering",
@@ -106,6 +122,7 @@ const mockAIStackCards: AIStackCardData[] = [
     badge: "Data",
     backgroundImage: "/images/ai-stack/ai-ready-data-engineering-ribbon.svg",
     accentColor: "#7c3aed",
+    layout: "data",
   },
   {
     id: "mlops-ai-operations",
@@ -115,6 +132,7 @@ const mockAIStackCards: AIStackCardData[] = [
     badge: "Platform",
     backgroundImage: "/images/ai-stack/mlops-ai-operations-ribbon.svg",
     accentColor: "#7c3aed",
+    layout: "mlops",
   },
 ];
 

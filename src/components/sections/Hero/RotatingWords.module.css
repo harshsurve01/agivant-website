@@ -1,0 +1,86 @@
+/* ==========================================================================
+   RotatingWords.module.css
+
+   The wrapper behaves exactly like an inline highlighted word.
+
+   It does NOT own typography.
+
+   Typography (font-size, font-weight, color, line-height) comes
+   entirely from Hero.module.css via the passed className.
+
+   This component only provides:
+
+   - 3D perspective
+   - clipping
+   - stacked animation layers
+
+   ========================================================================== */
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+
+  vertical-align: baseline;
+
+  /* Shared 3D stage for every word span below — the Flip reveal style
+     rotates individual .word nodes within this perspective, the same
+     way the old whole-phrase flip did. Rise/Blur styles simply don't
+     use rotationX, so this is inert (and harmless) for them. */
+  perspective: 900px;
+  perspective-origin: center center;
+
+  transform-style: preserve-3d;
+}
+
+/*
+  A layer holds one full phrase as one <span class="word"> per word
+  (plus real space text nodes between them, inserted in JS). It is
+  deliberately NOT a flex container: an absolutely-positioned layer
+  with plain inline content lets the words space exactly like normal
+  text, while each .word stays individually transformable.
+*/
+.layer {
+  position: absolute;
+  inset: 0;
+
+  white-space: nowrap;
+}
+
+/*
+  Individual word. display: inline-block is required — CSS transforms
+  don't apply to plain inline boxes, and each word needs to move/
+  rotate/blur independently for the word-by-word reveal.
+
+  transform-origin sits at bottom-center so Rise reads as the word
+  lifting off its own baseline, and Flip reads as a page-turn around
+  the word's own base rather than the whole phrase's.
+*/
+.word {
+  display: inline-block;
+  transform-origin: center bottom;
+  backface-visibility: hidden;
+
+  will-change:
+    transform,
+    opacity,
+    filter;
+}
+
+/*
+  Invisible placeholder.
+
+  It reserves exactly the same space a normal text span would occupy,
+  so the Hero layout never shifts while words rotate.
+*/
+.wrapper::before {
+  content: "real business value";
+
+  visibility: hidden;
+
+  white-space: nowrap;
+
+  font: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}

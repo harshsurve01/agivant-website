@@ -16,8 +16,8 @@ import styles from "./AIStack.module.css";
  * block, a five-card bento grid, and a closing CTA. Owns section-level
  * layout, composition, spacing, and data loading — it does not own the
  * heading's content (AIStackHeader), the grid's responsive placement
- * (AIStackGrid), or any card's future pointer/tilt interaction
- * (AIStackCard, the only Client Component in this section).
+ * (AIStackGrid), or any card's interaction (AIStackCardShell, the
+ * only Client Component in this section).
  *
  * The CTA lives here rather than in AIStackHeader or AIStackGrid
  * because it isn't part of either — it sits below the grid as its own
