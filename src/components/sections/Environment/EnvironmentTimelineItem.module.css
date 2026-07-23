@@ -45,8 +45,8 @@
 }
 
 .step {
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
   color: inherit;
   font-variant-numeric: tabular-nums; /* keeps two-digit numbers from shifting the title */
 }
@@ -55,26 +55,6 @@
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-regular);
   color: inherit;
-}
-
-.stat {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-2);
-  /* Only ever rendered for the active item (see the component), so no
-     enter/exit animation is defined here yet — it appears/disappears
-     with the row's own re-render as `isActive` moves between stages. */
-}
-
-.statValue {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-link);
-}
-
-.statLabel {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
 }
 
 /* ---- past (already scrolled through) ---- */

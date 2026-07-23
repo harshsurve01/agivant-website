@@ -62,29 +62,29 @@ interface Particle {
 const DESKTOP_BREAKPOINT_PX = 769; // matches the existing 768px breakpoint
 // used elsewhere in Hero/HeroBackground — anything narrower doesn't mount.
 
-const PARTICLE_SPACING_PX = 4; // baseline grid spacing — this (not a fixed
+const PARTICLE_SPACING_PX =20; // baseline grid spacing — this (not a fixed
 // particle count) is what makes density viewport-relative: a wider/taller
 // Hero simply tiles more cells at the same spacing, so perceived density
 // stays constant across screen sizes instead of thinning out or clumping.
-const JITTER_RATIO = 0.34; // per-axis random offset, as a fraction of
+const JITTER_RATIO = 0; // per-axis random offset, as a fraction of
 // spacing, applied once at grid-generation time so the field reads as an
 // organic scatter rather than a mechanical grid.
 
-const INFLUENCE_RADIUS_PX = 17; // reveal radius — the "flashlight" size
-const REPULSION_RADIUS_PX = 13; // repulsion radius — deliberately smaller
+const INFLUENCE_RADIUS_PX = 350; // reveal radius — the "flashlight" size
+const REPULSION_RADIUS_PX = 130; // repulsion radius — deliberately smaller
 // than the reveal radius, so particles are visible for a moment before
 // they're disturbed, rather than being pushed the instant they appear.
 const REPULSION_STRENGTH = 1.7; // impulse magnitude at distance 0 (falls off
 // to 0 at REPULSION_RADIUS_PX via the same smooth curve as opacity)
 
-const SPRING_STIFFNESS = 0.05; // how hard the spring pulls toward origin
+const SPRING_STIFFNESS = 0.15; // how hard the spring pulls toward origin
 const SPRING_DAMPING = 0.82; // per-frame velocity retention (< 1 → damped;
 // closer to 1 = looser/bouncier, closer to 0 = stiffer/heavier)
 
-const OPACITY_EASE = 0.9; // how quickly rendered opacity approaches target
-const MAX_PARTICLE_OPACITY = 1; // ceiling so revealed particles stay
+const OPACITY_EASE = 0.09; // how quickly rendered opacity approaches target
+const MAX_PARTICLE_OPACITY = 0.55; // ceiling so revealed particles stay
 // subtle/atmospheric rather than fully opaque dots
-const PARTICLE_RADIUS_PX = 40;
+const PARTICLE_RADIUS_PX = 2;
 
 /** Smoothstep-based falloff: 1 at distance 0, eases to 0 at `radius`,
  *  with a soft shoulder at both ends rather than a linear ramp or a
@@ -175,6 +175,22 @@ export function HeroParticleField() {
     const resizeObserver = new ResizeObserver(() => resize());
     resizeObserver.observe(container);
 
+    // Listen on the shared ancestor (`.experience`, HeroBackground's own
+    // wrapper — `container`'s parentElement) rather than on `container`
+    // itself. `.contentLayer` sits at a higher z-index and its bounding
+    // box covers the *entire* Hero footprint (its own height is what
+    // gives `.experience` a height at all, and it's width:100%), so it
+    // wins every hit-test across the whole area — `container` would
+    // never receive a pointer event directly, no matter where the
+    // cursor is. Pointer events bubble, though: a pointer landing on
+    // any descendant of `.experience` (whether that's `.contentLayer`
+    // or `container` itself, in spots nothing else covers) still
+    // propagates up to their common ancestor. Coordinates are still
+    // computed against `container`'s own rect below, since that's the
+    // canvas's actual positioning box (and it's inset:0 of the parent,
+    // so the two rects are identical anyway).
+    const trackingTarget = container.parentElement ?? container;
+
     const handlePointerMove = (event: PointerEvent) => {
       const rect = container.getBoundingClientRect();
       cursor.x = event.clientX - rect.left;
@@ -188,9 +204,9 @@ export function HeroParticleField() {
       cursor.active = false;
     };
 
-    container.addEventListener("pointermove", handlePointerMove);
-    container.addEventListener("pointerenter", handlePointerEnter);
-    container.addEventListener("pointerleave", handlePointerLeave);
+    trackingTarget.addEventListener("pointermove", handlePointerMove);
+    trackingTarget.addEventListener("pointerenter", handlePointerEnter);
+    trackingTarget.addEventListener("pointerleave", handlePointerLeave);
 
     // Theme-aware color: the canvas element inherits `color` from the
     // design token set in HeroParticleField.module.css, so particles
@@ -221,7 +237,7 @@ export function HeroParticleField() {
 
         // 2. Repulsion — outward impulse, smooth falloff, only while
         //    the cursor is active and within the (smaller) repulsion radius.
-        if (cursor.active && distance < REPULSION_RADIUS_PX && distance > 0.001) {
+        if (cursor.active && distance < REPULSION_RADIUS_PX && distance > 0.0001) {
           const strength =
             REPULSION_STRENGTH * smoothFalloff(distance, REPULSION_RADIUS_PX);
           p.vx += (dx / distance) * strength;
@@ -240,7 +256,7 @@ export function HeroParticleField() {
         p.x += p.vx;
         p.y += p.vy;
 
-        if (p.opacity > 0.3) {
+        if (p.opacity > 0.003) {
           ctx.globalAlpha = p.opacity * MAX_PARTICLE_OPACITY;
           ctx.beginPath();
           ctx.arc(p.x, p.y, PARTICLE_RADIUS_PX, 0, Math.PI * 2);
@@ -258,9 +274,9 @@ export function HeroParticleField() {
       cancelled = true;
       cancelAnimationFrame(rafId);
       resizeObserver.disconnect();
-      container.removeEventListener("pointermove", handlePointerMove);
-      container.removeEventListener("pointerenter", handlePointerEnter);
-      container.removeEventListener("pointerleave", handlePointerLeave);
+      trackingTarget.removeEventListener("pointermove", handlePointerMove);
+      trackingTarget.removeEventListener("pointerenter", handlePointerEnter);
+      trackingTarget.removeEventListener("pointerleave", handlePointerLeave);
     };
   }, []);
 

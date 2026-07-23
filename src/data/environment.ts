@@ -112,64 +112,74 @@ const mockEnvironmentStages: EnvironmentStage[] = [
         body: "Spec authoring and technical design",
       },
     ],
-    // TODO(content): placeholder — no stat shown in the supplied screenshot.
     stat: { value: "12", label: "blueprints mapped" },
   },
+
   {
     id: "build",
     step: "02",
     title: "Build",
-    // TODO(content): not shown in the supplied screenshot (only
-    // "Architect" was expanded) — placeholder pending real copy.
     sections: [
       {
-        heading: "Implementation & Delivery",
-        body: "Placeholder — real copy pending",
+        heading: "Architecture & Solution Design",
+        body: "Agent-orchestrated system design",
+      },
+      {
+        heading: "Development & Engineering",
+        body: "Agent-harnessed code generation",
       },
     ],
-    // TODO(content): placeholder pending real stat.
     stat: { value: "48", label: "components shipped" },
   },
+
   {
     id: "tune",
     step: "03",
     title: "Tune",
-    // TODO(content): placeholder pending real copy.
     sections: [
       {
-        heading: "Testing & Optimization",
-        body: "Placeholder — real copy pending",
+        heading: "Architecture & Solution Design",
+        body: "Design validation against production signals",
+      },
+      {
+        heading: "Development & Engineering",
+        body: "Automated testing, integration and review",
       },
     ],
-    // TODO(content): placeholder pending real stat.
     stat: { value: "99.2%", label: "test coverage" },
   },
+
   {
     id: "operate",
     step: "04",
     title: "Operate",
-    // TODO(content): placeholder pending real copy.
     sections: [
       {
-        heading: "Deployment & Operations",
-        body: "Placeholder — real copy pending",
+        heading: "Architecture & Solution Design",
+        body: "Architecture compliance and drift detection",
+      },
+      {
+        heading: "Development & Engineering",
+        body: "Production reliability and code health",
       },
     ],
-    // TODO(content): placeholder pending real stat.
     stat: { value: "99.99%", label: "uptime" },
   },
+
   {
     id: "evolve",
     step: "05",
     title: "Evolve",
-    // TODO(content): placeholder pending real copy.
     sections: [
       {
-        heading: "Iteration & Growth",
-        body: "Placeholder — real copy pending",
+        heading: "Architecture & Solution Design",
+        body: "Design patterns captured for reuse",
+      },
+      {
+        heading: "Development & Engineering",
+        body: "Reusable code and agents lift speed for future build",
       },
     ],
-    // TODO(content): placeholder pending real stat.
     stat: { value: "6", label: "iterations per quarter" },
   },
 ];

@@ -29,6 +29,6 @@
      getComputedStyle(canvas).color rather than hardcoding a fill —
      keeps particles on-token without duplicating a color value here
      and in JS. */
-  color: var(--color-text-primary);
+  color: #8600df6e;
   
 }

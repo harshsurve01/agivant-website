@@ -33,12 +33,12 @@
      overflow). min-width: 0 lets this column actually shrink to its
      assigned track width instead of forcing the grid to grow. */
   min-width: 0;
-  padding-left: 50px;
+  padding-left: 140px;
 }
 
 .domainLabel {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
   color: var(--color-text-link);
 }
 

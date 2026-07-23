@@ -14,6 +14,7 @@
 
 .pinTrack {
   position: relative;
+  
   /* Was 80% with no margin-inline: auto — a block at 80% width and no
      auto margins sits flush against its containing block's left edge,
      not centered. That's what produced the left-anchored layout with
@@ -82,7 +83,27 @@
      before. */
   gap: var(--space-1); /* TODO(figma): confirm exact timeline-to-card gap */
   width: 100%;
+
 }
+/* .experience:after {
+  content: "";
+  position: absolute;
+
+  top: 70%;
+left: -30%;
+  transform: translateY(-50%);
+  z-index: 0;
+  width: clamp(320px, 32vw, 600px);
+  height: clamp(320px, 32vw, 600px);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(90px);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, #EDBF79 85%, transparent) 0%,
+    transparent 78%
+  );
+} */
 
 /* Moved from Environment.module.css's old `.ctaRow` — same reasoning
    as `.stageInner` above: the CTA is now composed as a sibling of
