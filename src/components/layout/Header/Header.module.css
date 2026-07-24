@@ -60,11 +60,11 @@
      --color-bg-primary token, same derivation pattern variables.css
      already uses for hover/active states, so this isn't a new color,
      just a computed variant of the one already in use. */
-  background-color: color-mix(in srgb, var(--color-bg-primary) 85%, transparent);
-  backdrop-filter: blur(18px); /* TODO(figma): confirm exact blur radius, no spec value given */
-  -webkit-backdrop-filter: blur(18px);
-  border-bottom-color: var(--color-border-default); /* reuses divider's existing border token */
-  box-shadow: var(--shadow-sm); /* reuses existing "subtle" shadow token */
+  background-color: color-mix(in srgb, var(--color-bg-primary) 75%, transparent);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: var(--shadow-lg); /* reuses existing "subtle" shadow token */
 }
 
 .inner {

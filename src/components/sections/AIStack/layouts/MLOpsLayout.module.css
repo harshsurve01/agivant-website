@@ -21,10 +21,10 @@
 .ribbon {
   position: relative;
   flex-shrink: 0;
-  height: 7rem; /* TODO(figma): confirm exact ribbon height */
+  height: 6rem; /* TODO(figma): confirm exact ribbon height */
   margin-bottom: var(--space-4);
   pointer-events: none;
-  transform: translateZ(8px);
+  transform: translateZ(10px);
 }
 
 .ribbonImage {
@@ -47,12 +47,12 @@
   font-weight: var(--font-weight-semibold);
   /* Depth order (nearest → farthest) is badge, title, description,
      ribbon, background — set in AIStackCardShell + here. */
-  transform: translateZ(40px);
+  transform: translateZ(50px);
 }
 
 .description {
   font-size: var(--font-size-md);
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
-  transform: translateZ(24px);
+  transform: translateZ(50px);
 }

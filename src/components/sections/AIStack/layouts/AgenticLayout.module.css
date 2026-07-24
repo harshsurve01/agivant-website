@@ -55,7 +55,7 @@
   font-size: var(--font-size-md);
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
-  transform: translateZ(24px);
+  transform: translateZ(40px);
 }
 
 .ribbon {
@@ -67,9 +67,14 @@
   margin-inline: calc(var(--space-6) * -1);
   margin-bottom: calc(var(--space-6) * -1);
   pointer-events: none;
-  transform: translateZ(8px);
+  transform: translateZ(14px);
+  
 }
 
 .ribbonImage {
   object-fit: cover;
+  
+
+
+
 }

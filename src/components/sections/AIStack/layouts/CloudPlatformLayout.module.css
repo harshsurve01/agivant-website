@@ -30,7 +30,7 @@
      right edges — no negative-margin bleed needed here. */
   margin-bottom: var(--space-4);
   pointer-events: none;
-  transform: translateZ(8px);
+  transform: translateZ(44px);
 }
 
 .ribbonImage {
@@ -60,5 +60,5 @@
   font-size: var(--font-size-md);
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
-  transform: translateZ(24px);
+  transform: translateZ(14px);
 }

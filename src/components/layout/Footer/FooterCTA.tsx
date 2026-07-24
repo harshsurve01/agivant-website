@@ -63,7 +63,7 @@ export function FooterCTA({ heading, buttons }: FooterCTAProps) {
             <Button
               variant={button.variant}
               size="lg"
-              leftIcon={
+              rightIcon={
                 button.icon ? <FooterButtonIcon icon={button.icon} /> : undefined
               }
             >

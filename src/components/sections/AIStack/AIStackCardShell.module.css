@@ -33,7 +33,7 @@
      and collapse every layered child onto one plane — which is
      exactly the bug this comment is here to prevent regressing. */
   isolation: isolate; /* keeps this card's z-index layers scoped to itself */
-  overflow: hidden;
+  overflow: visible;
   /* Matches `.shell`'s own border-radius below so the static clip
      mask lines up with the rotating border's rounded corners — this
      radius has no visible border of its own here, it just shapes the
@@ -77,8 +77,9 @@
   z-index: 0;
   /* Deepest layer: pushed backward so every other layer visibly
      separates from it as the card tilts. */
-  transform: translateZ(-24px);
+  transform: translateZ(-20px);
   background-color: var(--color-bg-secondary); /* TODO(figma): confirm — may be a subtle gradient rather than flat color */
+  border-radius: var(--radius-lg);
 }
 
 .badgeLayer {
@@ -90,7 +91,7 @@
      > title > description > ribbon > background). No preserve-3d
      needed here — the badge itself has no 3D children — just a
      translateZ offset on this element. */
-  transform: translateZ(64px);
+  transform: translateZ(84px);
 }
 
 .content {
