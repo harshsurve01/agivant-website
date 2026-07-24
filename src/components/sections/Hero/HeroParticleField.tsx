@@ -42,6 +42,12 @@ import styles from "./HeroParticleField.module.css";
  *   4. Damping:    velocity is scalar-damped each frame so the spring
  *                  doesn't oscillate — this is what makes it a damped
  *                  spring rather than an undamped one.
+ *
+ * Rendering, size (depth illusion): particle radius is scaled up near
+ * the cursor and eases back to the base radius at INFLUENCE_RADIUS_PX,
+ * using the same smoothFalloff() curve as the opacity reveal. This is
+ * purely a draw-time value — it never feeds back into position,
+ * velocity, or opacity, so it has zero effect on the simulation above.
  */
 
 interface Particle {
@@ -62,7 +68,7 @@ interface Particle {
 const DESKTOP_BREAKPOINT_PX = 769; // matches the existing 768px breakpoint
 // used elsewhere in Hero/HeroBackground — anything narrower doesn't mount.
 
-const PARTICLE_SPACING_PX =20; // baseline grid spacing — this (not a fixed
+const PARTICLE_SPACING_PX = 20; // baseline grid spacing — this (not a fixed
 // particle count) is what makes density viewport-relative: a wider/taller
 // Hero simply tiles more cells at the same spacing, so perceived density
 // stays constant across screen sizes instead of thinning out or clumping.
@@ -82,9 +88,13 @@ const SPRING_DAMPING = 0.82; // per-frame velocity retention (< 1 → damped;
 // closer to 1 = looser/bouncier, closer to 0 = stiffer/heavier)
 
 const OPACITY_EASE = 0.09; // how quickly rendered opacity approaches target
-const MAX_PARTICLE_OPACITY = 0.55; // ceiling so revealed particles stay
+const MAX_PARTICLE_OPACITY = 0.30; // ceiling so revealed particles stay
 // subtle/atmospheric rather than fully opaque dots
-const PARTICLE_RADIUS_PX = 2;
+const PARTICLE_RADIUS_PX = 1.4;
+const PARTICLE_MAX_SCALE = 2.6; // multiplier applied at distance 0 — how
+// much larger a particle gets right at the cursor. Eases back to 1x at
+// INFLUENCE_RADIUS_PX via smoothFalloff, same curve as opacity/repulsion.
+// Purely a rendering value — never touches position/velocity/opacity.
 
 /** Smoothstep-based falloff: 1 at distance 0, eases to 0 at `radius`,
  *  with a soft shoulder at both ends rather than a linear ramp or a
@@ -257,9 +267,22 @@ export function HeroParticleField() {
         p.y += p.vy;
 
         if (p.opacity > 0.003) {
+          // Depth illusion (rendering only): radius scales up near the
+          // cursor via the same smoothFalloff curve, easing back to the
+          // base radius at INFLUENCE_RADIUS_PX. This value is local to
+          // the draw call — it does not feed back into x/y/vx/vy/opacity,
+          // so the simulation above is completely unaffected.
+          const sizeMultiplier =
+            cursor.active && distance < INFLUENCE_RADIUS_PX
+              ? 1 +
+                smoothFalloff(distance, INFLUENCE_RADIUS_PX) *
+                  (PARTICLE_MAX_SCALE - 1)
+              : 1;
+          const particleRadius = PARTICLE_RADIUS_PX * sizeMultiplier;
+
           ctx.globalAlpha = p.opacity * MAX_PARTICLE_OPACITY;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, PARTICLE_RADIUS_PX, 0, Math.PI * 2);
+          ctx.arc(p.x, p.y, particleRadius, 0, Math.PI * 2);
           ctx.fill();
         }
       }

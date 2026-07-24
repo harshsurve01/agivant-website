@@ -67,7 +67,7 @@
     #ff7670 100%
   );
   filter: blur(70px);
-  opacity: 0.5;
+  opacity: 0.25;
   pointer-events: none;
   z-index: 0;
 }

@@ -46,7 +46,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-10); /* TODO(figma): confirm exact heading-to-strip and strip-to-CTA gaps — may not be uniform */
+  gap: var(--space-12); /* TODO(figma): confirm exact heading-to-strip and strip-to-CTA gaps — may not be uniform */
   width: 100%;
   /* 1442px section frame expressed as a max-width, same "stays fluid
      below that breakpoint" approach as Environment.module.css. */

@@ -60,8 +60,8 @@
 }
 
 .slot[data-state="exited"] {
-  transform: translate3d(calc(var(--depth) * -6%), calc(var(--depth) * -36%), 40px)
-    rotateZ(calc(var(--depth) * -0.5deg));
+  transform: translate3d(0, calc(var(--depth) * -56%), 70px)
+    rotateX(calc(var(--depth) * 50deg));
   opacity: 0;
   z-index: 50;
   filter: drop-shadow(8px 12px 24px rgba(0, 0, 0, 0.15));

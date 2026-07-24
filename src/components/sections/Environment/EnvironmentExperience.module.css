@@ -1,9 +1,16 @@
 /* ==========================================================================
    EnvironmentExperience.module.css
 
+   .environmentExperience is the new outer wrapper: it holds
+   --environment-grid-cols so BOTH .pinTrack's descendants (.experience)
+   and .ctaRow — which is now a sibling of .pinTrack, not a descendant
+   — can share the same column ratio via CSS custom-property
+   inheritance, even though .ctaRow lives outside the pinned subtree.
+
    .pinTrack / .pinStage implement the pin: see EnvironmentExperience.tsx's
    "PIN MECHANICS" comment for why this is a sticky element inside an
-   oversized track rather than any kind of JS scroll-hijack.
+   oversized track rather than any kind of JS scroll-hijack. The CTA is
+   NOT part of this pinned subtree anymore — see that same comment.
 
    Two-column layout inside the pinned stage: timeline on the left,
    card deck on the right. Column widths use the measured Figma frames
@@ -12,27 +19,23 @@
    reasoning as AIStackGrid's fr-based column widths.
    ========================================================================== */
 
+.environmentExperience {
+  width: 100%;
+  /* Single source of truth for the timeline:card column ratio,
+     consumed by both .experience (inside .pinTrack) and .ctaRow
+     below — declared here, on their shared ancestor, rather than on
+     .pinTrack itself, since .ctaRow is now a sibling of .pinTrack and
+     wouldn't inherit a value declared further down the tree. */
+  --environment-grid-cols: 1fr 2fr; /* TODO(figma): ratio derived from measured column widths (333:714) */
+}
+
 .pinTrack {
   position: relative;
-  
-  /* Was 80% with no margin-inline: auto — a block at 80% width and no
-     auto margins sits flush against its containing block's left edge,
-     not centered. That's what produced the left-anchored layout with
-     dead space on the right: .pinTrack itself, not just something
-     inside it, was the wrong width. Full width here; centering and
-     the actual content max-width now live on .stageInner below, same
-     as Environment.module.css's old .inner did before the pin/CTA
-     refactor moved that responsibility into this file. */
   width: 100%;
   /* One viewport-height of scroll per stage. --stage-count is set
      inline by EnvironmentExperience.tsx so this file never hardcodes
      the stage count. */
   height: calc(var(--stage-count, 5) * 100vh);
-  /* Single source of truth for the timeline:card column ratio,
-     consumed by both .experience and .ctaRow below, so the CTA can
-     align under the card column without duplicating the ratio as a
-     literal in a second place. */
-  --environment-grid-cols: 1fr 2fr; /* TODO(figma): ratio derived from measured column widths (333:714) */
 }
 
 .pinStage {
@@ -49,14 +52,9 @@
   align-items: center;
 }
 
-/* The pinned stack's actual content box: header, the timeline/card
-   experience, and the CTA all stack here as a centered flex column.
-   This is what previously lived in Environment.module.css as `.inner`
-   — moved here because all three of those pieces are now composed
-   inside EnvironmentExperience (see that file's doc comment), so
-   their shared layout belongs in the stylesheet that owns the pinned
-   stage, not in the parent Server Component that no longer renders
-   a wrapping div of its own. */
+/* The pinned stack's actual content box: header + the timeline/card
+   experience stack here as a centered flex column. The CTA no longer
+   lives inside this box — see .ctaRow below. */
 .stageInner {
   display: flex;
   flex-direction: column;
@@ -74,55 +72,22 @@
   display: grid;
   grid-template-columns: var(--environment-grid-cols);
   align-items: center;
-  /* Widened from the previous --space-8: re-measuring the supplied
-     screenshot (card's left edge vs. the timeline column's widest
-     label, "Engineering Domain") put the gap closer to ~110-115px at
-     the reference's 1440px frame width than the ~32px --space-8 gave.
-     --space-16 isn't an exact match either — no inspector export was
-     supplied — but it's meaningfully closer than what was here
-     before. */
   gap: var(--space-1); /* TODO(figma): confirm exact timeline-to-card gap */
   width: 100%;
-
 }
-/* .experience:after {
-  content: "";
-  position: absolute;
 
-  top: 70%;
-left: -30%;
-  transform: translateY(-50%);
-  z-index: 0;
-  width: clamp(320px, 32vw, 600px);
-  height: clamp(320px, 32vw, 600px);
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(90px);
-  background: radial-gradient(
-    circle,
-    color-mix(in srgb, #EDBF79 85%, transparent) 0%,
-    transparent 78%
-  );
-} */
-
-/* Moved from Environment.module.css's old `.ctaRow` — same reasoning
-   as `.stageInner` above: the CTA is now composed as a sibling of
-   `.experience` inside this same pinned stack (see
-   EnvironmentExperience.tsx), not laid out independently by
-   Environment. Reuses `.pinTrack`'s --environment-grid-cols instead
-   of a second literal `1fr 2fr`, so the button's column always
-   matches the card's column even if the ratio above changes. */
+/* Moved out of .stageInner's pinned flex stack: this is now a sibling
+   of .pinTrack (see EnvironmentExperience.tsx), so it needs its own
+   max-width/centering instead of inheriting .stageInner's, and its
+   own top margin instead of the calc() that used to net down
+   .stageInner's inherited flex `gap`. */
 .ctaRow {
   display: grid;
   grid-template-columns: var(--environment-grid-cols);
   width: 100%;
-  /* .stageInner's flex `gap` already applies var(--space-12) above
-     every child, including this row. Figma's card-to-CTA gap measures
-     to ~40px (--space-10), so this nets the inherited gap down to
-     that total rather than stacking an additional margin on top of it
-     — confirmed by pixel-measuring both the current implementation
-     (~58px total) and the Figma reference (~40px total). */
-  margin-top: calc(var(--space-10) - var(--space-12));
+  max-width: 90rem; /* matches .stageInner's section frame */
+  margin-inline: auto;
+  margin-top: var(--space-2); /* TODO(figma): confirm exact deck-to-CTA gap now that it's outside the pin */
 }
 
 .ctaRow > a {

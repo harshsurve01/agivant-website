@@ -115,6 +115,7 @@
   --font-size-4xl:  2.25rem;   /* 36px, was 44px (-18%) */
   --font-size-5xl:  2.75rem;   /* 44px, was 56px (-21%) — hero heading */
   --font-size-6xl:  3.5rem;    /* 56px, was 68px (-18%) — large hero heading */
+  --font-size-7xl:  4rem;    /* 64px, was 88px (-18%) — large hero heading */ 
 
   --line-height-tight:  1.1;
   --line-height-snug:   1.25;

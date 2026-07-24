@@ -12,48 +12,49 @@ interface EnvironmentExperienceProps {
    *  as a slot — see Environment.tsx's doc comment for why this can't
    *  just be an `import { EnvironmentHeader } from "./EnvironmentHeader"`
    *  inside this Client Component file. This component never inspects
-   *  or re-renders it; it only decides where it sits in the pinned
-   *  layout. */
+   *  or re-renders it; it only decides where it sits in the layout. */
   header: ReactNode;
   stages: EnvironmentStage[];
   /** Same pre-rendered-slot reasoning as `header`, for the section's
-   *  closing CTA (Link + Button). Still static, data-driven content
-   *  with no reason to live inside the Client Component boundary —
-   *  only now that boundary is *this* component instead of a sibling
-   *  outside the pin, so it arrives as a prop rather than being laid
-   *  out by the parent independently. */
+   *  closing CTA (Link + Button). Rendered OUTSIDE the pinned track
+   *  now — see the "PIN MECHANICS" comment below for why. */
   cta: ReactNode;
 }
 
 /**
  * EnvironmentExperience
  *
- * The owner of the section's ENTIRE pinned storytelling experience:
- * heading, the Timeline/Card Deck, and the CTA are now all inside the
- * same pinned stage and stay visible together for the full scroll
- * interaction — not just Timeline/Card Deck as before. This fixes the
- * previous behavior where the heading scrolled away before the pin
- * engaged: it wasn't part of the pinned subtree, just a sibling above
- * it.
+ * Owns the section's PINNED storytelling experience — heading,
+ * Timeline, and Card Deck — plus the CTA that follows it in normal
+ * flow once the pin releases.
  *
  * `header` and `cta` arrive as already-rendered ReactNode props
  * (see the interface above) rather than being imported and rendered
- * here — this component still owns *where* they sit in the pinned
- * layout (.stageInner's flex stack), just not what's inside them.
- * `stages` remains plain serializable data, same as before, since the
- * scroll-sync logic below needs to read `stages.length` and index
- * into it directly.
+ * here — this component still owns *where* they sit in the layout,
+ * just not what's inside them. `stages` remains plain serializable
+ * data, since the scroll-sync logic below needs to read
+ * `stages.length` and index into it directly.
  *
  * PIN MECHANICS
  * `.pinTrack` is an oversized block — `stages.length` viewport-heights
  * tall — that exists purely to give the browser somewhere to scroll
- * while this section stays visually still. `.pinStage` inside it is
- * `position: sticky; top: 0`, so it locks to the viewport for exactly
- * as long as `.pinTrack` is scrolling past, then releases naturally
- * once `.pinTrack` runs out — no scroll-hijacking, no JS-driven
- * scrollTo, no library. The scroll listener below only ever READS
- * scroll position to derive state; it never writes to it. Unchanged
- * from before this refactor — only what's *inside* `.pinStage` grew.
+ * while the header/timeline/deck stay visually still. `.pinStage`
+ * inside it is `position: sticky; top: 0`, so it locks to the
+ * viewport for exactly as long as `.pinTrack` is scrolling past, then
+ * releases naturally once `.pinTrack` runs out — no scroll-hijacking,
+ * no JS-driven scrollTo, no library. The scroll listener below only
+ * ever READS scroll position to derive state; it never writes to it.
+ *
+ * The CTA is deliberately rendered as a SIBLING of `.pinTrack`, not
+ * inside `.pinStage`/`.stageInner` — it's ordinary in-flow content
+ * that should scroll in right after the deck once the pin lets go,
+ * not stay locked to the viewport for the full
+ * `stages.length`-viewport-heights scroll distance the pin holds
+ * open for the header/timeline/deck. Only content that's part of the
+ * actual scroll-synced storytelling (header, timeline, deck) belongs
+ * inside the pinned subtree; the CTA never needed to be pinned, it
+ * just used to render there because it was composed inside the same
+ * component.
  *
  * SCROLL → STATE
  * On every scroll/resize, `handleScroll` measures how far `.pinTrack`
@@ -124,32 +125,38 @@ export function EnvironmentExperience({ header, stages, cta }: EnvironmentExperi
   const activeStage = stages[activeStageIndex];
 
   return (
-    <div
-      ref={pinTrackRef}
-      className={styles.pinTrack}
-      // TODO(figma): "how long the section stays pinned" has no
-      // measurable equivalent in a static screenshot — one viewport
-      // height of scroll per stage is a reasonable default pace, not
-      // a confirmed spec value.
-      style={{ ["--stage-count" as string]: stages.length }}
-    >
-      <div className={styles.pinStage}>
-        <div className={styles.stageInner}>
-          {header}
+    <div className={styles.environmentExperience}>
+      <div
+        ref={pinTrackRef}
+        className={styles.pinTrack}
+        // TODO(figma): "how long the section stays pinned" has no
+        // measurable equivalent in a static screenshot — one viewport
+        // height of scroll per stage is a reasonable default pace, not
+        // a confirmed spec value.
+        style={{ ["--stage-count" as string]: stages.length }}
+      >
+        <div className={styles.pinStage}>
+          <div className={styles.stageInner}>
+            {header}
 
-          <div className={styles.experience}>
-            <EnvironmentTimeline
-              stages={stages}
-              activeStageId={activeStage.id}
-              activeStageIndex={activeStageIndex}
-              progress={scrollProgress}
-            />
-            <EnvironmentCardDeck stages={stages} activeIndex={activeStageIndex} />
+            <div className={styles.experience}>
+              <EnvironmentTimeline
+                stages={stages}
+                activeStageId={activeStage.id}
+                activeStageIndex={activeStageIndex}
+                progress={scrollProgress}
+              />
+              <EnvironmentCardDeck stages={stages} activeIndex={activeStageIndex} />
+            </div>
           </div>
-
-          <div className={styles.ctaRow}>{cta}</div>
         </div>
       </div>
+
+      {/* Deliberately OUTSIDE .pinTrack — see "PIN MECHANICS" above.
+          Normal in-flow content: scrolls in right after the deck,
+          once the pin has released, rather than staying pinned for
+          the full stages.length-viewport-heights scroll distance. */}
+      <div className={styles.ctaRow}>{cta}</div>
     </div>
   );
 }

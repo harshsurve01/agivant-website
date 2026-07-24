@@ -23,6 +23,7 @@
 }
 
 .heading {
+  margin-top:40px;
   font-size: var(--font-size-5xl); /* TODO(figma): confirm exact heading size */
   font-weight: var(--font-weight-bold);
   line-height: 1.4;

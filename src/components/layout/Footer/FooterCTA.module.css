@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
-  max-width: 876.81px; /* Figma: Heading Frame width */
+  max-width: 60rem; /* Figma: Heading Frame width */
 }
 
 .heading {
@@ -21,9 +21,9 @@
      existing tokens for this static Phase 2 pass rather than inventing
      new values — revisit alongside a token addition in Phase 3
      pixel-perfect refinement. */
-  font-size: var(--font-size-6xl);
+  font-size: var(--font-size-7xl);
   line-height: var(--line-height-normal);
-  letter-spacing: var(--letter-spacing-tight);
+  letter-spacing: var(--letter-spacing-relaxed);
   color: var(--color-text-primary);
 }
 
