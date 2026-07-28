@@ -10,198 +10,164 @@ interface SpotlightExperienceProps {
   caseStudies: CaseStudy[];
 }
 
-/** A plain, serializable rect — not DOMRect — since these values are
- *  cached once and read many times, not re-derived from the DOM. */
-interface Rect {
-  left: number;
-  top: number;
-  width: number;
-  height: number;
+/** The container's grid split, expressed as fr-unit numbers rather
+ *  than percentages. `grid-template-columns`/`grid-template-rows`
+ *  normalize each pair of tracks against their own combined total —
+ *  what a pair of fr values produces on screen is entirely about the
+ *  RATIO between the two numbers, not their absolute size — so these
+ *  don't need to sum to anything in particular; see HOVER_FR/OTHER_FR
+ *  below for the ratio this interaction actually uses. */
+interface GridState {
+  colLarge: number;
+  colRight: number;
+  rowTop: number;
+  rowBottom: number;
 }
 
-/** Everything the hover-reaction effect needs, captured in one shot
- *  so it never has to call getBoundingClientRect() itself — see
- *  "GEOMETRY IS CACHED, NOT RE-READ" below. */
-interface SpotlightLayout {
-  container: { width: number; height: number };
-  slots: Record<SpotlightSlot, Rect>;
-}
+const REST: GridState = { colLarge: 1, colRight: 1, rowTop: 1, rowBottom: 1 };
 
-const ANIMATION_DURATION = 0.6;
-const ANIMATION_EASE = "power3.inOut";
+/** HOVER_FR / OTHER_FR — the two fr values a pair of tracks animates
+ *  between. At 1.175 / 0.85, a pair's hovered track ends up ~15.7%
+ *  above its 50/50 rest share and the compressed track ~15.8% below
+ *  it (1.175 / (1.175 + 0.85) ≈ 0.5799), which lands inside the
+ *  spec's "hovered +15–20%, other −10–15%" range without hardcoding
+ *  percentages that would fight the fr-normalization math above.
+ *  Tune these two constants together to make the effect more or less
+ *  dramatic — everything else derives from them. */
+const HOVER_FR = 1.45;
+const OTHER_FR = 0.5;
+
+const ANIMATION_DURATION = 0.55; // 450–600ms range
+const ANIMATION_EASE = "cubic-bezier(.22,.61,.36,1)";
 
 /**
  * SpotlightExperience
  *
  * The section's only Client Component, and the owner of the
- * hover-driven "bento spotlight" interaction: which card is hovered
- * (React state) and the GSAP timeline that reacts to it (imperative,
- * DOM-direct). SpotlightContainer keeps owning layout/positioning/
- * clipping; SpotlightCard stays presentational.
+ * hover-driven "bento spotlight" interaction: which slot is hovered
+ * (React state) and the grid-track tween that reacts to it
+ * (imperative, DOM-direct, via a ref straight onto the container
+ * SpotlightContainer renders). SpotlightContainer keeps owning the
+ * grid's rest-state layout, slot placement, and sizing;
+ * SpotlightCard stays presentational.
  *
- * WHY WIDTH/HEIGHT, NOT scaleX/scaleY
- * The cards hold typography, a glass/blur panel, icons, and an image
- * — scaling the whole card visually stretches all of that (blurred
- * text, distorted icons), which isn't the "genuinely becomes the
- * container's size" feel this needs. So sizing is animated as real
- * `width`/`height` (the element's actual box, causing its content to
- * reflow at each size the way it would if you resized a real
- * container), and only POSITION is a transform (`x`/`y` translate).
- * Translate doesn't distort anything it moves — it's a pure position
- * shift — so it stays the right tool for "slide this card to a
- * different spot" even though `scale` was wrong for "resize this
- * card". `transformOrigin` is gone entirely: it only mattered for the
- * old scale-based math and has no effect on translate.
+ * REDISTRIBUTION, NOT EXPANSION
+ * Hovering a slot animates the CONTAINER's own `grid-template-
+ * columns` / `grid-template-rows` between REST and a fixed hover
+ * split (see GridState/HOVER_FR/OTHER_FR above) — never a card's own
+ * width, height, transform, or position. Every card is `width: 100%;
+ * height: 100%` inside its slot (SpotlightCard.module.css's `.card`),
+ * so a card only ever resizes because the grid TRACK underneath it
+ * resized. That's what keeps the container's own box permanently
+ * fixed (SpotlightContainer.module.css's `aspect-ratio: 824 / 648`
+ * never changes) and guarantees the two tracks in a pair always sum
+ * back to that fixed size — there's no "steal space from the other
+ * card" step that can run away and crush one card, because the
+ * hovered/compressed ratio is a constant (HOVER_FR/OTHER_FR), not a
+ * function of how much room is left over.
  *
- * GEOMETRY IS CACHED, NOT RE-READ
- * `layoutRef` holds the container's size AND every slot's rest
- * rect (position/size as CSS Grid laid it out, relative to the
- * container's own box), captured once on mount and again only on
- * resize (see the first effect below). The hover-reaction effect
- * (the second one) reads exclusively from `layoutRef.current` — it
- * never calls `getBoundingClientRect()` — so hovering back and forth
- * across the bento grid costs zero layout reads, only writes.
+ * WHY A TWEENED JS OBJECT, NOT A CSS TRANSITION
+ * Animating `grid-template-columns`/`rows` via a plain CSS transition
+ * isn't reliably supported across browsers. Tweening a plain
+ * {colLarge, colRight, rowTop, rowBottom} object with GSAP and
+ * writing the interpolated fr values to the container's inline style
+ * on every tick (`onUpdate`) gets smooth, easing-controlled
+ * interpolation everywhere GSAP runs, independent of the browser's
+ * native grid-animation support.
+ *
+ * WHY THE STATE OBJECT LIVES IN A REF, NOT RECREATED PER HOVER
+ * `gridStateRef` is the SAME object across every hover change, and
+ * each new tween targets it directly. That means moving the pointer
+ * from one card straight to another (a re-hover with no mouse-leave
+ * in between) starts its tween from wherever the in-flight values
+ * currently are, not from REST — the grid re-targets smoothly instead
+ * of snapping back to 1fr/1fr and then back out again on every
+ * switch.
  *
  * WHY MOUSE-LEAVE LIVES ON THE OUTER WRAPPER, NOT PER-SLOT
  * Individual slots only report onMouseEnter. Moving the pointer
  * directly from one card to an adjacent one never fires a "leave" in
  * between (the pointer stays inside .experience the whole time), so
  * hovering across the grid re-targets smoothly without a flash back
- * to the resting layout. The reset to `null` only fires when the
- * pointer leaves the spotlight area entirely.
+ * to REST. The reset to `null` only fires when the pointer leaves the
+ * spotlight area entirely.
+ *
+ * BREAKPOINT GATE
+ * Mirrors SpotlightContainer.module.css's `@media (max-width:
+ * 1024px)`, where the grid collapses to a single stacked column and
+ * there's no column/row split left to animate. The hover effect below
+ * checks the viewport before starting a tween; a separate effect
+ * watches for the breakpoint being crossed mid-hover and clears any
+ * inline `grid-template-*` left behind, so mobile always falls back
+ * to the CSS-authored single-column layout untouched.
  */
 export function SpotlightExperience({ caseStudies }: SpotlightExperienceProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const largeRef = useRef<HTMLDivElement>(null);
-  const topRightRef = useRef<HTMLDivElement>(null);
-  const bottomRightRef = useRef<HTMLDivElement>(null);
 
-  // The cached snapshot — see "GEOMETRY IS CACHED, NOT RE-READ" above.
-  const layoutRef = useRef<SpotlightLayout | null>(null);
+  // The single, persistent tween target — see "WHY THE STATE OBJECT
+  // LIVES IN A REF" above.
+  const gridStateRef = useRef<GridState>({ ...REST });
 
   const [hoveredSlot, setHoveredSlot] = useState<SpotlightSlot | null>(null);
 
-  // Measure once on mount, and again only on resize — never per-hover.
+  // Tween the grid split whenever the hovered slot changes.
   useEffect(() => {
-    const measure = () => {
-      const containerEl = containerRef.current;
-      const largeEl = largeRef.current;
-      const topRightEl = topRightRef.current;
-      const bottomRightEl = bottomRightRef.current;
-      if (!containerEl || !largeEl || !topRightEl || !bottomRightEl) return;
+    const containerEl = containerRef.current;
+    if (!containerEl) return;
 
-      // Clear any in-progress GSAP overrides before reading — reading
-      // mid-animation (or after a previous hover left inline
-      // width/height/transform behind) would bake a stale value into
-      // what's supposed to be the untouched grid position/size.
-      gsap.set([largeEl, topRightEl, bottomRightEl], {
-        clearProps: "transform,width,height",
-      });
+    // Below 1025px the grid is a single stacked column (see
+    // SpotlightContainer.module.css) — there's no split to animate,
+    // so skip rather than write inline grid-template-* that would
+    // fight the mobile layout.
+    if (!window.matchMedia("(min-width: 1025px)").matches) return;
 
-      const containerBox = containerEl.getBoundingClientRect();
-      const toLocal = (box: DOMRect): Rect => ({
-        left: box.left - containerBox.left,
-        top: box.top - containerBox.top,
-        width: box.width,
-        height: box.height,
-      });
+    const target = getGridTarget(hoveredSlot);
 
-      layoutRef.current = {
-        container: { width: containerBox.width, height: containerBox.height },
-        slots: {
-          large: toLocal(largeEl.getBoundingClientRect()),
-          topRight: toLocal(topRightEl.getBoundingClientRect()),
-          bottomRight: toLocal(bottomRightEl.getBoundingClientRect()),
-        },
-      };
-    };
-
-    const mm = gsap.matchMedia();
-    // Mirrors ProofSection.module.css's `@media (max-width: 1024px)`:
-    // below that breakpoint SpotlightContainer's grid collapses to a
-    // single stacked column, so the "expand to fill / slide outside"
-    // geometry computed here no longer describes the layout — the
-    // hover interaction simply doesn't attach below that width.
-    mm.add("(min-width: 1025px)", () => {
-      measure();
-      window.addEventListener("resize", measure);
-      return () => window.removeEventListener("resize", measure);
-    });
-
-    return () => mm.revert();
-  }, []);
-
-  // React to hover changes using ONLY the cached layout — no DOM reads.
-  useEffect(() => {
-    const layout = layoutRef.current;
-    const largeEl = largeRef.current;
-    const topRightEl = topRightRef.current;
-    const bottomRightEl = bottomRightRef.current;
-    if (!layout || !largeEl || !topRightEl || !bottomRightEl) return;
-
-    const els: Record<SpotlightSlot, HTMLDivElement> = {
-      large: largeEl,
-      topRight: topRightEl,
-      bottomRight: bottomRightEl,
-    };
-
-    const { width: containerWidth, height: containerHeight } = layout.container;
-
-    const tl = gsap.timeline({
-      defaults: { duration: ANIMATION_DURATION, ease: ANIMATION_EASE },
-    });
-
-    (Object.keys(els) as SpotlightSlot[]).forEach((slot) => {
-      const el = els[slot];
-      const rect = layout.slots[slot];
-
-      if (hoveredSlot === null) {
-        // Nothing hovered — every card returns to its untouched grid
-        // position AND size. Absolute targets (not "undo the last
-        // delta"), so this is safe even mid-animation.
-        tl.to(
-          el,
-          { x: 0, y: 0, width: rect.width, height: rect.height, zIndex: 1 },
-          0,
-        );
-        return;
-      }
-
-      if (slot === hoveredSlot) {
-        // Translate this card's rest-rect top-left corner to the
-        // container's top-left corner, and grow its real box to the
-        // container's exact width/height — content reflows into that
-        // size naturally, nothing is visually stretched.
-        tl.set(el, { zIndex: 10 }, 0).to(
-          el,
-          { x: -rect.left, y: -rect.top, width: containerWidth, height: containerHeight },
-          0,
-        );
-        return;
-      }
-
-      // Every other card keeps its own rest size and only translates
-      // fully outside the container's clipped box, on the side that
-      // keeps the motion reading as "making room" (see getExitTarget).
-      const exit = getExitTarget(slot, hoveredSlot, rect, containerWidth, containerHeight);
-      tl.set(el, { zIndex: 1 }, 0).to(
-        el,
-        { x: exit.x, y: exit.y, width: rect.width, height: rect.height },
-        0,
-      );
+    const tween = gsap.to(gridStateRef.current, {
+      ...target,
+      duration: ANIMATION_DURATION,
+      ease: ANIMATION_EASE,
+      onUpdate: () => {
+        const state = gridStateRef.current;
+        containerEl.style.gridTemplateColumns = `${state.colLarge}fr ${state.colRight}fr`;
+        containerEl.style.gridTemplateRows = `${state.rowTop}fr ${state.rowBottom}fr`;
+      },
     });
 
     return () => {
-      tl.kill();
+      tween.kill();
     };
   }, [hoveredSlot]);
+
+  // If the viewport crosses below the breakpoint mid-hover (window
+  // resize, devtools, orientation change), clear any inline
+  // grid-template-* left behind and drop hover state, so the
+  // CSS-authored single-column mobile layout always wins and nothing
+  // tries to re-animate back once the viewport widens again.
+  useEffect(() => {
+    const containerEl = containerRef.current;
+    if (!containerEl) return;
+
+    const mql = window.matchMedia("(max-width: 1024px)");
+
+    const handleChange = (event: MediaQueryList | MediaQueryListEvent) => {
+      if (!event.matches) return;
+      containerEl.style.gridTemplateColumns = "";
+      containerEl.style.gridTemplateRows = "";
+      gridStateRef.current = { ...REST };
+      setHoveredSlot(null);
+    };
+
+    handleChange(mql);
+    mql.addEventListener("change", handleChange);
+    return () => mql.removeEventListener("change", handleChange);
+  }, []);
 
   return (
     <div className={styles.experience} onMouseLeave={() => setHoveredSlot(null)}>
       <SpotlightContainer
         caseStudies={caseStudies}
         containerRef={containerRef}
-        slotRefs={{ large: largeRef, topRight: topRightRef, bottomRight: bottomRightRef }}
         onSlotEnter={setHoveredSlot}
       />
     </div>
@@ -209,40 +175,49 @@ export function SpotlightExperience({ caseStudies }: SpotlightExperienceProps) {
 }
 
 /**
- * getExitTarget
+ * getGridTarget
  *
- * Where a non-hovered card slides to, so it clears the container's
- * clipped edge on the side that keeps the motion reading as "making
- * room for the expanding card" rather than two cards crossing paths:
+ * The single source of truth for the container's target grid split
+ * for a given hovered slot. Two independent pairs, each mirroring one
+ * of the spec's Layout Rules:
  *
- *   hovered = large      → topRight exits RIGHT, bottomRight exits DOWN
- *   hovered = topRight    → large exits LEFT,     bottomRight exits DOWN
- *   hovered = bottomRight → large exits LEFT,      topRight exits UP
+ *   COLUMN pair (colLarge vs. colRight) — moves off 1:1 whenever ANY
+ *   slot is hovered: hovering `large` makes colLarge the HOVER_FR
+ *   track; hovering `topRight` OR `bottomRight` makes colRight the
+ *   HOVER_FR track instead, since both right-column cards live in
+ *   that one shared track — hovering either one grows the whole
+ *   column together, which is exactly "right column expands, left
+ *   column shrinks" from the spec, expressed as one grid track
+ *   instead of two independently-sized elements.
  *
- * Distance is derived from each card's own cached rest rect (not a
- * fixed pixel value), so it still clears the container correctly if
- * the frame's measured size changes between resize-triggered
- * re-measurements.
+ *   ROW pair (rowTop vs. rowBottom) — only moves off 1:1 when
+ *   `topRight` or `bottomRight` is hovered. Hovering `large` leaves
+ *   this pair at REST ("the two right cards remain stacked and equal
+ *   height" per the spec), since `large` spans both rows regardless
+ *   of the row split — there's no separate "large row" to grow.
  */
-function getExitTarget(
-  slot: SpotlightSlot,
-  hoveredSlot: SpotlightSlot,
-  rect: Rect,
-  containerWidth: number,
-  containerHeight: number,
-): { x: number; y: number } {
+function getGridTarget(hoveredSlot: SpotlightSlot | null): GridState {
   if (hoveredSlot === "large") {
-    if (slot === "topRight") return { x: containerWidth - rect.left, y: 0 };
-    return { x: 0, y: containerHeight - rect.top }; // bottomRight
+    return { colLarge: HOVER_FR, colRight: OTHER_FR, rowTop: 1, rowBottom: 1 };
   }
 
-  if (slot === "large") {
-    // Large only ever exits left — it's the sole left-column card.
-    return { x: -(rect.left + rect.width), y: 0 };
+  if (hoveredSlot === "topRight") {
+    return {
+      colLarge: OTHER_FR,
+      colRight: HOVER_FR,
+      rowTop: HOVER_FR,
+      rowBottom: OTHER_FR,
+    };
   }
 
-  // `slot` is whichever of topRight/bottomRight ISN'T hoveredSlot.
-  return hoveredSlot === "topRight"
-    ? { x: 0, y: containerHeight - rect.top } // bottomRight exits down
-    : { x: 0, y: -(rect.top + rect.height) }; // topRight exits up
+  if (hoveredSlot === "bottomRight") {
+    return {
+      colLarge: OTHER_FR,
+      colRight: HOVER_FR,
+      rowTop: OTHER_FR,
+      rowBottom: HOVER_FR,
+    };
+  }
+
+  return { ...REST };
 }

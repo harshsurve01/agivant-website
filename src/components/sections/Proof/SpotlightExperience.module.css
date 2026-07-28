@@ -1,5 +1,23 @@
+/* ==========================================================================
+   SpotlightExperience.module.css
+
+   Just the outer wrapper `.experience` renders (see
+   SpotlightExperience.tsx) — everything about the bento grid itself
+   (rest-state columns/rows, slot placement, sizing, aspect-ratio) now
+   lives in SpotlightContainer.module.css, since SpotlightContainer is
+   the component that actually renders that grid; this file previously
+   duplicated that whole block under the wrong component's name with
+   no `.experience` class in it at all, which never matched what this
+   component imports it for.
+
+   `position: relative` here isn't load-bearing today (nothing inside
+   is absolutely positioned against it), but it's a cheap, harmless
+   default for a component that owns hover state over the grid below
+   it, in case a future affordance (a badge, a label) needs to anchor
+   to this wrapper rather than the grid itself.
+   ========================================================================== */
+
 .experience {
   position: relative;
   width: 100%;
-  height: 100%;
 }

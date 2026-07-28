@@ -32,7 +32,12 @@ type QuickSetter = (value: number) => void;
  * (background fill, badge) because every Figma card places and styles
  * them identically — see the AIStack implementation prompt's
  * "Badge + background ownership" section for why those are NOT
- * duplicated inside every layout.
+ * duplicated inside every layout. The badge sits inside `.shell`
+ * alongside everything else, so it keeps real 3D depth and tilts with
+ * the card — its `top` value in the CSS is solved to cancel out the
+ * height-dependent position error that perspective projection would
+ * otherwise introduce on row-spanning cards (see `.badgeLayer`'s
+ * comment for the derivation).
  *
  * The shell knows nothing about what's inside it. `children` is a
  * pre-rendered layout component handed down by AIStackCard (the

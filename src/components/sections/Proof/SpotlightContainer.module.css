@@ -8,61 +8,78 @@
    card's height exactly, which the grid below relies on (the large
    card spans both rows).
 
-   FIGMA FIX (visual refinement pass): nothing below previously pinned
-   the container to an actual 824×648 shape — `height: 100%` resolved
-   against an ancestor chain (SpotlightExperience → ProofSection .inner)
-   that never declares an explicit height, so it collapsed to `auto`
-   and every card's real height came from its own content (image % +
-   text length) instead of the measured frame. That's the root cause
-   of "featured card is wider than Figma" and "top/bottom cards are
-   too wide and too short" — the aspect-ratio below is what actually
-   locks the 824×648 proportion (two 400px columns + 40px gap wide,
-   648px tall), independent of content length. Slot children still get
-   their height for free via CSS Grid's default `align-items: stretch`
-   now that the container itself has a real height to stretch into.
+   The aspect-ratio below locks the measured 824×648 frame proportion
+   (two 400px columns + 40px gap wide, 648px tall) independent of
+   content length — the container's own box NEVER changes size, hover
+   or not; see SpotlightExperience.tsx for what does change.
 
-   `overflow: hidden` is deliberate now, not a Phase 4 addition: this
-   is the clipping boundary the architecture calls out — the surface
-   the other two cards will animate OUT of view against once the
-   spotlight hover behavior exists. It has no visible effect today
-   since nothing moves yet, but the boundary itself is part of the
-   approved architecture, not the animation.
+   INTERACTION FIX (grid-track redistribution, not card expansion):
+   this file previously only defined the RESTING grid — the hover
+   interaction lived entirely in SpotlightExperience.tsx as per-card
+   width/height/transform tweens computed from measured rest rects.
+   That's what let the left card get crushed to near-nothing: the
+   hovered card's growth came directly out of the other cards' own
+   box size with no floor.
+
+   Now `grid-template-columns`/`grid-template-rows` themselves are the
+   animated values (written as inline styles by SpotlightExperience —
+   see that file's doc comment for why a tweened JS object drives
+   this instead of a CSS transition). `1fr 1fr` here is just the
+   RESTING split; every slot below stays pinned to its grid-column/
+   grid-row placement always, hovered or not, since it's the TRACK
+   size that changes, never a card's own box or position independent
+   of its track. No `will-change: transform` on the slots any more —
+   nothing here is a transform target — and no `overflow: hidden`
+   escape hatch is needed either: because both fr pairs are always
+   read relative to each other (see SpotlightExperience.tsx's
+   `getGridTarget`), the two tracks in a pair always sum back to the
+   container's fixed width/height, so nothing can ever overflow this
+   box in the first place. `overflow: hidden` is kept anyway as a
+   deliberate backstop, not a mechanism the design relies on.
+
+   `min-width: 0` / `min-height: 0` on each slot fixes the same bug
+   class as EnvironmentTimeline's `.timeline` min-width fix: CSS Grid
+   items default to `min-width: auto` / `min-height: auto`, which
+   floors an item's size at its own content's min-content size —
+   regardless of how small its track has been asked to become.
+   Without this, a card's badge/heading/description could silently
+   refuse to shrink past its own min-content width even while its
+   track (and the numbers driving it) say it should be narrower,
+   leaving a gap between "what the grid math says" and "what actually
+   rendered."
    ========================================================================== */
 
 .container {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr; /* rest-state 50/50 split — see file header */
+  grid-template-rows: 1fr 1fr; /* rest-state 50/50 split for the stacked pair */
   gap: var(--space-10); /* 40px */
   width: 100%;
   max-width: 824px; /* two 400px card columns + 40px gap, measured against the 1302px content frame */
-  aspect-ratio: 824 / 648; /* FIGMA FIX: pins the measured frame proportion */
-  overflow: hidden;
+  aspect-ratio: 824 / 648; /* pins the measured frame proportion — never changes, hover or not */
+  overflow: hidden; /* deliberate backstop, not the containment mechanism itself — see file header */
 }
 
 .largeSlot {
   grid-column: 1;
   grid-row: 1 / span 2;
+  min-width: 0; /* see file header comment */
   min-height: 0;
-  /* Now a GSAP transform target (see SpotlightExperience.tsx) — the
-     hover interaction animates x/y/scale, not grid placement, so this
-     is a compositor-only perf hint, not a layout change. */
-  will-change: transform;
 }
 
 .topRightSlot {
   grid-column: 2;
   grid-row: 1;
+  min-width: 0; /* see file header comment */
   min-height: 0;
-  will-change: transform;
 }
 
 .bottomRightSlot {
   grid-column: 2;
   grid-row: 2;
+  min-width: 0; /* see file header comment */
   min-height: 0;
-  will-change: transform;
 }
 
 @media (max-width: 1024px) {

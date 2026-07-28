@@ -24,13 +24,13 @@
 .ribbon {
   position: relative;
   flex-shrink: 0;
-  height: 7rem; /* TODO(figma): confirm exact ribbon height */
+  height: 4rem; /* TODO(figma): confirm exact ribbon height */
   /* .layout carries no padding of its own (each section pads itself),
      so the ribbon already sits flush against the card's top/left/
      right edges — no negative-margin bleed needed here. */
   margin-bottom: var(--space-4);
   pointer-events: none;
-  transform: translateZ(44px);
+  transform: translateZ(5px);
 }
 
 .ribbonImage {

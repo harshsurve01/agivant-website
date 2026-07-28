@@ -11,34 +11,16 @@
    ========================================================================== */
 
 .partners {
-  position: relative; /* required to contain/position the gradient glow below */
-  overflow: hidden; /* clips the glow at the section edge, same approach as Hero's .hero */
+  position: relative; /* required so <Gradient/>'s marker in Partners.tsx positions against this section */
   width: 100%;
-  background-color: var(--color-bg-primary);
-  padding-block: var(--space-24); /* TODO(figma): confirm exact section vertical rhythm */
+  /* No background-color here anymore — see AIStack.module.css's note. */
+  padding-block: var(--space-40); /* TODO(figma): confirm exact section vertical rhythm */
 }
 
-/* Decorative gradient ellipse, right side only — static blur glow in
-   #9D84F2, same construction as HeroBackground's .glowRight (radial-
-   gradient + filter: blur), just without the breathing animation. */
-.partners::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -10%;
-  transform: translateY(-50%);
-  z-index: 0;
-  width: clamp(320px, 32vw, 600px);
-  height: clamp(320px, 32vw, 600px);
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(90px);
-  background: radial-gradient(
-    circle,
-    color-mix(in srgb, #9d84f2 85%, transparent) 0%,
-    transparent 78%
-  );
-}
+/* The static #9D84F2 glow that used to live here as .partners::after
+   now renders via <Gradient/> in Partners.tsx, portaled into the
+   shared page-wide GradientLayer instead of being clipped to this
+   section. */
 
 .inner {
   position: relative;
@@ -46,7 +28,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-12); /* TODO(figma): confirm exact heading-to-strip and strip-to-CTA gaps — may not be uniform */
+  gap: var(--space-20); /* TODO(figma): confirm exact heading-to-strip and strip-to-CTA gaps — may not be uniform */
   width: 100%;
   /* 1442px section frame expressed as a max-width, same "stays fluid
      below that breakpoint" approach as Environment.module.css. */

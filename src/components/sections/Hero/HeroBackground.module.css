@@ -18,60 +18,12 @@
 }
 
 /* --------------------------------------------------------------------
-   Left + right ambient glows. Generous negative offsets so they read
-   as soft light bleeding in from off-canvas, not visible circles —
-   per spec: "very soft... only partially visible."
+   Left + right ambient glows now render via two <Gradient/> calls in
+   HeroBackground.tsx (animate="breathe"), portaled into the shared
+   page-wide GradientLayer instead of being clipped here. Position,
+   colors, size, blur, and the -4s desync between them are carried
+   over unchanged — see HeroBackground.tsx.
    -------------------------------------------------------------------- */
-.glowLeft,
-.glowRight {
-  position: absolute;
-  z-index: 1;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(90px);
-  animation: heroGlowBreathe 8s ease-in-out infinite alternate;
-}
-
-.glowLeft {
-  top: -18%;
-  left: -16%;
-  width: clamp(340px, 34vw, 600px);
-  height: clamp(340px, 34vw, 600px);
-  background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--color-bg-gradient-start) 85%, transparent) 0%,
-    transparent 78%
-  );
-}
-
-.glowRight {
-  top: 4%;
-  right: -18%;
-  width: clamp(380px, 38vw, 680px);
-  height: clamp(380px, 38vw, 680px);
-  background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--color-bg-gradient-end) 85%, transparent) 0%,
-    transparent 82%
-  );
-  /* Offset from the left glow's cycle so the two never breathe in
-     lockstep — reads as ambient atmosphere, not a mechanical pulse. */
-  animation-delay: -4s;
-}
-
-/* Scale 1 -> 1.04 -> 1, opacity subtly along with it, 8s (within the
-   spec's 6-10s window), infinite, alternate — exactly per spec. */
-@keyframes heroGlowBreathe {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.04);
-    opacity: 0.68;
-  }
-}
 
 /* --------------------------------------------------------------------
    Decorative ellipse stroke — an exported Figma asset (see
@@ -88,10 +40,10 @@
 .ellipseStroke {
   position: absolute;
   z-index: 2;
-  top: 70%;
-  left: 50%;
+  top: 55%;
+  left: 65%;
   transform: translate(-50%, -50%);
-  width: 60%;
+  width: 70%;
   aspect-ratio: 620 / 360; /* matches the exported asset's own ratio —
     update if a re-export ships with different native dimensions */
   opacity: 1;
@@ -113,19 +65,13 @@
   z-index: 3;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .glowLeft,
-  .glowRight {
-    animation: none;
-  }
-}
+/* Reduced-motion and the 768px blur reduction for the two glows are
+   now handled generically inside Gradient.module.css (applies to every
+   <Gradient/> on the page, not just Hero's) — see blurMobile prop on
+   the two Gradient calls in HeroBackground.tsx for the 90px -> 60px
+   swap that used to live here. */
 
 @media (max-width: 768px) {
-  .glowLeft,
-  .glowRight {
-    filter: blur(60px);
-  }
-
   .ellipseStroke {
     width: clamp(260px, 60vw, 420px);
   }

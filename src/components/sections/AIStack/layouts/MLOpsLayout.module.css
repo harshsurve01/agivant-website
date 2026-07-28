@@ -22,9 +22,9 @@
   position: relative;
   flex-shrink: 0;
   height: 6rem; /* TODO(figma): confirm exact ribbon height */
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
   pointer-events: none;
-  transform: translateZ(10px);
+  transform: translateZ(4px);
 }
 
 .ribbonImage {

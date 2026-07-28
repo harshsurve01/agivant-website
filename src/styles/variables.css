@@ -104,12 +104,12 @@
      take closer to the full 20% cut, since those are what actually
      read as "too large" at a glance. Ratios between adjacent steps
      are preserved, so the scale still reads as one coherent ramp. */
-  --font-size-xs:   0.75rem;   /* 14px — unchanged, legibility floor */
-  --font-size-sm:   0.8125rem; /* 15px, was 14px (-7%) */
-  --font-size-base: 0.9375rem; /* 17px, was 16px (-6%) */
-  --font-size-md:   1rem;      /* 18px, was 18px (-11%) */
-  --font-size-lg:   1.125rem;  /* 20px, was 20px (-10%) */
-  --font-size-xl:   1.25rem;   /* 22px, was 24px (-17%) */
+  --font-size-xs:   0.75rem;   /* 12px — unchanged, legibility floor */
+  --font-size-sm:   0.8125rem; /* 14px, was 14px (-7%) */
+  --font-size-base: 0.9375rem; /* 15px, was 16px (-6%) */
+  --font-size-md:   1rem;      /* 16px, was 18px (-11%) */
+  --font-size-lg:   1.125rem;  /* 18px, was 20px (-10%) */
+  --font-size-xl:   1.25rem;   /* 20px, was 24px (-17%) */
   --font-size-2xl:  1.5rem;    /* 24px, was 30px (-20%) */
   --font-size-3xl:  1.875rem;  /* 30px, was 36px (-17%) */
   --font-size-4xl:  2.25rem;   /* 36px, was 44px (-18%) */
@@ -157,7 +157,7 @@
   --space-24: 5rem;      /* 80px, was 96px (-17%) */
   --space-32: 6.5rem;    /* 104px, was 128px (-19%) */
   --space-40: 8rem;      /* 128px, was 160px (-20%) */
-
+  --space-45: 12rem;     
   /* ------------------------------------------------------------------
      6. BORDER RADIUS
      Includes a "full" pill token — used heavily on this design's CTAs.

@@ -12,57 +12,12 @@
 .lifecycle {
   position: relative;
   width: 100%;
-  background-color: var(--color-bg-primary);
+  /* No background-color here anymore — see AIStack.module.css's note;
+     same reasoning applies to every section using <Gradient/>. */
   padding-block: var(--space-24); /* TODO(figma): confirm exact section vertical rhythm */
-  overflow: hidden; /* clips both ambient ellipses below to the section edge, same as Trust.module.css's .trust */
 }
 
-/* Left ambient blob: solid brand-purple wash, anchored to the section's
-   upper-left. Unlike .ellipseRight below, this one is a single flat
-   color (no gradient stops) — per spec, only the right blob carries
-   the multi-stop brand gradient. */
-.ellipseLeft {
-  position: absolute;
-  top: 20%;
-  left: -19%;
-  width: 49rem;
-  height: 49rem;
-  border-radius: 50%;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--color-accent-primary, #8500df) 55%, transparent) 0%,
-    transparent 65%
-  );
-  filter: blur(90px);
-  opacity: 0.5;
-}
 
-/* Right ambient blob: same 4-stop gradient as TrustCard's ::before blob
-   (0% #B31AEF, 31% #F6048D, 78% #F88C54, 100% #FF7670) — reused
-   verbatim here rather than re-derived, since it's the same brand
-   gradient, not a section-specific one. Anchored opposite the purple
-   blob so the two read as a left/right pair framing the content. */
-.ellipseRight {
-  position: absolute;
-  top: 15%;
-  right: -14%;
-  width: 20rem;
-  height: 20rem;
-  border-radius: 50%;
-  z-index: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    #b31aef 0%,
-    #f6048d 31%,
-    #f88c54 78%,
-    #ff7670 100%
-  );
-  filter: blur(90px);
-  opacity: 0.4;
-}
 
 .inner {
   position: relative; /* stacks above the two ellipses, which are z-index: 0 */

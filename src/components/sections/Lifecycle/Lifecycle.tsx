@@ -7,6 +7,7 @@ import {
   getLifecycleStages,
   getLifecycleSummary,
 } from "@/data/lifecycle";
+import { Gradient } from "@/components/effects/Gradient";
 import styles from "./Lifecycle.module.css";
 
 /**
@@ -48,10 +49,30 @@ export async function Lifecycle() {
     <section className={styles.lifecycle}>
       {/* Two ambient blobs, decorative only. Left is a flat brand-purple
           wash; right reuses the same 4-stop brand gradient as
-          TrustCard's ::before blob. Both sit behind .inner via z-index
-          and are clipped to the section by .lifecycle's overflow:hidden. */}
-      <div className={styles.ellipseLeft} aria-hidden="true" />
-      <div className={styles.ellipseRight} aria-hidden="true" />
+          TrustCard's ::before blob. Both now portal into the shared
+          page-wide GradientLayer rather than being clipped to this
+          section. */}
+      <Gradient
+        top="10%"
+        left="-19%"
+        size="49rem"
+        stops={[
+          "color-mix(in srgb, var(--color-accent-primary, #8500df) 55%, transparent) 0%",
+          "transparent 65%",
+        ]}
+        opacity={0.5}
+        blur="90px"
+      />
+      <Gradient
+        kind="linear"
+        angle="90deg"
+        top="49%"
+        right="24%"
+        size="30rem"
+        stops={["#b31aef 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
+        opacity={0.35}
+        blur="90px"
+      />
 
       {/* Container's default size="xl" (1280px) is used here, same as
           Hero and Header — close enough to the ~1245px column measured

@@ -5,16 +5,49 @@
    positioning math — if this value changes, that file's line no
    longer centers on the dots. Declared here (not duplicated as a
    literal in both files) so there's exactly one place that can drift.
+
+   The dot/step/title grid used to live directly on `.item` (the
+   <li>). It now lives on `.trigger`, the <button> inside it, since
+   EnvironmentTimelineItem.tsx wraps the row's content in a button to
+   make it clickable/keyboard-reachable — `.item` itself is just the
+   list semantics now, `.trigger` is the actual interactive + layout
+   element.
    ========================================================================== */
 
 .item {
   --dot-size: 10px;
   position: relative;
+  color: var(--color-text-muted);
+}
+
+.trigger {
+  /* Reset button chrome: this is a layout row first, a button
+     second. */
+  appearance: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+
   display: grid;
   grid-template-columns: var(--dot-size) 1fr;
   align-items: start;
   column-gap: var(--space-4); /* TODO(figma): confirm exact dot-to-title gap */
-  color: var(--color-text-muted);
+  width: 100%;
+}
+
+.trigger:hover .title {
+  color: var(--color-text-link);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--color-text-link);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm, 4px);
 }
 
 .dot {
@@ -55,6 +88,7 @@
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-regular);
   color: inherit;
+  transition: color 0.2s ease;
 }
 
 /* ---- past (already scrolled through) ---- */

@@ -20,14 +20,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-4); /* TODO(figma): confirm exact gap between heading and description */
+  gap: var(--space-6); /* TODO(figma): confirm exact gap between heading and description */
   max-width: 53rem; /* ~849.81/1442 of the section frame */
   text-align: center;
 }
 
 .heading {
   font-family: var(--font-family-heading);
-  font-size: var(--font-size-6xl); /* TODO(figma): measured 64px — no exact token match (56px/68px available), confirm */
+  font-size: var(--font-size-4xl); /* TODO(figma): measured 64px — no exact token match (56px/68px available), confirm */
   font-weight: var(--font-weight-semibold);
   line-height: 1.2;
   color: var(--color-text-primary);
@@ -44,7 +44,7 @@
 .description {
   max-width: 51rem; /* ~813.59/1442 of the section frame */
   font-family: var(--font-family-base);
-  font-size: var(--font-size-2xl); /* 30px — exact match to the measured description size */
+  font-size: var(--font-size-md); /* 30px — exact match to the measured description size */
   color: var(--color-text-secondary);
 }
 

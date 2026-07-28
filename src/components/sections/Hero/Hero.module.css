@@ -1,8 +1,15 @@
 /* ==========================================================================
    Hero.module.css
-   Owns layout, spacing, and typography for the hero content. The
-   background layer is deliberately empty (no gradient/SVG/glow) — that
-   decoration is a later iteration, tracked by the TODO(figma) below.
+   Owns layout, spacing, and typography for the hero content.
+
+   .background used to carry the page's base fill color as a
+   placeholder for a future decorative layer. That decoration now
+   exists (HeroBackground's two breathing glows, rendered via
+   <Gradient/> into the shared page-wide GradientLayer) and the base
+   fill color now lives on GradientLayer's .root — so .background stays
+   in the markup as a hook for any future hero-only backdrop, but no
+   longer paints an opaque color that would hide the shared gradient
+   layer sitting behind it.
 
    No z-index is used to stack .content above .background: .background
    is position: absolute (removed from flow) and .content is a normal,
@@ -19,7 +26,7 @@
 .background {
   position: absolute;
   inset: 0;
-  background-color: var(--color-bg-primary); /* TODO(figma): decorative gradient/curves/glow arrive in a later iteration */
+  /* Intentionally no background-color — see file header. */
 }
 
 .content {

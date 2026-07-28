@@ -14,57 +14,52 @@ export type SpotlightSlot = "large" | "topRight" | "bottomRight";
 
 interface SpotlightContainerProps {
   caseStudies: CaseStudy[];
-  /** Forwarded from SpotlightExperience so it can measure this
-   *  container's own fixed 824×648 box as the animation's coordinate
-   *  space (see that file's "GEOMETRY" comment) — this component still
-   *  owns rendering the node the ref points to and the aspect-ratio
-   *  that fixes its size; it just doesn't own what's measured from it.
+  /** Forwarded from SpotlightExperience so it can write the animated
+   *  `grid-template-columns` / `grid-template-rows` directly onto
+   *  this container's own DOM node (see that file's doc comment for
+   *  why the interaction targets the grid's own tracks rather than
+   *  individual cards). This component still owns the CSS that
+   *  defines the container's rest-state grid, slot placement, and
+   *  fixed 824×648 box (SpotlightContainer.module.css); it just
+   *  doesn't own the inline style overrides written to it mid-hover.
    *  Typed `| null` because `useRef<HTMLDivElement>(null)` in
    *  SpotlightExperience produces `RefObject<HTMLDivElement | null>`
-   *  — `.current` is genuinely null until after mount — not because
-   *  this component ever treats a null ref as a valid case itself. */
+   *  — `.current` is genuinely null until after mount. */
   containerRef: RefObject<HTMLDivElement | null>;
-  /** One ref per slot, same `| null` reasoning as containerRef.
-   *  SpotlightExperience animates these nodes directly via GSAP
-   *  transforms (translate/scale only — never grid-column/grid-row,
-   *  per the architecture constraint), but it never decides WHERE
-   *  they render in the grid; that's still this component's job via
-   *  .largeSlot/.topRightSlot/.bottomRightSlot below. Refs point at
-   *  the slot wrappers, not at SpotlightCard itself, so SpotlightCard
-   *  stays purely presentational and has no idea an animation exists. */
-  slotRefs: {
-    large: RefObject<HTMLDivElement | null>;
-    topRight: RefObject<HTMLDivElement | null>;
-    bottomRight: RefObject<HTMLDivElement | null>;
-  };
   /** Fired when the pointer enters a slot. SpotlightContainer doesn't
    *  hold or interpret hover state itself — see SpotlightExperience's
    *  doc comment on state ownership — it only reports WHICH slot the
-   *  pointer entered; SpotlightExperience decides what that means. */
+   *  pointer entered; SpotlightExperience decides what grid split
+   *  that means. */
   onSlotEnter: (slot: SpotlightSlot) => void;
 }
 
 /**
  * SpotlightContainer
  *
- * Owns the spotlight area as ONE parent surface: layout (the
- * large-card + stacked-pair grid), positioning (which slot each card
- * sits in), and clipping (`overflow: hidden` — now doing real work,
- * not just reserved for later: it's the boundary the two non-hovered
- * cards animate fully outside of). Card content itself is entirely
- * SpotlightCard's concern; hover STATE and the GSAP timeline that
+ * Owns the spotlight area as ONE parent surface: the bento grid's
+ * rest-state layout (large-card + stacked-pair), which slot each
+ * card sits in, and clipping. Card content itself is entirely
+ * SpotlightCard's concern; hover STATE and the grid-track tween that
  * reacts to it are entirely SpotlightExperience's concern (see that
  * file). This component is the seam between the two: it exposes the
- * DOM nodes (via refs) and the raw pointer signal (via onSlotEnter)
- * that SpotlightExperience needs, without holding any animation logic
- * of its own.
+ * one DOM node (via `containerRef`) SpotlightExperience animates and
+ * the raw pointer signal (via `onSlotEnter`) it needs, without
+ * holding any animation logic of its own.
  *
- * Presentation + wiring only: no hover state, no GSAP, no measurement.
+ * No per-slot refs any more — unlike the previous width/transform-
+ * based interaction, the current version never reads or writes an
+ * individual card's box directly. Every card fills its slot at
+ * `width: 100%; height: 100%` (SpotlightCard.module.css's `.card`)
+ * purely because the slot's grid track resized underneath it, so
+ * there's nothing per-card left for this component to expose.
+ *
+ * Presentation + wiring only: no hover state, no GSAP, no
+ * measurement.
  */
 export function SpotlightContainer({
   caseStudies,
   containerRef,
-  slotRefs,
   onSlotEnter,
 }: SpotlightContainerProps) {
   const [large, topRight, bottomRight] = caseStudies;
@@ -73,7 +68,6 @@ export function SpotlightContainer({
     <div className={styles.container} ref={containerRef}>
       {large ? (
         <div
-          ref={slotRefs.large}
           className={styles.largeSlot}
           onMouseEnter={() => onSlotEnter("large")}
         >
@@ -83,7 +77,6 @@ export function SpotlightContainer({
 
       {topRight ? (
         <div
-          ref={slotRefs.topRight}
           className={styles.topRightSlot}
           onMouseEnter={() => onSlotEnter("topRight")}
         >
@@ -93,7 +86,6 @@ export function SpotlightContainer({
 
       {bottomRight ? (
         <div
-          ref={slotRefs.bottomRight}
           className={styles.bottomRightSlot}
           onMouseEnter={() => onSlotEnter("bottomRight")}
         >

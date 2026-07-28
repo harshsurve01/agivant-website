@@ -6,22 +6,27 @@ interface EnvironmentTimelineProps {
   stages: EnvironmentStage[];
   activeStageId: string;
   activeStageIndex: number;
-  /** Continuous 0–1 scroll progress through the pinned experience —
-   *  see EnvironmentExperience's "SCROLL → STATE" comment. Drives the
-   *  line's segment fill directly so the fill moves smoothly with
-   *  scroll instead of visibly snapping between steps. */
+  /** Stepped 0–1 progress through the stage sequence — see
+   *  EnvironmentExperience's doc comment. Drives the line's segment
+   *  fill. */
   progress: number;
+  /** Called with a stage's index when its timeline item is clicked
+   *  (or activated via keyboard) — see EnvironmentExperience's
+   *  "AUTO-ADVANCE + CLICK-TO-SELECT" comment. This component doesn't
+   *  decide what selecting a stage does, it just reports the
+   *  interaction upward. */
+  onSelectStage: (index: number) => void;
 }
 
 /**
  * EnvironmentTimeline
  *
  * Presentation only — renders the vertical dot-and-line stage list.
- * It does not decide which stage is active or how far scrolled the
- * user is; both arrive as props from EnvironmentExperience. Keeping
- * this component free of its own scroll/state logic means it stays
- * identical whether the sync source is a scroll listener (today) or
- * something else later.
+ * It does not decide which stage is active, how far along the
+ * sequence we are, or what a click does; all of that arrives as props
+ * from EnvironmentExperience. Keeping this component free of its own
+ * state means it stays identical whether the active stage is driven
+ * by the auto-advance timer or a manual click.
  *
  * `.line`/`.lineFill` are rendered here, once, as a background layer
  * behind the whole list — not per-item — because the fill is one
@@ -35,15 +40,16 @@ interface EnvironmentTimelineProps {
  * collection — the numbering in the design is semantic, not just
  * decorative.
  *
- * Server-renderable: no "use client", no hooks, no state — the
- * `progress` NUMBER it receives is just a prop, not something this
- * component subscribes to.
+ * Server-renderable on its own (no hooks/state of its own) — it's
+ * only a Client Component in practice because it's always rendered
+ * from EnvironmentExperience, which already has "use client".
  */
 export function EnvironmentTimeline({
   stages,
   activeStageId,
   activeStageIndex,
   progress,
+  onSelectStage,
 }: EnvironmentTimelineProps) {
   return (
     <div className={styles.timeline}>
@@ -63,6 +69,7 @@ export function EnvironmentTimeline({
               stat={stage.stat}
               isActive={stage.id === activeStageId}
               isPast={index < activeStageIndex}
+              onSelect={() => onSelectStage(index)}
             />
           ))}
         </ol>

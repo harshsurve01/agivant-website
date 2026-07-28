@@ -8,10 +8,11 @@ import { Environment } from "@/components/sections/Environment";
 import { Partners } from "@/components/sections/Partners";
 import { ProofSection } from "@/components/sections/Proof";
 import { Footer } from "@/components/layout/Footer";
+import { GradientLayerProvider } from "@/components/effects/GradientLayer";
 
 export default function Home() {
   return (
-    <>
+    <GradientLayerProvider>
       <AnnouncementBar />
       <Header />
       <Hero />
@@ -22,6 +23,6 @@ export default function Home() {
       <Partners/>
       <ProofSection/>
       <Footer />
-    </>
+    </GradientLayerProvider>
   );
 }

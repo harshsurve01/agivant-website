@@ -3,6 +3,7 @@ import { getTrustCards } from "@/data/trust";
 import { TrustCard } from "./TrustCard";
 import { TrustProgress } from "./TrustProgress";
 import { TrustAnimation } from "./TrustAnimation";
+import { Gradient } from "@/components/effects/Gradient";
 import styles from "./Trust.module.css";
 
 /**
@@ -42,8 +43,20 @@ export async function Trust() {
       <div className={styles.background} aria-hidden="true" data-trust-glow />
 
       {/* Static ambient ellipse, top-left — decorative only, does not
-          participate in the scroll animation. */}
-      <div className={styles.ellipse} aria-hidden="true" />
+          participate in the scroll animation. Portals into the shared
+          page-wide GradientLayer instead of being clipped to this
+          section. */}
+      <Gradient
+        top="-100px"
+        left="-220px"
+        size="640px"
+        stops={[
+          "color-mix(in srgb, var(--color-bg-gradient-start) 55%, transparent) 0%",
+          "transparent 58%",
+        ]}
+        opacity={1}
+        blur="90px"
+      />
 
       <Container size="2xl">
         <h2 id="trust-heading" className={styles.srOnly}>

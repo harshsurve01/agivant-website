@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import styles from "./HeroBackground.module.css";
 import { HeroParticleField } from "./HeroParticleField";
+import { Gradient } from "@/components/effects/Gradient";
 
 export interface HeroBackgroundProps {
   /** Hero's existing, untouched content — rendered on top of both
@@ -46,8 +47,33 @@ export interface HeroBackgroundProps {
 export function HeroBackground({ children }: HeroBackgroundProps) {
   return (
     <div className={styles.experience}>
-      <div className={styles.glowLeft} aria-hidden="true" />
-      <div className={styles.glowRight} aria-hidden="true" />
+      <Gradient
+        top="-18%"
+        left="-16%"
+        size="clamp(340px, 34vw, 600px)"
+        stops={[
+          "color-mix(in srgb, var(--color-bg-gradient-start) 85%, transparent) 0%",
+          "transparent 88%",
+        ]}
+        opacity={1}
+        blur="60px"
+        blurMobile="60px"
+        animate="breathe"
+      />
+      <Gradient
+        top="4%"
+        right="18%"
+        size="clamp(380px, 38vw, 680px)"
+        stops={[
+          "color-mix(in srgb, var(--color-bg-gradient-end) 85%, transparent) 0%",
+          "transparent 88%",
+        ]}
+        opacity={1}
+        blur="60px"
+        blurMobile="40px"
+        animate="breathe"
+        animationDelay="-4s"
+      />
 
       <HeroParticleField />
 
@@ -69,8 +95,8 @@ export function HeroBackground({ children }: HeroBackgroundProps) {
       <Image
         src="/images/hero/hero-ellipse-stroke.svg"
         alt=""
-        width={620}
-        height={360}
+        width={820}
+        height={560}
         className={styles.ellipseStroke}
         aria-hidden="true"
       />

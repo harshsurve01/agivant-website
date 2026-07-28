@@ -78,19 +78,73 @@
   /* Deepest layer: pushed backward so every other layer visibly
      separates from it as the card tilts. */
   transform: translateZ(-20px);
-  background-color: var(--color-bg-secondary); /* TODO(figma): confirm — may be a subtle gradient rather than flat color */
+  /* Switched to translucent so backdrop-filter below has something to
+     actually blur — an opaque fill would fully occlude whatever's
+     behind it before the blur has any visible effect. color-mix keeps
+     this tied to the design token (rather than hardcoding white)
+     so it still respects theming if --color-bg-secondary ever changes.
+     Revert to a flat var(--color-bg-secondary) instead if the Figma
+     spec turns out not to want glass here; if so, drop the two
+     backdrop-filter lines below too, since they'd be inert. */
+  background-color: color-mix(in srgb, var(--color-bg-secondary) 60%, transparent); /* TODO(figma): confirm — may be a subtle gradient rather than flat color, and confirm intended opacity */
   border-radius: var(--radius-lg);
+  /* WORKAROUND (lightningcss/Turbopack bug — parcel-bundler/lightningcss#695):
+     lightningcss's prefix-minimization pass drops the unprefixed
+     backdrop-filter whenever -webkit-backdrop-filter is also present
+     in the SAME declaration block, even with identical values or a
+     var() indirection — already confirmed against this project's
+     header. -webkit- stays here; the unprefixed line moves to its own
+     @supports rule below so the minifier's pairing logic can't reach
+     across rule boundaries. See Header.module.css for the same fix.
+     TODO(figma): blur radius (20px) is a best-effort match, not
+     measured off a spec. */
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Part of the lightningcss workaround above: same selector, same
+   value, in a physically separate rule so -webkit-/unprefixed pairing
+   never happens within one block. @supports (not @media) — this is a
+   rule-boundary trick, not a real feature-detection fallback. */
+@supports (backdrop-filter: blur(0)) {
+  .background {
+    backdrop-filter: blur(16px);
+  }
 }
 
 .badgeLayer {
   position: absolute;
-  top: var(--space-4);
-  right: var(--space-4);
+  /* FIGMA FIX v2 (supersedes the "pull it out of 3D entirely" fix):
+     perspective + translateZ scales an element's on-screen Y position
+     OUTWARD from `.wrapper`'s perspective-origin (this card's own
+     vertical center) by a factor of
+     perspective / (perspective - translateZ). That factor is the
+     SAME on every card (same perspective, same translateZ below) —
+     what's NOT the same is each card's own center-to-top-edge
+     distance. AgenticLayout row-spans two grid rows, so its badge
+     sits much farther from ITS card's own center than a short card's
+     badge does, and the same factor applied to a bigger distance is
+     what overshot the top edge.
+     Rather than removing translateZ (and the tilt/lift it gives the
+     badge), `top` below is solved so the PROJECTED screen position
+     lands at exactly var(--space-4) from the top edge on every card,
+     regardless of height:
+       screenY = H/2 + (T - H/2) * F,  F = perspective / (perspective - Z)
+       want screenY = var(--space-4) for every H
+       ⇒ T = H/2 * (1 - 1/F) + var(--space-4)/F
+       ⇒ T = 50% * (Z/perspective) + var(--space-4) * ((perspective - Z)/perspective)
+     With perspective: 1200px, Z: 84px ⇒ 50% * (84/1200) + space-4 * (1116/1200).
+     `right` doesn't need this treatment: every card in this grid
+     shares the same column width, so horizontal distance-from-center
+     (and its projection error) is already identical across cards —
+     only vertical distance changes as row-span/height changes.
+     NOTE: if `--card-tilt-z` (84px below) or `.wrapper`'s
+     `perspective` (1200px) ever change, the 84/1200 and 1116/1200
+     ratios below must be recalculated to match. */
+  top: calc(50% * 84 / 1200 + var(--space-4) * 1116 / 1200);
+  right: var(--space-6);
   z-index: 2; /* clears both .background and any layout content */
   /* Closest layer to the viewer, per the desired depth order (badge
-     > title > description > ribbon > background). No preserve-3d
-     needed here — the badge itself has no 3D children — just a
-     translateZ offset on this element. */
+     > title > description > ribbon > background). */
   transform: translateZ(84px);
 }
 

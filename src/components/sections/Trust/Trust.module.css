@@ -54,28 +54,10 @@
   will-change: background-image;
 }
 
-/* Static decorative ellipse, top-left of the section (per Figma). Unlike
-   .background above, this one never changes — it doesn't track the
-   active card's accentColor, it's just ambient warmth grounding the
-   section. Deliberately bleeds off the top/left edges; .trust's
-   overflow:hidden clips it. */
-.ellipse {
-  position: absolute;
-  top: -180px;
-  left: -220px;
-  width: 640px;
-  height: 640px;
-  border-radius: 50%;
-  z-index: 0;
-  pointer-events: none;
-   background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--color-bg-gradient-start) 55%, transparent) 0%,
-    transparent 58%
-  );
-  filter: blur(70px);
-  opacity: 0.55;
-}
+/* The static decorative ellipse (top-left, ambient warmth, doesn't
+   track the active card's accentColor unlike .background above) now
+   renders via <Gradient/> in Trust.tsx, portaled into the shared
+   page-wide GradientLayer instead of being clipped here. */
 
 .srOnly {
   position: absolute;

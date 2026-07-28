@@ -52,7 +52,7 @@
   margin-inline: calc(var(--space-6) * -1);
   margin-bottom: calc(var(--space-6) * -1);
   pointer-events: none;
-  transform: translateZ(14px);
+  transform: translateZ(4px);
 }
 
 .ribbonImage {

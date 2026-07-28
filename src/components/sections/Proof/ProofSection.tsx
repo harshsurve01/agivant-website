@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { ProofContent } from "./ProofContent";
 import { SpotlightExperience } from "./SpotlightExperience";
 import { getProofHeader, getCaseStudies } from "@/data/proof";
+import { Gradient } from "@/components/effects/Gradient";
 import styles from "./ProofSection.module.css";
 
 /**
@@ -27,6 +28,16 @@ export async function ProofSection() {
 
   return (
     <section className={styles.proof}>
+      <Gradient
+        top="50%"
+        left="-10%"
+        centerY
+        size="clamp(320px, 32vw, 600px)"
+        stops={["color-mix(in srgb, #9d84f2 85%, transparent) 0%", "transparent 78%"]}
+        opacity={1}
+        blur="90px"
+      />
+
       <Container size="2xl">
         <div className={styles.inner}>
           <ProofContent

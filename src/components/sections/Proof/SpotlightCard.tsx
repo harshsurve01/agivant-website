@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { CaseStudy } from "@/data/proof";
 import { ArrowUpRight } from "@/components/ui/Icon/ArrowUpRight";
 import styles from "./SpotlightCard.module.css";
@@ -6,6 +7,26 @@ import styles from "./SpotlightCard.module.css";
 interface SpotlightCardProps {
   caseStudy: CaseStudy;
 }
+
+/**
+ * TODO(client): destination + target behavior not yet specified.
+ *
+ * The client hasn't confirmed (a) whether the whole card or just the
+ * corner arrow should be clickable, or (b) where it should go — a
+ * dedicated case-study page, an external link, same tab vs new tab,
+ * etc. Until that's answered, the whole card is wired up as a link
+ * (the corner arrow visually implies "this card goes somewhere," so
+ * making only the icon clickable while the rest of the card isn't
+ * would be a confusing half-measure) pointing at a placeholder `"#"`.
+ *
+ * `caseStudy.href` is read optimistically below so this starts
+ * working the moment a `href` field is added to the `CaseStudy` type
+ * in data/proof.ts — no further changes needed here. If the client
+ * instead wants ONLY the corner arrow clickable, swap the `<Link>`
+ * wrapper below to only wrap the `.corner` span, not the whole
+ * `<article>` — everything else stays the same.
+ */
+const PLACEHOLDER_HREF = "#";
 
 /**
  * SpotlightCard
@@ -24,48 +45,57 @@ interface SpotlightCardProps {
  *
  * Semantic markup: <article> per card, heading level bumped to h3
  * since ProofContent already owns the section's h2. Image alt text
- * is required by the CaseStudy type, not optional.
+ * is required by the CaseStudy type, not optional. The whole card is
+ * now wrapped in a <Link> (see PLACEHOLDER_HREF above for why the
+ * href is a stand-in) — <article> nests inside it rather than being
+ * replaced by it, so the semantic markup is unchanged.
  */
 export function SpotlightCard({ caseStudy }: SpotlightCardProps) {
   const { industry, title, description, metric, metricLabel, footer, image } =
     caseStudy;
 
+  // `href` isn't on CaseStudy yet — read defensively so this doesn't
+  // break once it's added, and falls back to the placeholder until then.
+  const href = (caseStudy as CaseStudy & { href?: string }).href ?? PLACEHOLDER_HREF;
+
   return (
-    <article className={styles.card}>
-      <div className={styles.artwork}>
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          sizes="400px"
-          className={styles.image}
-        />
+    <Link href={href} className={styles.cardLink} aria-label={title}>
+      <article className={styles.card}>
+        <div className={styles.artwork}>
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            sizes="400px"
+            className={styles.image}
+          />
 
-        <span className={styles.badge}>{industry}</span>
+          <span className={styles.badge}>{industry}</span>
 
-        {/* Corner affordance previewing the future "expand" interaction.
-            Purely decorative today — no click/hover handler, the
-            container owns all interaction per the architecture. */}
-        <span className={styles.corner} aria-hidden="true">
-          <ArrowUpRight />
-        </span>
-      </div>
+          {/* Corner affordance is still purely visual — the click
+              target is the whole card via the <Link> wrapper above,
+              not this icon specifically. No handler needed here. */}
+          <span className={styles.corner} aria-hidden="true">
+            <ArrowUpRight />
+          </span>
+        </div>
 
-      <div className={styles.body}>
-        <h3 className={styles.title}>{title}</h3>
-        <p className={styles.description}>{description}</p>
+        <div className={styles.body}>
+          <h3 className={styles.title}>{title}</h3>
+          <p className={styles.description}>{description}</p>
 
-        {metric ? (
-          <div className={styles.metric}>
-            <p className={styles.metricValue}>{metric}</p>
-            {metricLabel ? (
-              <p className={styles.metricLabel}>{metricLabel}</p>
-            ) : null}
-          </div>
-        ) : null}
+          {metric ? (
+            <div className={styles.metric}>
+              <p className={styles.metricValue}>{metric}</p>
+              {metricLabel ? (
+                <p className={styles.metricLabel}>{metricLabel}</p>
+              ) : null}
+            </div>
+          ) : null}
 
-        {footer ? <p className={styles.footer}>{footer}</p> : null}
-      </div>
-    </article>
+          {footer ? <p className={styles.footer}>{footer}</p> : null}
+        </div>
+      </article>
+    </Link>
   );
 }

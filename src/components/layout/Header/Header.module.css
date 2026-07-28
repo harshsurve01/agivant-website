@@ -21,7 +21,7 @@
      from padding" rule documented above, and could clip content if
      nav wraps or type sizing changes. .inner's padding already
      produces the correct height on its own. */
-  background-color: var(--color-bg-primary); /* TODO(figma): confirm exact background */
+  background-color: #ffffff09; /* TODO(figma): confirm exact background */
 
   /* Sticky: engages once header's own top edge reaches the viewport
      top (see HeaderShell's sentinel/IntersectionObserver). No height,
@@ -55,16 +55,86 @@
 }
 
 .stuck {
-  /* Semi-transparent background is required for backdrop-filter to
-     have anything to blur — color-mix over the existing
-     --color-bg-primary token, same derivation pattern variables.css
-     already uses for hover/active states, so this isn't a new color,
-     just a computed variant of the one already in use. */
-  background-color: color-mix(in srgb, var(--color-bg-primary) 75%, transparent);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: var(--shadow-lg); /* reuses existing "subtle" shadow token */
+  /* 0.14 → 0.21 and 50px → 26px blur: matches the reference glass-card's
+     values exactly. Card was noticeably more opaque and less blurred
+     than the previous header treatment, which read as too diffuse at
+     full viewport width — this is crisper and closer to frosted glass
+     than a soft blur wash. saturate(180%) kept: card reference has no
+     saturate, but it's what keeps color underneath from looking washed
+     out over a full-width bar (a 240x360 card didn't need it as much). */
+  background: rgba(255, 255, 255, 0.21);
+
+  /* WORKAROUND (lightningcss/Turbopack bug — parcel-bundler/lightningcss#695):
+     lightningcss's prefix-minimization pass drops the unprefixed
+     backdrop-filter whenever -webkit-backdrop-filter is also present in
+     the same declaration block — even when the value is identical or
+     routed through a var(). It operates on the targets/prefixing pass,
+     not a literal-text dedup, so tricks inside one rule don't survive it.
+     The -webkit- one stays here (Safari fallback); the unprefixed one is
+     moved to its own @supports rule below, in a separate declaration
+     block the minifier's pairing logic doesn't reach across. Remove both
+     once the upstream bug is fixed and confirmed in this project's
+     lightningcss version. */
+  -webkit-backdrop-filter: blur(1px) saturate(180%);
+
+  /* Unchanged from before — already an exact match to the reference
+     card's border color/opacity (rgba(255,255,255,.3)), just applied
+     as border-bottom only (header spans full width, no need for a
+     complete border like the card has). */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+  /* Same 3-layer shadow structure as before, values now matched to the
+     reference: 0.1 (was 0.08) on the drop shadow, 0.5 (was 0.45) on the
+     top inset highlight, 0.1 (was 0.08) on the bottom inset. Reference
+     card also has a 4th inset shadow at 0 alpha/0 spread — that's an
+     inert placeholder in the source (presumably meant for a hover/focus
+     state), so it's omitted here since it has no visual effect. */
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+
+  position: sticky;
+}
+
+/* Part of the lightningcss workaround above: same selector, same value,
+   but in a physically separate rule so the minifier's -webkit-/unprefixed
+   pairing logic (which operates within a single declaration block) never
+   sees both at once. @supports (not @media) so this has no runtime
+   feature-detection behavior of its own — practically every browser that
+   reaches this app supports backdrop-filter, so this always applies; it's
+   here purely as a rule boundary, not a fallback gate. */
+@supports (backdrop-filter: blur(0)) {
+  .stuck {
+    backdrop-filter: blur(16px) saturate(180%);
+  }
+}
+
+.header.stuck::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.75),
+    transparent
+  );
+
+  pointer-events: none;
+}
+
+.header.stuck::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1px;
+
+  background: rgba(255,255,255,.08);
+
+  pointer-events: none;
 }
 
 .inner {

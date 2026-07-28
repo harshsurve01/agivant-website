@@ -2,13 +2,19 @@
    Environment.module.css
    Owns section-level styling only — background and outer vertical
    rhythm. Everything else (the header-to-experience-to-CTA stack,
-   inner max-width, and the CTA's own alignment) now lives in
+   inner max-width, and the CTA's own alignment) lives in
    EnvironmentExperience.module.css's .stageInner/.ctaRow, along with
    the components that use them: header, timeline/card experience, and
-   CTA are all composed inside EnvironmentExperience's pinned stage
-   now (see Environment.tsx's and EnvironmentExperience.tsx's doc
-   comments), so their shared layout belongs in the file that owns
-   that stage, not here.
+   CTA are all composed inside EnvironmentExperience now (see
+   Environment.tsx's and EnvironmentExperience.tsx's doc comments), so
+   their shared layout belongs in the file that owns that stage, not
+   here.
+
+   `position: relative` is kept for the same reason as AIStack.module.css's
+   `.aiStack` — it isn't for this section's own layout, it's so
+   <Gradient/> (rendered in Environment.tsx, portaled into the shared
+   page-wide GradientLayer) has this section as the nearest positioned
+   ancestor for its top/right offsets.
 
    Previously this file also had `.inner` and `.ctaRow` — those are
    gone, not just unused: Environment.tsx no longer renders any div
@@ -18,7 +24,8 @@
    ========================================================================== */
 
 .environment {
+  position: relative;
   width: 100%;
-  background-color: var(--color-bg-primary);
+  background-color: #ffffff00;
   padding-block: var(--space-24); /* TODO(figma): confirm exact section vertical rhythm */
 }

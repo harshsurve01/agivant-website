@@ -7,6 +7,7 @@ import { getAIStackHeader, getAIStackCards, getAIStackCTA } from "@/data/ai-stac
 // SVGR pattern matching Hero.tsx — see that file's comment for why
 // this is imported as a component rather than a static asset URL.
 import CubeIcon from "@/assets/icons/cube.svg";
+import { Gradient } from "@/components/effects/Gradient";
 import styles from "./AIStack.module.css";
 
 /**
@@ -37,6 +38,15 @@ export async function AIStack() {
 
   return (
     <section className={styles.aiStack}>
+      <Gradient
+        top="20%"
+        right="15%"
+        size="45rem"
+        stops={["#8500df 50%", "#edbf79 55%", "transparent 75%"]}
+        opacity={0.25}
+        blur="80px"
+      />
+
       <Container>
         <div className={styles.inner}>
           <AIStackHeader heading={header.heading} description={header.description} />

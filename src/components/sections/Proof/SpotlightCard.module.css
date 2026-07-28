@@ -37,6 +37,20 @@
    supplied for this section's card sizes, unlike Partners/Environment.
    ========================================================================== */
 
+/* Wraps .card so the whole card is a click target (see the
+   TODO(client) comment in SpotlightCard.tsx for why). Sized to fill
+   the slot exactly the way .card alone used to, since .card no
+   longer sits directly in the slot — this link does. `display: block`
+   so an inline <a> behaves like the block-level surface the grid
+   slot expects. */
+.cardLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-lg); /* keeps focus ring shape correct */
+  cursor: pointer;
+}
+
 .card {
   position: relative;
   width: 100%;

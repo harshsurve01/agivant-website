@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { EnvironmentTimeline } from "./EnvironmentTimeline";
 import { EnvironmentCardDeck } from "./EnvironmentCardDeck";
 import type { EnvironmentStage } from "@/data/environment";
 import styles from "./EnvironmentExperience.module.css";
+
+const AUTO_ADVANCE_MS = 5000;
 
 interface EnvironmentExperienceProps {
   /** Pre-rendered by Environment (a Server Component) and passed in
@@ -16,146 +18,85 @@ interface EnvironmentExperienceProps {
   header: ReactNode;
   stages: EnvironmentStage[];
   /** Same pre-rendered-slot reasoning as `header`, for the section's
-   *  closing CTA (Link + Button). Rendered OUTSIDE the pinned track
-   *  now — see the "PIN MECHANICS" comment below for why. */
+   *  closing CTA (Link + Button). */
   cta: ReactNode;
 }
 
 /**
  * EnvironmentExperience
  *
- * Owns the section's PINNED storytelling experience — heading,
- * Timeline, and Card Deck — plus the CTA that follows it in normal
- * flow once the pin releases.
+ * Owns the section's storytelling experience — heading, Timeline, and
+ * Card Deck — plus the CTA that follows it.
  *
- * `header` and `cta` arrive as already-rendered ReactNode props
- * (see the interface above) rather than being imported and rendered
- * here — this component still owns *where* they sit in the layout,
- * just not what's inside them. `stages` remains plain serializable
- * data, since the scroll-sync logic below needs to read
- * `stages.length` and index into it directly.
+ * `header` and `cta` arrive as already-rendered ReactNode props (see
+ * the interface above) rather than being imported and rendered here.
+ * `stages` remains plain serializable data, since the auto-advance
+ * logic below needs to read `stages.length` and index into it.
  *
- * PIN MECHANICS
- * `.pinTrack` is an oversized block — `stages.length` viewport-heights
- * tall — that exists purely to give the browser somewhere to scroll
- * while the header/timeline/deck stay visually still. `.pinStage`
- * inside it is `position: sticky; top: 0`, so it locks to the
- * viewport for exactly as long as `.pinTrack` is scrolling past, then
- * releases naturally once `.pinTrack` runs out — no scroll-hijacking,
- * no JS-driven scrollTo, no library. The scroll listener below only
- * ever READS scroll position to derive state; it never writes to it.
+ * AUTO-ADVANCE + CLICK-TO-SELECT
+ * There's no more scroll-driven pin here — `activeStageIndex` is now
+ * just state, changed one of two ways:
+ *   1. Automatically, every AUTO_ADVANCE_MS, advancing to the next
+ *      stage (wrapping back to 0 after the last one).
+ *   2. Immediately, when the person clicks a timeline item — see
+ *      `handleSelectStage`, passed down to EnvironmentTimeline.
+ * Both paths go through the same `setActiveStageIndex`, so the
+ * auto-advance timer (a `setTimeout` re-armed on every change to
+ * `activeStageIndex` — see the effect below) naturally restarts its
+ * 30s countdown whenever the person manually picks a stage, instead
+ * of firing mid-way through their choice.
  *
- * The CTA is deliberately rendered as a SIBLING of `.pinTrack`, not
- * inside `.pinStage`/`.stageInner` — it's ordinary in-flow content
- * that should scroll in right after the deck once the pin lets go,
- * not stay locked to the viewport for the full
- * `stages.length`-viewport-heights scroll distance the pin holds
- * open for the header/timeline/deck. Only content that's part of the
- * actual scroll-synced storytelling (header, timeline, deck) belongs
- * inside the pinned subtree; the CTA never needed to be pinned, it
- * just used to render there because it was composed inside the same
- * component.
+ * A `setTimeout` re-armed per change (rather than a single
+ * `setInterval`) is what makes that restart-on-click behavior work
+ * for free: the effect's cleanup clears the pending timeout whenever
+ * `activeStageIndex` changes for *any* reason, and the next render
+ * schedules a fresh 30s wait from that new point.
  *
- * SCROLL → STATE
- * On every scroll/resize, `handleScroll` measures how far `.pinTrack`
- * has scrolled past the top of the viewport relative to its own
- * scrollable range (`trackHeight - viewportHeight`), producing a
- * continuous `scrollProgress` in [0, 1]. `activeStageIndex` is the
- * stepped version of that same progress (`floor(progress * stages.length)`,
- * clamped) — the deck and the timeline's active dot/title both need a
- * discrete "which stage" answer, but the timeline's line-fill wants
- * the continuous value so it doesn't visibly jump between steps.
- * Both are derived from one measurement per frame so they can never
- * drift out of sync with each other.
- *
- * `requestAnimationFrame`-throttled: `scroll` can fire far more often
- * than the browser paints; the rAF guard collapses a burst of scroll
- * events into at most one state update per frame instead of one per
- * event.
+ * `progress` (0–1) now reflects how far through the stage sequence
+ * we are — `activeStageIndex / (stages.length - 1)` — so the
+ * timeline's line-fill still tracks the active stage the same way it
+ * used to track scroll, just stepped instead of continuous.
  */
 export function EnvironmentExperience({ header, stages, cta }: EnvironmentExperienceProps) {
-  const pinTrackRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number | null>(null);
-
   const [activeStageIndex, setActiveStageIndex] = useState(0);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const trackEl = pinTrackRef.current;
-    if (!trackEl) return;
+    if (stages.length <= 1) return;
 
-    const measure = () => {
-      const rect = trackEl.getBoundingClientRect();
-      const scrollableDistance = rect.height - window.innerHeight;
-
-      // Track is shorter than one viewport (e.g. a single-stage data
-      // set, or a very tall viewport) — nothing to progress through.
-      if (scrollableDistance <= 0) {
-        setScrollProgress(0);
-        setActiveStageIndex(0);
-        return;
-      }
-
-      const progress = Math.min(1, Math.max(0, -rect.top / scrollableDistance));
-      const steppedIndex = Math.min(stages.length - 1, Math.floor(progress * stages.length));
-
-      setScrollProgress(progress);
-      setActiveStageIndex(steppedIndex);
-    };
-
-    const handleScroll = () => {
-      if (rafRef.current !== null) return;
-      rafRef.current = requestAnimationFrame(() => {
-        rafRef.current = null;
-        measure();
-      });
-    };
-
-    measure();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
+    timeoutRef.current = setTimeout(() => {
+      setActiveStageIndex((prev) => (prev + 1) % stages.length);
+    }, AUTO_ADVANCE_MS);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      if (timeoutRef.current !== null) clearTimeout(timeoutRef.current);
     };
-  }, [stages.length]);
+  }, [activeStageIndex, stages.length]);
+
+  const handleSelectStage = useCallback((index: number) => {
+    setActiveStageIndex(index);
+  }, []);
 
   const activeStage = stages[activeStageIndex];
+  const progress = stages.length > 1 ? activeStageIndex / (stages.length - 1) : 1;
 
   return (
     <div className={styles.environmentExperience}>
-      <div
-        ref={pinTrackRef}
-        className={styles.pinTrack}
-        // TODO(figma): "how long the section stays pinned" has no
-        // measurable equivalent in a static screenshot — one viewport
-        // height of scroll per stage is a reasonable default pace, not
-        // a confirmed spec value.
-        style={{ ["--stage-count" as string]: stages.length }}
-      >
-        <div className={styles.pinStage}>
-          <div className={styles.stageInner}>
-            {header}
+      <div className={styles.stageInner}>
+        {header}
 
-            <div className={styles.experience}>
-              <EnvironmentTimeline
-                stages={stages}
-                activeStageId={activeStage.id}
-                activeStageIndex={activeStageIndex}
-                progress={scrollProgress}
-              />
-              <EnvironmentCardDeck stages={stages} activeIndex={activeStageIndex} />
-            </div>
-          </div>
+        <div className={styles.experience}>
+          <EnvironmentTimeline
+            stages={stages}
+            activeStageId={activeStage.id}
+            activeStageIndex={activeStageIndex}
+            progress={progress}
+            onSelectStage={handleSelectStage}
+          />
+          <EnvironmentCardDeck stages={stages} activeIndex={activeStageIndex} />
         </div>
       </div>
 
-      {/* Deliberately OUTSIDE .pinTrack — see "PIN MECHANICS" above.
-          Normal in-flow content: scrolls in right after the deck,
-          once the pin has released, rather than staying pinned for
-          the full stages.length-viewport-heights scroll distance. */}
       <div className={styles.ctaRow}>{cta}</div>
     </div>
   );
