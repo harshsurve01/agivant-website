@@ -16,7 +16,7 @@
   border-radius: var(--radius-lg);
   background-color: #ffffff34;
   padding-block: var(--space-4);
-  border: 1.5px solid #fff;
+  border: 2px solid #fff;
 }
 
 .slot {
