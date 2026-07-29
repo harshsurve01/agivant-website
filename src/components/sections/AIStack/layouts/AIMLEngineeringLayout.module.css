@@ -46,13 +46,14 @@
 }
 
 .ribbon {
+  top: -4px;
   position: relative;
   flex: 1;
-  min-height: 6rem; /* TODO(figma): confirm minimum ribbon height — shorter card than AgenticLayout */
-  margin-inline: calc(var(--space-6) * -1);
-  margin-bottom: calc(var(--space-6) * -1);
+  min-height: 7rem; /* TODO(figma): confirm minimum ribbon height — shorter card than AgenticLayout */
+  margin-inline: calc(var(--space-1) * -1);
+  margin-bottom: calc(var(--space-4) * -1);
   pointer-events: none;
-  transform: translateZ(4px);
+  transform: translateZ(85px);
 }
 
 .ribbonImage {

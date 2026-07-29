@@ -58,7 +58,13 @@
   width: 100%;
   max-width: 824px; /* two 400px card columns + 40px gap, measured against the 1302px content frame */
   aspect-ratio: 824 / 648; /* pins the measured frame proportion — never changes, hover or not */
-  overflow: hidden; /* deliberate backstop, not the containment mechanism itself — see file header */
+  /* Was `overflow: hidden` as a backstop (never load-bearing — the
+     fr-ratio track math already keeps every card's LAYOUT box inside
+     this container). Switched to visible so the hovered card's
+     floating lift + shadow (SpotlightCard.module.css's `.cardLink:
+     hover .card`) can bleed a few px past the container's outer edge
+     instead of being clipped flat for cards flush against it. */
+  overflow: visible;
 }
 
 .largeSlot {
@@ -80,6 +86,28 @@
   grid-row: 2;
   min-width: 0; /* see file header comment */
   min-height: 0;
+}
+
+/* DIM THE NON-HOVERED CARDS
+   Plain CSS, same spirit as SpotlightCard.module.css's hover lift —
+   no React state involved. `:has()` is what makes this possible from
+   a PARENT selector: "if this container has a card being hovered/
+   focused, dim every card-hook that ISN'T currently hovered/focused."
+   Targets `[data-spotlight-card]` (a data attribute on SpotlightCard's
+   <Link> — see that component's doc comment) rather than a class,
+   because CSS Modules hashes `.cardLink` to a name scoped to
+   SpotlightCard.module.css, unreachable from this file.
+   `:not(:hover):not(:focus-visible)` on the target side (rather than
+   just `:not(:hover)`) so a keyboard-focused card counts as "active"
+   too, not just a mouse-hovered one.
+   `brightness(0.5)`, not `opacity` — opacity fades the card toward
+   whatever's behind it (the page background), which reads as
+   washed-out on a light page rather than genuinely dimmed.
+   `brightness()` darkens the card's own rendered pixels — a real
+   black tint. */
+.container:has([data-spotlight-card]:hover, [data-spotlight-card]:focus-visible)
+  [data-spotlight-card]:not(:hover):not(:focus-visible) {
+  filter: brightness(0.9);
 }
 
 @media (max-width: 1024px) {

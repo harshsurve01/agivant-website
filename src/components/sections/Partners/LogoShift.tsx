@@ -187,13 +187,19 @@ export function LogoShift({
     // eslint-disable-next-line react-hooks/exhaustive-deps -- self-scheduling loop, deps intentionally fixed at mount
   }, []);
 
+  // `activeIsA` already exists for scheduling (see runCycle above) —
+  // reusing it here as PartnerLogo's `active` gate means the
+  // currently-invisible, parked copy's link is never a tab stop or
+  // announced (see PartnerLogo.tsx's doc comment on that prop), with
+  // no extra state: the same toggle that flips which layer animates
+  // in next also flips which one's link is reachable.
   return (
     <div className={styles.slot}>
       <div ref={layerARef} className={styles.layer}>
-        <PartnerLogo logo={logoA} />
+        <PartnerLogo logo={logoA} active={activeIsA} />
       </div>
       <div ref={layerBRef} className={styles.layer}>
-        <PartnerLogo logo={logoB} />
+        <PartnerLogo logo={logoB} active={!activeIsA} />
       </div>
     </div>
   );

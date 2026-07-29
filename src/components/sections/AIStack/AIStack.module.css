@@ -26,7 +26,8 @@
   /* No background-color here anymore — the page's base color now
      lives on GradientLayer's .root; this section must stay transparent
      or it would paint over the shared gradient layer sitting behind it. */
-  padding-block: var(--space-24); /* TODO(figma): confirm exact section vertical rhythm */
+ 
+     padding-block: var(--space-24); /* TODO(figma): confirm exact section vertical rhythm */
 }
 
 .inner {

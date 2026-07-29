@@ -49,6 +49,19 @@
   height: 100%;
   border-radius: var(--radius-lg); /* keeps focus ring shape correct */
   cursor: pointer;
+  /* `filter` here (not on .card) because the dim-the-other-cards rule
+     in SpotlightContainer.module.css targets this element directly
+     via `[data-spotlight-card]` (see the data-attribute comment in
+     SpotlightCard.tsx) — dimming the link wrapper dims everything
+     inside it, card included. `filter`, not `opacity`: opacity blends
+     the card toward whatever's BEHIND it (the page background), which
+     on a light page reads as washed-out/faded-to-white rather than
+     dimmed. `brightness()` darkens the card's own rendered pixels
+     directly — a real black tint, independent of what's behind it.
+     Same duration/curve as .card's transform/box-shadow transition
+     below so hover's effects (lift, shadow, sibling dim) read as one
+     motion. */
+  transition: filter 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .card {
@@ -59,6 +72,45 @@
   overflow: hidden;
   /* No background here — Layer 1 (.artwork) IS the card's base surface. */
   box-shadow: var(--shadow-sm);
+  /* FLOATING HOVER STATE: transform + box-shadow here are a separate,
+     purely decorative concern from the grid-track resize in
+     SpotlightExperience.tsx — that interaction never touches an
+     individual card's transform/box/position, it only resizes the
+     grid track the card fills. This is a plain CSS :hover reacting to
+     the actual pointer being over this card, independent of React
+     hover state, so it works even before/without JS hydration. Eased
+     to match the grid-track tween's duration/curve
+     (ANIMATION_DURATION/ANIMATION_EASE in SpotlightExperience.tsx) so
+     the lift and the resize read as one coordinated motion rather
+     than two competing animations. */
+  transition:
+    transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.cardLink:hover .card,
+.cardLink:focus-visible .card {
+  /* Small lift, not a translate that fights the resize: the card is
+     still `width/height: 100%` of its (possibly now-larger) grid
+     track — this just nudges the whole thing up a few px so it reads
+     as lifted off the page. Needs .container's `overflow: visible`
+     (see SpotlightContainer.module.css) so the shadow/lift aren't
+     clipped for cards flush against the container's outer edge. */
+  transform: translateY(-8px);
+  box-shadow:
+    0 28px 48px -16px rgba(15, 23, 42, 0.52),
+    0 10px 20px -8px rgba(15, 23, 42, 0.36);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: box-shadow 0.55s ease;
+  }
+
+  .cardLink:hover .card,
+  .cardLink:focus-visible .card {
+    transform: none;
+  }
 }
 
 .artwork {

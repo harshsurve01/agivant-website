@@ -69,6 +69,7 @@
      rules, even though `preserve-3d` is still written in the CSS. */
   transform-style: preserve-3d;
   will-change: transform;
+ 
 }
 
 .background {
@@ -78,15 +79,12 @@
   /* Deepest layer: pushed backward so every other layer visibly
      separates from it as the card tilts. */
   transform: translateZ(-20px);
-  /* Switched to translucent so backdrop-filter below has something to
-     actually blur — an opaque fill would fully occlude whatever's
-     behind it before the blur has any visible effect. color-mix keeps
-     this tied to the design token (rather than hardcoding white)
-     so it still respects theming if --color-bg-secondary ever changes.
-     Revert to a flat var(--color-bg-secondary) instead if the Figma
-     spec turns out not to want glass here; if so, drop the two
-     backdrop-filter lines below too, since they'd be inert. */
-  background-color: color-mix(in srgb, var(--color-bg-secondary) 60%, transparent); /* TODO(figma): confirm — may be a subtle gradient rather than flat color, and confirm intended opacity */
+  /* No color at all — this is pure glass. backdrop-filter blurs
+     whatever's behind the card regardless of this element's own fill,
+     so background-color doesn't need any opacity/tint to make the
+     blur visible; it only existed before to add a tinted glass look,
+     which is explicitly not wanted here. */
+  background-color: transparent;
   border-radius: var(--radius-lg);
   /* WORKAROUND (lightningcss/Turbopack bug — parcel-bundler/lightningcss#695):
      lightningcss's prefix-minimization pass drops the unprefixed
@@ -98,7 +96,7 @@
      across rule boundaries. See Header.module.css for the same fix.
      TODO(figma): blur radius (20px) is a best-effort match, not
      measured off a spec. */
-  -webkit-backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(36px);
 }
 
 /* Part of the lightningcss workaround above: same selector, same
@@ -107,7 +105,7 @@
    rule-boundary trick, not a real feature-detection fallback. */
 @supports (backdrop-filter: blur(0)) {
   .background {
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(36px);
   }
 }
 

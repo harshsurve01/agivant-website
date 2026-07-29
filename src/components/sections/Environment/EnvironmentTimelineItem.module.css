@@ -102,6 +102,11 @@
   color: var(--color-text-primary);
 }
 
+.itemPast .title {
+  color: var(--color-text-link);
+  font-weight: var(--font-weight-semibold);
+}
+
 /* ---- active (current stage) ---- */
 
 .itemActive {

@@ -37,6 +37,7 @@
      preserve-3d here, both would collapse onto whatever plane `.text`
      itself ends up on. */
   transform-style: preserve-3d;
+  overflow: visible;
 }
 
 .title {
@@ -59,16 +60,17 @@
 }
 
 .ribbon {
+  top: -10px;
   position: relative;
   flex: 1; /* fills remaining height below the text block */
-  min-height: 12rem; /* TODO(figma): confirm minimum ribbon height */
+  min-height: 1rem; /* TODO(figma): confirm minimum ribbon height */
   /* Bleed to the card's own edges — the shell clips this with its
      border-radius + overflow: hidden, so it never escapes the card. */
-  margin-inline: calc(var(--space-6) * -1);
-  margin-bottom: calc(var(--space-6) * -1);
+  margin-inline: calc(var(--space-2) * -1);
+  margin-bottom: calc(var(--space-2) * -1);
   pointer-events: none;
-  transform: translateZ(8px);
-  
+  transform: translateZ(88px);
+  overflow: hidden;
 }
 
 .ribbonImage {

@@ -49,6 +49,15 @@ const PLACEHOLDER_HREF = "#";
  * now wrapped in a <Link> (see PLACEHOLDER_HREF above for why the
  * href is a stand-in) — <article> nests inside it rather than being
  * replaced by it, so the semantic markup is unchanged.
+ *
+ * `data-spotlight-card` on the <Link>: a plain, unstyled hook so
+ * SpotlightContainer.module.css's dim-the-other-cards-on-hover rule
+ * (`.container:has([data-spotlight-card]:hover) ...`) can select this
+ * element from a different CSS Modules file. CSS Modules hashes class
+ * names per-file, so `styles.cardLink` isn't reachable from
+ * SpotlightContainer's own stylesheet — a data attribute sidesteps
+ * that without exporting/composing classes across files just for one
+ * selector.
  */
 export function SpotlightCard({ caseStudy }: SpotlightCardProps) {
   const { industry, title, description, metric, metricLabel, footer, image } =
@@ -59,7 +68,12 @@ export function SpotlightCard({ caseStudy }: SpotlightCardProps) {
   const href = (caseStudy as CaseStudy & { href?: string }).href ?? PLACEHOLDER_HREF;
 
   return (
-    <Link href={href} className={styles.cardLink} aria-label={title}>
+    <Link
+      href={href}
+      className={styles.cardLink}
+      aria-label={title}
+      data-spotlight-card
+    >
       <article className={styles.card}>
         <div className={styles.artwork}>
           <Image

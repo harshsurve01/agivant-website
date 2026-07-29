@@ -39,11 +39,11 @@ export async function AIStack() {
   return (
     <section className={styles.aiStack}>
       <Gradient
-        top="20%"
-        right="15%"
-        size="45rem"
-        stops={["#8500df 50%", "#edbf79 55%", "transparent 75%"]}
-        opacity={0.25}
+        top="5%"
+        right="85%"
+        size="65rem"
+        stops={["#8500df 50%", "#edbf79 85%", "transparent 100%"]}
+        opacity={0.2}
         blur="80px"
       />
 

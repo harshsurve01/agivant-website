@@ -1,3 +1,22 @@
+.link {
+  /*
+   * Sized to match .logo's own footprint exactly (not the full slot)
+   * so wrapping the image in a link changes nothing about layout —
+   * inline-flex + align/justify center keeps the link's own box
+   * hugging the image rather than stretching to fill .layer, which
+   * would otherwise make the whole slot's empty space clickable too.
+   */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 4px;
+}
+
 .logo {
   /*
    * Plain <img> now (see PartnerLogo.tsx), so width/height only ever
@@ -10,4 +29,4 @@
   max-height: 32px; /* TODO(figma): confirm exact logo height */
   object-fit: contain;
   user-select: none;
-}
+} 

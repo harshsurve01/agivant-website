@@ -19,27 +19,74 @@
    that's the deck moving the whole card, this is a within-card flip
    that isn't wired up yet.
    ========================================================================== */
-
 .card {
   position: relative;
   width: 70%;
   height: 100%;
-  left:15%;
+  left: 15%;
+
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background-color: var(--color-bg-secondary);
-  /* Soft warm glow bleeding past the card's bottom-right corner —
-     confirmed against the Figma reference by sampling pixels beyond
-     the card's own edge (a genuine warm tint, not compression noise).
-     Implemented as box-shadow rather than a pseudo-element because
-     box-shadow paints outside the border box and isn't clipped by
-     this element's own overflow:hidden, so the glow can bleed past
-     the rounded corner without restructuring .faceStack's clipping.
-     Reuses the existing hero gradient's peach token instead of
-     inventing a new color. */
-  box-shadow: 40px 40px 90px -20px color-mix(in srgb, var(--shadow-color) 55%, transparent);
+
+  /* Glass background */
+  background: rgb(253, 240, 255);
+
+  /* Frosted glass */
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+
+  /* Glass border */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  /* Ambient shadow + glass highlights */
+  box-shadow:
+    40px 40px 90px -20px color-mix(in srgb, var(--shadow-color) 55%, transparent),
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0 rgba(255, 255, 255, 0);
 }
 
+/* Top specular highlight */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Left edge highlight */
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 1px;
+  height: 100%;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+
+  pointer-events: none;
+  z-index: 2;
+}
 .faceStack {
   position: relative;
   width: 100%;
@@ -54,7 +101,7 @@
 }
 
 .faceBack {
-  position: absolute;
+  position: relative;
   inset: 0;
   z-index: 0;
   visibility: hidden;

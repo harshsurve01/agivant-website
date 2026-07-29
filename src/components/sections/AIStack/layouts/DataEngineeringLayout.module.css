@@ -28,6 +28,7 @@
   /* `.title` and `.description` need independent depths from each
      other, so this wrapper has to stay a 3D participant too. */
   transform-style: preserve-3d;
+  overflow: visible;
 }
 
 .title {
@@ -46,13 +47,15 @@
 }
 
 .ribbon {
+  top: 15px;
+  left: -1px;
   position: relative;
   flex: 1;
   min-height: 7rem; /* TODO(figma): confirm minimum ribbon height */
-  margin-inline: calc(var(--space-4) * -1);
-  margin-bottom: calc(var(--space-6) * -1);
+  margin-inline: calc(var(--space-1) * -1);
+  margin-bottom: var(--space-1) ;
   pointer-events: none;
-  transform: translateZ(20px);
+  transform: translateZ(78px);
 }
 
 .ribbonImage {
