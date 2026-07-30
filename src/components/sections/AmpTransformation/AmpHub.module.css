@@ -1,0 +1,71 @@
+/* ==========================================================================
+   AmpHub.module.css
+   Owns the central circle and wordmark/logo only. This component no
+   longer renders or styles any connector lines — see
+   AmpConnectors.module.css for that. `.hub` stays position:relative
+   with z-index:1 purely so the circle reliably paints above the
+   connector layer (a sibling overlay in AmpExperience) if their
+   geometry ever touches at a sub-pixel level — not because this
+   component is aware connectors exist.
+   ========================================================================== */
+
+.hub {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 9rem;
+  height: 9rem;
+}
+
+.circle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border-default);
+  box-shadow: var(--shadow-md);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.logoImage {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.logoLead {
+  color: var(--color-brand-accent);
+}
+
+.logoBody {
+  color: var(--color-text-primary);
+}
+
+.logoHighlight {
+  color: var(--color-text-link);
+}
+
+@media (max-width: 900px) {
+  .hub {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .logo {
+    font-size: var(--font-size-lg);
+  }
+}

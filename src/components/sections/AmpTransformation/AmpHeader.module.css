@@ -1,0 +1,56 @@
+/* ==========================================================================
+   AmpHeader.module.css
+   Mirrors EnvironmentHeader.module.css / AIStackHeader.module.css:
+   centered heading block with explicit line breaks, a max-width tuned
+   to the supplied screenshot's proportions, and existing type-scale
+   tokens rather than hardcoded px values.
+
+   PENDING FIGMA: font sizes below use existing type-scale tokens as
+   placeholders — no Figma inspector panel was supplied for this
+   block, so no point sizes are confirmed.
+   ========================================================================== */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4); /* TODO(figma): confirm exact gap between heading and description */
+  max-width: 48rem;
+  text-align: center;
+}
+
+.heading {
+  font-size: var(--font-size-4xl); /* TODO(figma): confirm exact heading size */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
+.headingLine {
+  display: block;
+}
+
+.highlight {
+  color: var(--color-text-link);
+}
+
+.description {
+  max-width: 42rem;
+}
+
+.descriptionHighlight {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-link);
+}
+
+.descriptionBody {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: var(--font-size-2xl);
+  }
+}

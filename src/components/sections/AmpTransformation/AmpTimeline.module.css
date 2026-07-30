@@ -1,0 +1,106 @@
+/* ==========================================================================
+   AmpTimeline.module.css
+   Horizontal dot-and-line timeline. `.line` is one continuous layer
+   spanning the full track width, positioned behind `.list`'s nodes —
+   see AmpTimeline.tsx's doc comment for why it isn't split per item.
+   ========================================================================== */
+
+.track {
+  position: relative;
+  width: 100%;
+}
+
+.line {
+  position: absolute;
+  top: 0.75rem; /* aligns with .node's vertical center */
+  /* Half of .node's width — the line starts/ends at the first and
+     last node's own center, not the track's outer edge, regardless
+     of how many stages .list ends up rendering. */
+  left: 1.75rem;
+  right: 1.75rem;
+  height: 2px;
+  background-color: var(--color-border-default);
+}
+
+.list {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.node {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 1.5rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-text-link);
+}
+
+.range {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-link);
+  white-space: nowrap;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-link);
+}
+
+.description {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 640px) {
+  .list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-6);
+  }
+
+  .line {
+    top: 0;
+    bottom: 0;
+    left: 1.75rem;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+
+  .item {
+    flex-direction: row;
+    text-align: left;
+    width: 100%;
+  }
+
+  .copy {
+    align-items: flex-start;
+  }
+}

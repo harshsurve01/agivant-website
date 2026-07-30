@@ -1,0 +1,68 @@
+/* ==========================================================================
+   AmpExperience.module.css
+   Three-column layout: left column, hub, right column, plus the
+   connector layer overlaying all three. `position: relative` on
+   `.experience` is what AmpConnectors' full-area absolute overlay
+   anchors against (see AmpConnectors.module.css) — remove it and the
+   connector layer will position itself against some larger ancestor
+   instead and misalign. Deliberately NOT `overflow: hidden` anywhere
+   in this file either, in case a future design wants a connector path
+   to bleed slightly past a column's edge.
+
+   `.leftSlot`/`.rightSlot` exist because AmpColumn caps its own width
+   (`max-width: 22rem` in AmpColumn.module.css) — a grid item with a
+   definite max-width doesn't stretch to fill a wide `1fr` track, it
+   just sits at the START of that track. That's correct for the left
+   column (start of the left track = flush with the section's left
+   edge, which is what we want) but wrong for the right column (start
+   of the right track = flush against the hub, not out toward the
+   section's right edge). Rather than solve this inside AmpColumn
+   itself — which would need to know which side it's on, breaking its
+   reusability — each slot below is a plain full-width grid cell that
+   fills the whole `1fr` track, then uses `justify-content` to push
+   its (narrower) AmpColumn child to the correct outer edge. Each slot
+   also carries `z-index: 1` so its cards paint above the connector
+   layer's `z-index: 0` overlay.
+   ========================================================================== */
+
+.experience {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-8);
+  width: 100%;
+}
+
+.leftSlot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+}
+
+.rightSlot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .experience {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: var(--space-10);
+  }
+
+  /* Stacked layout: both columns should center under the hub instead
+     of hugging the (now irrelevant) left/right section edges. */
+  .leftSlot,
+  .rightSlot {
+    justify-content: center;
+  }
+}

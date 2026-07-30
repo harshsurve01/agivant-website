@@ -1,0 +1,50 @@
+/* ==========================================================================
+   AmpProgress.module.css
+   Owns the bordered "How Amp'd is Your Enterprise?" card shell and
+   the layout of its heading / timeline / CTA row. Timeline visuals
+   live in AmpTimeline.module.css; the Button's own visuals live in
+   the shared Button component.
+   ========================================================================== */
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  width: 100%;
+  padding: var(--space-8);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-primary);
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-link);
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  width: 100%;
+}
+
+.cta {
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-8);
+  }
+
+  .cta {
+    align-self: center;
+  }
+}
