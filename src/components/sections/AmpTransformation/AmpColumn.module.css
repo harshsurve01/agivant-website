@@ -1,15 +1,54 @@
 /* ==========================================================================
    AmpColumn.module.css
-   Owns only the column's own title + card-stack layout. Card visuals
-   belong to AmpCard.module.css.
+   Owns the column's own label + title + card-stack layout. Node
+   visuals belong to AmpNode.module.css.
+
+   `.column` is a row: the rotated `.label` sits in the outer margin,
+   `.stack` holds the title + card list. Which side `.label` sits on
+   and which way it reads (bottom-up on the left, top-down on the
+   right — matching the reference screenshot) is driven purely by the
+   `data-amp-side` attribute AmpColumn.tsx sets on the root, so this
+   file stays the single source of truth for the mirroring instead of
+   splitting that logic into JS.
    ========================================================================== */
 
 .column {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.column[data-amp-side="right"] {
+  flex-direction: row-reverse;
+}
+
+.label {
+  flex-shrink: 0;
+  
+  writing-mode: vertical-rl;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.06em;
+  color: var(--color-text-link);
+  white-space: nowrap;
+}
+
+/* Left column's label reads bottom-to-top; right column's label
+   reads top-to-bottom — mirrored around AmpCore, matching the
+   reference screenshot. */
+.label[data-amp-column-label="left"] {
+  transform: rotate(180deg);
+ 
+}
+
+.stack {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
   width: 100%;
   max-width: 22rem;
+  min-width: 0;
 }
 
 .title {
@@ -29,7 +68,15 @@
 }
 
 @media (max-width: 900px) {
-  .column {
+  .stack {
     max-width: 28rem;
+  }
+
+  /* Layout stacks to a single column below this breakpoint (see
+     AmpExperience.module.css) — the rotated side label no longer has
+     a sensible place to sit once columns center under AmpCore instead
+     of flanking it, so it's hidden rather than re-oriented. */
+  .label {
+    display: none;
   }
 }

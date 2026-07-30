@@ -2,8 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { Gradient } from "@/components/effects/Gradient";
 import { AmpHeader } from "./AmpHeader";
 import { AmpExperience } from "./AmpExperience";
-import { AmpStatement } from "./AmpStatement";
-import { AmpProgress } from "./AmpProgress";
+import { AmpFooter } from "./AmpFooter";
 import {
   getAmpHeader,
   getAmpLeftColumn,
@@ -19,15 +18,22 @@ import styles from "./AmpTransformation.module.css";
  *
  * The "What Changes When Your Enterprise Gets Amp'd?" section. Acts
  * only as the section orchestrator: it loads the complete section
- * data and distributes the relevant slice to each child — it owns no
- * layout logic of its own beyond the outer section shell (background,
- * ambient gradients, and the shared Container), same division of
- * responsibility as Environment.tsx and AIStack.tsx.
+ * data and distributes the relevant slice to each of its three direct
+ * children — Header, Experience, Footer — matching the section spec's
+ * top-level structure exactly:
  *
- * `leftColumn`, `hub`, and `rightColumn` are fetched independently
- * (matching the data file's six-getter split) but composed together
- * inside AmpExperience, since that's the component that owns their
- * shared three-column layout — see AmpExperience's doc comment.
+ *   AmpTransformation
+ *   ├── Header                (normal scroll, no pin)
+ *   ├── Experience  (Pinned)  (Left Column / Connector Layer / AmpCore / Right Column)
+ *   └── Footer                (normal scroll, NOT inside the pinned timeline)
+ *
+ * `statement` and `progress` are still fetched independently (the
+ * data file keeps its six-getter split), but both are now handed to
+ * AmpFooter as a pair, since AmpFooter is the component that owns
+ * their shared footer layout — see AmpFooter's doc comment.
+ * `leftColumn`, `hub`, and `rightColumn` are likewise composed inside
+ * AmpExperience, since that's the component that owns the pinned
+ * three-column layout.
  *
  * The two ambient gradient blobs mirror the soft purple/peach glows
  * behind this block in the supplied screenshot, using the same
@@ -35,13 +41,13 @@ import styles from "./AmpTransformation.module.css";
  * AIStack.tsx and Trust.tsx rather than inventing a new background
  * treatment.
  *
- * Static layout only: no Framer Motion, no scroll logic, no client
- * state anywhere in this section yet. Every component listed below is
- * a plain Server Component so each one (AmpHeader, AmpExperience,
- * AmpColumn, AmpCard, AmpHub, AmpStatement, AmpProgress, AmpTimeline)
- * can independently become a Framer Motion boundary later without any
- * structural refactor — see the implementation brief's "Future Framer
- * Motion Integration" section.
+ * This pass is structural only: still a plain Server Component tree,
+ * no Framer Motion, no GSAP/ScrollTrigger, no client state anywhere
+ * in this section yet. Every component below (AmpHeader, AmpExperience,
+ * AmpColumn, AmpNode, AmpConnectorLayer, AmpCore, AmpFooter, AmpTimeline)
+ * is isolated enough to independently become a Client/animation
+ * boundary later without any further structural refactor — see the
+ * section spec's "Motion Architecture" and "Maintainability" sections.
  *
  * Server Component: no "use client", no hooks, no state, no effects.
  * It's async because it awaits its data sources directly — the same
@@ -82,9 +88,7 @@ export async function AmpTransformation() {
 
           <AmpExperience leftColumn={leftColumn} hub={hub} rightColumn={rightColumn} />
 
-          <AmpStatement statement={statement} />
-
-          <AmpProgress progress={progress} />
+          <AmpFooter statement={statement} progress={progress} />
         </div>
       </Container>
     </section>

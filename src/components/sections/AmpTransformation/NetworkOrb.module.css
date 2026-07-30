@@ -1,0 +1,22 @@
+/* ==========================================================================
+   NetworkOrb.module.css
+   Owns only the orb layer's own positioning — it fills its parent
+   (AmpCore sizes that parent) and stretches its canvas to match.
+   No color/line styling lives here; the sphere itself is drawn
+   entirely on the canvas in NetworkOrb.tsx, since canvas content
+   can't be styled via CSS.
+   ========================================================================== */
+
+.wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.canvas {
+  display: block;
+}

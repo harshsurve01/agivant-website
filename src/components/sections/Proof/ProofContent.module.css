@@ -40,7 +40,7 @@
 
 .description {
   font-family: var(--font-family-base);
-  font-size: var(--font-size-md); /* TODO(figma): confirm exact description size */
+  font-size: var(--font-size-lg); /* TODO(figma): confirm exact description size */
   color: var(--color-text-secondary);
   width: 20rem;
   padding-bottom: var(--space-6);

@@ -15,7 +15,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-4); /* TODO(figma): confirm exact gap between heading and description */
-  max-width: 48rem;
+  max-width: 78rem;
   text-align: center;
 }
 
@@ -35,17 +35,17 @@
 }
 
 .description {
-  max-width: 42rem;
+  max-width: 48rem;
 }
 
 .descriptionHighlight {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
   color: var(--color-text-link);
 }
 
 .descriptionBody {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   color: var(--color-text-secondary);
 }
 

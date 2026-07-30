@@ -22,6 +22,14 @@
  * modeled as {highlight, body} rather than one string for the same
  * reason.
  *
+ * CONTENT MODELING NOTE (columns): each column carries an optional
+ * `label` — the rotated vertical marginal text next to the card stack
+ * ("Agivant's Advantage" / "Enterprise Outcome" in the reference
+ * screenshot) — as a field distinct from `title`. It's future-proofed
+ * as its own addressable piece of data (rather than folded into
+ * `title` or hardcoded in AmpColumn) specifically so it can get its
+ * own animation treatment later without any data reshaping.
+ *
  * CONTENT MODELING NOTE (hub): the central "Amp'd" wordmark is split
  * into {lead, body, highlight} rather than a single string so
  * AmpHub can color each fragment independently (accent red / default
@@ -71,6 +79,17 @@ export interface AmpCardData {
 
 export interface AmpColumnData {
   title: string;
+  /**
+   * Short vertical side label rendered alongside the column's card
+   * stack (e.g. "Agivant's Advantage" / "Enterprise Outcome" — see
+   * the section's reference screenshot). Modeled as its own field,
+   * not derived from `title`, because it's visually and semantically
+   * distinct: `title` is the heading above the cards, `label` is a
+   * rotated marginal label that identifies what the whole column
+   * represents. Optional so a column can render without one if a
+   * future WordPress response omits it.
+   */
+  label?: string;
   cards: AmpCardData[];
 }
 
@@ -140,24 +159,49 @@ const mockAmpHeader: AmpHeaderData = {
 /**
  * Order matters: AmpColumn renders these in sequence, top to bottom,
  * exactly as supplied here.
- */
-const mockAmpLeftColumn: AmpColumnData = {
-  title: "The Agivant Amp'd Way",
+ */const mockAmpLeftColumn: AmpColumnData = {
+  title: "",
+  label: "Agivant's Advantage",
   cards: [
-    { id: "proof-of-value", title: "Proof of value in weeks" },
-    { id: "forward-deployed-engineers", title: "Forward-deployed engineers" },
-    { id: "production-grade-agents", title: "Production-grade agents" },
-    { id: "every-build-reusable", title: "Every build becomes reusable" },
+    {
+      id: "bolt-ai-toolkit",
+      title: "Bolt– Agivant’s AI toolkit",
+    },
+    {
+      id: "forward-deployed-engineers",
+      title: "Forward-Deployed Engineers",
+    },
+    {
+      id: "live-ai-agents",
+      title: "Live AI agents and solutions",
+    },
+    {
+      id: "every-build",
+      title: "Every build amplifies the next",
+    },
   ],
 };
 
 const mockAmpRightColumn: AmpColumnData = {
-  title: "What Global Enterprises Gain",
+  title: "",
+  label: "Enterprise Outcome",
   cards: [
-    { id: "measurable-roi", title: "AI spend becomes measurable ROI" },
-    { id: "governed-pilots", title: "Pilots become governed" },
-    { id: "enterprise-trust", title: "Risk becomes enterprise-grade trust" },
-    { id: "autonomous-workflows", title: "Workflows become autonomous" },
+    {
+      id: "measurable-roi",
+      title: "Measurable ROI",
+    },
+    {
+      id: "governed-production",
+      title: "Governed production",
+    },
+    {
+      id: "enterprise-trust",
+      title: "Enterprise-grade trust",
+    },
+    {
+      id: "autonomous-workflows",
+      title: "Autonomous workflows",
+    },
   ],
 };
 

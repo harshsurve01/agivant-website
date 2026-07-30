@@ -1,0 +1,84 @@
+/* ==========================================================================
+   AmpCore.module.css
+   Owns the central circle + wordmark/logo, and now also the "stage"
+   the Network Orb renders into (see NetworkOrb.tsx). `.core` stays
+   position:relative with z-index:1 purely so it reliably paints above
+   the connector layer (a sibling overlay in AmpExperience) if their
+   geometry ever touches at a sub-pixel level — not because this
+   component is aware connectors exist.
+
+   `.core` used to be sized exactly to `.circle` (both 9rem/7rem).
+   It's now sized larger than `.circle` on purpose: `.core` itself has
+   no visible background/border of its own, so growing it changes
+   nothing currently on screen — it only opens up room, centered on
+   the exact same point, for the orb layer to occupy behind the
+   circle. `.circle`'s own size is untouched, which is what keeps the
+   logo exactly where it already was.
+   ========================================================================== */
+
+.core {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 12rem;
+  height: 12rem;
+}
+
+.circle {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 9rem;
+  height: 9rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border-default);
+  box-shadow: var(--shadow-md);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.logoImage {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.logoLead {
+  color: var(--color-brand-accent);
+}
+
+.logoBody {
+  color: var(--color-text-primary);
+}
+
+.logoHighlight {
+  color: var(--color-text-link);
+}
+
+@media (max-width: 900px) {
+  .core {
+    width: 13rem;
+    height: 13rem;
+  }
+
+  .circle {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .logo {
+    font-size: var(--font-size-lg);
+  }
+}

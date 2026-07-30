@@ -1,0 +1,24 @@
+/* ==========================================================================
+   AmpNode.module.css
+   Owns the individual feature node's own visual surface only — no
+   hover interaction, no animation, no position relative to siblings.
+   ========================================================================== */
+
+.node {
+ display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 4rem;
+  padding-inline: var(--space-5);
+  padding-block: var(--space-3);
+  border-radius: var(--radius-full);
+  background-color: #ffffff2a;
+  border: 2px solid #fff;
+}
+
+.title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+}

@@ -44,7 +44,7 @@
 .description {
   max-width: 51rem; /* ~813.59/1442 of the section frame */
   font-family: var(--font-family-base);
-  font-size: var(--font-size-md); /* 30px — exact match to the measured description size */
+  font-size: var(--font-size-lg); /* 30px — exact match to the measured description size */
   color: var(--color-text-secondary);
 }
 

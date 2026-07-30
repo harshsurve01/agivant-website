@@ -1,0 +1,47 @@
+/* ==========================================================================
+   AmpConnectorLayer.module.css
+   Owns only the connector overlay's own positioning + line styling.
+   This layer is a plain absolutely-positioned sibling inside
+   AmpExperience's grid (see AmpExperience.tsx/.module.css) — it is
+   NOT nested inside AmpCore, and AmpExperience.module.css's
+   `.experience { position: relative }` is what this overlay's
+   `inset: 0` anchors against.
+
+   No width/height is set on the <svg> here on purpose: it has no
+   viewBox and no rem-based sizing, so there is nothing that can drift
+   out of sync between this file and AmpConnectorLayer.tsx — every path's
+   `d` is computed in real pixels straight from getBoundingClientRect,
+   and the SVG itself is simply stretched to 100%/100% of this layer.
+   ========================================================================== */
+
+.layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.path {
+  fill: none;
+  stroke: #636161;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+@media (max-width: 900px) {
+  /* Layout stacks to a single column at this breakpoint (see
+     AmpExperience.module.css) — the left/right fan no longer makes
+     sense pointed at columns that now sit above/below the hub instead
+     of beside it, so the whole layer is hidden rather than re-aimed. */
+  .layer {
+    display: none;
+  }
+}

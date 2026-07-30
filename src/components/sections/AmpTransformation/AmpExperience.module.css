@@ -1,9 +1,9 @@
 /* ==========================================================================
    AmpExperience.module.css
-   Three-column layout: left column, hub, right column, plus the
+   Three-column layout: left column, AmpCore, right column, plus the
    connector layer overlaying all three. `position: relative` on
-   `.experience` is what AmpConnectors' full-area absolute overlay
-   anchors against (see AmpConnectors.module.css) — remove it and the
+   `.experience` is what AmpConnectorLayer's full-area absolute overlay
+   anchors against (see AmpConnectorLayer.module.css) — remove it and the
    connector layer will position itself against some larger ancestor
    instead and misalign. Deliberately NOT `overflow: hidden` anywhere
    in this file either, in case a future design wants a connector path
@@ -15,7 +15,7 @@
    just sits at the START of that track. That's correct for the left
    column (start of the left track = flush with the section's left
    edge, which is what we want) but wrong for the right column (start
-   of the right track = flush against the hub, not out toward the
+   of the right track = flush against AmpCore, not out toward the
    section's right edge). Rather than solve this inside AmpColumn
    itself — which would need to know which side it's on, breaking its
    reusability — each slot below is a plain full-width grid cell that
