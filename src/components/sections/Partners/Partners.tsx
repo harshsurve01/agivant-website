@@ -49,8 +49,8 @@ export async function Partners() {
   return (
     <section className={styles.partners}>
       <Gradient
-        top="40%"
-        left="-5%"
+        top="43%"
+        left="-15%"
         centerY
         size="clamp(320px, 32vw, 600px)"
         stops={["color-mix(in srgb, #9d84f2 85%, transparent) 0%", "transparent 78%"]}
@@ -60,8 +60,8 @@ export async function Partners() {
  <Gradient
         kind="linear"
         angle="90deg"
-        top="45%"
-        right="24%"
+        top="42%"
+        right="10%"
         size="30rem"
         stops={["#b31aef 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
         opacity={0.25}

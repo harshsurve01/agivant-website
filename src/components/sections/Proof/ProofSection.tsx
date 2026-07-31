@@ -29,7 +29,7 @@ export async function ProofSection() {
   return (
     <section className={styles.proof}>
       <Gradient
-        top="50%"
+        top="40%"
         left="-10%"
         centerY
         size="clamp(320px, 32vw, 600px)"

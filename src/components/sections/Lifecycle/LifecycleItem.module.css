@@ -25,7 +25,7 @@
      (55%) is deliberately low enough that the blur reads, but high
      enough that body text stays legible over the blob colors.
      TODO(figma): confirm collapsed-row background/opacity. */
-  background-color: color-mix(in srgb,#ffffff00 65%, transparent);
+  background-color: color-mix(in srgb,#0303030c 65%, transparent);
   backdrop-filter: blur(34px);
   -webkit-backdrop-filter: blur(34px); /* Safari requires the prefix */
   border: 2px solid #fff; /* faint glass edge */
@@ -34,7 +34,7 @@
 
 .itemOpen {
 
-  background-color: #ffffff00;
+  background-color: #0303030c;
 }
 
 .itemHeading {

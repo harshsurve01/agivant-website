@@ -62,7 +62,7 @@
      than a soft blur wash. saturate(180%) kept: card reference has no
      saturate, but it's what keeps color underneath from looking washed
      out over a full-width bar (a 240x360 card didn't need it as much). */
-  background: rgba(255, 255, 255, 0.21);
+  background: rgba(2, 2, 2, 0.097);
 
   /* WORKAROUND (lightningcss/Turbopack bug — parcel-bundler/lightningcss#695):
      lightningcss's prefix-minimization pass drops the unprefixed
@@ -81,7 +81,7 @@
      card's border color/opacity (rgba(255,255,255,.3)), just applied
      as border-bottom only (header spans full width, no need for a
      complete border like the card has). */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 0px solid rgba(255, 255, 255, 0);
 
   /* Same 3-layer shadow structure as before, values now matched to the
      reference: 0.1 (was 0.08) on the drop shadow, 0.5 (was 0.45) on the
@@ -114,12 +114,12 @@
   content: "";
   position: absolute;
   inset: 0 0 auto 0;
-  height: 1px;
+  height: 0px;
 
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255,255,255,.75),
+    rgba(0, 0, 0, 0.077),
     transparent
   );
 
@@ -130,9 +130,9 @@
   content: "";
   position: absolute;
   inset: auto 0 0 0;
-  height: 1px;
+  height: 0px;
 
-  background: rgba(255,255,255,.08);
+  background: rgba(0, 0, 0, 0.08);
 
   pointer-events: none;
 }

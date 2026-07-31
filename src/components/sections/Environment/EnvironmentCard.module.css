@@ -29,7 +29,7 @@
   overflow: hidden;
 
   /* Glass background */
-  background: rgb(253, 240, 255);
+  background: rgb(245, 245, 245);
 
   /* Frosted glass */
   backdrop-filter: blur(50px);

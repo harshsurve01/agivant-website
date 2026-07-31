@@ -67,7 +67,7 @@ export async function AmpTransformation() {
     <section className={styles.ampTransformation}>
       <Gradient
         top="-5%"
-        left="-10%"
+        left="-25%"
         size="40rem"
         stops={["#edbf79 0%", "#8500df 55%", "transparent 75%"]}
         opacity={0.18}
@@ -75,7 +75,7 @@ export async function AmpTransformation() {
       />
       <Gradient
         top="15%"
-        right="30%"
+        right="20%"
         size="38rem"
         stops={["#8500df 0%", "#edbf79 55%", "transparent 75%"]}
         opacity={0.38}

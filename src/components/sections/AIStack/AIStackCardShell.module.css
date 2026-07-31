@@ -55,7 +55,7 @@
      window frame around tilting content. `border`/`border-radius`
      aren't grouping properties (unlike overflow/isolation above), so
      they're safe on a preserve-3d element. */
-  border-radius: var(--radius-lg, 1rem); /* TODO(design-tokens): confirm token name */
+  border-radius: var(--radius-md, 1rem); /* TODO(design-tokens): confirm token name */
   border: 2px solid #fff;
   /* This is the ONLY element that rotates, and therefore the ONLY
      element that may carry `transform-style: preserve-3d` without a
@@ -78,14 +78,14 @@
   z-index: 0;
   /* Deepest layer: pushed backward so every other layer visibly
      separates from it as the card tilts. */
-  transform: translateZ(-20px);
+  transform: translateZ(0px);
   /* No color at all — this is pure glass. backdrop-filter blurs
      whatever's behind the card regardless of this element's own fill,
      so background-color doesn't need any opacity/tint to make the
      blur visible; it only existed before to add a tinted glass look,
      which is explicitly not wanted here. */
-  background-color: transparent;
-  border-radius: var(--radius-lg);
+  background-color: #0303030c;
+  border-radius: var(--radius-md);
   /* WORKAROUND (lightningcss/Turbopack bug — parcel-bundler/lightningcss#695):
      lightningcss's prefix-minimization pass drops the unprefixed
      backdrop-filter whenever -webkit-backdrop-filter is also present

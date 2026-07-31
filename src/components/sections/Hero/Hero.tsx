@@ -11,7 +11,6 @@ import CubeIcon from "@/assets/icons/cube.svg";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
 import { HeroBackground } from "./HeroBackground";
 import styles from "./Hero.module.css";
-import { RotatingWords } from "./RotatingWords";
 
 /**
  * Hero
@@ -21,10 +20,11 @@ import { RotatingWords } from "./RotatingWords";
  * that changed in Sprint 1 (Hero Experience). What did change: the
  * content below is now wrapped in HeroBackground, which owns the two
  * breathing ambient glows and the decorative ellipse stroke behind it
- * (see HeroBackground.tsx). Word rotation, particles, and headline
- * motion are later sprints in that same file's doc comment — none of
- * them touch this file either; each is its own component nested
- * inside HeroBackground as it's built out.
+ * (see HeroBackground.tsx). The headline's third line is a static
+ * "real business value" highlight — no word rotation. Particles and
+ * headline motion are later sprints in that same file's doc comment —
+ * none of them touch this file either; each is its own component
+ * nested inside HeroBackground as it's built out.
  *
  * Server Component: no "use client", no hooks, no state, no effects.
  * It's async because it awaits its data source directly — the same
@@ -37,7 +37,7 @@ import { RotatingWords } from "./RotatingWords";
  * replace once the real file is available.
  */
 export async function Hero() {
-  const { title, rotatingWords, tagline, description, primaryCTA, secondaryCTA } =
+  const { title, tagline, description, primaryCTA, secondaryCTA } =
     await getHero();
 
   return (
@@ -76,9 +76,7 @@ export async function Hero() {
               </span>
               <span className={styles.headingLine}>{title.suffix}</span>
               <span className={styles.headingLine}>
-                {/* Only rotatingWords[0] is rendered — rotation itself
-                    is a future GSAP feature, not implemented here. */}
-                <RotatingWords words={rotatingWords} className={styles.highlight}/>
+                <span className={styles.highlight}>real business value</span>
               </span>
             </h1>
 
