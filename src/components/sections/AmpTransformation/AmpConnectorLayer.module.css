@@ -12,6 +12,27 @@
    out of sync between this file and AmpConnectorLayer.tsx — every path's
    `d` is computed in real pixels straight from getBoundingClientRect,
    and the SVG itself is simply stretched to 100%/100% of this layer.
+
+   Exactly two classes here, matching the two-layer connector system in
+   the .tsx — no third glow layer, no beam-head marker:
+
+     .path  — Layer 1, "Static Connector". Always visible, never
+              animated. Its stroke is a per-connector grey→purple→grey
+              gradient set inline (see the .tsx's `base-gradient-*`
+              defs) — intentionally NOT set here, since a class-level
+              `stroke` in this stylesheet would win over that inline
+              gradient reference under normal CSS/SVG cascade rules.
+              This file only owns this layer's geometry and opacity.
+
+     .sweep — Layer 2, "Travelling Light Beam". The only animated
+              element. Its motion lives entirely in the .tsx (an SVG
+              `animateTransform` slides the gradient itself along the
+              connector), so this file only owns its opacity — on for
+              connectors currently "active" (see the .tsx's scheduling
+              effect), off otherwise. The gradient's own stops (also
+              in the .tsx) are what give it a bright center fading to
+              true zero opacity at both ends; nothing here fakes that
+              with a dash pattern.
    ========================================================================== */
 
 .layer {
@@ -28,12 +49,44 @@
   overflow: visible;
 }
 
+/* Layer 1 — Static Connector. Thin, clean, rounded, low-opacity by
+   design ("elegant enterprise appearance", not a bold line). Color
+   itself is a fixed gradient supplied inline per-path in the .tsx —
+   this class deliberately does not set `stroke`, and nothing here is
+   ever animated. */
 .path {
   fill: none;
-  stroke: #636161;
-  stroke-width: 1.5px;
+  stroke-width: 3px;
   stroke-linecap: round;
-  opacity: 0.55;
+  opacity: 0.6;
+}
+
+/* Layer 2 — Travelling Light Beam. Geometrically identical to Layer 1
+   on purpose — same stroke-width, same cap, no blur/filter of any
+   kind — so this path reads as the connector's own color shifting,
+   not as a separate glowing shape sitting on top of it. Its "light
+   travelling through fibre" shape (bright purple center, smooth
+   falloff to fully transparent at both ends) comes entirely from the
+   gradient stops in the .tsx, not from anything in this file. */
+.sweep {
+  fill: none;
+  stroke-width: 3px;
+  stroke-linecap: round;
+  opacity: 0;
+  transition: opacity 800ms ease;
+}
+
+.sweep[data-active="true"] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The beam's motion is driven by SMIL (`animateTransform` in the
+     .tsx), which CSS can't pause directly — instead the whole beam
+     layer is hidden, leaving just the static connector. */
+  .sweep {
+    display: none;
+  }
 }
 
 @media (max-width: 900px) {

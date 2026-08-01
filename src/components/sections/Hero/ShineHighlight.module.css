@@ -1,0 +1,85 @@
+/* ==========================================================================
+   ShineHighlight.module.css
+
+   Wraps the static "real business value" highlight so it can (a)
+   reveal word-by-word on first mount and (b) run a periodic shine
+   sweep once that reveal settles.
+
+   Like RotatingWords, this module does NOT own typography — font
+   size, font weight, and the base purple color all come from
+   Hero.module.css's .highlight class via the className this
+   component is given. This module only owns the entrance-animation
+   state and the shine gradient.
+   ========================================================================== */
+
+.wrapper {
+  display: inline-block;
+}
+
+/*
+  Each word starts hidden/blurred/offset via inline style on the
+  element itself (see ShineHighlight.tsx) so there's no flash of
+  fully-visible, sharp text before the GSAP entrance tween takes over
+  on mount. filter is included in will-change alongside transform/
+  opacity since the entrance animates blur(8px) -> blur(0px).
+*/
+.word {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+/*
+  Shine sweep. Added as a class only after the word-by-word entrance
+  finishes (see ShineHighlight.tsx's onComplete), so the sweep never
+  overlaps the reveal.
+
+  Renders a bright diagonal band that travels left-to-right across the
+  text via background-clip: text, then holds for the remainder of each
+  cycle before repeating.
+
+  Uses a hardcoded color match for Hero.module.css's .highlight color
+  (#8500df) rather than currentColor — currentColor would resolve to
+  `transparent` here, since this same rule sets color: transparent on
+  the element to let the gradient show through as text fill.
+*/
+.shineActive {
+  background-image: linear-gradient(
+    100deg,
+    #8500df 0%,
+    #8500df 42%,
+    #e2b3ff 50%,
+    #8500df 58%,
+    #8500df 100%
+  );
+  background-size: 250% 100%;
+  background-position: 200% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shineSweep 4s ease-in-out infinite;
+}
+
+@keyframes shineSweep {
+  0% {
+    background-position: 200% 0;
+  }
+  18% {
+    /* sweep completes quickly (~0.7s into the 4s cycle)... */
+    background-position: -50% 0;
+  }
+  100% {
+    /* ...then holds here for the rest of the cycle before jumping
+       back to 0% and repeating. */
+    background-position: -50% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shineActive {
+    animation: none;
+    background-image: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: inherit;
+  }
+}

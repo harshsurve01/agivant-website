@@ -8,28 +8,37 @@ interface AmpTimelineProps {
 /**
  * AmpTimeline
  *
- * Receives an array of stages and renders the horizontal dot-and-line
- * timeline dynamically — no assumption that there will always be
- * three stages (per the implementation brief). The connecting line is
- * rendered once, as a single absolutely-positioned layer behind the
- * whole list (`.line`), not as a per-item border/pseudo-element: it's
- * one continuous track spanning every stage, not N-1 independent
- * segments, same reasoning as EnvironmentTimeline's `.line`/`.lineFill`
- * split for its vertical equivalent.
+ * Horizontal dot-and-line timeline: one circular node per stage
+ * (range number inside, e.g. "1 to 3"), a purple dot on the
+ * connecting line between each pair of nodes, and a title/description
+ * pair centered under each node — matches the Figma reference exactly.
  *
- * An <ol> rather than <ul>/<div> because the stages are an
- * intrinsically ordered sequence (Foundational → Operational →
- * Autonomous), not an unordered collection.
+ * The connecting line is one continuous absolutely-positioned layer
+ * behind the node list (`.line`), not a per-item border — it spans
+ * every stage as a single track.
  *
- * Static: no active/current-stage state, no scroll sync, no
- * animation — this section ships as a static layout only.
+ * Dots are positioned with a plain `left` percentage instead of being
+ * measured in JS: since every `.item` is an equal-width flex child,
+ * the dot between item `i` and item `i + 1` always sits at exactly
+ * `((i + 1) / stages.length) * 100%` of the track's width, correct at
+ * any rendered width with no ResizeObserver.
  *
- * Server Component: no "use client", no hooks, no state.
+ * Server Component: no "use client", no hooks, no state — static
+ * layout only.
  */
 export function AmpTimeline({ stages }: AmpTimelineProps) {
   return (
     <div className={styles.track}>
       <div className={styles.line} aria-hidden="true" />
+
+      {stages.slice(0, -1).map((_, index) => (
+        <span
+          key={`dot-${index}`}
+          className={styles.dot}
+          aria-hidden="true"
+          style={{ left: `${((index + 1) / stages.length) * 100}%` }}
+        />
+      ))}
 
       <ol className={styles.list}>
         {stages.map((stage) => (

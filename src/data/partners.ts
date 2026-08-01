@@ -63,15 +63,14 @@ const ALL_PARTNER_LOGOS: PartnerLogo[] = [
     image: { src: "/images/partners/servicenow.png", alt: "ServiceNow" },
     website: "https://www.servicenow.com",
   },
-  {
-    id: "gemini-enterprise",
-    name: "Gemini Enterprise",
-    image: {
-      src: "/images/partners/gemini-enterprise.svg",
-      alt: "Gemini Enterprise",
-    },
-    website: "https://cloud.google.com",
-  },
+ 
+  
+   {
+     id: "databricks",
+     name: "Databricks",
+     image: { src: "/images/partners/databricks.png", alt: "Databricks" },
+     website: "https://www.databricks.com",
+   },
   {
     id: "nvidia",
     name: "NVIDIA",
@@ -96,17 +95,18 @@ const ALL_PARTNER_LOGOS: PartnerLogo[] = [
     image: { src: "/images/partners/salesforce.png", alt: "Salesforce" },
     website: "https://www.salesforce.com",
   },
-  {
-    id: "shopify",
-    name: "Shopify",
-    image: { src: "/images/partners/shopify.png", alt: "Shopify" },
-    website: "https://www.shopify.com",
-  },
+  
   {
     id: "databricks",
     name: "Databricks",
     image: { src: "/images/partners/databricks.png", alt: "Databricks" },
     website: "https://www.databricks.com",
+  },
+  {
+    id: "nvidia",
+    name: "NVIDIA",
+    image: { src: "/images/partners/nvidia.png", alt: "NVIDIA" },
+    website: "https://www.nvidia.com",
   },
 ];
 

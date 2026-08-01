@@ -11,19 +11,21 @@ import {
   type Point3D,
   type ProjectedPoint,
 } from "./orbMath";
+import { EnergySystem, type EdgeBeam } from "./orbEnergy";
+import { GlowSystem } from "./orbGlow";
 import styles from "./NetworkOrb.module.css";
 
 /** Total nodes on the sphere. Tuned to read as a dense-but-legible
  *  mesh at the orb's on-screen size — not exposed as a prop yet since
  *  no caller needs a different density today, but trivial to lift if
  *  a future milestone does. Unchanged from the static milestone. */
-const NODE_COUNT = 64;
+const NODE_COUNT = 94;
 
 /** Each node connects to its N nearest neighbours (see orbMath's
  *  buildNearestNeighborEdges) — this is what keeps the mesh a sparse
  *  "wrapped globe" network instead of a fully-connected cloud.
  *  Unchanged from the static milestone. */
-const NEIGHBORS_PER_NODE = 3;
+const NEIGHBORS_PER_NODE = 4;
 
 /** How much of the canvas's shorter side the sphere's radius fills.
  *  Leaves a small margin so nodes near the silhouette edge don't get
@@ -47,19 +49,19 @@ const ROTATION_RADIANS_PER_MS = (Math.PI * 2) / 20_000;
  *  this milestone's "optional subtle X-axis rotation" note. ~8°. */
 const TILT_X_RADIANS = (8 * Math.PI) / 180;
 
-const NODE_RADIUS_PX = 2.25;
-const LINE_WIDTH_PX = 0.75;
+const NODE_RADIUS_PX = 2.5;
+const LINE_WIDTH_PX = 1;
 
 // Base colors, kept identical to the static milestone's palette.
 // Alpha here is the "at full strength" value — the draw loop scales
 // it down per-element by depth (see depthAlpha below); it never
 // changes the RGB, and never exceeds these original alpha values.
 const LINE_COLOR_RGB = "197, 120, 255";
-const LINE_BASE_ALPHA = 0.35;
+const LINE_BASE_ALPHA = 0.5;
 const NODE_FILL_RGB = "216, 160, 255";
-const NODE_FILL_BASE_ALPHA = 0.85;
+const NODE_FILL_BASE_ALPHA = 0.95;
 const NODE_STROKE_RGB = "133, 0, 223";
-const NODE_STROKE_BASE_ALPHA = 0.4;
+const NODE_STROKE_BASE_ALPHA = 0.9;
 
 /** Depth → alpha-multiplier range. Kept narrow on purpose ("subtle,
  *  do not exaggerate") — the farthest point on the globe still reads
@@ -70,6 +72,123 @@ const DEPTH_ALPHA_MAX = 1;
 function depthAlpha(z: number, radius: number): number {
   const depth = normalizedDepth(z, radius);
   return DEPTH_ALPHA_MIN + (DEPTH_ALPHA_MAX - DEPTH_ALPHA_MIN) * depth;
+}
+
+// ---------------------------------------------------------------------------
+// Energy System tuning (Milestone 3, continuous-beam revision). Every
+// edge has its own beam, always moving — no pool, no spawn interval,
+// no hop budget, no branching. Beams never introduce a new color —
+// they render using the existing NODE_FILL_RGB token above, same
+// palette, just moving.
+// ---------------------------------------------------------------------------
+
+/** Progress-per-ms range; re-randomized every time a beam completes a
+ *  lap, so a single edge's pace still drifts over time. ~500-1100ms
+ *  to cross one edge. */
+const BEAM_SPEED_RANGE: [number, number] = [0.0009, 0.002];
+
+/** Width of the lit window as a fraction of the edge's own length,
+ *  centered on `beam.progress` — not a head-plus-trailing-tail, just
+ *  a short window of light that slides continuously along the edge
+ *  and fades to fully transparent at both of its own ends, the same
+ *  "light passing through fibre" read used for the connector sweeps
+ *  elsewhere in this section (see AmpConnectorLayer.tsx). There is no
+ *  separate bright dot riding at one end — the whole window is the
+ *  beam. */
+const BEAM_WINDOW_PROGRESS = 1;
+
+/** Peak alpha at the window's exact center (t=0.5 of the window,
+ *  before depth/ambient multipliers). The gradient's own stops taper
+ *  this down to 0 at both window edges. */
+const BEAM_PEAK_ALPHA = 0.9;
+
+const BEAM_LINE_WIDTH_PX = 3.5;
+
+// ---------------------------------------------------------------------------
+// Glow System tuning (Milestone 3).
+// ---------------------------------------------------------------------------
+
+const NODE_GLOW_RADIUS_MULTIPLIER = 3.2; // halo radius as a multiple of NODE_RADIUS_PX
+const NODE_GLOW_MAX_ALPHA = 0.55; // kept subtle per spec
+const NODE_GLOW_FILL_BOOST = 0.35; // small extra brightness on the node's own dot while it's lit
+
+/** Draws one edge's beam as a single travelling light-sweep window —
+ *  no packet, no separate head dot, nothing that reads as a discrete
+ *  object moving along the edge. A short symmetric window, centered
+ *  on `beam.progress` and fading to fully transparent at both of its
+ *  own ends, slides continuously along the edge's *already-projected*
+ *  endpoints for this frame — the same straight segment the base edge
+ *  line is drawn along, so the sweep visibly rides the existing line
+ *  rather than cutting its own path. `beam.direction` picks which
+ *  endpoint is the travel origin; because the window is symmetric,
+ *  swapping direction only changes which way it slides, not its
+ *  shape. The window's t-range is allowed to extend slightly past
+ *  [0, 1] (i.e. past the edge's own endpoints) on purpose — its own
+ *  gradient stops are already 0 alpha out there, so it simply fades
+ *  out before reaching the node rather than clipping abruptly. */
+function drawEdgeBeam(
+  context: CanvasRenderingContext2D,
+  edge: Edge,
+  beam: EdgeBeam,
+  projectedPoints: ProjectedPoint[],
+  view: ViewState,
+  ambientIntensity: number
+) {
+  const a = projectedPoints[edge[0]];
+  const b = projectedPoints[edge[1]];
+  const from = beam.direction === 1 ? a : b;
+  const to = beam.direction === 1 ? b : a;
+
+  const halfWindow = BEAM_WINDOW_PROGRESS / 2;
+  const startT = beam.progress - halfWindow;
+  const endT = beam.progress + halfWindow;
+
+  const startX = from.x + (to.x - from.x) * startT;
+  const startY = from.y + (to.y - from.y) * startT;
+  const endX = from.x + (to.x - from.x) * endT;
+  const endY = from.y + (to.y - from.y) * endT;
+
+  const alpha = depthAlpha((from.z + to.z) / 2, view.radius) * ambientIntensity;
+  const peak = BEAM_PEAK_ALPHA * alpha;
+
+  const gradient = context.createLinearGradient(startX, startY, endX, endY);
+  gradient.addColorStop(0, `rgba(${NODE_FILL_RGB}, 0)`);
+  gradient.addColorStop(0.3, `rgba(${NODE_FILL_RGB}, ${peak * 0.45})`);
+  gradient.addColorStop(0.5, `rgba(${NODE_FILL_RGB}, ${peak})`);
+  gradient.addColorStop(0.7, `rgba(${NODE_FILL_RGB}, ${peak * 0.45})`);
+  gradient.addColorStop(1, `rgba(${NODE_FILL_RGB}, 0)`);
+
+  context.strokeStyle = gradient;
+  context.lineWidth = BEAM_LINE_WIDTH_PX;
+  context.beginPath();
+  context.moveTo(startX, startY);
+  context.lineTo(endX, endY);
+  context.stroke();
+}
+
+/** Soft radial halo behind a node whose glow (from a recent beam
+ *  arrival) is above a barely-visible threshold. Purely additive —
+ *  the node's own fill/stroke draw calls are untouched by this. */
+function drawNodeGlow(
+  context: CanvasRenderingContext2D,
+  node: ProjectedPoint,
+  glowValue: number,
+  view: ViewState,
+  ambientIntensity: number
+) {
+  if (glowValue <= 0.02) return;
+
+  const alpha = depthAlpha(node.z, view.radius) * ambientIntensity;
+  const haloRadius = NODE_RADIUS_PX * NODE_GLOW_RADIUS_MULTIPLIER;
+
+  const gradient = context.createRadialGradient(node.x, node.y, 0, node.x, node.y, haloRadius);
+  gradient.addColorStop(0, `rgba(${NODE_FILL_RGB}, ${NODE_GLOW_MAX_ALPHA * glowValue * alpha})`);
+  gradient.addColorStop(1, `rgba(${NODE_FILL_RGB}, 0)`);
+
+  context.fillStyle = gradient;
+  context.beginPath();
+  context.arc(node.x, node.y, haloRadius, 0, Math.PI * 2);
+  context.fill();
 }
 
 interface ViewState {
@@ -85,19 +204,34 @@ interface ViewState {
  * NetworkOrb
  *
  * A code-generated network globe rendered on a single HTML5 Canvas —
- * no SVG, no Three.js, no animation library. This is the Milestone 2
- * version: the same sphere/edges from Milestone 1 now rotate
- * continuously at a constant, gentle velocity via
- * `requestAnimationFrame`, with depth (post-rotation Z) driving
- * painter's-algorithm draw order and a subtle near/far opacity cue.
- * No glow, no energy pulses, no connector integration — those are
- * later milestones.
+ * no SVG, no Three.js, no animation library. This is the Milestone 3
+ * version: the same sphere/edges/rotation/projection from Milestones
+ * 1-2 are completely untouched — this milestone only adds internal
+ * life on top of them, via two independent systems:
  *
- * All math — sphere generation, the neighbour graph, per-frame
- * rotation, projection, and depth normalization — lives in
- * orbMath.ts. This file only owns canvas setup (HiDPI scaling, resize
- * handling), the rAF loop itself, and the actual `ctx.*` drawing
- * calls; it never computes geometry.
+ *   - Energy System (orbEnergy.ts): every edge carries its own light
+ *     beam that loops continuously along it — the whole network is
+ *     flowing at once, all the time, not a sparse set of packets
+ *     spawning/hopping/expiring on a subset of edges. Pure per-edge
+ *     progress + looping — no rendering, no knowledge of rotation or
+ *     the canvas.
+ *   - Glow System (orbGlow.ts): per-node illumination triggered when
+ *     a beam completes a lap and arrives at its edge's far node (via
+ *     a one-way callback from the Energy System — neither module
+ *     imports the other), plus a slow global "breathing" intensity
+ *     for the whole orb.
+ *
+ * This file wires the two together and does all the drawing: it
+ * steps both systems once per frame, then paints each edge's base
+ * line immediately followed by its beam (so every beam visibly rides
+ * its own line), then node glow halos and node dots on top.
+ *
+ * All sphere/graph math — sphere generation, the neighbour graph,
+ * per-frame rotation, projection, and depth normalization — still
+ * lives in orbMath.ts, untouched. This file owns canvas setup (HiDPI
+ * scaling, resize handling), the rAF loop, wiring the Energy/Glow
+ * systems, and the actual `ctx.*` drawing calls; it never computes
+ * sphere/edge geometry itself.
  *
  * Renders as an absolutely-positioned layer that fills its parent
  * (see NetworkOrb.module.css) — AmpCore is responsible for sizing
@@ -206,6 +340,19 @@ export function NetworkOrb() {
     let lastTimestamp: number | null = null;
     let angleY = 0;
 
+    // Milestone 3: internal life, layered on top of the untouched
+    // rotation/projection above. Created once per mount, same as the
+    // buffers above — neither system imports the other; the only
+    // link between them is this callback, so a node's arrival tells
+    // the Glow System to light up without the Energy System knowing
+    // anything about glow, and without the Glow System knowing
+    // anything about packets or edges.
+    const glow = new GlowSystem(points.length);
+    const energy = new EnergySystem(edges, {
+      speedRange: BEAM_SPEED_RANGE,
+      onNodeArrival: (nodeIndex) => glow.triggerNode(nodeIndex),
+    });
+
     function drawFrame(timestamp: number) {
       animationFrameId = requestAnimationFrame(drawFrame);
 
@@ -219,6 +366,10 @@ export function NetworkOrb() {
       angleY += elapsedMs * ROTATION_RADIANS_PER_MS;
 
       if (view.width === 0 || view.height === 0) return;
+
+      energy.step(elapsedMs);
+      glow.step(elapsedMs);
+      const ambientIntensity = glow.ambientIntensity;
 
       for (let i = 0; i < points.length; i++) {
         rotatePointOnto(points[i], angleY, TILT_X_RADIANS, rotatedPoints[i]);
@@ -240,22 +391,41 @@ export function NetworkOrb() {
 
       context.lineWidth = LINE_WIDTH_PX;
       for (const edgeIndex of edgeDrawOrder) {
-        const [a, b] = edges[edgeIndex];
+        const edge = edges[edgeIndex];
+        const [a, b] = edge;
         const from = projectedPoints[a];
         const to = projectedPoints[b];
-        const alpha = LINE_BASE_ALPHA * depthAlpha((from.z + to.z) / 2, view.radius);
+        const alpha = LINE_BASE_ALPHA * depthAlpha((from.z + to.z) / 2, view.radius) * ambientIntensity;
         context.strokeStyle = `rgba(${LINE_COLOR_RGB}, ${alpha})`;
         context.beginPath();
         context.moveTo(from.x, from.y);
         context.lineTo(to.x, to.y);
         context.stroke();
+
+        // Every edge carries its own continuously-looping beam — the
+        // base line above never disappears, only the beam moves along
+        // it. Drawn right after that edge's line, in the same
+        // depth-sorted pass, so beams stay consistent with the
+        // painter's-algorithm order already established for edges.
+        drawEdgeBeam(context, edge, energy.beams[edgeIndex], projectedPoints, view, ambientIntensity);
       }
 
       for (const nodeIndex of nodeDrawOrder) {
         const node = projectedPoints[nodeIndex];
-        const alpha = depthAlpha(node.z, view.radius);
-        context.fillStyle = `rgba(${NODE_FILL_RGB}, ${NODE_FILL_BASE_ALPHA * alpha})`;
-        context.strokeStyle = `rgba(${NODE_STROKE_RGB}, ${NODE_STROKE_BASE_ALPHA * alpha})`;
+        const depthFactor = depthAlpha(node.z, view.radius);
+        const glowValue = glow.nodeGlow[nodeIndex];
+
+        // Soft halo first, so the node's own fill/stroke paints on
+        // top of it — this is the only new visual behind the node.
+        drawNodeGlow(context, node, glowValue, view, ambientIntensity);
+
+        // A currently-lit node's own dot gets a small, capped
+        // brightness boost on top of the existing depth-based alpha —
+        // kept subtle per spec, the halo carries most of the effect.
+        const boost = 1 + glowValue * NODE_GLOW_FILL_BOOST;
+        const alpha = depthFactor * ambientIntensity;
+        context.fillStyle = `rgba(${NODE_FILL_RGB}, ${Math.min(1, NODE_FILL_BASE_ALPHA * alpha * boost)})`;
+        context.strokeStyle = `rgba(${NODE_STROKE_RGB}, ${Math.min(1, NODE_STROKE_BASE_ALPHA * alpha * boost)})`;
         context.lineWidth = 1;
         context.beginPath();
         context.arc(node.x, node.y, NODE_RADIUS_PX, 0, Math.PI * 2);

@@ -25,6 +25,7 @@
   flex-shrink: 0;
   width: 12rem;
   height: 12rem;
+  
 }
 
 .circle {
@@ -36,9 +37,9 @@
   width: 9rem;
   height: 9rem;
   border-radius: var(--radius-full);
-  background-color: var(--color-bg-primary);
-  border: 1px solid var(--color-border-default);
-  box-shadow: var(--shadow-md);
+  background-color:#ffffffde;
+  border: 2px solid #fff;
+  box-shadow: #0000009f 0px 2px 14px;
 }
 
 .logo {

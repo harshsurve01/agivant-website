@@ -10,6 +10,7 @@ import { getHero } from "@/data/hero";
 import CubeIcon from "@/assets/icons/cube.svg";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
 import { HeroBackground } from "./HeroBackground";
+import { ShineHighlight } from "./ShineHighlight";
 import styles from "./Hero.module.css";
 
 /**
@@ -20,15 +21,21 @@ import styles from "./Hero.module.css";
  * that changed in Sprint 1 (Hero Experience). What did change: the
  * content below is now wrapped in HeroBackground, which owns the two
  * breathing ambient glows and the decorative ellipse stroke behind it
- * (see HeroBackground.tsx). The headline's third line is a static
- * "real business value" highlight — no word rotation. Particles and
- * headline motion are later sprints in that same file's doc comment —
- * none of them touch this file either; each is its own component
- * nested inside HeroBackground as it's built out.
+ * (see HeroBackground.tsx). The headline's third line is still a
+ * fixed, non-rotating phrase — "real business value" never changes to
+ * a different word set — but it's no longer a static <span>: it's
+ * wrapped in ShineHighlight, which reveals it word-by-word on mount
+ * and then loops a shine sweep across it (see ShineHighlight.tsx).
+ * Particles and headline motion are later sprints in that same file's
+ * doc comment — none of them touch this file either; each is its own
+ * component nested inside HeroBackground as it's built out.
  *
- * Server Component: no "use client", no hooks, no state, no effects.
- * It's async because it awaits its data source directly — the same
- * pattern already used by AnnouncementBar and Header.
+ * Server Component: no "use client", no hooks, no state, no effects
+ * of its own. It's async because it awaits its data source directly —
+ * the same pattern already used by AnnouncementBar and Header.
+ * ShineHighlight is a client component, but importing/rendering a
+ * client component from a server component is fine in Next.js — the
+ * "use client" boundary lives in ShineHighlight.tsx itself, not here.
  *
  * ASSET NOTE: no Amp'd SVG file was supplied at implementation time.
  * The <Image> below points at "/images/hero/ampd.svg", which does
@@ -76,7 +83,10 @@ export async function Hero() {
               </span>
               <span className={styles.headingLine}>{title.suffix}</span>
               <span className={styles.headingLine}>
-                <span className={styles.highlight}>real business value</span>
+                <ShineHighlight
+                  text="real business value"
+                  className={styles.highlight}
+                />
               </span>
             </h1>
 

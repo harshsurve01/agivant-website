@@ -19,7 +19,7 @@
 }
 
 .ribbon {
-  top:8px;
+  top:5px;
   right: -1px;
   position: relative;
   flex-shrink: 0;
@@ -31,7 +31,7 @@
 }
 
 .ribbonImage {
-  object-fit: cover;
+  /* object-fit: cover; */
 }
 
 .text {

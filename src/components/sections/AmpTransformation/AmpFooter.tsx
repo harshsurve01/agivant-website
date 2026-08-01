@@ -31,38 +31,29 @@ function ChevronMark({ offset }: { offset: number }) {
  * AmpFooter
  *
  * The section's normal-scroll footer — everything that lives below
- * the pinned Experience (see the section spec's overall structure:
- * "The footer is NOT inside the pinned timeline. The footer exists
- * naturally below the experience."). Folds together what used to be
- * two separate siblings of AmpTransformation (AmpStatement and
- * AmpProgress) into the single AmpFooter the spec's folder structure
- * calls for, in the spec's own order:
+ * the pinned Experience. Layout refinement per the latest approved
+ * Figma: this is a straight vertical stack now, not a two-part
+ * statement-row-plus-card —
  *
- *   Enterprise Statement → Timeline → CTA
+ *   Enterprise Statement → Timeline Title → Timeline → CTA Button
  *
- * The chevron statement row and the "How Amp'd is Your Enterprise?"
- * timeline/CTA card keep their own internal sections below rather
- * than being flattened into one undifferentiated block, so either
- * piece's layout can still change independently without touching the
- * other — same separation of concerns the rest of this section
- * follows, just composed under one component per the new structure.
- * AmpTimeline itself stays its own file/component: it's reusable
- * layout (an ordered dot-and-line track) that AmpFooter composes, the
- * same way AmpColumn composes AmpNode.
+ * all centered, with no bordered/padded "card" around the timeline
+ * section anymore (see AmpFooter.module.css's .progress — it's a
+ * plain flex column now, card visuals removed).
  *
- * `progress.button` is optional per "Do NOT assume... the button
- * always exists" — this component renders nothing in its place when
- * a future WordPress response omits it, rather than rendering a
- * broken or empty CTA slot.
+ * The timeline itself is unchanged (still AmpTimeline, still fed the
+ * same `progress.stages`) — it's wrapped in `.timelineWrap` purely to
+ * constrain it to ~45-50% width and keep it centered, per the updated
+ * Figma. AmpTimeline's own internals (nodes, dots, line, mobile
+ * breakpoint) aren't touched.
+ *
+ * `progress.button` is still optional per "Do NOT assume... the
+ * button always exists" — renders nothing in its place when a future
+ * WordPress response omits it.
  *
  * Server Component: no "use client", no hooks, no state. Per the
  * spec's Pin Behaviour, this component is never touched by
- * ScrollTrigger — it scrolls normally, so it never needs to become a
- * Client Component for that reason. The orb/connector activity
- * visible above it while it scrolls into view (spec Phase 9: "the orb
- * keeps rotating... nothing freezes") lives entirely in AmpCore /
- * AmpConnectorLayer's own time-driven and event-driven systems, not
- * here.
+ * ScrollTrigger — it scrolls normally.
  */
 export function AmpFooter({ statement, progress }: AmpFooterProps) {
   return (
@@ -99,17 +90,17 @@ export function AmpFooter({ statement, progress }: AmpFooterProps) {
       <div className={styles.progress}>
         <h3 className={styles.progressTitle}>{progress.title}</h3>
 
-        <div className={styles.progressRow}>
+        <div className={styles.timelineWrap}>
           <AmpTimeline stages={progress.stages} />
-
-          {progress.button ? (
-            <Link href={progress.button.href} className={styles.cta}>
-              <Button variant="primary" size="lg" rightIcon={<Cube />}>
-                {progress.button.label}
-              </Button>
-            </Link>
-          ) : null}
         </div>
+
+        {progress.button ? (
+          <Link href={progress.button.href} className={styles.cta}>
+            <Button variant="primary" size="lg" rightIcon={<Cube />}>
+              {progress.button.label}
+            </Button>
+          </Link>
+        ) : null}
       </div>
     </div>
   );

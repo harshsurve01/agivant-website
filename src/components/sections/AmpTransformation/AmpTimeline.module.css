@@ -1,8 +1,10 @@
 /* ==========================================================================
    AmpTimeline.module.css
-   Horizontal dot-and-line timeline. `.line` is one continuous layer
-   spanning the full track width, positioned behind `.list`'s nodes —
-   see AmpTimeline.tsx's doc comment for why it isn't split per item.
+   Horizontal dot-and-line timeline, rebuilt to match the Figma
+   reference exactly: light-gray circular nodes holding a bold purple
+   range number, a thin line running behind them with a small purple
+   dot centered in each gap, and a bold purple title + gray
+   description centered under each node.
    ========================================================================== */
 
 .track {
@@ -12,14 +14,22 @@
 
 .line {
   position: absolute;
-  top: 0.75rem; /* aligns with .node's vertical center */
-  /* Half of .node's width — the line starts/ends at the first and
-     last node's own center, not the track's outer edge, regardless
-     of how many stages .list ends up rendering. */
-  left: 1.75rem;
-  right: 1.75rem;
-  height: 2px;
+  top: 2rem; /* centers on .node's vertical middle (3rem / 2) */
+  left: 2rem; /* starts at the first node's own center, not the track edge */
+  right: 2rem; /* ends at the last node's own center */
+  height: 1px;
   background-color: var(--color-border-default);
+}
+
+.dot {
+  position: absolute;
+  top: 2rem;
+  z-index: 1;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-text-link);
+  transform: translate(-50%, -50%);
 }
 
 .list {
@@ -47,16 +57,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3.5rem;
-  height: 1.5rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: var(--radius-full);
-  background-color: var(--color-bg-primary);
-  border: 1px solid var(--color-text-link);
+  background-color: #fff;
+  box-shadow: inset 0 0 2px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid var(--color-border-default);
 }
 
 .range {
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
   color: var(--color-text-link);
   white-space: nowrap;
 }
@@ -68,14 +80,15 @@
 }
 
 .title {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-link);
 }
 
 .description {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
+  white-space: nowrap;
 }
 
 @media (max-width: 640px) {
@@ -88,10 +101,18 @@
   .line {
     top: 0;
     bottom: 0;
-    left: 1.75rem;
+    left: 1.5rem;
     right: auto;
-    width: 2px;
+    width: 1px;
     height: auto;
+  }
+
+  /* Dot `left` percentages are computed against the horizontal
+     track's width and land at meaningless positions once the list
+     stacks into a single column — simplest correct fix is to hide
+     them in this layout. */
+  .dot {
+    display: none;
   }
 
   .item {
@@ -102,5 +123,9 @@
 
   .copy {
     align-items: flex-start;
+  }
+
+  .description {
+    white-space: normal;
   }
 }

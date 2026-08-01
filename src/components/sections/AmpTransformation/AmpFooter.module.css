@@ -1,20 +1,21 @@
 /* ==========================================================================
    AmpFooter.module.css
-   Owns the section's normal-scroll footer: the chevron statement row
-   and the "How Amp'd is Your Enterprise?" timeline/CTA card. Merges
-   what used to be AmpStatement.module.css + AmpProgress.module.css —
-   class names below are namespaced (`.statement*` / `.progress*`)
-   instead of colliding on generic names like `.title`/`.text` now
-   that both live in one module. Timeline visuals live in
-   AmpTimeline.module.css; the Button's own visuals live in the
-   shared Button component.
+   Owns the section's normal-scroll footer: the chevron statement row,
+   the timeline title, the timeline itself, and the CTA button — a
+   single centered vertical stack per the latest approved Figma.
+   Class names stay namespaced (`.statement*` / `.progress*`) since
+   this module still covers what used to be two separate files
+   (AmpStatement + AmpProgress). Timeline visuals live in
+   AmpTimeline.module.css; the Button's own visuals live in the shared
+   Button component. Neither was touched here — only this file's
+   layout/spacing changed.
    ========================================================================== */
 
 .footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-16); /* TODO(figma): confirm exact gap between statement and progress card */
+  gap: var(--space-6); /* ~24px, statement -> title/timeline/button block, per Figma */
   width: 100%;
 }
 
@@ -46,25 +47,78 @@
   height: 1.5rem;
   flex-shrink: 0;
   color: var(--color-text-link);
-  opacity: 0.55;
 }
 
 .chevronRight {
   transform: rotate(180deg);
 }
 
-/* ---- Timeline / CTA card -------------------------------------------- */
+/* Chase animation — unchanged, per "keep the animated chevrons
+   exactly as they currently work." Matches Lifecycle.module.css's
+   .connectorArrow1/2/3 pattern: each of the three stacked chevron
+   paths cycles low -> full -> low opacity, staggered so the peak
+   travels across the three paths in the order they're drawn (offset
+   0 -> 7 -> 14 in AmpFooter.tsx's ChevronMark). `.chevronRight`'s
+   180deg rotation flips the whole group visually, so this same
+   draw-order stagger still reads as "flowing toward the statement
+   text" on both sides without a mirrored delay order. Targets `path`
+   directly (not a class) since ChevronMark renders bare <path>
+   siblings with no wrapper to hang a class on. */
+.chevronLeft path,
+.chevronRight path {
+  animation: chevronChase 1.5s ease-in-out infinite;
+}
 
+.chevronLeft path:nth-of-type(1),
+.chevronRight path:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.chevronLeft path:nth-of-type(2),
+.chevronRight path:nth-of-type(2) {
+  animation-delay: 0.25s;
+}
+
+.chevronLeft path:nth-of-type(3),
+.chevronRight path:nth-of-type(3) {
+  animation-delay: 0.5s;
+}
+
+@keyframes chevronChase {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chevronLeft path,
+  .chevronRight path {
+    animation: none;
+    opacity: 0.55;
+  }
+}
+
+/* ---- Timeline title / timeline / CTA -------------------------------- */
+
+/*
+  No longer a bordered card. Per the updated Figma this whole block —
+  title, timeline, button — is lightweight and open: no border, no
+  border-radius, no background fill, no large internal padding. Just
+  a centered flex column.
+
+  Title->timeline and timeline->button use different gaps (~18px vs
+  ~24px per the Figma), so this doesn't use a single `gap` value —
+  each gap is an explicit margin on the element above it instead.
+*/
 .progress {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-6);
   width: 100%;
-  padding: var(--space-8);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-lg);
-  background-color: var(--color-bg-primary);
 }
 
 .progressTitle {
@@ -72,29 +126,35 @@
   font-weight: var(--font-weight-bold);
   color: var(--color-text-link);
   text-align: center;
+  margin-bottom: 1.125rem; /* ~18px per Figma — no exact match in the space scale (space-4=16px, space-5=20px) */
 }
 
-.progressRow {
-  display: flex;
-  align-items: center;
-  gap: var(--space-10);
+/*
+  Constrains AmpTimeline to ~45-50% of the available width and keeps
+  it centered, per the updated Figma. AmpTimeline itself still
+  renders at its own width: 100% — it's just now rendering inside a
+  narrower, centered box instead of stretching the full footer width.
+  Timeline logic/markup untouched.
+*/
+.timelineWrap {
   width: 100%;
+  max-width: 50%;
+  margin-inline: auto;
+  margin-bottom: var(--space-6); /* ~24px, timeline -> CTA, per Figma */
 }
 
 .cta {
-  flex-shrink: 0;
   text-decoration: none;
 }
 
 @media (max-width: 768px) {
-  .progressRow {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-8);
-  }
-
-  .cta {
-    align-self: center;
+  /* 50% is a desktop-only proportion. Give the timeline its full
+     available width back once the viewport narrows, so the three
+     nodes aren't squeezed before AmpTimeline's own vertical-stack
+     breakpoint (640px) even kicks in — preserves the existing
+     tablet/mobile behavior. */
+  .timelineWrap {
+    max-width: 100%;
   }
 }
 
