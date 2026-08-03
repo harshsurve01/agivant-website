@@ -34,7 +34,7 @@ export function ProofContent({ heading, description, cta }: ProofContentProps) {
       <h2 className={styles.heading}>
         <span className={styles.highlight}>{heading.highlightWord}</span>{" "}
         {heading.line1Rest}
-        <span className={styles.headingLine}>{heading.line2}</span>
+        {heading.line2}
       </h2>
 
       <p className={styles.description}>{description}</p>
