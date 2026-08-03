@@ -221,6 +221,50 @@ function computeSweepGeometry(
 }
 
 /**
+ * Returns `el`'s box (left/top/right/bottom) in layout pixels relative
+ * to `ancestor`'s own layout origin — built entirely from
+ * offsetLeft/offsetTop/offsetWidth/offsetHeight, walking the
+ * offsetParent chain. Unlike getBoundingClientRect(), these
+ * properties reflect an element's position in NORMAL DOCUMENT FLOW and
+ * are untouched by CSS transforms (scale/translate/etc.) applied to
+ * the element itself or to any ancestor between it and `ancestor`.
+ *
+ * This matters here specifically because `measure()` below reads
+ * `[data-amp-core]` and `[data-amp-node]` — both of which are actively
+ * transformed by AmpExperience's scroll-scrubbed GSAP timeline (the
+ * core's own logo-shrink scale, and every card's reveal scale/blur/y).
+ * Measuring those with getBoundingClientRect() would bake in whatever
+ * mid-animation transform state happened to be active the instant
+ * `measure()` ran — and nothing would ever correct it afterward, since
+ * ResizeObserver only fires on real box-size changes, never on
+ * transform-only ones. Using layout-space coordinates instead removes
+ * that race entirely, regardless of when `measure()` happens to run.
+ *
+ * Requires `ancestor` to be a positioned element so it actually
+ * terminates the offsetParent chain — `.experience` is
+ * `position: relative` (see AmpExperience.module.css), which is what
+ * every measurement here is already documented as being relative to.
+ */
+function layoutRectRelativeTo(el: HTMLElement, ancestor: HTMLElement) {
+  let left = 0;
+  let top = 0;
+  let node: HTMLElement | null = el;
+
+  while (node && node !== ancestor) {
+    left += node.offsetLeft;
+    top += node.offsetTop;
+    node = node.offsetParent as HTMLElement | null;
+  }
+
+  return {
+    left,
+    top,
+    right: left + el.offsetWidth,
+    bottom: top + el.offsetHeight,
+  };
+}
+
+/**
  * AmpConnectorLayer
  *
  * The connector layer: a single SVG overlay that draws one path per
@@ -245,11 +289,21 @@ function computeSweepGeometry(
  * relative to. AmpExperience.module.css gives that container
  * `position: relative` for this overlay to anchor against.
  *
- * All geometry is computed from `getBoundingClientRect()` in real
- * pixels — there is no rem/viewBox unit conversion anywhere in this
- * file, and no coordinate is ever hardcoded. That's what makes this
- * layer responsive across desktop/tablet/mobile "for free": whatever
- * the current layout measures as, the paths measure the same.
+ * All geometry is computed in real layout pixels via
+ * `layoutRectRelativeTo` (offsetLeft/offsetTop/offsetWidth/offsetHeight,
+ * not `getBoundingClientRect()`) — there is no rem/viewBox unit
+ * conversion anywhere in this file, and no coordinate is ever
+ * hardcoded. That's what makes this layer responsive across
+ * desktop/tablet/mobile "for free": whatever the current layout
+ * measures as, the paths measure the same. Layout-space is used
+ * specifically (rather than the more common getBoundingClientRect())
+ * because `[data-amp-core]` and `[data-amp-node]` are both actively
+ * transformed by AmpExperience's scroll-scrubbed GSAP timeline —
+ * getBoundingClientRect() would pick up that transform and bake
+ * whatever mid-animation state was active at measurement time into
+ * these paths permanently, since transform-only changes never trigger
+ * the ResizeObserver below. See `layoutRectRelativeTo`'s own doc
+ * comment for the full explanation.
  *
  * A ResizeObserver on the container re-measures on any layout change
  * (column reflow, window resize, font swap, content change), so the
@@ -300,20 +354,12 @@ export function AmpConnectorLayer() {
         return;
       }
 
-      const containerRect = container.getBoundingClientRect();
-      const coreRect = coreEl.getBoundingClientRect();
-
-      // Every rect below is expressed relative to the container's own
-      // top-left corner — the same origin the SVG overlay itself sits
-      // at (see AmpConnectorLayer.module.css's `inset: 0`).
-      const toLocal = (rect: DOMRect) => ({
-        left: rect.left - containerRect.left,
-        right: rect.right - containerRect.left,
-        top: rect.top - containerRect.top,
-        bottom: rect.bottom - containerRect.top,
-      });
-
-      const core = toLocal(coreRect);
+      // Every rect below is expressed in layout pixels relative to the
+      // container's own origin — the same origin the SVG overlay
+      // itself sits at (see AmpConnectorLayer.module.css's `inset: 0`).
+      // See layoutRectRelativeTo's doc comment for why this is
+      // deliberately NOT getBoundingClientRect()-based.
+      const core = layoutRectRelativeTo(coreEl, container);
       const coreCenterY = (core.top + core.bottom) / 2;
       // Spread each side's termination points across most (not all)
       // of the core's own height, so they visually land at distinct
@@ -342,7 +388,7 @@ export function AmpConnectorLayer() {
       const nextPaths: ConnectorPath[] = [];
 
       leftNodeEls.forEach((el, index) => {
-        const node = toLocal(el.getBoundingClientRect());
+        const node = layoutRectRelativeTo(el, container);
         const nodeId = el.dataset.ampNode ?? String(index);
         const y1 = (node.top + node.bottom) / 2;
         const x1 = node.right;
@@ -359,7 +405,7 @@ export function AmpConnectorLayer() {
       });
 
       rightNodeEls.forEach((el, index) => {
-        const node = toLocal(el.getBoundingClientRect());
+        const node = layoutRectRelativeTo(el, container);
         const nodeId = el.dataset.ampNode ?? String(index);
         const y1 = (node.top + node.bottom) / 2;
         const x1 = node.left;

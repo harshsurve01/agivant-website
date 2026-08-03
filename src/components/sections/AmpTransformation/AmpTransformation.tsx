@@ -74,11 +74,11 @@ export async function AmpTransformation() {
         blur="90px"
       />
       <Gradient
-        top="15%"
+        top="90%"
         right="20%"
         size="38rem"
         stops={["#8500df 0%", "#edbf79 55%", "transparent 75%"]}
-        opacity={0.38}
+        opacity={0.18}
         blur="90px"
       />
 

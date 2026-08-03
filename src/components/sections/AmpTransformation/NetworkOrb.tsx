@@ -301,7 +301,7 @@ export function NetworkOrb() {
     if (!ctx) return;
 
     // TypeScript can't carry the `ctx !== null` narrowing from the
-    // check above into the nested resizeCanvas/drawFrame closures
+    // check above into the nested applyCanvasSize/drawFrame closures
     // below (control-flow narrowing doesn't cross function
     // boundaries) — even though `ctx` is a `const` that can never
     // become null again. Rebinding it here with an explicit non-null
@@ -318,10 +318,18 @@ export function NetworkOrb() {
       cameraDistance: 0,
     };
 
-    function resizeCanvas() {
-      if (!container || !canvas) return;
-      const { width, height } = container.getBoundingClientRect();
-      if (width === 0 || height === 0) return;
+    // Sizes the canvas from an already-known width/height. Deliberately
+    // takes plain numbers rather than measuring anything itself — every
+    // caller below is responsible for sourcing a TRANSFORM-EXCLUSIVE
+    // width/height (offsetWidth/offsetHeight on mount, contentBoxSize
+    // from ResizeObserver afterward). getBoundingClientRect() is never
+    // used here on purpose: it reports the element's post-transform,
+    // on-screen rect, and this container (`data-amp-orb`) is the exact
+    // node AmpExperience's GSAP timeline applies a live scroll-driven
+    // `scale` to. Sizing the canvas off that would bake in whatever
+    // transform happened to be active at the instant of measurement.
+    function applyCanvasSize(width: number, height: number) {
+      if (!canvas || width === 0 || height === 0) return;
 
       // HiDPI: back the canvas with `dpr`x pixels but keep its CSS
       // box at the container's logical size, so lines/nodes stay
@@ -341,8 +349,17 @@ export function NetworkOrb() {
       view.cameraDistance = view.radius * CAMERA_DISTANCE_RATIO;
     }
 
-    resizeCanvas();
-    const resizeObserver = new ResizeObserver(resizeCanvas);
+    // Initial measurement: offsetWidth/offsetHeight are layout-box
+    // values (same family as ResizeObserver's contentBoxSize below) —
+    // transform-exclusive, so this can't be contaminated by whatever
+    // GSAP scale is mid-flight the instant this effect runs, regardless
+    // of effect-ordering between this component and AmpExperience's.
+    applyCanvasSize(container.offsetWidth, container.offsetHeight);
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      const { inlineSize: width, blockSize: height } = entries[0].contentBoxSize[0];
+      applyCanvasSize(width, height);
+    });
     resizeObserver.observe(container);
 
     let animationFrameId = 0;

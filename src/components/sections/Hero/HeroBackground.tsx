@@ -53,7 +53,7 @@ export function HeroBackground({ children }: HeroBackgroundProps) {
         size="clamp(340px, 34vw, 600px)"
         stops={[
           "color-mix(in srgb, var(--color-bg-gradient-start) 85%, transparent) 0%",
-          "transparent 88%",
+          "transparent 48%",
         ]}
         opacity={1}
         blur="60px"
@@ -63,10 +63,10 @@ export function HeroBackground({ children }: HeroBackgroundProps) {
       <Gradient
         top="4%"
         right="18%"
-        size="clamp(380px, 38vw, 680px)"
+        size="clamp(461px, 46vw, 461px)"
         stops={[
           "color-mix(in srgb, var(--color-bg-gradient-end) 85%, transparent) 0%",
-          "transparent 88%",
+          "transparent 48%",
         ]}
         opacity={1}
         blur="60px"

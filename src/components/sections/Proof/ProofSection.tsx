@@ -34,7 +34,16 @@ export async function ProofSection() {
         centerY
         size="clamp(320px, 32vw, 600px)"
         stops={["color-mix(in srgb, #9d84f2 85%, transparent) 0%", "transparent 78%"]}
-        opacity={1}
+        opacity={0.45}
+        blur="90px"
+      />
+      <Gradient
+        top="40%"
+        right="20%"
+        centerY
+        size="clamp(320px, 32vw, 600px)"
+        stops={["color-mix(in srgb, #9d84f2 85%, transparent) 0%", "transparent 78%"]}
+        opacity={0.35}
         blur="90px"
       />
 

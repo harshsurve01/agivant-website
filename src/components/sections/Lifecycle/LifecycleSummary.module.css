@@ -17,7 +17,7 @@
   border: 2px solid #fff; /* TODO(design-tokens): confirm brand-purple token name */
   border-radius: var(--radius-lg, 1rem); /* TODO(design-tokens): confirm token name */
   text-align: center;
-  background: #0000000c;
+  background: #d9d9d920;
 }
 
 .title {

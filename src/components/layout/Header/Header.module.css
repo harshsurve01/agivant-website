@@ -62,7 +62,7 @@
      than a soft blur wash. saturate(180%) kept: card reference has no
      saturate, but it's what keeps color underneath from looking washed
      out over a full-width bar (a 240x360 card didn't need it as much). */
-  background: rgba(2, 2, 2, 0.097);
+  background: rgba(241, 240, 240, 0.097);
 
   /* WORKAROUND (lightningcss/Turbopack bug — parcel-bundler/lightningcss#695):
      lightningcss's prefix-minimization pass drops the unprefixed

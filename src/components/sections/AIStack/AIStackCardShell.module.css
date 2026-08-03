@@ -84,7 +84,7 @@
      so background-color doesn't need any opacity/tint to make the
      blur visible; it only existed before to add a tinted glass look,
      which is explicitly not wanted here. */
-  background-color: #0303030c;
+  background-color: #c6c6c60c;
   border-radius: var(--radius-md);
   /* WORKAROUND (lightningcss/Turbopack bug — parcel-bundler/lightningcss#695):
      lightningcss's prefix-minimization pass drops the unprefixed
