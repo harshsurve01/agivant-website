@@ -228,3 +228,8 @@
   box-shadow: var(--shadow-focus);
   border-radius: var(--radius-sm);
 }
+.cta :global(button),
+.cta {
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+}

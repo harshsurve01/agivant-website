@@ -1,11 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { CaseStudy } from "@/data/proof";
+import type { SpotlightSlot } from "./SpotlightContainer";
 import { ArrowUpRight } from "@/components/ui/Icon/ArrowUpRight";
 import styles from "./SpotlightCard.module.css";
 
 interface SpotlightCardProps {
   caseStudy: CaseStudy;
+  /**
+   * Which bento slot this card is rendered in. Only used to tell
+   * SpotlightCard.module.css whether this is the LargeSlot card (full
+   * description, no preview/reveal) or one of the two small cards
+   * (clamped preview that unfolds on hover) — see the description
+   * preview/reveal rules in that file. Not used for any layout or
+   * animation logic here; `import type` avoids turning this into a
+   * runtime circular import with SpotlightContainer, which renders
+   * SpotlightCard.
+   */
+  slot: SpotlightSlot;
 }
 
 /**
@@ -59,7 +71,7 @@ const PLACEHOLDER_HREF = "#";
  * that without exporting/composing classes across files just for one
  * selector.
  */
-export function SpotlightCard({ caseStudy }: SpotlightCardProps) {
+export function SpotlightCard({ caseStudy, slot }: SpotlightCardProps) {
   const { industry, title, description, metric, metricLabel, footer, image } =
     caseStudy;
 
@@ -73,6 +85,7 @@ export function SpotlightCard({ caseStudy }: SpotlightCardProps) {
       className={styles.cardLink}
       aria-label={title}
       data-spotlight-card
+      data-slot={slot}
     >
       <article className={styles.card}>
         <div className={styles.artwork}>

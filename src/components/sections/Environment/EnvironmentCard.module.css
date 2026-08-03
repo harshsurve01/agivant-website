@@ -21,8 +21,8 @@
    ========================================================================== */
 .card {
   position: relative;
-  width: 70%;
-  height: 100%;
+  width: 80%;
+  height: 70%;
   left: 15%;
 
   border-radius: var(--radius-lg);

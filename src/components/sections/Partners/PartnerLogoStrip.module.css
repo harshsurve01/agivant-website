@@ -1,32 +1,35 @@
 /* ==========================================================================
    PartnerLogoStrip.module.css
 
-   A single static horizontal card holding one slot per LogoShift
-   instance. The card and the slots never move — only each slot's
-   LogoShift content animates. Column count is driven by however many
-   pairs are passed in (PartnerLogoStrip.tsx sets grid-template-columns
-   inline); .strip's own rule is just a sensible 4-up fallback.
+   Each LogoShift instance sits in its own separate card now — the
+   grid itself (`.strip`) is just an invisible layout container with a
+   gap between cells; all the visual card styling (background, border,
+   radius, padding) that used to live on `.strip` as one continuous
+   strip now lives on `.slot` instead, once per card, per the updated
+   Figma. Column count is still driven by however many pairs are
+   passed in (PartnerLogoStrip.tsx sets grid-template-columns inline);
+   `.strip`'s own rule is just a sensible 4-up fallback. Only the
+   visuals changed here — LogoShift itself, the stagger, and every
+   other piece of functionality in PartnerLogoStrip.tsx are untouched.
    ========================================================================== */
 
 .strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  align-items: center;
+  align-items: stretch;
   width: 100%;
-  border-radius: var(--radius-lg);
-  background-color: #d9d9d920;
-  padding-block: var(--space-4);
-  border: 2px solid #fff;
+  min-height: 5.625rem;
+  gap: 0; /* space between individual cards, replaces the old inter-slot divider */
 }
 
 .slot {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-inline: var(--space-6);
-  border-left: 0px solid var(--color-border-default);
-}
-
-.slot:first-child {
-  border-left: none;
+  padding-block: var(--space-4);
+  padding-inline: var(--space-4);
+  border-radius: var(--radius-md);
+  background-color: #e5e5e520;
+  border: 2px solid #fff;
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.05), inset 0 0 0 rgba(0, 0, 0, 0);
 }

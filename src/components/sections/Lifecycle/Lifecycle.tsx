@@ -61,17 +61,18 @@ export async function Lifecycle() {
           "transparent 65%",
         ]}
         opacity={0.55}
-        blur="90px"
+        blur="10px"
       />
       <Gradient
-        kind="linear"
-        angle="90deg"
+        kind="conic"
+        angle="280deg"
         top="35%"
         right="25%"
-        size="40rem"
+        size="32rem"
         stops={["#b31aef 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
-        opacity={0.15}
-        blur="90px"
+        opacity={0.1}
+        blur="60px"
+          donutHole={0.3}
       />
 
       {/* Container's default size="xl" (1280px) is used here, same as

@@ -71,7 +71,7 @@ export function SpotlightContainer({
           className={styles.largeSlot}
           onMouseEnter={() => onSlotEnter("large")}
         >
-          <SpotlightCard caseStudy={large} />
+          <SpotlightCard caseStudy={large} slot="large" />
         </div>
       ) : null}
 
@@ -80,7 +80,7 @@ export function SpotlightContainer({
           className={styles.topRightSlot}
           onMouseEnter={() => onSlotEnter("topRight")}
         >
-          <SpotlightCard caseStudy={topRight} />
+          <SpotlightCard caseStudy={topRight} slot="topRight" />
         </div>
       ) : null}
 
@@ -89,7 +89,7 @@ export function SpotlightContainer({
           className={styles.bottomRightSlot}
           onMouseEnter={() => onSlotEnter("bottomRight")}
         >
-          <SpotlightCard caseStudy={bottomRight} />
+          <SpotlightCard caseStudy={bottomRight} slot="bottomRight" />
         </div>
       ) : null}
     </div>

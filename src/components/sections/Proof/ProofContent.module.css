@@ -42,7 +42,7 @@
   font-family: var(--font-family-base);
   font-size: var(--font-size-lg); /* TODO(figma): confirm exact description size */
   color: var(--color-text-secondary);
-  width: 20rem;
+  width: 15rem;
   padding-bottom: var(--space-6);
 }
 

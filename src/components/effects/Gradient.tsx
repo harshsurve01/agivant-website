@@ -6,8 +6,10 @@ import { useGradientLayer } from "./GradientLayer";
 import styles from "./Gradient.module.css";
 
 export interface GradientProps {
-  /** "radial" (glow blob, default) or "linear" (brand-gradient wash). */
-  kind?: "radial" | "linear";
+  /** "radial" (glow blob, default), "linear" (brand-gradient wash), or
+   * "conic" (color sweep around the center — use with `donutHole` for
+   * a ring/donut). */
+  kind?: "radial" | "linear" | "conic";
   /** CSS color stops, e.g. ["#8500df 0%", "#edbf79 55%", "transparent 75%"] */
   stops: string[];
   /** Angle for linear gradients only, e.g. "90deg". Ignored for radial. */
@@ -33,6 +35,20 @@ export interface GradientProps {
    * marks its vertical CENTER instead of its edge (matches CSS
    * `transform: translateY(-50%)`). */
   centerY?: boolean;
+  /** Punches a transparent hole in the middle, turning the blob into a
+   * ring/donut. 0–1 as a fraction of the blob's radius that stays
+   * hollow — e.g. 0.55 keeps the inner 55% empty, leaving a ring
+   * filling the outer 45%. Works with any `kind`; pairs best with
+   * `kind="conic"` so the hue sweep reads as a donut rather than a
+   * single directional wash. Omit for a solid blob (default). */
+  donutHole?: number;
+  /** Width, in percentage points of the blob's radius, of the soft
+   * transition at the hole's edge. The mask is applied AFTER `blur`
+   * (per the CSS filter/mask order), so a razor-thin mask edge clips
+   * the blur's soft halo and looks hard no matter how large `blur`
+   * is. Bigger `donutFeather` = softer inner edge. Default 12. Only
+   * used when `donutHole` is set. */
+  donutFeather?: number;
 
   /**
    * Position, expressed relative to wherever this <Gradient/> is
@@ -75,6 +91,8 @@ export function Gradient({
   animationDelay,
   centerX = false,
   centerY = false,
+  donutHole,
+  donutFeather = 20,
   top,
   left,
   right,
@@ -113,7 +131,23 @@ export function Gradient({
   const background =
     kind === "radial"
       ? `radial-gradient(circle, ${stops.join(", ")})`
+      : kind === "conic"
+      ? `conic-gradient(from ${angle}, ${stops.join(", ")})`
       : `linear-gradient(${angle}, ${stops.join(", ")})`;
+
+  // donutHole punches the hole via a mask rather than the background
+  // itself, so it composes with any `kind` (radial/linear/conic)
+  // without touching the color stops. The transition is spread over
+  // `donutFeather` percentage points (not a hard 1pt jump) because
+  // mask is applied AFTER filter/blur — a sharp mask edge would clip
+  // the blurred halo and look hard regardless of `blur`.
+  const maskImage =
+    donutHole != null
+      ? `radial-gradient(circle, transparent ${Math.max(
+          donutHole * 100 - donutFeather,
+          0
+        )}%, black ${donutHole * 100}%)`
+      : undefined;
 
   const translateX = centerX ? "-50%" : "0";
   const translateY = centerY ? "-50%" : "0";
@@ -130,6 +164,8 @@ export function Gradient({
         transform:
           centerX || centerY ? `translate(${translateX}, ${translateY})` : undefined,
         animationDelay: animate === "breathe" ? animationDelay : undefined,
+        WebkitMaskImage: maskImage,
+        maskImage,
         // Consumed by .glow's `filter: blur(var(--gradient-blur))` —
         // set as custom properties (rather than inline `filter`) so
         // the max-width:768px rule in Gradient.module.css can swap in

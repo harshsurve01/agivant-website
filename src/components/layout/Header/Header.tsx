@@ -51,7 +51,7 @@ export async function Header() {
 
          
 
-          <Button variant="primary" size="lg" >
+          <Button variant="primary" size="lg" font-weight="bold" className={styles.cta}>
             Get Amp&apos;d!
           </Button>
         </div>

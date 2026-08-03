@@ -139,6 +139,7 @@
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-primary);
+  border: 1px solid var(--color-purple-500);
 }
 
 .corner {
@@ -153,7 +154,16 @@
   height: 2rem;
   border-radius: var(--radius-full);
   background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
+  color: var(--color-text-link);
+}
+
+.corner svg {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: center;
+}
+
+.card:hover .corner svg {
+  transform: rotate(180deg);
 }
 
 .body {
@@ -187,11 +197,118 @@
   color: var(--color-brand-primary);
 }
 
+/* DESCRIPTION PREVIEW / REVEAL (small cards only)
+   ---------------------------------------------------------------
+   Rest state shows ~3 lines then fades into a "…", so the two small
+   cards read as previews rather than full text. Clipped with
+   max-height + overflow instead of -webkit-line-clamp: line-clamp
+   can't be transitioned smoothly across browsers, and the whole
+   point here is a gradual unfold, not a hard swap between a clamped
+   and unclamped version of the element. Same description node in
+   both states — nothing is duplicated or swapped in the DOM, only
+   this element's own max-height changes.
+
+   `position: relative` + the ::after gradient/ellipsis below are
+   what stop the 3-line cutoff from reading as an abrupt truncation:
+   the last visible line fades into the panel's own background color
+   and ends in "…" exactly where the clip happens, rather than text
+   just stopping mid-line.
+
+   The LargeSlot card opts out entirely via the
+   `.cardLink[data-slot="large"] .description` override further down
+   — full text, no clamp, no ellipsis, unchanged from before this
+   change. `data-slot` is written by SpotlightCard (see that file)
+   since SpotlightContainer.module.css's `.largeSlot` class name is
+   scoped to that other stylesheet and unreachable from here — same
+   reason `data-spotlight-card` exists on .cardLink already. */
 .description {
   font-family: var(--font-family-base);
   font-size: var(--font-size-md);
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
+  position: relative;
+  overflow: hidden;
+  max-height: calc(var(--line-height-relaxed) * 3em); /* ~3 lines */
+  /* No delay here — this is the rule that applies when the pointer
+     LEAVES a hovered card (the .cardLink:hover rule below stops
+     matching and this one takes over), so the preview re-clamps
+     promptly rather than lagging behind the card shrinking back. */
+  transition: max-height 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) 0s;
+}
+
+.description::after {
+  content: "…";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding-left: var(--space-6);
+  /* Fades the clipped line into the panel's own glass background
+     (same value as .body's background-color) rather than hard-cutting
+     it, then appends the ellipsis on top of that fade. */
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-glass-white, rgba(255, 255, 255, 0.72)) 45%
+  );
+  color: var(--color-text-secondary);
+  opacity: 1;
+  transition: opacity 0.25s ease 0s;
+}
+
+/* HOVER: unfold. Reuses the card's own plain CSS :hover (same
+   mechanism as .cardLink:hover .card's lift above), so this reveal is
+   already synchronized with real pointer state and needs no JS or
+   React hover wiring of its own.
+
+   `transition-delay` is what sequences this AFTER the grid-track
+   resize in SpotlightExperience.tsx, which starts tweening the moment
+   hover fires: the card's own growth leads, and the text reveal
+   follows a beat later as a kind of follow-through, rather than both
+   animating in lockstep from frame one and reading as two separate
+   things happening at once. Ellipsis fade-out is delayed further
+   still so it disappears roughly where the growing max-height clears
+   it, instead of vanishing before there's more text to see. */
+.cardLink:hover .description,
+.cardLink:focus-visible .description {
+  /* Generous ceiling, not a measured value — real description copy
+     is always shorter than this, and overflow: hidden means an
+     over-large max-height never shows blank space, it just stops
+     constraining the content once the content's natural height is
+     reached. */
+  max-height: 16rem;
+  transition: max-height 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s;
+}
+
+.cardLink:hover .description::after,
+.cardLink:focus-visible .description::after {
+  opacity: 0;
+  transition: opacity 0.3s ease 0.35s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .description,
+  .cardLink:hover .description,
+  .cardLink:focus-visible .description {
+    transition: none;
+  }
+
+  .description::after,
+  .cardLink:hover .description::after,
+  .cardLink:focus-visible .description::after {
+    transition: none;
+  }
+}
+
+/* LargeSlot opt-out: full description, always — unchanged from
+   before this task. */
+.cardLink[data-slot="large"] .description {
+  max-height: none;
+  overflow: visible;
+  transition: none;
+}
+
+.cardLink[data-slot="large"] .description::after {
+  content: none;
 }
 
 .metric {

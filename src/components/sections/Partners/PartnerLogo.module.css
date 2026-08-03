@@ -26,7 +26,7 @@
   width: auto;
   height: auto;
   max-width: 140px; /* TODO(figma): confirm exact per-logo bounding box — the measured 1233.74×89.35 frame covers all four logos combined, not one */
-  max-height: 32px; /* TODO(figma): confirm exact logo height */
+  max-height: 40px; /* TODO(figma): confirm exact logo height */
   object-fit: contain;
   user-select: none;
 } 

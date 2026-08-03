@@ -43,8 +43,8 @@ export async function AIStack() {
         right="15%"
         size="65rem"
         stops={["#8500df 50%", "#edbf79 85%", "transparent 100%"]}
-        opacity={0.2}
-        blur="90px"
+        opacity={0.15}
+        blur="30px"
       />
 
       <Container>
