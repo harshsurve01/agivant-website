@@ -171,16 +171,25 @@
      in a flex column. Positioned to start a bit above the card's
      midpoint so the artwork's clear reveal area shrinks (fixing
      "artwork occupies too much vertical space") while the panel
-     itself floats over the remaining artwork with translucency. */
+     itself floats over the remaining artwork with translucency.
+
+     RESTRUCTURE: `.body` is now ONLY the positioned/glass/padding
+     layer — it no longer lays out its children directly (that moved
+     to `.bodyContent` below). Its own box, sized by `top`/`bottom`
+     and cropped by `overflow: hidden`, is the SINGLE clip boundary
+     for everything inside: at rest it's short enough that only the
+     title and part of the description fit; on hover `top` animates
+     upward and the box simply gets taller, so more of the SAME
+     underlying content flow (more description, then metric, then
+     footer — in that document order) scrolls into view together. No
+     child of `.bodyContent` has its own hide/reveal rule — see that
+     class below. */
   position: absolute;
   z-index: 1;
-  top: 35%;
+  top: 50%;
   left: 0;
   right: 1rem;
   bottom: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2); /* FIGMA FIX: tighter than --space-3 to match Figma's denser body */
   padding: var(--space-5) var(--space-6); /* FIGMA FIX: reduced from flat --space-6 on all sides */
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   background-color: var(--color-glass-white, rgba(255, 255, 255, 0.72));
@@ -188,6 +197,24 @@
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.06);
   overflow: hidden;
+  /* Only load-bearing for the two small cards' hover-reveal below
+     (`top` is what moves there) — a no-op transition on the large
+     card since nothing ever changes its `top`. Same duration/curve as
+     the rest of the card's hover motion (lift, dim, grid-track tween)
+     so the panel growing to reveal the rest of the content reads as
+     part of one coordinated hover, not a separate animation. */
+  transition: top 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.bodyContent {
+  /* The actual flex column of title/description/metric/footer,
+     unchanged from what `.body` used to do directly. This element has
+     NO clipping, height limit, or transition of its own — `.body`'s
+     box is what crops it, so metric/footer are simply positioned
+     below the visible boundary at rest, not individually hidden. */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2); /* FIGMA FIX: tighter than --space-3 to match Figma's denser body */
 }
 
 .title {
@@ -197,118 +224,69 @@
   color: var(--color-brand-primary);
 }
 
-/* DESCRIPTION PREVIEW / REVEAL (small cards only)
-   ---------------------------------------------------------------
-   Rest state shows ~3 lines then fades into a "…", so the two small
-   cards read as previews rather than full text. Clipped with
-   max-height + overflow instead of -webkit-line-clamp: line-clamp
-   can't be transitioned smoothly across browsers, and the whole
-   point here is a gradual unfold, not a hard swap between a clamped
-   and unclamped version of the element. Same description node in
-   both states — nothing is duplicated or swapped in the DOM, only
-   this element's own max-height changes.
-
-   `position: relative` + the ::after gradient/ellipsis below are
-   what stop the 3-line cutoff from reading as an abrupt truncation:
-   the last visible line fades into the panel's own background color
-   and ends in "…" exactly where the clip happens, rather than text
-   just stopping mid-line.
-
-   The LargeSlot card opts out entirely via the
-   `.cardLink[data-slot="large"] .description` override further down
-   — full text, no clamp, no ellipsis, unchanged from before this
-   change. `data-slot` is written by SpotlightCard (see that file)
-   since SpotlightContainer.module.css's `.largeSlot` class name is
-   scoped to that other stylesheet and unreachable from here — same
-   reason `data-spotlight-card` exists on .cardLink already. */
 .description {
   font-family: var(--font-family-base);
   font-size: var(--font-size-md);
-  line-height: var(--line-height-relaxed);
+  line-height: var(--line-height-snug);
   color: var(--color-text-secondary);
-  position: relative;
+  ; /* collapsed rows read visually letter-spaced in the Figma */
+}
+
+/* SMALL-CARD DESCRIPTION PREVIEW/REVEAL
+   Only the two small cards (topRight/bottomRight) get a clamped
+   preview that unfolds on hover — the large card's description
+   already fits and is meant to show in full (see the `slot` prop's
+   doc comment in SpotlightCard.tsx). Scoped via the `data-slot`
+   attribute on `.cardLink` (set in SpotlightCard.tsx) rather than a
+   dedicated class, since it's already there for the dim-on-hover
+   selector in SpotlightContainer.module.css — no new prop plumbing
+   needed.
+
+   `-webkit-line-clamp` (not a fixed `max-height`) clamps to whole
+   lines and adds the ellipsis automatically, so the cut always lands
+   after a full word/line rather than mid-character. 4 lines is the
+   panel's resting content budget for these smaller card's shorter
+   `.body` — long enough to read as a real preview, short enough that
+   most of the fuller descriptions still truncate and invite the
+   hover. */
+.cardLink[data-slot="topRight"] .description,
+.cardLink[data-slot="bottomRight"] .description {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  max-height: calc(var(--line-height-relaxed) * 3em); /* ~3 lines */
-  /* No delay here — this is the rule that applies when the pointer
-     LEAVES a hovered card (the .cardLink:hover rule below stops
-     matching and this one takes over), so the preview re-clamps
-     promptly rather than lagging behind the card shrinking back. */
-  transition: max-height 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) 0s;
 }
 
-.description::after {
-  content: "…";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding-left: var(--space-6);
-  /* Fades the clipped line into the panel's own glass background
-     (same value as .body's background-color) rather than hard-cutting
-     it, then appends the ellipsis on top of that fade. */
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--color-glass-white, rgba(255, 255, 255, 0.72)) 45%
-  );
-  color: var(--color-text-secondary);
-  opacity: 1;
-  transition: opacity 0.25s ease 0s;
+/* On hover/focus, un-clamp the text AND give the panel room to show
+   it: `top` moves up (see the `.body` transition above) so the panel
+   covers more of the card instead of the now-longer text overflowing
+   past the card's own bottom edge. `:focus-visible` alongside
+   `:hover` so keyboard users get the same reveal, matching the
+   lift/dim pattern elsewhere in this file. */
+.cardLink[data-slot="topRight"]:hover .description,
+.cardLink[data-slot="topRight"]:focus-visible .description,
+.cardLink[data-slot="bottomRight"]:hover .description,
+.cardLink[data-slot="bottomRight"]:focus-visible .description {
+  -webkit-line-clamp: unset;
 }
 
-/* HOVER: unfold. Reuses the card's own plain CSS :hover (same
-   mechanism as .cardLink:hover .card's lift above), so this reveal is
-   already synchronized with real pointer state and needs no JS or
-   React hover wiring of its own.
-
-   `transition-delay` is what sequences this AFTER the grid-track
-   resize in SpotlightExperience.tsx, which starts tweening the moment
-   hover fires: the card's own growth leads, and the text reveal
-   follows a beat later as a kind of follow-through, rather than both
-   animating in lockstep from frame one and reading as two separate
-   things happening at once. Ellipsis fade-out is delayed further
-   still so it disappears roughly where the growing max-height clears
-   it, instead of vanishing before there's more text to see. */
-.cardLink:hover .description,
-.cardLink:focus-visible .description {
-  /* Generous ceiling, not a measured value — real description copy
-     is always shorter than this, and overflow: hidden means an
-     over-large max-height never shows blank space, it just stops
-     constraining the content once the content's natural height is
-     reached. */
-  max-height: 16rem;
-  transition: max-height 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s;
+.cardLink[data-slot="topRight"]:hover .body,
+.cardLink[data-slot="topRight"]:focus-visible .body,
+.cardLink[data-slot="bottomRight"]:hover .body,
+.cardLink[data-slot="bottomRight"]:focus-visible .body {
+  top: 12%;
 }
 
-.cardLink:hover .description::after,
-.cardLink:focus-visible .description::after {
-  opacity: 0;
-  transition: opacity 0.3s ease 0.35s;
-}
+/* No per-element rules for `.metric`/`.footer` any more — at rest
+   they're simply below `.body`'s cropped box (see `.body`'s doc
+   comment above), and on hover they scroll into view along with the
+   rest of `.bodyContent` purely because `.body` grew, not because
+   they were individually faded/hidden. */
 
 @media (prefers-reduced-motion: reduce) {
-  .description,
-  .cardLink:hover .description,
-  .cardLink:focus-visible .description {
+  .body {
     transition: none;
   }
-
-  .description::after,
-  .cardLink:hover .description::after,
-  .cardLink:focus-visible .description::after {
-    transition: none;
-  }
-}
-
-/* LargeSlot opt-out: full description, always — unchanged from
-   before this task. */
-.cardLink[data-slot="large"] .description {
-  max-height: none;
-  overflow: visible;
-  transition: none;
-}
-
-.cardLink[data-slot="large"] .description::after {
-  content: none;
 }
 
 .metric {

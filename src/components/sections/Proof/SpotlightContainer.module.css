@@ -107,7 +107,7 @@
    black tint. */
 .container:has([data-spotlight-card]:hover, [data-spotlight-card]:focus-visible)
   [data-spotlight-card]:not(:hover):not(:focus-visible) {
-filter: blur(2px);
+filter: blur(4px);
 opacity: .9;
 }
 

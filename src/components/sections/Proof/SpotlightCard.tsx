@@ -108,19 +108,35 @@ export function SpotlightCard({ caseStudy, slot }: SpotlightCardProps) {
         </div>
 
         <div className={styles.body}>
-          <h3 className={styles.title}>{title}</h3>
-          <p className={styles.description}>{description}</p>
+          {/* SMALL-CARD REVEAL TARGETS `.bodyContent`, NOT INDIVIDUAL
+              CHILDREN: `.body` (above) is just the positioned/blurred
+              glass layer; this wrapper holds title/description/metric/
+              footer in ONE normal flex flow with no per-child hide
+              rules. At rest, `.body`'s own fixed height (via its `top`
+              offset) crops this flow short — title and a few lines of
+              description are all that fit, so metric/footer are simply
+              below the visible boundary, not individually hidden. On
+              hover, `.body` grows (its `top` offset animates — see
+              SpotlightCard.module.css) and more of this SAME flow
+              scrolls into view: more description, then metric, then
+              footer, in that order, because that's their natural
+              document order — not because each one has its own
+              opacity/height transition. One clip point, one reveal. */}
+          <div className={styles.bodyContent}>
+            <h3 className={styles.title}>{title}</h3>
+            <p className={styles.description}>{description}</p>
 
-          {metric ? (
-            <div className={styles.metric}>
-              <p className={styles.metricValue}>{metric}</p>
-              {metricLabel ? (
-                <p className={styles.metricLabel}>{metricLabel}</p>
-              ) : null}
-            </div>
-          ) : null}
+            {metric ? (
+              <div className={styles.metric}>
+                <p className={styles.metricValue}>{metric}</p>
+                {metricLabel ? (
+                  <p className={styles.metricLabel}>{metricLabel}</p>
+                ) : null}
+              </div>
+            ) : null}
 
-          {footer ? <p className={styles.footer}>{footer}</p> : null}
+            {footer ? <p className={styles.footer}>{footer}</p> : null}
+          </div>
         </div>
       </article>
     </Link>
