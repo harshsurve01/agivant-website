@@ -53,7 +53,7 @@ export function HeroBackground({ children }: HeroBackgroundProps) {
         size="clamp(340px, 34vw, 600px)"
         stops={[
           "color-mix(in srgb, var(--color-bg-gradient-start) 85%, transparent) 0%",
-          "transparent 48%",
+          "transparent 38%",
         ]}
         opacity={1}
         blur="60px"

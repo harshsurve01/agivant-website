@@ -74,8 +74,8 @@ export async function Environment() {
         top="49%"
         right="14%"
         size="30rem"
-        stops={["#b31aef 0%", "#f6048d 21%", "#f88c54 58%", "#ff7670 100%"]}
-        opacity={0.15}
+        stops={["#edbf79 55%", "transparent 75%"]}
+        opacity={0.25}
         blur="90px"
       />
       <Gradient
@@ -83,7 +83,7 @@ export async function Environment() {
         left="-25%"
         size="45rem"
         stops={["#8500df 50%", "#edbf79 55%", "transparent 75%"]}
-        opacity={0.15}
+        opacity={0.01}
         blur="80px"
       />
 

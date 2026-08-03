@@ -53,22 +53,22 @@ export async function Lifecycle() {
           page-wide GradientLayer rather than being clipped to this
           section. */}
       <Gradient
-        top="10%"
-        left="-25%"
+        top="45%"
+        left="-15%"
         size="49rem"
         stops={[
-          "color-mix(in srgb, var(--color-accent-primary, #8500df) 55%, transparent) 0%",
+          "color-mix(in srgb, #f2dc84ce 70%, transparent) 0%",
           "transparent 65%",
         ]}
-        opacity={0.35}
+        opacity={0.55}
         blur="90px"
       />
       <Gradient
         kind="linear"
         angle="90deg"
-        top="49%"
-        right="18%"
-        size="30rem"
+        top="35%"
+        right="25%"
+        size="40rem"
         stops={["#b31aef 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
         opacity={0.15}
         blur="90px"

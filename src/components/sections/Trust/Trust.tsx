@@ -54,7 +54,7 @@ export async function Trust() {
           "color-mix(in srgb, var(--color-bg-gradient-start) 55%, transparent) 0%",
           "transparent 58%",
         ]}
-        opacity={1}
+        opacity={0.15}
         blur="90px"
       />
 
