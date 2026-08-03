@@ -598,10 +598,26 @@ export function AmpConnectorLayer() {
 
           return (
             <g key={path.id}>
-              {/* Layer 1 — Static Connector. Always present, never
-                  animated; its grey→purple→grey gradient (defined
-                  above) is fixed. */}
-              <path d={path.d} className={styles.path} stroke={`url(#base-gradient-${path.id})`} />
+              {/* Layer 1 — Static Connector. Always present; its
+                  grey→purple→grey gradient (defined above) is fixed
+                  and never animated. `data-amp-connector`/
+                  `data-amp-connector-side` are read-only markers —
+                  same DOM-attribute decoupling as `data-amp-node`
+                  elsewhere in this section — that let AmpExperience's
+                  scroll timeline find and progressively draw this
+                  path (via stroke-dasharray/stroke-dashoffset) from
+                  the outside, without this component knowing that
+                  scroll choreography exists. Layer 2 (the beam,
+                  below) is NOT tagged — its own reveal/activation is
+                  a separate concern this component already owns
+                  independently of scroll. */}
+              <path
+                d={path.d}
+                className={styles.path}
+                stroke={`url(#base-gradient-${path.id})`}
+                data-amp-connector={path.id}
+                data-amp-connector-side={isRightSide ? "right" : "left"}
+              />
 
               {/* Layer 2 — Travelling Light Beam. Not a separate
                   shape: this path is an exact geometric duplicate of

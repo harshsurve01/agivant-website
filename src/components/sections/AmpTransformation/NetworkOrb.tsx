@@ -238,6 +238,15 @@ interface ViewState {
  * that parent and for stacking the logo/circle above this component
  * via z-index, so this component has zero knowledge of the logo.
  *
+ * Milestone 5: the root carries `data-amp-orb="true"` so AmpExperience's
+ * GSAP timeline can select and animate (opacity/scale) this layer from
+ * the outside, the same DOM-attribute pattern AmpCore already uses for
+ * `data-amp-core` — this component still has zero knowledge that any
+ * of that scroll choreography exists, or even that it's being
+ * animated at all; the rotation loop above runs identically either
+ * way, since it's time-driven and never touches opacity/transform on
+ * `.wrapper` itself.
+ *
  * Performance: `points` and `edges` are generated once via `useMemo`
  * on a UNIT sphere, same as the static milestone. Two more buffers —
  * `rotatedPoints` and `projectedPoints` — are allocated once (one
@@ -443,7 +452,7 @@ export function NetworkOrb() {
   }, [points, edges, rotatedPoints, projectedPoints, edgeDrawOrder, nodeDrawOrder]);
 
   return (
-    <div ref={containerRef} className={styles.wrapper} aria-hidden="true">
+    <div ref={containerRef} className={styles.wrapper} aria-hidden="true" data-amp-orb="true">
       <canvas ref={canvasRef} className={styles.canvas} />
     </div>
   );
