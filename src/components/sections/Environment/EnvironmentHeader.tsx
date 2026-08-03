@@ -31,9 +31,9 @@ export function EnvironmentHeader({ heading, description }: EnvironmentHeaderPro
     <div className={styles.header}>
       <h2 className={styles.heading}>
         <span className={styles.headingLine}>
-          {heading.line1} <span className={styles.highlight}>{heading.highlight}</span>
+          {heading.line1} <span className={styles.highlight}>{heading.highlight}</span> {heading.line2}
         </span>
-        <span className={styles.headingLine}>{heading.line2}</span>
+       
       </h2>
 
       <p className={styles.description}>{description}</p>

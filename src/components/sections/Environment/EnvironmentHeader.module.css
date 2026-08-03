@@ -18,7 +18,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-4); /* TODO(figma): confirm exact gap between heading and description */
-  max-width: 60rem; /* ~955/1440 of the section frame */
+  max-width: 72rem; /* ~955/1440 of the section frame */
   text-align: center;
 }
 
@@ -41,7 +41,7 @@
 .description {
   font-size: var(--font-size-lg);
   color: var(--color-text-secondary);
-  max-width: 40rem;
+  max-width: 70rem;
 }
 
 @media (max-width: 768px) {

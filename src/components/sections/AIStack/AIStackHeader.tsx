@@ -29,10 +29,8 @@ export function AIStackHeader({ heading, description }: AIStackHeaderProps) {
   return (
     <div className={styles.header}>
       <h2 className={styles.heading}>
-        <span className={styles.headingLine}>{heading.line1}</span>
-        <span className={styles.headingLine}>
-          {heading.line2Prefix} <span className={styles.highlight}>{heading.highlight}</span>
-        </span>
+        <span className={styles.headingLine}>{heading.line1} <span className={styles.highlight}>{heading.highlight}</span></span>
+
       </h2>
 
       <p className={styles.description}>{description}</p>

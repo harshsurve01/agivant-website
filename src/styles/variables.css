@@ -92,9 +92,9 @@
 --font-family-mono: "Roboto Mono", monospace;
 
   --font-weight-regular:  400;
-  --font-weight-medium:   500;
-  --font-weight-semibold: 600;
-  --font-weight-bold:     700;
+  --font-weight-medium:   400;
+  --font-weight-semibold: 500;
+  --font-weight-bold:     600;
 
   /* Fluid-ready fixed scale (rem based, 16px root)
      Rebalanced ~10-20% lighter per design review ("feels ~20% too

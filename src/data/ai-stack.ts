@@ -64,8 +64,8 @@ export interface AIStackCTAData {
 
 const mockAIStackHeader: AIStackHeaderData = {
   heading: {
-    line1: "Engineering Every Layer",
-    line2Prefix: "Of Your",
+    line1: "Engineering Every Layer Of Your",
+    line2Prefix: "",
     highlight: "AI Stack",
   },
   description:

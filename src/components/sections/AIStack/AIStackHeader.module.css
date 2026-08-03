@@ -11,7 +11,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-4); /* TODO(figma): confirm exact gap between heading and description */
-  max-width: 42rem; /* TODO(figma): confirm exact column width */
+  max-width: 72rem; /* TODO(figma): confirm exact column width */
   text-align: center;
 }
 

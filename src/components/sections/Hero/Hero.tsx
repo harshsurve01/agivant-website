@@ -91,7 +91,7 @@ export async function Hero() {
             </h1>
 
             <p className={styles.tagline}>{tagline}</p>
-            <p className={styles.description}>{description}</p>
+           
 
             <div className={styles.actions}>
               {/*

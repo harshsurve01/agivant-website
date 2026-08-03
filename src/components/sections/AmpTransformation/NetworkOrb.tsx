@@ -50,18 +50,18 @@ const ROTATION_RADIANS_PER_MS = (Math.PI * 2) / 20_000;
 const TILT_X_RADIANS = (8 * Math.PI) / 180;
 
 const NODE_RADIUS_PX = 2.5;
-const LINE_WIDTH_PX = 1;
+const LINE_WIDTH_PX = 0.45;
 
 // Base colors, kept identical to the static milestone's palette.
 // Alpha here is the "at full strength" value — the draw loop scales
 // it down per-element by depth (see depthAlpha below); it never
 // changes the RGB, and never exceeds these original alpha values.
 const LINE_COLOR_RGB = "197, 120, 255";
-const LINE_BASE_ALPHA = 0.5;
+const LINE_BASE_ALPHA = 0.3;
 const NODE_FILL_RGB = "216, 160, 255";
-const NODE_FILL_BASE_ALPHA = 0.95;
+const NODE_FILL_BASE_ALPHA = 0.45;
 const NODE_STROKE_RGB = "133, 0, 223";
-const NODE_STROKE_BASE_ALPHA = 0.9;
+const NODE_STROKE_BASE_ALPHA = 0.4;
 
 /** Depth → alpha-multiplier range. Kept narrow on purpose ("subtle,
  *  do not exaggerate") — the farthest point on the globe still reads
@@ -102,13 +102,13 @@ const BEAM_WINDOW_PROGRESS = 1;
  *  this down to 0 at both window edges. */
 const BEAM_PEAK_ALPHA = 0.9;
 
-const BEAM_LINE_WIDTH_PX = 3.5;
+const BEAM_LINE_WIDTH_PX = 1.5;
 
 // ---------------------------------------------------------------------------
 // Glow System tuning (Milestone 3).
 // ---------------------------------------------------------------------------
 
-const NODE_GLOW_RADIUS_MULTIPLIER = 3.2; // halo radius as a multiple of NODE_RADIUS_PX
+const NODE_GLOW_RADIUS_MULTIPLIER = 2.2; // halo radius as a multiple of NODE_RADIUS_PX
 const NODE_GLOW_MAX_ALPHA = 0.55; // kept subtle per spec
 const NODE_GLOW_FILL_BOOST = 0.35; // small extra brightness on the node's own dot while it's lit
 

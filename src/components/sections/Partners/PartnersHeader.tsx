@@ -24,8 +24,7 @@ export function PartnersHeader({ heading, description }: PartnersHeaderProps) {
   return (
     <div className={styles.header}>
       <h2 className={styles.heading}>
-        <span className={styles.headingLine}>{heading.line1}</span>
-        <span className={`${styles.headingLine} ${styles.highlight}`}>{heading.line2}</span>
+        <span className={styles.headingLine}>{heading.line1} <span className={styles.highlight}>{heading.line2}</span></span>
       </h2>
 
       <p className={styles.description}>{description}</p>

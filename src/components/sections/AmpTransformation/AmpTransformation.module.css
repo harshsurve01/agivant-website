@@ -1,9 +1,9 @@
 /* ==========================================================================
    AmpTransformation.module.css
    Owns section-level styling only — background, outer vertical rhythm,
-   and the vertical stack gap between the header/experience/footer
-   blocks. Each block's own internal layout lives in its own
-   component's CSS Module.
+   and the vertical stack gap between the Experience (which now
+   includes the pinned header) and Footer blocks. Each block's own
+   internal layout lives in its own component's CSS Module.
    ========================================================================== */
 
 .ampTransformation {

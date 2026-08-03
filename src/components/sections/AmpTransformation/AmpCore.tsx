@@ -44,6 +44,18 @@ interface AmpCoreProps {
  * actual logo image renders instead and the text fragments are
  * skipped entirely.
  *
+ * Milestone 9: `.circle`'s white fill/border/shadow now live on a
+ * dedicated `.circleBackground` div, rendered first inside `.circle`
+ * (so it paints behind the logo content) and found via
+ * `data-amp-circle-bg` — the same DOM-attribute decoupling this file
+ * already uses for `.circle` itself (`data-amp-core`). It exists as
+ * its own element, separate from the logo, purely so AmpExperience
+ * can fade the white circle in on its own (starting from 0 opacity,
+ * in sync with the orb) without also fading out the logo/wordmark
+ * sitting on top of it — see AmpExperience.tsx's "orb" tween. This
+ * component still has zero knowledge of that animation; it only
+ * renders the element and the attribute AmpExperience looks for.
+ *
  * Server Component today: no "use client", no hooks, no state of its
  * own — `<NetworkOrb />` is its own Client Component boundary (it
  * needs canvas/ref/effect access), so AmpCore can render it as a
@@ -59,6 +71,8 @@ export function AmpCore({ hub }: AmpCoreProps) {
       <NetworkOrb />
 
       <div className={styles.circle} data-amp-core="true">
+        <div className={styles.circleBackground} data-amp-circle-bg="true" />
+
         {hub.brand.logoSrc ? (
           <img
             src={hub.brand.logoSrc}

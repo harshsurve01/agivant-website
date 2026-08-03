@@ -145,14 +145,14 @@ export interface AmpProgressData {
 }
 
 const mockAmpHeader: AmpHeaderData = {
-  heading: {
-    line1: "What Changes When Your",
-    line2Prefix: "Enterprise Gets",
-    highlight: "Amp'd?",
-  },
+heading: {
+  line1: "What Changes When Your Enterprise Gets",
+  line2Prefix: "",
+  highlight: "Amp'd?",
+},
   description: {
-    highlight: "Amp'd is how Agivant engineers, for every enterprise.",
-    body: "Your Amp'd score shows where you stand, forward-deployed engineers work inside your environment, production-grade agents and reusable engineering assets carry it into live systems.",
+    highlight: "Amp'd s",
+    body: " how Agivant delivers real business value for every enterprise, bringing together Agivant’s AI Engineering toolkit: Bolt, forward-deployed engineers, production-grade AI agents, and reusable engineering assets. Every build amplifies the next.",
   },
 };
 
@@ -222,8 +222,8 @@ const mockAmpHub: AmpHubData = {
 };
 
 const mockAmpStatement: AmpStatementData = {
-  prefix: "Fragmented systems become the",
-  highlight: "Autonomous Agentic Enterprise",
+  prefix: "From AI ambition to ",
+  highlight: "Autonomous Workflows",
 };
 
 /**

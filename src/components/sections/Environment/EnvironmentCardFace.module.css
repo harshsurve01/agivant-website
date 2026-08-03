@@ -27,12 +27,13 @@
 
 .sectionHeading {
   font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-link);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
 }
 
 .sectionBody {
   font-size: var(--font-size-xl);
   line-height: var(--line-height-relaxed);
-  color: var(--color-text-secondary);
+  color: var(--color-text-link);
+  font-weight: var(--font-weight-semibold);
 }

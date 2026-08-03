@@ -1,6 +1,5 @@
 import { Container } from "@/components/ui/Container";
 import { Gradient } from "@/components/effects/Gradient";
-import { AmpHeader } from "./AmpHeader";
 import { AmpExperience } from "./AmpExperience";
 import { AmpFooter } from "./AmpFooter";
 import {
@@ -18,22 +17,22 @@ import styles from "./AmpTransformation.module.css";
  *
  * The "What Changes When Your Enterprise Gets Amp'd?" section. Acts
  * only as the section orchestrator: it loads the complete section
- * data and distributes the relevant slice to each of its three direct
- * children — Header, Experience, Footer — matching the section spec's
- * top-level structure exactly:
+ * data and distributes the relevant slice to each of its two direct
+ * children — Experience, Footer — matching the section spec's
+ * top-level structure:
  *
  *   AmpTransformation
- *   ├── Header                (normal scroll, no pin)
- *   ├── Experience  (Pinned)  (Left Column / Connector Layer / AmpCore / Right Column)
+ *   ├── Experience  (Pinned)  (Header / Left Column / Connector Layer / AmpCore / Right Column)
  *   └── Footer                (normal scroll, NOT inside the pinned timeline)
  *
  * `statement` and `progress` are still fetched independently (the
  * data file keeps its six-getter split), but both are now handed to
  * AmpFooter as a pair, since AmpFooter is the component that owns
  * their shared footer layout — see AmpFooter's doc comment.
- * `leftColumn`, `hub`, and `rightColumn` are likewise composed inside
- * AmpExperience, since that's the component that owns the pinned
- * three-column layout.
+ * `header`, `leftColumn`, `hub`, and `rightColumn` are likewise handed
+ * straight to AmpExperience now, since AmpHeader needs to pin
+ * together with AmpCore for the whole pinned scroll sequence rather
+ * than scroll away beforehand — see AmpExperience's doc comment.
  *
  * The two ambient gradient blobs mirror the soft purple/peach glows
  * behind this block in the supplied screenshot, using the same
@@ -65,21 +64,20 @@ export async function AmpTransformation() {
 
   return (
     <section className={styles.ampTransformation}>
-      
       <Gradient
-        top="85%"
-        right="20%"
-        size="38rem"
-        stops={[ "#edbf79 55%", "transparent 75%"]}
-        opacity={0.21}
+        kind="linear"
+        angle="90deg"
+        top="65%"
+        left="-25%"
+        size="45rem"
+        stops={["#b31aef 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
+        opacity={0.15}
         blur="90px"
       />
 
       <Container>
         <div className={styles.inner}>
-          <AmpHeader heading={header.heading} description={header.description} />
-
-          <AmpExperience leftColumn={leftColumn} hub={hub} rightColumn={rightColumn} />
+          <AmpExperience header={header} leftColumn={leftColumn} hub={hub} rightColumn={rightColumn} />
 
           <AmpFooter statement={statement} progress={progress} />
         </div>

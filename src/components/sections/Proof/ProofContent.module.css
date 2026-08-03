@@ -19,7 +19,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-6); /* FIGMA FIX: tightened from --space-6 — Figma's heading/description/CTA sit closer together than 374px of gap-6 spacing produced */
-  max-width: 454px; /* Left Content measured 454 × 374 */
+  max-width: 30rem; /* Left Content measured 454 × 374 */
 }
 
 .heading {

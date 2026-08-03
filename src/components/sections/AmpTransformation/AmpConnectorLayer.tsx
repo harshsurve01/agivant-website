@@ -19,7 +19,7 @@ interface ConnectorPath {
 
 // ---------------------------------------------------------------------------
 // Connector system. Deliberately minimal — every connector is exactly
-// two layers, nothing else:
+// two layers, plus one small static marker:
 //
 //   1. Static Connector — always visible, never animated. A plain
 //      grey→purple→grey gradient stroke.
@@ -27,6 +27,12 @@ interface ConnectorPath {
 //      soft-edged highlight that slides continuously along the
 //      connector, like a reflection sliding across polished glass —
 //      not a particle, not a dot, not a pulse.
+//   3. Joint Dot — a small solid circle marking where the connector
+//      meets its card (see the Figma reference). Purely decorative
+//      geometry, positioned at the same (x1, y1) anchor the curve
+//      itself already starts from — not a third animated system, and
+//      not to be confused with the travelling beam above (which is
+//      explicitly NOT a dot/particle).
 //
 // There is no separate glow layer, no beam "head" marker, and no
 // packet/node-activation logic of any kind — those all belonged to an
@@ -53,6 +59,18 @@ const SWEEP_PURPLE_RGB = "151, 92, 255"; // Agivant purple — same family as th
 // the connector's own length), so it reads the same size on every
 // connector regardless of how long or short that connector is.
 const SWEEP_WINDOW_PX_RANGE: [number, number] = [80, 150];
+
+// Joint dot — the small solid marker sitting right where a connector
+// meets its card, per the Figma reference. Deliberately a fixed pixel
+// radius (not relative to card size) for the same reason
+// SWEEP_WINDOW_PX_RANGE is fixed: it should read as the same size on
+// every connector regardless of that connector's own length. Same
+// brand-purple hue as the static connector's own midpoint stop
+// (BASE_GRADIENT_PURPLE_RGB) and the travelling beam
+// (SWEEP_PURPLE_RGB) — all three are already the same color family,
+// so the dot reads as "this connector's color, solid" rather than a
+// fourth new hue.
+const JOINT_DOT_RADIUS_PX = 4;
 
 // Per-connector beam speed and start-delay ranges — "randomize
 // timing, but don't let it turn chaotic," so the ranges are narrow.
@@ -391,8 +409,8 @@ export function AmpConnectorLayer() {
         const node = layoutRectRelativeTo(el, container);
         const nodeId = el.dataset.ampNode ?? String(index);
         const y1 = (node.top + node.bottom) / 2;
-        const x1 = node.right;
-        const x2 = core.left;
+        const x1 = node.right + 4;
+        const x2 = core.left + 4;
         const y2 = leftCoreYs[index];
         nextPaths.push({
           id: `connector-left-${nodeId}`,
@@ -408,8 +426,8 @@ export function AmpConnectorLayer() {
         const node = layoutRectRelativeTo(el, container);
         const nodeId = el.dataset.ampNode ?? String(index);
         const y1 = (node.top + node.bottom) / 2;
-        const x1 = node.left;
-        const x2 = core.right;
+        const x1 = node.left - 4;
+        const x2 = core.right -4;
         const y2 = rightCoreYs[index];
         nextPaths.push({
           id: `connector-right-${nodeId}`,
@@ -707,6 +725,20 @@ export function AmpConnectorLayer() {
                 className={styles.sweep}
                 data-active={isActive ? "true" : "false"}
                 stroke={`url(#sweep-gradient-${path.id})`}
+              />
+
+              {/* Layer 3 — Joint Dot. A small solid marker at the
+                  exact point the connector's curve starts from —
+                  `(path.x1, path.y1)`, the same node-edge anchor
+                  `buildCurve` already used, so this never drifts out
+                  of sync with the line it's marking. Purely static:
+                  no animation, no activation state, unaffected by
+                  whether this connector's beam is currently active. */}
+              <circle
+                cx={path.x1}
+                cy={path.y1}
+                r={JOINT_DOT_RADIUS_PX}
+                className={styles.jointDot}
               />
             </g>
           );

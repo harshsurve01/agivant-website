@@ -75,7 +75,7 @@
      block the minifier's pairing logic doesn't reach across. Remove both
      once the upstream bug is fixed and confirmed in this project's
      lightningcss version. */
-  -webkit-backdrop-filter: blur(1px) saturate(180%);
+  -webkit-backdrop-filter: blur(36px) saturate(10%);
 
   /* Unchanged from before — already an exact match to the reference
      card's border color/opacity (rgba(255,255,255,.3)), just applied

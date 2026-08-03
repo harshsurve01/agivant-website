@@ -33,6 +33,15 @@
               in the .tsx) are what give it a bright center fading to
               true zero opacity at both ends; nothing here fakes that
               with a dash pattern.
+
+   Plus one small static marker, added for the "joint dot" reference
+   (see the .tsx's `JOINT_DOT_RADIUS_PX`):
+
+     .jointDot — Layer 3, "Joint Dot". A small solid circle marking
+              where a connector meets its card. Always visible, never
+              animated, no active/inactive state — geometry (cx/cy/r)
+              is the only thing set in the .tsx; this file owns only
+              its fill color and glow.
    ========================================================================== */
 
 .layer {
@@ -56,9 +65,9 @@
    ever animated. */
 .path {
   fill: none;
-  stroke-width: 3px;
+  stroke-width: 1px;
   stroke-linecap: round;
-  opacity: 0.6;
+  opacity: 1;
 }
 
 /* Layer 2 — Travelling Light Beam. Geometrically identical to Layer 1
@@ -73,11 +82,22 @@
   stroke-width: 3px;
   stroke-linecap: round;
   opacity: 0;
-  transition: opacity 800ms ease;
+  transition: opacity 100ms ease;
 }
 
 .sweep[data-active="true"] {
   opacity: 1;
+}
+
+/* Layer 3 — Joint Dot. Solid brand purple (same hue family as the
+   static connector's midpoint stop and the travelling beam), with a
+   soft glow so it reads as a lit connection point rather than a flat
+   UI dot — matching the reference image. No hover/active state: this
+   marker doesn't participate in the beam scheduling at all. */
+.jointDot {
+  fill: rgb(151, 92, 255);
+  
+
 }
 
 @media (prefers-reduced-motion: reduce) {

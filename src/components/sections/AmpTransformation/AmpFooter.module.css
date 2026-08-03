@@ -2,7 +2,13 @@
    AmpFooter.module.css
    Owns the section's normal-scroll footer: the chevron statement row,
    the timeline title, the timeline itself, and the CTA button — a
-   single centered vertical stack per the latest approved Figma.
+   single centered vertical stack per the latest approved Figma. The
+   statement row itself is the one exception to "centered": its
+   chevrons are pinned to the row's own left/right edges (see
+   `.statement`'s `justify-content: space-between` below) so they line
+   up under AmpExperience's column labels ("Agivant's Advantage" /
+   "Enterprise Outcome") sitting flush against those same edges one
+   section up, rather than clustering next to the statement text.
    Class names stay namespaced (`.statement*` / `.progress*`) since
    this module still covers what used to be two separate files
    (AmpStatement + AmpProgress). Timeline visuals live in
@@ -24,16 +30,16 @@
 .statement {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-5);
+  justify-content: space-between; /* pins chevrons to the row's outer edges — same edges leftSlot/rightSlot's cards (and their column labels) are flush against in AmpExperience.module.css — rather than clustering them next to the text. Because chevronLeft/chevronRight are equal width, the leftover space still splits evenly around the text in between, so it stays visually centered as a side effect, no extra centering rule needed. */
+  gap: var(--space-5); /* now a minimum gap only — space-between provides the real spacing once the row is wider than content+gaps */
   width: 100%;
   flex-wrap: wrap;
   text-align: center;
 }
 
 .statementText {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-regular);
   color: var(--color-text-primary);
 }
 
@@ -43,8 +49,8 @@
 
 .chevronLeft,
 .chevronRight {
-  width: 2rem;
-  height: 1.5rem;
+  width: 3rem;
+  height: 3rem;
   flex-shrink: 0;
   color: var(--color-text-link);
 }
@@ -122,8 +128,8 @@
 }
 
 .progressTitle {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
   color: var(--color-text-link);
   text-align: center;
   margin-bottom: 1.125rem; /* ~18px per Figma — no exact match in the space scale (space-4=16px, space-5=20px) */
@@ -145,6 +151,17 @@
 
 .cta {
   text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  /* Below this breakpoint AmpExperience's own columns stop flanking
+     the outer edges and stack centered under the hub instead (see
+     AmpExperience.module.css's grid-template-columns override) — so
+     pinning the chevrons to the statement row's own edges wouldn't
+     line up with anything anymore. Simple centered spacing instead. */
+  .statement {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 768px) {

@@ -6,12 +6,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AmpColumn } from "./AmpColumn";
 import { AmpConnectorLayer } from "./AmpConnectorLayer";
 import { AmpCore } from "./AmpCore";
-import type { AmpColumnData, AmpHubData } from "@/data/ampTransformation";
+import { AmpHeader } from "./AmpHeader";
+import type { AmpColumnData, AmpHeaderData, AmpHubData } from "@/data/ampTransformation";
 import styles from "./AmpExperience.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface AmpExperienceProps {
+  header: AmpHeaderData;
   leftColumn: AmpColumnData;
   hub: AmpHubData;
   rightColumn: AmpColumnData;
@@ -30,7 +32,7 @@ interface AmpExperienceProps {
  * PIN_SCROLL_DISTANCE by the same ratio (5000 * 9/7.5) so scroll
  * speed through the rest of the sequence doesn't change.
  */
-const PIN_SCROLL_DISTANCE = 6000;
+const PIN_SCROLL_DISTANCE = 2000;
 
 /**
  * The five reveal phases this section will eventually choreograph,
@@ -67,7 +69,7 @@ const PLACEHOLDER_PHASE_DURATION = 1;
 const LOGO_INITIAL_VW = 0.3;
 
 /** End-of-shrink opacity — "almost imperceptible," 100% -> ~90%. */
-const LOGO_END_OPACITY = 0.9;
+const LOGO_END_OPACITY = 1;
 
 /** How long (in the timeline's unitless time) the logo's shrink+fade
  *  takes. This replaces the "logo" phase's old 1-unit placeholder —
@@ -164,12 +166,19 @@ const CONNECTOR_DRAW_EASE = CARD_REVEAL_EASE;
  *
  * Milestone 4: this is now the section's Client Component boundary
  * and owns the GSAP + ScrollTrigger pin/timeline described in the
- * section spec's Motion Architecture (System 1). Per that spec's Pin
- * Behaviour — "pin ONLY the Experience" — the trigger/pin target
- * below is this component's own root element, not AmpTransformation's
- * `<section>` and not AmpFooter. AmpHeader and AmpFooter are siblings
- * one level up (see AmpTransformation.tsx) and are untouched by any
- * of this: they scroll normally, before and after the pin.
+ * section spec's Motion Architecture (System 1). The trigger/pin
+ * target below is this component's own root element, not
+ * AmpTransformation's `<section>` and not AmpFooter.
+ *
+ * Milestone 8: AmpHeader now renders INSIDE this root, above the
+ * three-column grid, rather than staying a normal-scrolling sibling
+ * up in AmpTransformation.tsx — per an updated Pin Behaviour
+ * requirement ("pin the header together with AmpCore"), the header
+ * needs to be part of the actual pinned/scrubbed element to stay
+ * onscreen with AmpCore for the whole pinned sequence instead of
+ * scrolling away before it starts. AmpFooter is still a sibling one
+ * level up (see AmpTransformation.tsx) and is untouched by any of
+ * this: it scrolls normally, after the pin.
  *
  * Milestone 4 built the scroll choreography: the master timeline, the
  * ScrollTrigger that pins/scrubs it, and `TIMELINE_PHASES` as named,
@@ -230,12 +239,16 @@ const CONNECTOR_DRAW_EASE = CARD_REVEAL_EASE;
  * unchanged from Milestone 4 — `leftSlot`/`rightSlot` picked up their
  * own refs (so this milestone can hide them without reaching into
  * AmpColumn), and the connector layer is selected via
- * `experience.firstElementChild` rather than a new ref, since it's
- * rendered by a component this file doesn't own (see the effect
- * below for why, and the caveat on that approach).
+ * `gridRef.current.firstElementChild` rather than a ref of its own,
+ * since it's rendered by a component this file doesn't own (see the
+ * effect below for why, and the caveat on that approach). Milestone 8
+ * added `gridRef` itself, scoping that lookup to the three-column
+ * grid now that AmpHeader — not the connector layer — is
+ * `experienceRef`'s first child.
  */
-export function AmpExperience({ leftColumn, hub, rightColumn }: AmpExperienceProps) {
+export function AmpExperience({ header, leftColumn, hub, rightColumn }: AmpExperienceProps) {
   const experienceRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
   const leftSlotRef = useRef<HTMLDivElement>(null);
   const rightSlotRef = useRef<HTMLDivElement>(null);
 
@@ -247,9 +260,13 @@ export function AmpExperience({ leftColumn, hub, rightColumn }: AmpExperiencePro
     // via DOM attribute, not props/refs threaded through AmpCore —
     // same decoupling AmpConnectorLayer already relies on for
     // `data-amp-core` (see AmpCore.tsx). `data-amp-orb` is Milestone
-    // 5's equivalent, added to NetworkOrb's own root.
+    // 5's equivalent, added to NetworkOrb's own root. `data-amp-circle-bg`
+    // is Milestone 9's equivalent — the white circle's own background
+    // layer, nested inside `.circle` but animated independently of it
+    // (see the "orb" tween below).
     const logoEl = experience.querySelector<HTMLElement>("[data-amp-core]");
     const orbEl = experience.querySelector<HTMLElement>("[data-amp-orb]");
+    const circleBgEl = experience.querySelector<HTMLElement>("[data-amp-circle-bg]");
 
     // Milestone 6: every AmpNode and each column's side label, found
     // the same DOM-attribute way — but scoped to `leftSlotRef`/
@@ -273,14 +290,18 @@ export function AmpExperience({ leftColumn, hub, rightColumn }: AmpExperiencePro
     // The connector layer is rendered by a sibling component this
     // file doesn't own and that carries no selectable attribute
     // today, so it's picked up structurally: AmpConnectorLayer is
-    // always the first child rendered into `.experience` (see the
-    // JSX below). This is intentionally the same "arbitrary JSX
-    // order" this component's original doc comment already called
-    // out — it was harmless for layout since the layer is positioned
-    // out of flow, but it's now also load-bearing for this selector.
-    // If AmpConnectorLayer's JSX position ever moves, or it gains a
+    // always the first child rendered into `.grid` (see the JSX
+    // below). Scoped to `gridRef` rather than `experienceRef` now
+    // that AmpHeader also lives inside the pinned root — AmpHeader,
+    // not the connector layer, is `experienceRef`'s actual first
+    // child. This is intentionally the same "arbitrary JSX order"
+    // this component's original doc comment already called out — it
+    // was harmless for layout since the layer is positioned out of
+    // flow, but it's now also load-bearing for this selector. If
+    // AmpConnectorLayer's JSX position ever moves, or it gains a
     // `data-amp-connector-layer` attribute, prefer that instead.
-    const connectorLayer = experience.firstElementChild as HTMLElement | null;
+    const grid = gridRef.current;
+    const connectorLayer = (grid?.firstElementChild ?? null) as HTMLElement | null;
 
     // Milestone 7: each connector's own STATIC path (Layer 1 only —
     // never the travelling-beam path, which AmpConnectorLayer tags
@@ -307,7 +328,7 @@ export function AmpExperience({ leftColumn, hub, rightColumn }: AmpExperiencePro
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: experience,
-          start: "top 25%",
+          start: "top 15%",
           end: `+=${PIN_SCROLL_DISTANCE}`,
           pin: true,
           pinSpacing: true,
@@ -338,9 +359,15 @@ export function AmpExperience({ leftColumn, hub, rightColumn }: AmpExperiencePro
       // its CSS/SVG default (fully visible/fully drawn) for the
       // stretch between pin-start and its own reveal tween.
       tl.set(
-        [orbEl, connectorLayer, ...leftNodes, ...rightNodes, leftLabelEl, rightLabelEl].filter(
-          Boolean
-        ),
+        [
+          orbEl,
+          circleBgEl,
+          connectorLayer,
+          ...leftNodes,
+          ...rightNodes,
+          leftLabelEl,
+          rightLabelEl,
+        ].filter(Boolean),
         { opacity: 0 },
         0
       );
@@ -385,6 +412,23 @@ export function AmpExperience({ leftColumn, hub, rightColumn }: AmpExperiencePro
         { scale: 1, opacity: 1, duration: ORB_REVEAL_DURATION, ease: REVEAL_EASE },
         "orb"
       );
+
+      // The white circle background starts at 0 opacity (see
+      // `.circleBackground` in AmpCore.module.css) and fades in
+      // gradually in lockstep with the orb — same label, same
+      // duration, same ease — so the two "reach full visibility
+      // together," per spec. It's a separate `fromTo` (rather than
+      // folded into the orb's own call above) because it only needs
+      // opacity, not the orb's scale tween; the logo/wordmark sitting
+      // on top of it is untouched and stays fully visible throughout.
+      if (circleBgEl) {
+        tl.fromTo(
+          circleBgEl,
+          { opacity: 0 },
+          { opacity: 1, duration: ORB_REVEAL_DURATION, ease: REVEAL_EASE },
+          "orb"
+        );
+      }
 
       // ---- "cards": once the logo/orb transition finishes, the left
       // and right columns materialize in index-paired stagger (L1+R1,
@@ -493,16 +537,22 @@ export function AmpExperience({ leftColumn, hub, rightColumn }: AmpExperiencePro
 
   return (
     <div ref={experienceRef} className={styles.experience}>
-      <AmpConnectorLayer />
-
-      <div ref={leftSlotRef} className={styles.leftSlot}>
-        <AmpColumn column={leftColumn} side="left" />
+      <div className={styles.headerRow}>
+        <AmpHeader heading={header.heading} description={header.description} />
       </div>
 
-      <AmpCore hub={hub} />
+      <div ref={gridRef} className={styles.grid}>
+        <AmpConnectorLayer />
 
-      <div ref={rightSlotRef} className={styles.rightSlot}>
-        <AmpColumn column={rightColumn} side="right" />
+        <div ref={leftSlotRef} className={styles.leftSlot}>
+          <AmpColumn column={leftColumn} side="left" />
+        </div>
+
+        <AmpCore hub={hub} />
+
+        <div ref={rightSlotRef} className={styles.rightSlot}>
+          <AmpColumn column={rightColumn} side="right" />
+        </div>
       </div>
     </div>
   );

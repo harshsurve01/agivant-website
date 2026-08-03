@@ -23,12 +23,10 @@ interface AmpHeaderProps {
 export function AmpHeader({ heading, description }: AmpHeaderProps) {
   return (
     <div className={styles.header}>
-      <h2 className={styles.heading}>
-        <span className={styles.headingLine}>{heading.line1}</span>
-        <span className={styles.headingLine}>
-          {heading.line2Prefix} <span className={styles.highlight}>{heading.highlight}</span>
-        </span>
-      </h2>
+<h2 className={styles.heading}>
+  {heading.line1} {heading.line2Prefix}
+  <span className={styles.highlight}>{heading.highlight}</span>
+</h2>
 
       <p className={styles.description}>
         <span className={styles.descriptionHighlight}>{description.highlight}</span>{" "}

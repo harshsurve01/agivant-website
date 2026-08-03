@@ -14,6 +14,22 @@
    the exact same point, for the orb layer to occupy behind the
    circle. `.circle`'s own size is untouched, which is what keeps the
    logo exactly where it already was.
+
+   Milestone 9: `.circle`'s visual look (white fill, border, shadow)
+   moved out into a new `.circleBackground` layer, absolutely
+   positioned to fill `.circle` exactly. `.circle` itself is now just
+   an invisible sizing/positioning box for the logo content — this
+   split exists because the reveal sequence needs the circle's WHITE
+   BACKGROUND to fade in from 0 opacity in sync with the orb, while
+   the logo/wordmark sitting on top of it stays fully visible the
+   whole time (see AmpExperience.tsx's "orb" tween, which drives
+   `[data-amp-circle-bg]` and the orb together). Doing this on
+   `.circle` itself would have faded the logo out along with the
+   background, which isn't what the spec wants. `.logo`/`.logoImage`
+   get their own `position: relative; z-index: 1` so they reliably
+   paint above `.circleBackground` (an absolutely-positioned,
+   non-negative z-index sibling would otherwise paint above
+   unpositioned in-flow content per normal stacking rules).
    ========================================================================== */
 
 .core {
@@ -23,9 +39,9 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 12rem;
-  height: 12rem;
-  
+  width: 14rem;
+  height: 14rem;
+  opacity: .8;
 }
 
 .circle {
@@ -37,36 +53,29 @@
   width: 9rem;
   height: 9rem;
   border-radius: var(--radius-full);
-  background-color:#ffffffde;
-  border: 2px solid #fff;
-  box-shadow: #0000009f 0px 2px 14px;
 }
 
-.logo {
-  display: inline-flex;
-  align-items: baseline;
-  font-family: var(--font-family-heading);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
+.circleBackground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: var(--radius-full);
+  background-color: #ffffffc1;
+  border: 2px solid #fff;
+  box-shadow: #0000009f 0px 2px 10px;
+  opacity: 0; /* Milestone 9: hidden until AmpExperience's "orb" tween fades it in via [data-amp-circle-bg] */
 }
+
+
 
 .logoImage {
-  width: 60%;
-  height: 60%;
+  position: relative;
+  z-index: 1;
+  width: 80%;
+  height: 80%;
   object-fit: contain;
 }
 
-.logoLead {
-  color: var(--color-brand-accent);
-}
-
-.logoBody {
-  color: var(--color-text-primary);
-}
-
-.logoHighlight {
-  color: var(--color-text-link);
-}
 
 @media (max-width: 900px) {
   .core {
