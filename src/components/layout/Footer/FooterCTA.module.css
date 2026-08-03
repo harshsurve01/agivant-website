@@ -22,7 +22,7 @@
      new values — revisit alongside a token addition in Phase 3
      pixel-perfect refinement. */
   font-size: var(--font-size-7xl);
-  line-height: var(--line-height-normal);
+  line-height: var(--line-height-snug);
   letter-spacing: var(--letter-spacing-relaxed);
   color: var(--color-text-primary);
 }
@@ -49,8 +49,15 @@
 }
 
 .ampdWordmark {
-    height: 5rem;   /* adjust to match the Figma */
-    width: auto;
-    display: inline-block;
-    vertical-align: baseline;
+  height: 5rem;
+  width: auto;
+
+  margin-left: 1.8rem;
+
+  position: relative;
+  top: 0.8rem;          /* or 4–8px, adjust to taste */
+
+  /* Alternatively:
+  transform: translateY(0.3rem);
+  */
 }
