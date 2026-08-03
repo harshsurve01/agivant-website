@@ -114,11 +114,12 @@ async function getCaseStudiesContent(): Promise<CaseStudy[]> {
       id: "ai-native-sre-transformation",
       industry: "Cloud & Infrastructure",
       title: "AI-Native SRE Transformation",
+    
       description:
-        "Manual transaction operations could not scale without adding headcount. Agivant architected a multi-agent system across global financial market platforms. Five million transactions a month. No human in the routine loop.",
-       metric: "5M+",
-      metricLabel: "Transactions per month",
-      footer: "Amp'd market operations at enterprise scale",
+        "GCE to GKE migration with AI-driven SRE taking ownership of steady-state operations. Reliability built into the architecture, not added after. The engineering team moved from firefighting to strategy.",
+          metric: "99.9%",
+      metricLabel: "Reliability. Maintained by agents",
+      footer: "Amp'd infrastructure reliability from day one",
         image: {
         src: "/images/proof/ai-native-transformation.jpg",
         alt: "Abstract flowing wave artwork for the AI-Native SRE Transformation case study",
@@ -129,11 +130,11 @@ async function getCaseStudiesContent(): Promise<CaseStudy[]> {
       id: "global-markets-agent-network",
       industry: "Financial Markets",
       title: "Global Markets Agent Network",
-      description:
-        "GCE to GKE migration with AI-driven SRE taking ownership of steady-state operations. Reliability built into the architecture, not added after. The engineering team moved from firefighting to strategy.",
-          metric: "99.9%",
-      metricLabel: "Reliability. Maintained by agents",
-      footer: "Amp'd infrastructure reliability from day one",
+        description:
+        "Manual transaction operations could not scale without adding headcount. Agivant architected a multi-agent system across global financial market platforms. Five million transactions a month. No human in the routine loop.",
+       metric: "5M+",
+      metricLabel: "Transactions per month",
+      footer: "Amp'd market operations at enterprise scale",
       image: {
         src: "/images/proof/global-market-agentic-network.jpg",
         alt: "Abstract flowing wave artwork for the Global Markets Agent Network case study",
