@@ -90,6 +90,6 @@ export async function getFooterContent(): Promise<FooterContent> {
       { label: "About Us", href: "/about-us" },
       { label: "Contact Us", href: "/contact" },
     ],
-    copyright: "© 2026 Agivant Technologies. All rights reserved.",
+    copyright: "© 2023-2026 Agivant Technologies. All rights reserved.",
   };
 }
