@@ -38,7 +38,7 @@ export async function getTrustCards(): Promise<TrustCardData[]> {
     },
     {
       id: "hyperscaler-partner-ecosystem",
-      title: "Hyperscaler and Partner Ecosystem",
+      title: "Hyperscaler & Partner Ecosystem",
       description:
         "Agivant works across global hyperscaler, data, AI and workflow platforms enterprises depend on",
       badge: "Connected",
