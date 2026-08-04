@@ -107,12 +107,11 @@ export function PartnerLogoAnimator({
             aria-hidden={isDuplicate || undefined}
           >
             <LogoShift
-              pair={[logo, logo]} // same logo twice, just for the reveal animation
+              logos={[logo]} // single logo, just for the reveal animation
               initialDelayMs={0}
               holdMs={STAGGER_MS * 0.8} // slightly less than the stagger so the next logo starts revealing before this one is fully revealed
               durationMs={STAGGER_MS * 0.2} // slightly more than the stagger so the next logo starts revealing before this one is fully revealed
               ease="power1.inOut"
-            
             />
           </div>
         );

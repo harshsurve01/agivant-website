@@ -8,14 +8,15 @@
    strip now lives on `.slot` instead, once per card, per the updated
    Figma. Column count is still driven by however many pairs are
    passed in (PartnerLogoStrip.tsx sets grid-template-columns inline);
-   `.strip`'s own rule is just a sensible 4-up fallback. Only the
+   `.strip`'s own rule is just a sensible fallback, updated to 5-up
+   to match the current slot count. Only the
    visuals changed here — LogoShift itself, the stagger, and every
    other piece of functionality in PartnerLogoStrip.tsx are untouched.
    ========================================================================== */
 
 .strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   align-items: stretch;
   width: 100%;
   min-height: 5.625rem;

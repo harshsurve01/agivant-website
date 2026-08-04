@@ -24,6 +24,7 @@ const PARTNER_SLOT_TIMINGS: PartnerLogoSlotTiming[] = [
   { holdMs: 2200 },
   { holdMs: 2800 },
   { holdMs: 4000 },
+  { holdMs: 3000 },
 ];
 
 /**
@@ -67,7 +68,7 @@ export async function Partners() {
               {cta.label}
             </Button>
           </Link>
-          <PartnerLogoStrip pairs={pairs} slotTimings={PARTNER_SLOT_TIMINGS} />
+          <PartnerLogoStrip slots={pairs} slotTimings={PARTNER_SLOT_TIMINGS} />
 
         </div>
       </Container>

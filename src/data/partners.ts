@@ -130,27 +130,26 @@ function assetExists(publicSrc: string): boolean {
 /** Exactly two logos — everything one LogoShift instance holds. */
 export type PartnerLogoPair = [PartnerLogo, PartnerLogo];
 
-// Fixed at 4 — the Figma card is exactly 4 static slots, each owning
-// one independent LogoShift instance, which in turn owns exactly one
-// logo pair (per the Framer component's "one logo pair per instance"
-// model — not an arbitrary-length rotation).
-const SLOT_COUNT = 4;
+// Widened from 4 to 5 static slots to fit the full 10-partner
+// roster as clean pairs — each slot still owns exactly one
+// independent LogoShift instance holding exactly one logo pair (the
+// Framer component's "one logo pair per instance" model is
+// unchanged; there's just one more instance of it now). SLOT_COUNT *
+// PAIR_SIZE (10) matches the roster below exactly, so nothing is
+// held in reserve.
+const SLOT_COUNT = 5;
 const PAIR_SIZE = 2;
 
 /**
- * Builds the 4 fixed pairs consumed by the 4 LogoShift instances:
- * the first 8 asset-verified logos, taken in fixed roster order and
- * chunked consecutively — [0,1], [2,3], [4,5], [6,7]. Deterministic,
- * never randomized, never duplicated as filler.
+ * Builds the 5 fixed pairs consumed by the 5 LogoShift instances:
+ * the first 10 asset-verified logos, taken in fixed roster order and
+ * chunked consecutively — [0,1], [2,3], [4,5], [6,7], [8,9].
+ * Deterministic, never randomized, never duplicated as filler.
  *
- * SLOT_COUNT * PAIR_SIZE (8) vs. the current 9-item roster: one logo
- * is left over and intentionally not shown, rather than force-fitting
- * it into an instance that's only supposed to hold two. Whichever
- * logo sorts last in ALL_PARTNER_LOGOS (currently Databricks) is the
- * one held in reserve. This is a roster-size fact, not a design
- * decision — the fix is either trimming the roster to exactly 8, or
- * extending the card to a 5th slot; flagged below via a dev warning
- * so it's never silently forgotten.
+ * If the roster ever grows past SLOT_COUNT * PAIR_SIZE again, the
+ * leftover logic below holds the excess in reserve (dev-only warning)
+ * rather than force-fitting a 3rd logo into any one slot — add a 6th
+ * slot (bump SLOT_COUNT) or trim the roster instead.
  */
 async function getPartnerLogoPairsContent(): Promise<PartnerLogoPair[]> {
   const availableLogos = ALL_PARTNER_LOGOS.filter((logo) =>

@@ -151,8 +151,8 @@ heading: {
   highlight: "Amp'd?",
 },
   description: {
-    highlight: "Amp'd s",
-    body: " how Agivant delivers real business value for every enterprise, bringing together Agivant’s AI Engineering toolkit: Bolt, forward-deployed engineers, production-grade AI agents, and reusable engineering assets. Every build amplifies the next.",
+    highlight: "Amp'd",
+    body: "is how Agivant delivers real business value for every enterprise, bringing together Agivant’s AI Engineering toolkit: Bolt, forward-deployed engineers, production-grade AI agents, and reusable engineering assets. Every build amplifies the next.",
   },
 };
 

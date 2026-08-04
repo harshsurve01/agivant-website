@@ -30,8 +30,8 @@
 .statement {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* pins chevrons to the row's outer edges — same edges leftSlot/rightSlot's cards (and their column labels) are flush against in AmpExperience.module.css — rather than clustering them next to the text. Because chevronLeft/chevronRight are equal width, the leftover space still splits evenly around the text in between, so it stays visually centered as a side effect, no extra centering rule needed. */
-  gap: var(--space-5); /* now a minimum gap only — space-between provides the real spacing once the row is wider than content+gaps */
+  justify-content: center; /* pins chevrons to the row's outer edges — same edges leftSlot/rightSlot's cards (and their column labels) are flush against in AmpExperience.module.css — rather than clustering them next to the text. Because chevronLeft/chevronRight are equal width, the leftover space still splits evenly around the text in between, so it stays visually centered as a side effect, no extra centering rule needed. */
+  gap: var(--space-24); /* now a minimum gap only — space-between provides the real spacing once the row is wider than content+gaps */
   width: 100%;
   flex-wrap: wrap;
   text-align: center;

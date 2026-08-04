@@ -1,6 +1,6 @@
 // PartnerLogoStrip.tsx
 import { LogoShift } from "./LogoShift";
-import type { PartnerLogoPair } from "@/data/partners";
+import type { PartnerLogo } from "@/data/partners";
 import styles from "./PartnerLogoStrip.module.css";
 
 /**
@@ -14,8 +14,12 @@ export interface PartnerLogoSlotTiming {
   /** How long this slot's resting logo stays visible before it
    *  starts its next shift. This is the "dedicated timer" per slot —
    *  set a different holdMs per index to make slots shift at
-   *  different rates instead of in lockstep. */
-  holdMs?: number;
+   *  different rates instead of in lockstep. Pass an array instead
+   *  of a single number to give individual logos *within* this
+   *  slot's own sequence different hold times (indexed 1:1 with that
+   *  slot's logos) — e.g. a slot with 3 logos where one should
+   *  linger longer than the other two. */
+  holdMs?: number | number[];
   /** How long this slot's swap transition itself takes. */
   durationMs?: number;
   /** GSAP ease for this slot's swap. */
@@ -23,12 +27,16 @@ export interface PartnerLogoSlotTiming {
 }
 
 interface PartnerLogoStripProps {
-  /** One pair per slot — handed to its own independent LogoShift
-   *  instance untouched. However many pairs are provided is how many
-   *  slots render; the grid isn't hardcoded to exactly 4. */
-  pairs: PartnerLogoPair[];
-  /** Optional per-slot timing, indexed 1:1 with `pairs` (slotTimings[i]
-   *  applies to pairs[i]). Missing entries, or an omitted array
+  /** One entry per slot, handed to its own independent LogoShift
+   *  instance untouched. Each entry is that slot's own logo
+   *  sequence — historically always exactly 2 logos (a "pair"), but
+   *  LogoShift cycles through however many logos it's given, so a
+   *  slot can hold 2, 3, or more without any change here. However
+   *  many entries are provided is how many slots render; the grid
+   *  isn't hardcoded to exactly 4. */
+  slots: PartnerLogo[][];
+  /** Optional per-slot timing, indexed 1:1 with `slots` (slotTimings[i]
+   *  applies to slots[i]). Missing entries, or an omitted array
    *  entirely, fall back to the shared defaults below — so this is
    *  purely additive and safe to leave unset. Each entry is *that
    *  slot's own* timer: once its initial stagger delay has fired, a
@@ -50,22 +58,23 @@ const STAGGER_MS = 120;
  * the column grid, and the divider between slots — never moves and
  * never re-renders once mounted. No "use client", no hooks, no
  * shared timeline, no marquee/carousel/scroll of any kind: it just
- * lays out one slot per pair and gives each one a LogoShift with a
- * staggered start, exactly the "drop multiple instances side by
- * side, control how many sit in a row" model.
+ * lays out one slot per sequence and gives each one a LogoShift with
+ * a staggered start, exactly the "drop multiple instances side by
+ * side, control how many sit in a row, and how many logos each one
+ * holds" model.
  */
-export function PartnerLogoStrip({ pairs, slotTimings }: PartnerLogoStripProps) {
+export function PartnerLogoStrip({ slots, slotTimings }: PartnerLogoStripProps) {
   return (
     <div
       className={styles.strip}
-      style={{ gridTemplateColumns: `repeat(${pairs.length}, 1fr)` }}
+      style={{ gridTemplateColumns: `repeat(${slots.length}, 1fr)` }}
     >
-      {pairs.map((pair, slotIndex) => {
+      {slots.map((logos, slotIndex) => {
         const timing = slotTimings?.[slotIndex];
         return (
-          <div key={pair[0].id} className={styles.slot}>
+          <div key={logos[0].id} className={styles.slot}>
             <LogoShift
-              pair={pair}
+              logos={logos}
               initialDelayMs={slotIndex * STAGGER_MS}
               holdMs={timing?.holdMs}
               durationMs={timing?.durationMs}
