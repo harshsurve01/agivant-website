@@ -49,24 +49,15 @@ export async function Partners() {
   return (
     <section className={styles.partners}>
       <Gradient
-        top="43%"
-        left="-15%"
+        top="50%"
+        left="-10%"
         centerY
         size="clamp(320px, 32vw, 600px)"
         stops={["color-mix(in srgb, #9d84f2 85%, transparent) 0%", "transparent 78%"]}
         opacity={0.25}
         blur="90px"
       />
- <Gradient
-        kind="linear"
-        angle="90deg"
-        top="42%"
-        right="10%"
-        size="30rem"
-        stops={["#b31aef 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
-        opacity={0.15}
-        blur="90px"
-      />
+ 
       <Container>
         <div className={styles.inner}>
           <PartnersHeader heading={header.heading} description={header.description} />

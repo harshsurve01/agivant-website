@@ -274,7 +274,7 @@
 .cardLink[data-slot="topRight"]:focus-visible .body,
 .cardLink[data-slot="bottomRight"]:hover .body,
 .cardLink[data-slot="bottomRight"]:focus-visible .body {
-  top: 12%;
+  top: 40%;
 }
 
 /* No per-element rules for `.metric`/`.footer` any more — at rest

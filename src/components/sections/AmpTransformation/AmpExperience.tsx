@@ -24,13 +24,17 @@ interface AmpExperienceProps {
  * pinned sequence, start to finish. This is the ONE knob that
  * controls pin duration for the whole Experience — bump it up as
  * future milestones add more reveal work to the timeline, no other
- * changes required. Bumped again for Milestone 7: "connectors" went
- * from a 1-unit empty placeholder to a real ~2.5-unit staggered draw
- * (it reuses the cards' own duration/stagger, see
- * CONNECTOR_DRAW_DURATION/CONNECTOR_PAIR_STAGGER below), so the
- * timeline's total length grew from 7.5 units to 9 — this scales
- * PIN_SCROLL_DISTANCE by the same ratio (5000 * 9/7.5) so scroll
- * speed through the rest of the sequence doesn't change.
+ * changes required.
+ *
+ * NOTE: Milestone 7 originally gave "connectors" its own standalone
+ * ~2.5-unit phase after "cards", and this constant was scaled up
+ * (5000 * 9/7.5) to match. Connectors are now merged into the
+ * "cards" phase instead — each pair's line/dot shares its card's own
+ * duration rather than adding a separate stretch afterward — so the
+ * timeline's total length shrank back down and this value is likely
+ * due for re-tuning (the sequence will now play out faster per pixel
+ * scrolled than it did before the merge) once the new pacing has
+ * been scrubbed through.
  */
 const PIN_SCROLL_DISTANCE = 2000;
 
@@ -140,26 +144,18 @@ const CARD_PAIR_STAGGER = 0.5;
 const CARD_REVEAL_EASE = "power2.out";
 
 // ---------------------------------------------------------------------------
-// Milestone 7 tuning — connector path draw-in only. Still the same master
-// timeline/ScrollTrigger from Milestone 4; this only fills in the
-// "connectors" label, which used to be an empty placeholder. No beams, no
-// glow, no activation — those stay owned entirely by AmpConnectorLayer's own
-// independent scheduling effect, untouched by this file.
+// Milestone 7 tuning — connector path draw-in + joint dot reveal, synced to
+// each card pair. Still the same master timeline/ScrollTrigger from
+// Milestone 4; this only fills in the "cards" label's per-pair tweens with
+// the connector/dot work alongside the card work already there. No separate
+// "connectors" phase or timing constants of its own anymore — a pair's line
+// and dot always share the exact same position/duration/ease as that pair's
+// card (CARD_REVEAL_DURATION/CARD_PAIR_STAGGER/CARD_REVEAL_EASE, above), by
+// design, since they're meant to read as one motion, not a followed-up one.
+// No beams, no glow, no activation — those stay owned entirely by
+// AmpConnectorLayer's own independent scheduling effect, untouched by this
+// file.
 // ---------------------------------------------------------------------------
-
-/** How long (in timeline time) a single left+right connector pair takes
- *  to fully draw. Reuses the cards' own duration/stagger/ease so the
- *  connectors read as a continuation of the same reveal rhythm rather
- *  than a differently-paced phase. */
-const CONNECTOR_DRAW_DURATION = CARD_REVEAL_DURATION;
-
-/** How far apart (in timeline time) consecutive connector pairs start
- *  drawing — smaller than CONNECTOR_DRAW_DURATION on purpose, per spec
- *  ("a small overlap between pairs is acceptable"), matching the same
- *  overlapping stagger the cards themselves use. */
-const CONNECTOR_PAIR_STAGGER = CARD_PAIR_STAGGER;
-
-const CONNECTOR_DRAW_EASE = CARD_REVEAL_EASE;
 
 /**
  * AmpExperience
@@ -183,29 +179,33 @@ const CONNECTOR_DRAW_EASE = CARD_REVEAL_EASE;
  * Milestone 4 built the scroll choreography: the master timeline, the
  * ScrollTrigger that pins/scrubs it, and `TIMELINE_PHASES` as named,
  * empty insertion points. Milestone 5 filled in "logo" and "orb".
- * Milestone 6 filled in "cards". Milestone 7 (this pass) fills in
- * "connectors": each card's static connector path draws progressively
- * toward AmpCore, in the same left+right paired stagger the cards
- * themselves used. "network" is still an untouched empty placeholder
- * for a later milestone.
+ * Milestone 6 filled in "cards". Milestone 7 originally filled in a
+ * separate "connectors" phase that ran after every card had already
+ * appeared; that phase has since been folded into "cards" itself, so
+ * that a given left/right pair's card, its connector line, and its
+ * joint dot all reveal together rather than lines following once
+ * every card is already on screen. "network" is still an untouched
+ * empty placeholder for a later milestone.
  *
- * What "connectors" animates, and what it deliberately does NOT: only
- * each connector's Layer-1 static path (found via
- * `[data-amp-connector-side]`, scoped inside the connector layer, the
- * same DOM-attribute decoupling this file already uses for
- * `data-amp-core`/`data-amp-orb`/`data-amp-node`), and only its
- * `strokeDashoffset` — sliding from the path's own measured length
- * (fully undrawn) down to 0 (fully drawn). No beam, no glow, no
- * network-activation logic of any kind is touched here: those are
- * AmpConnectorLayer's Layer 2 and its own independent scheduling
- * effect, which this milestone doesn't select, reference, or gate in
- * any way — they simply keep running exactly as AmpConnectorLayer.tsx
- * already has them wired, on their own timers, unrelated to scroll.
- * Every connector's path data already runs card → core (see
- * `buildCurve` in AmpConnectorLayer.tsx), so a plain downward
- * dashoffset tween is what keeps the draw direction "from the card
- * toward the center, never the reverse" without this file needing to
- * know or care which side a given path belongs to.
+ * What the connector work inside "cards" animates, and what it
+ * deliberately does NOT: only each connector's Layer-1 static path
+ * (found via `[data-amp-connector-side]`) and its joint dot (found
+ * via `[data-amp-connector-dot]`) — both scoped inside the connector
+ * layer, the same DOM-attribute decoupling this file already uses for
+ * `data-amp-core`/`data-amp-orb`/`data-amp-node`. The path's only
+ * animated property is `strokeDashoffset`, sliding from the path's
+ * own measured length (fully undrawn) down to 0 (fully drawn); the
+ * dot is a plain opacity fade. No beam, no glow, no network-activation
+ * logic of any kind is touched here: those are AmpConnectorLayer's
+ * Layer 2 and its own independent scheduling effect, which this file
+ * doesn't select, reference, or gate in any way — they simply keep
+ * running exactly as AmpConnectorLayer.tsx already has them wired, on
+ * their own timers, unrelated to scroll. Every connector's path data
+ * already runs card → core (see `buildCurve` in AmpConnectorLayer.tsx),
+ * so a plain downward dashoffset tween is what keeps the draw
+ * direction "from the card toward the center, never the reverse"
+ * without this file needing to know or care which side a given path
+ * belongs to.
  *
  * What "cards" animates: AmpColumn/AmpNode are Server Components with
  * no knowledge of any of this — every left/right AmpNode is found
@@ -256,75 +256,161 @@ export function AmpExperience({ header, leftColumn, hub, rightColumn }: AmpExper
     const experience = experienceRef.current;
     if (!experience) return;
 
-    // `.circle` (the logo) and NetworkOrb's `.wrapper` are both found
-    // via DOM attribute, not props/refs threaded through AmpCore —
-    // same decoupling AmpConnectorLayer already relies on for
-    // `data-amp-core` (see AmpCore.tsx). `data-amp-orb` is Milestone
-    // 5's equivalent, added to NetworkOrb's own root. `data-amp-circle-bg`
-    // is Milestone 9's equivalent — the white circle's own background
-    // layer, nested inside `.circle` but animated independently of it
-    // (see the "orb" tween below).
-    const logoEl = experience.querySelector<HTMLElement>("[data-amp-core]");
-    const orbEl = experience.querySelector<HTMLElement>("[data-amp-orb]");
-    const circleBgEl = experience.querySelector<HTMLElement>("[data-amp-circle-bg]");
+    let cancelled = false;
+    let rafId = 0;
+    let ctx: gsap.Context | null = null;
 
-    // Milestone 6: every AmpNode and each column's side label, found
-    // the same DOM-attribute way — but scoped to `leftSlotRef`/
-    // `rightSlotRef` rather than searched for across the whole
-    // Experience, since AmpNode/the label attribute don't carry which
-    // column they belong to beyond `data-amp-side`, and scoping by
-    // slot is simpler and more robust than filtering on that
-    // attribute after the fact. Order within each side matches DOM
-    // order, i.e. the order AmpColumn rendered `column.cards` in.
-    const leftSlot = leftSlotRef.current;
-    const rightSlot = rightSlotRef.current;
-    const leftNodes = leftSlot
-      ? Array.from(leftSlot.querySelectorAll<HTMLElement>("[data-amp-node]"))
-      : [];
-    const rightNodes = rightSlot
-      ? Array.from(rightSlot.querySelectorAll<HTMLElement>("[data-amp-node]"))
-      : [];
-    const leftLabelEl = leftSlot?.querySelector<HTMLElement>("[data-amp-column-label]") ?? null;
-    const rightLabelEl = rightSlot?.querySelector<HTMLElement>("[data-amp-column-label]") ?? null;
+    // AmpConnectorLayer measures node/core positions asynchronously —
+    // inside a `useLayoutEffect` that schedules a `requestAnimationFrame`
+    // and only THEN calls `setPaths(...)` (see AmpConnectorLayer.tsx) —
+    // before it renders any real `<path>`/`<circle>` elements into the
+    // DOM. This effect used to query `[data-amp-connector-side]` /
+    // `[data-amp-connector-dot]` synchronously, once, on mount — which
+    // always lost that race: it queried empty NodeLists, silently wired
+    // up ZERO reveal tweens for any connector, and then AmpConnectorLayer's
+    // first real render landed a frame later with every line and dot at
+    // its untouched SVG/CSS default — fully drawn, fully opaque, outside
+    // the timeline's control entirely. That's what caused every connector
+    // to appear at once regardless of scroll or stagger. `readyToBuild`
+    // below is the fix: poll every frame until AmpConnectorLayer has
+    // rendered exactly one path per currently-mounted card (0 === 0
+    // resolves immediately if there are no cards, so this can never hang
+    // waiting on connectors that will never exist), and only then build
+    // the timeline — by which point every path/dot this effect needs
+    // actually exists to be queried and gated correctly from the start.
+    function readyToBuild(): boolean {
+      const leftSlot = leftSlotRef.current;
+      const rightSlot = rightSlotRef.current;
+      const expectedCount =
+        (leftSlot?.querySelectorAll("[data-amp-node]").length ?? 0) +
+        (rightSlot?.querySelectorAll("[data-amp-node]").length ?? 0);
 
-    // The connector layer is rendered by a sibling component this
-    // file doesn't own and that carries no selectable attribute
-    // today, so it's picked up structurally: AmpConnectorLayer is
-    // always the first child rendered into `.grid` (see the JSX
-    // below). Scoped to `gridRef` rather than `experienceRef` now
-    // that AmpHeader also lives inside the pinned root — AmpHeader,
-    // not the connector layer, is `experienceRef`'s actual first
-    // child. This is intentionally the same "arbitrary JSX order"
-    // this component's original doc comment already called out — it
-    // was harmless for layout since the layer is positioned out of
-    // flow, but it's now also load-bearing for this selector. If
-    // AmpConnectorLayer's JSX position ever moves, or it gains a
-    // `data-amp-connector-layer` attribute, prefer that instead.
-    const grid = gridRef.current;
-    const connectorLayer = (grid?.firstElementChild ?? null) as HTMLElement | null;
+      const grid = gridRef.current;
+      const connectorLayer = (grid?.firstElementChild ?? null) as HTMLElement | null;
+      const actualCount = connectorLayer
+        ? connectorLayer.querySelectorAll("[data-amp-connector-side]").length
+        : 0;
 
-    // Milestone 7: each connector's own STATIC path (Layer 1 only —
-    // never the travelling-beam path, which AmpConnectorLayer tags
-    // with no `data-amp-connector*` attribute on purpose), found via
-    // `data-amp-connector-side` scoped inside the connector layer.
-    // DOM order here matches the order AmpConnectorLayer rendered
-    // `paths` in, i.e. left-node order then right-node order (see
-    // AmpConnectorLayer.tsx) — the same index-pairing assumption the
-    // "cards" phase above already relies on for its own nodes.
-    const leftConnectorPaths = connectorLayer
-      ? Array.from(
-          connectorLayer.querySelectorAll<SVGPathElement>('[data-amp-connector-side="left"]')
-        )
-      : [];
-    const rightConnectorPaths = connectorLayer
-      ? Array.from(
-          connectorLayer.querySelectorAll<SVGPathElement>('[data-amp-connector-side="right"]')
-        )
-      : [];
+      return actualCount >= expectedCount;
+    }
 
-    if (!logoEl || !orbEl) return;
+    function waitThenBuild() {
+      if (cancelled) return;
+      if (!readyToBuild()) {
+        rafId = requestAnimationFrame(waitThenBuild);
+        return;
+      }
+      buildTimeline();
+    }
 
-    const ctx = gsap.context(() => {
+    function buildTimeline() {
+      // `.circle` (the logo) and NetworkOrb's `.wrapper` are both found
+      // via DOM attribute, not props/refs threaded through AmpCore —
+      // same decoupling AmpConnectorLayer already relies on for
+      // `data-amp-core` (see AmpCore.tsx). `data-amp-orb` is Milestone
+      // 5's equivalent, added to NetworkOrb's own root. `data-amp-circle-bg`
+      // is Milestone 9's equivalent — the white circle's own background
+      // layer, nested inside `.circle` but animated independently of it
+      // (see the "orb" tween below).
+      const logoEl = experience.querySelector<HTMLElement>("[data-amp-core]");
+      const orbEl = experience.querySelector<HTMLElement>("[data-amp-orb]");
+      const circleBgEl = experience.querySelector<HTMLElement>("[data-amp-circle-bg]");
+
+      // Milestone 6: every AmpNode and each column's side label, found
+      // the same DOM-attribute way — but scoped to `leftSlotRef`/
+      // `rightSlotRef` rather than searched for across the whole
+      // Experience, since AmpNode/the label attribute don't carry which
+      // column they belong to beyond `data-amp-side`, and scoping by
+      // slot is simpler and more robust than filtering on that
+      // attribute after the fact. Order within each side matches DOM
+      // order, i.e. the order AmpColumn rendered `column.cards` in.
+      const leftSlot = leftSlotRef.current;
+      const rightSlot = rightSlotRef.current;
+      const leftNodes = leftSlot
+        ? Array.from(leftSlot.querySelectorAll<HTMLElement>("[data-amp-node]"))
+        : [];
+      const rightNodes = rightSlot
+        ? Array.from(rightSlot.querySelectorAll<HTMLElement>("[data-amp-node]"))
+        : [];
+      const leftLabelEl = leftSlot?.querySelector<HTMLElement>("[data-amp-column-label]") ?? null;
+      const rightLabelEl = rightSlot?.querySelector<HTMLElement>("[data-amp-column-label]") ?? null;
+
+      // The connector layer is rendered by a sibling component this
+      // file doesn't own and that carries no selectable attribute
+      // today, so it's picked up structurally: AmpConnectorLayer is
+      // always the first child rendered into `.grid` (see the JSX
+      // below). Scoped to `gridRef` rather than `experienceRef` now
+      // that AmpHeader also lives inside the pinned root — AmpHeader,
+      // not the connector layer, is `experienceRef`'s actual first
+      // child. This is intentionally the same "arbitrary JSX order"
+      // this component's original doc comment already called out — it
+      // was harmless for layout since the layer is positioned out of
+      // flow, but it's now also load-bearing for this selector. If
+      // AmpConnectorLayer's JSX position ever moves, or it gains a
+      // `data-amp-connector-layer` attribute, prefer that instead.
+      const grid = gridRef.current;
+      const connectorLayer = (grid?.firstElementChild ?? null) as HTMLElement | null;
+
+      // Milestone 7: each connector's own STATIC path (Layer 1 only —
+      // never the travelling-beam path, which AmpConnectorLayer tags
+      // with no `data-amp-connector*` attribute on purpose), found via
+      // `data-amp-connector-side` scoped inside the connector layer.
+      // DOM order here matches the order AmpConnectorLayer rendered
+      // `paths` in, i.e. left-node order then right-node order (see
+      // AmpConnectorLayer.tsx) — the same index-pairing assumption the
+      // "cards" phase above already relies on for its own nodes.
+      // `readyToBuild` above guarantees these are no longer empty by
+      // the time this function runs.
+      const leftConnectorPaths = connectorLayer
+        ? Array.from(
+            connectorLayer.querySelectorAll<SVGPathElement>('[data-amp-connector-side="left"]')
+          )
+        : [];
+      const rightConnectorPaths = connectorLayer
+        ? Array.from(
+            connectorLayer.querySelectorAll<SVGPathElement>('[data-amp-connector-side="right"]')
+          )
+        : [];
+
+      // Each connector's joint dot, found via `data-amp-connector-dot`
+      // (see AmpConnectorLayer.tsx) — same left/right scoping and same
+      // DOM-order-matches-node-order assumption as the paths above, so
+      // `leftJointDots[i]`/`rightJointDots[i]` line up with
+      // `leftConnectorPaths[i]`/`rightConnectorPaths[i]` and with
+      // `leftNodes[i]`/`rightNodes[i]`.
+      const leftJointDots = connectorLayer
+        ? Array.from(
+            connectorLayer.querySelectorAll<SVGCircleElement>('[data-amp-connector-dot="left"]')
+          )
+        : [];
+      const rightJointDots = connectorLayer
+        ? Array.from(
+            connectorLayer.querySelectorAll<SVGCircleElement>('[data-amp-connector-dot="right"]')
+          )
+        : [];
+
+      // Each connector's beam WRAPPER group, found via
+      // `data-amp-connector-beam` (see AmpConnectorLayer.tsx) — same
+      // left/right scoping and same DOM-order assumption as the paths
+      // and dots above. Gating this wrapper's opacity (rather than the
+      // `.sweep` path's own) is what lets a beam's independent
+      // active/inactive schedule keep working after reveal — see the
+      // comment in AmpConnectorLayer.tsx for why animating the path's
+      // own opacity directly would have broken that.
+      const leftBeamGroups = connectorLayer
+        ? Array.from(
+            connectorLayer.querySelectorAll<SVGGElement>('[data-amp-connector-beam="left"]')
+          )
+        : [];
+      const rightBeamGroups = connectorLayer
+        ? Array.from(
+            connectorLayer.querySelectorAll<SVGGElement>('[data-amp-connector-beam="right"]')
+          )
+        : [];
+
+      if (!logoEl || !orbEl) return;
+
+      ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: experience,
@@ -367,6 +453,10 @@ export function AmpExperience({ header, leftColumn, hub, rightColumn }: AmpExper
           ...rightNodes,
           leftLabelEl,
           rightLabelEl,
+          ...leftJointDots,
+          ...rightJointDots,
+          ...leftBeamGroups,
+          ...rightBeamGroups,
         ].filter(Boolean),
         { opacity: 0 },
         0
@@ -432,12 +522,38 @@ export function AmpExperience({ header, leftColumn, hub, rightColumn }: AmpExper
 
       // ---- "cards": once the logo/orb transition finishes, the left
       // and right columns materialize in index-paired stagger (L1+R1,
-      // then L2+R2, ...), each column's side label riding along with
-      // that column's first card only ----
+      // then L2+R2, ...) — and, in lockstep with each pair, that same
+      // pair's connector line draws in toward AmpCore and its joint
+      // dot fades in. Card, line, and dot for a given pair all share
+      // the same position/duration/ease below, so they start and
+      // finish together rather than every card appearing first and
+      // every line following afterward as a separate phase. Each
+      // column's side label still rides along with that column's
+      // first card only. ----
       tl.addLabel("cards");
 
-      const cardPairCount = Math.max(leftNodes.length, rightNodes.length);
-      for (let pairIndex = 0; pairIndex < cardPairCount; pairIndex++) {
+      // The connector layer's own container was hidden via opacity in
+      // the initial `.set()` above; flipped back to visible here, at
+      // the very start of this phase, as a one-time non-animated
+      // switch — not a tween. Individual lines stay invisible after
+      // this via their own strokeDashoffset (still full length, i.e.
+      // undrawn), and individual joint dots stay invisible via their
+      // own opacity (still 0), until THAT pair's tweens below reach
+      // them. So flipping the container visible here doesn't reveal
+      // anything by itself — it just stops gating everything at once,
+      // handing that job to each pair's own tweens instead.
+      if (connectorLayer) {
+        tl.set(connectorLayer, { opacity: 1 }, "cards");
+      }
+
+      const pairCount = Math.max(
+        leftNodes.length,
+        rightNodes.length,
+        leftConnectorPaths.length,
+        rightConnectorPaths.length
+      );
+
+      for (let pairIndex = 0; pairIndex < pairCount; pairIndex++) {
         const position =
           pairIndex === 0 ? "cards" : `cards+=${pairIndex * CARD_PAIR_STAGGER}`;
 
@@ -478,34 +594,16 @@ export function AmpExperience({ header, leftColumn, hub, rightColumn }: AmpExper
             );
           }
         }
-      }
 
-      // ---- "connectors": once every card has appeared, each card's
-      // path draws progressively toward AmpCore — never the reverse
-      // — in the same left+right, index-paired stagger the cards
-      // themselves used. No fade, no beam, no glow: the ONLY thing
-      // animated is `strokeDashoffset` sliding from the path's full
-      // length (invisible) down to 0 (fully drawn); every path's `d`
-      // already runs card → core (see buildCurve/AmpConnectorLayer.tsx),
-      // so animating dashoffset downward naturally draws in that same
-      // direction and can't visually run center-outward. ----
-      tl.addLabel("connectors");
-
-      // The whole connector layer was hidden via opacity in the
-      // initial `.set()` above; per spec connectors reveal by
-      // drawing, not fading, so this is a one-time, non-animated
-      // switch back to visible — happening at the very start of this
-      // phase, instantaneous, not a tween — after which each path's
-      // own dashoffset is what makes it actually appear on screen.
-      if (connectorLayer) {
-        tl.set(connectorLayer, { opacity: 1 }, "connectors");
-      }
-
-      const connectorPairCount = Math.max(leftConnectorPaths.length, rightConnectorPaths.length);
-      for (let pairIndex = 0; pairIndex < connectorPairCount; pairIndex++) {
-        const position =
-          pairIndex === 0 ? "connectors" : `connectors+=${pairIndex * CONNECTOR_PAIR_STAGGER}`;
-
+        // This pair's connector line draws in at the exact same
+        // position/duration/ease as its card, above — never the
+        // reverse direction. No fade, no beam, no glow: the ONLY
+        // thing animated is `strokeDashoffset` sliding from the
+        // path's full length (invisible) down to 0 (fully drawn);
+        // every path's `d` already runs card → core (see
+        // buildCurve/AmpConnectorLayer.tsx), so animating dashoffset
+        // downward naturally draws in that same direction and can't
+        // visually run center-outward.
         const pairPaths = [leftConnectorPaths[pairIndex], rightConnectorPaths[pairIndex]].filter(
           Boolean
         );
@@ -514,9 +612,44 @@ export function AmpExperience({ header, leftColumn, hub, rightColumn }: AmpExper
             pairPaths,
             {
               strokeDashoffset: 0,
-              duration: CONNECTOR_DRAW_DURATION,
-              ease: CONNECTOR_DRAW_EASE,
+              duration: CARD_REVEAL_DURATION,
+              ease: CARD_REVEAL_EASE,
             },
+            position
+          );
+        }
+
+        // This pair's joint dot — and only this pair's, not the whole
+        // layer's worth at once — fades in alongside its card and
+        // line, so a dot never appears before its own line has
+        // started drawing toward it.
+        const pairDots = [leftJointDots[pairIndex], rightJointDots[pairIndex]].filter(Boolean);
+        if (pairDots.length > 0) {
+          tl.fromTo(
+            pairDots,
+            { opacity: 0 },
+            { opacity: 1, duration: CARD_REVEAL_DURATION, ease: CARD_REVEAL_EASE },
+            position
+          );
+        }
+
+        // This pair's beam wrapper group — same position/duration/
+        // ease as everything else in this pair. Only controls whether
+        // a beam is ALLOWED to be seen; whether one is actually
+        // travelling at any given moment is still entirely
+        // AmpConnectorLayer's own independent schedule (data-active),
+        // which keeps running underneath this the whole time — so a
+        // beam that's due to activate on this connector while its
+        // group is still hidden simply stays invisible until this
+        // tween opens the group, rather than being skipped or reset.
+        const pairBeamGroups = [leftBeamGroups[pairIndex], rightBeamGroups[pairIndex]].filter(
+          Boolean
+        );
+        if (pairBeamGroups.length > 0) {
+          tl.fromTo(
+            pairBeamGroups,
+            { opacity: 0 },
+            { opacity: 1, duration: CARD_REVEAL_DURATION, ease: CARD_REVEAL_EASE },
             position
           );
         }
@@ -530,9 +663,16 @@ export function AmpExperience({ header, leftColumn, hub, rightColumn }: AmpExper
       remainingPhases.forEach((phase) => {
         tl.addLabel(phase).to({}, { duration: PLACEHOLDER_PHASE_DURATION });
       });
-    }, experienceRef);
+      }, experienceRef);
+    }
 
-    return () => ctx.revert();
+    waitThenBuild();
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(rafId);
+      ctx?.revert();
+    };
   }, []);
 
   return (

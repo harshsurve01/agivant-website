@@ -54,25 +54,24 @@ export async function Lifecycle() {
           section. */}
       <Gradient
         top="45%"
-        left="-15%"
+        left="-10%"
         size="49rem"
         stops={[
           "color-mix(in srgb, #f2dc84ce 70%, transparent) 0%",
           "transparent 65%",
         ]}
-        opacity={0.55}
+        opacity={0.35}
         blur="10px"
       />
       <Gradient
-        kind="conic"
-        angle="280deg"
-        top="35%"
+        kind="linear"
+        angle="180deg"
+        top="40%"
         right="25%"
         size="32rem"
         stops={["#b31aef 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
-        opacity={0.1}
-        blur="60px"
-          donutHole={0.3}
+        opacity={0.20}
+        blur="90px"
       />
 
       {/* Container's default size="xl" (1280px) is used here, same as

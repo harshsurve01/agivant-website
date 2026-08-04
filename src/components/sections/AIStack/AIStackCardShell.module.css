@@ -97,6 +97,8 @@
      TODO(figma): blur radius (20px) is a best-effort match, not
      measured off a spec. */
   -webkit-backdrop-filter: blur(36px);
+   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
 }
 
 /* Part of the lightningcss workaround above: same selector, same

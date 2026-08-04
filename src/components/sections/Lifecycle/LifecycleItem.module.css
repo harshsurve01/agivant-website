@@ -30,6 +30,8 @@
   -webkit-backdrop-filter: blur(34px); /* Safari requires the prefix */
   border: 2px solid #fff; /* faint glass edge */
   transition: background-color var(--transition-slow, 200ms) ease-in-out;
+ box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
 }
 
 .itemOpen {

@@ -672,9 +672,12 @@ export function AmpConnectorLayer() {
                   path (via stroke-dasharray/stroke-dashoffset) from
                   the outside, without this component knowing that
                   scroll choreography exists. Layer 2 (the beam,
-                  below) is NOT tagged — its own reveal/activation is
-                  a separate concern this component already owns
-                  independently of scroll. */}
+                  below) is tagged too now, via a wrapping `<g>` —
+                  but only so AmpExperience can gate whether it's
+                  ALLOWED to be visible yet; its actual reveal/
+                  activation schedule (when a beam turns on, how long
+                  it travels for) is still a separate concern this
+                  component owns entirely independently of scroll. */}
               <path
                 d={path.d}
                 className={styles.path}
@@ -720,25 +723,56 @@ export function AmpConnectorLayer() {
                   calcMode="linear"
                 />
               </linearGradient>
-              <path
-                d={path.d}
-                className={styles.sweep}
-                data-active={isActive ? "true" : "false"}
-                stroke={`url(#sweep-gradient-${path.id})`}
-              />
+              {/* Wrapped in its own `<g>`, tagged with
+                  `data-amp-connector-beam` — a separate concern from
+                  the `.sweep` path's own `data-active` toggle below.
+                  `data-active`/CSS still fully own WHETHER a lit beam
+                  is currently travelling (this component's independent
+                  scheduling effect, untouched by any of this). This
+                  wrapper only owns WHETHER a beam is allowed to be
+                  seen AT ALL yet — AmpExperience's scroll timeline
+                  gates this group's opacity in sync with this
+                  connector's own pair reveal, so a beam can't appear
+                  mid-travel on a line that hasn't scroll-revealed yet.
+                  Gating via a wrapping group (rather than the `.sweep`
+                  path's own opacity) is deliberate: GSAP would set
+                  that opacity as an inline style, which — being higher
+                  specificity than the `.sweep[data-active]` CSS rule —
+                  would permanently pin the beam's opacity the first
+                  time GSAP animated it, breaking its own
+                  active/inactive toggle forever after. Group opacity
+                  multiplies with the child's own CSS-driven opacity
+                  instead, so both stay independent. */}
+              <g data-amp-connector-beam={isRightSide ? "right" : "left"}>
+                <path
+                  d={path.d}
+                  className={styles.sweep}
+                  data-active={isActive ? "true" : "false"}
+                  stroke={`url(#sweep-gradient-${path.id})`}
+                />
+              </g>
 
               {/* Layer 3 — Joint Dot. A small solid marker at the
                   exact point the connector's curve starts from —
                   `(path.x1, path.y1)`, the same node-edge anchor
                   `buildCurve` already used, so this never drifts out
-                  of sync with the line it's marking. Purely static:
-                  no animation, no activation state, unaffected by
-                  whether this connector's beam is currently active. */}
+                  of sync with the line it's marking. Unaffected by
+                  whether this connector's beam is currently active —
+                  that's still not what `data-amp-connector-dot`
+                  below is for. That attribute exists purely so
+                  AmpExperience's scroll timeline can fade THIS
+                  specific dot in alongside its own card + line (not
+                  the whole layer's dots at once) — the same
+                  DOM-attribute decoupling `data-amp-connector-side`
+                  already uses on the static path above. This
+                  component itself still has no opinion on when that
+                  happens. */}
               <circle
                 cx={path.x1}
                 cy={path.y1}
                 r={JOINT_DOT_RADIUS_PX}
                 className={styles.jointDot}
+                data-amp-connector-dot={isRightSide ? "right" : "left"}
               />
             </g>
           );

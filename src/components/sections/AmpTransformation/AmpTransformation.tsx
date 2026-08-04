@@ -65,15 +65,14 @@ export async function AmpTransformation() {
   return (
     <section className={styles.ampTransformation}>
  <Gradient
-        kind="conic"
+        kind="linear"
         angle="180deg"
         top="77%"
         left="-20%"
         size="40rem"
         stops={["#b31aef44 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
-        opacity={0.1}
-        blur="120px"
-          donutHole={0.3}
+        opacity={0.15}
+        blur="90px"
       />
 
       <Container>

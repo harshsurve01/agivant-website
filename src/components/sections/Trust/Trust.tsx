@@ -49,12 +49,12 @@ export async function Trust() {
       <Gradient
         top="-100px"
         left="-220px"
-        size="640px"
+        size="740px"
         stops={[
           "color-mix(in srgb, var(--color-bg-gradient-start) 55%, transparent) 0%",
           "transparent 58%",
         ]}
-        opacity={0.15}
+        opacity={0.5}
         blur="90px"
       />
 

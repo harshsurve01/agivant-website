@@ -14,7 +14,7 @@ import { GradientLayerProvider } from "@/components/effects/GradientLayer";
 export default function Home() {
   return (
     <GradientLayerProvider>
-      <AnnouncementBar />
+      {/* <AnnouncementBar /> */}
       <Header />
       <Hero />
       <Trust />

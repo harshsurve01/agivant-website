@@ -66,10 +66,10 @@ const ALL_PARTNER_LOGOS: PartnerLogo[] = [
  
   
    {
-     id: "databricks",
-     name: "Databricks",
-     image: { src: "/images/partners/databricks.png", alt: "Databricks" },
-     website: "https://www.databricks.com",
+     id: "gemini",
+     name: "GEMINI",
+     image: { src: "/images/partners/gemini.png", alt: "GEMINI" },
+     website: "https://www.gemini.com",
    },
   {
     id: "nvidia",
@@ -103,10 +103,16 @@ const ALL_PARTNER_LOGOS: PartnerLogo[] = [
     website: "https://www.databricks.com",
   },
   {
-    id: "nvidia",
-    name: "NVIDIA",
-    image: { src: "/images/partners/nvidia.png", alt: "NVIDIA" },
-    website: "https://www.nvidia.com",
+    id: "shopify",
+    name: "Shopify",
+    image: { src: "/images/partners/shopify.png", alt: "Shopify" },
+    website: "https://www.shopify.com",
+  },
+  {
+    id: "tigergraph",
+    name: "TigerGraph",
+    image: { src: "/images/partners/tigergraph.png", alt: "TigerGraph" },
+    website: "https://www.tigergraph.com",
   },
 ];
 

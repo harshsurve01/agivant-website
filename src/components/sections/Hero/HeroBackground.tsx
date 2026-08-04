@@ -60,16 +60,24 @@ export function HeroBackground({ children }: HeroBackgroundProps) {
         blurMobile="60px"
         animate="breathe"
       />
+       <Gradient
+        top="0%"
+        right="70%"
+        size="25rem"
+        stops={["#8500df 50%", "#edbf79 85%", "transparent 100%"]}
+        opacity={0.1}
+        blur="90px"
+      />
       <Gradient
         top="4%"
-        right="18%"
-        size="clamp(461px, 46vw, 461px)"
+        right="25%"
+        size="clamp(561px, 56vw, 561px)"
         stops={[
           "color-mix(in srgb, var(--color-bg-gradient-end) 85%, transparent) 0%",
-          "transparent 48%",
+          "transparent 68%",
         ]}
-        opacity={1}
-        blur="60px"
+        opacity={0.15}
+        blur="90px"
         blurMobile="40px"
         animate="breathe"
         animationDelay="-4s"
