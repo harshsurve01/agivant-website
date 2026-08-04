@@ -38,7 +38,7 @@ async function getPartnersHeaderContent(): Promise<PartnersHeaderContent> {
       line2: "Global Partners",
     },
     description:
-      "Agivant works across global hyperscaler, data, AI and workflow platforms enterprises depend on.",
+      "Agivant works across global hyperscaler, data, AI & workflow platforms enterprises depend on.",
   };
 }
 
