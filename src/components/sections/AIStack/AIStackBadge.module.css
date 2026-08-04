@@ -4,7 +4,7 @@
   padding-inline: var(--space-3);
   padding-block: var(--space-1);
   border-radius: var(--radius-full, 9999px);
-  background-color: var(--color-accent-subtle); /* TODO(design-tokens): confirm pill background token */
+  background-color: #fff; /* TODO(design-tokens): confirm pill background token */
   color: var(--color-accent-primary); /* TODO(design-tokens): confirm brand-purple token name */
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);

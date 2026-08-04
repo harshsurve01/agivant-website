@@ -46,8 +46,8 @@
   /* Depth order (nearest → farthest) is badge, title, description,
      ribbon, background — set in AIStackCardShell + here. */
   transform: translateZ(40px);
-  max-width: calc(100% - 7rem);
-  padding-top: var(--space-1);
+  max-width: 20rem;
+  padding-top: var(--space-16);
   
    /* TODO(figma): confirm exact shadow for text block */
 }

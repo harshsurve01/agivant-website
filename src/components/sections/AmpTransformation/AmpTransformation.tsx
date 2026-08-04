@@ -67,14 +67,24 @@ export async function AmpTransformation() {
  <Gradient
         kind="linear"
         angle="180deg"
-        top="77%"
+        top="65%"
         left="-20%"
         size="40rem"
         stops={["#b31aef44 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
         opacity={0.15}
         blur="90px"
       />
-
+  <Gradient
+        top="35%"
+        right="20%"
+        size="49rem"
+        stops={[
+          "color-mix(in srgb, #EDBF79 70%, transparent) 0%",
+          "transparent 100%",
+        ]}
+        opacity={0.4}
+        blur="10px"
+      />
       <Container>
         <div className={styles.inner}>
           <AmpExperience header={header} leftColumn={leftColumn} hub={hub} rightColumn={rightColumn} />

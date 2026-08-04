@@ -186,13 +186,13 @@
      class below. */
   position: absolute;
   z-index: 1;
-  top: 50%;
+  top:52%;
   left: 0;
   right: 1rem;
   bottom: 0;
-  padding: var(--space-5) var(--space-6); /* FIGMA FIX: reduced from flat --space-6 on all sides */
+  padding: var(--space-8) var(--space-8); /* FIGMA FIX: reduced from flat --space-6 on all sides */
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  background-color: var(--color-glass-white, rgba(255, 255, 255, 0.72));
+  background-color: var(--color-glass-white, rgba(255, 255, 255, 0.82));
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.06);
@@ -205,7 +205,10 @@
      part of one coordinated hover, not a separate animation. */
   transition: top 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-
+/* Override ONLY the large card */
+.cardLink[data-slot="large"] .body {
+  top: 45%;
+}
 .bodyContent {
   /* The actual flex column of title/description/metric/footer,
      unchanged from what `.body` used to do directly. This element has
@@ -227,7 +230,7 @@
 .description {
   font-family: var(--font-family-base);
   font-size: var(--font-size-md);
-  line-height: var(--line-height-snug);
+  line-height: var(--line-height-normal);
   color: var(--color-text-secondary);
   ; /* collapsed rows read visually letter-spaced in the Figma */
 }
@@ -252,7 +255,7 @@
 .cardLink[data-slot="topRight"] .description,
 .cardLink[data-slot="bottomRight"] .description {
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp:3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -274,7 +277,10 @@
 .cardLink[data-slot="topRight"]:focus-visible .body,
 .cardLink[data-slot="bottomRight"]:hover .body,
 .cardLink[data-slot="bottomRight"]:focus-visible .body {
-  top: 40%;
+  top: 37%;
+}
+.cardLink[data-slot="large"]:hover .body{
+  top: 55%;
 }
 
 /* No per-element rules for `.metric`/`.footer` any more — at rest
@@ -292,7 +298,7 @@
 .metric {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: 0;
   padding-top: var(--space-1); /* FIGMA FIX: reduced from --space-2 to tighten density */
 }
 
@@ -307,6 +313,7 @@
   font-family: var(--font-family-base);
   font-size: var(--font-size-md);
   color: var(--color-text-primary);
+  margin-top: -5px;
 }
 
 .footer {

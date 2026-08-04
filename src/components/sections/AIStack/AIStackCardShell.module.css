@@ -56,7 +56,7 @@
      aren't grouping properties (unlike overflow/isolation above), so
      they're safe on a preserve-3d element. */
   border-radius: var(--radius-md, 1rem); /* TODO(design-tokens): confirm token name */
-  border: 2px solid #fff;
+  border: 1px solid #fff;
   /* This is the ONLY element that rotates, and therefore the ONLY
      element that may carry `transform-style: preserve-3d` without a
      co-located grouping property (see `.wrapper` above). Every

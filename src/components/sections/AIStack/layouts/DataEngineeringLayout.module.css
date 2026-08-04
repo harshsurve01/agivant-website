@@ -37,6 +37,7 @@
   /* Depth order (nearest → farthest) is badge, title, description,
      ribbon, background — set in AIStackCardShell + here. */
   transform: translateZ(40px);
+   padding-top: var(--space-16);
 }
 
 .description {

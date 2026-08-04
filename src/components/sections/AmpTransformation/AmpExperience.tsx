@@ -36,7 +36,7 @@ interface AmpExperienceProps {
  * scrolled than it did before the merge) once the new pacing has
  * been scrubbed through.
  */
-const PIN_SCROLL_DISTANCE = 2000;
+const PIN_SCROLL_DISTANCE = 1000;
 
 /**
  * The five reveal phases this section will eventually choreograph,
