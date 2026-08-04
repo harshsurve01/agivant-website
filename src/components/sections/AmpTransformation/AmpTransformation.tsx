@@ -75,7 +75,9 @@ export async function AmpTransformation() {
         blur="90px"
       />
   <Gradient
-        top="35%"
+   kind="linear"
+        angle="180deg"
+        top="40%"
         right="20%"
         size="49rem"
         stops={[
@@ -83,7 +85,7 @@ export async function AmpTransformation() {
           "transparent 100%",
         ]}
         opacity={0.4}
-        blur="10px"
+        blur="60px"
       />
       <Container>
         <div className={styles.inner}>
