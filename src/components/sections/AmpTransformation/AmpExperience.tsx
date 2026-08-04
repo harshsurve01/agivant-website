@@ -304,6 +304,15 @@ export function AmpExperience({ header, leftColumn, hub, rightColumn }: AmpExper
     }
 
     function buildTimeline() {
+      // TS doesn't carry the outer `if (!experience) return;` narrowing
+      // into this separately-declared nested function — even though
+      // `experience` is `const` and genuinely can't have changed, TS
+      // treats a named function declaration as callable at any time and
+      // re-widens the type back to `HTMLDivElement | null` inside it.
+      // Repeating the guard here, in this function's own scope, is what
+      // actually narrows it for everything below.
+      if (!experience) return;
+
       // `.circle` (the logo) and NetworkOrb's `.wrapper` are both found
       // via DOM attribute, not props/refs threaded through AmpCore —
       // same decoupling AmpConnectorLayer already relies on for
