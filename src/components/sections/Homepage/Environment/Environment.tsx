@@ -71,9 +71,9 @@ export async function Environment() {
       <Gradient
         kind="linear"
         angle="90deg"
-        top="49%"
-        right="14%"
-        size="30rem"
+        top="45%"
+        right="24%"
+        size="35rem"
         stops={["#edbf79 55%", "transparent 75%"]}
         opacity={0.25}
         blur="90px"

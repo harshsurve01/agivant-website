@@ -51,7 +51,13 @@ export function EnvironmentTimelineItem({
       className={`${styles.item} ${isActive ? styles.itemActive : ""} ${isPast ? styles.itemPast : ""}`}
       aria-current={isActive ? "step" : undefined}
     >
-      <button type="button" className={styles.trigger} onClick={onSelect}>
+      <button
+        type="button"
+        className={styles.trigger}
+        onClick={onSelect}
+        onMouseEnter={onSelect}
+        onFocus={onSelect}
+      >
         <span className={styles.dot} aria-hidden="true" />
 
         <div className={styles.content}>

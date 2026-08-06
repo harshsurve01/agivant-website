@@ -130,13 +130,11 @@ const CARD_INITIAL_Y_PX = -10;
  *  fully materialize. */
 const CARD_REVEAL_DURATION = 1;
 
-/** How far apart (in timeline time) consecutive pairs' reveals start.
- *  Smaller than CARD_REVEAL_DURATION on purpose, per spec ("a slight
- *  overlap between consecutive pairs is acceptable") — each pair
- *  starts before the previous one has fully finished materializing,
- *  which is what makes the reveal read as one continuous "ecosystem
- *  assembling itself" motion rather than four separate, disconnected
- *  reveals. */
+/** Formerly the gap (in timeline time) between consecutive pairs'
+ *  reveal starts. All pairs now share the same "cards" start position
+ *  (see the reveal loop below) so every node/connector/label appears
+ *  in one simultaneous motion instead of one pair at a time — this is
+ *  kept only in case per-pair staggering is reintroduced later. */
 const CARD_PAIR_STAGGER = 0.5;
 
 /** Premium, no-bounce ease — matches the logo/orb reveal's feel
@@ -214,9 +212,10 @@ const CARD_REVEAL_EASE = "power2.out";
  * DOM-attribute decoupling `data-amp-core`/`data-amp-orb` already use
  * elsewhere in this file. Cards don't slide in — each one animates
  * opacity/scale/blur/y together so it reads as materializing out of
- * nothing, per spec. Left/right cards at the same index reveal as a
- * pair (`CARD_PAIR_STAGGER` apart, `CARD_REVEAL_DURATION` long, with
- * a deliberate overlap between consecutive pairs), and each column's
+ * nothing, per spec. Every left/right pair now shares the same
+ * "cards" start position (`CARD_REVEAL_DURATION` long) rather than
+ * staggering by index, so all pairs materialize together in one
+ * simultaneous motion instead of one at a time, and each column's
  * `[data-amp-column-label]` reveals (opacity only, no blur/scale of
  * its own) at the exact same position as that column's FIRST card —
  * it's included directly in that pair's tween call rather than given
@@ -563,8 +562,12 @@ export function AmpExperience({ header, leftColumn, hub, rightColumn }: AmpExper
       );
 
       for (let pairIndex = 0; pairIndex < pairCount; pairIndex++) {
-        const position =
-          pairIndex === 0 ? "cards" : `cards+=${pairIndex * CARD_PAIR_STAGGER}`;
+        // All pairs share the same "cards" start position (rather than
+        // being offset by `pairIndex * CARD_PAIR_STAGGER`) so every
+        // node, its connector line, its joint dot, and its label all
+        // reveal together in one simultaneous motion instead of one
+        // pair at a time.
+        const position = "cards";
 
         const pairNodes = [leftNodes[pairIndex], rightNodes[pairIndex]].filter(Boolean);
         if (pairNodes.length > 0) {

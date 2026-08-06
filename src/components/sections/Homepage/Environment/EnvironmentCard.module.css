@@ -1,11 +1,17 @@
 /* ==========================================================================
    EnvironmentCard.module.css
 
-   `.card` now renders inside EnvironmentCardDeck's `.slot`, which is
-   already sized to the deck's own aspect-ratio box (see
-   EnvironmentCardDeck.module.css) — this fills that box with
-   width/height: 100% rather than declaring its own aspect-ratio a
-   second time, so the two never round to a fractional pixel apart.
+   `.card` is now the only card on screen — the stacked
+   EnvironmentCardDeck is gone, so this owns its own footprint
+   directly via aspect-ratio (matching the deck's old 714:369 frame)
+   instead of relying on a parent .slot to size it. It fills its grid
+   column at width: 100% and lets aspect-ratio derive the height.
+
+   `.card` replays a short fade/rise-in on every mount. It's a plain
+   mount animation, not a scroll-triggered one — EnvironmentExperience
+   remounts this component (via `key={activeStage.id}`) each time the
+   active stage changes, so this animation is what makes swapping to a
+   new stage's content feel like a transition instead of a hard cut.
 
    .faceFront / .faceBack: the front sits in normal flow (so it
    establishes .faceStack's size); the back is absolutely positioned
@@ -15,36 +21,48 @@
    have nothing to animate to. visibility+opacity keeps the node laid
    out and flip-ready while still being invisible and non-interactive
    today (pointer-events: none, aria-hidden set in EnvironmentCardFace).
-   Note this is now independent of the deck's own peel-away exit —
-   that's the deck moving the whole card, this is a within-card flip
-   that isn't wired up yet.
    ========================================================================== */
 .card {
   position: relative;
-  width: 80%;
-  height: 70%;
-  left: 15%;
+  width: 70%;
+  height: 100%;
+  aspect-ratio: 714 / 300; /* TODO(figma): confirm exact card frame ratio */
 
   border-radius: var(--radius-lg);
   overflow: hidden;
 
   /* Glass background */
-  background: rgb(249, 249, 249);
+  background: #d9d9d920; /* TODO(design-tokens): confirm brand-purple token name */
 
   /* Frosted glass */
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
 
   /* Glass border */
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgb(255, 255, 255);
 
   /* Ambient shadow + glass highlights */
-  box-shadow:
-    40px 40px 90px -20px color-mix(in srgb, var(--shadow-color) 55%, transparent),
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 0 rgba(255, 255, 255, 0);
+ box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+justify-self: center;
+  animation: environmentCardFadeIn 0.45s ease both;
+}
+
+@keyframes environmentCardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+  }
 }
 
 /* Top specular highlight */

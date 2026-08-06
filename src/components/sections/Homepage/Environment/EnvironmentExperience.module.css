@@ -55,7 +55,7 @@
   width: 100%;
   max-width: 90rem; /* matches .stageInner's section frame */
   margin-inline: auto;
-  margin-top: -40px; /* TODO(figma): confirm exact deck-to-CTA gap */
+  margin-top: 40px; /* TODO(figma): confirm exact deck-to-CTA gap */
 }
 
 .ctaRow > a {

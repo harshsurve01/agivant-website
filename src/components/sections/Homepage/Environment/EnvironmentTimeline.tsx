@@ -10,11 +10,11 @@ interface EnvironmentTimelineProps {
    *  EnvironmentExperience's doc comment. Drives the line's segment
    *  fill. */
   progress: number;
-  /** Called with a stage's index when its timeline item is clicked
-   *  (or activated via keyboard) — see EnvironmentExperience's
-   *  "AUTO-ADVANCE + CLICK-TO-SELECT" comment. This component doesn't
-   *  decide what selecting a stage does, it just reports the
-   *  interaction upward. */
+  /** Called with a stage's index when its timeline item is hovered or
+   *  focused (see EnvironmentExperience's "AUTO-ADVANCE +
+   *  HOVER-TO-SELECT" comment, and EnvironmentTimelineItem's onSelect
+   *  doc comment). This component doesn't decide what selecting a
+   *  stage does, it just reports the interaction upward. */
   onSelectStage: (index: number) => void;
 }
 
@@ -23,10 +23,10 @@ interface EnvironmentTimelineProps {
  *
  * Presentation only — renders the vertical dot-and-line stage list.
  * It does not decide which stage is active, how far along the
- * sequence we are, or what a click does; all of that arrives as props
- * from EnvironmentExperience. Keeping this component free of its own
- * state means it stays identical whether the active stage is driven
- * by the auto-advance timer or a manual click.
+ * sequence we are, or what a hover/focus does; all of that arrives as
+ * props from EnvironmentExperience. Keeping this component free of
+ * its own state means it stays identical whether the active stage is
+ * driven by the auto-advance timer or a manual hover.
  *
  * `.line`/`.lineFill` are rendered here, once, as a background layer
  * behind the whole list — not per-item — because the fill is one

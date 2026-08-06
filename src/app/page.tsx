@@ -1,13 +1,13 @@
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Header } from "@/components/layout/Header";
-import { Hero } from "@/components/sections/Hero";
-import { Trust } from "@/components/sections/Trust";
-import { Lifecycle } from "@/components/sections/Lifecycle";
-import { AIStack } from "@/components/sections/AIStack";
-import { Environment } from "@/components/sections/Environment";
-import { AmpTransformation } from "@/components/sections/AmpTransformation";
-import { Partners } from "@/components/sections/Partners";
-import { ProofSection } from "@/components/sections/Proof";
+import { Hero } from "@/components/sections/Homepage/Hero";
+import { Trust } from "@/components/sections/Homepage/Trust";
+import { Lifecycle } from "@/components/sections/Homepage/Lifecycle";
+import { AIStack } from "@/components/sections/Homepage/AIStack";
+import { Environment } from "@/components/sections/Homepage/Environment";
+import { AmpTransformation } from "@/components/sections/Homepage/AmpTransformation";
+import { Partners } from "@/components/sections/Homepage/Partners";
+import { ProofSection } from "@/components/sections/Homepage/Proof";
 import { Footer } from "@/components/layout/Footer";
 import { GradientLayerProvider } from "@/components/effects/GradientLayer";
 
