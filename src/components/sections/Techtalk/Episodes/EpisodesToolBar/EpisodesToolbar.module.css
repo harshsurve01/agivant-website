@@ -38,7 +38,15 @@
 .searchGroup {
   flex: 1 1 auto;
   min-width: 0;
-  max-width: 27.75rem; /* 444px, matches the Figma measurement */
+  max-width: 27.75rem;
+
+  border-radius: var(--radius-md);
+  background: #fff;
+
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .searchInput {
@@ -49,7 +57,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background-color: #fff;
-
+ 
   font-family: var(--font-family-base);
   font-size: var(--font-size-md, 1rem); /* 16px */
   font-weight: var(--font-weight-regular);
@@ -99,14 +107,21 @@
      instead of the browser default. */
   appearance: none;
   -webkit-appearance: none;
-
+  width: 250px;
   height: 2.8125rem; /* matches .searchInput's height */
   padding-block: 0;
   padding-inline: var(--space-4) var(--space-8);
 
   border: 1px solid var(--color-border);
+
   border-radius: var(--radius-md);
-  background-color: transparent;
+  background: var(--color-surface-primary);
+
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
 
   font-family: var(--font-family-base);
   font-size: var(--font-size-md, 1rem);

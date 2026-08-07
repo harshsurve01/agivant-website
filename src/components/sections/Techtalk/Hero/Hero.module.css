@@ -30,7 +30,7 @@
   gap: var(--space-8);
   text-align: center;
 
-  padding-top: clamp(8rem, 15vh, 11rem);
+  padding-top: clamp(12rem, 15vh, 11rem);
 }
 
 @media (max-width: 768px) {

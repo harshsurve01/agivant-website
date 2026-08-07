@@ -8,14 +8,39 @@
 
 .poster {
   object-fit: cover;
+  /* Explicit, not just "first in DOM order" — see .content below for
+     why this matters. next/image's `fill` prop makes this element
+     position: absolute, so its stacking order is governed by z-index,
+     not source order. */
+  z-index: 0;
 }
 
 .scrim {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.12) 0%,
     rgba(0, 0, 0, 0.28) 100%
   );
+}
+
+/* --------------------------------------------------------------------
+   Wraps the loading spinner / glass play button. Both .poster and
+   .scrim are position: absolute; per CSS's stacking-context painting
+   order, positioned elements with z-index:auto paint AFTER
+   non-positioned in-flow content, regardless of DOM order — so
+   without this wrapper being explicitly positioned with a higher
+   z-index, the play button/spinner rendered underneath the poster
+   image. It was in the DOM and correctly conditioned on `isLoading`;
+   it just wasn't visible. This wrapper fixes that by giving the
+   button/spinner its own stacking context above both layers.
+   -------------------------------------------------------------------- */
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

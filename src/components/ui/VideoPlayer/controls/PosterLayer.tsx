@@ -25,6 +25,14 @@ interface PosterLayerProps {
  * since nesting a real <button> inside another <button> is invalid
  * HTML and would break the single accessible control this needs to
  * be). One <button> with one aria-label covers the whole surface.
+ *
+ * STACKING: the spinner/play-button visual is wrapped in `.content`
+ * (position: relative; z-index: 2) rather than rendered as a bare
+ * flex child. `.poster` (next/image's `fill` prop makes it
+ * position: absolute) and `.scrim` (also absolute) both paint AFTER
+ * non-positioned content per CSS's stacking rules, regardless of DOM
+ * order — without this wrapper, the button/spinner was present and
+ * correctly conditioned, just invisible underneath the poster image.
  */
 export function PosterLayer({ poster, title, isLoading, onPlay }: PosterLayerProps) {
   return (
@@ -44,16 +52,19 @@ export function PosterLayer({ poster, title, isLoading, onPlay }: PosterLayerPro
         className={styles.poster}
       />
       <span className={styles.scrim} aria-hidden="true" />
-      {isLoading ? (
-        <LoadingSpinner label={`Loading ${title}`} />
-      ) : (
-        <span
-          className={[glassButtonStyles.button, glassButtonStyles.large].join(" ")}
-          aria-hidden="true"
-        >
-          <PlayIcon />
-        </span>
-      )}
+
+      <span className={styles.content}>
+        {isLoading ? (
+          <LoadingSpinner label={`Loading ${title}`} />
+        ) : (
+          <span
+            className={[glassButtonStyles.button, glassButtonStyles.large].join(" ")}
+            aria-hidden="true"
+          >
+            <PlayIcon />
+          </span>
+        )}
+      </span>
     </button>
   );
 }
