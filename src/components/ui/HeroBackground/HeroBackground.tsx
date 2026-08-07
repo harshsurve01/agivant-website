@@ -44,7 +44,7 @@ export interface HeroBackgroundProps {
  * Button/ButtonMotion, just applied one level up the tree than
  * originally anticipated.
  */
-export function HeroBackground({ children }: HeroBackgroundProps) {
+export function HeroBackground() {
   return (
     <div className={styles.experience}>
       <Gradient
@@ -109,7 +109,6 @@ export function HeroBackground({ children }: HeroBackgroundProps) {
         aria-hidden="true"
       />
 
-      <div className={styles.contentLayer}>{children}</div>
     </div>
   );
 }

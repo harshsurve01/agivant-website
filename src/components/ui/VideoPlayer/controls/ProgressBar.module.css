@@ -1,0 +1,63 @@
+.range {
+  --progress: 0;
+
+  flex: 1;
+  appearance: none;
+  -webkit-appearance: none;
+  height: 4px;
+  border-radius: var(--radius-full, 999px);
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    var(--color-accent, #8500df) calc(var(--progress) * 100%),
+    var(--color-border-glass, rgba(255, 255, 255, 0.28))
+      calc(var(--progress) * 100%)
+  );
+  transition: height var(--transition-fast, 150ms ease);
+}
+
+.range:hover,
+.range:focus-visible {
+  height: 6px;
+}
+
+.range:focus-visible {
+  outline: 2px solid var(--color-focus-ring, #fff);
+  outline-offset: 4px;
+}
+
+.range::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-text-on-media, #fff);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.12);
+  transition: transform var(--transition-fast, 150ms ease);
+}
+
+.range:hover::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+.range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-text-on-media, #fff);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.12);
+}
+
+.range::-moz-range-track {
+  height: 4px;
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .range,
+  .range::-webkit-slider-thumb {
+    transition: none;
+  }
+}

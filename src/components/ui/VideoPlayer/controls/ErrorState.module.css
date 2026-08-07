@@ -1,0 +1,17 @@
+.wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg, 24px);
+  background: var(--color-surface-dark, #0a0a0a);
+  text-align: center;
+}
+
+.message {
+  max-width: 32ch;
+  color: var(--color-text-on-media, #8500df);
+  font-size: var(--font-size-sm, 0.9375rem);
+  line-height: 1.5;
+}

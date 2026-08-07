@@ -1,0 +1,6 @@
+.time {
+  font-variant-numeric: tabular-nums;
+  font-size: var(--font-size-xs, 0.8125rem);
+  color: var(--color-text-on-media, rgba(255, 255, 255, 0.86));
+  white-space: nowrap;
+}

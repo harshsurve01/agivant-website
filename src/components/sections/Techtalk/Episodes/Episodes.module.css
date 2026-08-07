@@ -1,0 +1,34 @@
+/* ==========================================================================
+   Episodes.module.css
+   Layout only, per Episodes.tsx's own responsibility — no visual
+   styling for the toolbar/player/playlist themselves lives here, only
+   how the three are arranged relative to each other.
+   ========================================================================== */
+
+.episodes {
+  width: 100%;
+  padding-block: var(--space-16);
+}
+
+.toolbarRow {
+  margin-bottom: var(--space-6);
+}
+
+.mainRow {
+  display: grid;
+  /* Player fills remaining space; playlist holds a fixed sidebar
+     width. Matches the Figma's roughly 2:1 proportion (video ~834px
+     against a ~1235px total content width) while staying fluid on
+     the player side rather than fixing both columns. */
+  grid-template-columns: 1fr 380px;
+  gap: var(--space-8);
+  align-items: start;
+}
+.player {
+  height: fit-content;
+}
+@media (max-width: 1024px) {
+  .mainRow {
+    grid-template-columns: 1fr;
+  }
+}

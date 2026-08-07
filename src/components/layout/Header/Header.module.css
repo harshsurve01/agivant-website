@@ -230,6 +230,6 @@
 }
 .cta :global(button),
 .cta {
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.06em;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
 }

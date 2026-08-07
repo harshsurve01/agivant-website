@@ -185,21 +185,34 @@ export function HeroParticleField() {
     const resizeObserver = new ResizeObserver(() => resize());
     resizeObserver.observe(container);
 
-    // Listen on the shared ancestor (`.experience`, HeroBackground's own
-    // wrapper — `container`'s parentElement) rather than on `container`
-    // itself. `.contentLayer` sits at a higher z-index and its bounding
-    // box covers the *entire* Hero footprint (its own height is what
-    // gives `.experience` a height at all, and it's width:100%), so it
-    // wins every hit-test across the whole area — `container` would
-    // never receive a pointer event directly, no matter where the
-    // cursor is. Pointer events bubble, though: a pointer landing on
-    // any descendant of `.experience` (whether that's `.contentLayer`
-    // or `container` itself, in spots nothing else covers) still
-    // propagates up to their common ancestor. Coordinates are still
-    // computed against `container`'s own rect below, since that's the
-    // canvas's actual positioning box (and it's inset:0 of the parent,
-    // so the two rects are identical anyway).
-    const trackingTarget = container.parentElement ?? container;
+    // Listen on the Hero section itself, not on `.experience`
+    // (HeroBackground's own wrapper / `container`'s parentElement).
+    // HeroBackground is purely decorative now — Content lives outside
+    // it as a sibling — so a pointer over the heading/description/CTA
+    // never bubbles through `.experience` at all; that subtree simply
+    // doesn't contain Content anymore. The Hero section is the nearest
+    // ancestor that contains BOTH HeroBackground and Content, so it's
+    // the only element a pointer over *either* one will always bubble
+    // through, making it the correct single interaction surface.
+    //
+    // Found via closest("[data-hero-interaction-root]") rather than a
+    // passed-in ref: Hero is a Server Component with no hooks, and this
+    // keeps it that way — no client boundary or ref-forwarding needed
+    // one level up just to hand a DOM node down through HeroBackground.
+    // Falls back to the old parentElement chain if the attribute is
+    // ever missing, so this degrades instead of breaking outright.
+    //
+    // Coordinates are still computed against `container`'s own rect
+    // below: `.experience` is `inset: 0` of `.hero`, and `container` is
+    // `inset: 0` of `.experience`, so all three boxes are identical —
+    // using the Hero section only as the *event source*, not as the
+    // coordinate frame, is equivalent and avoids a second rect lookup.
+    const trackingTarget =
+      (container.closest(
+        "[data-hero-interaction-root]"
+      ) as HTMLElement | null) ??
+      container.parentElement ??
+      container;
 
     const handlePointerMove = (event: PointerEvent) => {
       const rect = container.getBoundingClientRect();

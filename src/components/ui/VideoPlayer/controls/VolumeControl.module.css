@@ -1,0 +1,62 @@
+.group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs, 8px);
+}
+
+.range {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 0;
+  opacity: 0;
+  height: 4px;
+  border-radius: var(--radius-full, 999px);
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    var(--color-text-on-media, #8500df) calc(var(--progress) * 100%),
+    var(--color-border-glass, rgba(255, 255, 255, 0.28))
+      calc(var(--progress) * 100%)
+  );
+  transition:
+    width var(--transition-medium, 220ms ease),
+    opacity var(--transition-medium, 220ms ease);
+}
+
+.group:hover .range,
+.group:focus-within .range {
+  width: 72px;
+  opacity: 1;
+}
+
+.range::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-text-on-media, #fff);
+}
+
+.range::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-text-on-media, #fff);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .range {
+    transition: none;
+  }
+}
+
+/* Touch devices have no hover — keep the slider reachable via focus only;
+   consumers relying on touch will tap the mute button primarily. */
+@media (hover: none) {
+  .group:focus-within .range {
+    width: 72px;
+    opacity: 1;
+  }
+}

@@ -1,0 +1,187 @@
+/* ==========================================================================
+   EpisodesToolbar.module.css
+
+   Three regions in a single row: search (left), Subject Depth
+   (center), result count (right). Built with flexbox per spec — no
+   grid needed since there are exactly three regions and search is the
+   only one that should flex to fill remaining space.
+
+   Token names below follow the pattern already established in
+   Hero.module.css (--space-*, --font-size-*, --color-*, etc). Radius/
+   border/shadow tokens are named to match that same scale
+   (--radius-*, --color-border, --shadow-sm) — confirm these exact
+   names against variables.css and adjust if the project uses
+   different ones; nothing here should be a new hardcoded value if an
+   equivalent token already exists.
+   ========================================================================== */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+
+  padding: var(--space-4) var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: #d9d9d920;
+   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+}
+
+/* --------------------------------------------------------------------
+   LEFT — search
+   flex: 1 so it absorbs the row's remaining width instead of Subject
+   Depth/result count stretching; max-width keeps it from ballooning
+   past the Figma's proportions on very wide screens.
+   -------------------------------------------------------------------- */
+.searchGroup {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 27.75rem; /* 444px, matches the Figma measurement */
+}
+
+.searchInput {
+  width: 100%;
+  height: 2.8125rem; /* 45px, matches the Figma measurement */
+
+  padding-inline: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: #fff;
+
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md, 1rem); /* 16px */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.15; /* Figma: 115% */
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--color-text-primary);
+}
+
+.searchInput::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.searchInput:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------
+   CENTER — Subject Depth
+   Fixed to its content size (flex-shrink: 0) so it never competes
+   with search for space — only search should flex.
+   -------------------------------------------------------------------- */
+.depthGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+.depthLabel {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md, 1rem);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.selectWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.depthSelect {
+  /* appearance: none + the manually-positioned .selectChevron below
+     replace the native dropdown arrow so it matches the Figma glyph
+     instead of the browser default. */
+  appearance: none;
+  -webkit-appearance: none;
+
+  height: 2.8125rem; /* matches .searchInput's height */
+  padding-block: 0;
+  padding-inline: var(--space-4) var(--space-8);
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: transparent;
+
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md, 1rem);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+
+  cursor: pointer;
+}
+
+.depthSelect:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+.selectChevron {
+  position: absolute;
+  right: var(--space-3);
+  color: var(--color-text-secondary);
+  pointer-events: none; /* clicks pass through to the select beneath */
+}
+
+/* --------------------------------------------------------------------
+   RIGHT — result count
+   -------------------------------------------------------------------- */
+.resultCount {
+  flex-shrink: 0;
+  white-space: nowrap;
+
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md, 1rem);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.15; /* Figma: 115% */
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--color-brand-primary);
+}
+
+/* --------------------------------------------------------------------
+   Accessible-only label (search). Standard visually-hidden pattern —
+   present for screen readers, removed from visual layout entirely.
+   -------------------------------------------------------------------- */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------
+   Mobile: three regions stack instead of competing for one row's
+   width. Not explicitly specified in the Figma (desktop-only frame),
+   but included so the toolbar degrades reasonably rather than
+   overflowing — matches the 768px breakpoint used elsewhere in this
+   project (see Hero.module.css).
+   -------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-4);
+  }
+
+  .searchGroup {
+    max-width: none;
+  }
+
+  .depthGroup {
+    justify-content: space-between;
+  }
+
+  .resultCount {
+    text-align: left;
+  }
+}

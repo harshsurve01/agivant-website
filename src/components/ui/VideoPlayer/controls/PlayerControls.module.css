@@ -1,0 +1,39 @@
+.bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md, 16px);
+  padding: var(--space-md, 16px) var(--space-lg, 24px);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity var(--transition-medium, 220ms ease),
+    transform var(--transition-medium, 220ms ease);
+}
+
+.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none) {
+  /* Touch devices have no hover state to reveal the bar on — keep it visible. */
+  .bar {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    transition: none;
+  }
+}

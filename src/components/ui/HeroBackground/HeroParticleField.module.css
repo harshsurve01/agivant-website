@@ -14,10 +14,15 @@
     later in HeroBackground's markup at the same z-index tier, so it
     still paints on top of the particle field by document order,
     exactly like Hero's own .content/.background relationship. */
-  pointer-events: auto; /* cursor tracking happens on this same element
-    via a JS listener in HeroParticleField.tsx, not for hit-testing —
-    this must stay click/hover-transparent so CTAs beneath it in
-    .contentLayer remain fully interactive. */
+  pointer-events: auto; /* Kept auto so this layer can still be hovered
+    directly over the empty parts of the Hero. Cursor tracking itself
+    is no longer listened for on this element — the JS listener in
+    HeroParticleField.tsx now lives on the Hero section (found via
+    closest("[data-hero-interaction-root]")), so hover works over
+    Content too, which sits outside this component's DOM subtree. This
+    stays click/hover-transparent regardless — it has no click handler
+    and paints beneath Content's higher z-index, so CTAs remain fully
+    clickable either way. */
   overflow: hidden;
 }
 

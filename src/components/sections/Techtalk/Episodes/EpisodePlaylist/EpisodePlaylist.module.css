@@ -1,0 +1,89 @@
+/* ==========================================================================
+   EpisodePlaylist.module.css
+
+   The playlist is a grid item alongside EpisodePlayer in Episodes
+   (see Episodes.module.css). Its height comes from the grid's
+   align-items: stretch, matching EpisodePlayer's natural height.
+
+   min-height: 0 is needed at BOTH levels below — on .playlist as a
+   grid item, and on .list as a flex item inside it — because a grid
+   item and a flex item both default to a min-height equal to their
+   content otherwise, so they grow to fit every card instead of
+   respecting the height they're given. That's the classic
+   grid/flex+overflow gotcha. .list also needs flex: 1 so it actually
+   claims that available height rather than just being allowed to.
+   ========================================================================== */
+
+.playlist {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 51rem;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: #d9d9d920;
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  overflow: hidden;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+
+  /* flex: 1 lets .list fill whatever height .playlist has (itself
+     matched to EpisodePlayer's natural height via grid stretch — see
+     Episodes.module.css). min-height: 0 overrides the flex-item
+     default of min-height: auto, which otherwise refuses to let .list
+     shrink below the height of all its cards combined — that's what
+     was letting the card list grow unbounded and drag the grid row
+     (and EpisodePlayer) taller with it. With both set, .list is
+     capped at the available height and overflow-y below actually has
+     something to do. */
+  flex: 1;
+  min-height: 0;
+
+  margin: 0;
+  padding: var(--space-3);
+  list-style: none;
+
+  overflow-y: auto;
+
+  /* Thin brand-colored scrollbar, approximating the vertical purple
+     indicator shown at the playlist's right edge in the Figma
+     (Firefox via scrollbar-color, WebKit/Blink via the pseudo-
+     elements below — no equivalent standard exists for the rounded
+     "pill" look beyond what's set here). */
+  scrollbar-width: thin;
+  scrollbar-color: #8500df transparent;
+}
+
+.list::-webkit-scrollbar {
+  width: 2px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: #8500df;
+  border-radius: var(--radius-full, 999px);
+}
+
+/* Below 1024px, Episodes.module.css's .mainRow drops to a single grid
+   column, which puts EpisodePlayer and .playlist on separate rows.
+   align-items: stretch only equalizes heights of items sharing a row,
+   so .playlist would otherwise lose its height reference entirely and
+   grow unbounded again once stacked. Give it its own explicit cap
+   here so requirement #1 (bounded height, internal scroll) still
+   holds when the layout isn't side-by-side. Breakpoint matches
+   Episodes.module.css intentionally — keep the two in sync. */
+@media (max-width: 1024px) {
+  .playlist {
+    height: auto;
+    max-height: 420px;
+  }
+}

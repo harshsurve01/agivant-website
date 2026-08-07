@@ -9,7 +9,7 @@ import { getHero } from "@/data/hero";
 // land somewhere else in /assets.
 import CubeIcon from "@/assets/icons/cube.svg";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
-import { HeroBackground } from "./HeroBackground";
+import { HeroBackground } from "../../../ui/HeroBackground/HeroBackground";
 import { ShineHighlight } from "./ShineHighlight";
 import styles from "./Hero.module.css";
 
@@ -51,7 +51,7 @@ export async function Hero() {
     <section className={styles.hero}>
       <div className={styles.background} />
 
-      <HeroBackground>
+      <HeroBackground/>
         <Container>
           <div className={styles.content}>
             {/*
@@ -122,7 +122,7 @@ export async function Hero() {
             </div>
           </div>
         </Container>
-      </HeroBackground>
+   
     </section>
   );
 }

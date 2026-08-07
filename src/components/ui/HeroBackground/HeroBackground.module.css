@@ -9,12 +9,13 @@
    ========================================================================== */
 
 .experience {
-  position: relative;
+  position: absolute;
+  inset: 0;
+
   width: 100%;
-  /* Local stacking context for this component's own layers — Hero's
-     own .hero already provides position: relative + overflow: hidden
-     at the section level (see Hero.module.css), which is what clips
-     these glows naturally at the viewport edge. */
+  height: 100%;
+
+  overflow: hidden;
 }
 
 /* --------------------------------------------------------------------
