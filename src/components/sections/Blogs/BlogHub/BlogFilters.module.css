@@ -1,0 +1,146 @@
+/* ==========================================================================
+   BlogFilters.module.css
+   Same glass-card treatment as BlogCard/Featured (rgba(217,217,217,0.2)
+   fill) applied to the filter panel. Radius, spacing, and font sizes
+   below are mapped to the nearest real token in variables.css; where
+   Figma's exact px value (e.g. 35px radius) has no matching token,
+   the comment notes the gap and the closest token used instead.
+   ========================================================================== */
+
+.panel {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-16); /* 3.25rem — closest token to Figma's 48px column gap */
+  border-radius: var(--radius-xl); /* 1.5rem/24px — no token reaches Figma's 35px; closest available */
+  background-color: #d9d9d920;
+  border: 1px solid var(--color-white, #fff);
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: var(--space-12) var(--space-20) var(--space-10); /* 40px / 64px / 32px, closest tokens to Figma's ~37/60/32px */
+}
+
+.groupLabel {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg); /* 1.125rem/18px — exact match */
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-10); /* 2rem — closest token to Figma's 36px */
+}
+
+/* -- Topic column ---------------------------------------------------------- */
+
+.topicColumn {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.topicRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-10) var(--space-16); /* row 32px / column 52px — closest tokens to Figma's 36px/48px */
+}
+
+.topicButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-full);
+  background-color: transparent;
+  padding: var(--space-3) var(--space-10); /* 10px / 32px — closest tokens to Figma's 11px/36px */
+  margin: calc(var(--space-3) * -1) calc(var(--space-10) * -1); /* cancels padding so buttons don't shift row layout */
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
+}
+
+.topicButtonActive {
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+}
+
+/* -- Divider ----------------------------------------------------------------- */
+
+.divider {
+  align-self: stretch;
+  width: 1px;
+  background-color: var(--color-border-default);
+  flex-shrink: 0;
+}
+
+/* -- Read Time / Audience column -------------------------------------------- */
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8); /* 1.625rem — closest token to Figma's 27px */
+  flex-shrink: 0;
+}
+
+.segmentGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6); /* 1.25rem — exact match to Figma's spacing */
+}
+
+.segmentGroup .groupLabel {
+  margin-block-end: 0;
+}
+
+.segmentTrack {
+  display: flex;
+  width: 26.5rem; /* 424px — fixed component width from Figma, no matching scale token */
+  border-radius: var(--radius-md); /* 0.5rem/8px — exact match */
+  background-color: #f3f2f233;
+  padding: var(--space-1); /* 0.25rem/4px — exact match */
+   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.segmentButton {
+  flex: 1 1 0;
+  border: none;
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  padding: var(--space-2);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
+}
+
+.segmentButtonActive {
+  background-color: rgba(255, 255, 255, 0.75);
+  /* One-off crisp shadow from Figma; none of --shadow-sm/md/lg/xl
+     match this tight, low-opacity treatment closely enough to swap in. */
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+  color: var(--color-brand-primary);
+}
+
+@media (max-width: 1024px) {
+  .panel {
+    flex-direction: column;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .segmentTrack {
+    width: 100%;
+  }
+}

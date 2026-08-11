@@ -1,0 +1,97 @@
+/* ==========================================================================
+   ExecutiveBrief.module.css
+   Figma: node 2097:1282 ("Executive Brief"), 2097:1288 (accent bar),
+   2097:1290 (body copy), file 7pLktxswHgy5YvtLZXwsq0. This section
+   has no dedicated Figma frame — the values below come from these
+   loose nodes' own bounding boxes, not a wrapping frame's padding.
+   ========================================================================== */
+
+/* Section-level rhythm. No Figma frame gives an authoritative
+   top/bottom padding for this section (its neighbors sit on an
+   absolute canvas, not a fluid one) — --space-16 matches the same
+   section-padding rhythm already used by Episodes.module.css, rather
+   than inventing a new step. */
+.executiveBrief {
+  width: 100%;
+  padding-block: var(--space-16);
+}
+
+/* --------------------------------------------------------------------
+   Heading row (accent bar + title)
+   Figma: bar (2097:1288) is 8x32px, purple, positioned 17px left of
+   the heading's own left edge (96.37px -> 121.37px, minus the bar's
+   8px width). Vertically the bar (32px tall) sits centered against
+   the heading's 41px line box.
+   -------------------------------------------------------------------- */
+.headingRow {
+  display: flex;
+  align-items: center;
+  gap: 1.0625rem; /* 17px, node 2097:1282 vs 2097:1288 */
+  margin-block-end: 1.9375rem; /* 31px, node 2097:1288 bottom vs 2097:1290 top */
+}
+
+.bar {
+  display: block;
+  width: 0.5rem; /* 8px, node 2097:1288 */
+  height: 2rem; /* 32px, node 2097:1288 */
+  border-radius: var(--radius-sm);
+  background-color: var(--color-brand-primary);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------
+   Title
+   Figma (2097:1282): bounding box 265x41px. At Poppins Bold, 30px
+   (--font-size-3xl) with the shared heading line-height-tight (1.1,
+   ~33px) is the closest token match to that 41px box once normal
+   glyph ascender/descender padding is accounted for — reused instead
+   of introducing a one-off font-size step. Last word rendered in the
+   brand color; everything before it inherits --color-text-primary,
+   confirmed against the screenshot ("Executive" black, "Brief"
+   purple).
+   -------------------------------------------------------------------- */
+.title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.highlight {
+  color: var(--color-brand-primary);
+}
+
+/* --------------------------------------------------------------------
+   Body copy
+   Figma (2097:1290): one text layer, 1189.77px wide, containing two
+   paragraphs separated by a blank line. --font-size-base /
+   --line-height-relaxed / --color-text-secondary match the project's
+   existing default <p> styling (typography.css) already used for
+   this kind of supporting copy elsewhere (e.g. TechTalk/Blogs Hero
+   descriptions), so those tokens are reused rather than measured as
+   a one-off value.
+   -------------------------------------------------------------------- */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5); /* paragraph-to-paragraph gap; not separately
+                           measurable from the single Figma text
+                           layer, approximated at this token step */
+  max-width: 74.36rem; /* 1189.77px, node 2097:1290 */
+}
+
+.paragraph {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .body {
+    max-width: 100%;
+  }
+}

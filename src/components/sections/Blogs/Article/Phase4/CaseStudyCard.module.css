@@ -1,0 +1,156 @@
+/* ==========================================================================
+   CaseStudyCard.module.css
+
+   ESTIMATED SIZING — see Phase4.tsx's own doc comment. Card surface
+   (background/border/radius) matches the same soft-card convention
+   MetricCard/InstrumentationCard already use elsewhere in Article.
+   Internal grid/column/divider values are eyeballed against the
+   screenshot, not measured Figma node values.
+   ========================================================================== */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  border-radius: var(--radius-xl);
+  background-color: #d9d9d920;
+
+  box-shadow:
+    inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+
+  border: 1px solid var(--color-border-default);
+}
+
+/* White header */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+
+  width: 100%;
+  padding: 1.25rem 2rem;
+
+  margin: 0;
+
+  background: #ffffff;
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.metricLabel {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+ 
+  color:#888888;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------
+   Two-column body
+   Equal-width columns separated by a vertical divider (border on the
+   right column) — exact left/right proportion isn't measurable from
+   the screenshot, so an even 1fr/1fr split is used as the closest
+   reasonable estimate.
+   -------------------------------------------------------------------- */
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  padding: 1.75rem 2rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.rightColumn {
+  padding-inline-start: var(--space-10); /* mirrors .body's gap so the divider sits visually centered */
+  border-inline-start: 1px solid #000; /* vertical divider between columns */
+}
+
+.text {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------
+   "Instead of saying:" label
+   Reuses the existing accent/red token — closest semantic match in
+   the token file to the reddish label color visible in the
+   screenshot (negative/"don't say this" framing).
+   -------------------------------------------------------------------- */
+.insteadLabel {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color:#d43030;
+  margin: 0 0 0.5rem;
+}
+
+/* --------------------------------------------------------------------
+   "Say:" label
+   NOT an existing token — the screenshot shows this label in a green
+   that has no equivalent anywhere in variables.css (the palette only
+   defines purple/red/neutrals). Using a locally-scoped, non-global
+   value as a stopgap rather than adding a new color to the shared
+   token file myself; --phase4-say-color is scoped to this module
+   only. Flagging this for the design/token owner: either a "success/
+   positive" semantic color needs to be added to variables.css, or
+   this needs to be confirmed as a one-off. Hex is an estimate, not
+   picked from Figma.
+   -------------------------------------------------------------------- */
+.sayLabel {
+  --phase4-say-color: #6aa840;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--phase4-say-color);
+  margin: 0 0 0.5rem;
+}
+
+/* --------------------------------------------------------------------
+   Divider + explanation (right column only)
+   -------------------------------------------------------------------- */
+.divider {
+  width: 100%;
+  height: 1px;
+  border: none;
+  background-color:#000;
+  margin: 1.25rem 0; /* estimated */
+}
+
+.explanation {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .body {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .rightColumn {
+    padding-inline-start: 0;
+    padding-top: var(--space-6);
+    border-inline-start: none;
+    border-top: 1px solid #000; /* divider rotates to horizontal when columns stack */
+  }
+}

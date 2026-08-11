@@ -1,0 +1,75 @@
+/* ==========================================================================
+   SearchBar.module.css
+   Generic, project-wide input + button pill. No page-specific sizing
+   or copy lives here — Blogs Hero (or any future consumer) controls
+   width/placement from its own layout, this only owns the control's
+   own look. The button's own visual surface (background, radius,
+   padding, hover/press motion) belongs entirely to Button/ButtonMotion
+   — this file never redeclares any of it, only the flex layout that
+   places it next to the input.
+   ========================================================================== */
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  /* Figma-specified pill width (~712px) has no matching container/
+     token step — kept as an explicit value rather than forcing it
+     onto an unrelated width token. */
+  max-width: 58rem;
+  background-color: #ffffff;
+  border-radius: 999px;
+  padding: var(--space-4);
+  padding-inline-start: var(--space-6);
+  /* Soft ambient shadow lifting the pill off the hero background —
+     no shadow token exists yet for this weight, kept explicit. */
+  box-shadow: 0 12px 32px rgba(88, 28, 168, 0.12);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+ 
+}
+
+.input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+/* --------------------------------------------------------------------
+   Focus treatment
+   Text inputs are always :focus-visible on click (unlike buttons,
+   which only get it from keyboard focus) — without an explicit rule
+   here that click would fall through to the browser's raw default
+   outline instead of the design system's own focus ring. Matches
+   Button.module.css's keyboard-focus treatment (--shadow-focus) so
+   every interactive element in the hero reads as one consistent
+   system rather than the input showing a plain, unstyled outline.
+   -------------------------------------------------------------------- */
+.input:focus {
+  outline: none;
+}
+
+.input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* --------------------------------------------------------------------
+   Button wrapper
+   Layout only, same role .cta played in the TechTalk Hero: keeps the
+   button from being compressed by the flex row and from taking on
+   any width it didn't ask for. No visual styling lives here — that's
+   entirely Button's.
+   -------------------------------------------------------------------- */
+.buttonWrap {
+  display: inline-flex;
+  flex-shrink: 0;
+  
+}

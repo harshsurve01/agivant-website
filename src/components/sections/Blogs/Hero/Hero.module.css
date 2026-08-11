@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Hero.module.css (Blogs)
+   Owns layout and typography for the hero's own content only. All
+   ambient visuals (gradients, particles, decorative ellipse) live in
+   HeroBackground and are not touched here — same split as the
+   TechTalk Hero. Container already owns max-width/centering/
+   horizontal padding for its own box — this file only arranges what
+   sits inside it.
+   ========================================================================== */
+
+/* Section-level vertical rhythm. Same shape as the TechTalk Hero. */
+.hero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 90vh;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16);
+  text-align: center;
+
+  padding-top: clamp(8rem, 15vh, 11rem);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-block: var(--space-16);
+  }
+}
+
+/* --------------------------------------------------------------------
+   Heading
+   Figma shows two visual tiers on one heading: a small eyebrow line
+   ("Blogs") sitting above the 64px headline ("Lessons from
+   production AI"). Kept as a single flex column so the `heading`
+   prop can stay one string with a line break, matching the required
+   data shape, while still rendering the two tiers distinctly.
+   -------------------------------------------------------------------- */
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 62rem; /* same Figma max-width as the TechTalk heading */
+}
+
+.eyebrow {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-7xl);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--color-brand-primary);
+}
+
+.headline {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-7xl);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--color-brand-primary);
+}
+
+/* --------------------------------------------------------------------
+   Description
+   Same spec and token mapping as the TechTalk Hero description.
+   -------------------------------------------------------------------- */
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  letter-spacing: -1px;
+  color: var(--color-text-secondary);
+  max-width: 51.795rem; /* 828.72px expressed as a token-based rem value */
+}
+
+/* --------------------------------------------------------------------
+   Search wrapper
+   Plays the same structural role .cta played in the TechTalk Hero:
+   no visual styling of its own (that's entirely SearchBar's), just
+   keeps the control from stretching past its intended width inside
+   the centered flex column.
+   -------------------------------------------------------------------- */
+.search {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

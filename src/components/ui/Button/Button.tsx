@@ -4,7 +4,7 @@ import styles from "./Button.module.css";
 import { ButtonMotion } from "./ButtonMotion";
 
 /** Visual treatment of the button. */
-export type ButtonVariant = "primary" | "dark";
+export type ButtonVariant = "primary" | "dark" | "outline";
 
 /**
  * Design-system size scale. Named by scale, not by usage context — "sm"

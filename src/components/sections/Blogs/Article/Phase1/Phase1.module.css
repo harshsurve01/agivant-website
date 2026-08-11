@@ -1,0 +1,84 @@
+/* ==========================================================================
+   Phase1.module.css
+   Figma: node 2097:1298 ("Phase 1"), 2097:1284 ("Establishing
+   Baselines"), 2097:1293 (intro paragraph), 2097:1302/1306/1304/1308
+   (card grid), file 7pLktxswHgy5YvtLZXwsq0. No dedicated Figma frame
+   for this section — same situation as ExecutiveBrief.
+   ========================================================================== */
+
+/* Same section-level rhythm as ExecutiveBrief/Episodes — no
+   authoritative section padding exists in Figma's absolute canvas,
+   so the shared --space-16 rhythm is reused rather than invented. */
+.phase1 {
+  width: 100%;
+  padding-block: var(--space-16);
+}
+
+/* --------------------------------------------------------------------
+   Eyebrow ("Phase 1")
+   Figma: 67x21px box for "Phase 1" (7 chars) — closest token match
+   is --font-size-base (15px) at semibold, in the brand color.
+   -------------------------------------------------------------------- */
+.eyebrow {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  line-height: var(--line-height-snug);
+  color: var(--color-brand-primary);
+  margin: 0 0 0.875rem; /* 14px, eyebrow bottom -> title top */
+}
+
+/* --------------------------------------------------------------------
+   Title
+   Figma (2097:1284): 407x41px box — same 41px line-box height as
+   ExecutiveBrief's own title, so the same --font-size-3xl bold
+   pairing is reused rather than re-measured. Last word highlighted,
+   same two-tone pattern as ExecutiveBrief.
+   -------------------------------------------------------------------- */
+.title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 1.125rem; /* 18px, title bottom -> description top */
+}
+
+.highlight {
+  color: var(--color-brand-primary);
+}
+
+/* --------------------------------------------------------------------
+   Description
+   Same token pairing already used for ExecutiveBrief's paragraphs
+   and each card's own body copy.
+   -------------------------------------------------------------------- */
+.description {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  max-width: 75.0625rem; /* 1201px, node 2097:1293 */
+  margin: 0 0 1.5625rem; /* 25px, description bottom -> grid top */
+}
+
+/* --------------------------------------------------------------------
+   Card grid
+   Figma: two 562px-wide columns, ~39px column gap, ~38px row gap —
+   close enough to treat as one shared gap value. Row heights are
+   driven entirely by each card's own content (494px row 1, 644px
+   row 2), not a fixed height, so grid-auto-rows is intentionally not
+   set.
+   -------------------------------------------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.375rem; /* ~38px */
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

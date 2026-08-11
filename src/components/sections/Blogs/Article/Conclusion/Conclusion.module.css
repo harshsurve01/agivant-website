@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Conclusion.module.css
+
+   ESTIMATED SIZING — see Conclusion.tsx's own doc comment (Figma MCP
+   unreachable this task, same condition Phase2/Phase3/Phase4 already
+   hit). Heading row reuses ExecutiveBrief's exact bar+title values,
+   since the screenshot shows the identical accent-bar-beside-heading
+   shape at what looks like the same scale. Quote card values are
+   eyeballed against the screenshot, not measured Figma node values.
+   ========================================================================== */
+
+.conclusion {
+  width: 100%;
+  padding-block: var(--space-16); /* same section rhythm as every other Article section */
+}
+
+/* --------------------------------------------------------------------
+   Heading row (accent bar + title)
+   Same shape as ExecutiveBrief's own headingRow — screenshot shows
+   the same bar-beside-heading treatment, no two-tone split on the
+   title itself here.
+   -------------------------------------------------------------------- */
+.headingRow {
+  display: flex;
+  align-items: center;
+  gap: 1.0625rem; /* 17px, matches ExecutiveBrief's bar-to-title gap */
+  margin-block-end: 1.9375rem; /* 31px, matches ExecutiveBrief's heading->body gap */
+}
+
+.bar {
+  display: block;
+  width: 0.5rem; /* 8px, matches ExecutiveBrief's accent bar */
+  height: 2rem; /* 32px, matches ExecutiveBrief's accent bar */
+  border-radius: var(--radius-sm);
+  background-color: var(--color-brand-primary);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------
+   Body copy
+   Same paragraph treatment as ExecutiveBrief's own body copy.
+   -------------------------------------------------------------------- */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 74.36rem; /* 1189.77px, matches ExecutiveBrief's body width */
+  margin-block-end: var(--space-8); /* estimated body->quote card gap */
+}
+
+.paragraph {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+.emphasis {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* --------------------------------------------------------------------
+   Quote / callout card
+   Screenshot shows a soft tinted card, rounded corners, a purple
+   left accent bar, italic quote text. --color-primary-subtle is the
+   same soft-purple token Featured already uses for its own tinted
+   card background — reused here rather than a one-off value.
+   Left accent uses border-inline-start (not a separate .bar element,
+   unlike the heading) since it spans the card's full height here,
+   not a fixed 32px — a border reflects that relationship directly.
+   -------------------------------------------------------------------- */
+.quoteCard {
+  display: flex;
+  align-items: center;
+  padding: 1.75rem 2.25rem; /* estimated */
+  border-radius: var(--radius-xl); /* 24px, same card-radius convention used throughout Article */
+  background-color: #d9d9d920;
+  border-inline-start: 0.25rem solid var(--color-brand-primary); /* 4px, estimated */
+  margin: 0;
+   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.quoteText {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  font-style: italic;
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .body {
+    max-width: 100%;
+  }
+
+  .quoteCard {
+    padding: 1.25rem 1.5rem;
+  }
+}

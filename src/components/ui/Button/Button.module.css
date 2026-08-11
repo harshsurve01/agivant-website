@@ -96,3 +96,19 @@
   outline: none;
   box-shadow: var(--shadow-focus);
 }
+
+.outline {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border-color: var(--color-brand-primary);
+}
+
+.outline:hover:not(:disabled) {
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+}
+
+.outline:active:not(:disabled) {
+  background-color: var(--color-purple-active);
+  color: var(--color-text-inverse);
+}

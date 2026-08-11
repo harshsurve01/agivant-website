@@ -1,0 +1,10 @@
+/* ==========================================================================
+   Blogs.module.css
+   Page-level layout only. Each section (Hero, Featured, BlogHub)
+   owns its own internal spacing and typography in its own module —
+   this file never reaches into them.
+   ========================================================================== */
+
+.blogs {
+  width: 100%;
+}

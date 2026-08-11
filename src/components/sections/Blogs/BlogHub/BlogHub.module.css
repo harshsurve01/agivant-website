@@ -1,0 +1,30 @@
+/* ==========================================================================
+   BlogHub.module.css
+   Section-level padding + heading, same pattern as Featured.module.css.
+   Owns nothing about BlogFilters' or BlogList's internals — just the
+   spacing between the heading, the filter panel, and the list.
+   ========================================================================== */
+
+.hub {
+  /* --section-padding-block isn't in variables.css — this fallback
+     pattern is inherited unchanged from Featured.module.css, which
+     already uses the same not-yet-defined token for section rhythm. */
+  padding-block: var(--section-padding-block, 4rem);
+}
+
+.title {
+  text-align: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-4xl); /* 2.25rem / 36px — exact match to Figma's 36px */
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-block-end: var(--space-12); /* 2.5rem — closest token to Figma's 38px gap */
+}
+
+.highlight {
+  color: var(--color-brand-primary);
+}
+
+.listWrapper {
+  margin-block-start: var(--space-10); /* 2rem — closest token to Figma's 35px gap */
+}

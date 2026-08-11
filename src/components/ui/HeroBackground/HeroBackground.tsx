@@ -65,7 +65,7 @@ export function HeroBackground() {
         right="70%"
         size="25rem"
         stops={["#8500df 50%", "#edbf79 85%", "transparent 100%"]}
-        opacity={0.1}
+        opacity={0.125}
         blur="90px"
       />
       <Gradient

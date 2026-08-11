@@ -1,0 +1,53 @@
+/* ==========================================================================
+   BlogList.module.css
+
+   .scrollArea is the ONLY clip/scroll boundary for the list — its
+   max-height is fixed (from Figma: 4 cards + gaps at the reference
+   1440px frame) so the BlogHub section never grows as more articles
+   are added. Extra cards stay inside and become reachable via the
+   scrollbar.
+
+   The scrollbar is put on the LEFT (matching Figma) via the
+   direction: rtl / direction: ltr pairing below — see BlogList.tsx
+   for why. Colors are the brand purple (thumb) and the same
+   translucent gray used by the glass cards (track).
+   ========================================================================== */
+
+.scrollArea {
+  direction: rtl;
+  overflow-y: auto;
+  max-height: 82.5rem; /* ~4 cards + 3 gaps at the Figma reference frame — not a scale token, it's a computed content height */
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-brand-primary) #d9d9d933;
+}
+
+.scrollArea::-webkit-scrollbar {
+  width: 0.875rem; /* 14px, matches the Figma scrollbar thumb width */
+}
+
+.scrollArea::-webkit-scrollbar-track {
+  background-color: #d9d9d933;
+  border-radius: var(--radius-full);
+}
+
+.scrollArea::-webkit-scrollbar-thumb {
+  background-color: var(--color-brand-primary);
+  border-radius: var(--radius-full);
+}
+
+.cardsStack {
+  direction: ltr;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10); /* 2rem — closest token to Figma's 31px card-to-card gap */
+  padding-inline-start: var(--space-8); /* 1.625rem — closest token to the gap between scrollbar and cards */
+}
+
+.empty {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  text-align: center;
+  padding-block: var(--space-10);
+}

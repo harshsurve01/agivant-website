@@ -1,0 +1,157 @@
+/* ==========================================================================
+   Featured.module.css
+   Owns all internal spacing and typography for the Featured section.
+   Colors, radii and spacing reference design tokens (falling back to a
+   sane literal only where a token name couldn't be confirmed from the
+   files available at build time — replace the fallback with the real
+   token if the name differs in variables.css).
+   ========================================================================== */
+
+.featured {
+  padding-block: var(--section-padding-block, 4rem);
+}
+
+/* -- Section title -------------------------------------------------------- */
+
+.title {
+  text-align: center;
+  font-size: var(--font-size-h2, 2rem);
+  font-weight: 700;
+  color: var(--color-text, #111111);
+  margin-block-end: 2.5rem;
+}
+
+.highlight {
+  color: var(--color-primary, #7c3aed);
+}
+
+/* -- Card ------------------------------------------------------------------ */
+
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  background-color: #d9d9d920;
+  border-radius: var(--radius-xl, 1.5rem);
+  padding: 0.75rem;
+  border: 1px solid #fff;
+    overflow: hidden;
+     box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+    backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+}
+
+@media (min-width: 768px) {
+  .card {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 0rem;
+    padding: 0rem;
+      overflow: hidden;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+
+}
+
+.image {
+  object-fit: cover;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding-block: 0.5rem;
+  padding: 2rem;
+}
+
+/* -- Meta row --------------------------------------------------------------- */
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block-end: 2rem;
+}
+
+.category {
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full, 999px);
+  background-color: var(--color-primary-subtle, #efe7fd);
+  color: var(--color-primary, #7c3aed);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: 600;
+}
+
+.readTime,
+.author {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-text-muted, #6b6b76);
+}
+
+/* -- Title & excerpt ---------------------------------------------------- */
+
+.articleTitle {
+  font-size: var(--font-size-xl, 1.25rem);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.35;
+  margin-block-end: 0.75rem;
+  width:28.125rem;
+}
+
+.articleTitle a {
+  color: var(--color-primary, #7c3aed);
+  text-decoration: none;
+}
+
+.articleTitle a:hover {
+  text-decoration: underline;
+}
+
+.excerpt {
+  color: var(--color-text-muted, #4b4b55);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.6;
+  margin: 0;
+   width:22rem;
+}
+
+/* -- Divider & footer ----------------------------------------------------- */
+
+.divider {
+  border: none;
+  border-block-start: 1px solid var(--color-border, #e2e2e8);
+  margin-block: 1.5rem;
+}
+
+.footer {
+  margin-block-start: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.publishedDate {
+  font-size: var(--font-size-xs, 0.75rem);
+  color:  #747479;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ctaIcon {
+  width: 1rem;
+  height: 1rem;
+}
