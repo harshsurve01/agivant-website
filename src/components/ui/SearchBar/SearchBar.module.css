@@ -17,7 +17,7 @@
      token step — kept as an explicit value rather than forcing it
      onto an unrelated width token. */
   max-width: 58rem;
-  background-color: #ffffff;
+  background-color: #ffffff62;
   border-radius: 999px;
   padding: var(--space-4);
   padding-inline-start: var(--space-6);
