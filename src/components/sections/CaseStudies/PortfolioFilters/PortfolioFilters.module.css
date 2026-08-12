@@ -1,0 +1,150 @@
+/* ==========================================================================
+   PortfolioFilters.module.css
+
+   ASSUMPTION: no Figma inspector reading was captured for the filter
+   panel itself (no screenshot showed its own dimension/typography
+   panel) — every value below is estimated from the listing screenshot
+   and existing tokens: panel width, padding, group spacing, checkbox
+   size, and every font size/weight here. Verify against the live
+   Figma frame before shipping.
+   ========================================================================== */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+  max-width: 20rem; /* 320px — ESTIMATED panel width */
+  padding: var(--space-8); /* ESTIMATED */
+  background-color: #d9d9d920;
+  border-radius: var(--radius-lg); /* ESTIMATED */
+ box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  align-self: flex-start;
+  
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg); /* ESTIMATED */
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+}
+
+.resetButton {
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm); /* ESTIMATED */
+  font-weight: var(--font-weight-medium);
+  color: #3074d4;
+  cursor: pointer;
+}
+
+.resetButton:hover {
+  color: var(--color-hover-primary);
+}
+
+.resetButton:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-sm);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border-default);
+  margin: 0;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4); /* ESTIMATED */
+}
+
+.groupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.groupTitle {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm); /* ESTIMATED */
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.groupActiveCount {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs); /* ESTIMATED */
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-muted);
+}
+
+.optionList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3); /* ESTIMATED */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.optionLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2); /* ESTIMATED */
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 1rem; /* 16px — ESTIMATED, no reading captured */
+  height: 1rem;
+  accent-color: var(--color-brand-primary);
+  cursor: pointer;
+}
+
+.optionText {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm); /* ESTIMATED */
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+}
+
+.optionCount {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs); /* ESTIMATED */
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------
+   Responsive
+   No Case Studies-specific responsive Figma frame was available.
+   Follows the same 1024px project breakpoint used elsewhere
+   (HeroParticleField, Hero.module.css) — panel drops to full width
+   and stacks below the card grid via CaseStudyHub.module.css's own
+   breakpoint, not duplicated here.
+   -------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .panel {
+    max-width: none;
+  }
+}

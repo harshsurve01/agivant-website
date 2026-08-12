@@ -1,0 +1,142 @@
+/* ==========================================================================
+   Outcome.module.css (Case Study Inner Page)
+
+   Figma MCP connector calls were rate-limited this pass — see
+   Technology.module.css's header for the full explanation and the
+   1440/1095 ≈ 1.315 screenshot->real scale factor used throughout.
+   All values below are ESTIMATED from the reference screenshot, not
+   read live from the Figma file.
+   ========================================================================== */
+
+.outcome {
+  width: 100%;
+  /* ESTIMATED, derived (not measured directly): see Technology.module.css's
+     .technology padding-bottom comment — this is the other half of the
+     same measured 139.4px combined Technology -> Outcome gap (Anaplan
+     line bottom, y171, to this heading's top, y277, in the reference
+     screenshot), split evenly since the exact per-section share isn't
+     determinable from a flat screenshot. */
+  padding-top: 4.35rem; /* 69.6px — half of the measured 139.4px combined gap */
+  /* No Figma/screenshot reference exists for whatever comes after
+     Outcome (Architecture, out of scope this pass) to measure a real
+     bottom gap against, so this reuses Technology's own top-of-section
+     default rather than inventing a third distinct estimate. Flagged
+     in the final report as information unavailable this pass. */
+  padding-bottom: 2.5rem; /* 40px — default, not Figma/screenshot-derived, see note above */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------
+   Heading
+   Same treatment as Technology/Solution/Objectives (34px/1.15/
+   semibold/brand-primary, centered) — reused rather than re-derived.
+   -------------------------------------------------------------------- */
+.title {
+  font-family: var(--font-family-heading);
+  font-size: 2.125rem; /* 34px — same literal every other Article heading uses */
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.15;
+  color: var(--color-brand-primary);
+  text-align: center;
+  margin: 0 0 3.25rem; /* ESTIMATED: heading bottom (y296) -> row-1 badge top (y336) = 40px screenshot -> 52.6px real, an almost exact match for --space-16 (52px) */
+}
+
+/* --------------------------------------------------------------------
+   Grid
+   3 columns, 3/3/1 rows — the 7th item explicitly placed in column 2
+   of row 3 below (its left edge in the screenshot lines up exactly
+   with column 2's badge, not just "visually centered"). Uses
+   `repeat(3, minmax(0, 1fr))`, the same responsive-fill pattern
+   Solution's grid already uses, rather than Figma's/the screenshot's
+   fixed px column widths.
+
+   column-gap: ESTIMATED — screenshot gap between column 1's text right
+   edge (x326) and column 2's badge left edge (x406) = 80px screenshot
+   -> 105.2px real, close to this project's existing --space-32 token
+   (104px) — reused as a genuine near-match, not forced.
+   row-gap: ESTIMATED — screenshot gap between row 1's badge bottom
+   (y389) and row 2's badge top (y415) = 26px screenshot -> 34.2px
+   real, closest to --space-10 (32px).
+   -------------------------------------------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--space-3); /* 104px — ESTIMATED, see derivation above */
+  row-gap: var(--space-10); /* 32px — ESTIMATED, see derivation above */
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------
+   Per-row divider lines
+   Confirmed in the screenshot as two SEPARATE segments (row 1: y330-
+   391; row 2: y410-471; no line at all alongside row 3) rather than
+   one continuous rule down the whole grid — reproduced here as a
+   border on every item except the last item in each row (3, 6) and
+   the lone row-3 item (7), so it only ever spans one item's own
+   height, matching the screenshot exactly.
+   Divider height (~61px screenshot -> ~80.2px real) isn't set
+   explicitly: a border-inline-end on the item itself naturally spans
+   that item's own rendered height, which already matches the
+   measured ~80px.
+   Color: screenshot line samples as a very light, near-white gray
+   (~rgb(241,241,241)) — lighter than this project's --color-border-
+   default token (#E5E7EB / rgb(229,231,235)), likely 1px
+   antialiasing against a white background rather than a distinct
+   color; --color-border-default is used as the closest existing
+   token rather than a new literal, flagged as an assumption.
+   -------------------------------------------------------------------- */
+.grid > li:not([data-position="3"]):not([data-position="6"]):not([data-position="7"]) {
+  border-inline-end: 1px solid #000; /* ESTIMATED color match, see note above */
+  padding-inline-end: var(--space-16); /* half the column-gap, so text clears the divider on both sides */
+}
+
+/* 7th item: explicit column 2 placement (screenshot: its badge's left
+   edge lines up exactly with column 2's badge left edge, x406 both),
+   not CSS auto-flow (which would otherwise place it in column 1). */
+.grid > li[data-position="7"] {
+  grid-column: 2;
+}
+
+@media (max-width: 1024px) {
+  /* No dedicated Figma/screenshot tablet frame was available this
+     pass (same situation Solution's own breakpoints are in) — follows
+     this page's own established 1024px 3->2-column convention
+     (Solution.module.css) rather than a measured value. The 7th item
+     no longer has a meaningful "middle column" at 2 columns, so it's
+     released back to normal flow (full-width, centered) instead of
+     forcing a stale column-2 placement. */
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid > li[data-position="7"] {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 24rem;
+  }
+
+  .grid > li:not([data-position="3"]):not([data-position="6"]):not([data-position="7"]) {
+    border-inline-end: none;
+    padding-inline-end: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Same 768px stack point Solution/Objectives already use. Dividers
+     make no sense in a single column, so they're dropped entirely. */
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid > li[data-position="7"] {
+    max-width: none;
+  }
+}

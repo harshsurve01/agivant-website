@@ -1,0 +1,140 @@
+/* ==========================================================================
+   CaseStudyCard.module.css
+
+   Figma inspector readings actually captured (from screenshots, not a
+   live Figma session — the connector wasn't connected this pass):
+     - Card:            386 x 308
+     - Title text box:  341 x 70, Poppins SemiBold 20px / 35 line-height
+                         / 0% letter-spacing, left-aligned
+     - Badge box:       105 x 18 ("Agentic AI Systems"), inner text
+                         86 x 10 positioned at x10/y4 within it (Poppins
+                         Regular 9px / 115% line-height / 0% letter-spacing)
+     - Deep Dive group: 80.03 x 14, Poppins Regular 12px / 115%
+                         line-height / 0% letter-spacing
+
+   Everything else below (image aspect ratio, card radius/shadow,
+   content padding, title<->footer gap, badge/tag gap, badge background
+   color) is ESTIMATED from the listing screenshot and existing tokens —
+   no inspector reading was available for these. Verify against the
+   live Figma frame before shipping; see the chat report for the full
+   list.
+   ========================================================================== */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 24.125rem; /* 386px — Figma card width */
+  background-color: #d9d9d920;
+  border-radius: var(--radius-lg); /* ESTIMATED — no radius reading captured */
+  overflow: hidden;
+   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.card:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  /* 386 x ~168 — ESTIMATED from the card's overall 386x308 proportions
+     and the title box's own position, not a direct inspector reading */
+  aspect-ratio: 386 / 168;
+  background-color: var(--color-bg-secondary);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4); /* ESTIMATED */
+  padding: var(--space-6); /* ESTIMATED */
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl); /* 1.25rem = 20px — matches Figma reading */
+  font-weight: var(--font-weight-semibold); /* Figma: SemiBold */
+  line-height: 1.75; /* 35px / 20px — no matching line-height token */
+  letter-spacing: var(--letter-spacing-normal); /* Figma: 0% */
+  color: var(--color-text-primary);
+  max-width: 21.3125rem; /* 341px — Figma title box width */
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2); /* ESTIMATED */
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  /* 105x18 box, ~4px vertical / ~10px-9px horizontal padding around an
+     86x10 text node positioned at x10,y4 — derived from the captured
+     inspector reading */
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-neutral-100); /* ESTIMATED — no color reading captured */
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-base);
+  font-size: 0.5625rem; /* 9px — no matching token at this size */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.15; /* 115% */
+  letter-spacing: var(--letter-spacing-normal);
+  white-space: nowrap;
+}
+
+.deepDive {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2); /* ESTIMATED */
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs); /* 0.75rem = 12px — matches Figma reading */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.15; /* 115% */
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--color-brand-primary);
+  white-space: nowrap;
+   
+}
+
+.deepDiveIcon {
+  display: inline-flex;
+  color: var(--color-brand-primary);
+  width:  0.875rem  ;
+  height:  0.875rem  ;
+ 
+}
+
+.deepDiveIconSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}

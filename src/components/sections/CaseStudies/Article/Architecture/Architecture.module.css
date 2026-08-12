@@ -1,0 +1,124 @@
+/* ==========================================================================
+   Architecture.module.css (Case Study Inner Page)
+
+   No live Figma MCP connection was available this pass (no file/node
+   URL was supplied — only two reference screenshots: one plain view
+   of the card, one with Figma's dev-mode selection overlay reporting
+   the container as 1250 x 715.45px). All values below are ESTIMATED
+   by pixel-measuring those two screenshots, not read live from Figma.
+
+   Derivation of the screenshot->real scale factor:
+   the card's own fill (~rgb(247,247,247), distinct from the page's
+   white/gradient background) was edge-detected in the plain
+   screenshot at x:[52,813] y:[39,457] -> 761 x 418 screenshot px.
+   Matched against the confirmed real 1250 x 715.45 from the
+   dev-mode-overlay screenshot: 1250/761 ≈ 1.643x (width),
+   715.45/418 ≈ 1.711x (height) -> ~1.68x average, used below.
+   ========================================================================== */
+
+.architecture {
+  width: 100%;
+  /* No Outcome -> Architecture gap could be measured this pass (see
+     Outcome.module.css's own padding-bottom comment — the same
+     "no reference exists yet" situation, now on this side). Reuses
+     Technology's own established "default, not measured" value
+     (2.5rem) rather than inventing a new one, matching the project's
+     convention for unmeasured section-to-section gaps. Flagged in the
+     final report as information unavailable this pass. */
+  padding-top: 2.5rem; /* 40px — default, not Figma/screenshot-derived, see note above */
+  padding-bottom: 2.5rem; /* 40px — default; last section in Article, no next-section gap to measure against */
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------
+   Card
+   Figma's rounded container. Width comes from Container's own `xl`
+   step (1280px max-width, minus 2x --container-padding-inline/20px =
+   1240px content width) — an ESTIMATED but very close match to the
+   confirmed real 1250px card width (within Container's own side
+   padding), reused rather than hardcoding a one-off 1250px that would
+   fight the rest of this page's shared container system.
+
+   background: ESTIMATED — screenshot samples the card fill as flat
+   rgb(247,247,247), a near-exact match for this project's existing
+   --color-neutral-50 token (#FAFAFA / rgb(250,250,250)) — reused
+   rather than a new literal.
+   border-radius: ESTIMATED from the screenshot's corner curvature;
+   no larger token than --radius-xl (24px) exists in this project, so
+   it's reused as the closest available match rather than inventing a
+   new radius step — the real Figma value may run a little larger.
+   box-shadow: ESTIMATED — the screenshot shows a soft, low-contrast
+   shadow, closer to this project's --shadow-md than the more
+   pronounced --shadow-lg/--shadow-xl steps.
+   No border: the screenshot's card edge is a flat fill/shadow
+   transition with no distinct stroke color sampled at the boundary.
+   -------------------------------------------------------------------- */
+.card {
+  width: 100%;
+  overflow: hidden;
+  background: #d9d9d920; /* ESTIMATED match, see derivation above */
+  border-radius: var(--radius-xl); /* ESTIMATED, nearest existing token, see derivation above */
+  box-shadow: var(--shadow-md); /* ESTIMATED, see derivation above */
+  /* Internal image padding: ESTIMATED by edge-detecting the diagram's
+     own content (dark text/borders + saturated icon blues) against
+     the card fill in the plain screenshot, then applying the ~1.68x
+     scale factor derived above.
+     Vertical: measured ~30px top / ~16px bottom screenshot -> ~50px /
+     ~27px real, matched to this project's existing --space-16 (52px)
+     and --space-8 (26px) tokens respectively — both close enough to
+     be genuine near-matches rather than forced.
+     Horizontal: measured ~93px / ~101px screenshot (left/right,
+     within measurement noise of each other) -> ~156-170px real; no
+     existing token is close, so a literal 10rem (160px) is used
+     directly, same "literal value, flagged, not forced into an
+     ill-fitting token" approach Technology.module.css's
+     .additionalText margin already uses. */
+  padding: var(--space-16) 10rem var(--space-8); /* 52px / 160px / 26px — ESTIMATED, see derivation above */
+     backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
+   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+}
+
+/* --------------------------------------------------------------------
+   Image
+   width: 100% + height: auto (rather than next/image `fill`) so the
+   diagram scales down proportionally as the card narrows, using its
+   own intrinsic aspect ratio — matches the brief's "if Figma scales
+   the entire image proportionally, reproduce that" responsive
+   instruction with no separate breakpoint logic needed. Never
+   stretched (no fixed height) and never cropped (no object-fit:
+   cover / overflow crop on this element).
+   -------------------------------------------------------------------- */
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* --------------------------------------------------------------------
+   Responsive horizontal padding
+   No dedicated Figma/screenshot tablet or mobile frame was available
+   this pass (same situation Solution/Outcome's own breakpoints are
+   in) — reuses this page's established 1024px/768px breakpoints
+   rather than measured values, and simply steps the large 10rem
+   horizontal padding down so the card doesn't collapse the diagram
+   into an unreadably narrow strip on smaller viewports. Vertical
+   padding is left as-is at every step; only the horizontal estimate
+   was large enough to need a reduction.
+   -------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .card {
+    padding-inline: var(--space-16); /* 52px */
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding-inline: var(--space-6); /* 20px — matches Container's own side padding at this width */
+  }
+}

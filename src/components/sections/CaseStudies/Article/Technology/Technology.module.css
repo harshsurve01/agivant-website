@@ -1,0 +1,121 @@
+/* ==========================================================================
+   Technology.module.css (Case Study Inner Page)
+
+   Figma source: "Case Study Inside Page" (node 2100:2083) → Technology
+   heading + technology-list text + "Anaplan..." line. This pass's
+   Figma MCP connector calls were rate-limited (Starter plan tool-call
+   limit reached, both get_metadata and get_design_context refused),
+   so none of the values below come from a live Figma read. Instead
+   they're derived by pixel-measuring the reference screenshot and
+   converting screenshot px -> real design px via a scale factor
+   calibrated against this page's own already-Figma-sourced sections:
+
+     scale = 1440 / 1095 ≈ 1.315
+
+   (1440px = this project's standard desktop frame width, already
+   confirmed as the frame width Solution/Objectives were measured
+   against; 1095px = the reference screenshot's own pixel width. This
+   calibration was cross-checked against Solution's known ~1240px
+   content width: the screenshot's measured grid span converts to
+   ~1223px, a ~1.4% difference — close enough to trust the factor for
+   the derivations below.) Every value is flagged ESTIMATED for this
+   reason; none should be treated as an exact Figma citation the way
+   Solution.module.css's values are.
+   ========================================================================== */
+
+.technology {
+  width: 100%;
+  /* ESTIMATED: this screenshot starts at the Technology heading, so
+     the actual Solution -> Technology gap (Figma y-position) is not
+     visible in it and could not be measured or cross-checked this
+     pass. Falls back to a compact default in the same spirit as the
+     brief's "intentionally compact, not var(--space-16) everywhere"
+     direction, not a measured value. Flagged in the final report as
+     information unavailable this pass. */
+  padding-top: 2.5rem; /* 40px — default, not Figma/screenshot-derived */
+  /* ESTIMATED, derived (not measured directly): screenshot gap from
+     the Anaplan line's bottom (y171) to the Outcome heading's top
+     (y277) = 106px screenshot -> 139.4px real. That combined gap is
+     shared between this section's own bottom padding and Outcome's
+     own top padding (same "two sections both contribute" situation
+     Solution's header comment describes for its own top spacing), and
+     the exact split isn't determinable from a flat screenshot. Split
+     evenly here as the simplest defensible assumption: ~69.7px each. */
+  padding-bottom: 4.35rem; /* 69.6px — half of the measured 139.4px combined gap, see above */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------
+   Heading
+   Reuses the exact Solution/Objectives heading treatment (34px/1.15/
+   semibold/brand-primary, centered) rather than re-deriving a
+   near-duplicate value — screenshot heading cap-height/width are
+   consistent with that same pairing at the calibrated scale.
+   -------------------------------------------------------------------- */
+.title {
+  font-family: var(--font-family-heading);
+  font-size: 2.125rem; /* 34px — same literal Solution/Objectives use */
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.15;
+  color: var(--color-brand-primary);
+  text-align: center;
+  margin: 0 0 1.4rem; /* ESTIMATED: heading bottom (y88) -> description top (y105) = 17px screenshot -> 22.4px real */
+}
+
+/* --------------------------------------------------------------------
+   Technology list
+   ESTIMATED max-width: line 1 ("Azure Data Factory, ... Azure
+   Purview,") spans 735px screenshot before wrapping -> 966.5px real;
+   line 2 ends shorter (660px screenshot) only because it runs out of
+   words, not because it hit the same boundary, so line 1's span is
+   the better proxy for the actual wrap width. Rounded to a clean rem
+   step rather than kept as an ultra-precise, likely-noisy literal.
+   Font pairing matches Solution's card body copy exactly (18px /
+   --font-size-lg, 25px line-height, regular, --color-text-primary) —
+   the calibrated per-line vertical spacing (~26px real) matches
+   Solution's 25px line-height closely enough to reuse rather than
+   introduce a new value.
+   -------------------------------------------------------------------- */
+.technologies {
+  max-width: 61rem; /* 976px — ESTIMATED, see derivation above */
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg); /* 18px */
+  font-weight: var(--font-weight-regular);
+  line-height: 25px; /* matches Solution's body-copy line-height */
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------
+   Anaplan line
+   Same type pairing as .technologies (screenshot line-height band is
+   the same height as the technology-list lines) — kept as its own
+   class rather than reused verbatim only because its top margin
+   differs.
+   -------------------------------------------------------------------- */
+.additionalText {
+  margin: 1.6rem 0 0; /* ESTIMATED: description bottom (y138) -> Anaplan top (y157) = 19px screenshot -> 25px real */
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: 25px;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  /* No dedicated Figma/screenshot mobile reference was available this
+     pass (same situation Solution's own tablet/mobile breakpoints are
+     in) — reuses this page's established 768px stack point rather
+     than introducing a new one, and simply lets the two paragraphs
+     shrink to full container width. */
+  .technologies {
+    max-width: 100%;
+  }
+}

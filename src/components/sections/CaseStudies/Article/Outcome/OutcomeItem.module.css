@@ -1,0 +1,80 @@
+/* ==========================================================================
+   OutcomeItem.module.css (Case Study Inner Page — Outcome section)
+
+   Figma MCP connector calls were rate-limited this pass (see
+   Technology.module.css's header for the full explanation and the
+   1440/1095 ≈ 1.315 screenshot->real scale factor used throughout).
+   All values below are ESTIMATED from the reference screenshot, cross-
+   checked against this project's own existing numbered-badge pattern
+   (Blogs/Article/Phase2/ExperimentItem.module.css), not read live from
+   the Figma file.
+   ========================================================================== */
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.4rem; /* ESTIMATED: badge right edge (x109/110) -> text left edge (x126) = 16-17px screenshot -> ~22px real, closest to this project's existing badge->content gap (ExperimentItem: var(--space-6), 20px) */
+  list-style: none;
+}
+
+/* --------------------------------------------------------------------
+   Badge
+   ESTIMATED diameter: screenshot circle spans ~52-110px horizontally /
+   336-389px vertically (~56-58px screenshot) -> ~73-76px real. That
+   real value lands almost exactly on this project's OWN existing
+   numbered-badge size (ExperimentItem.module.css: 4.5rem / 72px) for
+   the same "circular badge next to a multi-line text block" pattern —
+   reused directly here rather than kept as a separately-derived,
+   barely-different literal. Fill/shadow copied from the same
+   ExperimentItem convention (light neutral surface, inset shadow).
+   -------------------------------------------------------------------- */
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 4.5rem; /* 72px — reused from ExperimentItem's existing badge size, see note above */
+  height: 4.5rem;
+  border-radius: var(--radius-full);
+  background-color: #d9d9d920;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+}
+
+/* --------------------------------------------------------------------
+   Text (emphasis run + supporting run, one sentence)
+   Same type pairing Solution/Technology's body copy already uses
+   (18px / --font-size-lg, 25px line-height, regular, black) — the
+   screenshot's own measured per-line spacing here (~20px screenshot ->
+   ~26px real) matches that existing 25px line-height closely enough to
+   reuse rather than introduce a new value.
+   -------------------------------------------------------------------- */
+.text {
+  margin: 0;
+  padding-top: 0.6rem; /* nudges the first line to align with the badge's optical center, ESTIMATED */
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xl); /* 20px */
+  font-weight: var(--font-weight-regular);
+  line-height: 25px;
+  color: var(--color-text-primary);
+  
+}
+
+.emphasis {
+ 
+  color: var(--color-brand-primary);
+  font-weight: var(--font-weight-semibold);
+  width: 15rem;
+}
+
+@media (max-width: 768px) {
+  .badge {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: var(--font-size-xl);
+  }
+}
