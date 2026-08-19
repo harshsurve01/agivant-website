@@ -63,13 +63,13 @@ export async function Partners() {
         <div className={styles.inner}>
           <PartnersHeader heading={header.heading} description={header.description} />
 
+          <PartnerLogoStrip slots={pairs} slotTimings={PARTNER_SLOT_TIMINGS} />
+
           <Link href={cta.href}>
             <Button variant="primary" size="lg" rightIcon={<ArrowUpRight />}>
               {cta.label}
             </Button>
           </Link>
-          <PartnerLogoStrip slots={pairs} slotTimings={PARTNER_SLOT_TIMINGS} />
-
         </div>
       </Container>
     </section>
