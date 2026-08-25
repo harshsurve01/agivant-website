@@ -1,27 +1,23 @@
 /* ==========================================================================
    PortfolioFilters.module.css
-
-   ASSUMPTION: no Figma inspector reading was captured for the filter
-   panel itself (no screenshot showed its own dimension/typography
-   panel) — every value below is estimated from the listing screenshot
-   and existing tokens: panel width, padding, group spacing, checkbox
-   size, and every font size/weight here. Verify against the live
-   Figma frame before shipping.
    ========================================================================== */
 
 .panel {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
   width: 100%;
-  max-width: 20rem; /* 320px — ESTIMATED panel width */
-  padding: var(--space-8); /* ESTIMATED */
-  background-color: #d9d9d920;
-  border-radius: var(--radius-lg); /* ESTIMATED */
- box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
-    inset 0 0 0 rgba(0, 0, 0, 0);
+  max-width: 20rem; /* 320px */
+  padding: var(--space-8);
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(133, 0, 223, 0.04),
+    inset 0 0 4px rgba(4, 4, 4, 0.06);
   align-self: flex-start;
-  
 }
 
 .header {
@@ -32,7 +28,7 @@
 
 .heading {
   font-family: var(--font-family-heading);
-  font-size: var(--font-size-lg); /* ESTIMATED */
+  font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-snug);
   color: var(--color-text-primary);
@@ -43,7 +39,7 @@
   background: none;
   padding: 0;
   font-family: var(--font-family-base);
-  font-size: var(--font-size-sm); /* ESTIMATED */
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: #3074d4;
   cursor: pointer;
@@ -68,7 +64,7 @@
 .group {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4); /* ESTIMATED */
+  gap: var(--space-4);
 }
 
 .groupHeader {
@@ -79,14 +75,14 @@
 
 .groupTitle {
   font-family: var(--font-family-base);
-  font-size: var(--font-size-sm); /* ESTIMATED */
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
 }
 
 .groupActiveCount {
   font-family: var(--font-family-base);
-  font-size: var(--font-size-xs); /* ESTIMATED */
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-regular);
   color: var(--color-text-muted);
 }
@@ -94,7 +90,7 @@
 .optionList {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3); /* ESTIMATED */
+  gap: var(--space-3);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -110,12 +106,12 @@
 .optionLabel {
   display: flex;
   align-items: center;
-  gap: var(--space-2); /* ESTIMATED */
+  gap: var(--space-2);
   cursor: pointer;
 }
 
 .checkbox {
-  width: 1rem; /* 16px — ESTIMATED, no reading captured */
+  width: 1rem;
   height: 1rem;
   accent-color: var(--color-brand-primary);
   cursor: pointer;
@@ -123,25 +119,20 @@
 
 .optionText {
   font-family: var(--font-family-base);
-  font-size: var(--font-size-sm); /* ESTIMATED */
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
   color: var(--color-text-primary);
 }
 
 .optionCount {
   font-family: var(--font-family-base);
-  font-size: var(--font-size-xs); /* ESTIMATED */
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-regular);
   color: var(--color-text-muted);
 }
 
 /* --------------------------------------------------------------------
    Responsive
-   No Case Studies-specific responsive Figma frame was available.
-   Follows the same 1024px project breakpoint used elsewhere
-   (HeroParticleField, Hero.module.css) — panel drops to full width
-   and stacks below the card grid via CaseStudyHub.module.css's own
-   breakpoint, not duplicated here.
    -------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .panel {

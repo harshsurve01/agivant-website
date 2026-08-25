@@ -5,14 +5,10 @@ import styles from "./EpisodePlaylist.module.css";
 /**
  * EpisodePlaylist
  *
- * Renders exactly the `episodes` list it's given, one EpisodeCard per
- * entry. Doesn't know about search or filtering — that's Episodes.tsx
- * (and later, whatever owns the toolbar's callbacks) narrowing the
- * list before it ever reaches this component.
+ * Renders the episode list alongside the main player.
  *
- * Presentation only, no local state: which episode is "active" comes
- * in via `currentEpisodeId`, and selection is reported back out via
- * `onSelectEpisode` — this component never decides what happens next.
+ * Styled with transparent glass surface and 10px backdrop blur sampling
+ * the page ribbon layer beneath.
  */
 export function EpisodePlaylist({
   episodes,
@@ -21,7 +17,14 @@ export function EpisodePlaylist({
   onSelectEpisode,
 }: EpisodePlaylistProps) {
   return (
-    <div className={styles.playlist}>
+    <div
+      className={styles.playlist}
+      style={{
+        background: "rgba(217, 217, 217, 0)",
+        backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
+      }}
+    >
       <ul className={styles.list}>
         {episodes.map((episode) => (
           <li key={episode.id}>

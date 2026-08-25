@@ -45,6 +45,29 @@ export interface CaseStudyImage {
  *  - techPlatform: not shown on the card itself, but required for the
  *    Tech Platform filter to have a field to match against
  */
+export interface SolutionCardItem {
+  text: string;
+  ribbon?: string;
+}
+
+export interface CaseStudyArchitectureEmbed {
+  type: "iframe";
+  src: string;
+  title?: string;
+  minHeight?: string | number;
+}
+
+export interface CaseStudyArchitectureImage {
+  type?: "image";
+  image: CaseStudyImage;
+  imageWidth?: number;
+  imageHeight?: number;
+}
+
+export type CaseStudyArchitecture =
+  | CaseStudyArchitectureEmbed
+  | CaseStudyArchitectureImage;
+
 export interface CaseStudy {
   slug: string;
   title: string;
@@ -52,73 +75,19 @@ export interface CaseStudy {
   industry: string;
   capability: string;
   techPlatform: string;
-  /**
-   * Case Study Inner Page ("/case-studies/[slug]") Hero content.
-   * Optional and separate from `title` (the Hub card's title) because
-   * the Hero's heading in Figma ("AI for Scalable Tech Support") does
-   * not match any of the 6 mock Hub cards' shared placeholder title
-   * ("Automating Enterprise Claims Processing with Agentic AI") — they
-   * are different copy for different frames, not the same field reused.
-   * Only the one record the Figma reference actually shows this
-   * content for has it populated below; per the brief ("report missing
-   * data instead of inventing"), the other 5 records deliberately do
-   * NOT get invented Inner Page copy. `getCaseStudyBySlug` + the
-   * `[slug]` route treat a record without this field as not having an
-   * Inner Page yet, same as `getArticleBySlug` does for Blog Inner.
-   */
   heroHeading?: string;
   heroDescription?: string;
-  /**
-   * Case Study Inner Page Objectives section. Same "optional, only
-   * populated where Figma gives real content" pattern as the hero
-   * fields above — see the comment there. Figma's Objectives card
-   * (node 2100:2124) has no body copy, only a heading, so
-   * `objectivesTitle` alone covers it.
-   */
   objectivesTitle?: string;
   challengesTitle?: string;
   challenges?: string[];
-  /**
-   * Case Study Inner Page Solution section. Same "optional, only
-   * populated where Figma gives real content" pattern as the hero and
-   * objectives fields above. Figma's Solution heading (node 2100:2168)
-   * plus its 5 card frames map directly to `solutionTitle` +
-   * `solutionItems`.
-   */
   solutionTitle?: string;
-  solutionItems?: string[];
-  /**
-   * Case Study Inner Page Technology section. Same "optional, only
-   * populated where Figma gives real content" pattern as the fields
-   * above. Figma's Technology heading (node 2100:2083 subtree) plus
-   * its technology-list text run and separate "Anaplan..." line map
-   * directly to `technologyTitle` + `technologies` + `technologyNote`.
-   */
+  solutionItems?: (string | SolutionCardItem)[];
   technologyTitle?: string;
   technologies?: string;
   technologyNote?: string;
-  /**
-   * Case Study Inner Page Outcome section. Same "optional, only
-   * populated where Figma gives real content" pattern as the fields
-   * above. Figma's Outcome heading plus its 7 numbered result items
-   * (each split into a purple/bold emphasis run and a supporting
-   * black run) map to `outcomeTitle` + `outcomeItems`.
-   */
   outcomeTitle?: string;
   outcomeItems?: OutcomeResult[];
-  /**
-   * Case Study Inner Page Architecture / Data Sources section. Same
-   * "optional, only populated where Figma gives real content" pattern
-   * as the fields above. Unlike Outcome/Solution/Technology/
-   * Objectives, this section has no separate title copy — Figma
-   * renders the entire Data Sources -> Orchestration -> Analysis ->
-   * Visualisation workflow as one static diagram image, so
-   * `architectureImage` (mirroring the existing `CaseStudyImage`
-   * shape used for the Hub card thumbnail above) is the only field
-   * needed. `imageWidth`/`imageHeight` are the asset's real intrinsic
-   * pixel dimensions, required by next/image (`Architecture.tsx` does
-   * not use `fill`, so it can't infer them itself).
-   */
+  architecture?: CaseStudyArchitecture;
   architectureImage?: CaseStudyImage;
   architectureImageWidth?: number;
   architectureImageHeight?: number;
@@ -204,11 +173,26 @@ export const caseStudies: CaseStudy[] = [
     ],
     solutionTitle: "Solution",
     solutionItems: [
-      "Implemented machine learning models and ensemble techniques to address seasonality, low volume behaviour, and small dataset issues for high quality forecast.",
-      "Unified data hub architected for curated data across global support tools using Azure Data Factory, Data Lake, and Azure SQL.",
-      "Daily, weekly, and monthly forecast per business need using statistical models and snapshots.",
-      "Single source of truth with refresh of actuals, budget, and generation of forecasts in sync with rhythm of business.",
-      "Cloud-hosted self-service reports and dashboards for accurate data and forecasts on a timely basis for support, operations, and finance leadership.",
+      {
+        text: "Implemented machine learning models and ensemble techniques to address seasonality, low volume behaviour, and small dataset issues for high quality forecast.",
+        ribbon: "/images/case-studies/solution-ribbon-01.png",
+      },
+      {
+        text: "Unified data hub architected for curated data across global support tools using Azure Data Factory, Data Lake, and Azure SQL.",
+        ribbon: "/images/case-studies/solution-ribbon-02.png",
+      },
+      {
+        text: "Daily, weekly, and monthly forecast per business need using statistical models and snapshots.",
+        ribbon: "/images/case-studies/solution-ribbon-03.png",
+      },
+      {
+        text: "Single source of truth with refresh of actuals, budget, and generation of forecasts in sync with rhythm of business.",
+        ribbon: "/images/case-studies/solution-ribbon-04.png",
+      },
+      {
+        text: "Cloud-hosted self-service reports and dashboards for accurate data and forecasts on a timely basis for support, operations, and finance leadership.",
+        ribbon: "/images/case-studies/solution-ribbon-05.png",
+      },
     ],
     technologyTitle: "Technology",
     technologies:
@@ -258,6 +242,11 @@ export const caseStudies: CaseStudy[] = [
      * derivation. 1003 x 658 is the provided asset's real intrinsic
      * pixel size (not the ~1250 x 715 Figma container it sits inside).
      */
+    architecture: {
+      type: "iframe",
+      src: "/embeds/azure-analytics-architecture.html",
+      title: "Azure Analytics Architecture",
+    },
     architectureImage: {
       src: "/images/case-studies/architecture-workflow.jpg",
       alt: "Data pipeline architecture: on-premises SQL Server, other relational databases, Azure SQL database, storage tables, and a web API feed into an Azure Data Factory-orchestrated ingestion step (Storage Blob), then Azure Synapse Analytics storage, Azure Analysis Services analysis (authenticated via Azure Active Directory), and Power BI visualization. Separately, an Azure Logic App triggers an Azure Container Instance that pulls worker and scheduler images from Docker Hub to run an Azure Batch Cluster, which reads input data and R models from and writes results back to Azure Blob Storage.",
@@ -304,6 +293,150 @@ export const caseStudies: CaseStudy[] = [
     industry: "BFSI",
     capability: "Agentic AI Systems",
     techPlatform: "Python",
+  },
+  {
+    slug: "developer-productivity-on-gemini",
+    title: "Developer productivity on Gemini",
+    image: {
+      src: "/images/partners/gemini/proof/developer-productivity.png",
+      alt: "Developer productivity on Gemini",
+    },
+    industry: "Cloud & AI",
+    capability: "Agentic AI Systems",
+    techPlatform: "Google Cloud / Gemini",
+    heroHeading: "Developer productivity on Gemini",
+    heroDescription:
+      "Gemini-native code assistance across a global technology estate, working inside the tools engineers already use.",
+    objectivesTitle: "Objectives",
+    challengesTitle: "Challenges",
+    challenges: [
+      "Fragmented developer tooling across enterprise repositories.",
+      "Lengthy ramp-up times and complex legacy code comprehension.",
+      "Strict compliance and IP privacy requirements for AI-generated code.",
+    ],
+    solutionTitle: "Solution",
+    solutionItems: [
+      {
+        text: "Integrated Gemini Enterprise code assist directly into IDEs and CI/CD pipelines.",
+        ribbon: "/images/case-studies/solution-ribbon-01.png",
+      },
+      {
+        text: "Context-aware repository grounding using private enterprise knowledge graphs.",
+        ribbon: "/images/case-studies/solution-ribbon-02.png",
+      },
+    ],
+    technologyTitle: "Technology",
+    technologies: "Gemini 1.5 Pro, Vertex AI, Google Cloud Platform, GitHub Enterprise",
+    technologyNote: "Enterprise security and governance compliant",
+    outcomeTitle: "Outcome",
+    outcomeItems: [
+      {
+        index: "01",
+        emphasis: "35% faster",
+        text: "development cycle times.",
+      },
+      {
+        index: "02",
+        emphasis: "30 to 40% higher",
+        text: "developer productivity across global teams.",
+      },
+    ],
+    architecture: {
+      type: "iframe",
+      src: "/embeds/azure-analytics-architecture.html",
+      title: "Gemini Developer Productivity Architecture",
+    },
+  },
+  {
+    slug: "conversational-analytics-and-hyper-automation",
+    title: "Conversational analytics and hyper-automation",
+    image: {
+      src: "/images/partners/gemini/proof/conversational-analytics.png",
+      alt: "Conversational analytics and hyper-automation",
+    },
+    industry: "Customer Experience",
+    capability: "Agentic AI Systems",
+    techPlatform: "Google Cloud / Vertex AI",
+    heroHeading: "Conversational analytics and hyper-automation",
+    heroDescription:
+      "Multilingual conversational analytics that read intent, answer at source, and route only what needs a person.",
+    objectivesTitle: "Objectives",
+    challengesTitle: "Challenges",
+    challenges: [
+      "High contact center volume across 50+ regional languages.",
+      "Slow intent classification leading to excessive customer transfers.",
+    ],
+    solutionTitle: "Solution",
+    solutionItems: [
+      {
+        text: "Real-time multilingual intent recognition and automated agentic routing.",
+        ribbon: "/images/case-studies/solution-ribbon-03.png",
+      },
+    ],
+    technologyTitle: "Technology",
+    technologies: "Vertex AI Conversation Agents, Gemini Flash, BigQuery",
+    technologyNote: "Zero data retention architecture",
+    outcomeTitle: "Outcome",
+    outcomeItems: [
+      {
+        index: "01",
+        emphasis: "Around 90%",
+        text: "end-to-end automation rate.",
+      },
+      {
+        index: "02",
+        emphasis: "94% confidence",
+        text: "across 50+ supported languages.",
+      },
+    ],
+    architecture: {
+      type: "iframe",
+      src: "/embeds/azure-analytics-architecture.html",
+      title: "Conversational Analytics Architecture",
+    },
+  },
+  {
+    slug: "enterprise-mlops-on-vertex-ai",
+    title: "Enterprise MLOps on Vertex AI",
+    image: {
+      src: "/images/partners/gemini/proof/enterprise-mlops.png",
+      alt: "Enterprise MLOps on Vertex AI",
+    },
+    industry: "MLOps & Cloud",
+    capability: "AIOps & Cloud",
+    techPlatform: "Vertex AI",
+    heroHeading: "Enterprise MLOps on Vertex AI",
+    heroDescription:
+      "The model lifecycle automated end to end, from training through release and monitoring.",
+    objectivesTitle: "Objectives",
+    challengesTitle: "Challenges",
+    challenges: [
+      "Manual model deployment processes causing multi-month release delays.",
+      "Lack of unified drift detection and automated rollback controls.",
+    ],
+    solutionTitle: "Solution",
+    solutionItems: [
+      {
+        text: "Automated model training, continuous evaluation, and Vertex AI Model Registry deployment pipelines.",
+        ribbon: "/images/case-studies/solution-ribbon-04.png",
+      },
+    ],
+    technologyTitle: "Technology",
+    technologies: "Vertex AI Pipelines, Cloud Monitoring, BigQuery ML, Kubeflow",
+    technologyNote: "Automated model drift alerting",
+    outcomeTitle: "Outcome",
+    outcomeItems: [
+      {
+        index: "01",
+        emphasis: "30 to 50%",
+        text: "lower ongoing operational and infrastructure cost.",
+      },
+    ],
+    architecture: {
+      type: "iframe",
+      src: "/embeds/azure-analytics-architecture.html",
+      title: "Enterprise MLOps Architecture",
+    },
   },
 ];
 
@@ -379,9 +512,12 @@ export function getCaseStudyBySlug(slug: string): CaseStudy | undefined {
   const hasOutcome =
     caseStudy?.outcomeTitle && caseStudy?.outcomeItems?.length;
   const hasArchitecture =
-    caseStudy?.architectureImage &&
-    caseStudy?.architectureImageWidth &&
-    caseStudy?.architectureImageHeight;
+    Boolean(caseStudy?.architecture) ||
+    Boolean(
+      caseStudy?.architectureImage &&
+        caseStudy?.architectureImageWidth &&
+        caseStudy?.architectureImageHeight,
+    );
   if (
     !hasHero ||
     !hasObjectives ||

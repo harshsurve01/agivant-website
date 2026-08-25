@@ -1,0 +1,34 @@
+/* ==========================================================================
+   PartnersPage.module.css
+   Page-level styling and decorative ribbon positioning for /partners.
+   ========================================================================== */
+
+.page {
+  position: relative;
+  width: 100%;
+  overflow-x: clip;
+}
+
+.ribbonWrapper {
+  top: clamp(1rem, 28vh, 5rem);
+}
+
+.ribbonImage {
+  max-width: 1920px;
+}
+
+@media (max-width: 1200px) {
+  .ribbonImage {
+    min-width: 1200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ribbonWrapper {
+    top: 18rem;
+  }
+
+  .ribbonImage {
+    min-width: 900px;
+  }
+}

@@ -1,35 +1,15 @@
 /* ==========================================================================
    Hero.module.css (Case Study Inner Page)
 
-   Owns layout and typography for the hero's own content only. All
-   ambient visuals (gradients, particles, decorative ellipse) live in
-   the shared HeroBackground and are not touched here — same split as
-   the Case Studies Hub Hero, Blogs Article Hero, and TechTalk Hero.
-   Container already owns max-width/centering/horizontal padding for
-   its own box — this file only arranges what sits inside it.
-
-   ASSUMPTION (no Figma access this pass): every value below is
-   reused verbatim from the Case Studies Hub Hero
-   (CaseStudies/Hero/Hero.module.css) — same family of hero, closest
-   content shape (heading + description, no divider/meta/search), and
-   already built on the same shared HeroBackground/Container. Section
-   min-height, heading size/weight/line-height, description size/
-   line-height/max-width, and the heading→description gap are all
-   unverified against the actual "Case Study Inside Page" hero frame
-   in Figma and should be confirmed before shipping. See the report
-   at the end of this response for the full list of what's unverified.
-
-   The next section overlapping the bottom of this Hero in Figma is
-   explicitly NOT handled here — no extra height, negative margin, or
-   positioning hook is added for it. This file describes a
-   self-contained Hero only.
+   Owns layout and typography for the Case Study Hero.
+   All ambient visuals (gradients, particles, decorative ellipse) live in
+   the shared HeroBackground and are not touched here.
    ========================================================================== */
 
 .hero {
   position: relative;
-  overflow: hidden;
   width: 100%;
-  min-height: 90vh;
+  min-height: 80vh;
 }
 
 .container {
@@ -41,27 +21,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-16);
+  gap: var(--space-8);
   text-align: center;
-
   padding-top: clamp(8rem, 15vh, 11rem);
+  padding-bottom: var(--space-20);
 }
 
-@media (max-width: 768px) {
-  .hero {
-    padding-block: var(--space-16);
-  }
-}
-
-/* --------------------------------------------------------------------
-   Heading
-   Single line in the reference screenshot ("AI for Scalable Tech
-   Support") — unlike the Case Studies Hub Hero's two-line heading,
-   this one is a plain string with no `\n` split needed. Same type
-   scale/weight/color token as the Hub Hero's `.headingLine` reused
-   directly, since neither of these values has been confirmed against
-   this specific Figma frame yet.
-   -------------------------------------------------------------------- */
 .heading {
   font-family: var(--font-family-heading);
   font-size: var(--font-size-7xl);
@@ -69,14 +34,9 @@
   line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-normal);
   color: var(--color-brand-primary);
-  max-width: 62rem; /* reused from Case Studies Hub Hero — unverified against Figma */
+  max-width: 62rem;
 }
 
-/* --------------------------------------------------------------------
-   Description
-   Same spec and token mapping as the Case Studies Hub Hero
-   description — unverified against this Hero's own Figma frame.
-   -------------------------------------------------------------------- */
 .description {
   font-family: var(--font-family-base);
   font-size: var(--font-size-xl);
@@ -84,5 +44,27 @@
   line-height: var(--line-height-normal);
   letter-spacing: -1px;
   color: var(--color-text-secondary);
-  max-width: 51.795rem; /* 828.72px, reused from Case Studies Hub Hero — unverified against Figma */
+  max-width: 51.795rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-block: var(--space-16);
+  }
+
+  .content {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-10);
+    gap: var(--space-4);
+  }
+
+  .heading {
+    font-size: var(--font-size-4xl);
+  }
+
+  .description {
+    font-size: var(--font-size-base);
+    letter-spacing: normal;
+  }
 }

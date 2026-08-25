@@ -1,0 +1,167 @@
+/* ==========================================================================
+   PartnerCard.module.css (Partners / Ecosystem Section)
+
+   Data-driven partner hover-fill interaction using the Purple Soil mechanism:
+   - CSS custom properties: --x, --y, --scale, --hover-color, --hover-accent
+   - Expanding circular pseudo-element (::before) driven by GSAP
+   - Subtle brand-tinted fills preserving logo and typography readability
+   ========================================================================== */
+
+.card {
+  --x: 50%;
+  --y: 50%;
+  --scale: 0;
+  --hover-color: var(--color-brand-primary);
+  --hover-accent: var(--color-brand-primary);
+
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  min-height: 17rem;
+  padding: var(--space-8) var(--space-6);
+  background-color: #d9d9d920;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-xl);
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+ box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  transition:
+    transform 0.3s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* --------------------------------------------------------------------
+   Purple Soil Circular Fill (::before)
+   Originates at (--x, --y) and scales via GSAP with power4.out
+   Filled with data-driven partner-specific --hover-color
+   -------------------------------------------------------------------- */
+.card::before {
+  content: "";
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--hover-color);
+  transform: translate(-50%, -50%) scale(var(--scale));
+  will-change: transform;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.card:hover {
+  border-color: rgba(0, 0, 0, 0.16);
+
+}
+
+.card:focus-visible {
+  border-color: var(--hover-accent, var(--color-brand-primary));
+  box-shadow: var(--shadow-focus);
+}
+
+/* Content layer sits above the expanding ::before circle */
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  gap: var(--space-4);
+  pointer-events: none; /* Allows click through to parent link */
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.25rem;
+  width: 100%;
+}
+
+.logo {
+  max-height: 2.75rem;
+  max-width: 8.5rem;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.35s ease;
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md); /* 16px */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.375; /* 22px */
+  color: var(--color-text-primary);
+  max-width: 13.5rem; /* ~212px per Figma */
+  margin: 0;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg); /* 18px */
+  font-weight: var(--font-weight-regular);
+  line-height: 2rem; /* 32px per Figma */
+  color: var(--color-text-primary);
+  margin-top: auto;
+  transition: color 0.35s ease;
+}
+
+.arrow {
+  display: inline-block;
+  font-size: 1.1em;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+/* --------------------------------------------------------------------
+   Hover State: subtle color emphasis & micro-interactions
+   -------------------------------------------------------------------- */
+.card:hover .link,
+.card:focus-visible .link {
+  color: var(--hover-accent, var(--color-brand-primary));
+}
+
+.card:hover .arrow,
+.card:focus-visible .arrow {
+  transform: translate(2px, -2px);
+}
+
+.card:hover .logo,
+.card:focus-visible .logo {
+  transform: scale(1.04);
+}
+
+@media (max-width: 768px) {
+  .card {
+    min-height: 15rem;
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .description {
+    font-size: var(--font-size-sm);
+    max-width: 100%;
+  }
+
+  .link {
+    font-size: var(--font-size-base);
+  }
+}

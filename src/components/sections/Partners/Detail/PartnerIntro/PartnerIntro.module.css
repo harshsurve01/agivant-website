@@ -1,0 +1,282 @@
+/* ==========================================================================
+   PartnerIntro.module.css
+   Section 2 (Partner Intro & Leadership Quote Card) styling.
+   Consumes design tokens exclusively from variables.css.
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-20);
+  overflow: visible;
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+/* Heading with vertical accent bar */
+.headingWrapper {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.accentBar {
+  width: 4px;
+  background-color: var(--color-brand-primary);
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.heading {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0;
+}
+
+.purpleText {
+  color: var(--color-brand-primary);
+}
+
+.darkText {
+  color: var(--color-text-primary);
+}
+
+/* Intro Paragraphs */
+.paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+  max-width: 100%;
+}
+
+.paragraph {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Leadership Quote Glass Card */
+.quoteCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--space-8);
+  align-items: end;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-2xl, 1.5rem);
+  padding: 0 var(--space-8) 0 0;
+  box-shadow: 0 10px 30px -10px rgba(133, 0, 223, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+/* Left: Portrait anchored flush to bottom with soft purple arched backdrop */
+.portraitColumn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  align-self: end;
+  height: 100%;
+  min-height: 290px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+.portraitBackdrop {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 210px;
+  height: 260px;
+  border-radius: 105px 105px 0 0;
+  background: linear-gradient(180deg, #ddbffc 0%, #efe3fc 100%);
+  z-index: 1;
+}
+
+.portraitWrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+.portrait {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 295px;
+  object-fit: contain;
+  margin-bottom: 0;
+}
+
+/* Right: Quote Content shifted up */
+.quoteContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--space-5);
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-8);
+  padding-right: var(--space-6);
+  z-index: 2;
+}
+
+.quoteBody {
+  position: relative;
+}
+
+.openQuoteSvg {
+  float: left;
+  width: 42px;
+  height: 30px;
+  color: var(--color-brand-primary);
+  margin-right: var(--space-3);
+  margin-top: -20px;
+  line-height: 1;
+}
+
+.quoteText {
+  width: 49.245rem;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  margin-bottom:2.5rem;
+}
+
+.dropCap {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-brand-primary);
+  line-height: 1;
+  margin-right: -4px;
+}
+
+.closeQuoteSvg {
+  display: inline-block;
+  width: 42px;
+  height: 30px;
+  color: var(--color-brand-primary);
+  vertical-align: -16px;
+  margin-left: var(--space-4);
+  
+}
+
+.authorMeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.authorName {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-primary);
+}
+
+.authorRole {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+}
+
+/* Accelerator CTA */
+.ctaWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--space-10);
+}
+
+/* Responsive Adaptations */
+@media (max-width: 900px) {
+  .quoteCard {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    padding: var(--space-6) var(--space-6) 0 var(--space-6);
+  }
+
+  .quoteContent {
+    padding-block: 0;
+    padding-right: 0;
+  }
+
+  .portraitColumn {
+    min-height: 250px;
+  }
+
+  .portraitBackdrop {
+    width: 180px;
+    height: 220px;
+    border-radius: 90px 90px 0 0;
+  }
+
+  .portrait {
+    max-height: 250px;
+  }
+
+  .quoteText {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-16);
+  }
+
+  .heading {
+    font-size: var(--font-size-2xl);
+  }
+
+  .paragraph {
+    font-size: var(--font-size-md);
+  }
+
+  .quoteText {
+    font-size: var(--font-size-md);
+  }
+
+  .openQuoteSvg {
+    width: 32px;
+    height: 23px;
+  }
+
+  .closeQuoteSvg {
+    width: 32px;
+    height: 23px;
+    vertical-align: -4px;
+  }
+
+  .ctaWrapper {
+    margin-top: var(--space-8);
+  }
+}

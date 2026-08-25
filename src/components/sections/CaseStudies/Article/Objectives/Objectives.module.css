@@ -1,70 +1,65 @@
 /* ==========================================================================
    Objectives.module.css (Case Study Inner Page)
 
-   Figma source: "Case Study Inside Page" → Frame 1707482264
-   (Objectives card, node 2100:2124) + Frame 1707482265 (Challenges
-   card, node 2100:2127) — read via the Figma MCP connector. Exact
-   values below are cited node-by-node; the one non-Figma value is
-   called out explicitly.
-
-   NOT YET IMPLEMENTED: the overlap into the bottom of the Hero.
-   Figma positions these cards starting inside the Hero (Hero ends
-   ~y=961, cards start at y=782), which only makes sense once this
-   section is pulled up to overlap it — out of scope for this pass.
-   In normal document flow, Figma's absolute y-position doesn't
-   translate to a top padding, so `padding-block` below is a
-   reasonable default (matching the same token every other Article
-   section already uses — Phase1, ExecutiveBrief), not a Figma value.
+   Figma source: "Case Study Inside Page" (1440px × 900px design frame)
+   - Objectives card (node 2100:2124) + Challenges card (node 2100:2127)
+   - Section represents the 1440×900 composition frame
+   - Vertically centered in normal flow below Hero
+   - Responsive scaling for tablet/mobile
    ========================================================================== */
 
 .objectives {
-  width: 100%;
-  padding-block: var(--space-16);
-  margin-top: -12.5rem;
   position: relative;
   z-index: 2;
+  width: 100%;
+  min-height: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: var(--space-16);
+  box-sizing: border-box;
 }
 
 .container {
   position: relative;
+  width: 100%;
 }
 
 /* --------------------------------------------------------------------
    Row
    Figma: card left edges at x=96 and x=426.939 (both y=782), section
    content spans x=96 to x=1346.5 — a ~1250.5px row inside a 1440px
-   frame, the same content width every other Article section's
-   Container already produces. Gap between cards = 426.939 - (96 +
-   265.995) = 64.94px, which matches --space-16's own pre-scale value
-   (52px token, code comment "was 64px") almost exactly — used here as
-   a genuine token match, not a coincidence.
+   frame. Gap between cards = 64.94px ≈ var(--space-16).
    -------------------------------------------------------------------- */
 .row {
   display: flex;
   align-items: stretch;
-  gap: var(--space-16); /* Figma: 64.94px ≈ --space-16's pre-scale 64px */
+  gap: var(--space-16);
+}
+
+@media (max-width: 1200px) {
+  .objectives {
+    min-height: clamp(650px, 62.5vw, 900px);
+  }
 }
 
 @media (max-width: 768px) {
+  .objectives {
+    min-height: auto;
+    padding-block: var(--space-12);
+  }
+
   .row {
     flex-direction: column;
+    gap: var(--space-8);
   }
 }
 
 /* --------------------------------------------------------------------
    Objectives card (node 2100:2124 / 2100:2125)
    Figma: 265.995px × 291.822px, radius 35px, fill rgba(217,217,217,0.2).
-   Neither the radius nor the translucent fill matches an existing
-   token (closest radius token is --radius-xl at 24px; no token
-   represents a 20%-alpha neutral surface), so both are literal values
-   here rather than forced into a mismatched token — per "reuse tokens
-   where they match Figma," not where they're merely close.
    Heading (node 2100:2126): Poppins SemiBold, 34px, line-height 1.15,
-   color #8500df — confirmed equal to --color-brand-primary. Font
-   weight mapped to --font-weight-semibold per the Figma text-style
-   name (the token happens to resolve to numeric 500, a pre-existing
-   quirk of this project's scale, not something introduced here). No
-   token matches 34px or 1.15 line-height exactly, so both are literal.
+   color #8500df.
    -------------------------------------------------------------------- */
 .objectivesCard {
   flex: 0 0 16.625rem;
@@ -80,7 +75,7 @@
   backdrop-filter: blur(60px);
   -webkit-backdrop-filter: blur(60px);
 
-   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
     inset 0 0 0 rgba(0, 0, 0, 0);
 }
 
@@ -88,76 +83,62 @@
   .objectivesCard {
     flex-basis: auto;
     width: 100%;
-  backdrop-filter: blur(60px);
-  -webkit-backdrop-filter: blur(60px);
+    min-height: auto;
+    padding-block: var(--space-8);
   }
 }
 
 .objectivesTitle {
   font-family: var(--font-family-heading);
-  font-size: 2.125rem; /* 34px — no matching font-size token */
+  font-size: 2.125rem; /* 34px */
   font-weight: var(--font-weight-semibold);
-  line-height: 1.15; /* Figma: 1.15 — no matching line-height token */
+  line-height: 1.15;
   color: var(--color-brand-primary);
+  margin: 0;
 }
 
 /* --------------------------------------------------------------------
    Challenges card (node 2100:2127 / 2100:2128)
    Figma: 919.561px × 291.822px (same height as the Objectives card),
-   same radius/fill as above. Uses flex:1 rather than a fixed width so
-   it fills whatever space remains next to the fixed-width Objectives
-   card — mathematically equivalent to Figma's explicit width given
-   the shared row width, and more robust if Objectives' width ever
-   changes.
+   same radius/fill as above.
    Heading (node 2100:2129): Poppins SemiBold, 20px, line-height 1.15,
-   color #8500df — 20px is an exact match for --font-size-xl.
+   color #8500df.
    -------------------------------------------------------------------- */
 .challengesCard {
   flex: 1 1 auto;
-  min-height: 18.239rem; /* 291.822px, Figma: 291.82159px */
-  padding: 1.897rem 2.82rem; /* 30.35px / 45.12px, Figma: node 2100:2129 / 2100:2130 x-offset */
-  border-radius: 35px; /* Figma: 35px — no matching radius token */
-  background: #d9d9d920; /* Figma: no matching color token */
-   backdrop-filter: blur(60px);
+  min-height: 18.239rem;
+  padding: 1.897rem 2.82rem;
+  border-radius: 35px;
+  background: #d9d9d920;
+  backdrop-filter: blur(60px);
   -webkit-backdrop-filter: blur(60px);
 
-   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
     inset 0 0 0 rgba(0, 0, 0, 0);
+}
+
+@media (max-width: 768px) {
+  .challengesCard {
+    padding: var(--space-6) var(--space-6);
+  }
 }
 
 .challengesTitle {
   font-family: var(--font-family-heading);
-  font-size: var(--font-size-xl); /* 20px — exact Figma match */
+  font-size: var(--font-size-xl); /* 20px */
   font-weight: var(--font-weight-semibold);
-  line-height: 1.15; /* Figma: 1.15 — no matching line-height token */
+  line-height: 1.15;
   color: var(--color-brand-primary);
-  margin-bottom: var(--space-6); /* Figma: bullets start 34.16px below heading — closest token */
+  margin-bottom: var(--space-6);
 }
 
 /* --------------------------------------------------------------------
    Bullet list (node 2100:2130 / 2100:2131)
-   Figma text style "Bullet point": Poppins Regular, 18px, weight 400,
-   line-height 35px, letter-spacing 0 — confirmed via Figma's variable
-   defs for this node. 18px is an exact match for --font-size-lg.
-   Text color: Figma exports the raw color as solid black
-   (`text-black` in Figma's own generated code), which is exactly
-   --color-text-primary's resolved value in this project's tokens, so
-   the semantic token is used here rather than the literal.
-   Bullet marker: exported as a Figma-native SVG image asset
-   ("Subtract"), not redrawn as CSS — but that asset is delivered via
-   a signed URL that expires in 7 days, unsuitable for source-checked
-   code. Recreated instead as a plain CSS ring at the same node's
-   12.595px × 12.595px footprint, colored with the project's existing
-   brand token (Figma's own asset preview renders as a purple/violet
-   ring, so this token is the closest available match, not an
-   independently invented color) — flagged in the final report as an
-   assumption to verify against the real exported asset if pixel
-   parity matters.
    -------------------------------------------------------------------- */
 .challengesList {
   display: flex;
   flex-direction: column;
-  gap: 5px; /* Figma: 5px margin-bottom between bullet lines */
+  gap: 5px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -166,19 +147,19 @@
 .challengeItem {
   display: flex;
   align-items: flex-start;
-  gap: 0.875rem; /* Figma: bullet-to-text gap ≈ 27.92px − 12.6px bullet width */
+  gap: 0.875rem;
   font-family: var(--font-family-base);
-  font-size: var(--font-size-lg); /* 18px — exact Figma match */
+  font-size: var(--font-size-lg); /* 18px */
   font-weight: var(--font-weight-regular);
-  line-height: 35px; /* Figma: 35px, exact */
+  line-height: 35px;
   color: var(--color-text-primary);
 }
 
 .bullet {
   flex: 0 0 auto;
-  width: 0.7875rem; /* 12.6px, Figma: 12.5957px */
+  width: 0.7875rem; /* 12.6px */
   height: 0.7875rem;
-  margin-top: calc((35px - 0.7875rem) / 2); /* centers bullet on the 35px text line */
-  border: 2px solid var(--color-brand-primary); /* Figma asset: purple/violet ring — see file header */
+  margin-top: calc((35px - 0.7875rem) / 2);
+  border: 1px solid #fff;
   border-radius: var(--radius-full);
 }

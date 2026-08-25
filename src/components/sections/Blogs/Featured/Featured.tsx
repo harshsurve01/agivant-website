@@ -3,30 +3,20 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "@/components/ui/Icon/ArrowRight";
+import { Gradient } from "@/components/effects/Gradient";
 import type { FeaturedProps } from "./types";
 import styles from "./Featured.module.css";
-import {Gradient} from "@/components/effects/Gradient";
 
 /**
  * Featured
  *
  * Renders the "Top Picks for You" section of the Blogs page: a
- * section title and one featured article card (image, meta row,
- * title, excerpt, published date, CTA). Nothing else — no list, no
- * pagination, no BlogHub content.
+ * section title and one featured article glass card:
+ * - Content / Text on the LEFT (meta row, title, excerpt, published date, CTA)
+ * - Featured image on the RIGHT
  *
- * All copy — including the section title and the CTA label/href —
- * arrives via props. The component holds no content of its own, so
- * it is WordPress-ready without modification: only data/blogs.ts
- * changes when the mock `featured` object is swapped for a real
- * query result.
- *
- * `title` arrives as a plain string; the first word is highlighted
- * in the brand color as a purely presentational choice made here,
- * not something the data has to encode.
- *
- * Server Component: no "use client", no hooks, no state, no data
- * imports.
+ * Uses explicit backdropFilter inline style alongside styles.card to ensure
+ * Next.js/Turbopack CSS minification does not strip standard backdrop-filter.
  */
 export function Featured({ title, article }: FeaturedProps) {
   const [firstWord, ...restWords] = title.split(" ");
@@ -34,8 +24,8 @@ export function Featured({ title, article }: FeaturedProps) {
 
   return (
     <section className={styles.featured}>
-       <Gradient
-        top="18 %"
+      <Gradient
+        top="18%"
         right="25%"
         size="45rem"
         stops={["#8500df 50%", "#edbf79 55%", "transparent 75%"]}
@@ -48,18 +38,14 @@ export function Featured({ title, article }: FeaturedProps) {
           {rest ? ` ${rest}` : ""}
         </h2>
 
-        <article className={styles.card}>
-          <div className={styles.imageWrapper}>
-            <Image
-              src={article.image}
-              alt={article.imageAlt}
-              fill
-              sizes="(min-width: 768px) 45vw, 100vw"
-              className={styles.image}
-              priority
-            />
-          </div>
-
+        <article
+          className={styles.card}
+          style={{
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+          }}
+        >
+          {/* Content / Metadata (LEFT) */}
           <div className={styles.content}>
             <div className={styles.meta}>
               <span className={styles.category}>{article.category}</span>
@@ -68,7 +54,7 @@ export function Featured({ title, article }: FeaturedProps) {
             </div>
 
             <h3 className={styles.articleTitle}>
-              <a href={`/blogs/${article.slug}`}>{article.title}</a>
+              <Link href={`/blogs/${article.slug}`}>{article.title}</Link>
             </h3>
 
             <p className={styles.excerpt}>{article.excerpt}</p>
@@ -85,6 +71,18 @@ export function Featured({ title, article }: FeaturedProps) {
                 </Button>
               </Link>
             </div>
+          </div>
+
+          {/* Featured Image (RIGHT) */}
+          <div className={styles.imageWrapper}>
+            <Image
+              src={article.image}
+              alt={article.imageAlt}
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className={styles.image}
+              priority
+            />
           </div>
         </article>
       </Container>

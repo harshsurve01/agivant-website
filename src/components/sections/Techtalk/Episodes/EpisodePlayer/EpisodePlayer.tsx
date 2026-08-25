@@ -5,38 +5,37 @@ import styles from "./EpisodePlayer.module.css";
 /**
  * EpisodePlayer
  *
- * The page's primary media player, not a generic card: video, speaker
- * info, episode title/description, and key takeaways for exactly one
- * episode (`episode` — no list awareness, no navigation between
- * episodes; that's EpisodePlaylist's job via Episodes.tsx's
- * `currentEpisodeId` state).
+ * The page's primary media player: video, speaker info, episode
+ * title/description, and key takeaways for the active episode.
  *
- * Presentation only: no state, no YouTube-loading logic of its own —
- * all of that lives inside VideoPlayer. This component doesn't know
- * YouTube exists either — it maps `episode.youtubeId` onto
- * VideoPlayer's provider-agnostic `source` shape and stops there. If
- * `Episode.youtubeId` is ever replaced by a provider-agnostic field
- * (e.g. from WordPress), only the `source` object below changes —
- * VideoPlayer itself doesn't.
- *
- * `episode` is now optional: Episodes.tsx passes `undefined` when
- * search/depth filtering leaves zero matching episodes, instead of
- * the whole Episodes section bailing out with `return null` (which
- * would also hide the toolbar the person needs to adjust their
- * filters). This component renders `content.emptyStateLabel` in that
- * case rather than crashing on `episode.speaker` etc.
+ * Styled with transparent glass surface and 10px backdrop blur sampling
+ * the page ribbon layer beneath.
  */
 export function EpisodePlayer({ episode, content }: EpisodePlayerProps) {
   if (!episode) {
     return (
-      <div className={styles.card}>
+      <div
+        className={styles.card}
+        style={{
+          background: "rgba(217, 217, 217, 0)",
+          backdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)",
+        }}
+      >
         <p className={styles.emptyState}>{content.emptyStateLabel}</p>
       </div>
     );
   }
 
   return (
-    <div className={styles.card}>
+    <div
+      className={styles.card}
+      style={{
+        background: "rgba(217, 217, 217, 0)",
+        backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
+      }}
+    >
       <div className={styles.videoWrapper}>
         <VideoPlayer
           source={{ provider: "youtube", id: episode.youtubeId }}

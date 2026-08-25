@@ -1,35 +1,39 @@
 /* ==========================================================================
    FooterCTA.module.css
-   Owns the heading and button-row presentation within the CTA zone.
-   No section-level positioning — that's Footer.module.css's job.
+   Owns the heading, description, and button-row presentation within the CTA zone.
+   Consumes design tokens exclusively from variables.css.
    ========================================================================== */
 
 .cta {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
-  max-width: 60rem; /* Figma: Heading Frame width */
+  align-items: center;
+  text-align: center;
+  gap: var(--space-10);
+  max-width: 66rem;
+  margin-inline: auto;
+  width: 100%;
 }
 
 .heading {
   margin: 0;
   font-family: var(--font-family-heading);
-  font-weight: var(--font-weight-semibold);
-  /* Figma calls for 80px / 118px line-height. Neither exists in the
-     token scale today (--font-size-6xl is 68px; the closest available
-     line-height is --line-height-normal at 1.5). Using the closest
-     existing tokens for this static Phase 2 pass rather than inventing
-     new values — revisit alongside a token addition in Phase 3
-     pixel-perfect refinement. */
-  font-size: var(--font-size-7xl);
-  line-height: var(--line-height-snug);
-  letter-spacing: var(--letter-spacing-relaxed);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-7xl); /* 64px (4rem) */
+  line-height: 1.4;
+  letter-spacing: var(--letter-spacing-normal);
   color: var(--color-text-primary);
+  text-align: center;
+}
+
+.headingLine {
+  display: block;
 }
 
 .buttons {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   gap: var(--space-4);
 }
@@ -41,23 +45,108 @@
 .buttonLink:hover {
   color: inherit;
 }
-.headingLine {
-    display: flex;
-    align-items: baseline;
-    gap: 0.25rem;
-    flex-wrap: wrap;
+
+/* --------------------------------------------------------------------
+   Partners Landing Page Footer CTA Variant
+   -------------------------------------------------------------------- */
+.ctaPartners {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-8);
+  max-width: 66rem;
+  margin-inline: auto;
+  width: 100%;
 }
 
-.ampdWordmark {
-  height: 5rem;
-  width: auto;
+.headingPartners {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-7xl); /* 64px */
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--color-text-primary);
+  text-align: center;
+}
 
-  margin-left: 1.8rem;
+.headingLinePartners {
+  display: block;
+}
 
-  position: relative;
-  top: 0.8rem;          /* or 4–8px, adjust to taste */
+.buttonsPartners {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 
-  /* Alternatively:
-  transform: translateY(0.3rem);
-  */
+/* --------------------------------------------------------------------
+   Partner Detail Page Footer CTA Variant (Figma: 1055 × 430px Frame)
+   -------------------------------------------------------------------- */
+.ctaPartnerDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-8);
+  max-width: 72rem;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.headingPartnerDetail {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-7xl); /* 64px (Figma spec) */
+  line-height: 1.2; /* 120% (Figma spec) */
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
+  text-align: center;
+  max-width: 70rem;
+}
+
+.headingLinePartnerDetail {
+  display: block;
+}
+
+.description {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-lg); /* 18px (Figma spec) */
+  line-height: var(--line-height-snug); /* 1.25 / 120% in Figma */
+  color: var(--color-text-primary);
+  text-align: center;
+  max-width: 72.8rem; /* 1165px */
+}
+
+/* --------------------------------------------------------------------
+   Responsive Adaptations
+   -------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .heading,
+  .headingPartners,
+  .headingPartnerDetail {
+    font-size: var(--font-size-5xl); /* 44px on tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .heading,
+  .headingPartners,
+  .headingPartnerDetail {
+    font-size: var(--font-size-4xl); /* 36px on mobile */
+    line-height: var(--line-height-snug);
+  }
+
+  .description {
+    font-size: var(--font-size-base); /* 15px on mobile */
+  }
+
+  .ctaPartnerDetail {
+    gap: var(--space-6);
+  }
 }

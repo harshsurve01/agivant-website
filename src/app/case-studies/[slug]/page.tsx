@@ -12,36 +12,18 @@ import { caseStudies, getCaseStudyBySlug } from "@/data/caseStudies";
  * Same role app/blogs/[slug]/page.tsx plays for the Blog Inner page:
  * this is the only thing that renders for this route, and the only
  * thing that knows how to go from a URL slug to the data <Article />
- * needs. <Article /> itself has no slug-selection logic of its own —
- * it only knows how to render whatever CaseStudyArticlePageData it's
- * handed. Selection (matching the slug, handling a miss) lives here,
- * one level up, matching the approved data flow:
- *   caseStudies.ts -> this file -> Article orchestrator -> Hero -> props
- *
- * Preserves the same GradientLayerProvider -> Header -> main -> Footer
- * shell app/case-studies/page.tsx and app/blogs/[slug]/page.tsx both
- * use, so this route shares the same visual shell/background
- * architecture rather than inventing its own.
- *
- * Scope: renders Hero, Objectives, Solution, Technology, Outcome, and
- * Architecture/Data Sources, per the brief. This page does not
- * implement the Hero/next-section overlap shown in Figma, and nothing
- * after Architecture is implemented yet.
+ * needs. Selection (matching the slug, handling a miss) lives here:
+ *   caseStudies.ts -> this file -> Article orchestrator -> Hero/Objectives/Solution/Technology/Outcome/Architecture -> props
  */
 
 interface CaseStudyArticlePageProps {
-  // Next.js 16: `params` is a Promise in Server Component page props —
-  // synchronous access is no longer supported and throws at request
-  // time. Must be awaited before use, same as searchParams/cookies/headers.
   params: Promise<{ slug: string }>;
 }
 
 /**
  * Pre-renders one path per case study that currently has Inner Page
  * content (i.e. `heroHeading`/`heroDescription` populated — see
- * caseStudies.ts). Falls out naturally once real per-case-study
- * Figma/WordPress content lands for the rest — this function's shape
- * doesn't change, only how many of the 6 records qualify does.
+ * caseStudies.ts).
  */
 export function generateStaticParams() {
   return caseStudies
@@ -59,9 +41,10 @@ export function generateStaticParams() {
         item.technologyNote &&
         item.outcomeTitle &&
         item.outcomeItems?.length &&
-        item.architectureImage &&
-        item.architectureImageWidth &&
-        item.architectureImageHeight,
+        (item.architecture ||
+          (item.architectureImage &&
+            item.architectureImageWidth &&
+            item.architectureImageHeight)),
     )
     .map((item) => ({ slug: item.slug }));
 }
@@ -73,12 +56,16 @@ export default async function CaseStudyArticlePage({
 
   const caseStudy = getCaseStudyBySlug(slug);
 
-  // Unknown slug, or a known slug whose record has no Inner Page
-  // content yet (the other 5 mock Hub cards — see caseStudies.ts) —
-  // defer to Next's 404 rather than rendering a partial page.
   if (!caseStudy) {
     notFound();
   }
+
+  const architectureProp = caseStudy.architecture ?? {
+    type: "image" as const,
+    image: caseStudy.architectureImage!,
+    imageWidth: caseStudy.architectureImageWidth!,
+    imageHeight: caseStudy.architectureImageHeight!,
+  };
 
   return (
     <GradientLayerProvider>
@@ -108,11 +95,7 @@ export default async function CaseStudyArticlePage({
             title: caseStudy.outcomeTitle!,
             items: caseStudy.outcomeItems!,
           }}
-          architecture={{
-            image: caseStudy.architectureImage!,
-            imageWidth: caseStudy.architectureImageWidth!,
-            imageHeight: caseStudy.architectureImageHeight!,
-          }}
+          architecture={architectureProp}
         />
       </main>
 

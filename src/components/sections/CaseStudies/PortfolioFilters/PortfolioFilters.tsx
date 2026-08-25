@@ -16,8 +16,9 @@ import type { PortfolioFiltersProps } from "./types";
  *   CaseStudyHub -> PortfolioFilters -> selected filters ->
  *   filtered case studies -> CaseStudyCard[]
  *
- * "use client" only because the checkboxes need onChange handlers —
- * there's no other client-only behavior here (no fetch, no effects).
+ * "use client" only because the checkboxes need onChange handlers.
+ * Explicit inline backdropFilter is passed to ensure Next.js/Turbopack
+ * does not drop standard backdrop-filter during CSS minification.
  */
 export function PortfolioFilters({
   heading = "Portfolio Filters",
@@ -27,7 +28,14 @@ export function PortfolioFilters({
   onResetAll,
 }: PortfolioFiltersProps) {
   return (
-    <aside className={styles.panel} aria-label={heading}>
+    <aside
+      className={styles.panel}
+      style={{
+        backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
+      }}
+      aria-label={heading}
+    >
       <div className={styles.header}>
         <h2 className={styles.heading}>{heading}</h2>
         <button

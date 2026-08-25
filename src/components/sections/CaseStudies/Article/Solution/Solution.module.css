@@ -1,30 +1,17 @@
 /* ==========================================================================
    Solution.module.css (Case Study Inner Page)
 
-   Figma source: "Case Study Inside Page" → text node 2100:2168
-   ("Solution") + card frames 2100:2147 / 2100:2155 / 2100:2151 (row
-   one, left→right) and 2100:2164 / 2100:2160 (row two, left→right) —
-   read via the Figma MCP connector. Exact values below are cited
-   node-by-node; the non-Figma values are called out explicitly.
+   Figma source: "Case Study Inside Page" → text node 2100:2168 ("Solution")
+   + 5 Solution Cards (3 on row one, 2 centered on row two).
+   Each card: 401px x 558px, 35px border-radius, upper ribbon image (345px),
+   lower text and purple dotted arrow divider.
    ========================================================================== */
 
-/* --------------------------------------------------------------------
-   Section top spacing — the "tight" Objectives → Solution gap.
-   Figma: bottom of the Objectives cards (y = 782 + 291.822 = 1073.822)
-   to the top of the "Solution" heading (y = 1162.291) = 88.469px.
-
-   That 88.469px can't be applied as this section's own padding-top
-   verbatim: Objectives already renders var(--space-16) (52px) of its
-   own bottom padding first (Objectives.module.css's `padding-block`,
-   itself NOT a Figma value — see that file's header), and this task
-   explicitly leaves Objectives untouched. So this section's own
-   top spacing is the Figma gap minus that already-rendered 52px:
-   88.469 - 52 = 36.469px, giving a combined on-page gap that matches
-   Figma's measured 88.469px without modifying Objectives.
-   -------------------------------------------------------------------- */
 .solution {
+  position: relative;
+  z-index: 2;
   width: 100%;
-  padding-top: 2.279rem; /* 36.469px — see derivation above */
+  padding-block: var(--space-20) var(--space-24);
 }
 
 .container {
@@ -33,152 +20,157 @@
 
 /* --------------------------------------------------------------------
    Heading (node 2100:2168)
-   Figma: Poppins SemiBold, 34px, line-height 1.15, color #8500df,
-   centered — the exact same type pairing as Objectives'
-   .objectivesTitle (also 34px/1.15/semibold/brand-primary), reused
-   here rather than re-measured into a near-duplicate value. Centered
-   full-width here (vs. Objectives' card-centered heading) since this
-   heading has no card of its own.
    -------------------------------------------------------------------- */
 .title {
   font-family: var(--font-family-heading);
-  font-size: 2.125rem; /* 34px — no matching font-size token, same literal Objectives uses */
+  font-size: 2.125rem; /* 34px */
   font-weight: var(--font-weight-semibold);
-  line-height: 1.15; /* Figma: 1.15 — no matching line-height token */
+  line-height: 1.15;
   color: var(--color-brand-primary);
   text-align: center;
-  margin: 0 0 1.669rem; /* 26.709px, Figma: heading bottom (1201.291) -> row-1 top (1228) */
+  margin: 0 0 var(--space-12);
 }
 
 /* --------------------------------------------------------------------
-   Grid
-   Figma: 3 fixed-width (400.559px) cards per row, ~23.157px column
-   gap (920.279 -> 943.4365 and 496.563 -> 519.721, both node-to-node),
-   3 on row one + 2 on row two. Row gap ~26.709px (row 1 bottom
-   1519.822 -> row 2 top 1546.531) — same value as the heading->row-1
-   gap above, so one literal is reused for both rather than two
-   separately-named near-identical values.
-
-   Uses `repeat(3, 1fr)` instead of Figma's fixed 400.559px card width
-   so the grid fills the Container responsively (this Container is
-   ~1240px net of padding vs. Figma's ~1250px content width — already
-   a near match, and 1fr keeps it exact at any width) rather than
-   locking in the absolute px card size.
+   Grid Layout: 6 columns
+   - Row 1: 3 cards (each span 2 columns -> cols 1-2, 3-4, 5-6)
+   - Row 2: 2 cards centered horizontally (cols 2-3, 4-5)
    -------------------------------------------------------------------- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: 1.447rem; /* 23.157px — no matching spacing token */
-  row-gap: 1.669rem; /* 26.709px — no matching spacing token */
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  column-gap: 1.447rem; /* ~23px */
+  row-gap: 1.669rem;    /* ~27px */
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+.grid > :nth-child(1),
+.grid > :nth-child(2),
+.grid > :nth-child(3) {
+  grid-column: span 2;
+}
+
+.grid > :nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.grid > :nth-child(5) {
+  grid-column: 4 / span 2;
+}
+
 @media (max-width: 1024px) {
-  /* ASSUMPTION: no dedicated Figma tablet/mobile frame exists for
-     this section (only the one desktop "Case Study Inside Page"
-     frame was found in the file) — breakpoints below follow this
-     project's own established convention for a 3-column grid
-     (AIStackGrid.module.css: 1024px -> 2 columns), not a Figma
-     measurement. */
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .grid > :nth-child(n) {
+    grid-column: auto / span 1;
+  }
+
+  .grid > :nth-child(5) {
+    grid-column: 1 / -1;
+    max-width: 400px;
+    justify-self: center;
+    width: 100%;
   }
 }
 
 @media (max-width: 768px) {
-  /* Same 768px stack point Objectives already uses for its own
-     two-column row, so both sections in this page collapse at the
-     same breakpoint rather than introducing a second one. */
+  .solution {
+    padding-block: var(--space-12) var(--space-16);
+  }
+
   .grid {
     grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .grid > :nth-child(n) {
+    grid-column: auto;
+    max-width: 100%;
   }
 }
 
 /* --------------------------------------------------------------------
-   Card (e.g. node 2100:2147)
-   Figma: 400.559 x 291.822px, radius 35px, fill rgba(217,217,217,0.2)
-   — identical radius/fill to Objectives' cards, and 291.822px is the
-   exact same card height Objectives already uses, so both are reused
-   literals, not re-measured coincidences.
-
-   Content (top line -> text -> bottom line) sits in a 20px-gap flex
-   column, vertically centered — confirmed across all 5 cards: each
-   one's line/text/line stack is centered within the fixed card
-   height regardless of how many lines its text runs to (75px /
-   100px / 125px text-block heights all produce equal top/bottom
-   whitespace). --space-6 (1.25rem = 20px) is an exact match for the
-   20px gap.
-
-   Figma's own generated code shows asymmetric horizontal padding
-   (pl-37px / pr-44px) — a side-effect of its line (301.623px) and
-   text (318.891px) children being centered as a group with slightly
-   different centering math, not an intentional asymmetric design.
-   Since every child here is narrower than the card's own inline
-   space and is itself centered (align-items: center), that
-   asymmetry has no visual effect and isn't reproduced; a plain
-   symmetric inline padding is used instead as a safety minimum at
-   small widths.
+   Card: 401px x 558px design frame, radius 35px, frosted glass fill
    -------------------------------------------------------------------- */
 .card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-6); /* Figma: 20px, exact match */
-  min-height: 18.239rem; /* 291.822px, Figma: 291.82159px — same value Objectives' cards use */
-  padding-inline: 2.5rem; /* Figma: 37px/44px asymmetric — see note above */
-  border-radius: 35px; /* Figma: 35px — no matching radius token, same literal Objectives uses */
-  background: rgba(217, 217, 217, 0.2); /* Figma: no matching color token, same literal Objectives uses */
-   backdrop-filter: blur(60px);
+  justify-content: flex-start;
+  min-height: 34.875rem; /* ~558px */
+  border-radius: 35px;
+  background: rgba(217, 217, 217, 0.2);
+  backdrop-filter: blur(60px);
   -webkit-backdrop-filter: blur(60px);
-
-   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+  overflow: hidden;
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
     inset 0 0 0 rgba(0, 0, 0, 0);
 }
 
 /* --------------------------------------------------------------------
-   Body copy (e.g. node 2100:2149)
-   Figma: Poppins Regular, 18px, line-height 25px, color solid black
-   (text-black in Figma's own generated code) — same reasoning as
-   Objectives' bullet text: this resolves to --color-text-primary, so
-   the semantic token is used rather than the literal. 18px is an
-   exact match for --font-size-lg. Text box width 318.891px is
-   constant across all 5 cards regardless of line count.
+   Top Ribbon Image Area: 345px height, clipped to card corners
    -------------------------------------------------------------------- */
+.ribbonWrapper {
+  width: 100%;
+  height: 21.5625rem; /* 345px */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ribbonImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------
+   Card Content (Text & Divider)
+   -------------------------------------------------------------------- */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  width: 100%;
+  padding: var(--space-6) var(--space-6) var(--space-8);
+  gap: var(--space-5);
+  text-align: center;
+}
+
 .text {
-  max-width: 19.931rem; /* 318.891px, Figma: 318.8914794921875px */
+  max-width: 19.931rem; /* 318.89px */
   margin: 0;
   font-family: var(--font-family-base);
-  font-size: var(--font-size-lg); /* 18px — exact Figma match */
+  font-size: var(--font-size-lg); /* 18px */
   font-weight: var(--font-weight-regular);
-  line-height: 25px; /* Figma: 25px — no matching line-height token */
+  line-height: 25px;
   color: var(--color-text-primary);
   text-align: center;
 }
 
 /* --------------------------------------------------------------------
-   Decorative line (e.g. nodes 2100:2148 / 2100:2150)
-   Figma renders this as an exported SVG image ("Line 314"/"Line
-   313") delivered via a signed URL that expires in 7 days —
-   unsuitable for source-checked code, same situation Objectives'
-   bullet-marker asset was in. Recreated instead as a plain CSS
-   dotted rule with two small CSS-triangle arrowheads, at the same
-   node's 301.623px width.
-
-   COLOR: the exported asset previews as a lighter lavender than the
-   project's solid --color-brand-primary (#8500df) swatch, not the
-   full-strength purple — flagged here as an assumption (opacity
-   reduced to approximate it) to verify against the real exported
-   asset if pixel parity matters.
+   Decorative Dotted Purple Arrow Line
    -------------------------------------------------------------------- */
 .line {
   position: relative;
-  width: 18.851rem; /* 301.623px, Figma: 301.6229248046875px */
+  width: 18.851rem; /* 301.62px */
+  max-width: 100%;
   height: 0;
   border-top: 2px dotted var(--color-brand-primary);
-  opacity: 0.55; /* approximates the lighter lavender seen in the exported asset — see note above */
+  opacity: 0.55;
+  margin-top: auto;
 }
 
 .line::before,

@@ -1,43 +1,35 @@
 /* ==========================================================================
    CaseStudyHub.module.css
-
-   ASSUMPTION: no Figma inspector reading was captured for this
-   section's own layout (no screenshot showed its dimension/typography
-   panel) — heading typography, heading->grid spacing, grid columns,
-   the gap between cards, and the gap between the card grid and the
-   filter panel are all estimated from the listing screenshot and
-   existing tokens. The 2-column grid and the roughly-3:1 grid/panel
-   width ratio are visually clear from the screenshot; exact pixel
-   values are not. Verify against the live Figma frame before
-   shipping.
    ========================================================================== */
 
 .hub {
+  position: relative;
   width: 100%;
-  padding-block: var(--space-16); /* ESTIMATED */
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-24);
 }
 
 .heading {
   font-family: var(--font-family-heading);
-  font-size: var(--font-size-4xl); /* ESTIMATED */
+  font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-tight);
   color: var(--color-brand-primary);
   text-align: center;
-  margin-bottom: var(--space-12); /* ESTIMATED */
+  margin-bottom: var(--space-12);
 }
 
 .layout {
   display: grid;
-  grid-template-columns: 1fr 20rem; /* card grid + filter panel — ESTIMATED ratio */
-  gap: var(--space-10); /* ESTIMATED */
+  grid-template-columns: 1fr 20rem;
+  gap: var(--space-10);
   align-items: start;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns — matches screenshot */
-  gap: var(--space-8); /* ESTIMATED */
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-8);
 }
 
 @media (max-width: 1024px) {

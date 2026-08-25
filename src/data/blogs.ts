@@ -12,7 +12,7 @@ import type { ArticlePageData } from "@/components/sections/Blogs/Article";
  */
 
 const hero: BlogsPageData["hero"] = {
-  heading: "Blogs\nLessons from production AI",
+  heading: "Perspectives\nLessons from production AI",
   description:
     "Practical insights from Agivant engineers building production-grade AI, cloud, data and autonomous agentic workflows.",
   search: {

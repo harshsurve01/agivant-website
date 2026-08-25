@@ -1,0 +1,67 @@
+/* ==========================================================================
+   ArchitectureEmbed.module.css
+   Controlled viewport around the interactive architecture iframe.
+   Figma visible desktop frame: 1250px x 650.78px.
+   Crops out HTML title, step buttons, and bottom instruction copy
+   via viewport overflow: hidden and precise iframe positioning/scaling.
+   ========================================================================== */
+
+.viewport {
+  position: relative;
+  width: 100%;
+  max-width: 80rem;
+  height: 40.625rem;
+  margin-inline: auto;
+  border-radius: 35px;
+  overflow: hidden;
+  background:#d9d9d920;
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
+    border: 1px solid #fff;
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+}
+
+/* 
+   The iframe is positioned absolutely inside the 1250x650.78px viewport.
+   - Scaled to fit viewport width (1250 / 1560 ≈ 0.8)
+   - Shifted upward (top: -152px) to move top header and step buttons outside the top edge
+   - The 650.78px viewport height cuts off bottom instruction text below the diagram
+*/
+.iframe {
+  position: absolute;
+  top: -122px;
+  left: 52%;
+  width: 1560px;
+  height: 1100px;
+  transform: translateX(-50%) scale(0.83);
+  transform-origin: top center;
+  border: 0;
+  display: block;
+  overflow: hidden;
+  background: transparent;
+  pointer-events: auto;
+}
+
+@media (max-width: 1280px) {
+  .viewport {
+    height: clamp(450px, 52vw, 650.78px);
+  }
+
+  .iframe {
+    top: calc(-152px * (clamp(0.45, 0.625vw, 0.8) / 0.8));
+    transform: translateX(-50%) scale(clamp(0.45, 0.625vw, 0.8));
+  }
+}
+
+@media (max-width: 768px) {
+  .viewport {
+    height: 420px;
+    border-radius: var(--radius-xl);
+  }
+
+  .iframe {
+    top: -95px;
+    transform: translateX(-50%) scale(0.48);
+  }
+}

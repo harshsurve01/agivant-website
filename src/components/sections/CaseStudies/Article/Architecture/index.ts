@@ -1,2 +1,9 @@
 export { Architecture } from "./Architecture";
-export type { ArchitectureProps, ArchitectureImage } from "./types";
+export { ArchitectureEmbed } from "./ArchitectureEmbed";
+export type {
+  ArchitectureProps,
+  ArchitectureImage,
+  ArchitectureImageData,
+  ArchitectureEmbedData,
+} from "./types";
+export type { ArchitectureEmbedProps } from "./ArchitectureEmbed";

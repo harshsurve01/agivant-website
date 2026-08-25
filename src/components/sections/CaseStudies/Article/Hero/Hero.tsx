@@ -6,38 +6,17 @@ import type { CaseStudyArticleHeroProps } from "./types";
 /**
  * Hero (Case Study Inner Page)
  *
- * Renders the Case Study article page's hero content only: heading
- * and description. Figma: "Case Study Inside Page" hero frame — see
- * Hero.module.css for the exact node/measurement notes and the
- * ASSUMPTION this pass makes (no Figma access; values reused from
- * the Case Studies Hub Hero rather than read from the file directly).
+ * Renders the Case Study article page's hero section:
+ * - Shared HeroBackground (ambient visual gradients, interactive particle field, decorative ellipse)
+ * - Heading and description copy
  *
- * Reuses the exact same shared pieces as the Case Studies Hub Hero,
- * Blogs Article Hero, and TechTalk Hero — HeroBackground for every
- * ambient visual (gradients, particle field, decorative ellipse) and
- * Container for width/centering. Neither is duplicated or
- * reimplemented here.
- *
- * The next section (Objectives/Challenges) is shown overlapping the
- * bottom of this Hero in Figma. Per the brief, that overlap is
- * explicitly OUT of scope for this component — no extra height,
- * negative margin, absolute positioning, or z-index hack is added
- * here to accommodate it. This Hero is self-contained.
- *
- * Server Component: no "use client", no hooks, no state, no effects,
- * no business logic, no data imports (no caseStudies.ts here — see
- * the Article orchestrator and app/case-studies/[slug]/page.tsx for
- * the data flow). Every value arrives via props.
+ * Server Component: all values arrive via props.
+ * `data-hero-interaction-root` enables pointer tracking across the full Hero for HeroParticleField.
  */
 export function Hero({ heading, description }: CaseStudyArticleHeroProps) {
   return (
     <section className={styles.hero} data-hero-interaction-root>
-      {/* Decorative background only — identical usage to the Case
-          Studies Hub Hero, Blogs Article Hero, and TechTalk Hero.
-          `data-hero-interaction-root` is the pointer-tracking
-          boundary HeroParticleField looks up via closest(), and must
-          stay on an ancestor containing both HeroBackground and
-          Content. */}
+      {/* Decorative background only */}
       <HeroBackground />
 
       {/* Content */}

@@ -11,7 +11,6 @@
 /* Section-level vertical rhythm. Same shape as the TechTalk Hero. */
 .hero {
   position: relative;
-  overflow: hidden;
   width: 100%;
   min-height: 90vh;
 }
@@ -33,6 +32,7 @@
 
 @media (max-width: 768px) {
   .hero {
+    min-height: auto;
     padding-block: var(--space-16);
   }
 }

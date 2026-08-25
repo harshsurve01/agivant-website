@@ -1,0 +1,241 @@
+/* ==========================================================================
+   BuiltOnGemini.module.css
+   Section "Built on Gemini Enterprise."
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-20);
+}
+
+.container {
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   Centered Section Header
+   -------------------------------------------------------------------------- */
+.headerWrapper {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--space-12) auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl); /* ~36px - 40px */
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.purpleText {
+  color: var(--color-brand-primary);
+}
+
+.darkText {
+  color: var(--color-text-primary);
+}
+
+.subtitle {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base); /* 16px */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5625; /* 25px line height on 16px */
+  color: var(--color-text-primary);
+  margin: 0;
+  max-width: 680px;
+}
+
+/* --------------------------------------------------------------------------
+   3 Accelerator Cards Grid
+   -------------------------------------------------------------------------- */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 400px));
+  gap: var(--space-6);
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   Card Styling
+   -------------------------------------------------------------------------- */
+.cardLink {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-decoration: none;
+  border-radius: var(--radius-xl);
+  outline: none;
+}
+
+.cardLink:focus-visible .card {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  transition: border-color var(--transition-base), background-color var(--transition-base);
+}
+
+.cardLink:hover .card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(133, 0, 223, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   Top Image Frame
+   -------------------------------------------------------------------------- */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 400.02 / 237.02;
+  overflow: hidden;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.badge {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 2;
+  padding: 0.25rem 0.85rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-purple-500);
+}
+
+.corner {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-primary);
+  color: var(--color-brand-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.corner svg {
+  transition: transform var(--transition-base, 250ms ease);
+  transform-origin: center;
+}
+
+.cardLink:hover .corner svg,
+.cardLink:focus-visible .corner svg {
+  transform: rotate(180deg);
+}
+
+/* --------------------------------------------------------------------------
+   Card Body
+   -------------------------------------------------------------------------- */
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  flex: 1;
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: 1.125rem; /* 18px */
+  font-weight: var(--font-weight-semibold);
+  line-height: 2rem; /* 32px line-height per Figma */
+  color: var(--color-brand-primary);
+  margin: 0;
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base); /* 16px */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5625; /* 25px line-height per Figma */
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.metric {
+  font-family: var(--font-family-base);
+  font-size: 0.875rem; /* 14px */
+  font-weight: var(--font-weight-medium);
+  color: var(--color-brand-primary);
+  margin: var(--space-1) 0 0 0;
+  line-height: 1.4;
+}
+
+.cta {
+  font-family: var(--font-family-base);
+  font-size: 0.875rem; /* 14px */
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-primary);
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Design
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .cardsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+}
+
+@media (max-width: 1024px) {
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-12);
+  }
+
+  .heading {
+    font-size: var(--font-size-2xl);
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}

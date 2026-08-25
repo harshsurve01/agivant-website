@@ -41,7 +41,7 @@ export function Objectives({
                    blur="80px"
                  />
            <Gradient
-             top="70%"
+             top="20%"
              left="-18%"
              size="42rem"
              stops={[

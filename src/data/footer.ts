@@ -1,14 +1,7 @@
 /**
  * data/footer.ts
  *
- * Data-access layer for the Footer layout component. Mirrors the pattern
- * established by Environment, Partners, Proof and AIStack: components
- * never hardcode content or fetch data themselves — they receive it from
- * an async getter defined here. Today these getters return static
- * literals; when the Headless WordPress backend is wired up, only the
- * function body below changes (e.g. to a `fetch()` call against the WP
- * REST/GraphQL API) — every component that consumes `FooterContent`
- * stays untouched.
+ * Data-access layer for the Footer layout component.
  */
 
 /** A single CTA button rendered inside the footer's heading zone. */
@@ -20,9 +13,7 @@ export interface FooterButton {
   /** Visual variant, passed straight through to <Button variant>. */
   variant: "primary" | "dark";
   /**
-   * Optional icon identifier. A string key — not a ReactNode — so this
-   * interface stays JSON-serializable for the future WordPress payload.
-   * FooterCTA is responsible for resolving the key to an actual icon.
+   * Optional icon identifier.
    */
   icon?: "arrow-up-right" | "cube";
 }
@@ -37,13 +28,8 @@ export interface FooterNavigationLink {
 
 /** All content the Footer layout component needs to render. */
 export interface FooterContent {
-  /** Heading text, e.g. "Ready To Get Your Enterprise Amp'd With Agivant?" */
-  heading: {
-    line1: string;
-    line2Prefix: string;
-    line2Brand: string;
-    line3: string;
-  };
+  /** Heading text, e.g. "Ready To Get Your\nEnterprise\nWith Agivant?" */
+  heading: string;
   /** CTA buttons rendered below the heading. */
   buttons: FooterButton[];
   /** Footer navigation links. */
@@ -55,18 +41,11 @@ export interface FooterContent {
 /**
  * getFooterContent
  *
- * Returns the full content model for the Footer. Static today; becomes a
- * fetch against Headless WordPress later without any change to the
- * `FooterContent` shape or to the components that consume it.
+ * Returns the full content model for the Footer.
  */
 export async function getFooterContent(): Promise<FooterContent> {
   return {
-    heading: {
-  line1: "Ready To Get Your",
-  line2Prefix: "Enterprise",
-  line2Brand: "Amp'd",
-  line3: "With Agivant?"
-},
+    heading: "Ready To Get Your\nEnterprise\nWith Agivant?",
     buttons: [
       {
         label: "Find your Amp'd score",
@@ -90,6 +69,6 @@ export async function getFooterContent(): Promise<FooterContent> {
       { label: "About Us", href: "/about-us" },
       { label: "Contact Us", href: "/contact" },
     ],
-    copyright: "© 2023-2026 Agivant Technologies. All rights reserved.",
+    copyright: "© 2023–2026 Agivant Technologies. All rights reserved.",
   };
 }

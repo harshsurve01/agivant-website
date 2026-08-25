@@ -1,62 +1,149 @@
 import Link from "next/link";
-// TODO(path): adjust this import to match wherever Button actually lives
-// in this project (e.g. "@/components/ui/Button"). Assumed here to match
-// the barrel-export convention used elsewhere in the codebase.
+import clsx from "clsx";
 import { Button } from "@/components/ui/Button";
 import type { FooterButton } from "@/data/footer";
+import type { FooterVariant } from "./Footer";
 import styles from "./FooterCTA.module.css";
-import Image from "next/image";
 
 export interface FooterCTAProps {
-  /** Section heading text. */
-  heading: {
-    line1: string;
-    line2Prefix: string;
-    line2Brand: string;
-    line3: string;
-  };
+  /** Section heading text or structured object. */
+  heading:
+    | {
+        line1: string;
+        line2?: string;
+        line2Prefix?: string;
+        line2Brand?: string;
+        line3?: string;
+      }
+    | string;
+  /** Optional supporting description text (rendered below heading). */
+  description?: string;
   /** CTA buttons rendered below the heading. */
   buttons: FooterButton[];
+  /** Visual variant (e.g. "default", "partners", or "partner-detail"). */
+  variant?: FooterVariant;
 }
 
 /**
  * FooterCTA
  *
- * Owns the footer's heading and CTA buttons — the top-left visual zone.
- * Each button is a real navigational link: <Button> (a presentation-only
- * primitive with no onClick) is wrapped in <Link>, so navigation works
- * without turning this into a Client Component.
+ * Owns the footer's heading, supporting text, and CTA buttons zone.
+ * - "default": Centered 3-line heading with 2 CTA buttons (Dark + Purple).
+ * - "partners": Centered 2-line heading with 1 primary purple CTA button.
+ * - "partner-detail": Centered 3-line heading (64px / 120%), 18px supporting text,
+ *                     and single primary purple CTA button with cube icon.
  *
  * Server Component: no "use client", no hooks, no state.
  */
-export function FooterCTA({ heading, buttons }: FooterCTAProps) {
+export function FooterCTA({
+  heading,
+  description,
+  buttons,
+  variant = "default",
+}: FooterCTAProps) {
+  const isPartners = variant === "partners";
+  const isPartnerDetail = variant === "partner-detail";
+
   return (
-    <div className={styles.cta}>
-      <h2 className={styles.heading}>
-  <span className={styles.headingLine}>
-    {heading.line1}
-  </span>
+    <div
+      className={clsx(
+        styles.cta,
+        isPartners && styles.ctaPartners,
+        isPartnerDetail && styles.ctaPartnerDetail
+      )}
+    >
+      {isPartners || isPartnerDetail ? (
+        <h2
+          className={
+            isPartnerDetail
+              ? styles.headingPartnerDetail
+              : styles.headingPartners
+          }
+        >
+          {typeof heading === "string" ? (
+            heading.split("\n").map((line, index) => (
+              <span
+                key={index}
+                className={
+                  isPartnerDetail
+                    ? styles.headingLinePartnerDetail
+                    : styles.headingLinePartners
+                }
+              >
+                {line}
+              </span>
+            ))
+          ) : (
+            <>
+              <span
+                className={
+                  isPartnerDetail
+                    ? styles.headingLinePartnerDetail
+                    : styles.headingLinePartners
+                }
+              >
+                {heading.line1}
+              </span>
+              {heading.line2 && (
+                <span
+                  className={
+                    isPartnerDetail
+                      ? styles.headingLinePartnerDetail
+                      : styles.headingLinePartners
+                  }
+                >
+                  {heading.line2}
+                </span>
+              )}
+              {heading.line3 && (
+                <span
+                  className={
+                    isPartnerDetail
+                      ? styles.headingLinePartnerDetail
+                      : styles.headingLinePartners
+                  }
+                >
+                  {heading.line3}
+                </span>
+              )}
+            </>
+          )}
+        </h2>
+      ) : (
+        <h2 className={styles.heading}>
+          {typeof heading === "string" ? (
+            heading.split("\n").map((line, index) => (
+              <span key={index} className={styles.headingLine}>
+                {line}
+              </span>
+            ))
+          ) : (
+            <>
+              <span className={styles.headingLine}>{heading.line1}</span>
+              <span className={styles.headingLine}>
+                {"line2" in heading
+                  ? heading.line2
+                  : `${heading.line2Prefix ?? ""} ${heading.line2Brand ?? ""}`.trim()}
+              </span>
+              {heading.line3 ? (
+                <span className={styles.headingLine}>{heading.line3}</span>
+              ) : null}
+            </>
+          )}
+        </h2>
+      )}
 
-  <span className={styles.headingLine}>
-    {heading.line2Prefix}{" "}
+      {description && <p className={styles.description}>{description}</p>}
 
-    <Image
-      src="/images/hero/ampd-wordmark.svg"
-      alt="Amp'd"
-      width={260}     // placeholder intrinsic width
-      height={88}     // placeholder intrinsic height
-      className={styles.ampdWordmark}
-    />
-  </span>
-
-  <span className={styles.headingLine}>
-    {heading.line3}
-  </span>
-</h2>
-      <div className={styles.buttons}>
+      <div
+        className={clsx(
+          styles.buttons,
+          (isPartners || isPartnerDetail) && styles.buttonsPartners
+        )}
+      >
         {buttons.map((button) => (
           <Link
-            key={button.href}
+            key={button.label}
             href={button.href}
             className={styles.buttonLink}
           >
@@ -64,7 +151,9 @@ export function FooterCTA({ heading, buttons }: FooterCTAProps) {
               variant={button.variant}
               size="lg"
               rightIcon={
-                button.icon ? <FooterButtonIcon icon={button.icon} /> : undefined
+                button.icon ? (
+                  <FooterButtonIcon icon={button.icon} />
+                ) : undefined
               }
             >
               {button.label}
@@ -80,13 +169,6 @@ export function FooterCTA({ heading, buttons }: FooterCTAProps) {
  * FooterButtonIcon
  *
  * Resolves a serializable icon key (FooterButton.icon) to an inline SVG.
- * Kept local to FooterCTA since the footer is the only current consumer
- * of these two icons — promote to a shared Icon component if a future
- * section needs the same key-to-icon mapping.
- *
- * ASSET NOTE: inline placeholder SVGs standing in for the real exported
- * icon assets. Swap the <path> data once the real assets are supplied;
- * no other part of FooterCTA needs to change.
  */
 function FooterButtonIcon({
   icon,

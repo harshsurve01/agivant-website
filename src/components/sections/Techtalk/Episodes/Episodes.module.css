@@ -1,34 +1,53 @@
 /* ==========================================================================
    Episodes.module.css
-   Layout only, per Episodes.tsx's own responsibility — no visual
-   styling for the toolbar/player/playlist themselves lives here, only
-   how the three are arranged relative to each other.
+   Layout only, per Episodes.tsx's own responsibility.
    ========================================================================== */
 
 .episodes {
+  position: relative;
   width: 100%;
-  padding-block: var(--space-16);
+  padding-block: 0 var(--space-24);
 }
 
+/* Toolbar is pulled upward to sit partially inside the bottom of the hero,
+   layered above the ribbon, with an expanded bottom margin separating it
+   from the player and playlist below. */
 .toolbarRow {
-  margin-bottom: var(--space-6);
+  position: relative;
+  margin-top: calc(-1 * var(--space-16)); /* Pulls toolbar upward into hero overlap */
+  margin-bottom: var(--space-12);         /* Expanded vertical gap to content below */
 }
 
 .mainRow {
+  position: relative;
   display: grid;
-  /* Player fills remaining space; playlist holds a fixed sidebar
-     width. Matches the Figma's roughly 2:1 proportion (video ~834px
-     against a ~1235px total content width) while staying fluid on
-     the player side rather than fixing both columns. */
   grid-template-columns: 1fr 380px;
   gap: var(--space-8);
   align-items: start;
 }
+
 .player {
   height: fit-content;
 }
+
 @media (max-width: 1024px) {
+  .toolbarRow {
+    margin-top: calc(-1 * var(--space-10));
+    margin-bottom: var(--space-8);
+  }
+
   .mainRow {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .episodes {
+    padding-bottom: var(--space-16);
+  }
+
+  .toolbarRow {
+    margin-top: calc(-1 * var(--space-6));
+    margin-bottom: var(--space-6);
   }
 }

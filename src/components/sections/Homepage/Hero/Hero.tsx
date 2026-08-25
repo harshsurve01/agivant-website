@@ -48,7 +48,7 @@ export async function Hero() {
     await getHero();
 
   return (
-    <section className={styles.hero}>
+    <section className={styles.hero} data-hero-interaction-root>
       <div className={styles.background} />
 
       <HeroBackground/>

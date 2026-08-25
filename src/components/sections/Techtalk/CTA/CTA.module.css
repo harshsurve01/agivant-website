@@ -1,16 +1,15 @@
 /* ==========================================================================
-   CTA.module.css
-   Owns this section's own spacing and the heading typography, plus the
-   layout of the two-button row. It does not touch Button's own visual
-   surface (background, padding, radius, etc.) — that stays entirely
-   owned by Button.module.css, referenced here only via the <Button>
-   component itself.
+   CTA.module.css (TechTalk)
+   Owns this section's own spacing and heading typography, plus the
+   layout of the two-button row.
 
-   Every value below references an existing token from variables.css.
+   Vertical spacing is tailored to sit seamlessly above the minimal footer
+   brandmark (logo) with reduced bottom padding matching Figma.
    ========================================================================== */
 
 .section {
-  padding-block: var(--space-32);
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-6);
   text-align: center;
 }
 
@@ -28,11 +27,6 @@
   font-family: var(--font-family-heading);
   font-weight: var(--font-weight-semibold);
   font-size: var(--font-size-7xl);
-  /* Figma specifies 120% line-height exactly. No existing
-     --line-height-* token matches (tight 1.1 / snug 1.25 / normal 1.5),
-     so this is a literal value rather than a rounded-off token, per
-     "use existing tokens wherever possible" — this is the one place
-     it isn't possible without visibly drifting from the Figma. */
   line-height: 1.2;
   letter-spacing: var(--letter-spacing-normal);
 
@@ -47,8 +41,17 @@
   gap: var(--space-5);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-4);
+  }
+
+  .inner {
+    gap: var(--space-6);
+  }
+
   .heading {
-    font-size: var(--font-size-5xl);
+    font-size: var(--font-size-4xl);
   }
 }

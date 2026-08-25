@@ -1,0 +1,34 @@
+/* ==========================================================================
+   CaseStudiesPage.module.css
+   Page-level styling and decorative ribbon positioning for /case-studies.
+   ========================================================================== */
+
+.page {
+  position: relative;
+  width: 100%;
+  overflow-x: clip;
+}
+
+.ribbonWrapper {
+  top: clamp(20rem, 28vh, 27rem);
+}
+
+.ribbonImage {
+  max-width: 1920px;
+}
+
+@media (max-width: 1200px) {
+  .ribbonImage {
+    min-width: 1200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ribbonWrapper {
+    top: 20rem;
+  }
+
+  .ribbonImage {
+    min-width: 900px;
+  }
+}

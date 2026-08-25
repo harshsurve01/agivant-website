@@ -1,0 +1,24 @@
+/* ==========================================================================
+   PageRibbon.module.css
+   Page-level decorative ribbon visual layer styles.
+   ========================================================================== */
+
+.wrapper {
+  position: absolute;
+  inset-inline: 0;
+  width: 100%;
+  pointer-events: none;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  line-height: 0;
+}
+
+.ribbon {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}

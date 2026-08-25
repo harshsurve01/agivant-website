@@ -1,0 +1,92 @@
+/* ==========================================================================
+   PartnerHero.module.css
+   Reusable Hero styling for Partner Detail Pages (/partners/[partner]).
+   Maintains the Figma-specified 958px visual boundary for Section 1.
+   Consumes design tokens exclusively from variables.css.
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 880px; /* Figma: 958px Frame 14 height minus Header height */
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-12);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: visible;
+}
+
+.container {
+  position: relative;
+  z-index: 3;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.heading {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-7xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-brand-primary);
+  letter-spacing: var(--letter-spacing-tight);
+  margin-bottom: var(--space-4);
+  max-width: 1120px;
+}
+
+.headingLine {
+  display: block;
+}
+
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--space-4);
+  max-width: 100%;
+}
+
+.partnerLogo {
+  width: auto;
+  max-width: min(567px, 85vw);
+  height: auto;
+  max-height: 67px;
+  object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    min-height: 720px;
+    padding-top: var(--space-16);
+  }
+
+  .heading {
+    font-size: var(--font-size-5xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 540px;
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-8);
+  }
+
+  .heading {
+    font-size: var(--font-size-4xl);
+    line-height: var(--line-height-tight);
+  }
+
+  .partnerLogo {
+    max-height: 48px;
+  }
+}

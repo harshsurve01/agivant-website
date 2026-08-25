@@ -1,23 +1,17 @@
 /* ==========================================================================
    Hero.module.css (TechTalk)
-   Owns layout and typography for the hero's own content only. All
-   ambient visuals (gradients, particles, decorative ellipse) live in
+   Owns layout and typography for the TechTalk Hero.
+   All ambient visuals (gradients, particles, decorative ellipse) live in
    HeroBackground and are not touched here. Container already owns
-   max-width/centering/horizontal padding for its own box — this file
-   only arranges what sits inside it.
+   max-width/centering/horizontal padding for its own box.
    ========================================================================== */
 
-/* Section-level vertical rhythm. Reuses the project's shared .section
-   rhythm concept (utilities.css) at hero scale via spacing tokens,
-   rather than inventing a new spacing value. */
 .hero {
   position: relative;
-  overflow: hidden;
   width: 100%;
   min-height: 90vh;
 }
 
-/* NEW */
 .container {
   position: relative;
   z-index: 10;
@@ -29,50 +23,20 @@
   align-items: center;
   gap: var(--space-8);
   text-align: center;
-
-  padding-top: clamp(12rem, 15vh, 11rem);
+  padding-top: clamp(8rem, 10vh, 8rem);
+  padding-bottom: var(--space-2);
 }
 
-@media (max-width: 768px) {
-  .hero {
-    padding-block: var(--space-16);
-  }
-}
-
-/* Container already constrains width; this just centers its children
-   as a column and adds the vertical gaps between heading/description/CTA. */
-
-/* --------------------------------------------------------------------
-   Heading
-   Figma: Poppins, Regular, 64px, max-width 988.65px, centered.
-   --font-size-7xl matches the 64px step already defined in
-   variables.css. Global h1 styling (typography.css) sets bold weight
-   and heading letter-spacing by default — both are overridden here
-   since this hero calls for a lighter, wider-reading display weight.
-   -------------------------------------------------------------------- */
 .heading {
   font-family: var(--font-family-heading);
   font-size: var(--font-size-7xl);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-normal);
   color: var(--color-brand-primary);
-  /* Figma-specified max-width (988.65px) has no matching token in the
-     shared scale — kept as an explicit value rather than forcing it
-     onto an unrelated container/token step. */
-  max-width: 62rem; /* 988.65px expressed as a token-based rem value */
+  max-width: 62rem;
 }
 
-/* --------------------------------------------------------------------
-   Description
-   Figma: Poppins, Regular, 20px, line-height 30px, letter-spacing
-   -1px, max-width 828.72px, centered. --font-size-xl (20px) and
-   --line-height-normal (1.5 * 20px = 30px) both map exactly onto
-   existing tokens. The -1px letter-spacing has no equivalent step in
-   the shared scale (closest, --letter-spacing-tight, is -0.02em ≈
-   -0.3px at this size), so it's kept as an explicit value to match
-   the spec exactly rather than approximated from an unrelated token.
-   -------------------------------------------------------------------- */
 .description {
   font-family: var(--font-family-base);
   font-size: var(--font-size-xl);
@@ -80,16 +44,31 @@
   line-height: var(--line-height-normal);
   letter-spacing: -1px;
   color: var(--color-text-secondary);
-  max-width: 51.795rem; /* 828.72px expressed as a token-based rem value */
+  max-width: 51.795rem;
 }
 
-/* --------------------------------------------------------------------
-   CTA wrapper
-   Link renders an anchor, which is inline by default — this just
-   keeps it from taking on any unwanted block-level width inside the
-   centered flex column. No visual styling lives here; that's still
-   entirely Button's.
-   -------------------------------------------------------------------- */
 .cta {
   display: inline-flex;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-block: var(--space-16);
+  }
+
+  .content {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-10);
+    gap: var(--space-4);
+  }
+
+  .heading {
+    font-size: var(--font-size-4xl);
+  }
+
+  .description {
+    font-size: var(--font-size-base);
+    letter-spacing: normal;
+  }
 }

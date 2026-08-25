@@ -1,0 +1,278 @@
+/* ==========================================================================
+   AgenticEnterprise.module.css
+   Section 03 (Agentic Enterprise) styling.
+   Consumes design tokens exclusively from variables.css.
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-20);
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  max-width: 1204px; /* Figma: 1204px */
+  margin-inline: auto;
+}
+
+.blocks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24); /* 80px-100px Figma distance between blocks */
+  width: 100%;
+}
+
+.block {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------
+   Image Block Layout (03A, 03C, 03D)
+   -------------------------------------------------------------------- */
+.imageBlock {
+  display: grid;
+  grid-template-columns: minmax(0, 705px) minmax(0, 437px);
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.imageFirst {
+  grid-template-columns: minmax(0, 437px) minmax(0, 635px);
+}
+
+.imageFirst .imageWrapper {
+  order: -1;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8); /* Figma: 30px itemSpacing */
+  max-width: 44.1rem; /* 705px default max-width */
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl); /* 36px (2.25rem) */
+  font-weight: var(--font-weight-bold); /* 600 SemiBold */
+  line-height: var(--line-height-snug); /* 1.25 */
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0;
+  white-space: pre-line;
+}
+
+.purpleText {
+  color: var(--color-brand-primary); /* #8500DF */
+}
+
+.darkText {
+  color: var(--color-text-primary); /* #000000 */
+}
+
+.body {
+  width: 100%;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg); /* 18px (1.125rem) */
+  font-weight: var(--font-weight-regular); /* 400 Regular */
+  line-height: var(--line-height-relaxed); /* 1.65 */
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Figma Block-Specific Body & Column Presentation Widths */
+.block[data-block-id="ambition"] .textContent,
+.block[data-block-id="ambition"] .body {
+  max-width: 42rem; /* 672px (Figma: 672px) */
+}
+
+.block[data-block-id="teams-in-control"] .textContent,
+.block[data-block-id="teams-in-control"] .body {
+  max-width: 39.7rem; /* 635px (Figma: 635px) */
+}
+
+.block[data-block-id="google-cloud-scale"] .textContent,
+.block[data-block-id="google-cloud-scale"] .body {
+  max-width: 44.1rem; /* 705px (Figma: 705px) */
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 437px;
+  height: auto;
+  border-radius: 35px; /* Figma: CornerRadius 35 */
+  overflow: hidden;
+  line-height: 0;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 35px;
+}
+
+/* --------------------------------------------------------------------
+   Metrics Block Layout (03B)
+   -------------------------------------------------------------------- */
+.metricsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8); /* 30px between heading and grid (Figma itemSpacing: 30) */
+}
+
+.metricsHeading {
+  max-width: 52rem; /* 824px (Figma width: 823.97px) */
+}
+
+.metricsContentGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 520px) minmax(0, 580px);
+  justify-content: space-between;
+  align-items: start;
+  gap: var(--space-12);
+  width: 100%;
+}
+
+.metricsDescriptionCol {
+  width: 30rem;
+}
+
+.metricsCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  padding-left: var(--space-2); /* gives clearance for the half-outside dots */
+  transform: translateY(-25px);
+}
+
+.metricsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.metricItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #d9d9d920;
+  border: 1px solid rgba(255, 255, 255);
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-5) var(--space-3) var(--space-8);
+  width: 100%;
+  overflow: visible;
+}
+
+/* Purple metric bullet: half inside, half outside the left border */
+.metricDot {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-brand-primary);
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.metricText {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base); /* 15px */
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-normal);
+}
+
+.closingStatement {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg); /* 18px */
+  font-weight: var(--font-weight-medium);
+  color: var(--color-brand-primary);
+  margin: var(--space-2) 0 0 0;
+  padding-left: var(--space-8);
+}
+
+/* --------------------------------------------------------------------
+   Responsive Adaptations
+   -------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .imageBlock {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+  }
+
+  .metricsContentGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-16);
+  }
+
+  .imageBlock {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .imageFirst .imageWrapper {
+    order: 0;
+  }
+
+  .heading {
+    font-size: var(--font-size-2xl); /* 24px on mobile */
+  }
+
+  .body {
+    font-size: var(--font-size-md); /* 16px on mobile */
+  }
+
+  .imageWrapper {
+    max-width: 100%;
+    border-radius: var(--radius-xl);
+  }
+
+  .image {
+    border-radius: var(--radius-xl);
+  }
+
+  .metricsContentGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .metricsDescriptionCol {
+    max-width: 100%;
+  }
+
+  .metricsCol {
+    padding-left: var(--space-2);
+  }
+
+  .metricText {
+    font-size: var(--font-size-sm);
+  }
+
+  .closingStatement {
+    font-size: var(--font-size-md);
+    padding-left: var(--space-8);
+  }
+}

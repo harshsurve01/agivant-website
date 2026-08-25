@@ -1,0 +1,93 @@
+/* ==========================================================================
+   Ecosystem.module.css (Partners / Our Partners Page)
+
+   Owns layout and typography for the Ecosystem section & partner cards grid.
+   Pulls slightly upward to overlap the lower area of the Partners Hero.
+   ========================================================================== */
+
+.ecosystem {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  margin-top: calc(-1 * var(--space-20)); /* Overlaps bottom of Hero */
+  padding-bottom: var(--space-32);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-12);
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl); /* 36px per Figma */
+  font-weight: var(--font-weight-bold); /* 600 SemiBold */
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--color-brand-primary); /* #8500DF */
+  max-width: 35rem; /* 546.75px */
+  margin: 0;
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg); /* 18px per Figma */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.4; /* 25px per Figma */
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--color-text-secondary);
+  max-width: 42.125rem; /* 673.95px */
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+  width: 100%;
+}
+
+/* Center the final row (cards 9 and 10) in the 4-column desktop grid */
+.grid > :nth-child(9) {
+  grid-column-start: 2;
+}
+
+@media (max-width: 1024px) {
+  .ecosystem {
+    margin-top: calc(-1 * var(--space-10));
+    padding-bottom: var(--space-20);
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  .grid > :nth-child(9) {
+    grid-column-start: auto;
+  }
+
+  .heading {
+    font-size: var(--font-size-3xl);
+  }
+
+  .description {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 640px) {
+  .ecosystem {
+    margin-top: 0;
+    padding-bottom: var(--space-16);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+

@@ -5,12 +5,6 @@ import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "@/components/ui/Icon/ArrowRight";
 import styles from "./Hero.module.css";
 
-/**
- * A CTA's shape, independent of any one section. `href` (not an
- * onClick) is what keeps this WordPress-ready: routing, analytics,
- * and link targets can all be driven by data alone, with no client
- * logic living inside Hero.
- */
 export interface HeroCta {
   /** Visible label on the button. */
   label: string;
@@ -30,30 +24,16 @@ export interface TechTalkHeroProps {
 /**
  * Hero (TechTalk)
  *
- * Renders the TechTalk page's hero content only: heading, description,
- * and a primary CTA. All ambient visuals (gradients, particle field,
- * decorative ellipse) live in the shared HeroBackground UI component
- * and are composed here exactly as the design system intends —
- * HeroBackground wraps this content, nothing about it is duplicated
- * or reimplemented in this file.
+ * Renders the TechTalk page's hero section:
+ * - Shared HeroBackground (ambient glowing mesh, particle canvas, ellipse stroke)
+ * - Heading, description copy, and primary CTA button
  *
- * Server Component: no "use client", no hooks, no state, no effects,
- * no business logic, no data imports. Every value — including the
- * CTA's destination — arrives via props, so this component is already
- * shaped for a future WordPress-sourced `hero` object with zero
- * changes required on this end.
+ * Server Component: no "use client", no hooks, no state. All values arrive via props.
+ * `data-hero-interaction-root` enables pointer tracking across the full Hero for HeroParticleField.
  */
 export function Hero({ heading, description, cta }: TechTalkHeroProps) {
   return (
     <section className={styles.hero} data-hero-interaction-root>
-      {/* Decorative background only. `data-hero-interaction-root` above
-          is the pointer-tracking boundary HeroParticleField looks up
-          via closest() — it needs to be on an ancestor that contains
-          BOTH HeroBackground and Content, since content now sits
-          outside HeroBackground and no longer shares its DOM subtree.
-          Plain data attribute (not a ref) on purpose: Hero stays a
-          Server Component with zero hooks/client boundary of its own,
-          exactly as before. */}
       <HeroBackground />
 
       {/* Content */}

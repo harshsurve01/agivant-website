@@ -1,0 +1,44 @@
+/* ==========================================================================
+   PartnerDetailPage.module.css
+   Page-level styling and decorative ribbon positioning for /partners/[partner].
+   Matches Figma specification: Ribbon starts at y=262px across hero boundary.
+   ========================================================================== */
+
+.page {
+  position: relative;
+  width: 100%;
+  overflow-x: clip;
+}
+
+.ribbonWrapper {
+  top: 260px; /* Figma: y=262px, starts below headline and spans across bottom of Hero into Section 2 */
+  z-index: 1;
+}
+
+.ribbonImage {
+  max-width: 1920px;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 1200px) {
+  .ribbonImage {
+    min-width: 1200px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ribbonWrapper {
+    top: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ribbonWrapper {
+    top: 150px;
+  }
+
+  .ribbonImage {
+    min-width: 900px;
+  }
+}

@@ -1,0 +1,505 @@
+/* ==========================================================================
+   Solutions.module.css
+   Section 04: "Solutions / Accelerators" on Partner Detail Page.
+   Strictly consumes design tokens from variables.css.
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-24);
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  max-width: 1204px; /* Figma container width */
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------
+   Section Header
+   -------------------------------------------------------------------- */
+.headerWrapper {
+  margin-bottom: var(--space-10);
+  max-width: 68rem;
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl); /* 36px (2.25rem) */
+  font-weight: var(--font-weight-bold); /* 600 SemiBold */
+  line-height: var(--line-height-snug); /* 1.25 */
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0 0 var(--space-4) 0;
+  white-space: pre-line;
+}
+
+.darkText {
+  color: var(--color-text-primary);
+}
+
+.purpleText {
+  color: var(--color-brand-primary);
+}
+
+.subtitle {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md); /* 16px */
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------
+   4 Accelerator Cards Grid
+   -------------------------------------------------------------------- */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+  align-items: stretch;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  outline: none;
+  min-height: 440px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  /* Fixed position, zero translateY/movement, zero layout shift */
+  transition:
+    box-shadow var(--transition-base),
+    background var(--transition-base);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+.cardActive {
+  background: var(--color-neutral-50);
+  border-color: var(--color-neutral-200);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6) var(--space-5) var(--space-4) var(--space-5);
+  flex: 1 0 auto;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--space-2);
+}
+
+.arrowBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  color: var(--color-text-primary);
+  opacity: 1; /* Arrow badge MUST remain 100% visible on both active and inactive cards */
+  transition: color var(--transition-fast);
+}
+
+.cardActive .arrowBadge {
+  color: var(--color-brand-primary);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin-bottom: var(--space-4);
+  transition: opacity var(--transition-base);
+}
+
+.cardTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl); /* 20px */
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2) 0;
+  white-space: pre-line;
+  transition: color var(--transition-fast);
+}
+
+.cardActive .cardTitle {
+  color: var(--color-brand-primary);
+}
+
+.cardCategory {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs); /* 12px */
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-neutral-600);
+  text-transform: uppercase;
+  margin: 0 0 var(--space-3) 0;
+  transition: color var(--transition-fast);
+}
+
+.cardActive .cardCategory {
+  color: var(--color-brand-primary);
+}
+
+.cardDescription {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm); /* 14px */
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Full-width image at bottom of card, clipped by card's rounded corners */
+.cardImageWrapper {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+  margin-top: auto;
+  margin-bottom: 0;
+  overflow: hidden;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  transition:
+    opacity var(--transition-base),
+    margin-bottom var(--transition-base);
+}
+
+/* Active card: image area extends downward into the gap toward the display panel */
+.cardActive .cardImageWrapper {
+  margin-bottom: -1.65rem;
+  z-index: 2;
+}
+
+.cardImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Inactive cards: reduced opacity ONLY for main content (title, category, description, image) */
+.cardInactive .cardBody,
+.cardInactive .cardImageWrapper {
+  opacity: 0.35;
+}
+
+.cardActive .cardBody,
+.cardActive .cardImageWrapper {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------
+   Display Panel Below Cards
+   -------------------------------------------------------------------- */
+.displayPanel {
+  position: relative;
+  background: #F9F9FA;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10) var(--space-12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+}
+
+/* Dynamic triangular pointer notch on top edge pointing up toward active card */
+.pointerNotch {
+  position: absolute;
+  top: -1.65rem;
+  width: 3rem;
+  height: 3rem;
+  background: #F9F9FA;
+  border-left: 1px solid var(--color-neutral-200);
+  border-top: 1px solid var(--color-neutral-200);
+  transform: translateX(-50%) rotate(45deg);
+  transition: left 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 3;
+}
+
+.panelTopRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+}
+
+.panelCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.panelSectionTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl); /* 20px */
+  font-weight: var(--font-weight-bold);
+  color: var(--color-brand-primary);
+  margin: 0;
+}
+
+.panelText {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base); /* 15px */
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.panelDivider {
+  border: none;
+  border-top: 1px solid var(--color-neutral-200);
+  margin: var(--space-8) 0;
+}
+
+.panelBottomSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.agentTeamHeading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl); /* 20px */
+  font-weight: var(--font-weight-bold);
+  color: var(--color-brand-primary);
+  text-align: center;
+  margin: 0 0 var(--space-8) 0;
+}
+
+.agentsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+}
+
+.agentsCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.agentItem {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base); /* 15px */
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.agentName {
+  color: var(--color-brand-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.agentRole {
+  color: var(--color-text-primary);
+}
+
+/* --------------------------------------------------------------------
+   Accelerator Proof (headline + description + metrics + video)
+   Driven by the same activeAccelerator as SolutionDisplayPanel above —
+   see Solutions.tsx. Styled as a sibling panel using the same tokens
+/* --------------------------------------------------------------------
+   Accelerator Proof (headline + description + highlights + video)
+   Driven by the same activeAccelerator as SolutionDisplayPanel above.
+   -------------------------------------------------------------------- */
+.proofSection {
+  position: relative;
+  width: 100%;
+  margin-top: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.proofBanner {
+  width: 100%;
+  max-width: 760px;
+  background: #F9F9FA;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6) var(--space-8);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.proofHeadline {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-brand-primary);
+  margin: 0;
+}
+
+.proofDescription {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.proofHighlights {
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-6);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-brand-primary);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.highlightItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.highlightDot {
+  color: var(--color-brand-primary);
+  opacity: 0.6;
+}
+
+.proofVideoWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* --------------------------------------------------------------------
+   Responsive Layout
+   -------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .displayPanel {
+    padding: var(--space-8);
+  }
+
+  .panelTopRow {
+    gap: var(--space-8);
+  }
+
+  .agentsGrid {
+    gap: var(--space-8);
+  }
+
+  .proofBanner,
+  .proofVideoWrapper {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-16);
+  }
+
+  .heading {
+    font-size: var(--font-size-2xl); /* 24px */
+  }
+
+  .subtitle {
+    font-size: var(--font-size-sm);
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .card {
+    min-height: auto;
+  }
+
+  .displayPanel {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .panelTopRow {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .panelDivider {
+    margin: var(--space-6) 0;
+  }
+
+  .agentTeamHeading {
+    margin-bottom: var(--space-6);
+  }
+
+  .agentsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .panelSectionTitle,
+  .agentTeamHeading {
+    font-size: var(--font-size-lg);
+  }
+
+  .panelText,
+  .agentItem {
+    font-size: var(--font-size-sm);
+  }
+
+  .proofSection {
+    margin-top: var(--space-6);
+  }
+
+  .proofBanner {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .proofHeadline {
+    font-size: var(--font-size-2xl);
+  }
+
+  .proofDescription {
+    font-size: var(--font-size-sm);
+  }
+
+  .proofHighlights {
+    font-size: var(--font-size-xs);
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-5);
+  }
+}

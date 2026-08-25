@@ -1,30 +1,16 @@
 /* ==========================================================================
-   Hero.module.css (Case Studies)
+   Hero.module.css (Case Studies Landing Page)
 
-   Owns layout and typography for the hero's own content only. All
-   ambient visuals (gradients, particles, decorative ellipse) live in
-   HeroBackground and are not touched here — same split as the Blogs
-   and TechTalk Heroes. Container already owns max-width/centering/
-   horizontal padding for its own box — this file only arranges what
-   sits inside it.
-
-   ASSUMPTION (no Figma access this pass): every value below is
-   reused verbatim from Blogs' Hero.module.css, since the spec
-   confirms Case Studies follows the same visual language. Section
-   min-height, heading size/weight/line-height/max-width, description
-   size/line-height/max-width, and the heading→description and
-   description→search gaps are all unverified against the actual
-   Case Studies Hero frame and should be checked against Figma before
-   shipping. See the report at the end of this response for the full
-   list.
+   Owns layout and typography for the Case Studies Hero.
+   All ambient visuals (gradients, particle field, decorative ellipse stroke)
+   live in the shared HeroBackground component.
+   Container handles responsive width constraints and horizontal centering.
    ========================================================================== */
 
-/* Section-level vertical rhythm. Same shape as Blogs/TechTalk. */
 .hero {
   position: relative;
-  overflow: hidden;
   width: 100%;
-  min-height: 90vh;
+  min-height: clamp(700px, 75vh, 920px);
 }
 
 .container {
@@ -36,39 +22,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-16);
+  gap: var(--space-8);
   text-align: center;
-
-  padding-top: clamp(8rem, 15vh, 11rem);
-}
-
-@media (max-width: 768px) {
-  .hero {
-    padding-block: var(--space-16);
-  }
+  padding-top: clamp(7rem, 14vh, 10rem);
+  padding-bottom: clamp(8rem, 16vw, 14rem);
 }
 
 /* --------------------------------------------------------------------
    Heading
-   Figma shows two lines of identical weight/size ("Client success,"
-   / "in production") — unlike Blogs, there is no smaller eyebrow tier
-   here, so both lines share this one style rather than Blogs' split
-   .eyebrow/.headline pair. Kept as a flex column of same-styled spans
-   so the `heading` prop can stay one string with a line break,
-   matching the required data shape.
    -------------------------------------------------------------------- */
 .heading {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-2);
-  max-width: 62rem; /* reused from Blogs — unverified against Figma */
+  max-width: 62rem;
+  margin: 0;
 }
 
 .headingLine {
   font-family: var(--font-family-heading);
   font-size: var(--font-size-7xl);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-normal);
   color: var(--color-brand-primary);
@@ -76,8 +51,6 @@
 
 /* --------------------------------------------------------------------
    Description
-   Same spec and token mapping as the Blogs/TechTalk Hero description
-   — unverified against the Case Studies Figma frame this pass.
    -------------------------------------------------------------------- */
 .description {
   font-family: var(--font-family-base);
@@ -86,17 +59,38 @@
   line-height: var(--line-height-normal);
   letter-spacing: -1px;
   color: var(--color-text-secondary);
-  max-width: 51.795rem; /* 828.72px expressed as a token-based rem value */
+  max-width: 51.795rem;
+  margin: 0;
 }
 
 /* --------------------------------------------------------------------
    Search wrapper
-   No visual styling of its own (that's entirely SearchBar's), just
-   keeps the control from stretching past its intended width inside
-   the centered flex column.
    -------------------------------------------------------------------- */
 .search {
   display: flex;
   justify-content: center;
   width: 100%;
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-block: var(--space-16);
+  }
+
+  .content {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-8);
+    gap: var(--space-4);
+  }
+
+  .headingLine {
+    font-size: var(--font-size-4xl);
+  }
+
+  .description {
+    font-size: var(--font-size-base);
+    letter-spacing: normal;
+  }
 }
