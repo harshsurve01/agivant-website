@@ -12,6 +12,7 @@ import { ProductionProof } from "@/components/sections/Partners/Detail/Productio
 import { BuiltOnGemini } from "@/components/sections/Partners/Detail/BuiltOnGemini";
 import { getPartnerDetail, getAllPartnerSlugs } from "@/data/partners";
 import styles from "./PartnerDetailPage.module.css";
+import { Gradient } from "@/components/effects/Gradient";
 
 interface PartnerDetailPageProps {
   params: Promise<{ partner: string }>;
@@ -63,7 +64,88 @@ export default async function PartnerDetailPage({
             priority
           />
         )}
-
+      <Gradient
+        top="85%"
+        left="-5%"
+        size="20rem"
+        stops={[
+          "color-mix(in srgb, #EDBF79 70%, transparent) 0%",
+          "transparent 100%",
+        ]}
+        opacity={0.4}
+        blur="60px"
+      />
+      <Gradient
+        top="50%"
+        left="-5%"
+        size="30rem"
+        stops={[
+          "color-mix(in srgb, #EDBF79 70%, transparent) 0%",
+          "transparent 100%",
+        ]}
+        opacity={0.6}
+        blur="60px"
+      />
+         <Gradient
+              top="35%"
+              right="25%"
+              size="45rem"
+              stops={["#8500df 50%", "#edbf79 55%", "transparent 75%"]}
+              opacity={0.1}
+              blur="80px"
+            />
+         <Gradient
+        kind="linear"
+        angle="180deg"
+        top="82%"
+        right="25%"
+        size="35rem"
+        stops={["#b31aef44 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
+        opacity={0.15}
+        blur="90px"
+      />
+         <Gradient
+        kind="linear"
+        angle="180deg"
+        top="15%"
+        right="25%"
+        size="35rem"
+        stops={["#b31aef44 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
+        opacity={0.15}
+        blur="90px"
+      />
+      <Gradient
+        top="75%"
+        right="25%"
+        size="20rem"
+        stops={[
+          "color-mix(in srgb, #EDBF79 70%, transparent) 0%",
+          "transparent 100%",
+        ]}
+        opacity={0.4}
+        blur="60px"
+      />
+      <Gradient
+        top="23%"
+        right="25%"
+        size="40rem"
+        stops={[
+          "color-mix(in srgb, #EDBF79 70%, transparent) 0%",
+          "transparent 100%",
+        ]}
+        opacity={0.4}
+        blur="60px"
+      />
+         <Gradient
+        kind="linear"
+        angle="180deg"
+        top="72%"
+        left="-25%"
+        size="35rem"
+        stops={["#b31aef44 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
+        opacity={0.15}
+        blur="90px"
+      />
         <main id="main-content">
           <PartnerHero hero={partner.hero} />
           {partner.intro && <PartnerIntro intro={partner.intro} />}

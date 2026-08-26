@@ -174,7 +174,7 @@
 .body {
   position: absolute;
   left: 0;
-  right: 0;
+  right: 1rem;
   bottom: 0;
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.88);
@@ -202,7 +202,7 @@
 
 .title {
   font-family: var(--font-family-heading);
-  font-size: var(--font-size-base); /* ~16px-17px */
+  font-size: var(--font-size-md); /* 18px*/
   font-weight: var(--font-weight-semibold);
   color: var(--color-brand-primary);
   margin: 0;
@@ -211,8 +211,9 @@
 }
 
 .description {
+  width: 20rem;
   font-family: var(--font-family-base);
-  font-size: var(--font-size-xs); /* ~13px */
+  font-size: var(--font-size-base); /* 16px */
   font-weight: var(--font-weight-regular);
   line-height: 1.45;
   color: var(--color-text-primary);
@@ -221,16 +222,22 @@
 
 .metric {
   font-family: var(--font-family-base);
-  font-size: 0.75rem; /* ~12px */
+  font-size: var(--font-size-base); /* ~12px */
   font-weight: var(--font-weight-medium);
   color: var(--color-brand-primary);
   margin: var(--space-1) 0 0 0;
   line-height: 1.4;
 }
+.rightCol .description {
+  width: 17rem; /* control tall card description independently */
+}
 
+.rightCol .metric {
+  width: 17rem; /* control tall card metric independently */
+}
 .cta {
   font-family: var(--font-family-base);
-  font-size: 0.75rem; /* ~12px */
+  font-size:var(--font-size-base) ;
   font-weight: var(--font-weight-semibold);
   color: var(--color-brand-primary);
   margin-top: auto;
