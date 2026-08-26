@@ -344,7 +344,7 @@ export const ecosystemSectionData: EcosystemSectionData = {
 };
 
 /* ==========================================================================
-   Partner Detail Pages Data (/partners/[partner])
+   Partner Detail Pages Data (/partners/[slug])
    CMS-ready structure for dynamic routing
    ========================================================================== */
 
@@ -790,12 +790,12 @@ export const PARTNERS_DETAIL_DATA: Record<string, PartnerDetailData> = {
           id: "agentic-quote-accelerator",
           badge: "Solution",
           title: "Agentic Quote Accelerator",
+          slug: "agentic-quote-accelerator",
           description:
             "Seven agents work alongside the CRM already in place, carrying an RFQ through discovery, pricing, approvals, and proposal.",
           metric:
             "60 percent faster quote cycles · 2 to 5 percent order value uplift",
           ctaLabel: "See the solution >>",
-          solutionId: "quote-accelerator",
           image: {
             src: "/images/partners/gemini/accelerators/agentic-quote-accelerator.png",
             alt: "Agentic Quote Accelerator",
@@ -805,11 +805,11 @@ export const PARTNERS_DETAIL_DATA: Record<string, PartnerDetailData> = {
           id: "strategic-sourcing",
           badge: "Solution",
           title: "Strategic Sourcing",
+          slug: "strategic-sourcing",
           description:
             "Five agents cover the full procurement lifecycle, unifying spend, contract, risk, and vendor intelligence in one layer.",
           metric: "Sourcing cycle time cut by half",
           ctaLabel: "See the solution >>",
-          solutionId: "sourcex",
           image: {
             src: "/images/partners/gemini/accelerators/strategic-sourcing.png",
             alt: "Strategic Sourcing",
@@ -819,12 +819,12 @@ export const PARTNERS_DETAIL_DATA: Record<string, PartnerDetailData> = {
           id: "zeroq",
           badge: "Solution",
           title: "ZeroQ",
+          slug: "zeroq",
           description:
             "Six agents triage, investigate, resolve, and account for IT tickets on ServiceNow, Jira, or Zendesk, with no rebuild per platform.",
           metric:
             "2x engineering productivity · 25 to 40 percent lower cost per ticket",
           ctaLabel: "See the solution >>",
-          solutionId: "zeroqueue",
           image: {
             src: "/images/partners/gemini/accelerators/zeroq.png",
             alt: "ZeroQ",

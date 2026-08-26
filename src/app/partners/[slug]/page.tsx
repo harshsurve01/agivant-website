@@ -15,18 +15,18 @@ import styles from "./PartnerDetailPage.module.css";
 import { Gradient } from "@/components/effects/Gradient";
 
 interface PartnerDetailPageProps {
-  params: Promise<{ partner: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
   const slugs = getAllPartnerSlugs();
-  return slugs.map((slug) => ({ partner: slug }));
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PartnerDetailPageProps): Promise<Metadata> {
-  const { partner: slug } = await params;
+  const { slug } = await params;
   const partner = await getPartnerDetail(slug);
 
   if (!partner) {
@@ -42,7 +42,7 @@ export async function generateMetadata({
 export default async function PartnerDetailPage({
   params,
 }: PartnerDetailPageProps) {
-  const { partner: slug } = await params;
+  const { slug } = await params;
   const partner = await getPartnerDetail(slug);
 
   if (!partner) {

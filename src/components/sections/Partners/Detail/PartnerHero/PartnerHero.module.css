@@ -1,6 +1,6 @@
 /* ==========================================================================
    PartnerHero.module.css
-   Reusable Hero styling for Partner Detail Pages (/partners/[partner]).
+   Reusable Hero styling for Partner Detail Pages (/partners/[slug]).
    Maintains the Figma-specified 958px visual boundary for Section 1.
    Consumes design tokens exclusively from variables.css.
    ========================================================================== */

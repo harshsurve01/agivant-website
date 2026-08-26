@@ -26,17 +26,13 @@ export function BuiltOnGeminiCard({ card }: BuiltOnGeminiCardProps) {
     description,
     metric,
     ctaLabel = "See the solution >>",
-    solutionId,
+    slug,
     image,
     badge = "Solution",
   } = card;
 
-  const targetHref = solutionId
-    ? `/partners/gemini-enterprise#${solutionId}`
-    : "/partners/gemini-enterprise#solutions";
-
   return (
-    <Link href={targetHref} className={styles.cardLink}>
+    <Link href={`/solutions/${slug}`} className={styles.cardLink}>
       <article className={styles.card}>
         {/* Top Image Frame */}
         <div className={styles.imageWrapper}>

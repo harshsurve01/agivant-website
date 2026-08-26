@@ -1,7 +1,8 @@
 /**
  * src/types/partnerDetail.ts
  *
- * Types for dedicated Partner Detail Pages (/partners/[partner]).
+ * Types for dedicated Partner Detail Pages (/partners/[slug]).
+ * Single source of truth for the data driving the partner detail experiences.
  * CMS-ready: structured so WordPress / Headless CMS responses map
  * directly into these interfaces without modifying presentation components.
  */
@@ -180,10 +181,10 @@ export interface BuiltOnGeminiCardData {
   id: string;
   badge?: string;
   title: string;
+  slug: string;
   description: string;
   metric: string;
   ctaLabel?: string;
-  solutionId?: string;
   image: {
     src: string;
     alt: string;

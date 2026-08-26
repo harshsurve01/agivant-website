@@ -11,7 +11,7 @@ export interface PartnerHeroProps {
 /**
  * PartnerHero
  *
- * Dedicated reusable Hero section for Partner Detail Pages (/partners/[partner]).
+ * Dedicated reusable Hero section for Partner Detail Pages (/partners/[slug]).
  *
  * Reuses:
  * - `HeroBackground`: ambient glowing mesh, particle field, and decorative ellipse

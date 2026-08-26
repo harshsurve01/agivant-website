@@ -12,7 +12,7 @@ export interface PartnerIntroProps {
 /**
  * PartnerIntro
  *
- * Section 2 of the Partner Detail Page (/partners/[partner]).
+ * Section 2 of the Partner Detail Page (/partners/[slug]).
  *
  * Reusable, generic presentation component designed for headless CMS / backend data:
  * - Receives all editorial copy (heading, paragraphs, quote, author info, CTA) as props.

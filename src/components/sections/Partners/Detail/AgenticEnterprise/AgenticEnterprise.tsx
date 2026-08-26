@@ -14,7 +14,7 @@ export interface AgenticEnterpriseProps {
 /**
  * AgenticEnterprise
  *
- * Section 03 of the Partner Detail Page (/partners/[partner]).
+ * Section 03 of the Partner Detail Page (/partners/[slug]).
  * Reusable presentation component rendering editorial story blocks:
  * - 03A: Text + Image (AI Ambition -> Autonomous Workflows)
  * - 03B: Text + Metric Rows + Closing Statement (Coordinated Agent Teams)
