@@ -83,7 +83,7 @@ export default async function PartnerDetailPage({
           "color-mix(in srgb, #EDBF79 70%, transparent) 0%",
           "transparent 100%",
         ]}
-        opacity={0.6}
+        opacity={0.4}
         blur="60px"
       />
          <Gradient
