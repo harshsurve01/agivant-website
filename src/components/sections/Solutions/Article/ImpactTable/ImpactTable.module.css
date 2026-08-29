@@ -1,0 +1,267 @@
+/* ==========================================================================
+   ImpactTable.module.css (Solution Inner Page: /solutions/[slug])
+
+   Section ID: "impact-table"
+   Layout, translucent glass-like surface, purple header, subtle dividers,
+   Figma typography, and decorative background ribbon.
+
+   Figma specs:
+   - Overall table frame: ~1261px × ~439px
+   - 3 equal columns: Signal (~382.59px), Mechanism, Agivant impact
+   - Header row: height ~87px, brand purple (#8500DF), white centered text
+   - 4 body rows: height ~88px each, translucent blurred surface
+   - Rounded corners: 24px (--radius-xl)
+   - Background ribbon: table-ribbon.png behind table with low opacity
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-24);
+  overflow-x: clip;
+  overflow-y: visible;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------
+   Decorative Background Ribbon
+   Positioned behind the table with low opacity, unclipped vertically.
+   -------------------------------------------------------------------- */
+.ribbonWrapper {
+  position: absolute;
+  inset-inline: 0;
+  width: 100%;
+  top: 60%;
+  left: 0%;
+  z-index: 1;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.29;
+}
+
+.ribbonImage {
+  width: 100%;
+  min-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* --------------------------------------------------------------------
+   Container & Header (if provided in data)
+   -------------------------------------------------------------------- */
+.container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1261px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 58rem;
+  width: 100%;
+  margin-bottom: var(--space-8);
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+  text-align: center;
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.35;
+  color: var(--color-text-secondary);
+  margin: 0;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------
+   Table Wrapper (enables smooth touch scrolling on narrow viewports)
+   -------------------------------------------------------------------- */
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-xl);
+}
+
+/* --------------------------------------------------------------------
+   Table Element: 1261px × ~439px Figma frame
+   -------------------------------------------------------------------- */
+.table {
+  width: 100%;
+  min-width: 760px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(133, 0, 223, 0.04),
+    inset 0 0 4px rgba(4, 4, 4, 0.06);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------
+   Header Row: ~87px height, purple background, white centered text
+   -------------------------------------------------------------------- */
+.headerRow {
+  background-color: var(--color-brand-primary);
+  height: 87px;
+}
+
+.th {
+  width: 33.333%;
+  height: 87px;
+  padding: 0 var(--space-6);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 50px;
+  letter-spacing: 0%;
+  color: var(--color-white);
+  text-align: center;
+  vertical-align: middle;
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+  box-sizing: border-box;
+}
+
+.th:last-child {
+  border-right: none;
+}
+
+/* Top corner rounding on the header cells */
+.th:first-child {
+  border-top-left-radius: var(--radius-xl);
+}
+
+.th:last-child {
+  border-top-right-radius: var(--radius-xl);
+}
+
+/* --------------------------------------------------------------------
+   Body Rows: 4 rows, ~88px height each, subtle dividers
+   -------------------------------------------------------------------- */
+.tr {
+  height: 88px;
+  transition: background-color var(--transition-fast);
+}
+
+
+
+.td {
+  width: 33.333%;
+  height: 88px;
+  padding: var(--space-4) var(--space-6);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.38; /* 25px on 18px */
+  letter-spacing: 0%;
+  color: var(--color-text-primary);
+  text-align: center;
+  vertical-align: middle;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.td:last-child {
+  border-right: none;
+}
+
+/* Last row has no bottom border */
+.tr:last-child .td {
+  border-bottom: none;
+}
+
+/* Bottom corner rounding on last row cells */
+.tr:last-child .td:first-child {
+  border-bottom-left-radius: var(--radius-xl);
+}
+
+.tr:last-child .td:last-child {
+  border-bottom-right-radius: var(--radius-xl);
+}
+
+/* --------------------------------------------------------------------
+   Signal Column (Column 1): SemiBold 18px / 25px line height
+   -------------------------------------------------------------------- */
+.signalCell {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* --------------------------------------------------------------------
+   Responsive Adjustments
+   -------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .section {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+  }
+
+  .th {
+    font-size: var(--font-size-xl);
+    height: 76px;
+    padding: 0 var(--space-4);
+  }
+
+  .td {
+    font-size: var(--font-size-base);
+    height: auto;
+    padding: var(--space-4);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+
+  .tableWrapper {
+    border-radius: var(--radius-lg);
+  }
+
+  .table {
+    border-radius: var(--radius-lg);
+  }
+
+  .th:first-child {
+    border-top-left-radius: var(--radius-lg);
+  }
+
+  .th:last-child {
+    border-top-right-radius: var(--radius-lg);
+  }
+
+  .tr:last-child .td:first-child {
+    border-bottom-left-radius: var(--radius-lg);
+  }
+
+  .tr:last-child .td:last-child {
+    border-bottom-right-radius: var(--radius-lg);
+  }
+}

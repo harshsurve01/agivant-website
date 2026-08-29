@@ -46,14 +46,16 @@ export function CaseStudyCard({
   caseStudy,
   deepDiveLabel = "Deep Dive",
 }: CaseStudyCardProps) {
-  const { slug, title, image, industry, capability } = caseStudy;
+  const { slug, title, thumbnail, image, industry, capability } = caseStudy;
+  const imageSrc = thumbnail?.media.src ?? image?.src ?? "";
+  const imageAlt = thumbnail?.media.alt ?? image?.alt ?? title;
 
   return (
     <Link href={`/case-studies/${slug}`} className={styles.card}>
       <div className={styles.imageWrap}>
         <Image
-          src={image.src}
-          alt={image.alt}
+          src={imageSrc}
+          alt={imageAlt}
           fill
           className={styles.image}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 386px"

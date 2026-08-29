@@ -1,0 +1,225 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "dummy-case-study-test",
+  "title": "Dummy Case Study Test",
+  "seo": {
+    "title": "Dummy Case Study Test | Case Study | Agivant",
+    "description": "This is temporary test data used to verify the reusable Case Study inner-page architecture.",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Dummy Case Study Test",
+    "subtitle": null,
+    "summary": "This is temporary test data used to verify the reusable Case Study inner-page architecture.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-ribbon.png",
+      "assetKey": "hero-ribbon",
+      "alt": "Abstract ribbon graphic",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-01.jpg",
+      "assetKey": "dummy-case-study-test",
+      "alt": "Dummy Case Study Test visual",
+      "caption": null
+    }
+  },
+  "industry": "Healthcare",
+  "capability": "AIOps & Cloud",
+  "techPlatform": "AWS/Azure/GCP",
+  "sections": [
+    {
+      "id": "objectives",
+      "type": "checklist",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Objectives",
+        "description": "Challenges",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "challenges",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Challenges",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": [
+            "Dummy challenge one",
+            "Dummy challenge two"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solution",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Solution",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "dummy-solution-1",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Dummy solution card one: Demonstrating first card content dynamically rendered from JSON.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-01.png",
+            "assetKey": "case-solution-1",
+            "alt": "Dummy ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "dummy-solution-2",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Dummy solution card two: Demonstrating second card content dynamically rendered from JSON.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-02.png",
+            "assetKey": "case-solution-2",
+            "alt": "Dummy ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "technology",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Technology",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "technology-list",
+          "type": "richText",
+          "heading": null,
+          "body": "Dummy Technology Stack Alpha, Dummy Framework Beta, Dummy Platform Gamma, Test Cloud Infrastructure"
+        },
+        {
+          "id": "technology-note",
+          "type": "richText",
+          "heading": null,
+          "body": "Dummy secondary technology note for architecture testing"
+        }
+      ]
+    },
+    {
+      "id": "outcome",
+      "type": "stats",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Outcome",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "outcome-1",
+          "type": "metric",
+          "value": "TEST 100%",
+          "label": "dummy outcome",
+          "detail": null
+        },
+        {
+          "id": "outcome-2",
+          "type": "metric",
+          "value": "TEST 50%",
+          "label": "another dummy outcome",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "id": "architecture",
+      "type": "architecture_diagram",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "architecture-diagram",
+          "type": "media",
+          "media": {
+            "kind": "diagram",
+            "src": "/embeds/azure-analytics-architecture.html",
+            "assetKey": "case-architecture-diagram",
+            "alt": "Dummy architecture workflow diagram",
+            "caption": null
+          },
+          "title": "Dummy Architecture Diagram",
+          "description": null
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Ready For The Dummy Test?<br>Second Line Heading<br>With Agivant?",
+    "subheading": "This is a temporary dummy footer CTA description.",
+    "partner": null,
+    "primaryCta": {
+      "enabled": true,
+      "label": "Dummy Test Action",
+      "href": "/contact",
+      "external": false
+    },
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Dummy Specialist",
+      "href": "/contact",
+      "external": false
+    }
+  }
+}

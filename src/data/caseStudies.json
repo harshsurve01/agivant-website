@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudyLanding",
+  "slug": "case-studies",
+  "title": "Case Studies | Agivant",
+  "seo": {
+    "title": "Case Studies | Agivant",
+    "description": "See how Agivant engineers enterprise AI into production across several industries.",
+    "canonical": "/case-studies",
+    "ogImage": null
+  },
+  "hero": {
+    "title": "Client success,<br>in production",
+    "summary": "See how Agivant engineers enterprise AI into production across several industries."
+  },
+  "sections": [
+    {
+      "id": "case-studies-hub",
+      "type": "case_study_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Case Studies",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": []
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+    "subheading": null,
+    "partner": null,
+    "primaryCta": {
+      "enabled": true,
+      "label": "Find your Amp'd score",
+      "href": "/ampd-score",
+      "external": false
+    },
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": "/contact",
+      "external": false
+    }
+  }
+}

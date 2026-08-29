@@ -9,9 +9,19 @@
  * reference screenshot and nothing else, so no field here is invented
  * ahead of what the design shows.
  */
+export interface HeroMedia {
+  kind?: string;
+  src?: string | null;
+  assetKey?: string | null;
+  alt?: string | null;
+  caption?: string | null;
+}
+
 export interface CaseStudyArticleHeroProps {
-  /** Case study headline, e.g. "AI for Scalable Tech Support". */
+  /** Page or article headline, e.g. "AI for Scalable Tech Support" or with <br> breaks. */
   heading: string;
   /** Supporting paragraph beneath the heading. */
   description: string;
+  /** Optional hero ribbon / decorative media asset. */
+  media?: HeroMedia | null;
 }

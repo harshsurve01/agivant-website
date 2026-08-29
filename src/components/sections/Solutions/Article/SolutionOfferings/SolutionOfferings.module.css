@@ -1,0 +1,262 @@
+/* ==========================================================================
+   SolutionOfferings.module.css (Solution Inner Page: /solutions/[slug])
+
+   Layout, typography, alternating card grid, and responsive styling for
+   the "Solution Offerings" section.
+   Figma specs:
+   - Section heading (36px, SemiBold, 115% line height) with purple highlight
+     for "Build on an agent stack" and black for "that already runs in production"
+   - Intro description (18px, Regular, 135% line height)
+   - Centered purple eyebrow "SOLUTION OFFERINGS" (24px, SemiBold, 135% line height)
+   - 3-column × 2-row card grid (387px × 403px cards, image portion 387px × 213px)
+   - Alternating image/content orientation (Card 1: Image Top, Card 2: Content Top, etc.)
+   - Centered purple closing statement (18px, Regular)
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-24);
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------- */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 58rem;
+  width: 100%;
+  margin-bottom: var(--space-12);
+}
+
+.heading {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+  text-align: center;
+  width:65rem;
+}
+
+.highlight {
+  color: var(--color-brand-primary);
+}
+
+.description {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.35;
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--color-text-secondary);
+  max-width: 52rem;
+  margin: 0 0 var(--space-8);
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.35;
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--color-brand-primary);
+  text-transform: uppercase;
+  margin: 0;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------
+   3-Column Grid with Centered Incomplete Rows
+   -------------------------------------------------------------------- */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-8);
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------
+   Card: 387px × 403px Figma proportion, 24px radius, subtle border
+   -------------------------------------------------------------------- */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 calc((100% - 2 * var(--space-8)) / 3);
+  max-width: calc((100% - 2 * var(--space-8)) / 3);
+  min-height: 403px;
+  border-radius: var(--radius-xl);
+  background:#d9d9d920;
+  border: 1px solid rgb(255, 255, 255);
+   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--shadow-lg);
+  background: #d9d9d920;
+}
+
+/* Alternating orientation: Content on top, Image on bottom */
+.cardContentTop {
+  flex-direction: column-reverse;
+}
+
+/* Image Portion: 387px × 213px Figma proportion */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 213px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background:#d9d9d920;
+}
+
+.cardImage {
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.card:hover .cardImage {
+  transform: scale(1);
+}
+
+/* Content Portion: Vertically and horizontally centered */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-6);
+  box-sizing: border-box;
+}
+
+.cardTitle {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.38; /* 25px on 18px font */
+  color: var(--color-brand-primary);
+  margin: 0 0 var(--space-2);
+  text-align: center;
+}
+
+.cardBody {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.38; /* 25px on 18px font */
+  color: var(--color-neutral-700);
+  margin: 0;
+  text-align: center;
+  max-width: 20rem;
+}
+
+/* --------------------------------------------------------------------
+   Closing Statement
+   -------------------------------------------------------------------- */
+.closingStatement {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-brand-primary);
+  text-align: center;
+  margin-top: var(--space-12);
+  margin-bottom: 0;
+  max-width: 44rem;
+}
+
+/* --------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .grid {
+    gap: var(--space-6);
+  }
+
+  .card {
+    flex: 0 0 calc((100% - var(--space-6)) / 2);
+    max-width: calc((100% - var(--space-6)) / 2);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+  }
+
+  .header {
+    margin-bottom: var(--space-8);
+  }
+
+  .heading {
+    font-size: var(--font-size-3xl);
+  }
+
+  .description {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-6);
+  }
+
+  .eyebrow {
+    font-size: var(--font-size-xl);
+  }
+
+  .closingStatement {
+    font-size: var(--font-size-base);
+    margin-top: var(--space-8);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    max-width: 26rem;
+    margin-inline: auto;
+  }
+
+  .card {
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  .imageWrapper {
+    height: 190px;
+  }
+
+  .content {
+    padding: var(--space-5);
+  }
+
+  .cardTitle {
+    font-size: var(--font-size-base);
+  }
+
+  .cardBody {
+    font-size: var(--font-size-base);
+  }
+}

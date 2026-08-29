@@ -1,7 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import clsx from "clsx";
 import { Button } from "@/components/ui/Button";
-import type { FooterButton } from "@/data/footer";
+import type { FooterButton, FooterBrandMedia } from "@/data/footer";
 import type { FooterVariant } from "./Footer";
 import styles from "./FooterCTA.module.css";
 
@@ -18,6 +19,8 @@ export interface FooterCTAProps {
     | string;
   /** Optional supporting description text (rendered below heading). */
   description?: string;
+  /** Brand media asset (e.g. Amp'd wordmark/gif) inserted inline in the heading. */
+  brandMedia?: FooterBrandMedia;
   /** CTA buttons rendered below the heading. */
   buttons: FooterButton[];
   /** Visual variant (e.g. "default", "partners", or "partner-detail"). */
@@ -28,7 +31,7 @@ export interface FooterCTAProps {
  * FooterCTA
  *
  * Owns the footer's heading, supporting text, and CTA buttons zone.
- * - "default": Centered 3-line heading with 2 CTA buttons (Dark + Purple).
+ * - "default": Centered 3-line heading with inline Amp'd brand asset, 2 CTA buttons (Dark + Purple).
  * - "partners": Centered 2-line heading with 1 primary purple CTA button.
  * - "partner-detail": Centered 3-line heading (64px / 120%), 18px supporting text,
  *                     and single primary purple CTA button with cube icon.
@@ -38,6 +41,7 @@ export interface FooterCTAProps {
 export function FooterCTA({
   heading,
   description,
+  brandMedia,
   buttons,
   variant = "default",
 }: FooterCTAProps) {
@@ -61,7 +65,7 @@ export function FooterCTA({
           }
         >
           {typeof heading === "string" ? (
-            heading.split("\n").map((line, index) => (
+            heading.split(/<br\s*\/?>|\n/gi).map((line, index) => (
               <span
                 key={index}
                 className={
@@ -112,19 +116,70 @@ export function FooterCTA({
       ) : (
         <h2 className={styles.heading}>
           {typeof heading === "string" ? (
-            heading.split("\n").map((line, index) => (
-              <span key={index} className={styles.headingLine}>
-                {line}
-              </span>
-            ))
+            heading.split(/<br\s*\/?>|\n/gi).map((line, index) => {
+              const trimmed = line.trim();
+              const isSecondLine =
+                index === 1 || trimmed.toLowerCase() === "enterprise";
+
+              if (brandMedia && isSecondLine) {
+                return (
+                  <span
+                    key={index}
+                    className={clsx(styles.headingLine, styles.brandLine)}
+                  >
+                    <span>{trimmed}</span>
+                    <span className={styles.brandMediaWrapper}>
+                      <Image
+                        src={brandMedia.src}
+                        alt={brandMedia.alt}
+                        width={brandMedia.width ?? 240}
+                        height={brandMedia.height ?? 80}
+                        className={styles.brandMedia}
+                        unoptimized={brandMedia.src.endsWith(".svg")}
+                        priority
+                      />
+                    </span>
+                  </span>
+                );
+              }
+
+              return (
+                <span key={index} className={styles.headingLine}>
+                  {line}
+                </span>
+              );
+            })
           ) : (
             <>
               <span className={styles.headingLine}>{heading.line1}</span>
-              <span className={styles.headingLine}>
-                {"line2" in heading
-                  ? heading.line2
-                  : `${heading.line2Prefix ?? ""} ${heading.line2Brand ?? ""}`.trim()}
-              </span>
+              {brandMedia ? (
+                <span
+                  className={clsx(styles.headingLine, styles.brandLine)}
+                >
+                  <span>
+                    {"line2" in heading
+                      ? heading.line2
+                      : `${heading.line2Prefix ?? ""} ${heading.line2Brand ?? ""}`.trim()}
+                  </span>
+                  <span className={styles.brandMediaWrapper}>
+                    <Image
+                      src={brandMedia.src}
+                      alt={brandMedia.alt}
+                      width={brandMedia.width ?? 240}
+                      height={brandMedia.height ?? 80}
+                      className={styles.brandMedia}
+                      unoptimized={brandMedia.src.endsWith(".svg")}
+                      priority
+                    />
+                  </span>
+                </span>
+              ) : (
+                <span className={styles.headingLine}>
+                  {"line2" in heading
+                    ? heading.line2
+                    : `${heading.line2Prefix ?? ""} ${heading.line2Brand ?? ""}`.trim()}
+                </span>
+              )}
               {heading.line3 ? (
                 <span className={styles.headingLine}>{heading.line3}</span>
               ) : null}

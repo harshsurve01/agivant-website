@@ -2,29 +2,32 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { SpotlightContainer, type SpotlightSlot } from "./SpotlightContainer";
+import {
+  SpotlightContainer,
+  type SpotlightSlot,
+  type ProofLayoutVariant,
+} from "./SpotlightContainer";
 import type { CaseStudy } from "@/data/proof";
 import styles from "./SpotlightExperience.module.css";
 
 interface SpotlightExperienceProps {
   caseStudies: CaseStudy[];
+  layout?: ProofLayoutVariant;
 }
 
 /** The container's grid split, expressed as fr-unit numbers rather
  *  than percentages. `grid-template-columns`/`grid-template-rows`
  *  normalize each pair of tracks against their own combined total —
  *  what a pair of fr values produces on screen is entirely about the
- *  RATIO between the two numbers, not their absolute size — so these
- *  don't need to sum to anything in particular; see HOVER_FR/OTHER_FR
- *  below for the ratio this interaction actually uses. */
+ *  RATIO between the two numbers, not their absolute size. */
 interface GridState {
-  colLarge: number;
-  colRight: number;
-  rowTop: number;
-  rowBottom: number;
+  col1: number;
+  col2: number;
+  row1: number;
+  row2: number;
 }
 
-const REST: GridState = { colLarge: 1, colRight: 1, rowTop: 1, rowBottom: 1 };
+const REST: GridState = { col1: 1, col2: 1, row1: 1, row2: 1 };
 
 /** HOVER_FR / OTHER_FR — the two fr values a pair of tracks animates
  *  between. At 1.175 / 0.85, a pair's hovered track ends up ~15.7%
@@ -101,7 +104,10 @@ const ANIMATION_EASE = "cubic-bezier(.22,.61,.36,1)";
  * inline `grid-template-*` left behind, so mobile always falls back
  * to the CSS-authored single-column layout untouched.
  */
-export function SpotlightExperience({ caseStudies }: SpotlightExperienceProps) {
+export function SpotlightExperience({
+  caseStudies,
+  layout = "large-right",
+}: SpotlightExperienceProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // The single, persistent tween target — see "WHY THE STATE OBJECT
@@ -121,7 +127,7 @@ export function SpotlightExperience({ caseStudies }: SpotlightExperienceProps) {
     // fight the mobile layout.
     if (!window.matchMedia("(min-width: 1025px)").matches) return;
 
-    const target = getGridTarget(hoveredSlot);
+    const target = getGridTarget(hoveredSlot, layout);
 
     const tween = gsap.to(gridStateRef.current, {
       ...target,
@@ -129,15 +135,15 @@ export function SpotlightExperience({ caseStudies }: SpotlightExperienceProps) {
       ease: ANIMATION_EASE,
       onUpdate: () => {
         const state = gridStateRef.current;
-        containerEl.style.gridTemplateColumns = `${state.colLarge}fr ${state.colRight}fr`;
-        containerEl.style.gridTemplateRows = `${state.rowTop}fr ${state.rowBottom}fr`;
+        containerEl.style.gridTemplateColumns = `${state.col1}fr ${state.col2}fr`;
+        containerEl.style.gridTemplateRows = `${state.row1}fr ${state.row2}fr`;
       },
     });
 
     return () => {
       tween.kill();
     };
-  }, [hoveredSlot]);
+  }, [hoveredSlot, layout]);
 
   // If the viewport crosses below the breakpoint mid-hover (window
   // resize, devtools, orientation change), clear any inline
@@ -169,6 +175,7 @@ export function SpotlightExperience({ caseStudies }: SpotlightExperienceProps) {
         caseStudies={caseStudies}
         containerRef={containerRef}
         onSlotEnter={setHoveredSlot}
+        layout={layout}
       />
     </div>
   );
@@ -178,45 +185,56 @@ export function SpotlightExperience({ caseStudies }: SpotlightExperienceProps) {
  * getGridTarget
  *
  * The single source of truth for the container's target grid split
- * for a given hovered slot. Two independent pairs, each mirroring one
- * of the spec's Layout Rules:
- *
- *   COLUMN pair (colLarge vs. colRight) — moves off 1:1 whenever ANY
- *   slot is hovered: hovering `large` makes colLarge the HOVER_FR
- *   track; hovering `topRight` OR `bottomRight` makes colRight the
- *   HOVER_FR track instead, since both right-column cards live in
- *   that one shared track — hovering either one grows the whole
- *   column together, which is exactly "right column expands, left
- *   column shrinks" from the spec, expressed as one grid track
- *   instead of two independently-sized elements.
- *
- *   ROW pair (rowTop vs. rowBottom) — only moves off 1:1 when
- *   `topRight` or `bottomRight` is hovered. Hovering `large` leaves
- *   this pair at REST ("the two right cards remain stacked and equal
- *   height" per the spec), since `large` spans both rows regardless
- *   of the row split — there's no separate "large row" to grow.
+ * for a given hovered slot and layout arrangement.
  */
-function getGridTarget(hoveredSlot: SpotlightSlot | null): GridState {
-  if (hoveredSlot === "large") {
-    return { colLarge: HOVER_FR, colRight: OTHER_FR, rowTop: 1, rowBottom: 1 };
-  }
+function getGridTarget(
+  hoveredSlot: SpotlightSlot | null,
+  layout: ProofLayoutVariant = "large-right"
+): GridState {
+  if (!hoveredSlot) return { ...REST };
 
-  if (hoveredSlot === "topRight") {
-    return {
-      colLarge: OTHER_FR,
-      colRight: HOVER_FR,
-      rowTop: HOVER_FR,
-      rowBottom: OTHER_FR,
-    };
-  }
-
-  if (hoveredSlot === "bottomRight") {
-    return {
-      colLarge: OTHER_FR,
-      colRight: HOVER_FR,
-      rowTop: OTHER_FR,
-      rowBottom: HOVER_FR,
-    };
+  if (layout === "large-right") {
+    // Column 1 is stacked (topLeft, bottomLeft), Column 2 is large (tall)
+    if (hoveredSlot === "large") {
+      return { col1: OTHER_FR, col2: HOVER_FR, row1: 1, row2: 1 };
+    }
+    if (hoveredSlot === "topLeft") {
+      return {
+        col1: HOVER_FR,
+        col2: OTHER_FR,
+        row1: HOVER_FR,
+        row2: OTHER_FR,
+      };
+    }
+    if (hoveredSlot === "bottomLeft") {
+      return {
+        col1: HOVER_FR,
+        col2: OTHER_FR,
+        row1: OTHER_FR,
+        row2: HOVER_FR,
+      };
+    }
+  } else {
+    // layout === "large-left": Column 1 is large, Column 2 is stacked (topRight, bottomRight)
+    if (hoveredSlot === "large") {
+      return { col1: HOVER_FR, col2: OTHER_FR, row1: 1, row2: 1 };
+    }
+    if (hoveredSlot === "topRight") {
+      return {
+        col1: OTHER_FR,
+        col2: HOVER_FR,
+        row1: HOVER_FR,
+        row2: OTHER_FR,
+      };
+    }
+    if (hoveredSlot === "bottomRight") {
+      return {
+        col1: OTHER_FR,
+        col2: HOVER_FR,
+        row1: OTHER_FR,
+        row2: HOVER_FR,
+      };
+    }
   }
 
   return { ...REST };

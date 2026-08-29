@@ -10,6 +10,7 @@
   position: relative;
   width: 100%;
   min-height: 80vh;
+  overflow: hidden;
 }
 
 .container {
@@ -30,11 +31,34 @@
 .heading {
   font-family: var(--font-family-heading);
   font-size: var(--font-size-7xl);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-normal);
   color: var(--color-brand-primary);
   max-width: 62rem;
+}
+
+.headingLine {
+  display: block;
+}
+
+.ribbonWrapper {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  top: auto;
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.ribbonImage {
+  width: 100%;
+  max-width: 1440px;
+  height: auto;
+  object-fit: contain;
 }
 
 .description {

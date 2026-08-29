@@ -1,9 +1,24 @@
 import { Container } from "@/components/ui/Container";
 import { ProofContent } from "./ProofContent";
 import { SpotlightExperience } from "./SpotlightExperience";
-import { getProofHeader, getCaseStudies } from "@/data/proof";
+import type { CaseStudy } from "@/data/proof";
 import { Gradient } from "@/components/effects/Gradient";
 import styles from "./ProofSection.module.css";
+
+export interface ProofSectionHeader {
+  heading: string;
+  description: string;
+  cta: {
+    label: string;
+    href: string;
+  };
+}
+
+export interface ProofSectionProps {
+  header: ProofSectionHeader;
+  caseStudies: CaseStudy[];
+  layout?: "large-left" | "large-right";
+}
 
 /**
  * ProofSection
@@ -12,19 +27,19 @@ import styles from "./ProofSection.module.css";
  * grid: the section's right side is one Spotlight Container that will
  * later coordinate all three cards together on hover (hovered card
  * expands to fill the container, the other two leave the viewport),
- * rather than three independently-hoverable cards. That coordination
- * lives one level down in SpotlightExperience; this component only
- * owns the two-region section layout (static content on the left,
- * the spotlight experience on the right), spacing, and data loading —
- * same division of responsibility as Partners.tsx.
+ * rather than three independently-hoverable cards.
  *
- * Server Component: no "use client", no hooks, no state.
+ * Presentation Component: pure server component, accepts header and caseStudies
+ * from page/data layer. No arbitrary file loading or hardcoded content.
  */
-export async function ProofSection() {
-  const [header, caseStudies] = await Promise.all([
-    getProofHeader(),
-    getCaseStudies(),
-  ]);
+export function ProofSection({
+  header,
+  caseStudies,
+  layout = "large-right",
+}: ProofSectionProps) {
+  if (!header || !caseStudies || caseStudies.length === 0) {
+    return null;
+  }
 
   return (
     <section className={styles.proof}>
@@ -55,7 +70,7 @@ export async function ProofSection() {
             cta={header.cta}
           />
 
-          <SpotlightExperience caseStudies={caseStudies} />
+          <SpotlightExperience caseStudies={caseStudies} layout={layout} />
         </div>
       </Container>
     </section>

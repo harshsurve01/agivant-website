@@ -207,7 +207,10 @@
 }
 /* Override ONLY the large card */
 .cardLink[data-slot="large"] .body {
-  top: 45%;
+  top: 36%;
+}
+.cardLink[data-slot="large"]:hover .body {
+  top: 34%;
 }
 .bodyContent {
   /* The actual flex column of title/description/metric/footer,
@@ -232,11 +235,10 @@
   font-size: var(--font-size-md);
   line-height: var(--line-height-normal);
   color: var(--color-text-secondary);
-  ; /* collapsed rows read visually letter-spaced in the Figma */
 }
 
 /* SMALL-CARD DESCRIPTION PREVIEW/REVEAL
-   Only the two small cards (topRight/bottomRight) get a clamped
+   The smaller stacked cards (topRight/bottomRight or topLeft/bottomLeft) get a clamped
    preview that unfolds on hover — the large card's description
    already fits and is meant to show in full (see the `slot` prop's
    doc comment in SpotlightCard.tsx). Scoped via the `data-slot`
@@ -247,15 +249,17 @@
 
    `-webkit-line-clamp` (not a fixed `max-height`) clamps to whole
    lines and adds the ellipsis automatically, so the cut always lands
-   after a full word/line rather than mid-character. 4 lines is the
-   panel's resting content budget for these smaller card's shorter
+   after a full word/line rather than mid-character. 3 lines is the
+   panel's resting content budget for these smaller cards' shorter
    `.body` — long enough to read as a real preview, short enough that
    most of the fuller descriptions still truncate and invite the
    hover. */
 .cardLink[data-slot="topRight"] .description,
-.cardLink[data-slot="bottomRight"] .description {
+.cardLink[data-slot="bottomRight"] .description,
+.cardLink[data-slot="topLeft"] .description,
+.cardLink[data-slot="bottomLeft"] .description {
   display: -webkit-box;
-  -webkit-line-clamp:3;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -269,18 +273,23 @@
 .cardLink[data-slot="topRight"]:hover .description,
 .cardLink[data-slot="topRight"]:focus-visible .description,
 .cardLink[data-slot="bottomRight"]:hover .description,
-.cardLink[data-slot="bottomRight"]:focus-visible .description {
+.cardLink[data-slot="bottomRight"]:focus-visible .description,
+.cardLink[data-slot="topLeft"]:hover .description,
+.cardLink[data-slot="topLeft"]:focus-visible .description,
+.cardLink[data-slot="bottomLeft"]:hover .description,
+.cardLink[data-slot="bottomLeft"]:focus-visible .description {
   -webkit-line-clamp: unset;
 }
 
 .cardLink[data-slot="topRight"]:hover .body,
 .cardLink[data-slot="topRight"]:focus-visible .body,
 .cardLink[data-slot="bottomRight"]:hover .body,
-.cardLink[data-slot="bottomRight"]:focus-visible .body {
+.cardLink[data-slot="bottomRight"]:focus-visible .body,
+.cardLink[data-slot="topLeft"]:hover .body,
+.cardLink[data-slot="topLeft"]:focus-visible .body,
+.cardLink[data-slot="bottomLeft"]:hover .body,
+.cardLink[data-slot="bottomLeft"]:focus-visible .body {
   top: 37%;
-}
-.cardLink[data-slot="large"]:hover .body{
-  top: 55%;
 }
 
 /* No per-element rules for `.metric`/`.footer` any more — at rest

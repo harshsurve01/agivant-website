@@ -1,2 +1,3 @@
 export { Article } from "./Article";
-export type { CaseStudyArticlePageData } from "./types";
+export type { ArticleProps, CaseStudyArticlePageData } from "./types";
+

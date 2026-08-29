@@ -10,8 +10,11 @@ import { Partners } from "@/components/sections/Homepage/Partners";
 import { ProofSection } from "@/components/sections/Homepage/Proof";
 import { Footer } from "@/components/layout/Footer";
 import { GradientLayerProvider } from "@/components/effects/GradientLayer";
+import { getProofData } from "@/data/proof";
 
-export default function Home() {
+export default async function Home() {
+  const proofData = await getProofData();
+
   return (
     <GradientLayerProvider>
       {/* <AnnouncementBar /> */}
@@ -22,8 +25,11 @@ export default function Home() {
       <Lifecycle />
       <AIStack />
       <Environment />
-      <Partners/>
-      <ProofSection/>
+      <Partners />
+      <ProofSection
+        header={proofData.header}
+        caseStudies={proofData.caseStudies}
+      />
       <Footer />
     </GradientLayerProvider>
   );

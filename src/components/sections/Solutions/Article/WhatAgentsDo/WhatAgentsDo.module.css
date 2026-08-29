@@ -1,0 +1,294 @@
+/* ==========================================================================
+   WhatAgentsDo.module.css (Solution Inner Page: /solutions/[slug])
+
+   Layout, typography, card grid, and responsive styling for the
+   "What Agents Do" section.
+   Figma specs & Visual Reference:
+   - Centered heading with purple highlight for "let them work the tools"
+   - Centered intro paragraph
+   - Centered purple uppercase eyebrow: "WHAT THE AGENTS DO"
+   - 2-column responsive grid of wide horizontal cards (~554.45 × ~98.99 px in Figma)
+   - Left-notched chevron indentation cut directly into the card silhouette
+   - Purple filled right-pointing triangle with black stroke seated in notch
+   - Large, vertically centered text with generous left padding
+   - Centered purple closing statement below the grid
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding-top: 25rem;
+  padding-bottom: var(--space-24);
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 58rem;
+  width: 100%;
+}
+
+.heading {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+  max-width: 52rem;
+}
+
+.highlight {
+  color: var(--color-brand-primary);
+}
+
+.description {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-10);
+  max-width: 48rem;
+}
+
+.eyebrow {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+ 
+  text-transform: uppercase;
+  color: var(--color-brand-primary);
+  margin: 0 0 var(--space-8);
+}
+
+/* --------------------------------------------------------------------
+   2-Column Responsive Card Grid
+   -------------------------------------------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 72rem;
+}
+
+/* --------------------------------------------------------------------
+   Horizontal Card Container (~554.45 × ~98.99 px in Figma)
+   -------------------------------------------------------------------- */
+.card {
+  position: relative;
+  min-height: 6.1875rem; /* ~99px matching Figma 98.99px */
+  display: flex;
+  align-items: center;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------
+   Unmasked Inset Shadow Layer (pseudo-element):
+   Separated from the masked .cardSurface so the subtle inset shadow
+   renders visibly around the card's interior edges without being
+   attenuated or clipped by CSS mask compositing.
+   -------------------------------------------------------------------- */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  box-shadow:
+    inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------
+   Card Surface Layer: off-white background with smooth left notch
+   cutout created via CSS mask composition
+   -------------------------------------------------------------------- */
+.cardSurface {
+  position: absolute;
+  inset: 0;
+  background-color: #d9d9d920;
+  border-radius: 12px;
+  border: 1px solid rgb(252, 252, 252);
+ box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  pointer-events: none;
+
+  /* Cut out the smooth left notch from the card silhouette */
+  -webkit-mask-image: 
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="70" viewBox="0 0 28 70"><path d="M-1 0 Q-1 9 5 15 L24 33 Q27 35 24 37 L5 55 Q-1 61 -1 70 L-1 0 Z" fill="black"/></svg>'),
+    linear-gradient(#f9f5f50c, #ffffff0e);
+  -webkit-mask-position: left center, center;
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-size: 28px 70px, 100% 100%;
+  -webkit-mask-composite: destination-out;
+
+  mask-image: 
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="70" viewBox="0 0 28 70"><path d="M-1 0 Q-1 9 5 15 L24 33 Q27 35 24 37 L5 55 Q-1 61 -1 70 L-1 0 Z" fill="black"/></svg>'),
+    linear-gradient(#ffffff10, #ffffff0c);
+  mask-position: left center, center;
+  mask-repeat: no-repeat, no-repeat;
+  mask-size: 28px 70px, 100% 100%;
+  mask-composite: exclude;
+
+   transition:
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.card:hover .cardSurface {
+  box-shadow:
+    inset 0 0 4px rgba(4, 4, 4, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0);
+}
+
+/* --------------------------------------------------------------------
+   Separate Notch-Edge Layer: provides the subtle inset shadow along
+   the cut-out edge that would otherwise be clipped by the surface mask.
+   -------------------------------------------------------------------- */
+.notchEdge {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 70px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.notchEdgeSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.notchShadowBlur {
+  fill: none;
+  stroke: rgba(4, 4, 4, 0.05);
+  stroke-width: 3px;
+  filter: blur(1.5px);
+  transition: stroke var(--transition-base);
+}
+
+
+
+/* --------------------------------------------------------------------
+   Left-Anchored Purple Right-Pointing Triangle (inside notch)
+   -------------------------------------------------------------------- */
+.triangleWrapper {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 34px;
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.triangleSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* --------------------------------------------------------------------
+   Card Statement Text (large, vertically centered, generous left space)
+   -------------------------------------------------------------------- */
+.cardText {
+  position: relative;
+  z-index: 4;
+  padding-left: clamp(4.5rem, 8vw, 4.875rem); /* ~72-78px, leaves clear room for the notch */
+  padding-right: 1.75rem; /* ~28px */
+  padding-block: var(--space-4);
+  margin: 0;
+  font-size: var(--font-size-lg); /* 18px */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.42;
+  letter-spacing: -0.015em;
+  color: var(--color-text-primary);
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------
+   Closing Purple Statement
+   -------------------------------------------------------------------- */
+.closingStatement {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  color: var(--color-brand-primary);
+  text-align: center;
+  max-width: 55rem;
+  margin: var(--space-12) 0 0;
+}
+
+/* --------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .grid {
+    gap: 1.25rem;
+  }
+
+  .cardText {
+    padding-left: 4.25rem;
+    padding-right: 1.25rem;
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-24);
+    padding-bottom: var(--space-12);
+  }
+
+  .heading {
+    font-size: var(--font-size-3xl);
+  }
+
+  .description {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-8);
+  }
+
+  .eyebrow {
+    margin-bottom: var(--space-6);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .card {
+    min-height: auto;
+  }
+
+  .cardText {
+    padding-left: 4rem;
+    padding-right: 1rem;
+    font-size: var(--font-size-sm);
+  }
+
+  .closingStatement {
+    font-size: var(--font-size-base);
+    margin-top: var(--space-8);
+  }
+}

@@ -62,7 +62,7 @@
 .heading {
   font-family: var(--font-family-heading);
   font-size: var(--font-size-7xl);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-semibold);
   /* Figma specifies 1.27 explicitly. Confirmed against variables.css:
      --line-height-tight is 1.1, not 1.27, so reusing that token would
      visibly tighten the wrap versus Figma — kept as an explicit value

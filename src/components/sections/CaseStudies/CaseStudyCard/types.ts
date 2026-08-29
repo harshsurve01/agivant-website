@@ -1,3 +1,11 @@
+export interface CaseStudyMedia {
+  kind?: string;
+  src: string | null;
+  assetKey?: string | null;
+  alt?: string | null;
+  caption?: string | null;
+}
+
 export interface CaseStudyCardImage {
   src: string;
   alt: string;
@@ -12,7 +20,10 @@ export interface CaseStudyCardImage {
 export interface CaseStudyCardData {
   slug: string;
   title: string;
-  image: CaseStudyCardImage;
+  thumbnail?: {
+    media: CaseStudyMedia;
+  };
+  image?: CaseStudyCardImage;
   industry: string;
   capability: string;
 }

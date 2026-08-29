@@ -1,0 +1,96 @@
+{
+  "id": "proof-beyond-the-pilot",
+  "type": "case_study_grid",
+  "enabled": true,
+  "conditions": null,
+  "data": {
+    "eyebrow": null,
+    "heading": "Client success<br>in production, at scale",
+    "description": "See how Agivant engineers real business value for the autonomous enterprise, across several industries",
+    "columns": [],
+    "media": null,
+    "cta": {
+      "enabled": true,
+      "label": "See more client stories",
+      "href": "/case-studies",
+      "external": false
+    }
+  },
+  "blocks": [
+    {
+      "id": "agentic-quote-accelerator",
+      "type": "card",
+      "eyebrow": "Enterprise Sales",
+      "title": "Agentic Quote Accelerator",
+      "body": "A Fortune 500 sales team was losing weeks to manual quoting. SME-dependent, impossible to scale. Agivant wired agentic systems into the existing sales platform. The revenue team runs the business now. The agents run the process.",
+      "media": {
+        "kind": "image",
+        "src": "/images/proof/agentic-quote-accelerator.png",
+        "assetKey": "case-quote-accelerator",
+        "alt": "Abstract flowing wave artwork for the Agentic Quote Accelerator case study",
+        "caption": null
+      },
+      "cta": {
+        "enabled": true,
+        "label": "Read case study",
+        "href": "/case-studies/agentic-quote-accelerator",
+        "external": false
+      },
+      "items": [
+        "Days to Minutes",
+        "Quoting cycle compression",
+        "Amp'd the sales engineering workflow."
+      ]
+    },
+    {
+      "id": "ai-native-sre-transformation",
+      "type": "card",
+      "eyebrow": "Cloud & Infrastructure",
+      "title": "AI-Native SRE Transformation",
+      "body": "GCE to GKE migration with AI-driven SRE taking ownership of steady-state operations. Reliability built into the architecture, not added after. The engineering team moved from firefighting to strategy.",
+      "media": {
+        "kind": "image",
+        "src": "/images/proof/ai-native-transformation.png",
+        "assetKey": "case-ai-native-sre",
+        "alt": "Abstract flowing wave artwork for the AI-Native SRE Transformation case study",
+        "caption": null
+      },
+      "cta": {
+        "enabled": true,
+        "label": "Read case study",
+        "href": "/case-studies/ai-native-sre-transformation",
+        "external": false
+      },
+      "items": [
+        "99.9%",
+        "Reliability. Maintained by agents.",
+        "Amp'd infrastructure reliability from day one."
+      ]
+    },
+    {
+      "id": "global-markets-agent-network",
+      "type": "card",
+      "eyebrow": "Financial Markets",
+      "title": "Global Markets Agent Network",
+      "body": "Manual transaction operations could not scale without adding headcount. Agivant architected a multi-agent system across global financial market platforms. Five million transactions a month. No human in the routine loop.",
+      "media": {
+        "kind": "image",
+        "src": "/images/proof/global-market-agentic-network.png",
+        "assetKey": "case-global-markets",
+        "alt": "Abstract flowing wave artwork for the Global Markets Agent Network case study",
+        "caption": null
+      },
+      "cta": {
+        "enabled": true,
+        "label": "Read case study",
+        "href": "/case-studies/global-markets-agent-network",
+        "external": false
+      },
+      "items": [
+        "5M+",
+        "Transactions per month",
+        "Amp'd market operations at enterprise scale"
+      ]
+    }
+  ]
+}

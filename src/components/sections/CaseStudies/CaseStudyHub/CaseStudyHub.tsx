@@ -109,6 +109,24 @@ export function CaseStudyHub({
     });
   }, [caseStudies, selected, searchQuery]);
 
+  const isFilteredOrSearched = useMemo(() => {
+    const hasActiveFilter = (
+      Object.keys(selected) as FilterGroupId[]
+    ).some((groupId) => selected[groupId].size > 0);
+    const hasActiveSearch = Boolean(
+      searchQuery && searchQuery.trim().length > 0
+    );
+
+    return hasActiveFilter || hasActiveSearch;
+  }, [selected, searchQuery]);
+
+  const visibleCaseStudies = useMemo(() => {
+    if (isFilteredOrSearched) {
+      return filteredCaseStudies;
+    }
+    return filteredCaseStudies.slice(0, 6);
+  }, [filteredCaseStudies, isFilteredOrSearched]);
+
   const groupsWithState: FilterGroupState[] = useMemo(() => {
     return filterGroups.map((group) => {
       const field = FIELD_BY_GROUP[group.id];
@@ -169,7 +187,7 @@ export function CaseStudyHub({
 
         <div className={styles.layout}>
           <div className={styles.grid}>
-            {filteredCaseStudies.map((caseStudy) => (
+            {visibleCaseStudies.map((caseStudy) => (
               <CaseStudyCard key={caseStudy.slug} caseStudy={caseStudy} />
             ))}
           </div>

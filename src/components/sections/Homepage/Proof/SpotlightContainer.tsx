@@ -10,7 +10,14 @@ import styles from "./SpotlightContainer.module.css";
  * about POSITION (which corner of the bento grid), not which case
  * study happens to be sitting there today.
  */
-export type SpotlightSlot = "large" | "topRight" | "bottomRight";
+export type SpotlightSlot =
+  | "large"
+  | "topRight"
+  | "bottomRight"
+  | "topLeft"
+  | "bottomLeft";
+
+export type ProofLayoutVariant = "large-left" | "large-right";
 
 interface SpotlightContainerProps {
   caseStudies: CaseStudy[];
@@ -32,6 +39,8 @@ interface SpotlightContainerProps {
    *  pointer entered; SpotlightExperience decides what grid split
    *  that means. */
   onSlotEnter: (slot: SpotlightSlot) => void;
+  /** Generic visual arrangement: large card on left (default) or right */
+  layout?: ProofLayoutVariant;
 }
 
 /**
@@ -47,13 +56,6 @@ interface SpotlightContainerProps {
  * the raw pointer signal (via `onSlotEnter`) it needs, without
  * holding any animation logic of its own.
  *
- * No per-slot refs any more — unlike the previous width/transform-
- * based interaction, the current version never reads or writes an
- * individual card's box directly. Every card fills its slot at
- * `width: 100%; height: 100%` (SpotlightCard.module.css's `.card`)
- * purely because the slot's grid track resized underneath it, so
- * there's nothing per-card left for this component to expose.
- *
  * Presentation + wiring only: no hover state, no GSAP, no
  * measurement.
  */
@@ -61,7 +63,50 @@ export function SpotlightContainer({
   caseStudies,
   containerRef,
   onSlotEnter,
+  layout = "large-right",
 }: SpotlightContainerProps) {
+  if (layout === "large-right") {
+    // New Figma reference:
+    // Column 1 (Left): Two stacked cards:
+    //   - Top Left: Card 1 (caseStudies[0])
+    //   - Bottom Left: Card 3 (caseStudies[2])
+    // Column 2 (Right): Tall card:
+    //   - Tall Right: Card 2 (caseStudies[1], spanning both rows)
+    const [card1, card2, card3] = caseStudies;
+
+    return (
+      <div className={styles.container} ref={containerRef}>
+        {card1 ? (
+          <div
+            className={styles.topLeftSlot}
+            onMouseEnter={() => onSlotEnter("topLeft")}
+          >
+            <SpotlightCard caseStudy={card1} slot="topLeft" />
+          </div>
+        ) : null}
+
+        {card3 ? (
+          <div
+            className={styles.bottomLeftSlot}
+            onMouseEnter={() => onSlotEnter("bottomLeft")}
+          >
+            <SpotlightCard caseStudy={card3} slot="bottomLeft" />
+          </div>
+        ) : null}
+
+        {card2 ? (
+          <div
+            className={styles.largeRightSlot}
+            onMouseEnter={() => onSlotEnter("large")}
+          >
+            <SpotlightCard caseStudy={card2} slot="large" />
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+
+  // layout === "large-left" (default Homepage layout)
   const [large, topRight, bottomRight] = caseStudies;
 
   return (

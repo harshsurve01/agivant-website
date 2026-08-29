@@ -26,10 +26,21 @@ export interface FooterNavigationLink {
   href: string;
 }
 
+/** Visual brand asset inserted inline into the heading (e.g. Amp'd wordmark/gif). */
+export interface FooterBrandMedia {
+  kind: "image" | "gif" | "video";
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+}
+
 /** All content the Footer layout component needs to render. */
 export interface FooterContent {
-  /** Heading text, e.g. "Ready To Get Your\nEnterprise\nWith Agivant?" */
+  /** Heading text, e.g. "Ready To Get Your<br>Enterprise<br>With Agivant?" */
   heading: string;
+  /** Brand media asset (e.g. Amp'd wordmark/gif) inserted inline in the heading. */
+  brandMedia?: FooterBrandMedia;
   /** CTA buttons rendered below the heading. */
   buttons: FooterButton[];
   /** Footer navigation links. */
@@ -45,7 +56,14 @@ export interface FooterContent {
  */
 export async function getFooterContent(): Promise<FooterContent> {
   return {
-    heading: "Ready To Get Your\nEnterprise\nWith Agivant?",
+    heading: "Ready To Get Your<br>Enterprise<br>With Agivant?",
+    brandMedia: {
+      kind: "image",
+      src: "/images/ampd-wordmark.svg",
+      alt: "Amp'd",
+      width: 240,
+      height: 80.46,
+    },
     buttons: [
       {
         label: "Find your Amp'd score",

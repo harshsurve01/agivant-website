@@ -1,0 +1,311 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "ai-for-scalable-tech-support",
+  "title": "AI for Scalable Tech Support",
+  "seo": {
+    "title": null,
+    "description": null,
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "AI for Scalable Tech Support",
+    "subtitle": null,
+    "summary": "A platform architecture consulting project for a global software firm for demand forecasting using a configurable and highly scalable forecasting system for a significant cost optimization and NPI improvement program across channels and geographies.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-ribbon.png",
+      "assetKey": "hero-ribbon",
+      "alt": "Abstract ribbon graphic",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-01.jpg",
+      "assetKey": "case-study-01",
+      "alt": "AI for Scalable Tech Support",
+      "caption": null
+    }
+  },
+  "industry": "BFSI",
+  "capability": "Agentic AI Systems",
+  "techPlatform": "Python",
+  "sections": [
+    {
+      "id": "objectives",
+      "type": "checklist",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Objectives",
+        "description": "Challenges",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "challenges",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Challenges",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": [
+            "Data quality and availability; highly manual and broken data sources.",
+            "50+ channels for support incidents.",
+            "Different forecasting algorithm across channels and geographies.",
+            "Delay in forecasting availability to different support and corporate functions.",
+            "Business value add and data science functions not in sync."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solution",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Solution",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "ml-models",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Implemented machine learning models and ensemble techniques to address seasonality, low volume behaviour, and small dataset issues for high quality forecast.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-01.png",
+            "assetKey": "case-solution-1",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "data-hub",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Unified data hub architected for curated data across global support tools using Azure Data Factory, Data Lake, and Azure SQL.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-02.png",
+            "assetKey": "case-solution-2",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "forecast-cadence",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Daily, weekly, and monthly forecast per business need using statistical models and snapshots.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-03.png",
+            "assetKey": "case-solution-3",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "single-source",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Single source of truth with refresh of actuals, budget, and generation of forecasts in sync with rhythm of business.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-04.png",
+            "assetKey": "case-solution-4",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "self-service",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Cloud-hosted self-service reports and dashboards for accurate data and forecasts on a timely basis for support, operations, and finance leadership.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-05.png",
+            "assetKey": "case-solution-5",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "technology",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Technology",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "technology-list",
+          "type": "richText",
+          "heading": null,
+          "body": "Azure Data Factory, Azure Databricks, Azure Data Lake, Synapse, Python, Spark, Lakehouse, Azure Purview, Message Hub, Azure Data Lake Storage Gen2, Azure Blob Storage, Event Hubs, scikit-learn, H2O"
+        },
+        {
+          "id": "technology-note",
+          "type": "richText",
+          "heading": null,
+          "body": "Anaplan for productivity modelling"
+        }
+      ]
+    },
+    {
+      "id": "outcome",
+      "type": "stats",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Outcome",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "outcome-1",
+          "type": "metric",
+          "value": "A 100% automated,",
+          "label": "scalable engine to deliver forecast on demand.",
+          "detail": null
+        },
+        {
+          "id": "outcome-2",
+          "type": "metric",
+          "value": "Improved forecasting frequency",
+          "label": "from a three-month cycle to monthly.",
+          "detail": null
+        },
+        {
+          "id": "outcome-3",
+          "type": "metric",
+          "value": "97.6% forecasting accuracy",
+          "label": "delivered (from 65%).",
+          "detail": null
+        },
+        {
+          "id": "outcome-4",
+          "type": "metric",
+          "value": "120 locales supported;",
+          "label": "40,000+ time series supported.",
+          "detail": null
+        },
+        {
+          "id": "outcome-5",
+          "type": "metric",
+          "value": "35% cost reduction",
+          "label": "NPI improved by 45%.",
+          "detail": null
+        },
+        {
+          "id": "outcome-6",
+          "type": "metric",
+          "value": "97% automated",
+          "label": "anomalies engine.",
+          "detail": null
+        },
+        {
+          "id": "outcome-7",
+          "type": "metric",
+          "value": "99.7%",
+          "label": "platform availability.",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "id": "architecture",
+      "type": "architecture_diagram",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "architecture-diagram",
+          "type": "media",
+          "media": {
+            "kind": "diagram",
+            "src": "/embeds/azure-analytics-architecture.html",
+            "assetKey": "case-architecture-diagram",
+            "alt": "Data sources, orchestration, analytics, storage and dashboard architecture",
+            "caption": null
+          },
+          "title": "Azure Analytics Architecture",
+          "description": null
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+    "subheading": null,
+    "partner": null,
+    "primaryCta": {
+      "enabled": true,
+      "label": "Find your Amp'd score",
+      "href": "/ampd-score",
+      "external": false
+    },
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": "/contact",
+      "external": false
+    }
+  }
+}

@@ -1,5 +1,9 @@
 import clsx from "clsx";
-import { getFooterContent, type FooterButton } from "@/data/footer";
+import {
+  getFooterContent,
+  type FooterButton,
+  type FooterBrandMedia,
+} from "@/data/footer";
 import { Container } from "@/components/ui/Container";
 import { FooterCTA } from "./FooterCTA";
 import { FooterNavigation } from "./FooterNavigation";
@@ -21,6 +25,7 @@ export type FooterVariant = "default" | "minimal" | "partners" | "partner-detail
 export interface FooterCustomCTA {
   heading: string | { line1: string; line2?: string; line3?: string };
   description?: string;
+  brandMedia?: FooterBrandMedia;
   buttons: FooterButton[];
 }
 
@@ -64,6 +69,10 @@ export async function Footer({
 
   const description = ctaData?.description;
 
+  const brandMedia =
+    ctaData?.brandMedia ??
+    (isPartners || isPartnerDetail ? undefined : content.brandMedia);
+
   const buttons: FooterButton[] =
     ctaData?.buttons ??
     (isPartners
@@ -84,6 +93,7 @@ export async function Footer({
           <FooterCTA
             heading={heading}
             description={description}
+            brandMedia={brandMedia}
             buttons={buttons}
             variant={variant}
           />
