@@ -125,8 +125,6 @@ export interface AmpStatementData {
 
 export interface AmpProgressStage {
   id: string;
-  /** Displayed score range for this stage (e.g. "1 to 3"). */
-  range: string;
   title: string;
   description: string;
 }
@@ -151,15 +149,16 @@ heading: {
   highlight: "Amp'd?",
 },
   description: {
-    highlight: "Amp'd",
-    body: "is how Agivant delivers real business value for every enterprise, bringing together Agivant’s AI Engineering toolkit: Bolt, forward-deployed engineers, production-grade AI agents, and reusable engineering assets. Every build amplifies the next.",
+    highlight: "Amp'd is how Agivant delivers real business value",
+    body: "for every enterprise, bringing together Agivant’s proven AI Engineering toolkit: Bolt, forward-deployed engineers, production-grade AI agents, and reusable engineering assets. Every build amplifies the next.",
   },
 };
 
 /**
  * Order matters: AmpColumn renders these in sequence, top to bottom,
  * exactly as supplied here.
- */const mockAmpLeftColumn: AmpColumnData = {
+ */
+const mockAmpLeftColumn: AmpColumnData = {
   title: "",
   label: "Agivant's Advantage",
   cards: [
@@ -173,7 +172,7 @@ heading: {
     },
     {
       id: "live-ai-agents",
-      title: "Live AI agents and solutions",
+      title: "Production grade AI agents & solutions",
     },
     {
       id: "every-build",
@@ -210,20 +209,16 @@ const mockAmpHub: AmpHubData = {
     lead: "A",
     body: "mp",
     highlight: "'d",
-    // TODO(content): update this path once the actual logo file is
-    // added under /public — see AmpHub.tsx's fallback-to-text logic.
     logoSrc: "/images/hero/ampd-wordmark.svg",
     logoAlt: "Amp'd",
   },
-  // Matches the four cards in each column above — see the CONTENT
-  // MODELING NOTE (connectors) at the top of this file.
-  leftConnectors: mockAmpLeftColumn.cards.length,
-  rightConnectors: mockAmpRightColumn.cards.length,
+  leftConnectors: 4,
+  rightConnectors: 4,
 };
 
 const mockAmpStatement: AmpStatementData = {
   prefix: "From AI ambition to ",
-  highlight: "Autonomous Workflows",
+  highlight: "autonomous workflows",
 };
 
 /**
@@ -232,30 +227,32 @@ const mockAmpStatement: AmpStatementData = {
  * meaningful sequence, not an unordered set.
  */
 const mockAmpProgress: AmpProgressData = {
-  title: "How Amp'd is Your Enterprise?",
+  title: "How Amp’d is Your Enterprise?",
   stages: [
     {
       id: "foundational",
-      range: "1 to 3",
       title: "Foundational",
-      description: "Use case in place",
+      description: "Priority use cases in place",
     },
     {
       id: "operational",
-      range: "4 to 6",
       title: "Operational",
-      description: "Live systems emerging",
+      description: "AI embedded in live business processes",
+    },
+    {
+      id: "orchestrated",
+      title: "Orchestrated",
+      description: "Agents working across workflows",
     },
     {
       id: "autonomous",
-      range: "7 to 10",
       title: "Autonomous",
-      description: "Agent-led at scale",
+      description: "Agents running the enterprise at scale",
     },
   ],
   button: {
-    label: "How Amp'd is your enterprise?",
-    href: "/amp-score", // TODO(content): confirm real destination
+    label: "How Amp’d is your enterprise?",
+    href: "/amp-score",
   },
 };
 

@@ -1,5 +1,4 @@
 import type { AmpHubData } from "@/data/ampTransformation";
-import { NetworkOrb } from "./NetworkOrb";
 import styles from "./AmpCore.module.css";
 
 interface AmpCoreProps {
@@ -9,70 +8,25 @@ interface AmpCoreProps {
 /**
  * AmpCore
  *
- * The central visual anchor of the Experience — renamed from AmpHub
- * to match the section's new architecture, where this component owns
- * two stacked layers: the Network Orb and the Amp'd wordmark/logo
- * (see the section spec's "AmpCore" breakdown). The orb is now wired
- * in as a static, code-generated globe (`<NetworkOrb />`, Milestone 1
- * — see NetworkOrb.tsx); rotation, glow, and depth shading land in
- * later milestones without needing any further change here.
+ * The central visual anchor of the AmpTransformation section:
+ * - The new organic iridescent Amp Core blob asset (/images/logo/amp-core.png)
+ * - The centered "Amp'd" wordmark logo sitting in the middle of the blob
  *
- * `.core` is sized larger than `.circle` purely to give the orb room
- * to render around the circle (see AmpCore.module.css) — `.circle`
- * itself, and therefore the logo inside it, keeps its exact original
- * size and screen position. `<NetworkOrb />` is rendered before
- * `.circle` in the JSX so it paints behind it (reinforced by explicit
- * z-index in the CSS) — this component otherwise has zero knowledge
- * of what the orb draws or how; that's entirely NetworkOrb's/orbMath's
- * concern.
- *
- * It also has zero knowledge that connector lines exist.
- * AmpConnectorLayer finds `.circle` purely through the DOM, via the
- * `data-amp-core` attribute below — not through props, imports, or
- * any other coupling — which is what lets this component stay
- * completely independent of the connector system.
- *
- * Still keyed off `AmpHubData` / the `getAmpHub()` data getter for
- * now — the data layer isn't part of this pass. A future
- * data-modeling pass can rename `hub` → `core` in
- * data/ampTransformation.ts once the full Orb content shape is known.
- *
- * The wordmark's three fragments (`hub.brand.lead/body/highlight`)
- * are rendered as separate spans so each can carry its own color
- * (accent / default / brand-purple) without any text being hardcoded
- * inside this component. When `hub.brand.logoSrc` is supplied, the
- * actual logo image renders instead and the text fragments are
- * skipped entirely.
- *
- * Milestone 9: `.circle`'s white fill/border/shadow now live on a
- * dedicated `.circleBackground` div, rendered first inside `.circle`
- * (so it paints behind the logo content) and found via
- * `data-amp-circle-bg` — the same DOM-attribute decoupling this file
- * already uses for `.circle` itself (`data-amp-core`). It exists as
- * its own element, separate from the logo, purely so AmpExperience
- * can fade the white circle in on its own (starting from 0 opacity,
- * in sync with the orb) without also fading out the logo/wordmark
- * sitting on top of it — see AmpExperience.tsx's "orb" tween. This
- * component still has zero knowledge of that animation; it only
- * renders the element and the attribute AmpExperience looks for.
- *
- * Server Component today: no "use client", no hooks, no state of its
- * own — `<NetworkOrb />` is its own Client Component boundary (it
- * needs canvas/ref/effect access), so AmpCore can render it as a
- * plain child without becoming a Client Component itself. The logo's
- * scroll-driven shrink/move, and the orb's future rotation, glow, and
- * depth shading (System 1 + System 2 in the spec's Motion
- * Architecture) still need their own follow-up work — kept out of
- * this pass on purpose.
+ * Structured as a clean component so that later this static image can be
+ * replaced with a looping animation without altering surrounding layout.
  */
 export function AmpCore({ hub }: AmpCoreProps) {
   return (
-    <div className={styles.core}>
-      <NetworkOrb />
+    <div className={styles.core} data-amp-core="true">
+      <img
+        src="/images/logo/amp-core.png"
+        alt=""
+        aria-hidden="true"
+        className={styles.blobImage}
+        data-amp-blob="true"
+      />
 
-      <div className={styles.circle} data-amp-core="true">
-        <div className={styles.circleBackground} data-amp-circle-bg="true" />
-
+      <div className={styles.logoWrap} data-amp-logo="true">
         {hub.brand.logoSrc ? (
           <img
             src={hub.brand.logoSrc}

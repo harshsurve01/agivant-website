@@ -62,6 +62,8 @@ export interface CaseStudySectionData {
   columns: unknown[];
   media: CaseStudyMediaObject | null;
   cta: CaseStudyCTAObject | null;
+  primaryCta?: CaseStudyCTAObject | null;
+  secondaryCta?: CaseStudyCTAObject | null;
 }
 
 export interface CaseStudySection {

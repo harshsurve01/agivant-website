@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { PageRibbon } from "@/components/ui/PageRibbon";
 import { MetricCard } from "./MetricCard";
 import type { Phase1Props } from "./types";
 import styles from "./Phase1.module.css";
@@ -33,22 +34,33 @@ import styles from "./Phase1.module.css";
  * is already shaped for a future WordPress-sourced article object
  * with zero changes required on this end.
  */
+
+const BLOG_HERO_RIBBON = "/images/blogs/innerpages/hero-ribbon.png";
+
 export function Phase1({ eyebrow, title, description, cards }: Phase1Props) {
   const words = title.split(" ");
-  const highlighted = words[words.length - 1];
-  const rest = words.slice(0, -1).join(" ");
+  const lead = words[0];
+  const rest = words.slice(1).join(" ");
 
   return (
     <section className={styles.phase1}>
-      <Container>
-        <p className={styles.eyebrow}>{eyebrow}</p>
+      <PageRibbon
+        src={BLOG_HERO_RIBBON}
+        width={1440}
+        height={395}
+        className={styles.ribbonWrapper}
+        imageClassName={styles.ribbonImage}
+      />
+
+      <Container className={styles.container}>
+        {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
 
         <h2 className={styles.title}>
-          {rest ? `${rest} ` : ""}
-          <span className={styles.highlight}>{highlighted}</span>
+          <span className={styles.highlight}>{lead}</span>
+          {rest ? ` ${rest}` : ""}
         </h2>
 
-        <p className={styles.description}>{description}</p>
+        {description && <p className={styles.description}>{description}</p>}
 
         <div className={styles.grid}>
           {cards.map((card) => (

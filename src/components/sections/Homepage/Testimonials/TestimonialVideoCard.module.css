@@ -1,0 +1,126 @@
+/* ==========================================================================
+   TestimonialVideoCard.module.css
+   ========================================================================== */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 22.5rem; /* 360px */
+  height: 31.875rem; /* 510px */
+  flex-shrink: 0;
+  border-radius: 1.75rem; /* 28px */
+  padding: var(--space-5);
+  box-sizing: border-box;
+  user-select: none;
+  overflow: hidden;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.themeBlack {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.themeLightPurple {
+  background-color: #8500df25;
+  color: var(--color-neutral-700);
+  border: 1px solid rgba(133, 0, 223, 0.12);
+}
+
+.mediaWrap {
+  position: relative;
+  width: 100%;
+  height: 23.125rem; /* 330px */
+  border-radius: 1.125rem; /* 18px */
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.infoWrap {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-inline: var(--space-1);
+  padding-block: var(--space-1);
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.authorName {
+  font-size: var(--font-size-xl); /* 20px */
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+}
+
+.themeBlack .authorName {
+  color: var(--color-white);
+}
+
+.themeLightPurple .authorName {
+  color: #1e1e1e;
+}
+
+.authorDesignation {
+  font-size: var(--font-size-sm); /* 14px */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.4;
+}
+
+.themeBlack .authorDesignation {
+  color: var(--color-neutral-300);
+}
+
+.themeLightPurple .authorDesignation {
+  color: var(--color-neutral-500);
+}
+
+/* Interactive circular play button placeholder */
+.playButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem; /* 48px */
+  height: 3rem; /* 48px */
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--color-purple-500);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(133, 0, 223, 0.4);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.playButton:hover {
+  background-color: var(--color-purple-hover);
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(133, 0, 223, 0.6);
+}
+
+.playButton:active {
+  background-color: var(--color-purple-active);
+  transform: scale(0.95);
+}
+
+.playIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-left: 0.15rem; /* Optical centering for right-pointing play triangle */
+  fill: currentColor;
+}

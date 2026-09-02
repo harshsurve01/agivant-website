@@ -13,6 +13,10 @@
   top: clamp(14rem, 25vh, 20rem);
 }
 
+.ribbonPosition_top {
+  top: calc(clamp(14rem, 25vh, 20rem) - 15rem);
+}
+
 .ribbonImage {
   max-width: 1920px;
 }

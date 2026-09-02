@@ -18,9 +18,10 @@
    inventing a different rule for what is the same kind of frame. */
 .hero {
   position: relative;
-  overflow: hidden;
   width: 100%;
-  min-height: 90vh;
+  min-height: 80vh;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .container {
@@ -33,20 +34,13 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-
-  /* Figma: title top sits 179px below the "Blog header" frame's own
-     top edge (node 2097:1280), which itself starts directly under
-     the shared Nav. 179px = 11.1875rem. The 9rem floor is NOT from
-     Figma — Figma only supplies one static desktop frame — it's
-     added so the hero doesn't collide with the Nav on short
-     viewports, matching the *shape* (clamp with a 15vh middle step)
-     of TechTalk's and Blogs' own content padding-top, without
-     copying their specific numbers. */
   padding-top: clamp(9rem, 15vh, 11.1875rem);
+  padding-bottom: var(--space-20);
 }
 
 @media (max-width: 768px) {
   .hero {
+    min-height: auto;
     padding-block: var(--space-16);
   }
 }
@@ -109,36 +103,26 @@
    SemiBold, value in Regular — no separate color step between them
    in Figma, only weight.
    -------------------------------------------------------------------- */
+/* --------------------------------------------------------------------
+   Meta row (Author only)
+   -------------------------------------------------------------------- */
 .metaRow {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--space-8);
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  max-width: 69.375rem; /* 1110px, node 2097:1273 */
+  max-width: 69.375rem;
   margin-inline: auto;
+  text-align: center;
 }
 
-.metaPrimary {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem; /* 40px — Date row to Read Time row, node 2097:1273 */
-}
-
-.metaLine {
+.authorMeta {
   font-family: var(--font-family-base);
-  font-size: var(--font-size-lg); /* 18px — exact match, confirmed in variables.css */
+  font-size: var(--font-size-lg);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-normal);
-  /* Figma's own export falls back to plain black rather than a
-     cross-referenceable variable name. --color-text-primary resolves
-     to var(--color-black) = #000000 in variables.css, an exact match
-     for the meta row's color in the screenshot (visibly darker than
-     the muted --color-text-secondary used by hero descriptions
-     elsewhere). */
   color: var(--color-text-primary);
-  text-align: left;
+  text-align: center;
   margin: 0;
 }
 
@@ -146,35 +130,8 @@
   font-weight: var(--font-weight-semibold);
 }
 
-.metaAuthors {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.875rem; /* 14px — "Author:" label to the name row, node 2097:1273 */
-}
-
-.authorsList {
-  display: flex;
-  flex-wrap: wrap;
-  /* APPROXIMATE — see report: Figma positions each author entry by
-     absolute x (509px, then 941px) rather than an explicit row gap,
-     and those boxes auto-hug variable-width text, so no single "gap"
-     value is directly specified. 14.5rem is the literal 432px
-     column-start offset minus the first entry's ~200px box width,
-     i.e. the closest reproduction achievable from the coordinates
-     given — it will drift if author name lengths change materially
-     from the current mock data. */
-  gap: 14.5rem;
-}
-
 .authorItem {
-  font-family: var(--font-family-base);
-  font-size: var(--font-size-lg); /* 18px — exact match, confirmed in variables.css */
   font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-normal);
-  color: var(--color-text-primary);
-  text-align: left;
-  margin: 0;
 }
 
 @media (max-width: 768px) {
@@ -183,11 +140,40 @@
   }
 
   .metaRow {
-    flex-direction: column;
-    gap: var(--space-8);
+    gap: var(--space-4);
   }
 
-  .authorsList {
-    gap: var(--space-8);
+  .ribbonWrapper {
+    top: 20rem;
+  }
+}
+
+.ribbonWrapper {
+  position: absolute;
+  inset-inline: 0;
+  top: 26.5rem;
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.ribbonImage {
+  width: 100%;
+  max-width: 1920px;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (min-width: 1921px) {
+  .ribbonImage {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .ribbonImage {
+    min-width: 1200px;
   }
 }

@@ -31,34 +31,18 @@ export interface Phase1Card {
   /** Card body copy. */
   description: string;
   /**
-   * One or more case references. Most cards show exactly one; one
-   * card ("Rework Required" in the mock content) shows two, stacked
-   * beneath a single shared divider — see MetricCard's own comment.
+   * Optional case references.
    */
-  references: Phase1CardReference[];
+  references?: Phase1CardReference[] | null;
 }
 
-/**
- * Phase1Props
- *
- * Figma: "Phase 1" eyebrow (node 2097:1298), "Establishing
- * Baselines" heading (2097:1284), intro paragraph (2097:1293), and
- * the 2x2 metric card grid (2097:1302/1306/1304/1308), all direct
- * children of "Blog Inside page" (node 2097:1214), file
- * 7pLktxswHgy5YvtLZXwsq0.
- */
 export interface Phase1Props {
   /** Small label above the heading, e.g. "Phase 1". */
-  eyebrow: string;
-  /**
-   * Section heading, e.g. "Establishing Baselines". Figma renders
-   * the last word in the brand highlight color — same two-tone
-   * pattern already used by ExecutiveBrief's own heading, applied
-   * here for the same reason (presentational, not data).
-   */
+  eyebrow?: string | null;
+  /** Section heading, e.g. "Establishing Baselines". */
   title: string;
-  /** Intro copy beneath the heading. */
-  description: string;
+  /** Optional intro copy beneath the heading. */
+  description?: string | null;
   /** The metric cards, rendered in order. */
   cards: Phase1Card[];
 }

@@ -38,7 +38,7 @@
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-snug);
-  color: var(--color-text-primary);
+  color: var(--color-brand-primary);
   margin: 0 0 1.1875rem; /* 19px, heading bottom -> body top */
 }
 

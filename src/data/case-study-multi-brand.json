@@ -1,0 +1,97 @@
+{
+  "slug": "multi-brand-commerce-migration",
+  "title": "Multi-brand commerce migration ahead of a platform shutdown",
+  "summary": "Rescuing 10+ storefronts and modernising onto a headless commerce stack, with four agents running the migration in production.",
+  "client": "Multi-brand Commerce Enterprise",
+  "industry": "Ecommerce & Retail",
+  "hero": {
+    "eyebrow": null,
+    "title": "Multi-brand commerce<br />migration ahead of a platform<br />shutdown",
+    "subtitle": null,
+    "summary": "Rescuing 10+ storefronts and modernising onto a headless commerce stack, with four agents running the migration in production.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "Multi-brand Commerce Migration | Agivant Case Study",
+    "description": "Rescuing 10+ storefronts and modernising onto a headless commerce stack, with four agents running the migration in production.",
+    "canonical": "https://agivant.com/case-studies/multi-brand-commerce-migration",
+    "ogImage": null
+  },
+  "footerCta": {
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": true,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "All 10+ brands live before the shutdown with zero revenue-loss downtime, manual migration effort down 70%, and about 20% added revenue in year two.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "How it works",
+          "href": "#objectives"
+        }
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & Industry",
+          "body": "Multi-brand direct-to-consumer wellness company, 10+ storefronts, air and water purification"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "Managed service, fixed-scope phases, from platform rescue to commerce modernisation"
+        },
+        {
+          "id": "scale",
+          "title": "Scale",
+          "body": "768K+ customer profiles, 610K+ orders, 31,500 warranty records, TV and media traffic spikes"
+        },
+        {
+          "id": "maps-to",
+          "title": "Maps to (service pillars)",
+          "body": "Agentic AI & AgentOps, AI & ML Engineering, Cloud & Platform Engineering, AI-Ready Data Engineering"
+        },
+        {
+          "id": "agivants-role",
+          "title": "Agivant’s Role",
+          "body": "Migration and data engineering across platform move, headless architecture, and production rollout"
+        }
+      ]
+    }
+  ]
+}

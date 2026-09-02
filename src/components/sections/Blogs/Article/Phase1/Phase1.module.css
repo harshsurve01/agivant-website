@@ -10,8 +10,16 @@
    authoritative section padding exists in Figma's absolute canvas,
    so the shared --space-16 rhythm is reused rather than invented. */
 .phase1 {
+  position: relative;
   width: 100%;
   padding-block: var(--space-16);
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
 }
 
 /* --------------------------------------------------------------------
@@ -73,12 +81,50 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.375rem; /* ~38px */
+  gap: 1.5rem; /* ~38px */
   align-items: start;
 }
 
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .ribbonWrapper {
+    top: 6rem;
+  }
+
+  .ribbonImage {
+    min-width: 900px;
+  }
+}
+
+.ribbonWrapper {
+  position: absolute;
+  inset-inline: 0;
+  top: 8rem;
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.ribbonImage {
+  width: 100%;
+  max-width: 1920px;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (min-width: 1921px) {
+  .ribbonImage {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .ribbonImage {
+    min-width: 1200px;
   }
 }

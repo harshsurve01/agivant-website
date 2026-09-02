@@ -135,6 +135,12 @@ export const youtubeAdapter: ProviderAdapter = {
           const handleStateChange = (event: YTPlayerEvent) => {
             switch (event.data) {
               case YTPlayerState.PLAYING:
+                try {
+                  ytPlayer.unloadModule?.("captions");
+                  ytPlayer.unloadModule?.("cc");
+                } catch {
+                  // Ignore if caption module is not present
+                }
                 emit({ status: "playing" });
                 break;
               case YTPlayerState.PAUSED:
@@ -163,6 +169,7 @@ export const youtubeAdapter: ProviderAdapter = {
             height: "100%",
             playerVars: {
               autoplay: autoPlay ? 1 : 0,
+              cc_load_policy: 0, // keep captions/subtitles disabled by default
               controls: 0, // our glass UI replaces YouTube's chrome entirely
               disablekb: 1, // we own keyboard handling on our own controls
               fs: 0, // we own fullscreen via the container, not YouTube's button

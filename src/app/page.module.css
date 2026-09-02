@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Homepage (page.module.css)
+   ========================================================================== */
+
+.bottomGroup {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-bg-primary);
+}
+
+.sharedRibbon {
+  position: absolute;
+  top: 10%;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 0;
+}

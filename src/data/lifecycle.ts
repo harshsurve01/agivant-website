@@ -1,49 +1,31 @@
 /**
  * data/lifecycle.ts
  *
- * Mock data source for the Lifecycle section. Shaped as async getters —
- * not static exports — for the same reason as getHero() and
- * getAnnouncements(): swapping these internals for a real Headless
- * WordPress fetch later requires zero changes to the Lifecycle
- * components.
- *
- * Three getters, not one, because the section has three independently
- * owned content areas (LifecycleHeader, LifecycleAccordion/Item,
- * LifecycleSummary) — mirrors how the components themselves are split.
- *
- * CONTENT MODELING NOTE: the Figma shows several blocks that sit close
- * together visually but are distinct content: the struck-through
- * "Traditional SDLC" eyebrow, the two-tone heading ("AI-Native" +
- * "Engineering Lifecycle"), and the section description are three
- * separate fields below, not one concatenated string — each needs its
- * own styling (strikethrough, accent color, body copy) that would be
- * impossible to apply correctly to a single merged string.
- *
- * Today: resolves instantly with hardcoded mock data.
- * Later:  will `fetch()` a WordPress REST/GraphQL endpoint and return
- *         the same shape.
+ * Single source of truth for Lifecycle content following AGIVANT_JSON_DATA_RULEBOOK.md.
+ * Async getter signatures for seamless Headless WordPress fetch integration.
  */
 
 export interface LifecycleHeaderData {
-  /** The struck-through line above the real heading (e.g. "Traditional SDLC"). */
   eyebrow: string;
   title: {
-    /** The accent-colored lead word (e.g. "AI-Native"). */
     highlight: string;
-    /** The rest of the heading, in the default text color. */
     suffix: string;
   };
   description: string;
+}
+
+export interface LifecycleMediaData {
+  kind: "image";
+  src: string;
+  alt: string;
 }
 
 export interface LifecycleStage {
   id: string;
   title: string;
   description: string;
-  /** Optional pill label shown on the expanded card (e.g. "Governed"). Not every stage has one. */
   status?: string;
-  /** Which stage the accordion opens with before any hover/click interaction. */
-  isDefaultOpen: boolean;
+  media: LifecycleMediaData;
 }
 
 export interface LifecycleSummaryData {
@@ -65,16 +47,6 @@ const mockLifecycleHeader: LifecycleHeaderData = {
     "We engineer the spec, agents accelerate the build and production signals improve every cycle",
 };
 
-/**
- * Only "Architect" had its full body copy and status visible in the
- * supplied Figma (the other four rows were shown collapsed, title
- * only). Rather than invent enterprise-sounding copy that might not
- * match the real product, the remaining descriptions are left as
- * explicit TODO(content) placeholders — same discipline as the
- * TODO(figma) markers already used elsewhere in this codebase for
- * unconfirmed values. Swap these for real copy when it's supplied;
- * no component changes are needed to do so.
- */
 const mockLifecycleStages: LifecycleStage[] = [
   {
     id: "architect",
@@ -82,39 +54,59 @@ const mockLifecycleStages: LifecycleStage[] = [
     description:
       "Translate business intent into an executable architecture, data, integration, identity model, policy constraints, and security posture before anything is built.",
     status: "Governed",
-    isDefaultOpen: true,
+    media: {
+      kind: "image",
+      src: "/images/lifecycle/architect.png",
+      alt: "Architect stage visualization",
+    },
   },
   {
     id: "build",
     title: "Build",
     description:
-      "Engineers harness agents to implement the spec, generating code and assembling production-ready workflows inside your environment.",
+      "Engineers harness agents to implement the spec, generating code and assembling production-ready workflows inside your environment",
     status: "Governed",
-    isDefaultOpen: false,
+    media: {
+      kind: "image",
+      src: "/images/lifecycle/build.png",
+      alt: "Build stage visualization",
+    },
   },
   {
     id: "tune",
     title: "Tune",
     description:
-      "Validate against live signals, refine design and code, and lift quality and performance without rebuilding from scratch.",
+      "Validate against live signals, refine design and code, lift quality and performance without rebuilding from scratch",
     status: "Governed",
-    isDefaultOpen: false,
+    media: {
+      kind: "image",
+      src: "/images/lifecycle/tune.png",
+      alt: "Tune stage visualization",
+    },
   },
   {
     id: "operate",
     title: "Operate",
     description:
-      "Run in production under full observability, cost controls, and accountability loops. Reliable at load, ready to scale on demand.",
+      "Run in production under full observability, cost controls, and accountability loops. Reliable at load, ready to scale on demand",
     status: "Governed",
-    isDefaultOpen: false,
+    media: {
+      kind: "image",
+      src: "/images/lifecycle/operate.png",
+      alt: "Operate stage visualization",
+    },
   },
   {
     id: "evolve",
     title: "Evolve",
     description:
-      "Feed production learning back into the spec, turning patterns into reusable engineering assets.",
+      "Feed production learning back into the spec, turning patterns into reusable engineering assets",
     status: "Governed",
-    isDefaultOpen: false,
+    media: {
+      kind: "image",
+      src: "/images/lifecycle/evolve.png",
+      alt: "Evolve stage visualization",
+    },
   },
 ];
 
@@ -132,11 +124,6 @@ export async function getLifecycleHeader(): Promise<LifecycleHeaderData> {
   return mockLifecycleHeader;
 }
 
-/**
- * Returns the lifecycle stages in display order. isDefaultOpen marks
- * which stage the accordion should show open before any user
- * interaction — exactly one stage should have this set to true.
- */
 export async function getLifecycleStages(): Promise<LifecycleStage[]> {
   return mockLifecycleStages;
 }

@@ -1,0 +1,36 @@
+/* ==========================================================================
+   TestimonialCarousel.module.css
+   ========================================================================== */
+
+.viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-block: var(--space-6);
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.viewport:active {
+  cursor: grabbing;
+}
+
+.track {
+  display: flex;
+  gap: var(--space-6); /* 24px gap between cards */
+  width: max-content;
+  will-change: transform;
+}
+
+.cardWrap {
+  flex-shrink: 0;
+  display: flex;
+}
+
+@media (max-width: 640px) {
+  .track {
+    gap: var(--space-4);
+  }
+}

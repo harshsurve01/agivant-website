@@ -40,7 +40,7 @@ export interface CaseStudy {
  */
 export interface Phase4Props {
   /** Small label above the heading, e.g. "Phase 4". */
-  eyebrow: string;
+  eyebrow?: string | null;
   /**
    * Section heading, e.g. "Reporting in CFO Language". Highlight
    * split point here is NOT the same rule as Phase2/Phase3 (first

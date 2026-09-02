@@ -50,11 +50,11 @@ export function AmpColumn({ column, side }: AmpColumnProps) {
       ) : null}
 
       <div className={styles.stack}>
-        <h3 className={styles.title}>{column.title}</h3>
+        {column.title ? <h3 className={styles.title}>{column.title}</h3> : null}
 
         <ul className={styles.cards}>
-          {column.cards.map((card) => (
-            <li key={card.id}>
+          {column.cards.map((card, index) => (
+            <li key={card.id} className={styles.cardItem} data-index={index}>
               <AmpNode card={card} side={side} />
             </li>
           ))}

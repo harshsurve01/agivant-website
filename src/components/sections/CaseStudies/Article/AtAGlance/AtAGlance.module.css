@@ -1,0 +1,103 @@
+/* ==========================================================================
+   AtAGlance.module.css (New Case Study Template)
+   ========================================================================== */
+
+.atAGlance {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-16);
+  overflow-x: clip;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-8);
+}
+
+.titleHighlight {
+  color: var(--color-brand-primary);
+}
+
+.panel {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255);
+  border-radius: var(--radius-2xl, 1.5rem);
+  overflow: hidden;
+   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+   inset 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.cell {
+  padding: var(--space-8) var(--space-10);
+  border-bottom: 1px solid rgba(56, 56, 56, 0.8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Right border for odd-indexed grid cells (left column) */
+.cell:nth-child(odd):not(.cellFullWidth) {
+  border-right: 1px solid rgba(56, 56, 56, 0.8);
+}
+
+/* Fifth item spans full width and removes bottom border */
+.cellFullWidth {
+  grid-column: 1 / -1;
+  border-bottom: none;
+}
+
+.cardTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+  color: var(--color-brand-primary);
+  margin: 0;
+}
+
+.cardDescription {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+
+  .cell:nth-child(odd):not(.cellFullWidth) {
+    border-right: none;
+  }
+
+  .cell {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: var(--space-6);
+  }
+
+  .cellFullWidth {
+    grid-column: 1;
+    border-bottom: none;
+  }
+}

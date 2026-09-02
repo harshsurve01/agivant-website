@@ -1,7 +1,10 @@
 import { HeroBackground } from "@/components/ui/HeroBackground";
 import { Container } from "@/components/ui/Container";
+import { PageRibbon } from "@/components/ui/PageRibbon";
 import type { ArticleHeroProps } from "./types";
 import styles from "./Hero.module.css";
+
+const BLOG_HERO_RIBBON = "/images/blogs/innerpages/hero-ribbon.png";
 
 /**
  * Hero (Blog Article)
@@ -38,6 +41,16 @@ export function Hero({ title, date, readTime, authors }: ArticleHeroProps) {
           ancestor containing both HeroBackground and Content. */}
       <HeroBackground />
 
+      {/* Decorative ribbon layer spanning across lower visual area */}
+      <PageRibbon
+        src={BLOG_HERO_RIBBON}
+        width={1440}
+        height={395}
+        className={styles.ribbonWrapper}
+        imageClassName={styles.ribbonImage}
+        priority
+      />
+
       {/* Content */}
       <Container className={styles.container}>
         <div className={styles.content}>
@@ -51,29 +64,16 @@ export function Hero({ title, date, readTime, authors }: ArticleHeroProps) {
           <hr className={styles.divider} aria-hidden="true" />
 
           <div className={styles.metaRow}>
-            <div className={styles.metaPrimary}>
-              <p className={styles.metaLine}>
-                <span className={styles.metaLabel}>Date: </span>
-                {date}
-              </p>
-              <p className={styles.metaLine}>
-                <span className={styles.metaLabel}>Read Time: </span>
-                {readTime}
-              </p>
-            </div>
-
-            <div className={styles.metaAuthors}>
-              <p className={styles.metaLabel}>Author:</p>
-              <div className={styles.authorsList}>
-                {authors.map((author) => (
-                  <p key={author.name} className={styles.authorItem}>
-                    {author.name},
-                    <br />
-                    {author.role}
-                  </p>
-                ))}
-              </div>
-            </div>
+            <p className={styles.authorMeta}>
+              <span className={styles.metaLabel}>Author: </span>
+              {authors.map((author, index) => (
+                <span key={author.name} className={styles.authorItem}>
+                  {index > 0 && " | "}
+                  {author.name}
+                  {author.role ? `, ${author.role}` : ""}
+                </span>
+              ))}
+            </p>
           </div>
         </div>
       </Container>

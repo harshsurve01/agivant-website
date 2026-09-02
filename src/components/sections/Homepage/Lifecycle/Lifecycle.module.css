@@ -31,7 +31,7 @@
 .connector {
   display: flex;
   justify-content: center;
-  color: var(--color-accent-primary, #8500DF); /* TODO(design-tokens): confirm the real brand-purple token name — no accent token was visible in the files seen so far, this is a placeholder */
+  color: var(--color-brand-primary, #8500DF);
   /* .inner's gap (var(--space-12)) applies uniformly to every child,
      so this negative margin is what shrinks the space above/below
      *only* the connector — the header/accordion and summary/CTA gaps

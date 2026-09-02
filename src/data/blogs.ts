@@ -259,76 +259,49 @@ const measuringProductivityGainsArticle: BlogArticleData = {
     title: "Measuring Productivity Gains of Your GenAI Application (Without Hype)",
     date: "May 26, 2026",
     readTime: "4 mins",
-    authors: [{ name: "Dev Analytics Lead", role: "Author" }],
+    authors: [
+      { name: "Praveen Nirapure", role: "Innovation & Solutions" },
+      { name: "Rakesh Deshmukh", role: "Solution Architect" },
+    ],
   },
 
 executiveBrief: {
   title: "Executive Brief",
   paragraphs: [
-    "As generative AI rapidly transforms the workplace, business leaders are eager to quantify its promise—beyond the headlines and hype. Measuring true productivity gains from GenAI applications requires rigor, not just optimism.",
-    "Clear, actionable metrics like key performance indicators (KPIs) are crucial for turning AI’s promise into tangible business results, helping organizations track progress, align with strategic goals, and prove real value from their AI investments. Without these measurable benchmarks, AI adoption risks becoming hype rather than a driver of meaningful productivity.",
+    "As generative AI rapidly transforms the workplace, business leaders are eager to quantify its promise—beyond the headlines and hype. Measuring true productivity gains from GenAI applications requires rigor, not just optimism. Clear, actionable metrics like key performance indicators (KPIs) are crucial for turning AI’s promise into tangible business results, helping organizations track progress, align with strategic goals, and prove real value from their AI investments. Without these measurable benchmarks, AI adoption risks becoming hype rather than a driver of meaningful productivity.",
   ],
 },
 
 phase1: {
-  eyebrow: "Phase 1",
+  eyebrow: null,
   title: "Establishing Baselines",
-  description:
-    "Before scaling solutions, organizations must map historical reality to evaluate direct operational changes.",
+  description: null,
   cards: [
     {
       title: "Time on Task",
       description:
-        "This involves measuring the average time workers spend completing tasks before GenAI adoption. Tracking time-on-task post-AI adoption helps show efficiency gains or losses.",
-      references: [
-        {
-          label: "Case Reference",
-          text: "The AI @ Morgan Stanley Debrief tool saved financial advisors about 30 minutes per client meeting by automating note-taking and follow-up emails, significantly reducing time-on-task during calls.",
-        },
-      ],
+        "This involves measuring the average time workers spend completing tasks before GenAI adoption. Tracking time-on-task post-AI adoption helps show efficiency gains or losses. For example, the AI @ Morgan Stanley Debrief tool saved financial advisors about 30 minutes per client meeting by automating note-taking and follow-up emails, significantly reducing time-on-task during calls.",
     },
     {
       title: "Error Rates",
       description:
-        "Tracking the frequency and severity of errors in workflows leads to quality improvements. Lower error rates post-AI adoption indicate improvement in accuracy.",
-      references: [
-        {
-          label: "Case Reference",
-          text: "Research by the Nielsen Norman Group showed that generative AI tools helped reduce common mistakes in customer support interactions, contributing to a 13.8% increase in queries handled per hour with fewer errors.",
-        },
-      ],
+        "Tracking the frequency and severity of errors in workflows leads to quality improvements. Lower error rates post-AI adoption indicate improvement in accuracy. Research by the Nielsen Norman Group showed that generative AI tools helped reduce common mistakes in customer support interactions, contributing to a 13.8% increase in queries handled per hour with fewer errors.",
     },
     {
       title: "Rework Required",
       description:
-        "Measure how often completed tasks require additional corrections or revisions due to errors. AI reducing rework means less wasted effort and higher productivity.",
-      references: [
-        {
-          label: "Case Reference A",
-          text: "Using GitHub Copilot, a global e-commerce platform doubled productivity and cut rework efforts by 50%, thanks to AI’s real-time code suggestions reducing bugs and revisions.",
-        },
-        {
-          label: "Case Reference B",
-          text: "By employing IBM watsonx.ai, the Minijob-Zentrale’s editorial team cut content rewriting and editing time by 75%, using AI to improve initial drafts and minimize rework loops.",
-        },
-      ],
+        "Measure how often completed tasks require additional corrections or revisions due to errors. AI reducing rework means less wasted effort and higher productivity. Using GitHub Copilot, a global e-commerce platform doubled productivity and cut rework efforts by 50%, thanks to AI’s real-time code suggestions reducing bugs and revisions. By employing IBM watsonx.ai, the Minijob-Zentrale’s editorial team cut content rewriting and editing time by 75%, using AI to improve initial drafts and minimize rework loops.",
     },
     {
       title: "Quality-Adjusted Task Minutes",
       description:
-        "By blending speed and accuracy into quality-adjusted task minutes, you unveil the true productivity tradeoff, balancing how fast work gets done with the quality delivered. For risky industries like finance or healthcare, this is a critical parameter.",
-      references: [
-        {
-          label: "Case Reference",
-          text: "Wellsky’s generative AI integrated assessment tools that automated data entry and reduced administrative errors, improving both throughput and quality-adjusted time spent on patient care.",
-        },
-      ],
+        "By blending speed and accuracy into quality-adjusted task minutes, you unveil the true productivity tradeoff, balancing how fast work gets done with the quality delivered. For risky industries like finance or healthcare, this is a critical parameter. WellSky’s generative AI integrated assessment tools that automated data entry and reduced administrative errors, improving both throughput and quality-adjusted time spent on patient care.",
     },
   ],
 },
 
 phase2: {
-  eyebrow: "Phase 2",
+  eyebrow: null,
   title: "Running Proper Experiments",
   description:
     "Unlocking credible organizational metrics by filtering visual noise and statistical variance.",
@@ -367,7 +340,7 @@ phase2: {
 },
 
 phase3: {
-  eyebrow: "Phase 3",
+  eyebrow: null,
   title: "End-to-End Instrumentation Strategy",
   description:
     "Integrating high-resolution metric collection across active human-computer loops.",
@@ -409,7 +382,7 @@ phase3: {
 },
 
 phase4: {
-  eyebrow: "Phase 4",
+  eyebrow: null,
   title: "Reporting in CFO Language",
   description:
     "CFO language bridges the gap between complex financial data and strategic business decision-making. This ensures clear and succinct communication to diverse stakeholders, including board members, investors, and non-finance colleagues, to ensure financial insights are understood and actionable.",

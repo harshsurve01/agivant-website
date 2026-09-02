@@ -28,6 +28,7 @@ export interface YTPlayerOptions {
   videoId: string;
   playerVars?: {
     autoplay?: 0 | 1;
+    cc_load_policy?: 0 | 1;
     controls?: 0 | 1;
     disablekb?: 0 | 1;
     fs?: 0 | 1;
@@ -60,6 +61,7 @@ export interface YTPlayer {
   isMuted(): boolean;
   getPlayerState(): YTPlayerState;
   destroy(): void;
+  unloadModule?(moduleName: string): void;
   getIframe(): HTMLIFrameElement;
 }
 

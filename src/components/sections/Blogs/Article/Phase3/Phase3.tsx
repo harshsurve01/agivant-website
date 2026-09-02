@@ -45,7 +45,7 @@ export function Phase3({ eyebrow, title, description, cards }: Phase3Props) {
   return (
     <section className={styles.phase3}>
       <Container>
-        <p className={styles.eyebrow}>{eyebrow}</p>
+        {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
 
         <h2 className={styles.title}>
           {words[0]}

@@ -40,6 +40,11 @@ export interface SolutionSectionData {
   columns?: string[];
   media?: SolutionMedia | null;
   cta?: { label?: string; href?: string } | null;
+  video?: {
+    sourceType?: "youtube" | "asset" | string | null;
+    src?: string | null;
+    poster?: string | null;
+  } | null;
 }
 
 export interface SolutionSection {

@@ -44,13 +44,10 @@ export function AmpTimeline({ stages }: AmpTimelineProps) {
         {stages.map((stage) => (
           <li key={stage.id} className={styles.item}>
             <span className={styles.node}>
-              <span className={styles.range}>{stage.range}</span>
+              <span className={styles.title}>{stage.title}</span>
             </span>
 
-            <div className={styles.copy}>
-              <span className={styles.title}>{stage.title}</span>
-              <span className={styles.description}>{stage.description}</span>
-            </div>
+            <p className={styles.description}>{stage.description}</p>
           </li>
         ))}
       </ol>

@@ -50,6 +50,9 @@ export interface GradientProps {
    * used when `donutHole` is set. */
   donutFeather?: number;
 
+  /** Whether to portal to the shared page-wide GradientLayer (default true). Set to false to render in-place inside a pinned section. */
+  portal?: boolean;
+
   /**
    * Position, expressed relative to wherever this <Gradient/> is
    * rendered in your JSX — same mental model as the old
@@ -93,6 +96,7 @@ export function Gradient({
   centerY = false,
   donutHole,
   donutFeather = 20,
+  portal = true,
   top,
   left,
   right,
@@ -103,6 +107,7 @@ export function Gradient({
   const [pos, setPos] = useState<{ top: number; left: number } | null>(null);
 
   useEffect(() => {
+    if (!portal) return;
     const anchor = anchorRef.current;
     if (!anchor) return;
 
@@ -151,6 +156,40 @@ export function Gradient({
 
   const translateX = centerX ? "-50%" : "0";
   const translateY = centerY ? "-50%" : "0";
+
+  if (!portal) {
+    const localGlowStyle: CSSProperties = {
+      position: "absolute",
+      top: top ?? "auto",
+      left: left ?? "auto",
+      right: right ?? "auto",
+      bottom: bottom ?? "auto",
+      width: size,
+      height: size,
+      background,
+      opacity,
+      transform:
+        centerX || centerY ? `translate(${translateX}, ${translateY})` : undefined,
+      animationDelay: animate === "breathe" ? animationDelay : undefined,
+      WebkitMaskImage: maskImage,
+      maskImage,
+      pointerEvents: "none",
+      zIndex: 0,
+      borderRadius: "9999px",
+      "--gradient-blur": blur,
+      "--gradient-blur-mobile": blurMobile ?? blur,
+    } as CSSProperties;
+
+    return (
+      <div
+        aria-hidden="true"
+        className={
+          animate === "breathe" ? `${styles.glow} ${styles.breathe}` : styles.glow
+        }
+        style={localGlowStyle}
+      />
+    );
+  }
 
   const glowStyle = pos
     ? ({

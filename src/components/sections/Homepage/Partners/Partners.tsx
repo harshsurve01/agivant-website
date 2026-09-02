@@ -20,11 +20,10 @@ import styles from "./Partners.module.css";
 // data/partners.ts alongside the pairs once per-partner timing is
 // confirmed with design, rather than hardcoding it here.
 const PARTNER_SLOT_TIMINGS: PartnerLogoSlotTiming[] = [
-  { holdMs: 3400 },
+  { holdMs: 3000 },
   { holdMs: 2200 },
   { holdMs: 2800 },
   { holdMs: 4000 },
-  { holdMs: 3000 },
 ];
 
 /**

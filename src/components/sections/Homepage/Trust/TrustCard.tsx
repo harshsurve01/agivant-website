@@ -19,13 +19,6 @@ interface TrustCardProps {
  * either of their stylesheets.
  */
 export function TrustCard({ title, description, badge, accentColor }: TrustCardProps) {
-  // Text/badge tinting is intentionally uniform across every card now —
-  // it no longer reads each card's individual accentColor. accentColor
-  // is still passed through (Trust.tsx also forwards it to
-  // TrustAnimation, which uses it for the ambient scroll glow behind
-  // the whole stack — a separate visual from this card's own text) and
-  // is kept here as a data attribute rather than dropped from the
-  // component's contract.
   const accentStyle = { "--trust-accent": "var(--color-purple-500)" } as CSSProperties;
 
   return (
@@ -33,8 +26,10 @@ export function TrustCard({ title, description, badge, accentColor }: TrustCardP
       <div className={styles.badgeSlot}>
         <TrustBadge label={badge} />
       </div>
-      <h3 className={styles.title}>{title}</h3>
-      <p className={styles.description}>{description}</p>
+      <div className={styles.contentBlock}>
+        <h3 className={styles.title}>{title}</h3>
+        <p className={styles.description}>{description}</p>
+      </div>
     </article>
   );
 }

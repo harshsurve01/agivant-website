@@ -1,7 +1,0 @@
-.accordion {
-  display: flex;
-  flex-direction: column;
-  /* gap: var(--space-1); TODO(figma): confirm exact row gap — not measurable from the supplied bounding boxes */
-  width: 100%;
-  max-width: 55rem; /* mirrors LifecycleHeader's column width */
-}

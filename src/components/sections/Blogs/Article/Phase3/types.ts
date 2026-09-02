@@ -46,7 +46,7 @@ export interface Phase3Card {
  */
 export interface Phase3Props {
   /** Small label above the heading, e.g. "Phase 3". */
-  eyebrow: string;
+  eyebrow?: string | null;
   /**
    * Section heading, e.g. "End-to-End Instrumentation Strategy".
    * Same highlight convention as Phase2 (NOT Phase1/ExecutiveBrief's

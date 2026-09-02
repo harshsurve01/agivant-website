@@ -42,19 +42,18 @@ export async function Trust() {
           the active card changes. */}
       <div className={styles.background} aria-hidden="true" data-trust-glow />
 
-      {/* Static ambient ellipse, top-left — decorative only, does not
-          participate in the scroll animation. Portals into the shared
-          page-wide GradientLayer instead of being clipped to this
-          section. */}
+      {/* Ambient gradient anchored to the Trust section — stays pinned
+          with the section throughout the entire scroll sequence */}
       <Gradient
-        top="-100px"
-        left="-220px"
-        size="740px"
-        stops={[
-          "color-mix(in srgb, var(--color-bg-gradient-start) 55%, transparent) 0%",
-          "transparent 58%",
-        ]}
-        opacity={0.5}
+        portal={false}
+        kind="linear"
+        angle="180deg"
+        top="50%"
+        left="-35%"
+        centerY
+        size="40rem"
+        stops={["#b31aef44 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
+        opacity={0.35}
         blur="90px"
       />
 

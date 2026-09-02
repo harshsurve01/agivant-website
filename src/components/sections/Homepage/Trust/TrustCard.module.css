@@ -3,39 +3,24 @@
    Owns this card's own visual identity: container, shadow, spacing,
    and typography. Does not know about the stack stage, active state,
    or animation — Trust.module.css owns all of that.
-
-   PENDING FIGMA: radius/shadow/padding below use EXISTING design
-   tokens as a placeholder — not lifted from a spec, since only card 1
-   was available at implementation time.
    ========================================================================== */
 
 .card {
   position: relative;
   width: 100%;
-  overflow: hidden; /* clips the gradient blob below to the card's rounded corner */
-  /* Was `top: 10%` here — a manual nudge to compensate for the card
-     sitting too high in the viewport. Removed: that was really a
-     symptom of .trust not filling the viewport (fixed in
-     Trust.module.css). Keeping a manual offset here would have thrown
-     this card out of alignment with the peeking cards behind it,
-     which all share the same grid cell. */
-  background-color: var(--color-bg-secondary, var(--color-bg-primary)); /* TODO(figma): confirm exact background */
-  border-radius: var(--radius-xl, var(--radius-lg)); /* TODO(figma): confirm exact corner radius */
-  /* Heavier than a typical card shadow on purpose — this card is meant
-     to read as physically lifted off the ones stacked behind it. */
-  box-shadow: var(--shadow-xl, var(--shadow-lg)); /* TODO(figma): confirm exact shadow */
-  /* Height is intentionally not set directly — it stays content-driven
-     so cards 2/3 (longer/shorter copy) size correctly in the stack.
-     109px vertical padding is arithmetic, not a token: Figma's card is
-     403px tall; title (90px) + description (70px) + the 24px gap below
-     leaves 219px of padding, split evenly. Horizontal padding has no
-     corresponding Figma measurement yet, so it stays on the existing
-     token pending confirmation. */
-  padding: 109px var(--space-8); /* TODO(figma): confirm exact horizontal padding */
+  overflow: hidden;
+  background-color: var(--color-bg-secondary, var(--color-bg-primary));
+  background-image: url("/images/trust/card-ribbon.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
+  border-radius: var(--radius-xl, var(--radius-lg));
+  box-shadow: var(--shadow-xl, var(--shadow-lg));
+  padding: 109px var(--space-8);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-6); /* was space-4 — widened to match the padding arithmetic above */
+  gap: var(--space-6);
   text-align: center;
 }
 
@@ -46,11 +31,19 @@
   z-index: 1; /* above the .card::before blob */
 }
 
+.contentBlock {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  transform: translateY(calc(var(--space-16) * -1));
+  width: 100%;
+}
+
 /* Ambient gradient blob, identical on every card — same colors, same
-   stops, same position, regardless of that card's accentColor. Figma
-   spec: 0% #B31AEF, 31% #F6048D, 78% #F88C54, 100% #FF7670. Blurred
-   heavily and kept low-opacity so it reads as a soft wash, not a hard
-   shape; .card's overflow:hidden clips it to the rounded corner. */
+   stops, same position, regardless of that card's accentColor. */
 .card::before {
   content: "";
   position: absolute;
@@ -75,36 +68,19 @@
 .title {
   margin: 0;
   position: relative;
-  z-index: 1; /* above the .card::before blob */
-  /* Figma's title frame is 1039 x 90 for one line — 90px resolves
-     cleanly to 72px font-size at 1.25 line-height (72 * 1.25 = 90),
-     the same cross-check pattern used on the AnnouncementBar CTA. */
-  font-size: var(--font-size-6xl, 72px); /* TODO(figma): confirm token name if --font-size-6xl doesn't exist in the scale */
+  z-index: 1;
+  font-size: var(--font-size-6xl, 72px);
   line-height: 1.25;
   font-weight: var(--font-weight-bold, var(--font-weight-semibold));
-  /* Fixed across every card — color uniformity, not per-card accent. */
   color: var(--trust-accent, var(--color-purple-500));
-  /* Matches this card's measured text width; non-binding for cards
-     with shorter/longer titles, but keeps this card's proportions
-     faithful to Figma. */
   max-width: 1039px;
 }
 
 .description {
   margin: 0;
   position: relative;
-  z-index: 1; /* above the .card::before blob */
-  /* 542px is Figma's authored wrap width (this is a deliberate reading
-     measure, not the text's natural width) — used directly rather than
-     converted to ch, since ch would drift from the true wrap point as
-     the font renders. */
+  z-index: 1;
   max-width: 542px;
-  /* Reuses the 24px size already confirmed on the AnnouncementBar CTA
-     (var(--font-size-xl)) rather than the smaller var(--font-size-md)
-     used before. Line-height is derived: two lines at 70px total means
-     35px per line ÷ 24px font-size = 1.4583 — no token lands on that
-     exactly, so it's left unrounded (same approach as the
-     AnnouncementBar's 1.15). */
   font-size: var(--font-size-xl);
   line-height: 1.4583;
   font-weight: var(--font-weight-regular);

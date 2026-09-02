@@ -1,9 +1,11 @@
 import caseStudyJson from "./case-study.json";
 import dummyCaseStudyJson from "./case-study-dummy.json";
+import multiBrandCaseStudyJson from "./case-study-multi-brand.json";
 import type { CaseStudyDetailPage } from "@/types/caseStudyDetail";
 
 const realCaseStudy: CaseStudyDetailPage = caseStudyJson as unknown as CaseStudyDetailPage;
 const dummyCaseStudy: CaseStudyDetailPage = dummyCaseStudyJson as unknown as CaseStudyDetailPage;
+const multiBrandCaseStudy: CaseStudyDetailPage = multiBrandCaseStudyJson as unknown as CaseStudyDetailPage;
 
 /**
  * Single source of truth collection of all individual Case Studies.
@@ -11,6 +13,7 @@ const dummyCaseStudy: CaseStudyDetailPage = dummyCaseStudyJson as unknown as Cas
 export const allCaseStudies: CaseStudyDetailPage[] = [
   realCaseStudy,
   dummyCaseStudy,
+  multiBrandCaseStudy,
 ];
 
 /**
@@ -19,6 +22,7 @@ export const allCaseStudies: CaseStudyDetailPage[] = [
 const CASE_STUDIES_DATA: Record<string, CaseStudyDetailPage> = {
   [realCaseStudy.slug]: realCaseStudy,
   [dummyCaseStudy.slug]: dummyCaseStudy,
+  [multiBrandCaseStudy.slug]: multiBrandCaseStudy,
 };
 
 /**

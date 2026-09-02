@@ -52,7 +52,7 @@ export function Phase4({
   return (
     <section className={styles.phase4}>
       <Container>
-        <p className={styles.eyebrow}>{eyebrow}</p>
+        {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
 
         <h2 className={styles.title}>
           {lead}

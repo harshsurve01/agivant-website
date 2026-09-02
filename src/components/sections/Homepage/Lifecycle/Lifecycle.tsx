@@ -1,6 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { LifecycleHeader } from "./LifecycleHeader";
-import { LifecycleAccordion } from "./LifecycleAccordion";
+import { LifecycleCards } from "./LifecycleCards";
 import { LifecycleSummary } from "./LifecycleSummary";
 import {
   getLifecycleHeader,
@@ -13,30 +13,11 @@ import styles from "./Lifecycle.module.css";
 /**
  * Lifecycle
  *
- * The "AI-Native Engineering Lifecycle" section: heading block, an
- * interactive accordion of stages, and a closing "Amplify" summary
- * with CTA. Owns section-level layout, composition, and data loading —
- * it does not own the accordion's open/hover interaction (that's
- * LifecycleAccordion's job, see that file), the heading's content
- * (LifecycleHeader), or the summary's content/CTA (LifecycleSummary).
- *
- * Server Component: no "use client", no hooks, no state, no effects.
- * It's async because it awaits its data sources directly — the same
- * pattern already used by Hero and AnnouncementBar. LifecycleAccordion
- * is the one exception in this subtree that needs interactivity; see
- * LifecycleAccordion.tsx for why that boundary is drawn there and not
- * here.
- *
- * The connector between the accordion and the summary card is a
- * 3-arrow chevron stack with a looping, CSS-only opacity chase (each
- * arrow peaks in turn, top to bottom, to read as forward motion — see
- * Lifecycle.module.css's .connectorArrow1/2/3 + @keyframes
- * connectorChase). It's rendered here rather than owned by either
- * neighboring component since it's purely a layout/transition device
- * between them, not content either one owns. Pure CSS rather than
- * GSAP/JS: the effect is a fixed, non-scroll-driven loop, so it
- * doesn't need this file to become a Client Component — see
- * LifecycleItem.tsx for the matching note on its own static chevrons.
+ * The "AI-Native Engineering Lifecycle" section:
+ * - Eyebrow & Heading
+ * - 5-Stage Horizontal Cards (Architect, Build, Tune, Operate, Evolve)
+ * - Animated Chevron Connector
+ * - Amplify Summary & CTA Button
  */
 export async function Lifecycle() {
   const [header, stages, summary] = await Promise.all([
@@ -47,38 +28,28 @@ export async function Lifecycle() {
 
   return (
     <section className={styles.lifecycle}>
-      {/* Two ambient blobs, decorative only. Left is a flat brand-purple
-          wash; right reuses the same 4-stop brand gradient as
-          TrustCard's ::before blob. Both now portal into the shared
-          page-wide GradientLayer rather than being clipped to this
-          section. */}
       <Gradient
-        top="45%"
-        left="-10%"
+        top="5%"
+         right="30%"
         size="49rem"
         stops={[
           "color-mix(in srgb, #f2dc84ce 70%, transparent) 0%",
           "transparent 65%",
         ]}
-        opacity={0.35}
+        opacity={0.45}
         blur="10px"
       />
       <Gradient
         kind="linear"
         angle="180deg"
         top="40%"
-        right="25%"
+        left="-25%"
         size="32rem"
         stops={["#b31aef 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
-        opacity={0.20}
+        opacity={0.2}
         blur="90px"
       />
 
-      {/* Container's default size="xl" (1280px) is used here, same as
-          Hero and Header — close enough to the ~1245px column measured
-          in the Figma inspector that introducing a one-off max-width
-          isn't warranted; the section only needs to preserve visual
-          proportions across desktop viewports, not match pixel-for-pixel. */}
       <Container>
         <div className={styles.inner}>
           <LifecycleHeader
@@ -87,7 +58,7 @@ export async function Lifecycle() {
             description={header.description}
           />
 
-          <LifecycleAccordion stages={stages} />
+          <LifecycleCards stages={stages} />
 
           <div className={styles.connector} aria-hidden="true">
             <svg viewBox="0 0 24 30" fill="none" className={styles.connectorIcon}>

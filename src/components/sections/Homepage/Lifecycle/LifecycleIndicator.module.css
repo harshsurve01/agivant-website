@@ -1,0 +1,72 @@
+/* ==========================================================================
+   LifecycleIndicator.module.css
+   Horizontal indicator track with 5 dots positioned directly under the
+   5 Lifecycle cards.
+   ========================================================================== */
+
+.track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-4);
+  width: 100%;
+  max-width: var(--container-xl);
+  align-items: center;
+  justify-items: center;
+}
+
+.line {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background-color: var(--color-border-strong, var(--color-neutral-300));
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.slot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.dot {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast, 150ms ease),
+    transform var(--transition-fast, 150ms ease);
+}
+
+.dotActive {
+  background-color: var(--color-brand-primary, #8500DF);
+  transform: scale(1.25);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand-primary, #8500DF) 20%, transparent);
+}
+
+.dotInactive {
+  background-color: var(--color-neutral-300, #D1D5DB);
+}
+
+@media (max-width: 1200px) {
+  .track {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .line {
+    left: 16.66%;
+    right: 16.66%;
+  }
+}
+
+@media (max-width: 768px) {
+  .track {
+    display: none;
+  }
+}

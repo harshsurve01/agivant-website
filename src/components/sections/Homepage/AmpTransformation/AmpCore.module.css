@@ -39,57 +39,66 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 14rem;
-  height: 14rem;
+  width: 20rem;
+  height: 20rem;
 }
 
-.circle {
+.blobImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.logoWrap {
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 9rem;
-  height: 9rem;
-  border-radius: var(--radius-full);
-  
+  height: 3.75rem;
 }
-
-.circleBackground {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  border-radius: var(--radius-full);
-  background-color: #ffffffc1;
-  border: 1px solid #fff;
-  box-shadow: #00000033 0px 2px 10px;
-  opacity: 0; /* Milestone 9: hidden until AmpExperience's "orb" tween fades it in via [data-amp-circle-bg] */
-}
-
-
 
 .logoImage {
   position: relative;
   z-index: 1;
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  opacity: 1;
 }
 
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  user-select: none;
+}
+
+.logoLead {
+  color: var(--color-brand-primary);
+}
+
+.logoBody {
+  color: var(--color-text-primary);
+}
+
+.logoHighlight {
+  color: var(--color-brand-primary);
+}
 
 @media (max-width: 900px) {
   .core {
-    width: 13rem;
-    height: 13rem;
+    width: 16rem;
+    height: 16rem;
   }
 
-  .circle {
-    width: 7rem;
-    height: 7rem;
-  }
-
-  .logo {
-    font-size: var(--font-size-lg);
+  .logoWrap {
+    width: 6.5rem;
+    height: 2.75rem;
   }
 }

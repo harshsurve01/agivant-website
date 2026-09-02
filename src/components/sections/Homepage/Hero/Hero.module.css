@@ -1,121 +1,115 @@
 /* ==========================================================================
    Hero.module.css
-   Owns layout, spacing, and typography for the hero content.
-
-   .background used to carry the page's base fill color as a
-   placeholder for a future decorative layer. That decoration now
-   exists (HeroBackground's two breathing glows, rendered via
-   <Gradient/> into the shared page-wide GradientLayer) and the base
-   fill color now lives on GradientLayer's .root — so .background stays
-   in the markup as a hook for any future hero-only backdrop, but no
-   longer paints an opaque color that would hide the shared gradient
-   layer sitting behind it.
-
-   No z-index is used to stack .content above .background: .background
-   is position: absolute (removed from flow) and .content is a normal,
-   later sibling in the markup, so it paints on top by document order
-   alone — no z-index token needed for this.
+   Owns layout, spacing, and typography for the NEW Homepage Hero.
+   All design values use design-system tokens from variables.css.
    ========================================================================== */
 
 .hero {
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 90vh;
-}
-
-.background {
-  position: absolute;
-  inset: 0;
-  /* Intentionally no background-color — see file header. */
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .content {
   position: relative;
-  z-index: 3;
+  z-index: 10;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-
-  padding-block: var(--space-24); /* TODO(figma): confirm exact vertical spacing */
-  /* No max-width here on purpose: Container (default size="xl", 1280px)
-     already caps the available width. Stacking var(--container-lg)
-     (1024px) on top of that was double-constraining the column, which
-     is why the heading/description read as too narrow against the
-     Figma — the heading in particular needs the full Container width
-     to wrap where the Figma wraps it, without increasing font-size. */
+  align-items: center;
+  text-align: center;
   width: 100%;
+  padding-block: var(--space-20);
 }
 
 .heading {
-  font-weight: var(--font-weight-regular);
-  font-size: 4rem; /* 64px, was 5rem/80px (-20%) per design review — Container already caps column width, so a fixed rem holds proportion across 1280-1920px without clamp() */
-  line-height: 1.4;
+  margin: 0 0 var(--space-16);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-7xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-tight);
-  color: var(--color-text-primary);
+  color: var(--color-brand-primary);
+  max-width: var(--container-lg);
 }
 
-/*
-  Each heading line is an explicit block so line breaks come from
-  markup structure, not viewport-dependent text wrap. Kept as a plain
-  block span (not a <div>) so the parent stays a single <h1> with
-  inline-safe children — this also gives the future GSAP pass a
-  stable, isolated node per line to animate without further markup
-  changes.
-*/
-.headingLine {
+.announcement {
+  margin: 0 0 var(--space-8);
+  font-family: var(--font-family-base);
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+  max-width: var(--container-md);
+}
+
+.announcementLine1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.announcementLine2 {
   display: block;
+  margin-top: var(--space-1);
 }
 
-.assetWrapper {
+.ampdWrapper {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   vertical-align: middle;
+  height: 2.5rem;
 }
 
-.assetImage {
-  height: 4.5rem; /* 72px, was 5.625rem/90px (-20%) — kept proportional to .heading's reduced font-size so it still sits correctly inline */
+.ampdImage {
+  height: 3.25rem;
   width: auto;
+  object-fit: contain;
 }
 
-.highlight {
-  font-weight: var(--font-weight-bold);
-  color: #8500df;
-}
-
-.tagline {
-  margin-top: var(--space-8); /* was space-6 — Figma shows more breathing room below the heading */
-  font-weight: var(--font-weight-medium);
-  font-size: 2rem; /* 32px, was 2.5rem/40px (-20%) per design review */
-  line-height: 1.27; /* Figma: 127% */
-  color: var(--color-text-primary);
-}
-
-.description {
-  margin-top: var(--space-4); /* smaller gap than heading->tagline since these two lines are visually grouped */
-  font-size: 1.25rem; /* 20px, was 1.5rem/24px (-17%) per design review */
-  line-height: var(--line-height-relaxed);
-  color: var(--color-text-secondary);
-  /* was container-sm (640px) — against the widened heading, that read
-     narrower than the Figma's description block proportionally is.
-     container-md keeps it comfortably readable while filling more of
-     the available column width, matching the Figma more closely. */
-  ;
+.ampdLottie {
+  height: 2.25rem !important;
+  width: auto !important;
 }
 
 .actions {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: var(--space-8);
-  margin-top: var(--space-12); /* was space-8 — Figma shows a larger gap between description and the CTA row */
+  gap: var(--space-4);
+  margin-top: var(--space-2);
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .content {
+    padding-block: var(--space-12) var(--space-16);
+  }
+
   .heading {
     font-size: var(--font-size-3xl);
   }
 
-  .content {
-    padding-block: var(--space-12);
+  .announcement {
+    font-size: var(--font-size-lg);
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .actions > * {
+    width: 100%;
   }
 }

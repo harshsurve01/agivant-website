@@ -67,7 +67,7 @@ export async function AmpTransformation() {
  <Gradient
         kind="linear"
         angle="180deg"
-        top="65%"
+        top="55%"
         left="-20%"
         size="40rem"
         stops={["#b31aef44 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}

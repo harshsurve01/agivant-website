@@ -34,7 +34,7 @@ export interface Phase2Item {
  */
 export interface Phase2Props {
   /** Small label above the heading, e.g. "Phase 2". */
-  eyebrow: string;
+  eyebrow?: string | null;
   /**
    * Section heading, e.g. "Running Proper Experiments". Unlike
    * Phase1/ExecutiveBrief (which highlight only the LAST word),

@@ -127,75 +127,37 @@ function assetExists(publicSrc: string): boolean {
   return existsSync(absolutePath);
 }
 
-/** Exactly two logos — everything one LogoShift instance holds. */
-export type PartnerLogoPair = [PartnerLogo, PartnerLogo];
+/** Group of logos assigned to one slot. */
+export type PartnerLogoGroup = PartnerLogo[];
 
-// Widened from 4 to 5 static slots to fit the full 10-partner
-// roster as clean pairs — each slot still owns exactly one
-// independent LogoShift instance holding exactly one logo pair (the
-// Framer component's "one logo pair per instance" model is
-// unchanged; there's just one more instance of it now). SLOT_COUNT *
-// PAIR_SIZE (10) matches the roster below exactly, so nothing is
-// held in reserve.
-const SLOT_COUNT = 5;
-const PAIR_SIZE = 2;
+/** 4 slots with 3 + 3 + 2 + 2 capacity for the 10-partner roster. */
+const SLOT_CAPACITIES = [3, 3, 2, 2];
 
 /**
- * Builds the 5 fixed pairs consumed by the 5 LogoShift instances:
- * the first 10 asset-verified logos, taken in fixed roster order and
- * chunked consecutively — [0,1], [2,3], [4,5], [6,7], [8,9].
- * Deterministic, never randomized, never duplicated as filler.
+ * Builds the 4 slot groups consumed by the 4 LogoShift instances:
+ * - Slot 0 (3): Glean, ServiceNow, GEMINI
+ * - Slot 1 (3): NVIDIA, AWS, Azure
+ * - Slot 2 (2): Salesforce, Databricks
+ * - Slot 3 (2): Shopify, TigerGraph
  *
- * If the roster ever grows past SLOT_COUNT * PAIR_SIZE again, the
- * leftover logic below holds the excess in reserve (dev-only warning)
- * rather than force-fitting a 3rd logo into any one slot — add a 6th
- * slot (bump SLOT_COUNT) or trim the roster instead.
+ * Deterministic, never randomized, all 10 partners represented with zero duplicates.
  */
-async function getPartnerLogoPairsContent(): Promise<PartnerLogoPair[]> {
+async function getPartnerLogoPairsContent(): Promise<PartnerLogoGroup[]> {
   const availableLogos = ALL_PARTNER_LOGOS.filter((logo) =>
     assetExists(logo.image.src)
   );
 
-  if (process.env.NODE_ENV !== "production") {
-    const missing = ALL_PARTNER_LOGOS.filter(
-      (logo) => !assetExists(logo.image.src)
-    );
-    if (missing.length > 0) {
-      console.warn(
-        `[Partners] Skipping ${missing.length} logo(s) with missing asset file(s): ${missing
-          .map((logo) => `${logo.id} (${logo.image.src})`)
-          .join(", ")}`
-      );
+  const slots: PartnerLogoGroup[] = [];
+  let offset = 0;
+  for (const capacity of SLOT_CAPACITIES) {
+    const group = availableLogos.slice(offset, offset + capacity);
+    if (group.length > 0) {
+      slots.push(group);
     }
-
-    const capacity = SLOT_COUNT * PAIR_SIZE;
-    if (availableLogos.length > capacity) {
-      const leftover = availableLogos.slice(capacity);
-      console.warn(
-        `[Partners] ${leftover.length} logo(s) held in reserve, not shown — ` +
-          `${SLOT_COUNT} slots × ${PAIR_SIZE} logos/pair = ${capacity} capacity, ` +
-          `but ${availableLogos.length} logos are available: ${leftover
-            .map((logo) => logo.id)
-            .join(", ")}. Trim the roster to ${capacity} or add a 5th slot.`
-      );
-    } else if (availableLogos.length < capacity) {
-      console.warn(
-        `[Partners] Only ${availableLogos.length} logo(s) available — fewer ` +
-          `than the ${capacity} needed to fill all ${SLOT_COUNT} slots. Some ` +
-          `slots will be omitted rather than given an incomplete pair.`
-      );
-    }
+    offset += capacity;
   }
 
-  const pairs: PartnerLogoPair[] = [];
-  for (let slot = 0; slot < SLOT_COUNT; slot++) {
-    const a = availableLogos[slot * PAIR_SIZE];
-    const b = availableLogos[slot * PAIR_SIZE + 1];
-    if (!a || !b) break; // not enough logos left to complete this pair
-    pairs.push([a, b]);
-  }
-
-  return pairs;
+  return slots;
 }
 
 export const getPartnerLogoPairs = getPartnerLogoPairsContent;

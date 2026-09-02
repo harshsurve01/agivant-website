@@ -437,6 +437,23 @@
       ]
     },
     {
+      "id": "live-prompt-demo",
+      "type": "video_demo",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "heading": "Watch an agent get real-time prompts mid-call",
+        "description": "Two minutes inside a live call: Verbatim AI reads sentiment as it happens and feeds the agent the next best response.",
+        "closingStatement": "Once every call is readable, the patterns across them become the asset.",
+        "video": {
+          "sourceType": "youtube",
+          "src": "sFzmpcG6RkY",
+          "poster": "/images/solutions/thumbnail.png"
+        }
+      },
+      "blocks": []
+    },
+    {
       "id": "solution-offerings",
       "type": "card_grid",
       "enabled": true,

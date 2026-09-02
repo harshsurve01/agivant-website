@@ -13,7 +13,8 @@
    than inventing a new step. */
 .executiveBrief {
   width: 100%;
-  padding-block: var(--space-16);
+  padding-top: 15rem;
+  padding-bottom: var(--space-16);
 }
 
 /* --------------------------------------------------------------------

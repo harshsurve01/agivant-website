@@ -90,7 +90,7 @@ const mockAIStackCards: AIStackCardData[] = [
     // ASSET NOTE: no ribbon artwork was supplied at implementation
     // time, matching Hero's ASSET NOTE precedent. Path is a placeholder
     // for where the real per-card export should land.
-    backgroundImage: "/images/ai-stack/agentic-ai-agentops-ribbon.svg",
+    backgroundImage: "/images/ai-stack/rectangle1.png",
     accentColor: "#7c3aed", // TODO(design-tokens): confirm brand-purple token name, see other sections' same TODO
     layout: "agentic",
   },
@@ -100,7 +100,7 @@ const mockAIStackCards: AIStackCardData[] = [
     description:
       "We build RAG systems, predictive models, copilots and inference services engineered to spec, tuned for accuracy and built for real business use.",
     badge: "AI / ML",
-    backgroundImage: "/images/ai-stack/ai-ml-ribbon.svg",
+    backgroundImage: "/images/ai-stack/bg2.png",
     accentColor: "#7c3aed",
     layout: "aiml",
   },
@@ -110,7 +110,7 @@ const mockAIStackCards: AIStackCardData[] = [
     description:
       "We modernize cloud, platform and API foundations so agents and AI systems run at enterprise scale, built to carry what comes next.",
     badge: "Cloud",
-    backgroundImage: "/images/ai-stack/cloud-platform-engineering-ribbon.svg",
+    backgroundImage: "/images/ai-stack/rectangle4.png",
     accentColor: "#7c3aed",
     layout: "cloud",
   },
@@ -120,7 +120,7 @@ const mockAIStackCards: AIStackCardData[] = [
     description:
       "We build pipelines, semantic layers, knowledge systems, vector retrieval and data quality foundations so agents have reliable ground truth from day one.",
     badge: "Data",
-    backgroundImage: "/images/ai-stack/ai-ready-data-engineering-ribbon.svg",
+    backgroundImage: "/images/ai-stack/rectangle3.png",
     accentColor: "#7c3aed",
     layout: "data",
   },
@@ -130,7 +130,7 @@ const mockAIStackCards: AIStackCardData[] = [
     description:
       "We operationalize agents with deployment pipelines, monitoring, evaluation, FinOps and the runtime controls that keep production systems governed and improving.",
     badge: "Platform",
-    backgroundImage: "/images/ai-stack/mlops-ai-operations-ribbon.svg",
+    backgroundImage: "/images/ai-stack/rectangle5.png",
     accentColor: "#7c3aed",
     layout: "mlops",
   },

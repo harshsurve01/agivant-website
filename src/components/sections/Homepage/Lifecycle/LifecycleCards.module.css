@@ -1,0 +1,41 @@
+/* ==========================================================================
+   LifecycleCards.module.css
+   Horizontal 5-card layout with top alignment (downward growth)
+   and indicator track.
+   ========================================================================== */
+
+.interactiveWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: var(--space-8);
+  margin-top: calc(-1 * var(--space-4));
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: var(--container-xl);
+  min-height: 486px;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    flex-wrap: wrap;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    flex-direction: column;
+    align-items: center;
+    max-width: 20rem;
+    margin-inline: auto;
+    min-height: auto;
+  }
+}

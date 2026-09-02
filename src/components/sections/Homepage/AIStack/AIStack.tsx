@@ -46,7 +46,19 @@ export async function AIStack() {
         opacity={0.15}
         blur="30px"
       />
-
+  <Gradient
+   kind="linear"
+        angle="180deg"
+        top="50%"
+        left="-15%"
+        size="30rem"
+        stops={[
+          "color-mix(in srgb, #EDBF79 70%, transparent) 0%",
+          "transparent 100%",
+        ]}
+        opacity={0.5}
+        blur="60px"
+      />
       <Container>
         <div className={styles.inner}>
           <AIStackHeader heading={header.heading} description={header.description} />

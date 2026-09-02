@@ -16,6 +16,7 @@ import type {
 import {
   Hero,
   WhatAgentsDo,
+  LivePromptDemo,
   SolutionOfferings,
   ImpactTable,
 } from "@/components/sections/Solutions/Article";
@@ -222,6 +223,13 @@ export default async function SolutionInnerPage({
           if (!section.enabled) return null;
 
           switch (section.type) {
+            case "video_demo":
+              return (
+                <LivePromptDemo
+                  key={section.id}
+                  data={section.data}
+                />
+              );
 
 
             case "comparison_table":

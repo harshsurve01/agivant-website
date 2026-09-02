@@ -1,9 +1,12 @@
+import clsx from "clsx";
 import { PageRibbon } from "@/components/ui/PageRibbon";
 import { Hero } from "./Hero";
 import { Objectives } from "./Objectives";
 import { Solution } from "./Solution";
 import { Technology } from "./Technology";
 import { Outcome } from "./Outcome";
+import { OutcomeSummary } from "./OutcomeSummary";
+import { AtAGlance } from "./AtAGlance";
 import { Architecture } from "./Architecture";
 import type { ArticleProps } from "./types";
 import styles from "./Article.module.css";
@@ -28,6 +31,9 @@ export function Article(props: ArticleProps) {
     const { data } = props;
     const ribbonSrc =
       data.hero.media?.src ?? "/images/case-studies/case-study-ribbon.png";
+    const isNewTemplate =
+      data.slug === "multi-brand-commerce-migration" ||
+      data.sections.some((s) => s.type === "outcome_summary");
 
     return (
       <div className={styles.article}>
@@ -36,7 +42,10 @@ export function Article(props: ArticleProps) {
           src={ribbonSrc}
           width={1920}
           height={860}
-          className={styles.ribbonWrapper}
+          className={clsx(
+            styles.ribbonWrapper,
+            isNewTemplate && styles.ribbonPosition_top
+          )}
           imageClassName={styles.ribbonImage}
           priority
         />
@@ -103,6 +112,32 @@ export function Article(props: ArticleProps) {
                     index: String(index + 1).padStart(2, "0"),
                     emphasis: block.value ?? "",
                     text: block.label ?? "",
+                  }))}
+                />
+              );
+            }
+
+            case "outcome_summary": {
+              return (
+                <OutcomeSummary
+                  key={section.id}
+                  title={section.data.heading ?? "Outcome"}
+                  description={section.data.description ?? ""}
+                  primaryCta={section.data.primaryCta}
+                  secondaryCta={section.data.secondaryCta}
+                />
+              );
+            }
+
+            case "at_a_glance": {
+              return (
+                <AtAGlance
+                  key={section.id}
+                  title={section.data.heading ?? "At a glance"}
+                  blocks={section.blocks.map((block) => ({
+                    id: block.id,
+                    title: block.title ?? "",
+                    body: block.body ?? "",
                   }))}
                 />
               );

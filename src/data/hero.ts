@@ -1,76 +1,74 @@
 /**
  * data/hero.ts
  *
- * Mock data source for the Hero section. Shaped as an async getter —
- * not a static export — for the same reason as getAnnouncement() and
- * getNavigation(): swapping this file's internals for a real Headless
- * WordPress fetch later requires zero changes to Hero.tsx.
- *
- * Today: resolves instantly with hardcoded mock data.
- * Later:  will `fetch()` a WordPress REST/GraphQL endpoint (e.g. an
- *         ACF page-builder field group) and return the same shape.
+ * Single source of truth for Hero content following AGIVANT_JSON_DATA_RULEBOOK.md.
+ * Async getter signature for seamless future Headless WordPress fetch integration.
  */
 
+export interface HeroBackgroundData {
+  kind: "image" | "video";
+  src: string;
+  poster?: string;
+  alt?: string;
+}
+
+export interface AmpdAnimationData {
+  src?: string | null;
+  alt: string;
+  fallbackImage?: string;
+}
+
+export interface HeroCtaData {
+  enabled: boolean;
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
 export interface HeroData {
-  title: {
-    /** Text before the highlighted asset (e.g. "Agivant launches"). */
+  heading: string;
+  announcement: {
     prefix: string;
-    /** Accessible label for the inline brand asset — not an image path. */
-    highlightedAsset: string;
-    /** Text after the highlighted asset, before the rotating word. */
+    ampdAnimation: AmpdAnimationData;
     suffix: string;
   };
-  /**
-   * Candidate words/phrases for the bolded final line of the heading.
-   * Only rotatingWords[0] is rendered in this iteration — word rotation
-   * itself is a future GSAP feature, not implemented here.
-   */
-  rotatingWords: string[];
-  /** Bold lead-in line above the description (Figma: Poppins Medium, 40px). */
-  tagline: string;
-  /** Regular-weight supporting line (Figma: Poppins Regular, 24px). */
-  description: string;
-  primaryCTA: {
-    label: string;
-    href: string;
-  };
-  secondaryCTA: {
-    label: string;
-    href: string;
-  };
+  background: HeroBackgroundData;
+  primaryCta: HeroCtaData;
+  secondaryCta: HeroCtaData;
 }
 
 const mockHero: HeroData = {
-  title: {
+  heading: "Architecting the autonomous agentic enterprise",
+  announcement: {
     prefix: "Agivant launches",
-    highlightedAsset: "Amp'd",
-    suffix: "to make enterprise AI deliver",
+    ampdAnimation: {
+      src: null,
+      alt: "Amp'd",
+      fallbackImage: "/images/hero/ampd-wordmark.svg",
+    },
+    suffix: "to accelerate enterprise AI value",
   },
-  rotatingWords: [
-    "real business value",
-    "measurable ROI",
-    "faster time to market",
-    "seamless automation",
-  ],
-  tagline: "Architecting the autonomous agentic enterprise",
-  description:
-    "Engineering the systems that make your data, cloud, AI, and agents work as one.",
-  primaryCTA: {
-    label: "How Amp'd delivers real value",
-    href: "/amp-d",
+  background: {
+    kind: "image",
+    src: "/images/hero/hero-vid-img.png",
+    alt: "Abstract translucent glass wave background",
   },
-  secondaryCTA: {
+  primaryCta: {
+    enabled: true,
     label: "See client success in action",
     href: "/client-success",
+    external: false,
+  },
+  secondaryCta: {
+    enabled: true,
+    label: "How Amp'd delivers real value",
+    href: "/amp-d",
+    external: false,
   },
 };
 
 /**
  * Returns the current hero content.
- *
- * Async by design: Hero already awaits this, so replacing the body
- * below with a real WordPress fetch is a change confined entirely to
- * this file.
  */
 export async function getHero(): Promise<HeroData> {
   return mockHero;

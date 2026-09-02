@@ -28,11 +28,12 @@
   flex-shrink: 0;
   
   writing-mode: vertical-rl;
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.06em;
   color: var(--color-text-link);
   white-space: nowrap;
+  
 }
 
 /* Left column's label reads bottom-to-top; right column's label
@@ -46,11 +47,10 @@
 .stack {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
-  width: 100%;
-  max-width: 22rem;
+  gap: var(--space-4);
+  width: 25rem;
+  max-width: 25rem;
   min-width: 0;
-  
 }
 
 .title {
@@ -63,10 +63,40 @@
 .cards {
   display: flex;
   flex-direction: column;
-  gap: var(--space-10);
+  gap: var(--space-4);
+  width: 100%;
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.cardItem {
+  display: flex;
+  width: 100%;
+}
+
+/* Left column organic wave arc: Top (0) and Bottom (3) sit inward towards center; Middle (1, 2) sit outward to left */
+.column[data-amp-side="left"] .cardItem[data-index="0"],
+.column[data-amp-side="left"] .cardItem[data-index="3"] {
+  justify-content: flex-end;
+  padding-right: var(--space-2);
+}
+
+.column[data-amp-side="left"] .cardItem[data-index="1"],
+.column[data-amp-side="left"] .cardItem[data-index="2"] {
+  justify-content: flex-start;
+}
+
+/* Right column organic wave arc: Top (0) and Bottom (3) sit inward towards center; Middle (1, 2) sit outward to right */
+.column[data-amp-side="right"] .cardItem[data-index="0"],
+.column[data-amp-side="right"] .cardItem[data-index="3"] {
+  justify-content: flex-start;
+  padding-left: var(--space-2);
+}
+
+.column[data-amp-side="right"] .cardItem[data-index="1"],
+.column[data-amp-side="right"] .cardItem[data-index="2"] {
+  justify-content: flex-end;
 }
 
 @media (max-width: 900px) {
@@ -74,11 +104,14 @@
     max-width: 28rem;
   }
 
-  /* Layout stacks to a single column below this breakpoint (see
-     AmpExperience.module.css) — the rotated side label no longer has
-     a sensible place to sit once columns center under AmpCore instead
-     of flanking it, so it's hidden rather than re-oriented. */
   .label {
     display: none;
+  }
+
+  .column[data-amp-side="left"] .cardItem,
+  .column[data-amp-side="right"] .cardItem {
+    justify-content: center !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }

@@ -25,21 +25,27 @@ export interface MetricCardProps {
  * imports. Every value arrives via props.
  */
 export function MetricCard({ card }: MetricCardProps) {
+  const hasReferences = Array.isArray(card.references) && card.references.length > 0;
+
   return (
     <article className={styles.card}>
       <h3 className={styles.title}>{card.title}</h3>
       <p className={styles.description}>{card.description}</p>
 
-      <hr className={styles.divider} aria-hidden="true" />
+      {hasReferences && (
+        <>
+          <hr className={styles.divider} aria-hidden="true" />
 
-      <div className={styles.references}>
-        {card.references.map((reference) => (
-          <div key={reference.label} className={styles.reference}>
-            <p className={styles.referenceLabel}>{reference.label}</p>
-            <p className={styles.referenceText}>{reference.text}</p>
+          <div className={styles.references}>
+            {card.references?.map((reference) => (
+              <div key={reference.label} className={styles.reference}>
+                <p className={styles.referenceLabel}>{reference.label}</p>
+                <p className={styles.referenceText}>{reference.text}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </>
+      )}
     </article>
   );
 }

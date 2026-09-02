@@ -61,7 +61,10 @@ export function VideoPlayer({
   });
 
   const effectiveStatus = isSeeking ? "seeking" : state.status;
-  const showPoster = effectiveStatus === "idle" || effectiveStatus === "loading";
+  const showPoster =
+    effectiveStatus === "idle" ||
+    effectiveStatus === "loading" ||
+    effectiveStatus === "ended";
   const showError = effectiveStatus === "error" && state.error;
   const showControls = !showPoster && !showError;
 
