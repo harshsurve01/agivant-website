@@ -19,14 +19,14 @@
 
 .headingWrap {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   width: 100%;
   margin-bottom: var(--space-12);
   text-align: center;
 }
 
 .heading {
-  font-size: var(--font-size-5xl); /* 44px */
+  font-size: 4.735rem; /* 44px */
   font-weight: var(--font-weight-bold);
   color: var(--color-purple-500);
   margin: 0;
