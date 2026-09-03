@@ -34,10 +34,10 @@ export function Preloader({
   onComplete,
 }: PreloaderProps) {
   const [isExited, setIsExited] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isExitingRef = useRef(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const playbackTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const mountTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const onCompleteRef = useRef(onComplete);
 
   // Keep onCompleteRef updated to latest prop value
@@ -59,9 +59,13 @@ export function Preloader({
     if (isExitingRef.current) return;
     isExitingRef.current = true;
 
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
+    if (playbackTimeoutRef.current) {
+      clearTimeout(playbackTimeoutRef.current);
+      playbackTimeoutRef.current = null;
+    }
+    if (mountTimeoutRef.current) {
+      clearTimeout(mountTimeoutRef.current);
+      mountTimeoutRef.current = null;
     }
 
     // Check for reduced-motion preference
@@ -112,27 +116,37 @@ export function Preloader({
       return;
     }
 
-    setIsMounted(true);
-
     // Prevent body scroll while preloader is active
     if (typeof document !== "undefined" && !isExitingRef.current) {
       document.body.style.overflow = "hidden";
     }
 
-    // Safety fallback timeout: guarantees page access after timeoutMs
-    timeoutRef.current = setTimeout(() => {
+    // Absolute safety net: guarantees page accessibility even if player chunk/JS fails completely
+    mountTimeoutRef.current = setTimeout(() => {
       handleExit();
-    }, timeoutMs);
+    }, 8000);
 
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
+      if (playbackTimeoutRef.current) {
+        clearTimeout(playbackTimeoutRef.current);
+      }
+      if (mountTimeoutRef.current) {
+        clearTimeout(mountTimeoutRef.current);
       }
       if (typeof document !== "undefined") {
         document.body.style.overflow = "";
       }
     };
-  }, [enabled, handleExit, timeoutMs]);
+  }, [enabled, handleExit]);
+
+  // Start playback safety timer once the animation begins or becomes ready
+  const handlePlaybackStarted = useCallback(() => {
+    if (!playbackTimeoutRef.current && !isExitingRef.current) {
+      playbackTimeoutRef.current = setTimeout(() => {
+        handleExit();
+      }, timeoutMs);
+    }
+  }, [handleExit, timeoutMs]);
 
   if (!enabled || isExited) {
     return null;
@@ -153,10 +167,12 @@ export function Preloader({
           src={animationUrl}
           className={styles.lottiePlayer}
           onEvent={(event) => {
-            if (event === "complete") {
+            if (event === "play" || event === "ready" || event === "load" || event === "instanceSaved") {
+              handlePlaybackStarted();
+            } else if (event === "complete") {
               handleExit();
-            }
-            if (event === "error") {
+            } else if (event === "error") {
+              // On player error, gracefully fallback to exit rather than abrupt cutoff
               handleExit();
             }
           }}

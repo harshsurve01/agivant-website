@@ -30,7 +30,7 @@ export interface PreloaderData {
 
 export const defaultPreloaderData: PreloaderData = {
   enabled: true,
-  animationUrl: "https://lottie.host/ca9852c4-7fc8-4fa3-843f-a08e7c3e783f/2rjJXFdTln.json",
+  animationUrl: "/animations/preloader.json",
   speed: 1,
   loop: false,
   autoplay: true,
