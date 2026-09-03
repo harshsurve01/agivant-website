@@ -1,0 +1,182 @@
+/* ==========================================================================
+   WhatAgivantBuilt.module.css (Case Study Section 4)
+   ========================================================================== */
+
+.whatAgivantBuilt {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-45);
+  padding-bottom: var(--space-20);
+  overflow-x: clip;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headerWrapper {
+  width: 100%;
+  max-width: calc(35.75rem * 2 + var(--space-8));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.15;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-6);
+}
+
+.titleHighlight {
+  color: var(--color-brand-primary);
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.35;
+  letter-spacing: 0;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-16);
+  max-width: 1180px;
+}
+
+/* --------------------------------------------------------------------------
+   Cards Grid (Desktop 2 × 2 Grid: 35.75rem × 22.625rem per card)
+   -------------------------------------------------------------------------- */
+.cardsGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 35.75rem);
+  gap: var(--space-12);
+  justify-content: center;
+}
+
+.card {
+  width: 35.75rem;
+  height: 22.625rem;
+  border-radius: var(--radius-2xl, 1.5rem);
+  border: 1px solid var(--color-border-default);
+  background-color: #d9d9d920;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-12px);
+}
+
+.card:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 13.3125rem;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.cardContent {
+  flex: 1;
+  padding: var(--space-6) var(--space-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.cardTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.cardDescription {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-neutral-500);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .headerWrapper {
+    max-width: 100%;
+  }
+
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .card {
+    width: 100%;
+    height: auto;
+    min-height: 22.625rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .whatAgivantBuilt {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+
+  .headerWrapper {
+    max-width: 100%;
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .card {
+    width: 100%;
+    height: auto;
+    min-height: auto;
+  }
+
+  .imageWrapper {
+    height: clamp(10rem, 50vw, 13.3125rem);
+  }
+
+  .cardContent {
+    padding: var(--space-6);
+  }
+
+  .description {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-8);
+  }
+}

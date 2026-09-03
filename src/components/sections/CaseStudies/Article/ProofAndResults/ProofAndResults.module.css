@@ -1,0 +1,200 @@
+/* ==========================================================================
+   ProofAndResults.module.css (Case Study Section 6)
+   ========================================================================== */
+
+.proofAndResults {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-45);
+  overflow-x: clip;
+}
+
+.ribbonWrapper {
+  position: absolute;
+  bottom: -20rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1920px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+.ribbonImage {
+  width: 100%;
+  height: 80%;
+  opacity: 0.55;
+
+  -webkit-mask-image: linear-gradient(
+    to top,
+    transparent 0%,
+    rgba(0, 0, 0, 0.25) 20%,
+    rgba(0, 0, 0, 0.65) 45%,
+    black 75%,
+    black 100%
+  );
+
+  mask-image: linear-gradient(
+    to top,
+    transparent 0%,
+    rgba(0, 0, 0, 0.25) 20%,
+    rgba(0, 0, 0, 0.65) 45%,
+    black 75%,
+    black 100%
+  );
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.resultsBlock {
+  margin-top: var(--space-12);
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.15;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.titleHighlight {
+  color: var(--color-brand-primary);
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.35;
+  letter-spacing: 0;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-24);
+  max-width: 1180px;
+}
+
+/* --------------------------------------------------------------------------
+   Bento Results Grid
+   Desktop: 4 columns × 2 rows (Total width: 70.625rem / 1130px)
+   -------------------------------------------------------------------------- */
+.bentoGrid {
+  width: 70.625rem;
+  display: grid;
+  grid-template-columns: repeat(4, 17rem);
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.card {
+  height: 9.625rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: #d9d9d920;
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.08);
+  padding: var(--space-6) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+@supports (backdrop-filter: blur(0)) {
+  .card {
+    backdrop-filter: blur(14px);
+  }
+}
+
+.cardSmall {
+  grid-column: span 1;
+  width: 17rem;
+}
+
+.cardWide {
+  grid-column: span 2;
+  width: 34.875rem;
+}
+
+.metricValue {
+  font-family: var(--font-family-heading);
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-brand-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.metricLabel {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: 0;
+  
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .bentoGrid {
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  .cardSmall,
+  .cardWide {
+    width: 100%;
+    grid-column: span 1;
+    height: auto;
+    min-height: 9.625rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .proofAndResults {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+
+  .bentoGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .cardSmall,
+  .cardWide {
+    width: 100%;
+    grid-column: 1;
+    height: auto;
+    min-height: auto;
+    padding: var(--space-5) var(--space-6);
+  }
+
+  .resultsBlock {
+    margin-top: var(--space-8);
+  }
+
+  .description {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-6);
+  }
+}

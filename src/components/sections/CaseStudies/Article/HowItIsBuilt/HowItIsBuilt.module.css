@@ -1,0 +1,279 @@
+/* ==========================================================================
+   HowItIsBuilt.module.css (Case Study Section 5)
+   ========================================================================== */
+
+.howItIsBuilt {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-40);
+  padding-bottom: var(--space-40);
+  overflow-x: clip;
+}
+
+.ribbonWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  width: 100%;
+  max-width: 1920px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+.ribbonImage {
+  width: 100%;
+  height: auto;
+  opacity: 0.25;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contentWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.15;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-8);
+}
+
+.titleHighlight {
+  color: var(--color-brand-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Architecture Table (Desktop Frame: 50.3125rem × 38.75rem / 805px × 620px)
+   -------------------------------------------------------------------------- */
+.tableContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: var(--space-12);
+}
+
+.table {
+  width: auto;
+  height: 38.75rem;
+  border-radius: var(--radius-2xl, 1.5rem);
+  border: 1px solid var(--color-border-default);
+  overflow: hidden;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.leftColumn {
+  width: 24.1875rem;
+  height: 38.75rem;
+  background-color: #A175D4;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.rightColumn {
+  width: 50.3125rem;
+  height: 38.75rem;
+  background: rgba(255, 255, 255, 0.25);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.08);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+@supports (backdrop-filter: blur(0)) {
+  .rightColumn {
+    backdrop-filter: blur(4px);
+  }
+}
+
+.leftRow {
+  height: calc(38.75rem / 6);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-white);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+  box-sizing: border-box;
+}
+
+.leftRow:last-child {
+  border-bottom: none;
+}
+
+.rightRow {
+  width: 50.3125rem;
+  height: calc(38.75rem / 6);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  box-sizing: border-box;
+}
+
+.rightRow:last-child {
+  border-bottom: none;
+}
+
+/* --------------------------------------------------------------------------
+   Before / After Cards Grid (Desktop Frame: 35.625rem × 14.6875rem per card)
+   -------------------------------------------------------------------------- */
+.cardsGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 35.625rem);
+  gap: var(--space-8);
+  justify-content: flex-start;
+}
+
+.card {
+  width: 35.625rem;
+  height: 14.6875rem;
+  border-radius: var(--radius-2xl, 1.5rem);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: #d9d9d920;
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1);
+  padding: var(--space-6) var(--space-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+@supports (backdrop-filter: blur(0)) {
+  .card {
+    backdrop-filter: blur(24px);
+  }
+}
+
+.iconBadge {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-md, 8px);
+  background: linear-gradient(
+    135deg,
+    rgba(233, 213, 255, 0.7) 0%,
+    rgba(252, 231, 243, 0.7) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand-primary);
+  margin-bottom: var(--space-4);
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+  color: var(--color-brand-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.cardDescription {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .card {
+    width: 100%;
+    height: auto;
+    min-height: 14.6875rem;
+  }
+
+  .table {
+    width: 100%;
+    max-width: 50.3125rem;
+  }
+
+  .leftColumn {
+    width: 45%;
+  }
+
+  .rightColumn {
+    width: 55%;
+  }
+}
+
+@media (max-width: 768px) {
+  .howItIsBuilt {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+
+  .table {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+  }
+
+  .leftColumn {
+    width: 100%;
+    height: auto;
+  }
+
+  .rightColumn {
+    width: 100%;
+    height: auto;
+  }
+
+  .leftRow,
+  .rightRow {
+    height: auto;
+    min-height: 3.5rem;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .card {
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    padding: var(--space-6);
+  }
+}

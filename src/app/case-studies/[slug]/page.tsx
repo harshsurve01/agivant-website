@@ -84,17 +84,15 @@ export default async function CaseStudyArticlePage({
         <Article data={caseStudy} />
       </main>
 
-      <Footer
-        ctaData={
-          caseStudy.footerCta.enabled
-            ? {
-                heading: caseStudy.footerCta.heading.replace(/<br\s*\/?>/gi, "\n"),
-                description: caseStudy.footerCta.subheading ?? undefined,
-                buttons: footerButtons,
-              }
-            : undefined
-        }
-      />
+      {caseStudy.showFooter !== false && caseStudy.footerCta?.enabled && (
+        <Footer
+          ctaData={{
+            heading: caseStudy.footerCta.heading.replace(/<br\s*\/?>/gi, "\n"),
+            description: caseStudy.footerCta.subheading ?? undefined,
+            buttons: footerButtons,
+          }}
+        />
+      )}
     </GradientLayerProvider>
   );
 }

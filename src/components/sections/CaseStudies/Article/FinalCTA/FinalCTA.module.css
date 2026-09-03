@@ -1,0 +1,86 @@
+/* ==========================================================================
+   FinalCTA.module.css (Case Study Section 8 — Final Section)
+   ========================================================================== */
+
+.finalCTA {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-32);
+  overflow-x: clip;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-7xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.15;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+  text-align: center;
+}
+
+.headingHighlight {
+  color: var(--color-brand-primary);
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.4;
+  color: var(--color-text-primary);
+  max-width: 38.75rem;
+  margin: 0 0 var(--space-8);
+  text-align: center;
+}
+
+.buttonsGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.link {
+  text-decoration: none;
+  display: inline-flex;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .finalCTA {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-16);
+  }
+
+  .heading {
+    font-size: var(--font-size-3xl);
+  }
+
+  .description {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-6);
+  }
+
+  .buttonsGroup {
+    flex-direction: column;
+    width: 100%;
+    gap: var(--space-3);
+  }
+
+  .link {
+    width: 100%;
+    justify-content: center;
+  }
+}

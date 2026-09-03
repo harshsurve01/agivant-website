@@ -107,4 +107,5 @@ export interface CaseStudyDetailPage {
   techPlatform: string;
   sections: CaseStudySection[];
   footerCta: CaseStudyFooterCTA;
+  showFooter?: boolean;
 }

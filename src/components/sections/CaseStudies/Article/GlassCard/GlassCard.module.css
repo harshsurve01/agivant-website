@@ -1,0 +1,71 @@
+/* ==========================================================================
+   GlassCard.module.css
+   Shared Case Study glass card presentation.
+   ========================================================================== */
+
+.card {
+  min-height: 285px;
+  padding: var(--space-8) var(--space-10);
+  border-radius: var(--radius-2xl, 1.5rem);
+  background: #d9d9d920;
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+@supports (backdrop-filter: blur(0)) {
+  .card {
+    backdrop-filter: blur(24px);
+  }
+}
+
+.iconBadge {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-md, 8px);
+  background: linear-gradient(
+    135deg,
+    rgba(233, 213, 255, 0.7) 0%,
+    rgba(252, 231, 243, 0.7) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-6);
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+  color: var(--color-brand-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.cardDescription {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    padding: var(--space-6) var(--space-8);
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    min-height: auto;
+    padding: var(--space-6);
+  }
+}

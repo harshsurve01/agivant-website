@@ -1,0 +1,130 @@
+/* ==========================================================================
+   WhereItStarted.module.css (Case Study Section 3)
+   ========================================================================== */
+
+.whereItStarted {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-16);
+  overflow-x: clip;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.15;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.titleHighlight {
+  color: var(--color-brand-primary);
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.35;
+  letter-spacing: 0;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-10);
+  max-width: 1180px;
+}
+
+/* --------------------------------------------------------------------------
+   Cards Grid (Two Column Desktop Frame: 570px × 285px)
+   -------------------------------------------------------------------------- */
+.cardsGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-8);
+}
+
+/* --------------------------------------------------------------------------
+   Agivant's Role Banner (Full-Width Glass Container)
+   -------------------------------------------------------------------------- */
+.roleBanner {
+  width: 100%;
+  margin-top: var(--space-8);
+  padding: var(--space-6) var(--space-10);
+  border-radius: var(--radius-2xl, 1.5rem);
+  background: #d9d9d920;
+  -webkit-backdrop-filter: blur(24px);
+  border: 2px solid rgba(142, 137, 137, 0.9);
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  box-sizing: border-box;
+}
+
+@supports (backdrop-filter: blur(0)) {
+  .roleBanner {
+    backdrop-filter: blur(24px);
+  }
+}
+
+.roleTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+  color: var(--color-brand-primary);
+  margin: 0;
+}
+
+.roleDescription {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .cardsGrid {
+    gap: var(--space-6);
+  }
+
+  .roleBanner {
+    padding: var(--space-6) var(--space-8);
+  }
+}
+
+@media (max-width: 768px) {
+  .whereItStarted {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .roleBanner {
+    margin-top: var(--space-6);
+    padding: var(--space-6);
+  }
+
+  .description {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-8);
+  }
+}

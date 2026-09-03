@@ -27,11 +27,13 @@
     "canonical": "https://agivant.com/case-studies/multi-brand-commerce-migration",
     "ogImage": null
   },
+  "showFooter": false,
   "footerCta": {
+    "enabled": false,
     "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
     "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
     "primaryCta": {
-      "enabled": true,
+      "enabled": false,
       "label": "Get Amp'd!",
       "href": "/contact",
       "external": false
@@ -92,6 +94,287 @@
           "body": "Migration and data engineering across platform move, headless architecture, and production rollout"
         }
       ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "A hard deadline against the whole storefront estate, on a stack that could not carry peak-sales traffic."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "A three-month platform shutdown put all storefront revenue at risk, while 8 to 10 second loads and checkout failures cost peak-sales conversions."
+        },
+        {
+          "id": "no-decision-framework",
+          "type": "card",
+          "title": "No decision framework",
+          "body": "Incompatible schemas across the legacy platform and WooCommerce, a zero-loss move of 1.38M records, 31,500 warranty records in custom EAV structures, and 30+ performance-degrading plugins. Traditional ETL and manual QA could not meet the date."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant’s Role",
+          "body": "Migration and data engineering across platform move, headless architecture, and production rollout"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Forward Deployed Engineers embedded across order management, marketing, brand, and support. Discovery two weeks, prototype and schema mapping three weeks, then production sprints and a brand-by-brand rollout with automated go-live gates. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "data-migration-agent",
+          "type": "card",
+          "title": "Data Migration agent",
+          "body": "Schema-aware ETL from the legacy platform and WooCommerce, with retry and audit trails.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Data Migration agent",
+            "caption": null
+          }
+        },
+        {
+          "id": "data-validation-agent",
+          "type": "card",
+          "title": "Data Validation agent",
+          "body": "Source-to-destination integrity checks on products, customers, orders, and warranty metafields.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Data Validation agent",
+            "caption": null
+          }
+        },
+        {
+          "id": "seo-url-mapping",
+          "type": "card",
+          "title": "SEO and URL Mapping agent",
+          "body": "Automated 301 redirect rules and drift monitoring after cutover.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "SEO and URL Mapping agent",
+            "caption": null
+          }
+        },
+        {
+          "id": "qa-regression-agent",
+          "type": "card",
+          "title": "QA and Regression agent",
+          "body": "Automated journey tests across browse, cart, checkout, and account, plus visual regression per brand.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "QA and Regression agent",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-platforms",
+              "label": "Platforms",
+              "value": "Legacy commerce platform, WooCommerce, Shopify Plus"
+            },
+            {
+              "id": "row-data-reporting",
+              "label": "Data and reporting",
+              "value": "Azure SQL, Salsify"
+            },
+            {
+              "id": "row-marketing-cx",
+              "label": "Marketing and CX",
+              "value": "Klaviyo, Loop, Yotpo, Signifyd, Statsig, Triple Whale, DataGrail"
+            },
+            {
+              "id": "row-support-app",
+              "label": "Support app",
+              "value": "React and Next.js"
+            },
+            {
+              "id": "row-production-agents",
+              "label": "Production agents",
+              "value": "Data Migration, Data Validation, SEO and URL Mapping, QA and Regression"
+            },
+            {
+              "id": "row-controls",
+              "label": "Controls",
+              "value": "Human approval at go-live, role-scoped access, staged per brand"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "A monolith with manual scripts, siloed brand databases, and no automated QA."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "An agent layer feeding unified pipelines into Shopify Plus, headless APIs, Next.js and Hydrogen frontends, and automated go-live gates."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "At the first brand cutover, the Data Migration agent moved 768K profiles overnight. Validation flagged 0.3% metafield mismatches, SEO generated 4,200 redirects, and QA ran 847 checkout scenarios, all before sign-off. A three-week data sprint plus a one-week QA cycle became a 48-hour pipeline."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "All 10+ brands live before the shutdown, with zero revenue-loss downtime."
+        },
+        {
+          "id": "metric-storefront-conversion",
+          "type": "bento_metric",
+          "value": "+1.5%",
+          "label": "Storefront conversion",
+          "variant": "small"
+        },
+        {
+          "id": "metric-support-conversion",
+          "type": "bento_metric",
+          "value": "+15%",
+          "label": "Support-channel conversion, unified app",
+          "variant": "small"
+        },
+        {
+          "id": "metric-manual-migration",
+          "type": "bento_metric",
+          "value": "70% down",
+          "label": "Manual migration effort",
+          "variant": "small"
+        },
+        {
+          "id": "metric-campaign-deployment",
+          "type": "bento_metric",
+          "value": "80% down",
+          "label": "Campaign deployment time",
+          "variant": "small"
+        },
+        {
+          "id": "metric-mobile-pagespeed",
+          "type": "bento_metric",
+          "value": "91 to 100",
+          "label": "Mobile PageSpeed, lead brand",
+          "variant": "wide"
+        },
+        {
+          "id": "metric-year-two-revenue",
+          "type": "bento_metric",
+          "value": "~20% up",
+          "label": "Year-two revenue",
+          "variant": "wide"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "The Commerce Migration Blueprint reuses 80%+ of agent configs on later moves, and a new storefront joins the support cockpit in under two hours. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "Parallel workstreams across 10+ brands on one deadline, a shift to scoped admin access, and 31,500 warranty records restructured into Shopify metafields with no customer-facing disruption."
+        },
+        {
+          "id": "client-quote",
+          "type": "quote_card",
+          "body": "\"We needed a partner who could rescue our storefronts fast and set us up for the long term. The AI-accelerated approach did both.\"",
+          "author": "Client leadership"
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "path to Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
     }
   ]
 }
