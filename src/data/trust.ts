@@ -1,3 +1,13 @@
+/**
+ * data/trust.ts
+ *
+ * CMS-ready data access layer for the Homepage Trust section.
+ * Content resides exclusively in `src/data/homepage.json` under `trust-enterprise-grade`.
+ * No hardcoded copy belongs in this file.
+ */
+
+import homepageJson from "./homepage.json";
+
 export interface TrustCardData {
   id: string;
   title: string;
@@ -6,43 +16,28 @@ export interface TrustCardData {
   accentColor: string;
 }
 
+// Runtime animation accent colors for GSAP ambient glow interpolation in TrustAnimation
+const TRUST_ANIMATION_ACCENT_COLORS: Record<string, string> = {
+  "global-enterprise-trust": "#7C3AED",
+  "ai-native-since-day-1": "#2563EB",
+  "hyperscaler-partner-ecosystem": "#0D9488",
+};
+
 /**
- * getTrustCards
- *
- * Returns the ordered set of cards in the Trust stack. Only the first
- * card ("Global Enterprise Trust") appears in the current Figma frame —
- * accentColor for cards 2 and 3 is a placeholder pending confirmation,
- * same convention as the TODO(figma) comments elsewhere in this codebase.
- *
- * Same pattern as getNavigation()/getAnnouncements(): mock data for now,
- * swapped for a real Headless WordPress fetch later with no change to
- * the calling components.
+ * Returns the ordered set of cards in the Trust stack.
  */
 export async function getTrustCards(): Promise<TrustCardData[]> {
-  return [
-    {
-      id: "global-enterprise-trust",
-      title: "Global Enterprise Trust",
-      description:
-        "Agivant is trusted for complex, high-scale engineering by global enterprises",
-      badge: "Trusted",
-      accentColor: "#7C3AED", // confirmed via Figma: card 1 badge/title color
-    },
-    {
-      id: "ai-native-since-day-1",
-      title: "AI-Native since Day 1",
-      description:
-        "Agivant was built AI-native, with engineers and agents working as one",
-      badge: "Amplified",
-      accentColor: "#2563EB", // TODO(figma): card 2 not yet shown in Figma — placeholder
-    },
-    {
-      id: "hyperscaler-partner-ecosystem",
-      title: "Hyperscaler & Partner Ecosystem",
-      description:
-        "Agivant works across global hyperscaler, data, AI and workflow platforms enterprises depend on",
-      badge: "Connected",
-      accentColor: "#0D9488", // TODO(figma): card 3 not yet shown in Figma — placeholder
-    },
-  ];
+  const section = homepageJson.sections.find(
+    (s) => s.id === "trust-enterprise-grade"
+  );
+  if (!section) return [];
+
+  return (section.blocks as any[]).map((block) => ({
+    id: block.id,
+    title: block.title ?? "",
+    description: block.body ?? "",
+    badge: block.eyebrow ?? "",
+    accentColor:
+      TRUST_ANIMATION_ACCENT_COLORS[block.id] ?? "#7C3AED",
+  }));
 }

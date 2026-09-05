@@ -6,7 +6,11 @@
  * No hardcoded copy or mock data belongs in this file.
  */
 
-import proofJson from "./proof.json";
+import homepageJson from "./homepage.json";
+
+const proofSection = homepageJson.sections.find(
+  (s) => s.id === "proof-beyond-the-pilot"
+)!;
 
 export interface CaseStudy {
   id: string;
@@ -43,20 +47,20 @@ export interface ProofSectionData {
  */
 export async function getProofHeader(): Promise<ProofHeaderContent> {
   return {
-    heading: proofJson.data.heading,
-    description: proofJson.data.description,
+    heading: proofSection.data.heading ?? "",
+    description: proofSection.data.description ?? "",
     cta: {
-      label: proofJson.data.cta.label,
-      href: proofJson.data.cta.href,
+      label: proofSection.data.cta?.label ?? "",
+      href: proofSection.data.cta?.href ?? "",
     },
   };
 }
 
 /**
- * Returns all Case Studies configured in `proof.json`.
+ * Returns all Case Studies configured in `homepage.json`.
  */
 export async function getCaseStudies(): Promise<CaseStudy[]> {
-  return proofJson.blocks.map((block) => {
+  return (proofSection.blocks ?? []).map((block: any) => {
     const items = block.items ?? [];
     return {
       id: block.id,
@@ -66,10 +70,10 @@ export async function getCaseStudies(): Promise<CaseStudy[]> {
       metric: items[0] || undefined,
       metricLabel: items[1] || undefined,
       footer: items[2] || undefined,
-      href: block.cta.href,
+      href: block.cta?.href,
       image: {
-        src: block.media.src,
-        alt: block.media.alt,
+        src: block.media?.src,
+        alt: block.media?.alt,
       },
       theme: "default",
     };

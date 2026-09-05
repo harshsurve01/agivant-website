@@ -37,9 +37,7 @@
     },
     "primaryCta": null,
     "secondaryCta": null,
-    "headingLine1": "Turn AI pilots into enterprise-wide",
-    "headingLine2": "business value with",
-    "ribbonSrc": "/images/partners/gemini/gemini-hero-ribbon.png"
+    "heading": "Turn AI pilots into enterprise-wide<br>business value with"
   },
   "sections": [
     {
@@ -53,11 +51,7 @@
         "description": null,
         "columns": [],
         "media": null,
-        "cta": null,
-        "headingStructure": {
-          "highlight": "From Gemini Enterprise",
-          "suffix": "to production value"
-        }
+        "cta": null
       },
       "blocks": [
         {
@@ -127,11 +121,7 @@
           "height": 251
         },
         "cta": null,
-        "layout": "text-image",
-        "headingStructure": {
-          "highlight": "Get Amp’d",
-          "text": "to move from AI ambition to autonomous workflows."
-        }
+        "layout": "text-image"
       },
       "blocks": [
         {
@@ -155,11 +145,7 @@
         "media": null,
         "cta": null,
         "layout": "text-metrics",
-        "closingStatement": "Speed matters most when the enterprise stays in control.",
-        "headingStructure": {
-          "prefix": "Put coordinated agent teams to work across",
-          "highlight": "core enterprise systems."
-        }
+        "closingStatement": "Speed matters most when the enterprise stays in control."
       },
       "blocks": [
         {
@@ -186,7 +172,7 @@
       "conditions": null,
       "data": {
         "eyebrow": null,
-        "heading": "Keep teams in control while agents run the work.",
+        "heading": "Keep teams in control<br>while agents run the work.",
         "description": null,
         "columns": [],
         "media": {
@@ -200,11 +186,7 @@
         },
         "cta": null,
         "layout": "image-text",
-        "closingStatement": "Control matters most where enterprise data already lives.",
-        "headingStructure": {
-          "prefix": "Keep teams in control\n",
-          "highlight": "while agents run the work."
-        }
+        "closingStatement": "Control matters most where enterprise data already lives."
       },
       "blocks": [
         {
@@ -222,7 +204,7 @@
       "conditions": null,
       "data": {
         "eyebrow": null,
-        "heading": "Scale securely on Google Cloud with Marketplace-ready accelerators.",
+        "heading": "Scale securely on Google Cloud<br>with Marketplace-ready accelerators.",
         "description": null,
         "columns": [],
         "media": {
@@ -235,11 +217,7 @@
           "height": 279
         },
         "cta": null,
-        "layout": "text-image",
-        "headingStructure": {
-          "highlight": "Scale securely on Google Cloud\n",
-          "text": "with Marketplace-ready accelerators."
-        }
+        "layout": "text-image"
       },
       "blocks": [
         {
@@ -257,15 +235,11 @@
       "conditions": null,
       "data": {
         "eyebrow": null,
-        "heading": "Accelerate business outcomes with production-ready Gemini Enterprise solutions.",
+        "heading": "Accelerate business outcomes with production-ready<br>Gemini Enterprise solutions.",
         "description": "Explore Agivant’s industry-validated Gemini Enterprise agent accelerators, live on Google Cloud Marketplace.",
         "columns": [],
         "media": null,
-        "cta": null,
-        "headingStructure": {
-          "prefix": "Accelerate business outcomes with production-ready\n",
-          "highlight": "Gemini Enterprise solutions."
-        }
+        "cta": null
       },
       "blocks": [
         {
@@ -588,11 +562,7 @@
         "description": "Gemini Enterprise engagements already running, with outcomes measured in the environment they were built for.",
         "columns": [],
         "media": null,
-        "cta": null,
-        "headingStructure": {
-          "highlight": "Proof",
-          "rest": "from production."
-        }
+        "cta": null
       },
       "blocks": [
         {
@@ -683,11 +653,7 @@
         "description": "Three agent accelerators engineered on the Gemini Enterprise Agent Platform and Google's Agent Development Kit, available through Google Cloud Marketplace.",
         "columns": [],
         "media": null,
-        "cta": null,
-        "headingStructure": {
-          "highlight": "Built on",
-          "rest": "Gemini Enterprise."
-        }
+        "cta": null
       },
       "blocks": [
         {
@@ -767,7 +733,7 @@
   ],
   "footerCta": {
     "enabled": true,
-    "heading": "Put Gemini Enterprise to work for measurable business impact.",
+    "heading": "Put Gemini Enterprise to work for<br>measurable business impact.",
     "subheading": "Let's architect the agentic enterprise together on a platform built to scale from day one.",
     "partner": {
       "name": "Gemini Enterprise",
@@ -786,7 +752,6 @@
       "href": "/contact",
       "external": false,
       "icon": "cube"
-    },
-    "rawHeading": "To be decided or kept as is\nPut Gemini Enterprise to work for\nmeasurable business impact."
+    }
   }
 }

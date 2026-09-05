@@ -1,0 +1,256 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "partnershipLanding",
+  "slug": "/partners",
+  "title": "Ecosystem partnerships",
+  "hero": {
+    "heading": "Ecosystem partnerships",
+    "description": "Built around the platforms enterprises already run"
+  },
+  "sections": [
+    {
+      "id": "explore-the-ecosystem",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Explore the ecosystem",
+        "description": "Agivant engineers agentic AI into production across the cloud, data, AI, and workflow platforms enterprises depend on.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "aws",
+          "type": "card",
+          "eyebrow": null,
+          "title": "AWS",
+          "body": "Well-Architected practice for every migration",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/aws.png",
+            "assetKey": "partner-aws",
+            "alt": "AWS",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Explore partnership",
+            "href": "/partners/aws",
+            "external": false
+          },
+          "items": []
+        },
+        {
+          "id": "azure",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Azure",
+          "body": "Optimization practice, built on Agivant's own AOAF",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/azure.png",
+            "assetKey": "partner-azure",
+            "alt": "Azure",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Explore partnership",
+            "href": "/partners/azure",
+            "external": false
+          },
+          "items": []
+        },
+        {
+          "id": "databricks",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Databricks",
+          "body": "Bronze Partner, building agents on the Lakehouse",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/databricks.png",
+            "assetKey": "partner-databricks",
+            "alt": "Databricks",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Explore partnership",
+            "href": "/partners/databricks",
+            "external": false
+          },
+          "items": []
+        },
+        {
+          "id": "gemini-enterprise",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Gemini Enterprise",
+          "body": "Dedicated practice, built on Google's Agent Development Kit",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/gemini.png",
+            "assetKey": "partner-gemini",
+            "alt": "Gemini Enterprise",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Explore partnership",
+            "href": "/partners/gemini-enterprise",
+            "external": false
+          },
+          "items": []
+        },
+        {
+          "id": "glean",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Glean",
+          "body": "Work AI collaboration, built on domain accelerators",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/glean.png",
+            "assetKey": "partner-glean",
+            "alt": "Glean",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Explore partnership",
+            "href": "/partners/glean",
+            "external": false
+          },
+          "items": []
+        },
+        {
+          "id": "nvidia",
+          "type": "card",
+          "eyebrow": null,
+          "title": "NVIDIA",
+          "body": "GPU-native AI practice on the full CUDA stack",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/nvidia.png",
+            "assetKey": "partner-nvidia",
+            "alt": "NVIDIA",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Explore partnership",
+            "href": "/partners/nvidia",
+            "external": false
+          },
+          "items": []
+        },
+        {
+          "id": "salesforce",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Salesforce",
+          "body": "AI practice across Data Cloud, Einstein, and Agentforce",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/salesforce.png",
+            "assetKey": "partner-salesforce",
+            "alt": "Salesforce",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Explore partnership",
+            "href": "/partners/salesforce",
+            "external": false
+          },
+          "items": []
+        },
+        {
+          "id": "servicenow",
+          "type": "card",
+          "eyebrow": null,
+          "title": "ServiceNow",
+          "body": "AI-first migration and automation practice",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/servicenow.png",
+            "assetKey": "partner-servicenow",
+            "alt": "ServiceNow",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Explore partnership",
+            "href": "/partners/servicenow",
+            "external": false
+          },
+          "items": []
+        },
+        {
+          "id": "shopify",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Shopify",
+          "body": "Agentic commerce practice on the Shopify platform",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/shopify.png",
+            "assetKey": "partner-shopify",
+            "alt": "Shopify",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Explore partnership",
+            "href": "/partners/shopify",
+            "external": false
+          },
+          "items": []
+        },
+        {
+          "id": "tigergraph",
+          "type": "card",
+          "eyebrow": null,
+          "title": "TigerGraph",
+          "body": "Named Global Engineering Center partner",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/tigergraph.png",
+            "assetKey": "partner-tigergraph",
+            "alt": "TigerGraph",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Explore partnership",
+            "href": "/partners/tigergraph",
+            "external": false
+          },
+          "items": []
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Ready to put the right<br>ecosystem to work?",
+    "subheading": null,
+    "partner": null,
+    "media": null,
+    "primaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": "/contact",
+      "external": false
+    },
+    "secondaryCta": null
+  },
+  "footer": {
+    "navigation": [],
+    "copyright": "© 2023–2026 Agivant Technologies. All rights reserved."
+  }
+}

@@ -1,73 +1,21 @@
 /**
  * data/ampTransformation.ts
  *
- * Mock data source for the "What Changes When Your Enterprise Gets
- * Amp'd?" section. Shaped as async getters, not static exports — same
- * reasoning as every other data/*.ts file in this project (see
- * data/environment.ts, data/ai-stack.ts): swapping these internals
- * for a real Headless WordPress fetch later requires zero changes to
- * any AmpTransformation component.
- *
- * Six getters, matching the six independently-owned content areas
- * called out in the section's data structure (header, leftColumn,
- * hub, rightColumn, statement, progress) — same one-getter-per-owned-area
- * split used across every other data/*.ts file.
- *
- * CONTENT MODELING NOTE (header): the heading is two lines where only
- * the trailing word of line 2 ("Amp'd?") is accent-colored. Modeled
- * as three fields, not one string with markup embedded in it — same
- * discipline as Environment's and AIStack's heading objects. The
- * description is similarly two distinct pieces: a short accent-colored
- * lead-in sentence and a longer default-color supporting sentence —
- * modeled as {highlight, body} rather than one string for the same
- * reason.
- *
- * CONTENT MODELING NOTE (columns): each column carries an optional
- * `label` — the rotated vertical marginal text next to the card stack
- * ("Agivant's Advantage" / "Enterprise Outcome" in the reference
- * screenshot) — as a field distinct from `title`. It's future-proofed
- * as its own addressable piece of data (rather than folded into
- * `title` or hardcoded in AmpColumn) specifically so it can get its
- * own animation treatment later without any data reshaping.
- *
- * CONTENT MODELING NOTE (hub): the central "Amp'd" wordmark is split
- * into {lead, body, highlight} rather than a single string so
- * AmpHub can color each fragment independently (accent red / default
- * / brand purple in the supplied screenshot) without hardcoding any
- * of that text inside the component itself.
- *
- * CONTENT MODELING NOTE (connectors): `leftConnectors`/`rightConnectors`
- * on hub tell AmpHub how many connector lines to fan out on each
- * side. They are data, not derived from leftColumn.cards.length /
- * rightColumn.cards.length, so AmpHub never needs to reach into a
- * sibling's data to know its own shape — it stays a pure function of
- * the single `hub` object it's handed, per the section's data-flow
- * rule. In today's mock data they intentionally match each column's
- * card count; keep them in sync when editing either.
- *
- * CONTENT MODELING NOTE (statement): the closing statement highlights
- * one trailing phrase ("Autonomous Agentic Enterprise") inside an
- * otherwise default-color sentence — modeled as {prefix, highlight},
- * same {default, accent} split used everywhere else in this file.
- *
- * Today: resolves instantly with hardcoded mock data.
- * Later:  will `fetch()` a WordPress REST/GraphQL endpoint and return
- *         the same shape.
+ * CMS-ready data access layer for the "What Changes When Your Enterprise Gets Amp'd?" section.
+ * Content resides exclusively in `src/data/homepage.json` under `amp-transformation`.
+ * No hardcoded copy belongs in this file.
  */
+
+import homepageJson from "./homepage.json";
 
 export interface AmpHeaderData {
   heading: {
-    /** First heading line, default color (e.g. "What Changes When Your"). */
     line1: string;
-    /** Leading words of line 2, default color (e.g. "Enterprise Gets"). */
     line2Prefix: string;
-    /** Accent-colored close of line 2 (e.g. "Amp'd?"). */
     highlight: string;
   };
   description: {
-    /** Short accent-colored lead-in sentence. */
     highlight: string;
-    /** Supporting sentence, default color. */
     body: string;
   };
 }
@@ -79,47 +27,24 @@ export interface AmpCardData {
 
 export interface AmpColumnData {
   title: string;
-  /**
-   * Short vertical side label rendered alongside the column's card
-   * stack (e.g. "Agivant's Advantage" / "Enterprise Outcome" — see
-   * the section's reference screenshot). Modeled as its own field,
-   * not derived from `title`, because it's visually and semantically
-   * distinct: `title` is the heading above the cards, `label` is a
-   * rotated marginal label that identifies what the whole column
-   * represents. Optional so a column can render without one if a
-   * future WordPress response omits it.
-   */
   label?: string;
   cards: AmpCardData[];
 }
 
 export interface AmpHubData {
   brand: {
-    /** Accent-colored leading fragment (e.g. "A"). */
     lead: string;
-    /** Default-color middle fragment (e.g. "mp"). */
     body: string;
-    /** Brand-purple closing fragment (e.g. "'d"). */
     highlight: string;
-    /**
-     * Optional path (under /public) to the Amp'd logo mark. When
-     * present, AmpHub renders this image instead of the
-     * lead/body/highlight text fragments above — see AmpHub.tsx.
-     */
     logoSrc?: string;
-    /** Accessible alt text for logoSrc. Defaults to "Amp'd" if omitted. */
     logoAlt?: string;
   };
-  /** Number of connector lines fanned out toward the left column. */
   leftConnectors: number;
-  /** Number of connector lines fanned out toward the right column. */
   rightConnectors: number;
 }
 
 export interface AmpStatementData {
-  /** Default-color leading fragment (e.g. "Fragmented systems become the"). */
   prefix: string;
-  /** Accent-colored closing fragment (e.g. "Autonomous Agentic Enterprise"). */
   highlight: string;
 }
 
@@ -137,145 +62,116 @@ export interface AmpProgressCTAData {
 export interface AmpProgressData {
   title: string;
   stages: AmpProgressStage[];
-  /** Optional per "Future WordPress Integration": the button is not
-   *  guaranteed to always exist. */
   button?: AmpProgressCTAData;
 }
 
-const mockAmpHeader: AmpHeaderData = {
-heading: {
-  line1: "What Changes When Your Enterprise Gets",
-  line2Prefix: "",
-  highlight: "Amp'd?",
-},
-  description: {
-    highlight: "Amp'd is how Agivant delivers real business value",
-    body: "for every enterprise, bringing together Agivant’s proven AI Engineering toolkit: Bolt, forward-deployed engineers, production-grade AI agents, and reusable engineering assets. Every build amplifies the next.",
-  },
-};
-
-/**
- * Order matters: AmpColumn renders these in sequence, top to bottom,
- * exactly as supplied here.
- */
-const mockAmpLeftColumn: AmpColumnData = {
-  title: "",
-  label: "Agivant's Advantage",
-  cards: [
-    {
-      id: "bolt-ai-toolkit",
-      title: "Bolt– Agivant’s AI toolkit",
-    },
-    {
-      id: "forward-deployed-engineers",
-      title: "Forward-Deployed Engineers",
-    },
-    {
-      id: "live-ai-agents",
-      title: "Production grade AI agents & solutions",
-    },
-    {
-      id: "every-build",
-      title: "Every build amplifies the next",
-    },
-  ],
-};
-
-const mockAmpRightColumn: AmpColumnData = {
-  title: "",
-  label: "Enterprise Outcome",
-  cards: [
-    {
-      id: "measurable-roi",
-      title: "Measurable ROI",
-    },
-    {
-      id: "governed-production",
-      title: "Governed production",
-    },
-    {
-      id: "enterprise-trust",
-      title: "Enterprise-grade trust",
-    },
-    {
-      id: "autonomous-workflows",
-      title: "Autonomous workflows",
-    },
-  ],
-};
-
-const mockAmpHub: AmpHubData = {
-  brand: {
-    lead: "A",
-    body: "mp",
-    highlight: "'d",
-    logoSrc: "/images/hero/ampd-wordmark.svg",
-    logoAlt: "Amp'd",
-  },
-  leftConnectors: 4,
-  rightConnectors: 4,
-};
-
-const mockAmpStatement: AmpStatementData = {
-  prefix: "From AI ambition to ",
-  highlight: "autonomous workflows",
-};
-
-/**
- * Order matters: AmpTimeline renders these left to right, exactly as
- * supplied here — the progression from Foundational to Autonomous is
- * meaningful sequence, not an unordered set.
- */
-const mockAmpProgress: AmpProgressData = {
-  title: "How Amp’d is Your Enterprise?",
-  stages: [
-    {
-      id: "foundational",
-      title: "Foundational",
-      description: "Priority use cases in place",
-    },
-    {
-      id: "operational",
-      title: "Operational",
-      description: "AI embedded in live business processes",
-    },
-    {
-      id: "orchestrated",
-      title: "Orchestrated",
-      description: "Agents working across workflows",
-    },
-    {
-      id: "autonomous",
-      title: "Autonomous",
-      description: "Agents running the enterprise at scale",
-    },
-  ],
-  button: {
-    label: "How Amp’d is your enterprise?",
-    href: "/amp-score",
-  },
-};
+function getAmpSection() {
+  const section = homepageJson.sections.find((s) => s.id === "amp-transformation");
+  if (!section) {
+    throw new Error("Section amp-transformation not found in homepage.json");
+  }
+  return section;
+}
 
 export async function getAmpHeader(): Promise<AmpHeaderData> {
-  return mockAmpHeader;
+  const section = getAmpSection();
+  const headingStr = section.data.heading ?? "";
+  const [line1 = "", rest = ""] = headingStr.split(/<br\s*\/?>/i);
+
+  // Description is split into highlight and body for presentation styling
+  const descStr = section.data.description ?? "";
+  const match = descStr.match(/^(Amp'd is how Agivant delivers real business value)\s*(.*)$/);
+  const highlight = match ? match[1] : descStr;
+  const body = match ? match[2] : "";
+
+  return {
+    heading: {
+      line1: line1.trim(),
+      line2Prefix: "",
+      highlight: rest.trim(),
+    },
+    description: {
+      highlight,
+      body,
+    },
+  };
 }
 
 export async function getAmpLeftColumn(): Promise<AmpColumnData> {
-  return mockAmpLeftColumn;
+  const section = getAmpSection();
+  const block = section.blocks.find((b) => b.id === "amp-left-column") as any;
+  const items = (block?.items ?? []) as AmpCardData[];
+
+  return {
+    title: "",
+    label: block?.title ?? "Agivant's Advantage",
+    cards: items.map((card) => ({
+      id: card.id,
+      title: card.title,
+    })),
+  };
 }
 
 export async function getAmpHub(): Promise<AmpHubData> {
-  return mockAmpHub;
+  const section = getAmpSection();
+  const block = section.blocks.find((b) => b.id === "amp-hub") as any;
+
+  return {
+    brand: {
+      lead: "A",
+      body: "mp",
+      highlight: "'d",
+      logoSrc: block?.media?.src ?? "/images/hero/ampd-wordmark.svg",
+      logoAlt: block?.media?.alt ?? "Amp'd",
+    },
+    leftConnectors: 4,
+    rightConnectors: 4,
+  };
 }
 
 export async function getAmpRightColumn(): Promise<AmpColumnData> {
-  return mockAmpRightColumn;
+  const section = getAmpSection();
+  const block = section.blocks.find((b) => b.id === "amp-right-column") as any;
+  const items = (block?.items ?? []) as AmpCardData[];
+
+  return {
+    title: "",
+    label: block?.title ?? "Enterprise Outcome",
+    cards: items.map((card) => ({
+      id: card.id,
+      title: card.title,
+    })),
+  };
 }
 
 export async function getAmpStatement(): Promise<AmpStatementData> {
-  return mockAmpStatement;
+  const section = getAmpSection();
+  const statementStr = section.data.closingStatement ?? "";
+  const match = statementStr.match(/^(From AI ambition to\s*)(.*)$/);
+
+  return {
+    prefix: match ? match[1] : statementStr,
+    highlight: match ? match[2] : "",
+  };
 }
 
 export async function getAmpProgress(): Promise<AmpProgressData> {
-  return mockAmpProgress;
+  const section = getAmpSection();
+  const block = section.blocks.find((b) => b.id === "amp-progress") as any;
+  const items = (block?.items ?? []) as AmpProgressStage[];
+
+  return {
+    title: block?.title ?? "How Amp’d is Your Enterprise?",
+    stages: items.map((stage) => ({
+      id: stage.id,
+      title: stage.title,
+      description: stage.description,
+    })),
+    button: block?.cta
+      ? {
+          label: block.cta.label,
+          href: block.cta.href,
+        }
+      : undefined,
+  };
 }

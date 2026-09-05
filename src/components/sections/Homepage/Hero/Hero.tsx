@@ -18,6 +18,10 @@ export async function Hero() {
   const { heading, announcement, background, primaryCta, secondaryCta } =
     await getHero();
 
+  const [line1 = "", line2 = ""] = announcement.text.split(/<br\s*\/?>/i);
+  const altKey = announcement.media.alt || "Amp'd";
+  const [prefix = "", suffix = ""] = line1.split(altKey);
+
   return (
     <section className={styles.hero} data-hero-interaction-root>
       <HeroMediaBackground data={background} />
@@ -29,12 +33,15 @@ export async function Hero() {
 
           <div className={styles.announcement}>
             <div className={styles.announcementLine1}>
-              <span>{announcement.prefix}</span>
-              <AmpdLogoAnimation data={announcement.ampdAnimation} />
+              {prefix && <span>{prefix.trim()}</span>}
+              <AmpdLogoAnimation data={announcement.media} />
+              {suffix && <span>{suffix.trim()}</span>}
             </div>
-            <span className={styles.announcementLine2}>
-              {announcement.suffix}
-            </span>
+            {line2 && (
+              <span className={styles.announcementLine2}>
+                {line2.trim()}
+              </span>
+            )}
           </div>
 
           <div className={styles.actions}>

@@ -1,21 +1,29 @@
 /**
  * data/hero.ts
  *
- * Single source of truth for Hero content following AGIVANT_JSON_DATA_RULEBOOK.md.
- * Async getter signature for seamless future Headless WordPress fetch integration.
+ * CMS-ready data access layer for the Homepage Hero section.
+ * Content resides exclusively in `src/data/homepage.json` under `hero` following AGIVANT_JSON_DATA_RULEBOOK.md.
+ * No hardcoded copy or mock data belongs in this file.
  */
+
+import homepageJson from "./homepage.json";
 
 export interface HeroBackgroundData {
   kind: "image" | "video";
   src: string;
+  assetKey?: string | null;
   poster?: string;
   alt?: string;
+  caption?: string | null;
 }
 
 export interface AmpdAnimationData {
+  kind?: string;
   src?: string | null;
-  alt: string;
+  assetKey?: string | null;
   fallbackImage?: string;
+  alt: string;
+  caption?: string | null;
 }
 
 export interface HeroCtaData {
@@ -25,51 +33,55 @@ export interface HeroCtaData {
   external?: boolean;
 }
 
+export interface HeroAnnouncementData {
+  text: string;
+  media: AmpdAnimationData;
+}
+
 export interface HeroData {
   heading: string;
-  announcement: {
-    prefix: string;
-    ampdAnimation: AmpdAnimationData;
-    suffix: string;
-  };
+  announcement: HeroAnnouncementData;
   background: HeroBackgroundData;
   primaryCta: HeroCtaData;
   secondaryCta: HeroCtaData;
 }
 
-const mockHero: HeroData = {
-  heading: "Architecting the autonomous agentic enterprise",
-  announcement: {
-    prefix: "Agivant launches",
-    ampdAnimation: {
-      src: null,
-      alt: "Amp'd",
-      fallbackImage: "/images/hero/ampd-wordmark.svg",
-    },
-    suffix: "to accelerate enterprise AI value",
-  },
-  background: {
-    kind: "image",
-    src: "/images/hero/hero-vid-img.png",
-    alt: "Abstract translucent glass wave background",
-  },
-  primaryCta: {
-    enabled: true,
-    label: "See client success in action",
-    href: "/client-success",
-    external: false,
-  },
-  secondaryCta: {
-    enabled: true,
-    label: "How Amp'd delivers real value",
-    href: "/amp-d",
-    external: false,
-  },
-};
-
 /**
- * Returns the current hero content.
+ * Returns the current hero content from homepage.json.
  */
 export async function getHero(): Promise<HeroData> {
-  return mockHero;
+  const { hero } = homepageJson;
+  return {
+    heading: hero.heading,
+    announcement: {
+      text: hero.announcement.text,
+      media: {
+        kind: hero.announcement.media.kind,
+        src: hero.announcement.media.src,
+        assetKey: hero.announcement.media.assetKey,
+        fallbackImage: hero.announcement.media.fallbackImage,
+        alt: hero.announcement.media.alt,
+        caption: hero.announcement.media.caption,
+      },
+    },
+    background: {
+      kind: hero.background.kind as "image" | "video",
+      src: hero.background.src,
+      assetKey: hero.background.assetKey,
+      alt: hero.background.alt,
+      caption: hero.background.caption,
+    },
+    primaryCta: {
+      enabled: hero.primaryCta.enabled,
+      label: hero.primaryCta.label,
+      href: hero.primaryCta.href,
+      external: hero.primaryCta.external,
+    },
+    secondaryCta: {
+      enabled: hero.secondaryCta.enabled,
+      label: hero.secondaryCta.label,
+      href: hero.secondaryCta.href,
+      external: hero.secondaryCta.external,
+    },
+  };
 }

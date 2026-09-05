@@ -1,9 +1,12 @@
 /**
  * data/lifecycle.ts
  *
- * Single source of truth for Lifecycle content following AGIVANT_JSON_DATA_RULEBOOK.md.
- * Async getter signatures for seamless Headless WordPress fetch integration.
+ * CMS-ready data access layer for the Lifecycle section.
+ * Content resides exclusively in `src/data/homepage.json` under `lifecycle`.
+ * No hardcoded copy belongs in this file.
  */
+
+import homepageJson from "./homepage.json";
 
 export interface LifecycleHeaderData {
   eyebrow: string;
@@ -37,97 +40,56 @@ export interface LifecycleSummaryData {
   };
 }
 
-const mockLifecycleHeader: LifecycleHeaderData = {
-  eyebrow: "Traditional SDLC",
-  title: {
-    highlight: "AI-Native",
-    suffix: "Engineering Lifecycle",
-  },
-  description:
-    "We engineer the spec, agents accelerate the build and production signals improve every cycle",
-};
-
-const mockLifecycleStages: LifecycleStage[] = [
-  {
-    id: "architect",
-    title: "Architect",
-    description:
-      "Translate business intent into an executable architecture, data, integration, identity model, policy constraints, and security posture before anything is built.",
-    status: "Governed",
-    media: {
-      kind: "image",
-      src: "/images/lifecycle/architect.png",
-      alt: "Architect stage visualization",
-    },
-  },
-  {
-    id: "build",
-    title: "Build",
-    description:
-      "Engineers harness agents to implement the spec, generating code and assembling production-ready workflows inside your environment",
-    status: "Governed",
-    media: {
-      kind: "image",
-      src: "/images/lifecycle/build.png",
-      alt: "Build stage visualization",
-    },
-  },
-  {
-    id: "tune",
-    title: "Tune",
-    description:
-      "Validate against live signals, refine design and code, lift quality and performance without rebuilding from scratch",
-    status: "Governed",
-    media: {
-      kind: "image",
-      src: "/images/lifecycle/tune.png",
-      alt: "Tune stage visualization",
-    },
-  },
-  {
-    id: "operate",
-    title: "Operate",
-    description:
-      "Run in production under full observability, cost controls, and accountability loops. Reliable at load, ready to scale on demand",
-    status: "Governed",
-    media: {
-      kind: "image",
-      src: "/images/lifecycle/operate.png",
-      alt: "Operate stage visualization",
-    },
-  },
-  {
-    id: "evolve",
-    title: "Evolve",
-    description:
-      "Feed production learning back into the spec, turning patterns into reusable engineering assets",
-    status: "Governed",
-    media: {
-      kind: "image",
-      src: "/images/lifecycle/evolve.png",
-      alt: "Evolve stage visualization",
-    },
-  },
-];
-
-const mockLifecycleSummary: LifecycleSummaryData = {
-  title: "Amplify",
-  description:
-    "Every stage ships faster, costs less, and amplifies the next. That's what gets your enterprise Amp'd.",
-  cta: {
-    label: "See Amp'd in action",
-    href: "/amp-d",
-  },
-};
+function getLifecycleSection() {
+  const section = homepageJson.sections.find((s) => s.id === "lifecycle");
+  if (!section) {
+    throw new Error("Section lifecycle not found in homepage.json");
+  }
+  return section;
+}
 
 export async function getLifecycleHeader(): Promise<LifecycleHeaderData> {
-  return mockLifecycleHeader;
+  const section = getLifecycleSection();
+  const heading = section.data.heading ?? "";
+  const [highlight = "", ...rest] = heading.split(" ");
+
+  return {
+    eyebrow: section.data.eyebrow ?? "Traditional SDLC",
+    title: {
+      highlight,
+      suffix: rest.join(" "),
+    },
+    description: section.data.description ?? "",
+  };
 }
 
 export async function getLifecycleStages(): Promise<LifecycleStage[]> {
-  return mockLifecycleStages;
+  const section = getLifecycleSection();
+  const stageBlocks = (section.blocks as any[]).filter((b) => b.type === "card");
+
+  return stageBlocks.map((block) => ({
+    id: block.id,
+    title: block.title ?? "",
+    description: block.body ?? "",
+    status: block.eyebrow ?? "Governed",
+    media: {
+      kind: (block.media?.kind as "image") ?? "image",
+      src: block.media?.src ?? "",
+      alt: block.media?.alt ?? "",
+    },
+  }));
 }
 
 export async function getLifecycleSummary(): Promise<LifecycleSummaryData> {
-  return mockLifecycleSummary;
+  const section = getLifecycleSection();
+  const summaryBlock = (section.blocks as any[]).find((b) => b.id === "lifecycle-summary");
+
+  return {
+    title: summaryBlock?.title ?? "Amplify",
+    description: summaryBlock?.body ?? "",
+    cta: {
+      label: summaryBlock?.cta?.label ?? "See Amp'd in action",
+      href: summaryBlock?.cta?.href ?? "/amp-d",
+    },
+  };
 }

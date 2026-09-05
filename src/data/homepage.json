@@ -1,0 +1,829 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "homepage",
+  "slug": "/",
+  "title": "Agivant — Architecting the autonomous agentic enterprise",
+  "seo": {
+    "title": "Agivant — Architecting the autonomous agentic enterprise",
+    "description": "Agivant engineers real business value for the autonomous enterprise across several industries.",
+    "canonical": "/",
+    "ogImage": null
+  },
+  "hero": {
+    "heading": "Architecting the autonomous agentic enterprise",
+    "announcement": {
+      "text": "Agivant launches Amp'd<br>to accelerate enterprise AI value",
+      "media": {
+        "kind": "logo",
+        "src": null,
+        "assetKey": "ampd-wordmark",
+        "fallbackImage": "/images/hero/ampd-wordmark.svg",
+        "alt": "Amp'd",
+        "caption": null
+      }
+    },
+    "background": {
+      "kind": "image",
+      "src": "/images/hero/hero-vid-img.png",
+      "assetKey": "hero-translucent-glass-wave",
+      "alt": "Abstract translucent glass wave background",
+      "caption": null
+    },
+    "primaryCta": {
+      "enabled": true,
+      "label": "See client success in action",
+      "href": "/client-success",
+      "external": false
+    },
+    "secondaryCta": {
+      "enabled": true,
+      "label": "How Amp'd delivers real value",
+      "href": "/amp-d",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "trust-enterprise-grade",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "global-enterprise-trust",
+          "type": "card",
+          "eyebrow": "Trusted",
+          "title": "Global Enterprise Trust",
+          "body": "Agivant is trusted for complex, high-scale engineering by global enterprises",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "ai-native-since-day-1",
+          "type": "card",
+          "eyebrow": "Amplified",
+          "title": "AI-Native since Day 1",
+          "body": "Agivant was built AI-native, with engineers and agents working as one",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "hyperscaler-partner-ecosystem",
+          "type": "card",
+          "eyebrow": "Connected",
+          "title": "Hyperscaler & Partner Ecosystem",
+          "body": "Agivant works across global hyperscaler, data, AI and workflow platforms enterprises depend on",
+          "media": null,
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "amp-transformation",
+      "type": "split_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "What Changes When Your Enterprise Gets<br>Amp'd?",
+        "description": "Amp'd is how Agivant delivers real business value for every enterprise, bringing together Agivant’s proven AI Engineering toolkit: Bolt, forward-deployed engineers, production-grade AI agents, and reusable engineering assets. Every build amplifies the next.",
+        "closingStatement": "From AI ambition to autonomous workflows",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "amp-left-column",
+          "type": "card_group",
+          "eyebrow": null,
+          "title": "Agivant's Advantage",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": [
+            { "id": "bolt-ai-toolkit", "title": "Bolt– Agivant’s AI toolkit" },
+            { "id": "forward-deployed-engineers", "title": "Forward-Deployed Engineers" },
+            { "id": "live-ai-agents", "title": "Production grade AI agents & solutions" },
+            { "id": "every-build", "title": "Every build amplifies the next" }
+          ]
+        },
+        {
+          "id": "amp-hub",
+          "type": "hub",
+          "eyebrow": null,
+          "title": "Amp'd",
+          "body": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/hero/ampd-wordmark.svg",
+            "assetKey": "ampd-wordmark",
+            "alt": "Amp'd",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "amp-right-column",
+          "type": "card_group",
+          "eyebrow": null,
+          "title": "Enterprise Outcome",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": [
+            { "id": "measurable-roi", "title": "Measurable ROI" },
+            { "id": "governed-production", "title": "Governed production" },
+            { "id": "enterprise-trust", "title": "Enterprise-grade trust" },
+            { "id": "autonomous-workflows", "title": "Autonomous workflows" }
+          ]
+        },
+        {
+          "id": "amp-progress",
+          "type": "timeline",
+          "eyebrow": null,
+          "title": "How Amp’d is Your Enterprise?",
+          "body": null,
+          "media": null,
+          "cta": {
+            "enabled": true,
+            "label": "How Amp’d is your enterprise?",
+            "href": "/amp-score",
+            "external": false
+          },
+          "items": [
+            { "id": "foundational", "title": "Foundational", "description": "Priority use cases in place" },
+            { "id": "operational", "title": "Operational", "description": "AI embedded in live business processes" },
+            { "id": "orchestrated", "title": "Orchestrated", "description": "Agents working across workflows" },
+            { "id": "autonomous", "title": "Autonomous", "description": "Agents running the enterprise at scale" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lifecycle",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": "Traditional SDLC",
+        "heading": "AI-Native Engineering Lifecycle",
+        "description": "We engineer the spec, agents accelerate the build and production signals improve every cycle",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "architect",
+          "type": "card",
+          "eyebrow": "Governed",
+          "title": "Architect",
+          "body": "Translate business intent into an executable architecture, data, integration, identity model, policy constraints, and security posture before anything is built.",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/architect.png",
+            "assetKey": "lifecycle-architect",
+            "alt": "Architect stage visualization",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "build",
+          "type": "card",
+          "eyebrow": "Governed",
+          "title": "Build",
+          "body": "Engineers harness agents to implement the spec, generating code and assembling production-ready workflows inside your environment",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/build.png",
+            "assetKey": "lifecycle-build",
+            "alt": "Build stage visualization",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "tune",
+          "type": "card",
+          "eyebrow": "Governed",
+          "title": "Tune",
+          "body": "Validate against live signals, refine design and code, lift quality and performance without rebuilding from scratch",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/tune.png",
+            "assetKey": "lifecycle-tune",
+            "alt": "Tune stage visualization",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "operate",
+          "type": "card",
+          "eyebrow": "Governed",
+          "title": "Operate",
+          "body": "Run in production under full observability, cost controls, and accountability loops. Reliable at load, ready to scale on demand",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/operate.png",
+            "assetKey": "lifecycle-operate",
+            "alt": "Operate stage visualization",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "evolve",
+          "type": "card",
+          "eyebrow": "Governed",
+          "title": "Evolve",
+          "body": "Feed production learning back into the spec, turning patterns into reusable engineering assets",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/evolve.png",
+            "assetKey": "lifecycle-evolve",
+            "alt": "Evolve stage visualization",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "lifecycle-summary",
+          "type": "summary_card",
+          "eyebrow": null,
+          "title": "Amplify",
+          "body": "Every stage ships faster, costs less, and amplifies the next. That's what gets your enterprise Amp'd.",
+          "media": null,
+          "cta": {
+            "enabled": true,
+            "label": "See Amp'd in action",
+            "href": "/amp-d",
+            "external": false
+          },
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "ai-stack",
+      "type": "architecture_diagram",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Engineering Every Layer Of Your<br>AI Stack",
+        "description": "Agivant engineers the agents, applications, platforms, data and operations that make enterprise AI work",
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "See what we build",
+          "href": "/what-we-build",
+          "external": false
+        }
+      },
+      "blocks": [
+        {
+          "id": "agentic-ai-agentops",
+          "type": "card",
+          "eyebrow": "Agentic",
+          "title": "Agentic AI & AgentOps",
+          "body": "We engineer agent-led workflows with orchestration, guardrails and policy enforcement, built in from the first line of the spec.",
+          "media": {
+            "kind": "image",
+            "src": "/images/ai-stack/rectangle1.png",
+            "assetKey": "ai-stack-agentic",
+            "alt": "Agentic AI & AgentOps background",
+            "caption": null
+          },
+          "cta": null,
+          "items": ["agentic"]
+        },
+        {
+          "id": "ai-ml-engineering",
+          "type": "card",
+          "eyebrow": "AI / ML",
+          "title": "AI & ML Engineering",
+          "body": "We build RAG systems, predictive models, copilots and inference services engineered to spec, tuned for accuracy and built for real business use.",
+          "media": {
+            "kind": "image",
+            "src": "/images/ai-stack/bg2.png",
+            "assetKey": "ai-stack-aiml",
+            "alt": "AI & ML Engineering background",
+            "caption": null
+          },
+          "cta": null,
+          "items": ["aiml"]
+        },
+        {
+          "id": "cloud-platform-engineering",
+          "type": "card",
+          "eyebrow": "Cloud",
+          "title": "Cloud & Platform Engineering",
+          "body": "We modernize cloud, platform and API foundations so agents and AI systems run at enterprise scale, built to carry what comes next.",
+          "media": {
+            "kind": "image",
+            "src": "/images/ai-stack/rectangle4.png",
+            "assetKey": "ai-stack-cloud",
+            "alt": "Cloud & Platform Engineering background",
+            "caption": null
+          },
+          "cta": null,
+          "items": ["cloud"]
+        },
+        {
+          "id": "ai-ready-data-engineering",
+          "type": "card",
+          "eyebrow": "Data",
+          "title": "AI-Ready Data Engineering",
+          "body": "We build pipelines, semantic layers, knowledge systems, vector retrieval and data quality foundations so agents have reliable ground truth from day one.",
+          "media": {
+            "kind": "image",
+            "src": "/images/ai-stack/rectangle3.png",
+            "assetKey": "ai-stack-data",
+            "alt": "AI-Ready Data Engineering background",
+            "caption": null
+          },
+          "cta": null,
+          "items": ["data"]
+        },
+        {
+          "id": "mlops-ai-operations",
+          "type": "card",
+          "eyebrow": "Platform",
+          "title": "MLOps & AI Operations",
+          "body": "We operationalize agents with deployment pipelines, monitoring, evaluation, FinOps and the runtime controls that keep production systems governed and improving.",
+          "media": {
+            "kind": "image",
+            "src": "/images/ai-stack/rectangle5.png",
+            "assetKey": "ai-stack-mlops",
+            "alt": "MLOps & AI Operations background",
+            "caption": null
+          },
+          "cta": null,
+          "items": ["mlops"]
+        }
+      ]
+    },
+    {
+      "id": "partners",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Agivant Is Trusted By<br>Global Partners",
+        "description": "Agivant works across global hyperscaler, data, AI & workflow platforms enterprises depend on.",
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "See our ecosystem partnerships",
+          "href": "/partners",
+          "external": false
+        }
+      },
+      "blocks": [
+        {
+          "id": "glean",
+          "type": "partner",
+          "title": "Glean",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/glean.png",
+            "assetKey": "partner-glean",
+            "alt": "Glean",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Visit website",
+            "href": "https://www.glean.com",
+            "external": true
+          }
+        },
+        {
+          "id": "servicenow",
+          "type": "partner",
+          "title": "ServiceNow",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/servicenow.png",
+            "assetKey": "partner-servicenow",
+            "alt": "ServiceNow",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Visit website",
+            "href": "https://www.servicenow.com",
+            "external": true
+          }
+        },
+        {
+          "id": "gemini",
+          "type": "partner",
+          "title": "GEMINI",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/gemini.png",
+            "assetKey": "partner-gemini",
+            "alt": "GEMINI",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Visit website",
+            "href": "https://www.gemini.com",
+            "external": true
+          }
+        },
+        {
+          "id": "nvidia",
+          "type": "partner",
+          "title": "NVIDIA",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/nvidia.png",
+            "assetKey": "partner-nvidia",
+            "alt": "NVIDIA",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Visit website",
+            "href": "https://www.nvidia.com",
+            "external": true
+          }
+        },
+        {
+          "id": "aws",
+          "type": "partner",
+          "title": "AWS",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/aws.png",
+            "assetKey": "partner-aws",
+            "alt": "AWS",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Visit website",
+            "href": "https://aws.amazon.com",
+            "external": true
+          }
+        },
+        {
+          "id": "azure",
+          "type": "partner",
+          "title": "Azure",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/azure.png",
+            "assetKey": "partner-azure",
+            "alt": "Azure",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Visit website",
+            "href": "https://azure.microsoft.com",
+            "external": true
+          }
+        },
+        {
+          "id": "salesforce",
+          "type": "partner",
+          "title": "Salesforce",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/salesforce.png",
+            "assetKey": "partner-salesforce",
+            "alt": "Salesforce",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Visit website",
+            "href": "https://www.salesforce.com",
+            "external": true
+          }
+        },
+        {
+          "id": "databricks",
+          "type": "partner",
+          "title": "Databricks",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/databricks.png",
+            "assetKey": "partner-databricks",
+            "alt": "Databricks",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Visit website",
+            "href": "https://www.databricks.com",
+            "external": true
+          }
+        },
+        {
+          "id": "shopify",
+          "type": "partner",
+          "title": "Shopify",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/shopify.png",
+            "assetKey": "partner-shopify",
+            "alt": "Shopify",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Visit website",
+            "href": "https://www.shopify.com",
+            "external": true
+          }
+        },
+        {
+          "id": "tigergraph",
+          "type": "partner",
+          "title": "TigerGraph",
+          "media": {
+            "kind": "logo",
+            "src": "/images/partners/tigergraph.png",
+            "assetKey": "partner-tigergraph",
+            "alt": "TigerGraph",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Visit website",
+            "href": "https://www.tigergraph.com",
+            "external": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "proof-beyond-the-pilot",
+      "type": "case_study_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Client success<br>in production, at scale",
+        "description": "See how Agivant engineers real business value for the autonomous enterprise, across several industries",
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "See more client stories",
+          "href": "/case-studies",
+          "external": false
+        }
+      },
+      "blocks": [
+        {
+          "id": "agentic-quote-accelerator",
+          "type": "card",
+          "eyebrow": "Enterprise Sales",
+          "title": "Agentic Quote Accelerator",
+          "body": "A Fortune 500 sales team was losing weeks to manual quoting. SME-dependent, impossible to scale. Agivant wired agentic systems into the existing sales platform. The revenue team runs the business now. The agents run the process.",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/agentic-quote-accelerator.png",
+            "assetKey": "case-quote-accelerator",
+            "alt": "Abstract flowing wave artwork for the Agentic Quote Accelerator case study",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/agentic-quote-accelerator",
+            "external": false
+          },
+          "items": [
+            "Days to Minutes",
+            "Quoting cycle compression",
+            "Amp'd the sales engineering workflow."
+          ]
+        },
+        {
+          "id": "ai-native-sre-transformation",
+          "type": "card",
+          "eyebrow": "Cloud & Infrastructure",
+          "title": "AI-Native SRE Transformation",
+          "body": "GCE to GKE migration with AI-driven SRE taking ownership of steady-state operations. Reliability built into the architecture, not added after. The engineering team moved from firefighting to strategy.",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/ai-native-transformation.png",
+            "assetKey": "case-ai-native-sre",
+            "alt": "Abstract flowing wave artwork for the AI-Native SRE Transformation case study",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/ai-native-sre-transformation",
+            "external": false
+          },
+          "items": [
+            "99.9%",
+            "Reliability. Maintained by agents.",
+            "Amp'd infrastructure reliability from day one."
+          ]
+        },
+        {
+          "id": "global-markets-agent-network",
+          "type": "card",
+          "eyebrow": "Financial Markets",
+          "title": "Global Markets Agent Network",
+          "body": "Manual transaction operations could not scale without adding headcount. Agivant architected a multi-agent system across global financial market platforms. Five million transactions a month. No human in the routine loop.",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/global-market-agentic-network.png",
+            "assetKey": "case-global-markets",
+            "alt": "Abstract flowing wave artwork for the Global Markets Agent Network case study",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/global-markets-agent-network",
+            "external": false
+          },
+          "items": [
+            "5M+",
+            "Transactions per month",
+            "Amp'd market operations at enterprise scale"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "client-testimonials",
+      "type": "quote",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Client Testimonials",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "See All Testimonials",
+          "href": "/case-studies",
+          "external": false
+        }
+      },
+      "blocks": [
+        {
+          "id": "sachin-puri",
+          "type": "video_card",
+          "quote": null,
+          "authorName": "Sachin Puri",
+          "authorRole": "CEO, Bluehost Group",
+          "media": {
+            "kind": "image",
+            "src": "/images/testimonials/sachin-puri.png",
+            "assetKey": "testimonial-sachin-puri",
+            "alt": "Sachin Puri - CEO, Bluehost Group",
+            "caption": null
+          },
+          "cta": null
+        },
+        {
+          "id": "sr-director-product-management",
+          "type": "quote",
+          "quote": "We’ve worked with Agivant across several projects, and they bring real technical depth in generative AI, LLMs and data analytics. What we value most is how they get to the core of a problem and bring strong technical thinking to the solution.",
+          "authorName": "Sr. Director, Product Management",
+          "authorRole": "Fortune 100 tech leader",
+          "media": null,
+          "cta": {
+            "enabled": true,
+            "label": "Read more →",
+            "href": "/case-studies",
+            "external": false
+          }
+        },
+        {
+          "id": "peter-spiegel",
+          "type": "video_card",
+          "quote": null,
+          "authorName": "Peter Spiegel",
+          "authorRole": "Founder & CEO, Ideal Living",
+          "media": {
+            "kind": "image",
+            "src": "/images/testimonials/peter-spiegel.png",
+            "assetKey": "testimonial-peter-spiegel",
+            "alt": "Peter Spiegel - Founder & CEO, Ideal Living",
+            "caption": null
+          },
+          "cta": null
+        },
+        {
+          "id": "ceo-omni-channel-retailer",
+          "type": "quote",
+          "quote": "We had 18 websites to migrate to a new platform on a very tight timeline. Agivant got the right DevOps and CI/CD setup in place, completed the migration cleanly, and improved the scalability and performance of the underlying infrastructure along the way.",
+          "authorName": "CEO",
+          "authorRole": "Omni-channel retailer",
+          "media": null,
+          "cta": {
+            "enabled": true,
+            "label": "Read more →",
+            "href": "/case-studies",
+            "external": false
+          }
+        },
+        {
+          "id": "global-operations-manager",
+          "type": "quote",
+          "quote": "We needed a practical way to make sense of millions of customer call recordings. Agivant built a system that analyzes the conversations, surfaces the metrics that matter, and gives our teams insight they can actually use to improve customer interactions and operations.",
+          "authorName": "Global Operations Manager",
+          "authorRole": "Fortune 50 enterprise",
+          "media": null,
+          "cta": {
+            "enabled": true,
+            "label": "Read more →",
+            "href": "/case-studies",
+            "external": false
+          }
+        },
+        {
+          "id": "cio-fortune-100",
+          "type": "quote",
+          "quote": "Agivant put our data warehouse, data lake and BI capabilities in place before the holiday season, within a very short window. That work changed how our teams use data to make day-to-day decisions.",
+          "authorName": "CIO",
+          "authorRole": "Fortune 100 enterprise",
+          "media": null,
+          "cta": {
+            "enabled": true,
+            "label": "Read more →",
+            "href": "/case-studies",
+            "external": false
+          }
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+    "subheading": null,
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/ampd-wordmark.svg",
+      "assetKey": "ampd-wordmark",
+      "alt": "Amp'd",
+      "caption": null
+    },
+    "primaryCta": {
+      "enabled": true,
+      "label": "Find your Amp'd score",
+      "href": "/ampd-score",
+      "external": false
+    },
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "footer": {
+    "navigation": [
+      { "label": "What We Build", "href": "/what-we-build" },
+      { "label": "Client Success", "href": "/client-success" },
+      { "label": "Agent Library", "href": "/agent-library" },
+      { "label": "Resources", "href": "/resources" },
+      { "label": "Careers", "href": "/careers" },
+      { "label": "About Us", "href": "/about-us" },
+      { "label": "Contact Us", "href": "/contact" }
+    ],
+    "copyright": "© 2023–2026 Agivant Technologies. All rights reserved."
+  }
+}
