@@ -37,9 +37,22 @@ const OFFERING_ASSETS: Record<string, string> = {
 };
 
 /**
+ * Shared default image pool from Goal Driven Agents offerings.
+ * Used as the sequential fallback for solution offerings without solution-specific assets.
+ */
+const DEFAULT_OFFERING_IMAGE_POOL: string[] = [
+  OFFERING_ASSETS["solution-strategy"],
+  OFFERING_ASSETS["solution-lifecycle"],
+  OFFERING_ASSETS["solution-embedded-ai"],
+  OFFERING_ASSETS["solution-vertical-packs"],
+  OFFERING_ASSETS["solution-policy"],
+  OFFERING_ASSETS["solution-mesh"],
+];
+
+/**
  * Resolves the image source for a solution offering block.
  */
-function resolveImageSrc(block: OfferingCardProps["block"]): string {
+function resolveImageSrc(block: OfferingCardProps["block"], index: number = 0): string {
   if (block.media?.src) return block.media.src;
   if (block.media?.assetKey && OFFERING_ASSETS[block.media.assetKey]) {
     return OFFERING_ASSETS[block.media.assetKey];
@@ -47,7 +60,7 @@ function resolveImageSrc(block: OfferingCardProps["block"]): string {
   if (OFFERING_ASSETS[block.id]) {
     return OFFERING_ASSETS[block.id];
   }
-  return `/images/solutions/innerpages/goal-driven-agents-enterprise-workflows/${block.media?.assetKey || block.id}.png`;
+  return DEFAULT_OFFERING_IMAGE_POOL[index % DEFAULT_OFFERING_IMAGE_POOL.length];
 }
 
 /**
@@ -74,7 +87,7 @@ function renderHeading(heading: string) {
  */
 function OfferingCard({ block, index }: OfferingCardProps) {
   const isContentTop = index % 2 === 1;
-  const imageSrc = resolveImageSrc(block);
+  const imageSrc = resolveImageSrc(block, index);
   const altText = block.media?.alt || block.title || "Solution offering visual";
 
   return (

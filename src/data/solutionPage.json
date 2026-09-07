@@ -1,695 +1,2542 @@
-[{
-  "schemaVersion": "1.0",
-  "pageType": "solution",
-  "slug": "goal-driven-agents-enterprise-workflows",
-  "title": "Put goal-driven agents to work across repetitive enterprise workflows",
-  "seo": {
-    "title": null,
-    "description": null,
-    "canonical": null,
-    "ogImage": null
-  },
-  "hero": {
-    "eyebrow": null,
-    "title": "Put goal-driven agents to<br>work across repetitive<br>enterprise workflows",
-    "subtitle": null,
-    "summary": "Agivant builds agentic AI systems that read a goal, work across the tools that hold the task, and take the next action on their own. Agents run multi-step work across IT, operations, and customer teams, improve from what each cycle returns, and stay observable and policy-controlled from the first deployment. Enterprises move from one high-value process to production-grade AI agents in days and weeks.",
-    "authors": [],
-    "partner": null,
-    "media": {
-      "kind": "image",
-      "src": "/images/solutions/innerpages/goal-driven-agents-enterprise-workflows/hero-ribbon.png",
-      "assetKey": "goal-driven-agents-hero-ribbon",
-      "alt": "Abstract ribbon graphic",
-      "caption": null
+[
+  {
+    "schemaVersion": "1.0",
+    "pageType": "solution",
+    "slug": "goal-driven-agents-enterprise-workflows",
+    "title": "Put goal-driven agents to work across repetitive enterprise workflows",
+    "seo": {
+      "title": null,
+      "description": null,
+      "canonical": null,
+      "ogImage": null
     },
-    "primaryCta": null,
-    "secondaryCta": null
-  },
-  "sections": [
-    {
-      "id": "what-agents-do",
-      "type": "card_grid",
-      "enabled": true,
-      "conditions": null,
-      "data": {
-        "eyebrow": "WHAT THE AGENTS DO",
-        "heading": "Give agents a goal and let them work the tools",
-        "description": "Agentic AI works from a stated objective. An agent reads that objective, chooses the systems and the sequence that reach it, brings a person in where judgment belongs, and repeats the pattern at scale.",
-        "closingStatement": "Agents earn their place when they close the work, and Agivant builds them to do exactly that.",
-        "columns": [],
-        "media": null,
-        "cta": null
+    "hero": {
+      "eyebrow": null,
+      "title": "Put goal-driven agents to<br>work across repetitive<br>enterprise workflows",
+      "subtitle": null,
+      "summary": "Agivant builds agentic AI systems that read a goal, work across the tools that hold the task, and take the next action on their own. Agents run multi-step work across IT, operations, and customer teams, improve from what each cycle returns, and stay observable and policy-controlled from the first deployment. Enterprises move from one high-value process to production-grade AI agents in days and weeks.",
+      "authors": [],
+      "partner": null,
+      "media": {
+        "kind": "image",
+        "src": "/images/solutions/innerpages/goal-driven-agents-enterprise-workflows/hero-ribbon.png",
+        "assetKey": "goal-driven-agents-hero-ribbon",
+        "alt": "Abstract ribbon graphic",
+        "caption": null
       },
-      "blocks": [
-        {
-          "id": "multi-step",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Complete multi-step work",
-          "body": "Complete multi-step work that spans several departments and several systems, end to end",
-          "media": null,
-          "cta": null,
-          "items": []
-        },
-        {
-          "id": "feedback",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Learn from feedback",
-          "body": "Learn from feedback, so routing and outcomes improve with each cycle",
-          "media": null,
-          "cta": null,
-          "items": []
-        },
-        {
-          "id": "systems",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Connect into live systems",
-          "body": "Connect into the data platforms and enterprise applications already running",
-          "media": null,
-          "cta": null,
-          "items": []
-        },
-        {
-          "id": "controls",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Carry controls forward",
-          "body": "Carry security, observability, and explainability from the first deployment forward",
-          "media": null,
-          "cta": null,
-          "items": []
-        }
-      ]
+      "primaryCta": null,
+      "secondaryCta": null
     },
-    {
-      "id": "solution-offerings",
-      "type": "card_grid",
-      "enabled": true,
-      "conditions": null,
-      "data": {
-        "eyebrow": null,
-        "heading": "Build on an agent stack that already runs in production",
-        "description": "Agivant covers the full path from choosing the first use case to operating a fleet of agents.",
-        "columns": [],
-        "media": null,
-        "cta": null
+    "sections": [
+      {
+        "id": "what-agents-do",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": "WHAT THE AGENTS DO",
+          "heading": "Give agents a goal and let them work the tools",
+          "description": "Agentic AI works from a stated objective. An agent reads that objective, chooses the systems and the sequence that reach it, brings a person in where judgment belongs, and repeats the pattern at scale.",
+          "closingStatement": "Agents earn their place when they close the work, and Agivant builds them to do exactly that.",
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "multi-step",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Complete multi-step work",
+            "body": "Complete multi-step work that spans several departments and several systems, end to end",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "feedback",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Learn from feedback",
+            "body": "Learn from feedback, so routing and outcomes improve with each cycle",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "systems",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Connect into live systems",
+            "body": "Connect into the data platforms and enterprise applications already running",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "controls",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Carry controls forward",
+            "body": "Carry security, observability, and explainability from the first deployment forward",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
       },
-      "blocks": [
-        {
-          "id": "strategy",
-          "type": "card",
+      {
+        "id": "solution-offerings",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
           "eyebrow": null,
-          "title": "Strategy and use case design",
-          "body": "Identify, validate, and rank agent opportunities with the highest business value.",
-          "media": {
-            "kind": "image",
-            "src": null,
-            "assetKey": "solution-strategy",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
-          },
-          "cta": null,
-          "items": []
+          "heading": "Build on an agent stack that already runs in production",
+          "description": "Agivant covers the full path from choosing the first use case to operating a fleet of agents.",
+          "columns": [],
+          "media": null,
+          "cta": null
         },
-        {
-          "id": "lifecycle",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Agent lifecycle management",
-          "body": "Build, deploy, monitor, and improve custom agents as one continuous engineering practice.",
-          "media": {
-            "kind": "image",
-            "src": null,
-            "assetKey": "solution-lifecycle",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
+        "blocks": [
+          {
+            "id": "strategy",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Strategy and use case design",
+            "body": "Identify, validate, and rank agent opportunities with the highest business value.",
+            "media": {
+              "kind": "image",
+              "src": null,
+              "assetKey": "solution-strategy",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": null,
+            "items": []
           },
-          "cta": null,
-          "items": []
-        },
-        {
-          "id": "embedded-ai",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Embedded AI as a service",
-          "body": "Prebuilt modular agents for IT, customer experience, and operations that connect into existing workflows quickly.",
-          "media": {
-            "kind": "image",
-            "src": null,
-            "assetKey": "solution-embedded-ai",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
+          {
+            "id": "lifecycle",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Agent lifecycle management",
+            "body": "Build, deploy, monitor, and improve custom agents as one continuous engineering practice.",
+            "media": {
+              "kind": "image",
+              "src": null,
+              "assetKey": "solution-lifecycle",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": null,
+            "items": []
           },
-          "cta": null,
-          "items": []
-        },
-        {
-          "id": "vertical-packs",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Vertical agent packs",
-          "body": "Domain-specific agents for banking and financial services, healthcare, retail, and SaaS.",
-          "media": {
-            "kind": "image",
-            "src": null,
-            "assetKey": "solution-vertical-packs",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
+          {
+            "id": "embedded-ai",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Embedded AI as a service",
+            "body": "Prebuilt modular agents for IT, customer experience, and operations that connect into existing workflows quickly.",
+            "media": {
+              "kind": "image",
+              "src": null,
+              "assetKey": "solution-embedded-ai",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": null,
+            "items": []
           },
-          "cta": null,
-          "items": []
-        },
-        {
-          "id": "policy",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Policy and trust layer",
-          "body": "Security, policy enforcement, audit logs, and explainability across every deployed agent.",
-          "media": {
-            "kind": "image",
-            "src": null,
-            "assetKey": "solution-policy",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
+          {
+            "id": "vertical-packs",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Vertical agent packs",
+            "body": "Domain-specific agents for banking and financial services, healthcare, retail, and SaaS.",
+            "media": {
+              "kind": "image",
+              "src": null,
+              "assetKey": "solution-vertical-packs",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": null,
+            "items": []
           },
-          "cta": null,
-          "items": []
-        },
-        {
-          "id": "mesh",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Agent mesh manager",
-          "body": "Orchestration and observability across multi-agent deployments.",
-          "media": {
-            "kind": "image",
-            "src": null,
-            "assetKey": "solution-mesh",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
+          {
+            "id": "policy",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Policy and trust layer",
+            "body": "Security, policy enforcement, audit logs, and explainability across every deployed agent.",
+            "media": {
+              "kind": "image",
+              "src": null,
+              "assetKey": "solution-policy",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": null,
+            "items": []
           },
-          "cta": null,
-          "items": []
-        }
-      ]
-    },
-    {
-      "id": "impact-table",
-      "type": "comparison_table",
-      "enabled": true,
-      "conditions": null,
-      "data": {
-        "eyebrow": null,
-        "heading": null,
-        "description": null,
-        "columns": [
-          "Signal",
-          "Mechanism",
-          "Agivant impact"
-        ],
-        "media": null,
-        "cta": null
+          {
+            "id": "mesh",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Agent mesh manager",
+            "body": "Orchestration and observability across multi-agent deployments.",
+            "media": {
+              "kind": "image",
+              "src": null,
+              "assetKey": "solution-mesh",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": null,
+            "items": []
+          }
+        ]
       },
-      "blocks": [
-        {
-          "id": "resolution-time",
-          "type": "tableRow",
-          "cells": [
-            "30 to 50% shorter resolution time",
-            "Agents diagnose and act across IT and operations workflows.",
-            "Incidents close within the shift they open in."
-          ]
+      {
+        "id": "impact-table",
+        "type": "comparison_table",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": null,
+          "description": null,
+          "columns": [
+            "Signal",
+            "Mechanism",
+            "Agivant impact"
+          ],
+          "media": null,
+          "cta": null
         },
-        {
-          "id": "cycle-time",
-          "type": "tableRow",
-          "cells": [
-            "10x faster cycle times",
-            "Internal approvals and customer support requests run without waiting on manual handoffs.",
-            "Requests move at the speed of the system, not the queue."
-          ]
-        },
-        {
-          "id": "operating-cost",
-          "type": "tableRow",
-          "cells": [
-            "40% lower operating cost",
-            "Automation absorbs volume that used to scale with headcount.",
-            "Output grows without the team growing with it."
-          ]
-        },
-        {
-          "id": "security",
-          "type": "tableRow",
-          "cells": [
-            "Security and monitoring on every agent",
-            "Policy enforcement, audit logs, and explainability ship with the deployment.",
-            "Agents run inside enterprise controls from day one."
-          ]
-        }
-      ]
-    },
-    {
-      "id": "client-success",
-      "type": "case_study_grid",
-      "enabled": true,
-      "conditions": null,
-      "data": {
-        "eyebrow": null,
-        "heading": "Client success<br>in production, at scale",
-        "description": "See how Agivant engineers real business value for the autonomous enterprise across several industries.",
-        "columns": [],
-        "media": null,
-        "cta": {
-          "enabled": true,
-          "label": "See more client stories",
-          "href": "/case-studies",
-          "external": false
-        }
-      },
-      "blocks": [
-        {
-          "id": "quote-accelerator",
-          "type": "card",
-          "eyebrow": "Enterprise sales",
-          "title": "Agentic Quote Accelerator",
-          "body": "A Fortune 500 sales team was going weeks to manual quoting. New agentic workflows removed dependency bottlenecks.",
-          "media": {
-            "kind": "image",
-            "src": "/images/proof/agentic-quote-accelerator.png",
-            "assetKey": "case-quote-accelerator",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
+        "blocks": [
+          {
+            "id": "resolution-time",
+            "type": "tableRow",
+            "cells": [
+              "30 to 50% shorter resolution time",
+              "Agents diagnose and act across IT and operations workflows.",
+              "Incidents close within the shift they open in."
+            ]
           },
+          {
+            "id": "cycle-time",
+            "type": "tableRow",
+            "cells": [
+              "10x faster cycle times",
+              "Internal approvals and customer support requests run without waiting on manual handoffs.",
+              "Requests move at the speed of the system, not the queue."
+            ]
+          },
+          {
+            "id": "operating-cost",
+            "type": "tableRow",
+            "cells": [
+              "40% lower operating cost",
+              "Automation absorbs volume that used to scale with headcount.",
+              "Output grows without the team growing with it."
+            ]
+          },
+          {
+            "id": "security",
+            "type": "tableRow",
+            "cells": [
+              "Security and monitoring on every agent",
+              "Policy enforcement, audit logs, and explainability ship with the deployment.",
+              "Agents run inside enterprise controls from day one."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "client-success",
+        "type": "case_study_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": "Client success<br>in production, at scale",
+          "description": "See how Agivant engineers real business value for the autonomous enterprise across several industries.",
+          "columns": [],
+          "media": null,
           "cta": {
             "enabled": true,
-            "label": "Read case study",
-            "href": "/case-studies/agentic-quote-accelerator",
+            "label": "See more client stories",
+            "href": "/case-studies",
             "external": false
-          },
-          "items": []
+          }
         },
-        {
-          "id": "sre",
-          "type": "card",
-          "eyebrow": "Cloud infrastructure",
-          "title": "AI-Native SRE Transformation",
-          "body": "Built an agent-driven reliability model for enterprise SRE operations.",
-          "media": {
-            "kind": "image",
-            "src": "/images/proof/ai-native-transformation.png",
-            "assetKey": "case-ai-native-sre",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
+        "blocks": [
+          {
+            "id": "quote-accelerator",
+            "type": "card",
+            "eyebrow": "Enterprise sales",
+            "title": "Agentic Quote Accelerator",
+            "body": "A Fortune 500 sales team was going weeks to manual quoting. New agentic workflows removed dependency bottlenecks.",
+            "media": {
+              "kind": "image",
+              "src": "/images/proof/agentic-quote-accelerator.png",
+              "assetKey": "case-quote-accelerator",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": {
+              "enabled": true,
+              "label": "Read case study",
+              "href": "/case-studies/agentic-quote-accelerator",
+              "external": false
+            },
+            "items": []
           },
-          "cta": {
-            "enabled": true,
-            "label": "Read case study",
-            "href": "/case-studies/ai-native-sre-transformation",
-            "external": false
+          {
+            "id": "sre",
+            "type": "card",
+            "eyebrow": "Cloud infrastructure",
+            "title": "AI-Native SRE Transformation",
+            "body": "Built an agent-driven reliability model for enterprise SRE operations.",
+            "media": {
+              "kind": "image",
+              "src": "/images/proof/ai-native-transformation.png",
+              "assetKey": "case-ai-native-sre",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": {
+              "enabled": true,
+              "label": "Read case study",
+              "href": "/case-studies/ai-native-sre-transformation",
+              "external": false
+            },
+            "items": [
+              "99.9%",
+              "Reliability. Maintained by agents.",
+              "Amp'd infrastructure reliability from day one."
+            ]
           },
-          "items": [
-            "99.9%",
-            "Reliability. Maintained by agents.",
-            "Amp'd infrastructure reliability from day one."
-          ]
-        },
-        {
-          "id": "markets",
-          "type": "card",
-          "eyebrow": "Front office",
-          "title": "Global Markets Agent Network",
-          "body": "Manual transaction operations could not scale without adding headcount.",
-          "media": {
-            "kind": "image",
-            "src": "/images/proof/global-market-agentic-network.png",
-            "assetKey": "case-global-markets",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
-          },
-          "cta": {
-            "enabled": true,
-            "label": "Read case study",
-            "href": "/case-studies/global-markets-agent-network",
-            "external": false
-          },
-          "items": []
-        }
-      ]
+          {
+            "id": "markets",
+            "type": "card",
+            "eyebrow": "Front office",
+            "title": "Global Markets Agent Network",
+            "body": "Manual transaction operations could not scale without adding headcount.",
+            "media": {
+              "kind": "image",
+              "src": "/images/proof/global-market-agentic-network.png",
+              "assetKey": "case-global-markets",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": {
+              "enabled": true,
+              "label": "Read case study",
+              "href": "/case-studies/global-markets-agent-network",
+              "external": false
+            },
+            "items": []
+          }
+        ]
+      }
+    ],
+    "footerCta": {
+      "enabled": true,
+      "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+      "subheading": null,
+      "partner": null,
+      "primaryCta": null,
+      "secondaryCta": {
+        "enabled": true,
+        "label": "Talk to an Amp'd specialist",
+        "href": "/contact",
+        "external": false
+      }
     }
-  ],
-  "footerCta": {
-    "enabled": true,
-    "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
-    "subheading": null,
-    "partner": null,
-    "primaryCta": null,
-    "secondaryCta": {
-      "enabled": true,
-      "label": "Talk to an Amp'd specialist",
-      "href": "/contact",
-      "external": false
-    }
-  }
-},
-{
-  "schemaVersion": "1.0",
-  "pageType": "solution",
-  "slug": "verbatim-ai",
-  "title": "Turn every customer conversation into decisions teams can act on",
-  "seo": {
-    "title": null,
-    "description": null,
-    "canonical": null,
-    "ogImage": null
   },
-  "hero": {
-    "eyebrow": null,
+  {
+    "schemaVersion": "1.0",
+    "pageType": "solution",
+    "slug": "verbatim-ai",
     "title": "Turn every customer conversation into decisions teams can act on",
-    "subtitle": null,
-    "summary": "Verbatim AI reads the whole conversation, transcript, sentiment, emotion, and intent, and returns the summary, the signal, and the next action. Agents get live guidance on the call; managers see the trend across thousands of them. Raw recordings become decision-ready insight in days and weeks.",
-    "authors": [],
-    "partner": null,
-    "media": null,
-    "primaryCta": null,
-    "secondaryCta": null
-  },
-  "sections": [
-    {
-    
-      "id": "what-agents-do",
-      "type": "card_grid",
-      "enabled": true,
-      "conditions": null,
-      "data": {
-        "eyebrow": "WHAT THE AGENTS DO",
-        "heading": "Read the full conversation in one pass",
-        "description": "Verbatim AI reads the words alongside sentiment, emotion, and keywords, so each call carries its meaning, transcript, sentiment, and emotion together. Insight arrives live and as a summary once the call ends.",
-        "closingStatement": "Once every call is readable, the patterns across them become the asset.",
-        "columns": [],
-        "media": null,
-        "cta": null
-      },
-      "blocks": [
-        {
-          "id": "multi-step",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Complete multi-step work",
-          "body": "Summarise calls live, with prompts and next-best steps for the agent",
-          "media": null,
-          "cta": null,
-          "items": []
-        },
-        {
-          "id": "feedback",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Learn from feedback",
-          "body": "Combine transcript with agent sentiment, customer emotion, and keywords",
-          "media": null,
-          "cta": null,
-          "items": []
-        },
-        {
-          "id": "systems",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Connect into live systems",
-          "body": "Shape summaries to the reader, brief for managers, specific for agents",
-          "media": null,
-          "cta": null,
-          "items": []
-        },
-        {
-          "id": "controls",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Carry controls forward",
-          "body": "Turn each call into recommendations, from follow-ups to coaching needs",
-          "media": null,
-          "cta": null,
-          "items": []
-        }
-      ]
+    "seo": {
+      "title": null,
+      "description": null,
+      "canonical": null,
+      "ogImage": null
     },
-    {
-      "id": "live-prompt-demo",
-      "type": "video_demo",
-      "enabled": true,
-      "conditions": null,
-      "data": {
-        "heading": "Watch an agent get real-time prompts mid-call",
-        "description": "Two minutes inside a live call: Verbatim AI reads sentiment as it happens and feeds the agent the next best response.",
-        "closingStatement": "Once every call is readable, the patterns across them become the asset.",
-        "video": {
-          "sourceType": "youtube",
-          "src": "sFzmpcG6RkY",
-          "poster": "/images/solutions/thumbnail.png"
-        }
-      },
-      "blocks": []
+    "hero": {
+      "eyebrow": null,
+      "title": "Turn every customer conversation into decisions teams can act on",
+      "subtitle": null,
+      "summary": "Verbatim AI reads the whole conversation, transcript, sentiment, emotion, and intent, and returns the summary, the signal, and the next action. Agents get live guidance on the call; managers see the trend across thousands of them. Raw recordings become decision-ready insight in days and weeks.",
+      "authors": [],
+      "partner": null,
+      "media": null,
+      "primaryCta": null,
+      "secondaryCta": null
     },
-    {
-      "id": "solution-offerings",
-      "type": "card_grid",
-      "enabled": true,
-      "conditions": null,
-      "data": {
-        "eyebrow": null,
-        "heading": "Act on what thousands of conversations are telling you",
-        "description": "Single-call insight compounds into a portfolio view. Verbatim AI tracks sentiment, topics, and outcomes across the full history, so decisions rest on every call.",
-        "columns": [],
-        "media": null,
-        "cta": null
+    "sections": [
+      {
+        "id": "what-agents-do",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": "WHAT THE AGENTS DO",
+          "heading": "Read the full conversation in one pass",
+          "description": "Verbatim AI reads the words alongside sentiment, emotion, and keywords, so each call carries its meaning, transcript, sentiment, and emotion together. Insight arrives live and as a summary once the call ends.",
+          "closingStatement": "Once every call is readable, the patterns across them become the asset.",
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "multi-step",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Complete multi-step work",
+            "body": "Summarise calls live, with prompts and next-best steps for the agent",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "feedback",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Learn from feedback",
+            "body": "Combine transcript with agent sentiment, customer emotion, and keywords",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "systems",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Connect into live systems",
+            "body": "Shape summaries to the reader, brief for managers, specific for agents",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "controls",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Carry controls forward",
+            "body": "Turn each call into recommendations, from follow-ups to coaching needs",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
       },
-      "blocks": [
-        {
-          "id": "strategy",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Decisions:",
-          "body": "journey-wide trends and sentiment guide strategy",
-          "media": {
-            "kind": "image",
-            "src": null,
-            "assetKey": "solution-strategy",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
-          },
-          "cta": null,
-          "items": []
+      {
+        "id": "live-prompt-demo",
+        "type": "video_demo",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "heading": "Watch an agent get real-time prompts mid-call",
+          "description": "Two minutes inside a live call: Verbatim AI reads sentiment as it happens and feeds the agent the next best response.",
+          "closingStatement": "Once every call is readable, the patterns across them become the asset.",
+          "video": {
+            "sourceType": "youtube",
+            "src": "sFzmpcG6RkY",
+            "poster": "/images/solutions/thumbnail.png"
+          }
         },
-        {
-          "id": "lifecycle",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Agent performance:",
-          "body": "live guidance lifts the quality of each call",
-          "media": {
-            "kind": "image",
-            "src": null,
-            "assetKey": "solution-lifecycle",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
-          },
-          "cta": null,
-          "items": []
-        },
-        {
-          "id": "embedded-ai",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Cost",
-          "body": "automated summaries remove manual review effort",
-          "media": {
-            "kind": "image",
-            "src": null,
-            "assetKey": "solution-embedded-ai",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
-          },
-          "cta": null,
-          "items": []
-        },
-        {
-          "id": "vertical-packs",
-          "type": "card",
-          "eyebrow": null,
-          "title": "Experience",
-          "body": "a clearer read of intent means more relevant responses",
-          "media": {
-            "kind": "image",
-            "src": null,
-            "assetKey": "solution-vertical-packs",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
-          },
-          "cta": null,
-          "items": []
-        }
-
-      ]
-    },
-    {
-      "id": "impact-table",
-      "type": "comparison_table",
-      "enabled": true,
-      "conditions": null,
-      "data": {
-        "eyebrow": null,
-        "heading": null,
-        "description": null,
-        "columns": [
-          "Signal",
-          "Mechanism",
-          "Agivant impact"
-        ],
-        "media": null,
-        "cta": null
+        "blocks": []
       },
-      "blocks": [
-        {
-          "id": "live-guidance",
-          "type": "tableRow",
-          "cells": [
-            "Live guidance on every call",
-            "Live summarisation surfaces key points as they happen.",
-            "Agents work with live prompts as the call unfolds."
-          ]
+      {
+        "id": "solution-offerings",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": "Act on what thousands of conversations are telling you",
+          "description": "Single-call insight compounds into a portfolio view. Verbatim AI tracks sentiment, topics, and outcomes across the full history, so decisions rest on every call.",
+          "columns": [],
+          "media": null,
+          "cta": null
         },
-        {
-          "id": "full-record-insight",
-          "type": "tableRow",
-          "cells": [
-            "Insight from the full record",
-            "Sentiment and topic analysis span the whole history.",
-            "Decisions draw on every call across the full history."
-          ]
-        },
-        {
-          "id": "lower-review-effort",
-          "type": "tableRow",
-          "cells": [
-            "Lower manual review effort",
-            "Automated summaries replace note-taking and QA sampling.",
-            "Time goes to coaching and follow-up."
-          ]
-        },
-        {
-          "id": "audience-shaped-output",
-          "type": "tableRow",
-          "cells": [
-            "Audience-shaped output",
-            "Summaries adapt to manager and agent needs.",
-            "Everyone gets a view they can act on."
-          ]
-        }
-      ]
-    },
-    {
-      "id": "client-success",
-      "type": "case_study_grid",
-      "enabled": true,
-      "conditions": null,
-      "data": {
-        "eyebrow": null,
-        "heading": "Client success<br>in production, at scale",
-        "description": "See how Agivant engineers real business value for the autonomous enterprise across several industries.",
-        "columns": [],
-        "media": null,
-        "cta": {
-          "enabled": true,
-          "label": "See more client stories",
-          "href": "/case-studies",
-          "external": false
-        }
-      },
-      "blocks": [
-        {
-          "id": "quote-accelerator",
-          "type": "card",
-          "eyebrow": "Enterprise sales",
-          "title": "Agentic Quote Accelerator",
-          "body": "A Fortune 500 sales team was going weeks to manual quoting. New agentic workflows removed dependency bottlenecks.",
-          "media": {
-            "kind": "image",
-            "src": "/images/proof/agentic-quote-accelerator.png",
-            "assetKey": "case-quote-accelerator",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
+        "blocks": [
+          {
+            "id": "strategy",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Decisions:",
+            "body": "journey-wide trends and sentiment guide strategy",
+            "media": {
+              "kind": "image",
+              "src": null,
+              "assetKey": "solution-strategy",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": null,
+            "items": []
           },
+          {
+            "id": "lifecycle",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Agent performance:",
+            "body": "live guidance lifts the quality of each call",
+            "media": {
+              "kind": "image",
+              "src": null,
+              "assetKey": "solution-lifecycle",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "embedded-ai",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Cost",
+            "body": "automated summaries remove manual review effort",
+            "media": {
+              "kind": "image",
+              "src": null,
+              "assetKey": "solution-embedded-ai",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "vertical-packs",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Experience",
+            "body": "a clearer read of intent means more relevant responses",
+            "media": {
+              "kind": "image",
+              "src": null,
+              "assetKey": "solution-vertical-packs",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "impact-table",
+        "type": "comparison_table",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": null,
+          "description": null,
+          "columns": [
+            "Signal",
+            "Mechanism",
+            "Agivant impact"
+          ],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "live-guidance",
+            "type": "tableRow",
+            "cells": [
+              "Live guidance on every call",
+              "Live summarisation surfaces key points as they happen.",
+              "Agents work with live prompts as the call unfolds."
+            ]
+          },
+          {
+            "id": "full-record-insight",
+            "type": "tableRow",
+            "cells": [
+              "Insight from the full record",
+              "Sentiment and topic analysis span the whole history.",
+              "Decisions draw on every call across the full history."
+            ]
+          },
+          {
+            "id": "lower-review-effort",
+            "type": "tableRow",
+            "cells": [
+              "Lower manual review effort",
+              "Automated summaries replace note-taking and QA sampling.",
+              "Time goes to coaching and follow-up."
+            ]
+          },
+          {
+            "id": "audience-shaped-output",
+            "type": "tableRow",
+            "cells": [
+              "Audience-shaped output",
+              "Summaries adapt to manager and agent needs.",
+              "Everyone gets a view they can act on."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "client-success",
+        "type": "case_study_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": "Client success<br>in production, at scale",
+          "description": "See how Agivant engineers real business value for the autonomous enterprise across several industries.",
+          "columns": [],
+          "media": null,
           "cta": {
             "enabled": true,
-            "label": "Read case study",
-            "href": "/case-studies/agentic-quote-accelerator",
+            "label": "See more client stories",
+            "href": "/case-studies",
             "external": false
-          },
-          "items": []
+          }
         },
-        {
-          "id": "sre",
-          "type": "card",
-          "eyebrow": "Cloud infrastructure",
-          "title": "AI-Native SRE Transformation",
-          "body": "Built an agent-driven reliability model for enterprise SRE operations.",
-          "media": {
-            "kind": "image",
-            "src": "/images/proof/ai-native-transformation.png",
-            "assetKey": "case-ai-native-sre",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
+        "blocks": [
+          {
+            "id": "quote-accelerator",
+            "type": "card",
+            "eyebrow": "Enterprise sales",
+            "title": "Agentic Quote Accelerator",
+            "body": "A Fortune 500 sales team was going weeks to manual quoting. New agentic workflows removed dependency bottlenecks.",
+            "media": {
+              "kind": "image",
+              "src": "/images/proof/agentic-quote-accelerator.png",
+              "assetKey": "case-quote-accelerator",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": {
+              "enabled": true,
+              "label": "Read case study",
+              "href": "/case-studies/agentic-quote-accelerator",
+              "external": false
+            },
+            "items": []
           },
-          "cta": {
-            "enabled": true,
-            "label": "Read case study",
-            "href": "/case-studies/ai-native-sre-transformation",
-            "external": false
+          {
+            "id": "sre",
+            "type": "card",
+            "eyebrow": "Cloud infrastructure",
+            "title": "AI-Native SRE Transformation",
+            "body": "Built an agent-driven reliability model for enterprise SRE operations.",
+            "media": {
+              "kind": "image",
+              "src": "/images/proof/ai-native-transformation.png",
+              "assetKey": "case-ai-native-sre",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": {
+              "enabled": true,
+              "label": "Read case study",
+              "href": "/case-studies/ai-native-sre-transformation",
+              "external": false
+            },
+            "items": [
+              "99.9%",
+              "Reliability. Maintained by agents.",
+              "Amp'd infrastructure reliability from day one."
+            ]
           },
-          "items": [
-            "99.9%",
-            "Reliability. Maintained by agents.",
-            "Amp'd infrastructure reliability from day one."
-          ]
-        },
-        {
-          "id": "markets",
-          "type": "card",
-          "eyebrow": "Front office",
-          "title": "Global Markets Agent Network",
-          "body": "Manual transaction operations could not scale without adding headcount.",
-          "media": {
-            "kind": "image",
-            "src": "/images/proof/global-market-agentic-network.png",
-            "assetKey": "case-global-markets",
-            "alt": "Abstract ribbon graphic",
-            "caption": null
-          },
-          "cta": {
-            "enabled": true,
-            "label": "Read case study",
-            "href": "/case-studies/global-markets-agent-network",
-            "external": false
-          },
-          "items": []
-        }
-      ]
+          {
+            "id": "markets",
+            "type": "card",
+            "eyebrow": "Front office",
+            "title": "Global Markets Agent Network",
+            "body": "Manual transaction operations could not scale without adding headcount.",
+            "media": {
+              "kind": "image",
+              "src": "/images/proof/global-market-agentic-network.png",
+              "assetKey": "case-global-markets",
+              "alt": "Abstract ribbon graphic",
+              "caption": null
+            },
+            "cta": {
+              "enabled": true,
+              "label": "Read case study",
+              "href": "/case-studies/global-markets-agent-network",
+              "external": false
+            },
+            "items": []
+          }
+        ]
+      }
+    ],
+    "footerCta": {
+      "enabled": true,
+      "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+      "subheading": null,
+      "partner": null,
+      "primaryCta": null,
+      "secondaryCta": {
+        "enabled": true,
+        "label": "Talk to an Amp'd specialist",
+        "href": "/contact",
+        "external": false
+      }
     }
-  ],
-  "footerCta": {
-    "enabled": true,
-    "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
-    "subheading": null,
-    "partner": null,
-    "primaryCta": null,
-    "secondaryCta": {
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "pageType": "solution-inner-page",
+    "slug": "agentic-ai-autonomous-operations",
+    "title": "Put goal-driven agents to work across repetitive enterprise workflows",
+    "seo": {
+      "title": null,
+      "description": null,
+      "canonical": null,
+      "ogImage": null
+    },
+    "hero": {
+      "eyebrow": null,
+      "title": "Put goal-driven agents to work across repetitive enterprise workflows",
+      "subtitle": null,
+      "summary": "Agivant builds agentic AI that reads a goal, works across the tools that hold the task, and takes the next action on its own. Agents run multi-step work across IT, operations, and customer teams, improve each cycle, and stay observable and policy-controlled from day one. One high-value process becomes production grade AI agents in days and weeks.",
+      "authors": [],
+      "partner": null,
+      "media": null,
+      "primaryCta": null,
+      "secondaryCta": null
+    },
+    "sections": [
+      {
+        "id": "what-agents-do",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": "WHAT THE AGENTS DO",
+          "heading": "Give agents a goal and let them work the tools",
+          "description": "Agentic AI works from a stated objective. An agent reads that objective, chooses the systems and the sequence that reaches it, brings a person in where judgment belongs, and repeats the pattern at scale.",
+          "closingStatement": null,
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "card-1",
+            "type": "card",
+            "eyebrow": null,
+            "title": null,
+            "body": "Complete multi-step work that spans several departments and several systems, end to end",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "card-2",
+            "type": "card",
+            "eyebrow": null,
+            "title": null,
+            "body": "Learn from feedback, so routing and outcomes improve with each cycle",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "card-3",
+            "type": "card",
+            "eyebrow": null,
+            "title": null,
+            "body": "Connect into the data platforms and enterprise applications already running",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "card-4",
+            "type": "card",
+            "eyebrow": null,
+            "title": null,
+            "body": "Carry security, observability, and explainability from the first deployment forward",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "solution-offerings",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": "Build on an agent stack that already runs in production",
+          "description": "Agivant covers the full path from choosing the first use case to operating a fleet of agents. Forward Deployed Engineers work inside the enterprise stack across all six offerings, so each engagement adds capability the enterprise keeps.",
+          "closingStatement": null,
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "strategy-and-use-case-design",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Strategy and use case design",
+            "body": "Identify, validate, and rank the agent opportunities with the highest business value",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "agent-lifecycle-management",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Agent lifecycle management",
+            "body": "Build, deploy, monitor, and improve custom agents as one continuous engineering practice",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "embedded-ai-as-a-service",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Embedded AI as a service",
+            "body": "Prebuilt modular agents for IT, customer experience, and operations that connect into existing workflows quickly",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "vertical-agent-packs",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Vertical agent packs",
+            "body": "Domain-specific agents for banking and financial services, healthcare, retail, and SaaS",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "policy-and-trust-layer",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Policy and trust layer",
+            "body": "Security, policy enforcement, audit logs, and explainability across every deployed agent",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "agent-mesh-manager",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Agent mesh manager",
+            "body": "Orchestration and observability across multi agent deployments",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "impact-table",
+        "type": "comparison_table",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": null,
+          "description": null,
+          "columns": [
+            "Signal",
+            "Mechanism",
+            "Agivant impact"
+          ],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "30-to-50-shorter-resolution-time",
+            "type": "tableRow",
+            "cells": [
+              "30 to 50% shorter resolution time",
+              "Agents diagnose and act across IT and operations",
+              "Incidents close within the shift they open in"
+            ]
+          },
+          {
+            "id": "10x-faster-cycle-times",
+            "type": "tableRow",
+            "cells": [
+              "10x faster cycle times",
+              "Approvals and support requests run on their own",
+              "Requests move at the speed of the system"
+            ]
+          },
+          {
+            "id": "40-lower-operating-cost",
+            "type": "tableRow",
+            "cells": [
+              "40% lower operating cost",
+              "Automation absorbs volume that used to scale with headcount",
+              "Output grows while the team stays flat"
+            ]
+          },
+          {
+            "id": "security-and-monitoring-on-every-agent",
+            "type": "tableRow",
+            "cells": [
+              "Security and monitoring on every agent",
+              "Enforcement, audit logs, and explainability ship with the deployment",
+              "Agents run inside enterprise controls from day one"
+            ]
+          }
+        ]
+      }
+    ],
+    "footerCta": {
       "enabled": true,
-      "label": "Talk to an Amp'd specialist",
-      "href": "/contact",
-      "external": false
+      "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+      "subheading": null,
+      "partner": null,
+      "primaryCta": null,
+      "secondaryCta": {
+        "enabled": true,
+        "label": "Talk to an Amp'd specialist",
+        "href": "/contact",
+        "external": false
+      }
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "pageType": "solution-inner-page",
+    "slug": "autonomous-operations-brain",
+    "title": "Resolve incidents faster with an Autonomous Operations Brain",
+    "seo": {
+      "title": null,
+      "description": null,
+      "canonical": null,
+      "ogImage": null
+    },
+    "hero": {
+      "eyebrow": null,
+      "title": "Resolve incidents faster with an Autonomous Operations Brain",
+      "subtitle": null,
+      "summary": "The Autonomous Operations Brain sits above the observability and ITSM tools already in place. It brings telemetry, tickets, topology, and business context into one queryable fabric, explains what happened and why, and runs approved remediation under policy. Teams cut MTTR, quiet the alert stream, and see the first self-running workflows in days and weeks.",
+      "authors": [],
+      "partner": null,
+      "media": null,
+      "primaryCta": null,
+      "secondaryCta": null
+    },
+    "sections": [
+      {
+        "id": "what-agents-do",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": "WHAT THE AGENTS DO",
+          "heading": "Bring telemetry, tickets, and topology into one queryable fabric",
+          "description": "Agivant stays vendor neutral and connects what is already running. Logs, metrics, traces, and the CMDB resolve against one service picture, so every signal arrives with context.",
+          "closingStatement": "With the estate readable in one place, remediation becomes a decision the system can make safely.",
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "unify",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Unify",
+            "body": "OpenTelemetry and ITSM connectors feed a lakehouse and graph core",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "understand",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Understand",
+            "body": "A service graph, anomaly detection, and retrieval produce root cause with reasoning",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "autonomize",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Autonomize",
+            "body": "Playbooks run in sandboxes under role-based access, with approval where it matters",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "record",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Record",
+            "body": "Every action, approval, and outcome is logged and auditable",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "solution-offerings",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": "Let each autonomy stage earn the next",
+          "description": "Autonomy arrives in stages, each proving itself on live incidents before the next takes more",
+          "closingStatement": null,
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "human-led",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Human led",
+            "body": "Engineers read, categorize, and route across separate tools and static runbooks",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "semi-autonomous",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Semi-autonomous",
+            "body": "Engineers query the graph in natural language and approve suggested fixes in one click",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "fully-autonomous",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Fully autonomous",
+            "body": "Agents detect, remediate, validate, and close, while people set policy and SLO guardrails",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "impact-table",
+        "type": "comparison_table",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": null,
+          "description": null,
+          "columns": [
+            "Signal",
+            "Mechanism",
+            "Agivant impact"
+          ],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "40-to-50-lower-mttr",
+            "type": "tableRow",
+            "cells": [
+              "40 to 50% lower MTTR",
+              "AI-assisted diagnosis and autonomous remediation close known incidents",
+              "Known incidents close in minutes"
+            ]
+          },
+          {
+            "id": "60-to-80-quieter-alert-stream",
+            "type": "tableRow",
+            "cells": [
+              "60 to 80% quieter alert stream",
+              "Correlation, deduplication, and suppression run before an alert reaches a person",
+              "Engineers work the signals that matter"
+            ]
+          },
+          {
+            "id": "30-to-60-lighter-ticket-handling",
+            "type": "tableRow",
+            "cells": [
+              "30 to 60% lighter ticket handling",
+              "Enrichment, routing, and suggested resolutions arrive with the ticket",
+              "L1 and L2 take on higher-value work."
+            ]
+          },
+          {
+            "id": "higher-change-success-rate",
+            "type": "tableRow",
+            "cells": [
+              "Higher change success rate",
+              "Risk scoring and pre-deployment analysis run on every release",
+              "Releases land clean"
+            ]
+          },
+          {
+            "id": "lower-run-cost",
+            "type": "tableRow",
+            "cells": [
+              "Lower run cost",
+              "Tool consolidation removes duplicate monitoring",
+              "Operations scale without linear headcount"
+            ]
+          }
+        ]
+      }
+    ],
+    "footerCta": {
+      "enabled": true,
+      "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+      "subheading": null,
+      "partner": null,
+      "primaryCta": null,
+      "secondaryCta": {
+        "enabled": true,
+        "label": "Talk to an Amp'd specialist",
+        "href": "/contact",
+        "external": false
+      }
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "pageType": "solution-inner-page",
+    "slug": "agentic-salesforce-velocity-platform",
+    "title": "Accelerate sales, service, and revenue operations with agentic AI on Salesforce",
+    "seo": {
+      "title": null,
+      "description": null,
+      "canonical": null,
+      "ogImage": null
+    },
+    "hero": {
+      "eyebrow": null,
+      "title": "Accelerate sales, service, and revenue operations with agentic AI on Salesforce",
+      "subtitle": null,
+      "summary": "The platform puts coordinated agent teams to work across Sales Cloud, Service Cloud, and Revenue Cloud. Agents read pipeline signals, interactions, code changes, and quoting patterns, rank what to act on under policy, and execute through Salesforce APIs and Slack. Teams raise conversion, absorb routine contact volume, and compress quote configuration in days and weeks.",
+      "authors": [],
+      "partner": null,
+      "media": null,
+      "primaryCta": null,
+      "secondaryCta": null
+    },
+    "sections": [
+      {
+        "id": "what-agents-do",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": "WHAT THE AGENTS DO",
+          "heading": "Sense, decide, and act across the Salesforce core",
+          "description": "Three layers run over the existing Salesforce stack and the data around it. People set the targets and the boundaries; the agents hold the coordination.",
+          "closingStatement": "Once the layers are in place, each agent team takes a part of the revenue engine",
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "sense",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Sense",
+            "body": "Agents read sales activity, transcripts, tickets, workloads, and quoting patterns",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "decide",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Decide",
+            "body": "Controllers rank actions against strategic intent, policy-aware and explainable",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "act-and-learn",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Act and learn",
+            "body": "Agents execute through Salesforce APIs and Slack, and feedback refines policy",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "stay-in-control",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Stay in control",
+            "body": "Leaders validate plays, developers review generated code",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "solution-offerings",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": "Put agent teams on the work that moves revenue",
+          "description": "Six capability areas span first touch to signed contract to resolved case, sharing the same context",
+          "closingStatement": null,
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "revenue-intelligence",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Revenue intelligence",
+            "body": "The Sales Conversion Agent scores opportunities and proposes the next best action",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "autonomous-cpq",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Autonomous CPQ",
+            "body": "The Quoting Intelligence Agent builds pricing rules on Revenue Cloud Advanced and validates uploads",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "autonomous-support",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Autonomous support",
+            "body": "The Service Autonomy Agent resolves routine issues across digital channels",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "developer-productivity",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Developer productivity",
+            "body": "The Dev Productivity Agent writes Apex and LWC code with tests, checked for governor limits",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "bot-evolution",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Bot evolution",
+            "body": "The Bot Evolution Agent clusters missed utterances and generates training data",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "sustainability-intelligence",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Sustainability intelligence",
+            "body": "The Sustainability Insights Agent builds ESG reports and upsell narratives in Sales Cloud",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "impact-table",
+        "type": "comparison_table",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": null,
+          "description": null,
+          "columns": [
+            "Signal",
+            "Mechanism",
+            "Agivant impact"
+          ],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "double-digit-conversion-uplift",
+            "type": "tableRow",
+            "cells": [
+              "Double-digit conversion uplift",
+              "Orchestration ranks opportunities and drives insight-led outreach",
+              "More qualified deals reach close"
+            ]
+          },
+          {
+            "id": "40-csat-uplift-on-digital-channels",
+            "type": "tableRow",
+            "cells": [
+              "40%+ CSAT uplift on digital channels",
+              "Next generation bots and service intelligence raise deflection and quality",
+              "Customers get the answer on first contact"
+            ]
+          },
+          {
+            "id": "30-to-40-developer-productivity-gain",
+            "type": "tableRow",
+            "cells": [
+              "30 to 40% developer productivity gain",
+              "Agents handle repetitive coding and test generation",
+              "Engineers spend the day on design and integration"
+            ]
+          },
+          {
+            "id": "90-automation-of-bot-retraining",
+            "type": "tableRow",
+            "cells": [
+              "90% automation of bot retraining",
+              "Bot Evolution Agents cluster utterances and generate training data continuously",
+              "Teams work on coverage"
+            ]
+          },
+          {
+            "id": "quote-configuration-from-days-to-hours",
+            "type": "tableRow",
+            "cells": [
+              "Quote configuration from days to hours",
+              "Revenue Cloud and quoting agents compress complex deal setup",
+              "Sellers price complex deals the same day"
+            ]
+          },
+          {
+            "id": "step-change-less-manual-effort",
+            "type": "tableRow",
+            "cells": [
+              "Step-change less manual effort",
+              "Agents take coordination, analysis, and optimization off people",
+              "Teams grow output without growing size"
+            ]
+          }
+        ]
+      }
+    ],
+    "footerCta": {
+      "enabled": true,
+      "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+      "subheading": null,
+      "partner": null,
+      "primaryCta": null,
+      "secondaryCta": {
+        "enabled": true,
+        "label": "Talk to an Amp'd specialist",
+        "href": "/contact",
+        "external": false
+      }
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "pageType": "solution-inner-page",
+    "slug": "servicenow-workflow-automation",
+    "title": "Accelerate product launches with agentic ServiceNow workflow automation",
+    "seo": {
+      "title": null,
+      "description": null,
+      "canonical": null,
+      "ogImage": null
+    },
+    "hero": {
+      "eyebrow": null,
+      "title": "Accelerate product launches with agentic ServiceNow workflow automation",
+      "subtitle": null,
+      "summary": "Agivant turns ServiceNow SPM and PPM into a real-time portfolio intelligence engine. Agent teams sequence work across every team a launch touches, score demand against value and capacity, predict slippage weeks ahead, and present a launch confidence view. Standard launches compress from quarters to months, and the first orchestrated workflows run in days and weeks.",
+      "authors": [],
+      "partner": null,
+      "media": null,
+      "primaryCta": null,
+      "secondaryCta": null
+    },
+    "sections": [
+      {
+        "id": "what-agents-do",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": "WHAT THE AGENTS DO",
+          "heading": "Unify, align, and optimize the portfolio on ServiceNow",
+          "description": "Three pillars move SPM and PPM from a tracking tool to an engine that runs the portfolio in real time.",
+          "closingStatement": "With the portfolio readable in real time, agents take on the coordination that fills the calendar.",
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "unify",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Unify",
+            "body": "One intake portal gives the full lifecycle a single source of truth",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "align",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Align",
+            "body": "Agents score demand against value, feasibility, timing, and capacity into a ranked backlog",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "optimize",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Optimize",
+            "body": "Process mining detects capacity imbalances and proposes reallocation",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "set-intent",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Set intent",
+            "body": "Leaders define priority, service levels, cost, and risk; agents turn it into plans",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "solution-offerings",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": "Put agent teams on the work between strategy and launch",
+          "description": "Five capability areas cover intake through go-live, each holding a stage that used to depend on someone chasing it.",
+          "closingStatement": null,
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "accelerated-npi",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Accelerated NPI",
+            "body": "A service portal holds the full introduction lifecycle across teams",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "ai-scored-prioritization",
+            "type": "card",
+            "eyebrow": null,
+            "title": "AI-scored prioritization",
+            "body": "Agents cluster and score ideas into a ranked backlog for approval",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "predictive-slippage",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Predictive slippage",
+            "body": "SLA and health agents predict breaches weeks ahead and propose fixes",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "launch-confidence",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Launch confidence",
+            "body": "A Launch Director agent scores readiness across systems and names the top risks",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "dynamic-resourcing",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Dynamic resourcing",
+            "body": "Process mining and an investment agent rebalance capacity and budget",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "impact-table",
+        "type": "comparison_table",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": null,
+          "description": null,
+          "columns": [
+            "Signal",
+            "Mechanism",
+            "Agivant impact"
+          ],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "50-to-70-shorter-concept-to-launch",
+            "type": "tableRow",
+            "cells": [
+              "50 to 70% shorter concept to launch",
+              "Orchestration sequences work across every contributing team and system",
+              "Standard launches compress from quarters to months"
+            ]
+          },
+          {
+            "id": "75-faster-execution-on-complex-initiativ",
+            "type": "tableRow",
+            "cells": [
+              "75% faster execution on complex initiatives",
+              "Routing agents sequence work across CPQ, CLM, SAP, and defect tracking",
+              "Non-standard requests move from four quarters to two or three months"
+            ]
+          },
+          {
+            "id": "80-less-portfolio-council-meeting-time",
+            "type": "tableRow",
+            "cells": [
+              "80% less portfolio council meeting time",
+              "Agents keep a current, explainable ranked backlog",
+              "Weekly re-prioritization comes off the calendar"
+            ]
+          },
+          {
+            "id": "3x-higher-initiative-to-objective-alignm",
+            "type": "tableRow",
+            "cells": [
+              "3x higher initiative-to-objective alignment",
+              "Agents blend value, feasibility, timing, and resource signals into dynamic scores",
+              "Capacity goes to the initiatives that carry value"
+            ]
+          },
+          {
+            "id": "compliance-checks-in-the-flow",
+            "type": "tableRow",
+            "cells": [
+              "Compliance checks in the flow",
+              "Monitoring catches missing legal, security, and privacy checks early",
+              "Every product ships enterprise grade"
+            ]
+          }
+        ]
+      }
+    ],
+    "footerCta": {
+      "enabled": true,
+      "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+      "subheading": null,
+      "partner": null,
+      "primaryCta": null,
+      "secondaryCta": {
+        "enabled": true,
+        "label": "Talk to an Amp'd specialist",
+        "href": "/contact",
+        "external": false
+      }
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "pageType": "solution-inner-page",
+    "slug": "ai-product-tech-support",
+    "title": "Keep AI products accurate, affordable, and auditable in production",
+    "seo": {
+      "title": null,
+      "description": null,
+      "canonical": null,
+      "ogImage": null
+    },
+    "hero": {
+      "eyebrow": null,
+      "title": "Keep AI products accurate, affordable, and auditable in production",
+      "subtitle": null,
+      "summary": "Agivant runs AI product support as a technical operations practice for AI systems already serving customers. The team measures decision accuracy alongside availability, finds root cause across data, model, and infrastructure, and restores performance through retraining, safe rollouts, and instant rollback. Service levels are written against inference quality, and coverage starts in days and weeks.",
+      "authors": [],
+      "partner": null,
+      "media": null,
+      "primaryCta": null,
+      "secondaryCta": null
+    },
+    "sections": [
+      {
+        "id": "what-agents-do",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": "WHAT THE AGENTS DO",
+          "heading": "Measure the quality of what the system decides",
+          "description": "The practice tracks accuracy, drift, fairness, and confidence continuously. Each signal has a threshold, an owner, and a response path agreed before it fires.",
+          "closingStatement": "Once a change in quality is visible, restoring it becomes a clear engineering task.",
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "drift-detection",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Drift detection",
+            "body": "Real-time KL divergence and PSI alerts flag distribution shifts",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "confidence-tracking",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Confidence tracking",
+            "body": "Alerts fire when scores fall below the agreed band",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "fairness-evaluation",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Fairness evaluation",
+            "body": "Continuous checks hold behaviour inside policy across groups",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "decision-logging",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Decision logging",
+            "body": "Full traces capture input, model version, and output",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "solution-offerings",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": "Restore accuracy, tune cost, and hold the audit trail",
+          "description": "The practice covers the full cycle, from the first drift alert to the fairness report a reviewer asks for.",
+          "closingStatement": "The practice works inside the tooling teams already run.",
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "monitor",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Monitor",
+            "body": "Accuracy, drift, and fairness against agreed thresholds",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "triage",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Triage",
+            "body": "Separate data, model, and infrastructure issues",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "resolve",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Resolve",
+            "body": "Champion-challenger retraining, canary rollouts, one-click reversion",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "optimize",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Optimize",
+            "body": "Autoscaling, batching, quantization, and right-sizing tune cost and latency",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "prove",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Prove",
+            "body": "SHAP and LIME explanations and fairness audits give reviewers a live record",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "production-platforms",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": "Work across the platforms already in production",
+          "description": "Agivant supports AI on AWS SageMaker, Google Vertex AI, Azure ML, Databricks, and custom Kubernetes or Ray, and plugs into Jira, ServiceNow, and Zendesk. Forward Deployed Engineers work as an extension of the product team, in the same tooling and on-call rotation.",
+          "closingStatement": null,
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": []
+      },
+      {
+        "id": "impact-table",
+        "type": "comparison_table",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": null,
+          "description": null,
+          "columns": [
+            "Signal",
+            "Mechanism",
+            "Agivant impact"
+          ],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "under-5-minutes-mean-time-to-detect",
+            "type": "tableRow",
+            "cells": [
+              "Under 5 minutes mean time to detect",
+              "Statistical drift detection replaces waiting for a user report",
+              "Accuracy problems surface before customers feel them"
+            ]
+          },
+          {
+            "id": "optimized-inference-cost",
+            "type": "tableRow",
+            "cells": [
+              "Optimized inference cost",
+              "Autoscaling, batching, and quantization tuned to the serving profile",
+              "Product margins hold as volume grows"
+            ]
+          },
+          {
+            "id": "faster-deployment-cadence",
+            "type": "tableRow",
+            "cells": [
+              "Faster deployment cadence",
+              "Automated validation gates clear each release",
+              "New versions reach production sooner"
+            ]
+          },
+          {
+            "id": "continuous-explainability",
+            "type": "tableRow",
+            "cells": [
+              "Continuous explainability",
+              "Decision traces and fairness audits stay current",
+              "Regulatory reviews draw on a live record"
+            ]
+          },
+          {
+            "id": "service-levels-on-inference-quality",
+            "type": "tableRow",
+            "cells": [
+              "Service levels on inference quality",
+              "Agreements cover accuracy and drift response alongside availability",
+              "The contract matches what the product needs"
+            ]
+          }
+        ]
+      }
+    ],
+    "footerCta": {
+      "enabled": true,
+      "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+      "subheading": null,
+      "partner": null,
+      "primaryCta": null,
+      "secondaryCta": {
+        "enabled": true,
+        "label": "Talk to an Amp'd specialist",
+        "href": "/contact",
+        "external": false
+      }
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "pageType": "solution-inner-page",
+    "slug": "agivant-spend-ai",
+    "title": "Turn fragmented software usage into one spend intelligence layer with Agivant Spend AI",
+    "seo": {
+      "title": null,
+      "description": null,
+      "canonical": null,
+      "ogImage": null
+    },
+    "hero": {
+      "eyebrow": null,
+      "title": "Turn fragmented software usage into one spend intelligence layer with Agivant Spend AI",
+      "subtitle": null,
+      "summary": "Spend AI is a continuous optimization layer for the enterprise SaaS and cloud estate. It connects platforms, procurement, and usage telemetry into one data fabric, maps vendors, products, licenses, and users in a knowledge graph, and puts agents on reclaiming idle licenses and forecasting demand. The picture of software consumption gets accurate, and the first savings land in days and weeks.",
+      "authors": [],
+      "partner": null,
+      "media": null,
+      "primaryCta": null,
+      "secondaryCta": null
+    },
+    "sections": [
+      {
+        "id": "what-agents-do",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": "WHAT THE AGENTS DO",
+          "heading": "Build one source of truth for software consumption",
+          "description": "Five layers turn scattered billing, identity, and usage signals into an estate that can be queried, attributed, and acted on.",
+          "closingStatement": "With consumption visible in one place, optimization runs continuously and stays accurate between renewals.",
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "unified-data-fabric",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Unified data fabric",
+            "body": "Identity, billing, procurement, and usage across every platform",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "knowledge-graph",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Knowledge graph",
+            "body": "Vendors, products, licenses, and users for cost attribution at scale",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "vendor-intelligence",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Vendor intelligence",
+            "body": "Retrieval over earnings, pricing, and market signals into vendor briefs",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "license-intelligence",
+            "type": "card",
+            "eyebrow": null,
+            "title": "License intelligence",
+            "body": "Entitlements, roles, and usage read together to find idle and future demand",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "agentic-optimization",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Agentic optimization",
+            "body": "Agents flag anomalies, recommend actions, and forecast demand continuously",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "solution-offerings",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": "Hand more of the work to agents as accuracy proves out",
+          "description": "Each stage goes live only once the one before holds accuracy on real renewals and reclaim decisions.",
+          "closingStatement": null,
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "build",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Build",
+            "body": "The data fabric, knowledge graph, and integrations make the estate readable",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "assist",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Assist",
+            "body": "Agents surface idle licenses, anomalies, and renewal risks; people approve",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "operate",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Operate",
+            "body": "Agents reclaim licenses, forecast demand, and prepare audit evidence under policy",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "impact-table",
+        "type": "comparison_table",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": null,
+          "description": null,
+          "columns": [
+            "Signal",
+            "Mechanism",
+            "Agivant impact"
+          ],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "40-to-50-fewer-idle-licenses",
+            "type": "tableRow",
+            "cells": [
+              "40 to 50% fewer idle licenses",
+              "Detection finds unused subscriptions across the estate.",
+              "Wasted spend returns to the budget."
+            ]
+          },
+          {
+            "id": "complete-discovery-of-overlapping-tools",
+            "type": "tableRow",
+            "cells": [
+              "Complete discovery of overlapping tools",
+              "Discovery covers software adopted outside procurement.",
+              "Every tool in the estate is visible."
+            ]
+          },
+          {
+            "id": "60-to-80-lighter-audit-preparation",
+            "type": "tableRow",
+            "cells": [
+              "60 to 80% lighter audit preparation",
+              "Continuous compliance monitoring replaces spreadsheet reconciliation.",
+              "Audit readiness becomes a standing state."
+            ]
+          },
+          {
+            "id": "stronger-negotiation-position",
+            "type": "tableRow",
+            "cells": [
+              "Stronger negotiation position",
+              "Vendor intelligence and pricing benchmarks brief every renewal.",
+              "Contracts reflect what the business actually uses."
+            ]
+          },
+          {
+            "id": "software-spend-matched-to-demand",
+            "type": "tableRow",
+            "cells": [
+              "Software spend matched to demand",
+              "Forecasting reads workforce growth and usage patterns.",
+              "Purchasing tracks real consumption."
+            ]
+          }
+        ]
+      }
+    ],
+    "footerCta": {
+      "enabled": true,
+      "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+      "subheading": null,
+      "partner": null,
+      "primaryCta": null,
+      "secondaryCta": {
+        "enabled": true,
+        "label": "Talk to an Amp'd specialist",
+        "href": "/contact",
+        "external": false
+      }
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "pageType": "solution-inner-page",
+    "slug": "agentic-mesh-deployment",
+    "title": "Connect front, mid, and back office through an agentic enterprise mesh",
+    "seo": {
+      "title": null,
+      "description": null,
+      "canonical": null,
+      "ogImage": null
+    },
+    "hero": {
+      "eyebrow": null,
+      "title": "Connect front, mid, and back office through an agentic enterprise mesh",
+      "subtitle": null,
+      "summary": "The Agivant Agentic Enterprise Mesh is a network of AI agents working together under one orchestration layer. Agents hold shared context across front, mid, and back office, break an enterprise intent into a multi-step plan, and coordinate across domains until the work completes. Role-based clusters go onto real workflows, with the first coordinated runs in days and weeks.",
+      "authors": [],
+      "partner": null,
+      "media": null,
+      "primaryCta": null,
+      "secondaryCta": null
+    },
+    "sections": [
+      {
+        "id": "what-agents-do",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": "WHAT THE AGENTS DO",
+          "heading": "Turn enterprise intent into coordinated work",
+          "description": "The orchestration layer holds hundreds of specialized agents as one working organization. Five capabilities make that coordination reliable enough to run unattended.",
+          "closingStatement": "Coordination is what turns capable agents into one working organization.",
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "intent-and-goal-decomposition",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Intent and goal decomposition",
+            "body": "Read an intent, break it into a plan across offices",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "coordination-and-routing",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Coordination and routing",
+            "body": "A registry handles cluster selection, sequencing, and conflicts",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "shared-context-and-state",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Shared context and state",
+            "body": "One context layer all agents read and update",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "policy-and-approvals",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Policy and approvals",
+            "body": "Rules encoded, low-risk actions auto-clear, exceptions reach people with the case assembled",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "observability-and-learning",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Observability and learning",
+            "body": "Actions logged, analysis refines playbooks and policy",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "solution-offerings",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": "Run agent clusters across the whole enterprise",
+          "description": "Role-based clusters take defined parts of the work, each reading the same enterprise context.",
+          "closingStatement": "Every cluster sees the full picture, so one office's decision accounts for what the others know.",
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "front-office",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Front office",
+            "body": "Revenue generation, personalized marketing, self-healing support",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "mid-office",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Mid office",
+            "body": "Portfolio strategy, spend intelligence, continuous planning",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "back-office",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Back office",
+            "body": "Engineering acceleration, IT auto-remediation, AI-native finance",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "strategic-account-risk",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": "Watch the mesh handle a strategic account at risk",
+          "description": "One intent reaches three offices at once, and the orchestration layer holds the sequence.",
+          "closingStatement": null,
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "signal",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Signal",
+            "body": "CX agents see NPS falling while SRE agents detect rising error rates",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "intent",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Intent",
+            "body": "Stabilize the account within fourteen days",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "execute",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Execute",
+            "body": "Front office runs outreach, mid office applies commercial levers, back office ships fixes",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "impact-table",
+        "type": "comparison_table",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": null,
+          "description": null,
+          "columns": [
+            "Signal",
+            "Mechanism",
+            "Agivant impact"
+          ],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "30-to-50-faster-process-cycles",
+            "type": "tableRow",
+            "cells": [
+              "30 to 50% faster process cycles",
+              "Specialized agents coordinate through a central orchestration layer.",
+              "Work that crossed several teams completes in one pass."
+            ]
+          },
+          {
+            "id": "fewer-handoff-errors",
+            "type": "tableRow",
+            "cells": [
+              "Fewer handoff errors",
+              "Shared context removes re-explaining between systems and teams.",
+              "Fewer defects reach the customer."
+            ]
+          },
+          {
+            "id": "cross-office-context-by-default",
+            "type": "tableRow",
+            "cells": [
+              "Cross-office context by default",
+              "Every agent reads enterprise context from a unified graph.",
+              "Decisions account for what other offices know."
+            ]
+          },
+          {
+            "id": "risk-visible-weeks-ahead",
+            "type": "tableRow",
+            "cells": [
+              "Risk visible weeks ahead",
+              "Agents forecast on live signals as they arrive.",
+              "People act while there is still room."
+            ]
+          },
+          {
+            "id": "auditable-action",
+            "type": "tableRow",
+            "cells": [
+              "Auditable action",
+              "Every agent action is logged against the policy that allowed it.",
+              "Leaders set the boundaries and see them held."
+            ]
+          }
+        ]
+      }
+    ],
+    "footerCta": {
+      "enabled": true,
+      "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+      "subheading": null,
+      "partner": null,
+      "primaryCta": null,
+      "secondaryCta": {
+        "enabled": true,
+        "label": "Talk to an Amp'd specialist",
+        "href": "/contact",
+        "external": false
+      }
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "pageType": "solution-inner-page",
+    "slug": "agentic-silicon-lifecycle-platform",
+    "title": "Automate design verification, yield correlation, and program readiness in one platform",
+    "seo": {
+      "title": null,
+      "description": null,
+      "canonical": null,
+      "ogImage": null
+    },
+    "hero": {
+      "eyebrow": null,
+      "title": "Automate design verification, yield correlation, and program readiness in one platform",
+      "subtitle": null,
+      "summary": "The Agentic Silicon Lifecycle Platform connects specialized agents across design verification, yield correlation, and program readiness under one policy layer, reasoning continuously over the systems you already run. Engineering, quality, and program teams work from one shared knowledge graph, with humans approving every high-impact decision. Each offering delivers a first result in minutes to hours.",
+      "authors": [],
+      "partner": null,
+      "media": null,
+      "primaryCta": null,
+      "secondaryCta": null
+    },
+    "sections": [
+      {
+        "id": "what-agents-do",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": "WHAT THE AGENTS DO",
+          "heading": "Coordinate every agent under one policy layer",
+          "description": "A meta-orchestrator sets the rules for every specialized agent, a shared knowledge graph carries context between them, and accelerated infrastructure runs it all.",
+          "closingStatement": "One policy layer, one knowledge graph, three offerings working from the same source of truth.",
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "meta-orchestrator-and-policy-control",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Meta-orchestrator and policy control",
+            "body": "Manages conflicts between agents, enforces quality and compliance thresholds, and keeps a human in the loop on every high-impact decision.",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "specialized-agent-layer",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Specialized agent layer",
+            "body": "Purpose-built agents handle design verification, yield correlation, and program readiness, each an expert in its own domain",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "shared-engineering-knowledge-graph",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Shared engineering knowledge graph",
+            "body": "Carries requirements, prior designs, and reusable IP across every agent, so context is never rebuilt from scratch",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "accelerated-agent-infrastructure",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Accelerated agent infrastructure",
+            "body": "Runs every agent on shared accelerated compute, so new offerings plug into the same platform instead of a separate stack",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "live-prompt-demo",
+        "type": "video_demo",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "heading": "Solution demo video",
+          "description": null,
+          "closingStatement": null,
+          "video": {
+            "sourceType": "youtube",
+            "src": "https://youtu.be/37pOWW341TM",
+            "poster": "/images/solutions/thumbnail.png"
+          }
+        },
+        "blocks": []
+      },
+      {
+        "id": "solution-offerings",
+        "type": "card_grid",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": "Choose the offerings your programs need",
+          "description": "Three offerings run on the same platform, each solving a distinct problem in the silicon lifecycle from design through production",
+          "closingStatement": null,
+          "columns": [],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "design-intelligence",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Design intelligence",
+            "body": "Verifies mechanical, thermal, and structural designs in parallel and auto-corrects failed compliance gates without manual rework",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "yield-intelligence",
+            "type": "card",
+            "eyebrow": null,
+            "title": "Yield intelligence",
+            "body": "Unifies multi-site foundry telemetry, traces yield excursions to a specific material lot, and automates containment",
+            "media": null,
+            "cta": null,
+            "items": []
+          },
+          {
+            "id": "npi-command-center",
+            "type": "card",
+            "eyebrow": null,
+            "title": "NPI command center",
+            "body": "Scores program readiness continuously and reallocates engineering resource before an at-risk gate becomes a schedule delay",
+            "media": null,
+            "cta": null,
+            "items": []
+          }
+        ]
+      },
+      {
+        "id": "impact-table",
+        "type": "comparison_table",
+        "enabled": true,
+        "conditions": null,
+        "data": {
+          "eyebrow": null,
+          "heading": null,
+          "description": null,
+          "columns": [
+            "Signal",
+            "Mechanism",
+            "Agivant impact"
+          ],
+          "media": null,
+          "cta": null
+        },
+        "blocks": [
+          {
+            "id": "40-60-faster-design-verification",
+            "type": "tableRow",
+            "cells": [
+              "40–60% faster design verification",
+              "Design Intelligence runs simulations in parallel against a matched reference",
+              "Faster sign-off with fewer late-stage engineering changes"
+            ]
+          },
+          {
+            "id": "87-less-multi-site-yield-loss-impact",
+            "type": "tableRow",
+            "cells": [
+              "87% less multi-site yield-loss impact",
+              "Yield Intelligence correlates telemetry across foundries in real time",
+              "Excursions contained within about a day"
+            ]
+          },
+          {
+            "id": "20-40-npi-efficiency-improvement",
+            "type": "tableRow",
+            "cells": [
+              "20–40% NPI efficiency improvement",
+              "NPI Command Center scores readiness and reallocates resource continuously",
+              "Fewer schedule slips discovered at the last minute"
+            ]
+          },
+          {
+            "id": "one-policy-layer-across-three-offerings",
+            "type": "tableRow",
+            "cells": [
+              "One policy layer across three offerings",
+              "A shared meta-orchestrator and knowledge graph connect every agent",
+              "Consistent oversight and IP reuse across the whole lifecycle"
+            ]
+          }
+        ]
+      }
+    ],
+    "footerCta": {
+      "enabled": true,
+      "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+      "subheading": null,
+      "partner": null,
+      "primaryCta": null,
+      "secondaryCta": {
+        "enabled": true,
+        "label": "Talk to an Amp'd specialist",
+        "href": "/contact",
+        "external": false
+      }
     }
   }
-}]
+]

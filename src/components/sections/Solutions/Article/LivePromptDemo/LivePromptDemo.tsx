@@ -31,7 +31,10 @@ export function LivePromptDemo({ data }: LivePromptDemoProps) {
             <VideoPlayer
               source={{
                 provider: (video.sourceType === "youtube" ? "youtube" : "youtube") as "youtube",
-                id: video.src,
+                id:
+                  video.src.match(
+                    /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/
+                  )?.[1] ?? video.src,
               }}
               poster={video?.poster || "/images/solutions/thumbnail.png"}
               title={heading || "Live Agent Prompt Video"}
