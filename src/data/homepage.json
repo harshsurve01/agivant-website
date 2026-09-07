@@ -25,7 +25,7 @@
     "background": {
       "kind": "video",
       "src": "/videos/homepage-hero-bg-video.mp4",
-      "poster": null,
+      "poster": "/images/hero/hero-vid-img.png",
       "assetKey": "hero-background-video",
       "alt": "Abstract translucent glass wave background video",
       "caption": null
