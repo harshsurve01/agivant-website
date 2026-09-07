@@ -68,6 +68,7 @@ export async function getHero(): Promise<HeroData> {
       kind: hero.background.kind as "image" | "video",
       src: hero.background.src,
       assetKey: hero.background.assetKey,
+      poster: hero.background.poster,
       alt: hero.background.alt,
       caption: hero.background.caption,
     },

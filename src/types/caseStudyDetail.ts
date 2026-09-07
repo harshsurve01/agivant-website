@@ -103,8 +103,8 @@ export interface CaseStudyDetailPage {
   hero: CaseStudyHero;
   thumbnail: CaseStudyThumbnail;
   industry: string;
-  capability: string;
-  techPlatform: string;
+  capability: string | null;
+  techPlatform: string | null;
   sections: CaseStudySection[];
   footerCta: CaseStudyFooterCTA;
   showFooter?: boolean;

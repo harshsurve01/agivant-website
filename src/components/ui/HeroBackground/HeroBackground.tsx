@@ -7,7 +7,13 @@ import { Gradient } from "@/components/effects/Gradient";
 export interface HeroBackgroundProps {
   /** Hero's existing, untouched content — rendered on top of both
    * decorative layers below, unaffected by either of them. */
-  children: ReactNode;
+  children?: ReactNode;
+  /** When false, suppresses ambient glows and Figma ellipse stroke. Defaults to true. */
+  showDecorativeLayers?: boolean;
+  /** Fine-grained override for ambient gradient glows. Defaults to showDecorativeLayers. */
+  showGlows?: boolean;
+  /** Fine-grained override for Figma ellipse stroke. Defaults to showDecorativeLayers. */
+  showEllipse?: boolean;
 }
 
 /**
@@ -44,44 +50,52 @@ export interface HeroBackgroundProps {
  * Button/ButtonMotion, just applied one level up the tree than
  * originally anticipated.
  */
-export function HeroBackground() {
+export function HeroBackground({
+  showDecorativeLayers = true,
+  showGlows = showDecorativeLayers,
+  showEllipse = showDecorativeLayers,
+}: HeroBackgroundProps = {}) {
   return (
     <div className={styles.experience}>
-      <Gradient
-        top="-18%"
-        left="-16%"
-        size="clamp(340px, 34vw, 600px)"
-        stops={[
-          "color-mix(in srgb, var(--color-bg-gradient-start) 85%, transparent) 0%",
-          "transparent 38%",
-        ]}
-        opacity={1}
-        blur="60px"
-        blurMobile="60px"
-        animate="breathe"
-      />
-       <Gradient
-        top="0%"
-        right="70%"
-        size="25rem"
-        stops={["#8500df 50%", "#edbf79 85%", "transparent 100%"]}
-        opacity={0.125}
-        blur="90px"
-      />
-      <Gradient
-        top="4%"
-        right="25%"
-        size="clamp(561px, 56vw, 561px)"
-        stops={[
-          "color-mix(in srgb, var(--color-bg-gradient-end) 85%, transparent) 0%",
-          "transparent 68%",
-        ]}
-        opacity={0.15}
-        blur="90px"
-        blurMobile="40px"
-        animate="breathe"
-        animationDelay="-4s"
-      />
+      {showGlows && (
+        <>
+          <Gradient
+            top="-18%"
+            left="-16%"
+            size="clamp(340px, 34vw, 600px)"
+            stops={[
+              "color-mix(in srgb, var(--color-bg-gradient-start) 85%, transparent) 0%",
+              "transparent 38%",
+            ]}
+            opacity={1}
+            blur="60px"
+            blurMobile="60px"
+            animate="breathe"
+          />
+          <Gradient
+            top="0%"
+            right="70%"
+            size="25rem"
+            stops={["#8500df 50%", "#edbf79 85%", "transparent 100%"]}
+            opacity={0.125}
+            blur="90px"
+          />
+          <Gradient
+            top="4%"
+            right="25%"
+            size="clamp(561px, 56vw, 561px)"
+            stops={[
+              "color-mix(in srgb, var(--color-bg-gradient-end) 85%, transparent) 0%",
+              "transparent 68%",
+            ]}
+            opacity={0.15}
+            blur="90px"
+            blurMobile="40px"
+            animate="breathe"
+            animationDelay="-4s"
+          />
+        </>
+      )}
 
       <HeroParticleField />
 
@@ -100,15 +114,16 @@ export function HeroBackground() {
           ampd-wordmark.svg until the asset is supplied. Swap the
           width/height below for its real intrinsic dimensions once
           it lands. */}
-      <Image
-        src="/images/hero/hero-ellipse-stroke.svg"
-        alt=""
-        width={820}
-        height={560}
-        className={styles.ellipseStroke}
-        aria-hidden="true"
-      />
-
+      {showEllipse && (
+        <Image
+          src="/images/hero/hero-ellipse-stroke.svg"
+          alt=""
+          width={820}
+          height={560}
+          className={styles.ellipseStroke}
+          aria-hidden="true"
+        />
+      )}
     </div>
   );
 }

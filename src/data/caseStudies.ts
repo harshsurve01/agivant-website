@@ -67,8 +67,8 @@ export interface CaseStudy {
   };
   image: CaseStudyImage;
   industry: string;
-  capability: string;
-  techPlatform: string;
+  capability: string | null;
+  techPlatform: string | null;
   cta?: CaseStudyCTA;
 }
 

@@ -14,19 +14,20 @@
     "announcement": {
       "text": "Agivant launches Amp'd<br>to accelerate enterprise AI value",
       "media": {
-        "kind": "logo",
-        "src": null,
-        "assetKey": "ampd-wordmark",
+        "kind": "animation",
+        "src": "/videos/ampd-Logo-Animation.gif",
+        "assetKey": "ampd-logo-animation",
         "fallbackImage": "/images/hero/ampd-wordmark.svg",
         "alt": "Amp'd",
         "caption": null
       }
     },
     "background": {
-      "kind": "image",
-      "src": "/images/hero/hero-vid-img.png",
-      "assetKey": "hero-translucent-glass-wave",
-      "alt": "Abstract translucent glass wave background",
+      "kind": "video",
+      "src": "/videos/homepage-hero-bg-video.mp4",
+      "poster": "/images/hero/hero-vid-img.png",
+      "assetKey": "hero-background-video",
+      "alt": "Abstract translucent glass wave background video",
       "caption": null
     },
     "primaryCta": {
@@ -795,9 +796,9 @@
     "subheading": null,
     "partner": null,
     "media": {
-      "kind": "image",
-      "src": "/images/ampd-wordmark.svg",
-      "assetKey": "ampd-wordmark",
+      "kind": "animation",
+      "src": "/videos/ampd-Logo-Animation.gif",
+      "assetKey": "ampd-logo-animation",
       "alt": "Amp'd",
       "caption": null
     },

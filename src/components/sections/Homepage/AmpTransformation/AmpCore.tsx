@@ -18,13 +18,19 @@ interface AmpCoreProps {
 export function AmpCore({ hub }: AmpCoreProps) {
   return (
     <div className={styles.core} data-amp-core="true">
-      <img
-        src="/images/logo/amp-core.png"
-        alt=""
-        aria-hidden="true"
-        className={styles.blobImage}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster="/images/logo/amp-core.png"
+        className={styles.blobVideo}
         data-amp-blob="true"
-      />
+        aria-hidden="true"
+      >
+        <source src="/videos/ampd-section-bg.mp4" type="video/mp4" />
+      </video>
 
       <div className={styles.logoWrap} data-amp-logo="true">
         {hub.brand.logoSrc ? (

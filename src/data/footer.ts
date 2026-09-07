@@ -30,7 +30,7 @@ export interface FooterNavigationLink {
 
 /** Visual brand asset inserted inline into the heading (e.g. Amp'd wordmark/gif). */
 export interface FooterBrandMedia {
-  kind: "image" | "gif" | "video";
+  kind: "image" | "gif" | "video" | "animation";
   src: string;
   alt: string;
   width?: number;
@@ -62,7 +62,7 @@ export async function getFooterContent(): Promise<FooterContent> {
     heading: footerCta.heading,
     brandMedia: footerCta.media?.src
       ? {
-          kind: footerCta.media.kind as "image",
+          kind: (footerCta.media.kind as FooterBrandMedia["kind"]) ?? "animation",
           src: footerCta.media.src,
           alt: footerCta.media.alt ?? "Amp'd",
           width: 240,

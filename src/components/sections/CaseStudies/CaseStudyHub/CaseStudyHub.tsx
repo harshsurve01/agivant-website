@@ -97,7 +97,8 @@ export function CaseStudyHub({
       ).every((groupId) => {
         const activeValues = selected[groupId];
         if (activeValues.size === 0) return true;
-        return activeValues.has(caseStudy[FIELD_BY_GROUP[groupId]]);
+        const val = caseStudy[FIELD_BY_GROUP[groupId]];
+        return Boolean(val && activeValues.has(val));
       });
       if (!matchesEveryGroup) return false;
 

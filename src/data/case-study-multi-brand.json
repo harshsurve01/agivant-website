@@ -27,6 +27,17 @@
     "canonical": "https://agivant.com/case-studies/multi-brand-commerce-migration",
     "ogImage": null
   },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-02.jpg",
+      "assetKey": "case-study-02",
+      "alt": "Multi-brand commerce migration ahead of a platform shutdown",
+      "caption": null
+    }
+  },
+  "capability": null,
+  "techPlatform": null,
   "showFooter": false,
   "footerCta": {
     "enabled": false,

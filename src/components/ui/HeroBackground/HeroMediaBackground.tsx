@@ -21,16 +21,17 @@ export function HeroMediaBackground({ data, className }: HeroMediaBackgroundProp
 
   if (kind === "video") {
     return (
-      <div className={className || styles.mediaContainer}>
+      <div className={className || styles.mediaContainer} aria-hidden="true">
         <video
           autoPlay
           loop
           muted
           playsInline
           poster={poster}
+          preload="auto"
           className={styles.mediaVideo}
         >
-          <source src={src} />
+          <source src={src} type="video/mp4" />
         </video>
       </div>
     );

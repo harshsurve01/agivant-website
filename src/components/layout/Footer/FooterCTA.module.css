@@ -20,7 +20,7 @@
   font-family: var(--font-family-heading);
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-7xl); /* 64px (4rem) */
-  line-height: 1.4;
+  line-height: 1;
   letter-spacing: var(--letter-spacing-normal);
   color: var(--color-text-primary);
   text-align: center;
@@ -34,7 +34,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-4);
+  gap: 0;
   vertical-align: middle;
 }
 
@@ -47,10 +47,11 @@
 
 .brandMedia {
   display: block;
-  width: 15rem; /* ~240px at 16px root, Figma spec: 240 × 80.46 */
+  width: 20rem; /* ~240px at 16px root, Figma spec: 240 × 80.46 */
   height: auto;
-  aspect-ratio: 240 / 80.46;
+  aspect-ratio: 360 / 150;
   max-width: 100%;
+  object-fit: contain;
 }
 
 .buttons {

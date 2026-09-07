@@ -25,7 +25,7 @@ export async function Hero() {
   return (
     <section className={styles.hero} data-hero-interaction-root>
       <HeroMediaBackground data={background} />
-      <HeroBackground />
+      <HeroBackground showDecorativeLayers={false} />
 
       <Container>
         <div className={styles.content}>

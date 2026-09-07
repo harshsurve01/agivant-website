@@ -27,8 +27,10 @@ export interface AmpdLogoAnimationProps {
  */
 export function AmpdLogoAnimation({ data }: AmpdLogoAnimationProps) {
   const { src, alt, fallbackImage = "/images/hero/ampd-wordmark.svg" } = data;
+  const mediaSrc = src || fallbackImage;
+  const isLottie = Boolean(src && src.trim().endsWith(".json"));
 
-  if (src && src.trim().length > 0) {
+  if (isLottie && src) {
     return (
       <span className={styles.ampdWrapper}>
         <Player
@@ -41,13 +43,16 @@ export function AmpdLogoAnimation({ data }: AmpdLogoAnimationProps) {
     );
   }
 
+  const isGif = Boolean(mediaSrc && mediaSrc.endsWith(".gif"));
+
   return (
     <span className={styles.ampdWrapper}>
       <Image
-        src={fallbackImage}
+        src={mediaSrc}
         alt={alt}
-        width={120}
-        height={40}
+        width={400}
+        height={225}
+        unoptimized={isGif}
         priority
         className={styles.ampdImage}
       />

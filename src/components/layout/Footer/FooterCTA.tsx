@@ -132,10 +132,10 @@ export function FooterCTA({
                       <Image
                         src={brandMedia.src}
                         alt={brandMedia.alt}
-                        width={brandMedia.width ?? 240}
-                        height={brandMedia.height ?? 80}
+                        width={brandMedia.width ?? 360}
+                        height={brandMedia.height ?? 150}
                         className={styles.brandMedia}
-                        unoptimized={brandMedia.src.endsWith(".svg")}
+                        unoptimized={brandMedia.src.endsWith(".svg") || brandMedia.src.endsWith(".gif")}
                         priority
                       />
                     </span>
@@ -168,7 +168,7 @@ export function FooterCTA({
                       width={brandMedia.width ?? 240}
                       height={brandMedia.height ?? 80}
                       className={styles.brandMedia}
-                      unoptimized={brandMedia.src.endsWith(".svg")}
+                      unoptimized={brandMedia.src.endsWith(".svg") || brandMedia.src.endsWith(".gif")}
                       priority
                     />
                   </span>

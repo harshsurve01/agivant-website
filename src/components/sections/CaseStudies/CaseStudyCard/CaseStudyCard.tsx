@@ -68,7 +68,7 @@ export function CaseStudyCard({
         <div className={styles.footer}>
           <div className={styles.tags}>
             <span className={styles.badge}>{industry}</span>
-            <span className={styles.badge}>{capability}</span>
+            {capability ? <span className={styles.badge}>{capability}</span> : null}
           </div>
 
           <span className={styles.deepDive}>

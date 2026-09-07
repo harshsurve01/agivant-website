@@ -25,7 +25,7 @@ export interface CaseStudyCardData {
   };
   image?: CaseStudyCardImage;
   industry: string;
-  capability: string;
+  capability?: string | null;
 }
 
 export interface CaseStudyCardProps {
