@@ -25,7 +25,7 @@
     "background": {
       "kind": "video",
       "src": "/videos/homepage-hero-bg-video.mp4",
-      "poster": "/images/hero/hero-vid-img.png",
+      "poster": null,
       "assetKey": "hero-background-video",
       "alt": "Abstract translucent glass wave background video",
       "caption": null
@@ -63,7 +63,7 @@
           "type": "card",
           "eyebrow": "Trusted",
           "title": "Global Enterprise Trust",
-          "body": "Agivant is trusted for complex, high-scale engineering by global enterprises",
+          "body": "Agivant is trusted by global enterprises for complex, high-scale engineering to deliver real business value",
           "media": null,
           "cta": null,
           "items": []
@@ -72,8 +72,8 @@
           "id": "ai-native-since-day-1",
           "type": "card",
           "eyebrow": "Amplified",
-          "title": "AI-Native since Day 1",
-          "body": "Agivant was built AI-native, with engineers and agents working as one",
+          "title": "AI-Native since inception",
+          "body": "Agivant is built AI-native, with engineers and AI Agents working as one",
           "media": null,
           "cta": null,
           "items": []
@@ -82,8 +82,8 @@
           "id": "hyperscaler-partner-ecosystem",
           "type": "card",
           "eyebrow": "Connected",
-          "title": "Hyperscaler & Partner Ecosystem",
-          "body": "Agivant works across global hyperscaler, data, AI and workflow platforms enterprises depend on",
+          "title": "Proven expertise across modern AI engineering",
+          "body": "Agivant delivers proven expertise across AI, data, cloud, workflows, business, infra systems enterprises depend on",
           "media": null,
           "cta": null,
           "items": []
@@ -292,7 +292,7 @@
       "data": {
         "eyebrow": null,
         "heading": "Engineering Every Layer Of Your<br>AI Stack",
-        "description": "Agivant engineers the agents, applications, platforms, data and operations that make enterprise AI work",
+        "description": "Agivant engineers the agentic AI, applications, platforms, data and operations that make the autonomous enterprise work",
         "columns": [],
         "media": null,
         "cta": {
@@ -324,7 +324,7 @@
           "type": "card",
           "eyebrow": "AI / ML",
           "title": "AI & ML Engineering",
-          "body": "We build RAG systems, predictive models, copilots and inference services engineered to spec, tuned for accuracy and built for real business use.",
+          "body": "We build RAG systems, predictive models, agent-led assistants and inference services engineered to spec and built for real business value.",
           "media": {
             "kind": "image",
             "src": "/images/ai-stack/bg2.png",
@@ -340,7 +340,7 @@
           "type": "card",
           "eyebrow": "Cloud",
           "title": "Cloud & Platform Engineering",
-          "body": "We modernize cloud, platform and API foundations so agents and AI systems run at enterprise scale, built to carry what comes next.",
+          "body": "We modernize cloud and platform so agentic AI systems run at enterprise scale, resilient and self-healing as they carry what comes next.",
           "media": {
             "kind": "image",
             "src": "/images/ai-stack/rectangle4.png",
@@ -356,7 +356,7 @@
           "type": "card",
           "eyebrow": "Data",
           "title": "AI-Ready Data Engineering",
-          "body": "We build pipelines, semantic layers, knowledge systems, vector retrieval and data quality foundations so agents have reliable ground truth from day one.",
+          "body": "We build pipelines, semantic layers, knowledge graphs and vector retrieval so agentic systems have reliable ground truth from day one.",
           "media": {
             "kind": "image",
             "src": "/images/ai-stack/rectangle3.png",
@@ -372,7 +372,7 @@
           "type": "card",
           "eyebrow": "Platform",
           "title": "MLOps & AI Operations",
-          "body": "We operationalize agents with deployment pipelines, monitoring, evaluation, FinOps and the runtime controls that keep production systems governed and improving.",
+          "body": "We operationalize agents with deployment pipelines, observability, evaluation and the runtime controls that keep autonomous production systems reliable and improving.",
           "media": {
             "kind": "image",
             "src": "/images/ai-stack/rectangle5.png",
@@ -393,7 +393,7 @@
       "data": {
         "eyebrow": null,
         "heading": "Agivant Is Trusted By<br>Global Partners",
-        "description": "Agivant works across global hyperscaler, data, AI & workflow platforms enterprises depend on.",
+        "description": "Agivant works across the cloud, data, AI and workflow platforms enterprises depend on.",
         "columns": [],
         "media": null,
         "cta": {
@@ -594,7 +594,7 @@
       "data": {
         "eyebrow": null,
         "heading": "Client success<br>in production, at scale",
-        "description": "See how Agivant engineers real business value for the autonomous enterprise, across several industries",
+        "description": "See how Agivant engineers agentic AI into production, powering real business value for the autonomous enterprise across several industries",
         "columns": [],
         "media": null,
         "cta": {
