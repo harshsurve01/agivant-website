@@ -116,39 +116,73 @@ export function FooterCTA({
       ) : (
         <h2 className={styles.heading}>
           {typeof heading === "string" ? (
-            heading.split(/<br\s*\/?>|\n/gi).map((line, index) => {
-              const trimmed = line.trim();
-              const isSecondLine =
-                index === 1 || trimmed.toLowerCase() === "enterprise";
+            (() => {
+              const lines = heading.split(/<br\s*\/?>|\n/gi);
 
-              if (brandMedia && isSecondLine) {
+              // When brandMedia exists and there are at least 3 segments (e.g. "Ready To Get Your<br>Enterprise<br>With Agivant?"):
+              // Segment 1 remains line 1.
+              // Segment 2 ("Enterprise") + brandMedia + Segment 3 ("With Agivant?") are combined into ONE visual line.
+              if (brandMedia && lines.length >= 3) {
+                const firstSegment = lines[0].trim();
+                const secondSegment = lines[1].trim();
+                const thirdSegment = lines.slice(2).join(" ").trim();
+
                 return (
-                  <span
-                    key={index}
-                    className={clsx(styles.headingLine, styles.brandLine)}
-                  >
-                    <span>{trimmed}</span>
-                    <span className={styles.brandMediaWrapper}>
-                      <Image
-                        src={brandMedia.src}
-                        alt={brandMedia.alt}
-                        width={brandMedia.width ?? 360}
-                        height={brandMedia.height ?? 150}
-                        className={styles.brandMedia}
-                        unoptimized={brandMedia.src.endsWith(".svg") || brandMedia.src.endsWith(".gif")}
-                        priority
-                      />
+                  <>
+                    <span className={styles.headingLine}>{firstSegment}</span>
+                    <span className={clsx(styles.headingLine, styles.brandLine)}>
+                      <span>{secondSegment}</span>
+                      <span className={styles.brandMediaWrapper}>
+                        <Image
+                          src={brandMedia.src}
+                          alt={brandMedia.alt}
+                          width={brandMedia.width ?? 360}
+                          height={brandMedia.height ?? 150}
+                          className={styles.brandMedia}
+                          unoptimized={brandMedia.src.endsWith(".svg") || brandMedia.src.endsWith(".gif")}
+                          priority
+                        />
+                      </span>
+                      <span>{thirdSegment}</span>
                     </span>
-                  </span>
+                  </>
                 );
               }
 
-              return (
-                <span key={index} className={styles.headingLine}>
-                  {line}
-                </span>
-              );
-            })
+              return lines.map((line, index) => {
+                const trimmed = line.trim();
+                const isSecondLine =
+                  index === 1 || trimmed.toLowerCase() === "enterprise";
+
+                if (brandMedia && isSecondLine) {
+                  return (
+                    <span
+                      key={index}
+                      className={clsx(styles.headingLine, styles.brandLine)}
+                    >
+                      <span>{trimmed}</span>
+                      <span className={styles.brandMediaWrapper}>
+                        <Image
+                          src={brandMedia.src}
+                          alt={brandMedia.alt}
+                          width={brandMedia.width ?? 360}
+                          height={brandMedia.height ?? 150}
+                          className={styles.brandMedia}
+                          unoptimized={brandMedia.src.endsWith(".svg") || brandMedia.src.endsWith(".gif")}
+                          priority
+                        />
+                      </span>
+                    </span>
+                  );
+                }
+
+                return (
+                  <span key={index} className={styles.headingLine}>
+                    {line}
+                  </span>
+                );
+              });
+            })()
           ) : (
             <>
               <span className={styles.headingLine}>{heading.line1}</span>
@@ -172,6 +206,7 @@ export function FooterCTA({
                       priority
                     />
                   </span>
+                  {heading.line3 && <span>{heading.line3}</span>}
                 </span>
               ) : (
                 <span className={styles.headingLine}>
@@ -180,7 +215,7 @@ export function FooterCTA({
                     : `${heading.line2Prefix ?? ""} ${heading.line2Brand ?? ""}`.trim()}
                 </span>
               )}
-              {heading.line3 ? (
+              {!brandMedia && heading.line3 ? (
                 <span className={styles.headingLine}>{heading.line3}</span>
               ) : null}
             </>

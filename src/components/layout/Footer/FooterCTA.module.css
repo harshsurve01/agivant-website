@@ -10,7 +10,7 @@
   align-items: center;
   text-align: center;
   gap: var(--space-10);
-  max-width: 66rem;
+  max-width: 72rem;
   margin-inline: auto;
   width: 100%;
 }
@@ -36,6 +36,7 @@
   justify-content: center;
   gap: 0;
   vertical-align: middle;
+  white-space: nowrap;
 }
 
 .brandMediaWrapper {
@@ -47,7 +48,7 @@
 
 .brandMedia {
   display: block;
-  width: 20rem; /* ~240px at 16px root, Figma spec: 240 × 80.46 */
+  width: 15rem; /* 240px at 16px root, Figma spec: 240 × 80.46 */
   height: auto;
   aspect-ratio: 360 / 150;
   max-width: 100%;
@@ -172,6 +173,8 @@
 
   .brandLine {
     gap: var(--space-2);
+    white-space: normal;
+    flex-wrap: wrap;
   }
 
   .brandMedia {

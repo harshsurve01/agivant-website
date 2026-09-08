@@ -21,7 +21,7 @@ interface AmpExperienceProps {
 /**
  * Scroll distance (in px) to scrub through the entire pinned experience.
  */
-const PIN_SCROLL_DISTANCE = 1000;
+const PIN_SCROLL_DISTANCE = 500;
 
 /** Logo initial scale relative to viewport width */
 const LOGO_INITIAL_VW = 0.3;

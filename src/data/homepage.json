@@ -731,16 +731,16 @@
           }
         },
         {
-          "id": "peter-spiegel",
+          "id": "sachin-puri",
           "type": "video_card",
           "quote": null,
-          "authorName": "Peter Spiegel",
-          "authorRole": "Founder & CEO, Ideal Living",
+          "authorName": "Sachin Puri",
+          "authorRole": "CEO, Bluehost Group",
           "media": {
             "kind": "image",
-            "src": "/images/testimonials/peter-spiegel.png",
-            "assetKey": "testimonial-peter-spiegel",
-            "alt": "Peter Spiegel - Founder & CEO, Ideal Living",
+            "src": "/images/testimonials/sachin-puri.png",
+            "assetKey": "testimonial-sachin-puri",
+            "alt": "Sachin Puri - CEO, Bluehost Group",
             "caption": null
           },
           "cta": null

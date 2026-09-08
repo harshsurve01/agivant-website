@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Preloader } from "@/components/ui/Preloader";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Header } from "@/components/layout/Header";
 import { Hero } from "@/components/sections/Homepage/Hero";
@@ -22,8 +23,10 @@ export default async function Home() {
   ]);
 
   return (
-    <GradientLayerProvider>
-      {/* <AnnouncementBar /> */}
+    <>
+      <Preloader />
+      <GradientLayerProvider>
+        {/* <AnnouncementBar /> */}
       <Header />
       <Hero />
       <Trust />
@@ -50,5 +53,6 @@ export default async function Home() {
         <Footer />
       </div>
     </GradientLayerProvider>
+    </>
   );
 }

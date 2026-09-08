@@ -14,20 +14,22 @@ interface TestimonialCarouselProps {
  * Visual styling configuration mapped per sequential card index (0 to 5)
  * matching the exact Figma color scheme:
  * 1. Black (Video - Sachin)
- * 2. Strong Purple with Gold quote mark (Text)
+ * 2. Strong Purple (Text)
  * 3. Light Purple (Video - Peter)
- * 4. Black with Purple quote mark (Text)
- * 5. Strong Purple with Black quote mark (Text)
- * 6. Black with Purple quote mark (Text)
+ * 4. Black (Text)
+ * 5. Strong Purple (Text)
+ * 6. Black (Text)
  */
 const CARD_STYLE_CONFIG = [
   { theme: "black" as const },
-  { theme: "purple" as const, quoteColor: "gold" as const },
+  { theme: "purple" as const },
   { theme: "light-purple" as const },
-  { theme: "black" as const, quoteColor: "purple" as const },
-  { theme: "purple" as const, quoteColor: "black" as const },
-  { theme: "black" as const, quoteColor: "purple" as const },
+  { theme: "black" as const },
+  { theme: "purple" as const },
+  { theme: "black" as const },
 ];
+
+const QUOTE_COLORS = ["gold", "purple", "black"] as const;
 
 /**
  * TestimonialCarousel
@@ -146,6 +148,20 @@ export function TestimonialCarousel({ cards }: TestimonialCarouselProps) {
   // Render 3 consecutive sets for seamless infinite wrapping
   const repeatedCards = [...cards, ...cards, ...cards];
 
+  // Map quote colors for TEXT cards only in repeating order: Gold -> Purple -> Black.
+  // Video cards do not receive a quote color and do not advance the sequence.
+  // Mapping over the base `cards` set ensures each repeated set in the infinite loop
+  // maintains identical, seamless quote colors for smooth wrapping without visual pops.
+  let textCardCount = 0;
+  const quoteColorsByCardIndex = cards.map((card) => {
+    if (card.type === "text") {
+      const color = QUOTE_COLORS[textCardCount % QUOTE_COLORS.length];
+      textCardCount++;
+      return color;
+    }
+    return undefined;
+  });
+
   return (
     <div
       ref={viewportRef}
@@ -167,6 +183,7 @@ export function TestimonialCarousel({ cards }: TestimonialCarouselProps) {
         {repeatedCards.map((card, idx) => {
           const configIndex = idx % cards.length;
           const config = CARD_STYLE_CONFIG[configIndex];
+          const quoteColor = quoteColorsByCardIndex[configIndex];
 
           return (
             <div key={`${card.id}-${idx}`} className={styles.cardWrap}>
@@ -179,7 +196,7 @@ export function TestimonialCarousel({ cards }: TestimonialCarouselProps) {
                 <TestimonialTextCard
                   card={card}
                   theme={config.theme as "purple" | "black"}
-                  quoteColor={config.quoteColor}
+                  quoteColor={quoteColor}
                 />
               )}
             </div>

@@ -15,11 +15,13 @@
   box-sizing: border-box;
   user-select: none;
   overflow: hidden;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .themeBlack {
-  background-color: var(--color-black);
+  background-color: #000000cd;
   color: var(--color-white);
 }
 

@@ -14,17 +14,19 @@
   padding: var(--space-8) var(--space-6) var(--space-6);
   box-sizing: border-box;
   user-select: none;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .themePurple {
-  background-color: #8500df;
+  background-color: #8600dfcd;
   color: var(--color-white);
-  opacity: 0.95;
+
 }
 
 .themeBlack {
-  background-color: var(--color-black);
+  background-color: #000000cd;
   color: var(--color-white);
  
 }
