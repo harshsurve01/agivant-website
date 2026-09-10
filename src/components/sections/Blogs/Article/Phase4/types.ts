@@ -12,23 +12,20 @@
 export interface CaseStudy {
   /** Card header, e.g. "CASE STUDY: KPMG AUDITING". */
   title: string;
-  /** Small muted label at the top-right of the header row, e.g. "Annualized Hours". */
-  metricLabel: string;
   /** Left-column label, e.g. "Instead of saying:". */
-  insteadLabel: string;
+  insteadLabel?: string;
   /** Left-column quoted body text. */
   insteadText: string;
   /** Right-column label, e.g. "Say:". */
-  sayLabel: string;
-  /** Right-column quoted body text. */
+  sayLabel?: string;
+  /** Right-column quoted body text (can contain multiple paragraphs separated by \n\n). */
   sayText: string;
-  /**
-   * Closing sentence beneath the divider inside the right column
-   * only — the left column has no equivalent, confirmed against the
-   * screenshot (the divider + explanation sit under "Say:", not
-   * spanning the full card width).
-   */
-  explanation: string;
+  /** Optional decorative ribbon image positioned at the bottom-left of the card. */
+  image?: string;
+  /** Legacy muted label at the top-right of the header row (omitted in Figma reference). */
+  metricLabel?: string;
+  /** Legacy explanation text (omitted in Figma reference). */
+  explanation?: string;
 }
 
 /**

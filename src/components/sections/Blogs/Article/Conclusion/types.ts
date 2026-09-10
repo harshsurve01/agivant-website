@@ -16,14 +16,10 @@ export interface ConclusionProps {
    * unlike ExecutiveBrief/Phase2/Phase3/Phase4's highlighted-word
    * headings. */
   title: string;
-  /** Body copy, one entry per paragraph, rendered above the quote
-   * callout. Same array-of-paragraphs shape ExecutiveBrief already
-   * uses for its own two-paragraph body, for the same reason: a
-   * future WordPress rich-text field split on paragraph breaks maps
-   * onto this with no shape change. */
+  /** Body copy, one entry per paragraph. */
   paragraphs: string[];
-  /** The highlighted quote/callout text rendered in the card below
-   * the paragraphs. Single string, not an array — the screenshot
-   * shows one continuous italic quote, not multiple. */
-  quote: string;
+  /** Optional highlighted quote/callout text rendered in the card below
+   * the paragraphs if provided. */
+  quote?: string;
 }
+

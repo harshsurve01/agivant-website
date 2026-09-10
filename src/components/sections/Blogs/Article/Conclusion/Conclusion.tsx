@@ -42,21 +42,18 @@ export function Conclusion({ title, paragraphs, quote }: ConclusionProps) {
         </div>
 
        <div className={styles.body}>
-  {paragraphs.map((paragraph, index) => (
-    <p
-      key={index}
-      className={`${styles.paragraph} ${
-        index === 0 ? styles.emphasis : ""
-      }`}
-    >
-      {paragraph}
-    </p>
-  ))}
-</div>
+          {paragraphs.map((paragraph, index) => (
+            <p key={index} className={styles.paragraph}>
+              {paragraph}
+            </p>
+          ))}
+        </div>
 
-        <blockquote className={styles.quoteCard}>
-          <p className={styles.quoteText}>{quote}</p>
-        </blockquote>
+        {quote && (
+          <blockquote className={styles.quoteCard}>
+            <p className={styles.quoteText}>{quote}</p>
+          </blockquote>
+        )}
       </Container>
     </section>
   );

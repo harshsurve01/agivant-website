@@ -5,6 +5,7 @@ import type { Phase2Props } from "./Phase2";
 import type { Phase3Props } from "./Phase3";
 import type { Phase4Props } from "./Phase4";
 import type { ConclusionProps } from "./Conclusion";
+import type { BlogDetailPage } from "@/types/blogDetail";
 
 /**
  * Full data contract for one Blog Inner article, owned by the
@@ -21,3 +22,9 @@ export interface ArticlePageData {
   phase4: Phase4Props;
   conclusion: ConclusionProps;
 }
+
+export interface ArticleDataProps {
+  data: BlogDetailPage;
+}
+
+export type ArticleProps = ArticleDataProps | ArticlePageData;

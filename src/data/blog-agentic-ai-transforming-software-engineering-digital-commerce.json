@@ -1,0 +1,395 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "blog",
+  "slug": "agentic-ai-transforming-software-engineering-digital-commerce",
+  "title": "How Agentic AI Is Transforming Software Engineering in Digital Commerce",
+  "seo": {
+    "title": null,
+    "description": null,
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "How Agentic AI Is Transforming Software Engineering in Digital Commerce",
+    "subtitle": null,
+    "summary": "Enterprise-grade autonomous agents are reshaping software architecture and compressing engineering cycles across commerce.",
+    "authors": [
+      {
+        "name": "Rohit Mane",
+        "role": null
+      }
+    ],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/blogs/innerpages/page2-hero-ribbon.png",
+      "assetKey": "hero-ribbon",
+      "alt": "Abstract ribbon graphic",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null,
+    "date": "June 2026",
+    "readTime": "6 mins"
+  },
+  "sections": [
+    {
+      "id": "executive-brief",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "How Agentic AI is Transforming<br>Software Engineering in Digital Commerce",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "executive-copy",
+          "type": "richText",
+          "heading": null,
+          "body": "In the highly competitive environment of digital commerce, speed isn't just an advantage, it's a necessity to survive. Yet, an astonishing 70% of digital transformation initiatives are unable to meet their objectives, largely because of the “Agility Gap”. As the environment of the end consumer constantly evolves, the traditional software development life cycle (SDLC) has become a barrier. These processes, while robust, are becoming less relevant to the pace of digital commerce. This is because of the increasing number of digital platforms, content, and end user experiences that are necessary to remain competitive. In an attempt to address this “Agility Gap”, organizations are moving beyond the incremental automation of processes. We are at the dawn of a new era of software development, one that will be characterized by Agentic AI. This will be a paradigm shift in software creation, scaling, and maintenance. This shift is one that we are seeing at Agivant. We are moving from static code to “living” code that can collaborate, execute, and even reason."
+        }
+      ]
+    },
+    {
+      "id": "agentic-ai-definition",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "What Exactly is Agentic AI?",
+        "description": "Before we dive deeper into the mechanics, however, it is important to note that Agentic AI is different from what we’ve seen with Generative AI (GenAI) in the last year or so. GenAI is “reactive”; i.e. you input a prompt, and an answer is provided. Agentic AI is “proactive” and “goal-oriented.” An “agent” is an autonomous software entity that is able to achieve certain objectives. An agent is not like a script of a linear code. An agent can:",
+        "closingParagraph": "In digital commerce, this means we can transform the SDLC from a “manual relay race” into a “high-speed, synchronized ecosystem.”",
+        "columns": 3,
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "reason",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Reason",
+          "body": "Break down a complex goal (e.g., “deploy a promotional landing page”) into simpler sub-tasks.",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "use-tools",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Use Tools",
+          "body": "Interact with popular tools like Figma, GitHub, Jira, cloud infrastructure, and etc.",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "collaborate",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Collaborate",
+          "body": "Agents can communicate with other agents (i.e., a QA agent can communicate with a Developer agent to solve an error before a human sees it).",
+          "media": null,
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "coordination-cost",
+      "type": "split_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "The Hidden Toll: The \"Coordination Cost\" of Building Digital Products",
+        "description": null,
+        "highlightPosition": "colon",
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/blogs/card-image.png",
+          "assetKey": "coordination-ribbon",
+          "alt": "Abstract ribbon graphic",
+          "caption": null
+        },
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "coordination-copy",
+          "type": "richText",
+          "heading": null,
+          "body": "For most commerce organizations, launching a single seasonal promo requires a very coordinated effort among multiple teams. UI/UX designers create the vision in Figma. Developers then create those visual pixels into functional components in React or HTML. QA engineers then run scripts to ensure that nothing broke. And finally, DevOps engineers push code to production. The relay process is fundamentally fragmented. Each handoff is a potential point of failure. If a designer changes a button color in Figma, a developer may not see it for two days. If a developer uses a deprecated API, a QA engineer may not see it until the weekend. The delays not only slow us down but also drive up costs and create “human error” in high-pressure situations like Black Friday or large product launches. Traditional coordination models relying on manual oversight and project management introduce inefficiencies that agentic systems are designed to eliminate."
+        }
+      ]
+    },
+    {
+      "id": "agivant-framework",
+      "type": "numbered_list",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "The Agivant Framework: Autonomy From Design to Deployment",
+        "description": "By integrating Agentic AI within the very fabric of development, we transform fragmented development flows into a unified, intelligent process. Here’s how the Agentic Stack works within a modern commerce ecosystem:",
+        "highlightPosition": "colon",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "ui-code",
+          "type": "numberedItem",
+          "number": 1,
+          "index": "01",
+          "title": "Instant UI Code Generation",
+          "body": "Instead of development teams spending hours “eyeballing” code, AI agents within Agivant interpret Figma design files directly. This generates “pixel-perfect” UI components with accompanying semantic HTML and modern CSS. This process, which normally takes days, now happens in minutes.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "backend",
+          "type": "numberedItem",
+          "number": 2,
+          "index": "02",
+          "title": "Seamless Backend Integration",
+          "body": "Once the frontend has been rendered, integration agents get to work. They automatically connect UI components with your backend APIs and commerce engines like Shopify or Adobe Commerce. This means that business logic will be implemented correctly without the need for time-consuming handoffs between teams.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "qa",
+          "type": "numberedItem",
+          "number": 3,
+          "index": "03",
+          "title": "Hyper-Scale Automated QA",
+          "body": "Testing agents do more than just check boxes. They not only simulate real user interactions but also conduct visual regression tests against original design specs, as well as functional tests at a pace that no human process can match. This means that for a commerce website, testing a checkout flow across 20 different device types will only take seconds.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "devops",
+          "type": "numberedItem",
+          "number": 4,
+          "index": "04",
+          "title": "Autonomous DevOps & SRE",
+          "body": "Deployment shouldn’t be a 2 a.m. event. The build pipelines and rollback processes are managed by the DevOps agents. At the same time, SRE (Site Reliability Engineering) agents also monitor the application in real-time and identify any unusual behavior, triggering “auto-remediation” processes before a small hiccup becomes a costly problem.",
+          "items": [],
+          "media": null
+        }
+      ]
+    },
+    {
+      "id": "commerce-use-cases",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Real-World Commerce Use Cases",
+        "description": "The power of Agentic AI is best seen through the lens of daily commerce operations:",
+        "columns": 3,
+        "ribbonSrc": null,
+        "highlightPosition": "start",
+        "highlightCount": 1,
+        "closingParagraph": null,
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "seasonal",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Rapid Seasonal Promotions",
+          "body": "Launching a “Flash Sale” on five different regional storefronts can take weeks. With Agentic AI, the system can ingest the design assets, update the specific storefronts, and verify the checkout processes autonomously, all within a few hours.",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "multi-storefront",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Multi-Storefront Consistency",
+          "body": "For global brands, maintaining UI consistency across different regions can be a real nightmare. Agents can audit 50 different storefronts at the same time, identifying and correcting inconsistencies in brand outputs.",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "ab-scale",
+          "type": "card",
+          "eyebrow": null,
+          "title": "UI A/B Testing at Scale",
+          "body": "Whereas a typical commerce team might run one A/B test per month, agents can be used to create and deploy ten different UI variations of a product page, monitoring the conversion metrics, and automatically endorse the winning variation to 100% of traffic.",
+          "media": null,
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "governance",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Governance: The “Human-in-the-Loop” Necessity",
+        "description": null,
+        "showBar": false,
+        "spacing": "standard",
+        "highlightPosition": "colon",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "governance-p1",
+          "type": "richText",
+          "heading": null,
+          "body": "A very common fear is that “autonomous” equals “out of control.” At Agivant, AI is seen as an accelerator, not a substitute, for human judgment. AI systems are built with Human-in-the-Loop Governance."
+        },
+        {
+          "id": "governance-p2",
+          "type": "richText",
+          "heading": null,
+          "body": "Agivant implements mandatory approval checkpoints where human experts can review, override, or approve agent actions. This ensures that while the AI handles the “grunt work” of coding and testing, the final product always aligns with the brand’s intent, compliance standards, and creative vision. This risk mitigation is essential for enterprise-grade commerce where a single error can impact millions in revenue."
+        }
+      ]
+    },
+    {
+      "id": "impact-table",
+      "type": "comparison_table",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Measuring the Impact: Outcome-Oriented Automation",
+        "description": "The transition to an agentic workflow is not merely a technological step forward but a financial one. Businesses that make the “Code to Commerce” autonomous AI journey see a direct impact on their bottom line.",
+        "align": "left",
+        "highlightPosition": "colon",
+        "columns": [
+          "Metric",
+          "Traditional SDLC",
+          "Agentic AI (Agivant)"
+        ],
+        "closingStatement": "Measurable Outcome: Early adopters of agentic workflows in software engineering report a measurable outcome, where they see up to a 40% reduction in total software development costs and a 60% increase in deployment frequency without increasing staff levels. (Source: DORA Research/Industry Benchmarks on AI-Assisted DevOps).",
+        "media": {
+          "kind": "image",
+          "src": "/images/solutions/innerpages/goal-driven-agents-enterprise-workflows/table-ribbon.png",
+          "assetKey": null,
+          "alt": "Abstract background ribbon",
+          "caption": null
+        },
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "deployment-cycle",
+          "type": "tableRow",
+          "cells": [
+            "Deployment Cycle",
+            "5–10 Days",
+            "User-facing access and agent touchpoints"
+          ]
+        },
+        {
+          "id": "manual-effort",
+          "type": "tableRow",
+          "cells": [
+            "Manual Effort",
+            "High (Multi-team)",
+            "Sequences and coordinates multi-agent tasks"
+          ]
+        },
+        {
+          "id": "error-rate",
+          "type": "tableRow",
+          "cells": [
+            "Error Rate",
+            "15–20% (Handoff-related)",
+            "Ingests and contextualises enterprise data"
+          ]
+        },
+        {
+          "id": "scalability",
+          "type": "tableRow",
+          "cells": [
+            "Scalability",
+            "Linear (Requires more heads)",
+            "Enforces compliance and Responsible AI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "path-forward",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "The Path Forward: Self-Evolving Workflows",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "path-forward-copy",
+          "type": "richText",
+          "heading": null,
+          "body": null
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Ready To Get Your Enterprise With Agivant?",
+    "subheading": null,
+    "partner": null,
+    "primaryCta": {
+      "enabled": true,
+      "label": "Find your Amp'd score",
+      "href": null,
+      "external": false
+    },
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": null,
+      "external": false
+    }
+  },
+  "category": "Agentic AI",
+  "topic": "agentic-ai-agentops",
+  "topicLabel": "Agentic AI & AgentOps",
+  "readTime": "6 min read",
+  "readTimeId": "deep",
+  "targetAudience": "technical",
+  "audienceLabel": "Technical Focus",
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/blogs/featured-card.png",
+      "assetKey": "blogs-featured-card",
+      "alt": "Abstract render of flowing blue ribbon shapes symbolizing autonomous agent workflows",
+      "caption": null
+    }
+  }
+}

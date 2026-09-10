@@ -22,4 +22,14 @@ export interface SolutionHeroProps {
    * Solution-specific hero ribbon media asset.
    */
   media?: SolutionMedia | null;
+
+  /**
+   * Optional container class name for page-level overrides.
+   */
+  className?: string;
+
+  /**
+   * Optional ribbon class name for page-level positioning overrides.
+   */
+  ribbonClassName?: string;
 }

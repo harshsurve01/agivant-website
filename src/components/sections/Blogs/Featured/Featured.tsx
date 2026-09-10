@@ -38,13 +38,7 @@ export function Featured({ title, article }: FeaturedProps) {
           {rest ? ` ${rest}` : ""}
         </h2>
 
-        <article
-          className={styles.card}
-          style={{
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
-          }}
-        >
+        <article className={styles.card}>
           {/* Content / Metadata (LEFT) */}
           <div className={styles.content}>
             <div className={styles.meta}>

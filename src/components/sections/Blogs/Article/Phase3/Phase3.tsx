@@ -56,8 +56,8 @@ export function Phase3({ eyebrow, title, description, cards }: Phase3Props) {
         <p className={styles.description}>{description}</p>
 
         <div className={styles.grid}>
-          {cards.map((card) => (
-            <InstrumentationCard key={card.primaryTitle} card={card} />
+          {cards.map((card, idx) => (
+            <InstrumentationCard key={card.title ?? card.primaryTitle ?? idx} card={card} />
           ))}
         </div>
       </Container>

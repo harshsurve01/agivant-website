@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { CaseStudy } from "./types";
 import styles from "./CaseStudyCard.module.css";
 
@@ -8,53 +9,63 @@ export interface CaseStudyCardProps {
 /**
  * CaseStudyCard
  *
- * Renders one Phase 4 case-study card: a header row (title left,
- * metric label right), then a two-column body split by a vertical
- * divider — "Instead of saying:" on the left, "Say:" + a closing
- * explanation (under its own divider) on the right. Pulled into its
- * own local component since all three cards share this exact shape,
- * per the task's own instruction — same "small local card component"
- * pattern already used by Phase1's MetricCard and Phase3's
- * InstrumentationCard, not a new shared/global component, since
- * nothing elsewhere in the project has this two-column before/after
- * shape.
+ * Renders one Phase 4 case-study card matching the Figma reference:
+ * - Card title at the top
+ * - Two-column body separated by a single vertical divider:
+ *   - Left: "Instead of saying:" in red, quoted text, with decorative ribbon image at bottom-left
+ *   - Right: "Say:" in green, continuous paragraphs of text
+ * - Translucent frosted glass card surface with rounded corners
  *
- * Server Component: no "use client", no hooks, no state, no data
- * imports. Every value arrives via props.
+ * Server Component: no "use client", no hooks, no state, no data imports.
  */
 export function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
   const {
     title,
-    metricLabel,
-    insteadLabel,
+    insteadLabel = "Instead of saying:",
     insteadText,
-    sayLabel,
+    sayLabel = "Say:",
     sayText,
-    explanation,
+    image,
   } = caseStudy;
 
+  const sayParagraphs =
+    typeof sayText === "string" ? sayText.split("\n\n") : [sayText];
+
   return (
-    <article className={styles.card}>
-      <div className={styles.header}>
+    <div className={styles.cardWrapper}>
+      {image && (
+        <div className={styles.imageWrapper} aria-hidden="true">
+          <Image
+            src={image}
+            alt=""
+            width={600}
+            height={166}
+            className={styles.cardImage}
+          />
+        </div>
+      )}
+
+      <article className={styles.card}>
         <h3 className={styles.title}>{title}</h3>
-        <span className={styles.metricLabel}>{metricLabel}</span>
-      </div>
 
-      <div className={styles.body}>
-        <div className={styles.column}>
-          <p className={styles.insteadLabel}>{insteadLabel}</p>
-          <p className={styles.text}>{insteadText}</p>
+        <div className={styles.body}>
+          <div className={styles.leftColumn}>
+            <p className={styles.insteadLabel}>{insteadLabel}</p>
+            <p className={styles.text}>{insteadText}</p>
+          </div>
+
+          <div className={styles.rightColumn}>
+            <p className={styles.sayLabel}>{sayLabel}</p>
+            <div className={styles.sayContent}>
+              {sayParagraphs.map((para, index) => (
+                <p key={index} className={styles.text}>
+                  {para}
+                </p>
+              ))}
+            </div>
+          </div>
         </div>
-
-        <div className={`${styles.column} ${styles.rightColumn}`}>
-          <p className={styles.sayLabel}>{sayLabel}</p>
-          <p className={styles.text}>{sayText}</p>
-
-          <hr className={styles.divider} aria-hidden="true" />
-
-          <p className={styles.explanation}>{explanation}</p>
-        </div>
-      </div>
-    </article>
+      </article>
+    </div>
   );
 }

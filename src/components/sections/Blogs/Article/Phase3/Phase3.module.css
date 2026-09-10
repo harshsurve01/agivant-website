@@ -53,24 +53,23 @@
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
-  max-width: 47rem; /* estimated — screenshot shows this line wrapping to ~1 line, same as Phase2's intro */
-  margin: 0 0 1.5625rem; /* 25px, matches Phase1's description->grid gap */
+  max-width: 48rem;
+  margin: 0 0 2.25rem;
 }
 
 /* --------------------------------------------------------------------
-   Card grid — same 2x2 layout as Phase1's own grid: two columns,
-   shared gap token, no fixed row height (each card's height is
-   driven by its own content).
+   Card grid — 2x2 layout matching Figma reference
    -------------------------------------------------------------------- */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.375rem; /* ~38px, same gap Phase1's grid uses */
-  align-items: start;
+  gap: 2.25rem;
+  align-items: stretch;
 }
 
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }

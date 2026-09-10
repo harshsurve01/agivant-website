@@ -1,0 +1,144 @@
+/* ==========================================================================
+   SplitContent.module.css
+   Figma: Node coordination-cost / "The Hidden Toll"
+   Section dimensions: ~1233px width card, 434px height
+   Left: Text copy with relaxed line-height and Poppins font
+   Right: Liquid glass ribbon asset (617x435) with alpha transparency
+   Glass treatment: #d9d9d920 with 16px blur, 1px solid #fff border,
+   inset shadow 0 0 4px rgba(4, 4, 4, 0.1)
+   ========================================================================== */
+
+.splitContent {
+  position: relative;
+  width: 100%;
+  padding-block: var(--space-16);
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  line-height: var(--line-height-snug);
+  color: var(--color-brand-primary);
+  margin: 0 0 0.875rem;
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 2rem;
+}
+
+.highlight {
+  color: var(--color-brand-primary);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 434px;
+  border-radius: var(--radius-xl);
+  background-color: #d9d9d920;
+  box-shadow:
+    inset 0 0 4px rgba(4, 4, 4, 0.1),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid #fff;
+  overflow: hidden;
+}
+
+.contentColumn {
+  flex: 1 1 52%;
+  max-width: 610px;
+  padding: 44px 20px 44px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-4);
+  z-index: 1;
+}
+
+.paragraph {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--color-text-secondary);
+  margin: 0;
+  width: 43rem;
+}
+
+.mediaColumn {
+  position: relative;
+  flex: 0 0 48%;
+  height: 100%;
+  min-height: 434px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.image {
+  object-fit: cover;
+  object-position: 100% 0%;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .contentColumn {
+    flex: 1 1 100%;
+    max-width: 100%;
+    padding: 2.25rem 1.75rem;
+  }
+
+  .mediaColumn {
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: 320px;
+    height: 320px;
+  }
+
+  .image {
+    object-position: center;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: 1.5rem;
+  }
+
+  .contentColumn {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .mediaColumn {
+    min-height: 240px;
+    height: 240px;
+  }
+}

@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { HeroBackground } from "@/components/ui/HeroBackground";
 import { Container } from "@/components/ui/Container";
 import { PageRibbon } from "@/components/ui/PageRibbon";
@@ -5,9 +6,9 @@ import styles from "./Hero.module.css";
 import type { SolutionHeroProps } from "./types";
 
 /**
- * Hero (Solution Inner Page: /solutions/[slug])
+ * Hero (Solution Hero: landing and inner page)
  *
- * Dedicated section component for the Solution Inner Page Hero:
+ * Dedicated section component for the Solution Hero:
  * - Reuses the shared `HeroBackground` for ambient glowing gradients,
  *   decorative ellipse stroke, and interactive canvas particle field.
  * - `data-hero-interaction-root` enables pointer tracking across the full Hero.
@@ -20,7 +21,13 @@ import type { SolutionHeroProps } from "./types";
 const SHARED_HERO_RIBBON =
   "/images/solutions/innerpages/goal-driven-agents-enterprise-workflows/hero-ribbon.png";
 
-export function Hero({ heading, description, media }: SolutionHeroProps) {
+export function Hero({
+  heading,
+  description,
+  media,
+  className,
+  ribbonClassName,
+}: SolutionHeroProps) {
   const lines =
     typeof heading === "string" && (heading.includes("<br") || heading.includes("\n"))
       ? heading.split(/<br\s*\/?>|\n/gi).map((line) => line.trim()).filter(Boolean)
@@ -29,16 +36,19 @@ export function Hero({ heading, description, media }: SolutionHeroProps) {
   const ribbonSrc = media?.src || SHARED_HERO_RIBBON;
 
   return (
-    <section className={styles.hero} data-hero-interaction-root>
+    <section
+      className={clsx(styles.hero, className)}
+      data-hero-interaction-root
+    >
       {/* Shared decorative background with ambient glows and particle canvas */}
       <HeroBackground />
 
       {/* Shared Solution decorative ribbon flowing across the lower area */}
       <PageRibbon
         src={ribbonSrc}
-        width={1440}
-        height={502}
-        className={styles.ribbonWrapper}
+        width={media?.width || 1440}
+        height={media?.height || 502}
+        className={clsx(styles.ribbonWrapper, ribbonClassName)}
         imageClassName={styles.ribbonImage}
         priority
       />

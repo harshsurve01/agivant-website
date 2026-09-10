@@ -1,2 +1,2 @@
 export { Article } from "./Article";
-export type { ArticlePageData } from "./types";
+export type { ArticlePageData, ArticleProps, ArticleDataProps } from "./types";

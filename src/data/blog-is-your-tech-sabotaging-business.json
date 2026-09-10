@@ -1,0 +1,320 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "blog",
+  "slug": "is-your-tech-sabotaging-business",
+  "title": "Is your Tech Sabotaging Business? Four Critical Digital Commerce Challenges Impacting your Business (And How to Fix Them)",
+  "seo": {
+    "title": null,
+    "description": null,
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Is your Tech Sabotaging Business? Four Critical Digital Commerce Challenges Impacting your Business (And How to Fix Them)",
+    "subtitle": null,
+    "summary": "Four critical digital commerce bottlenecks—from sluggish load times to fragmented data—and the architectural remedies to fix them.",
+    "authors": [
+      {
+        "name": "Praveen Nirgune",
+        "role": "Innovation & Solutions"
+      },
+      {
+        "name": "Rakesh Deshmukh",
+        "role": "Solution Architect"
+      }
+    ],
+    "partner": null,
+    "media": null,
+    "primaryCta": null,
+    "secondaryCta": null,
+    "date": "May 28, 2026",
+    "readTime": "5 mins"
+  },
+  "sections": [
+    {
+      "id": "executive-brief",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Executive Brief",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "executive-brief-copy",
+          "type": "richText",
+          "heading": null,
+          "body": null
+        }
+      ]
+    },
+    {
+      "id": "slow-loading-times",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Slow loading times hurt conversions: Is Your Site Too Slow?",
+        "description": "Today’s online shoppers are notoriously impatient. If your site takes even a second too long to load, you can lose customers before they see your offer.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "image-tricks",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Image Tricks",
+          "body": "Smaller image files mean faster loading, but visual quality still matters. Use modern image formats and optimized assets.",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "cdns",
+          "type": "card",
+          "eyebrow": null,
+          "title": "CDNs to the Rescue",
+          "body": "Content Delivery Networks distribute assets closer to customers so pages load faster wherever they are.",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "pwas",
+          "type": "card",
+          "eyebrow": null,
+          "title": "The Power of PWAs",
+          "body": "Progressive Web Apps can make mobile experiences feel faster and more app-like.",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "technical",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Getting More Technical",
+          "body": "For deeper performance issues, review asynchronous loading, network requests, caching and other delivery bottlenecks.",
+          "media": null,
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "checkout-friction",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Checkout Friction = Lost Sales. How Smooth is Yours?",
+        "description": "Intricate checkout journeys drive potential customers away. Customers are increasingly impatient when it comes to payment and security friction.",
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "Read case study",
+          "href": null,
+          "external": false
+        }
+      },
+      "blocks": [
+        {
+          "id": "checkout-friction-copy",
+          "type": "richText",
+          "heading": null,
+          "body": null
+        }
+      ]
+    },
+    {
+      "id": "buying-must-be-effortless",
+      "type": "numbered_list",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Buying must be effortless:",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "streamlined-flow",
+          "type": "numberedItem",
+          "number": 1,
+          "title": "Streamlined Flow",
+          "body": "Minimize form fields, offer guest checkout options and remove unnecessary steps.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "pci-gateway",
+          "type": "numberedItem",
+          "number": 2,
+          "title": "PCI-Compliant Gateway",
+          "body": "Integrate a trusted payment gateway with seamless UX and strong compliance.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "security",
+          "type": "numberedItem",
+          "number": 3,
+          "title": "Security That Doesn't Slow Things Down",
+          "body": "Protect customer data while keeping authentication and fraud prevention unobtrusive.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "tokenization",
+          "type": "numberedItem",
+          "number": 4,
+          "title": "Tokenization & Risk Scoring Systems",
+          "body": "Enhance security without adding customer friction.",
+          "items": [],
+          "media": null
+        }
+      ]
+    },
+    {
+      "id": "new-age-channels",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Inability to Tap Into New-age Channels for Customer Engagement Stifle Growth. Meet Customers Where They Are: Expand Your Reach",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "seamless",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Seamless is the Goal",
+          "body": "Customers should feel a natural extension of your main store across every engagement channel.",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "chatbots",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Chatbots Are Your 24/7 Sales Assistants",
+          "body": "Answer questions, offer recommendations and guide customers through conversational commerce.",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "ar-personal",
+          "type": "card",
+          "eyebrow": null,
+          "title": "AR Gets Personal",
+          "body": "Let customers experience products in their own space and increase engagement in commerce experiences.",
+          "media": null,
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "data-smarter-growth",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Data: The Key to Smarter Growth",
+        "description": "Data should be the intelligence behind your tools.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "data-one-place",
+          "type": "card",
+          "eyebrow": null,
+          "title": "All Your Data in One Place",
+          "body": "Bring customer, product, sales and channel data together to reveal patterns and improve decision making.",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "predict-future",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Predict the Future (Well, Customer Behavior!)",
+          "body": "Use predictive analytics to anticipate what customers may do next.",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "personalize",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Make Every Experience Personal",
+          "body": "Use customer context and behavior to tailor experiences and recommendations.",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "test-repeat",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Test, Tweak, Repeat",
+          "body": "Continuously experiment, measure outcomes and improve digital experiences.",
+          "media": null,
+          "cta": null,
+          "items": []
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Need Help Making Sense Of It All? We Are Always Happy To Chat About The Latest E-Commerce Trends And Technologies.",
+    "subheading": null,
+    "partner": null,
+    "primaryCta": {
+      "enabled": true,
+      "label": "Find your Amp'd score",
+      "href": null,
+      "external": false
+    },
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": null,
+      "external": false
+    }
+  },
+  "category": "Digital Commerce",
+  "topic": "cloud-platform-engineering",
+  "topicLabel": "Cloud & Platform",
+  "readTime": "5 min read",
+  "readTimeId": "deep",
+  "targetAudience": "executive",
+  "audienceLabel": "Executive Focus"
+}

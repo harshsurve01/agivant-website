@@ -37,36 +37,74 @@ import styles from "./Phase1.module.css";
 
 const BLOG_HERO_RIBBON = "/images/blogs/innerpages/hero-ribbon.png";
 
-export function Phase1({ eyebrow, title, description, cards }: Phase1Props) {
+export function Phase1({
+  eyebrow,
+  title,
+  description,
+  cards,
+  columns = 2,
+  ribbonSrc,
+  closingParagraph,
+  highlightPosition = "start",
+  highlightCount = 1,
+}: Phase1Props) {
   const words = title.split(" ");
-  const lead = words[0];
-  const rest = words.slice(1).join(" ");
+  const effectiveRibbon =
+    ribbonSrc === undefined ? BLOG_HERO_RIBBON : ribbonSrc;
+
+  let lead = "";
+  let rest = "";
+  if (highlightPosition === "end") {
+    lead = words.slice(0, -highlightCount).join(" ");
+    rest = words.slice(-highlightCount).join(" ");
+  } else {
+    lead = words.slice(0, highlightCount).join(" ");
+    rest = words.slice(highlightCount).join(" ");
+  }
+
+  const gridClass = columns === 3 ? styles.gridCols3 : styles.grid;
 
   return (
     <section className={styles.phase1}>
-      <PageRibbon
-        src={BLOG_HERO_RIBBON}
-        width={1440}
-        height={395}
-        className={styles.ribbonWrapper}
-        imageClassName={styles.ribbonImage}
-      />
+      {effectiveRibbon && (
+        <PageRibbon
+          src={effectiveRibbon}
+          width={1440}
+          height={395}
+          className={styles.ribbonWrapper}
+          imageClassName={styles.ribbonImage}
+        />
+      )}
 
       <Container className={styles.container}>
         {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
 
         <h2 className={styles.title}>
-          <span className={styles.highlight}>{lead}</span>
-          {rest ? ` ${rest}` : ""}
+          {highlightPosition === "end" ? (
+            <>
+              {lead}
+              {rest ? " " : ""}
+              <span className={styles.highlight}>{rest}</span>
+            </>
+          ) : (
+            <>
+              <span className={styles.highlight}>{lead}</span>
+              {rest ? ` ${rest}` : ""}
+            </>
+          )}
         </h2>
 
         {description && <p className={styles.description}>{description}</p>}
 
-        <div className={styles.grid}>
+        <div className={gridClass}>
           {cards.map((card) => (
             <MetricCard key={card.title} card={card} />
           ))}
         </div>
+
+        {closingParagraph && (
+          <p className={styles.closingParagraph}>{closingParagraph}</p>
+        )}
       </Container>
     </section>
   );

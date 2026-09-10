@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "blogLanding",
+  "slug": "blogs",
+  "title": "Blogs | Agivant",
+  "seo": {
+    "title": "Blogs | Agivant",
+    "description": "Practical insights from Agivant engineers building production-grade AI, cloud, data and autonomous agentic workflows.",
+    "canonical": "/blogs",
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Perspectives<br>Lessons from production AI",
+    "subtitle": null,
+    "summary": "Practical insights from Agivant engineers building production-grade AI, cloud, data and autonomous agentic workflows.",
+    "authors": [],
+    "partner": null,
+    "media": null,
+    "primaryCta": null,
+    "secondaryCta": null,
+    "search": {
+      "placeholder": "Search by keywords, services and tools...",
+      "buttonLabel": "Search"
+    }
+  },
+  "sections": [
+    {
+      "id": "featured",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Top Picks for You",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [],
+      "featuredSlug": "agentic-ai-transforming-software-engineering-digital-commerce"
+    },
+    {
+      "id": "blog-hub",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Blog Hub",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "filters": {
+        "topics": [
+          {
+            "id": "all",
+            "label": "All blogs"
+          },
+          {
+            "id": "agentic-ai-agentops",
+            "label": "Agentic AI & AgentOps"
+          },
+          {
+            "id": "ai-ml-engineering",
+            "label": "AI & ML Engineering"
+          },
+          {
+            "id": "cloud-platform-engineering",
+            "label": "Cloud & Platform Engineering"
+          },
+          {
+            "id": "ai-ready-data-engineering",
+            "label": "AI-Ready Data Engineering"
+          },
+          {
+            "id": "mlops-ai-operations",
+            "label": "MLOps & AI Operations"
+          }
+        ],
+        "readTimeOptions": [
+          {
+            "id": "all",
+            "label": "All"
+          },
+          {
+            "id": "quick",
+            "label": "Quick (<5m)"
+          },
+          {
+            "id": "deep",
+            "label": "Deep (5m+)"
+          }
+        ],
+        "audienceOptions": [
+          {
+            "id": "all",
+            "label": "All"
+          },
+          {
+            "id": "executive",
+            "label": "Executive"
+          },
+          {
+            "id": "technical",
+            "label": "Technical"
+          }
+        ]
+      },
+      "blocks": []
+    }
+  ],
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+    "subheading": null,
+    "partner": null,
+    "primaryCta": null,
+    "secondaryCta": null
+  }
+}

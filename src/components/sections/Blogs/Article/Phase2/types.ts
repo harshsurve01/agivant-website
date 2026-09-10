@@ -50,4 +50,8 @@ export interface Phase2Props {
   description: string;
   /** The numbered items, rendered in order. */
   items: Phase2Item[];
+  /** Which part of the heading receives the brand highlight: 'start', 'end', or 'colon'. Defaults to 'end' (or 'colon' if title contains ':'). */
+  highlightPosition?: "start" | "end" | "colon";
+  /** Word count for the highlight if using 'start' or 'end'. */
+  highlightCount?: number;
 }

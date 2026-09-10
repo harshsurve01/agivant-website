@@ -11,24 +11,21 @@
  * screen than reusing Phase1's array-of-references shape would be.
  */
 export interface Phase3Card {
-  /** Primary (black) heading, e.g. "Prompt/tool telemetry". */
-  primaryTitle: string;
-  /** Primary body copy. */
-  primaryDescription: string;
-  /** Secondary (brand-purple) heading, e.g. "Standard Framework". */
-  secondaryTitle: string;
-  /** Secondary body copy. */
-  secondaryDescription: string;
-  /**
-   * True only for the "Prompt/tool telemetry" card. The screenshot
-   * shows that one primary heading underlined while the other three
-   * cards' primary headings are not — no other visual difference
-   * explains it (not a link, not a different card variant). Flagged
-   * here as data rather than baked into the component's CSS so it
-   * doesn't silently apply to every card, but this is very likely an
-   * unintentional artifact in the source design worth confirming
-   * against Figma once available, not a deliberate emphasis pattern.
-   */
+  /** Card title, e.g. "Prompt/tool telemetry". In Figma, rendered in purple. */
+  title?: string;
+  /** Full card body copy. Rendered as a single continuous paragraph without dividers. */
+  description?: string;
+  /** Legacy primary heading, e.g. "Prompt/tool telemetry". */
+  primaryTitle?: string;
+  /** Legacy primary body copy. */
+  primaryDescription?: string;
+  /** Legacy secondary heading. */
+  secondaryTitle?: string;
+  /** Legacy secondary body copy. */
+  secondaryDescription?: string;
+  /** Legacy body fallback. */
+  body?: string;
+  /** Legacy underline flag. */
   primaryTitleUnderlined?: boolean;
 }
 

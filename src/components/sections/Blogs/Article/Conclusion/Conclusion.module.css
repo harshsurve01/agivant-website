@@ -54,7 +54,6 @@
   flex-direction: column;
   gap: var(--space-5);
   max-width: 74.36rem; /* 1189.77px, matches ExecutiveBrief's body width */
-  margin-block-end: var(--space-8); /* estimated body->quote card gap */
 }
 
 .paragraph {
@@ -64,29 +63,21 @@
   color: var(--color-text-secondary);
   margin: 0;
 }
-.emphasis {
-  font-weight: var(--font-weight-semibold);
-}
 
 /* --------------------------------------------------------------------
-   Quote / callout card
-   Screenshot shows a soft tinted card, rounded corners, a purple
-   left accent bar, italic quote text. --color-primary-subtle is the
-   same soft-purple token Featured already uses for its own tinted
-   card background — reused here rather than a one-off value.
-   Left accent uses border-inline-start (not a separate .bar element,
-   unlike the heading) since it spans the card's full height here,
-   not a fixed 32px — a border reflects that relationship directly.
+   Quote / callout card (optional fallback)
    -------------------------------------------------------------------- */
 .quoteCard {
   display: flex;
   align-items: center;
+  margin-block-start: var(--space-8);
   padding: 1.75rem 2.25rem; /* estimated */
   border-radius: var(--radius-xl); /* 24px, same card-radius convention used throughout Article */
   background-color: #d9d9d920;
   border-inline-start: 0.25rem solid var(--color-brand-primary); /* 4px, estimated */
-  margin: 0;
-   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
+  margin-inline: 0;
+  margin-block-end: 0;
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
     inset 0 0 0 rgba(0, 0, 0, 0);
 }
 

@@ -354,7 +354,11 @@
         "href": "/contact",
         "external": false
       }
-    }
+    },
+    "cardTitle": "Goal-Driven Enterprise Agents",
+    "category": "Sales Acceleration",
+    "domain": "Delivery & Portfolio Governance",
+    "cardThumbnail": "/images/solutions/goal-driven.png"
   },
   {
     "schemaVersion": "1.0",
@@ -690,7 +694,11 @@
         "href": "/contact",
         "external": false
       }
-    }
+    },
+    "cardTitle": "Verbatim AI Customer Intelligence",
+    "category": "Client Platforms",
+    "domain": "Customer Intelligence & Acquisition",
+    "cardThumbnail": "/images/solutions/verbatim-ai.png"
   },
   {
     "schemaVersion": "2.0.0",
@@ -918,7 +926,11 @@
         "href": "/contact",
         "external": false
       }
-    }
+    },
+    "cardTitle": "Autonomous Operations Platform",
+    "category": "Partner-Led IP",
+    "domain": "AI Governance",
+    "cardThumbnail": "/images/solutions/autonomous-operations.png"
   },
   {
     "schemaVersion": "2.0.0",
@@ -1125,7 +1137,11 @@
         "href": "/contact",
         "external": false
       }
-    }
+    },
+    "cardTitle": "Operations Brain Intelligence",
+    "category": "Client Platforms",
+    "domain": "Fraud, Risk & Compliance",
+    "cardThumbnail": "/images/solutions/operations-brain.png"
   },
   {
     "schemaVersion": "2.0.0",
@@ -1371,7 +1387,11 @@
         "href": "/contact",
         "external": false
       }
-    }
+    },
+    "cardTitle": "Salesforce Velocity Platform",
+    "category": "Sales Acceleration",
+    "domain": "Sales & CPQ",
+    "cardThumbnail": "/images/solutions/salesforce-velocity.png"
   },
   {
     "schemaVersion": "2.0.0",
@@ -1598,7 +1618,11 @@
         "href": "/contact",
         "external": false
       }
-    }
+    },
+    "cardTitle": "ServiceNow Workflow Automation",
+    "category": "Partner-Led IP",
+    "domain": "Commerce",
+    "cardThumbnail": "/images/solutions/servicenow-workflow.png"
   },
   {
     "schemaVersion": "2.0.0",
@@ -1841,7 +1865,11 @@
         "href": "/contact",
         "external": false
       }
-    }
+    },
+    "cardTitle": "AI Product Tech Support",
+    "category": "Client Platforms",
+    "domain": "Data Annotation & AI Alignment",
+    "cardThumbnail": "/images/solutions/ai-product.png"
   },
   {
     "schemaVersion": "2.0.0",
@@ -2058,7 +2086,11 @@
         "href": "/contact",
         "external": false
       }
-    }
+    },
+    "cardTitle": "Agivant Spend AI",
+    "category": "Sales Acceleration",
+    "domain": "Procurement, Sourcing & FinOps",
+    "cardThumbnail": "/images/solutions/agivant-spend.png"
   },
   {
     "schemaVersion": "2.0.0",
@@ -2322,7 +2354,11 @@
         "href": "/contact",
         "external": false
       }
-    }
+    },
+    "cardTitle": "Agentic Enterprise Mesh",
+    "category": "Partner-Led IP",
+    "domain": "Contracts & Legal Intelligence",
+    "cardThumbnail": "/images/solutions/agentic-enterprise.png"
   },
   {
     "schemaVersion": "2.0.0",
@@ -2537,6 +2573,10 @@
         "href": "/contact",
         "external": false
       }
-    }
+    },
+    "cardTitle": "Silicon Lifecycle Platform",
+    "category": "Client Platforms",
+    "domain": "Hardware & Silicon Engineering",
+    "cardThumbnail": "/images/solutions/silicon-lifecycle.png"
   }
 ]

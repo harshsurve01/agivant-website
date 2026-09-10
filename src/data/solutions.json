@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "solutionLanding",
+  "slug": "solutions",
+  "title": "AI solutions powering real business value | Agivant",
+  "seo": {
+    "title": "AI solutions powering real business value | Agivant",
+    "description": "Browse functional domains, technology stacks, and solution canvases engineered to drive rapid enterprise transformation.",
+    "canonical": "/solutions",
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "AI solutions powering real<br>business value",
+    "subtitle": null,
+    "summary": "Browse functional domains, technology stacks, and solution canvases engineered to drive rapid enterprise transformation.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/solutions/landing-page-hero.png",
+      "assetKey": "solutions-landing-hero",
+      "alt": "AI solutions hero ribbon",
+      "caption": null,
+      "width": 1434,
+      "height": 757
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "sections": [],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Ready To Get Your<br>Enterprise<br>With Agivant?",
+    "subheading": null,
+    "partner": null,
+    "primaryCta": {
+      "enabled": true,
+      "label": "Find your Amp'd score",
+      "href": "/ampd-score",
+      "external": false
+    },
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": "/contact",
+      "external": false
+    }
+  }
+}

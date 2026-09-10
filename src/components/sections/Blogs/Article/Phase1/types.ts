@@ -45,4 +45,17 @@ export interface Phase1Props {
   description?: string | null;
   /** The metric cards, rendered in order. */
   cards: Phase1Card[];
+  /** Optional column count for the grid. Defaults to 2. */
+  columns?: 2 | 3;
+  /**
+   * Optional ribbon background image path.
+   * Defaults to BLOG_HERO_RIBBON. Pass null to disable the ribbon.
+   */
+  ribbonSrc?: string | null;
+  /** Optional closing paragraph rendered below the card grid. */
+  closingParagraph?: string | null;
+  /** Which part of the heading is highlighted: 'start' or 'end'. Defaults to 'start'. */
+  highlightPosition?: "start" | "end";
+  /** How many words to highlight. Defaults to 1. */
+  highlightCount?: number;
 }

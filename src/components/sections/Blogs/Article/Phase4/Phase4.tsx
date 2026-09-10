@@ -64,8 +64,8 @@ export function Phase4({
         <p className={styles.emphasis}>{emphasis}</p>
 
         <div className={styles.list}>
-          {caseStudies.map((caseStudy) => (
-            <CaseStudyCard key={caseStudy.title} caseStudy={caseStudy} />
+          {caseStudies.map((caseStudy, idx) => (
+            <CaseStudyCard key={`${caseStudy.title}-${idx}`} caseStudy={caseStudy} />
           ))}
         </div>
       </Container>

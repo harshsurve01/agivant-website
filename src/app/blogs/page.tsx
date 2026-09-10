@@ -1,10 +1,18 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Blogs } from "@/components/sections/Blogs";
 import { PageRibbon } from "@/components/ui/PageRibbon";
 import { GradientLayerProvider } from "@/components/effects/GradientLayer";
-import { blogsPageData } from "@/data/blogs";
+import { blogsPageData, getBlogsPage } from "@/data/blogs";
 import styles from "./BlogsPage.module.css";
+
+const pageData = getBlogsPage();
+
+export const metadata: Metadata = {
+  title: pageData.seo.title ?? pageData.title,
+  description: pageData.seo.description ?? "",
+};
 
 /**
  * Blogs Landing Page (/blogs).
@@ -29,7 +37,7 @@ export default function BlogsPage() {
           priority
         />
 
-        <main>
+        <main className={styles.main}>
           <Blogs {...blogsPageData} />
         </main>
 

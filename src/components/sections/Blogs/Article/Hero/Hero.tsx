@@ -4,35 +4,20 @@ import { PageRibbon } from "@/components/ui/PageRibbon";
 import type { ArticleHeroProps } from "./types";
 import styles from "./Hero.module.css";
 
-const BLOG_HERO_RIBBON = "/images/blogs/innerpages/hero-ribbon.png";
+const DEFAULT_BLOG_HERO_RIBBON = "/images/blogs/innerpages/hero-ribbon.png";
 
-/**
- * Hero (Blog Article)
- *
- * Renders the Blog Inner page's hero content only: article title, a
- * divider, and the date / read time / author(s) meta row. Figma:
- * "Blog header" (node 2097:1256) inside the "Blog Inside page" frame
- * (node 2097:1214).
- *
- * Reuses the exact same shared pieces as the TechTalk and Blogs Hero
- * — HeroBackground for every ambient visual (gradients, particle
- * field, decorative ellipse) and Container for width/centering.
- * Nothing about either is duplicated or reimplemented here, per the
- * "reuse the existing shared background" requirement — this file
- * only arranges its own content inside them, exactly like its two
- * siblings already do.
- *
- * The shared Header is NOT rendered here — same as TechTalk's and
- * Blogs' Hero, it's owned by the page/layout above this component,
- * not by the Hero itself.
- *
- * Server Component: no "use client", no hooks, no state, no effects,
- * no business logic, no data imports (see types.ts — `blogsPageData`
- * is never imported here). Every value arrives via props, so this
- * component is already shaped for a future WordPress-sourced article
- * object with zero changes required on this end.
- */
-export function Hero({ title, date, readTime, authors }: ArticleHeroProps) {
+export function Hero({
+  title,
+  date,
+  readTime,
+  authors,
+  ribbonSrc = DEFAULT_BLOG_HERO_RIBBON,
+  ribbonHeight,
+}: ArticleHeroProps) {
+  const actualRibbonSrc = ribbonSrc || DEFAULT_BLOG_HERO_RIBBON;
+  const actualHeight =
+    ribbonHeight ?? (actualRibbonSrc.includes("page2") ? 520 : 395);
+
   return (
     <section className={styles.hero} data-hero-interaction-root>
       {/* Decorative background only — identical usage to TechTalk/Blogs.
@@ -43,9 +28,9 @@ export function Hero({ title, date, readTime, authors }: ArticleHeroProps) {
 
       {/* Decorative ribbon layer spanning across lower visual area */}
       <PageRibbon
-        src={BLOG_HERO_RIBBON}
+        src={actualRibbonSrc}
         width={1440}
-        height={395}
+        height={actualHeight}
         className={styles.ribbonWrapper}
         imageClassName={styles.ribbonImage}
         priority

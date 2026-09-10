@@ -6,6 +6,7 @@
    ========================================================================== */
 
 .hub {
+  position: relative;
   /* --section-padding-block isn't in variables.css — this fallback
      pattern is inherited unchanged from Featured.module.css, which
      already uses the same not-yet-defined token for section rhythm. */

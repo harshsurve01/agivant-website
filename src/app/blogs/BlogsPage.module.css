@@ -11,6 +11,12 @@
 
 .ribbonWrapper {
   top: clamp(15rem, 42vh, 16rem);
+  z-index: 0;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
 }
 
 .ribbonImage {

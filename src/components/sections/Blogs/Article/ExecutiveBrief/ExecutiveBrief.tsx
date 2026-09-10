@@ -1,7 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import type { ExecutiveBriefProps } from "./types";
 import styles from "./ExecutiveBrief.module.css";
-import { Gradient } from "@/components/effects/Gradient";
 
 /**
  * ExecutiveBrief
@@ -33,62 +32,91 @@ import { Gradient } from "@/components/effects/Gradient";
  * is already shaped for a future WordPress-sourced article object
  * with zero changes required on this end.
  */
-export function ExecutiveBrief({ title, paragraphs }: ExecutiveBriefProps) {
-  const words = title.split(" ");
-  const highlighted = words[words.length - 1];
-  const rest = words.slice(0, -1).join(" ");
+export function ExecutiveBrief({
+  title,
+  paragraphs,
+  showBar = true,
+  spacing = "hero",
+  highlightPosition,
+  highlightCount,
+}: ExecutiveBriefProps) {
+  const renderHeading = () => {
+    if (!title) return null;
+
+    const hasLineBreak =
+      typeof title === "string" && (title.includes("<br") || title.includes("\n"));
+    if (hasLineBreak) {
+      const lines = title
+        .split(/<br\s*\/?>|\n/gi)
+        .map((line) => line.trim())
+        .filter(Boolean);
+      return (
+        <>
+          <span className={styles.highlight}>{lines[0]}</span>
+          <br />
+          <span>{lines.slice(1).join(" ")}</span>
+        </>
+      );
+    }
+
+    const colonIndex = title.indexOf(":");
+    if (
+      colonIndex !== -1 &&
+      (highlightPosition === "colon" || !highlightPosition)
+    ) {
+      const prefix = title.slice(0, colonIndex + 1);
+      const rest = title.slice(colonIndex + 1);
+      return (
+        <>
+          <span className={styles.highlight}>{prefix}</span>
+          <span>{rest}</span>
+        </>
+      );
+    }
+
+    const words = title.split(" ");
+    if (highlightPosition === "start") {
+      const count = highlightCount ?? 1;
+      const prefix = words.slice(0, count).join(" ");
+      const rest = words.slice(count).join(" ");
+      return (
+        <>
+          <span className={styles.highlight}>{prefix}</span>
+          {rest ? ` ${rest}` : ""}
+        </>
+      );
+    }
+
+    // Default: highlight the last word(s)
+    const count = highlightCount ?? 1;
+    const rest = words.slice(0, -count).join(" ");
+    const highlighted = words.slice(-count).join(" ");
+
+    return (
+      <>
+        {rest ? `${rest} ` : ""}
+        <span className={styles.highlight}>{highlighted}</span>
+      </>
+    );
+  };
 
   return (
-    <section className={styles.executiveBrief}>
-             <Gradient
-              top="20%"
-              right="25%"
-              size="45rem"
-              stops={["#8500df 50%", "#edbf79 55%", "transparent 75%"]}
-              opacity={0.15}
-              blur="80px"
-            />
-      <Gradient
-        top="25%"
-        left="-18%"
-        size="42rem"
-        stops={[
-          "color-mix(in srgb, #EDBF79 70%, transparent) 0%",
-          "transparent 100%",
-        ]}
-        opacity={0.4}
-        blur="60px"
-      />
-      
-      <Gradient
-        top="60%"
-        right="25%"
-        size="42rem"
-        stops={[
-          "color-mix(in srgb, #EDBF79 70%, transparent) 0%",
-          "transparent 100%",
-        ]}
-        opacity={0.4}
-        blur="60px"
-      />
-         <Gradient
-        kind="linear"
-        angle="180deg"
-        top="70%"
-        right="25%"
-        size="45rem"
-        stops={["#b31aef44 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
-        opacity={0.15}
-        blur="90px"
-      />
+    <section
+      className={`${styles.executiveBrief} ${
+        spacing === "standard" ? styles.standardSpacing : ""
+      }`}
+    >
       <Container>
-        <div className={styles.headingRow}>
-          <span className={styles.bar} aria-hidden="true" />
-          <h2 className={styles.title}>
-            {rest ? `${rest} ` : ""}
-            <span className={styles.highlight}>{highlighted}</span>
-          </h2>
-        </div>
+        {showBar ? (
+          <div className={styles.headingRow}>
+            <span className={styles.bar} aria-hidden="true" />
+            <h2 className={styles.title}>{renderHeading()}</h2>
+          </div>
+        ) : (
+          <div className={styles.headingStandalone}>
+            <h2 className={styles.title}>{renderHeading()}</h2>
+          </div>
+        )}
 
         <div className={styles.body}>
           {paragraphs.map((paragraph, index) => (

@@ -1,0 +1,616 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "blog",
+  "slug": "what-makes-an-ai-agent-enterprise-grade",
+  "title": "What Makes an AI Agent Enterprise Grade",
+  "seo": {
+    "title": null,
+    "description": null,
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "What Makes an AI Agent Enterprise Grade",
+    "subtitle": null,
+    "summary": "Key architectural requirements separating disposable prototypes from resilient, auditable enterprise agent infrastructure.",
+    "authors": [
+      {
+        "name": "Executive Team",
+        "role": "AI Strategy"
+      }
+    ],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": null,
+      "assetKey": "hero-ribbon",
+      "alt": "Abstract enterprise-agent ribbon graphic",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null,
+    "date": "May 15, 2026",
+    "readTime": "4 mins"
+  },
+  "sections": [
+    {
+      "id": "pilot-reality",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Why Most AI Pilots Don't Survive Contact with Reality",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "pilot-copy",
+          "type": "richText",
+          "heading": null,
+          "body": null
+        }
+      ]
+    },
+    {
+      "id": "enterprise-grade-meaning",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "What Does “Enterprise-Grade AI” Actually Mean",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "operational-reliability",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Operational reliability",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "systems-integration",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Systems integration",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "governance-audit",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Governance and audit",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "monitoring-recovery",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Monitoring & recovery",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "explainability",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Explainability",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "enterprise-agent-stack",
+      "type": "comparison_table",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "The Enterprise AI Agent Stack",
+        "description": null,
+        "columns": [
+          "Metric",
+          "Traditional SDLC",
+          "Agentic AI (Agivant)"
+        ],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "stack-1",
+          "type": "tableRow",
+          "cells": [
+            "Interfaces",
+            null,
+            null
+          ]
+        },
+        {
+          "id": "stack-2",
+          "type": "tableRow",
+          "cells": [
+            "Infrastructure",
+            null,
+            null
+          ]
+        },
+        {
+          "id": "stack-3",
+          "type": "tableRow",
+          "cells": [
+            "Data",
+            null,
+            null
+          ]
+        },
+        {
+          "id": "stack-4",
+          "type": "tableRow",
+          "cells": [
+            "Reasoning",
+            null,
+            null
+          ]
+        },
+        {
+          "id": "stack-5",
+          "type": "tableRow",
+          "cells": [
+            "Observability",
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pillar-1",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Pillar 1: Seamless Interoperability",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "p1-problem",
+          "type": "card",
+          "eyebrow": null,
+          "title": "The problem",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p1-meaning",
+          "type": "card",
+          "eyebrow": null,
+          "title": "What it means",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p1-implementation",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Enterprise implementation",
+          "body": null,
+          "media": {
+            "kind": "image",
+            "src": null,
+            "assetKey": "pillar-1-ribbon",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p1-mvp",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Agent MVP",
+          "body": null,
+          "media": {
+            "kind": "image",
+            "src": null,
+            "assetKey": "pillar-1-ribbon-2",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "pillar-2",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Pillar 2: Scalability and Performance",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "p2-problem",
+          "type": "card",
+          "eyebrow": null,
+          "title": "The problem",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p2-meaning",
+          "type": "card",
+          "eyebrow": null,
+          "title": "What it means",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p2-implementation",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Enterprise implementation",
+          "body": null,
+          "media": {
+            "kind": "image",
+            "src": null,
+            "assetKey": "pillar-2-ribbon",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p2-mvp",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Agent MVP",
+          "body": null,
+          "media": {
+            "kind": "image",
+            "src": null,
+            "assetKey": "pillar-2-ribbon-2",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "pillar-3",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Pillar 3: Operational Reliability and Monitoring",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "p3-problem",
+          "type": "card",
+          "eyebrow": null,
+          "title": "The problem",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p3-meaning",
+          "type": "card",
+          "eyebrow": null,
+          "title": "What it means",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p3-implementation",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Enterprise implementation",
+          "body": null,
+          "media": {
+            "kind": "image",
+            "src": null,
+            "assetKey": "pillar-3-ribbon",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p3-mvp",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Agent MVP",
+          "body": null,
+          "media": {
+            "kind": "image",
+            "src": null,
+            "assetKey": "pillar-3-ribbon-2",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "pillar-4",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Pillar 4: Governance, Versioning, and Responsible AI",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "p4-problem",
+          "type": "card",
+          "eyebrow": null,
+          "title": "The problem",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p4-implementation",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Enterprise implementation",
+          "body": null,
+          "media": {
+            "kind": "image",
+            "src": null,
+            "assetKey": "pillar-4-ribbon",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p4-mvp",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Agent MVP",
+          "body": null,
+          "media": {
+            "kind": "image",
+            "src": null,
+            "assetKey": "pillar-4-ribbon-2",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "pillar-5",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Pillar 5: Explainability and Decision Traceability",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "p5-problem",
+          "type": "card",
+          "eyebrow": null,
+          "title": "The problem",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p5-implementation",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Enterprise implementation",
+          "body": null,
+          "media": {
+            "kind": "image",
+            "src": null,
+            "assetKey": "pillar-5-ribbon",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p5-mvp",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Agent MVP",
+          "body": null,
+          "media": {
+            "kind": "image",
+            "src": null,
+            "assetKey": "pillar-5-ribbon-2",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "pillar-6",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Pillar 6: Security and Compliance by Design",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "p6-problem",
+          "type": "card",
+          "eyebrow": null,
+          "title": "The problem",
+          "body": null,
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p6-implementation",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Enterprise implementation",
+          "body": null,
+          "media": {
+            "kind": "image",
+            "src": null,
+            "assetKey": "pillar-6-ribbon",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "p6-mvp",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Agent MVP",
+          "body": null,
+          "media": {
+            "kind": "image",
+            "src": null,
+            "assetKey": "pillar-6-ribbon-2",
+            "alt": "Abstract ribbon graphic",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "built-for-enterprise",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Built for Enterprise. Proven at Scale.",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "built-copy",
+          "type": "richText",
+          "heading": null,
+          "body": null
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Ready To Get Your Enterprise With Agivant?",
+    "subheading": null,
+    "partner": null,
+    "primaryCta": {
+      "enabled": true,
+      "label": "Find your Amp'd score",
+      "href": null,
+      "external": false
+    },
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": null,
+      "external": false
+    }
+  },
+  "category": "Enterprise AI",
+  "topic": "ai-ml-engineering",
+  "topicLabel": "AI & ML Engineering",
+  "readTime": "4 min read",
+  "readTimeId": "quick",
+  "targetAudience": "executive",
+  "audienceLabel": "Executive Focus"
+}

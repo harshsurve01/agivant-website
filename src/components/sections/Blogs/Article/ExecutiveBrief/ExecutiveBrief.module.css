@@ -17,6 +17,11 @@
   padding-bottom: var(--space-16);
 }
 
+.standardSpacing {
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+}
+
 /* --------------------------------------------------------------------
    Heading row (accent bar + title)
    Figma: bar (2097:1288) is 8x32px, purple, positioned 17px left of
@@ -26,15 +31,20 @@
    -------------------------------------------------------------------- */
 .headingRow {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 1.0625rem; /* 17px, node 2097:1282 vs 2097:1288 */
   margin-block-end: 1.9375rem; /* 31px, node 2097:1288 bottom vs 2097:1290 top */
+}
+
+.headingStandalone {
+  margin-block-end: 1.9375rem;
 }
 
 .bar {
   display: block;
   width: 0.5rem; /* 8px, node 2097:1288 */
-  height: 2rem; /* 32px, node 2097:1288 */
+  min-height: 2rem; /* 32px, node 2097:1288 */
+  align-self: stretch;
   border-radius: var(--radius-sm);
   background-color: var(--color-brand-primary);
   flex-shrink: 0;

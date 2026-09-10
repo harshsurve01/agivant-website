@@ -26,4 +26,13 @@ export interface ExecutiveBriefProps {
    * future WordPress rich-text field split on paragraph breaks.
    */
   paragraphs: string[];
+  /** Whether to show the left vertical accent bar. Defaults to true. */
+  showBar?: boolean;
+  /** Section spacing variant: 'hero' (under-hero with large top padding) or 'standard' (standard section padding-block). Defaults to 'hero'. */
+  spacing?: "hero" | "standard";
+  /** Which part of the heading receives the brand highlight: 'start', 'end', or 'colon'. Defaults to 'end' (or 'colon' if title contains ':'). */
+  highlightPosition?: "start" | "end" | "colon";
+  /** Word count for the highlight if using 'start' or 'end'. */
+  highlightCount?: number;
 }
+

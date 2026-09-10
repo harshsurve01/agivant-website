@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "blog",
+  "slug": "agentic-ai-transforming-software-engineering-digital-commerce-enterprise-guide",
+  "title": "How Agentic AI Is Transforming Software Engineering in Digital Commerce",
+  "seo": {
+    "title": null,
+    "description": null,
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "How Agentic AI Is Transforming Software Engineering in Digital Commerce",
+    "subtitle": null,
+    "summary": "A strategic roadmap for engineering leaders to transition from isolated AI pilots to self-evolving agentic systems.",
+    "authors": [
+      {
+        "name": "Praveen Nirgune",
+        "role": "Innovation & Solutions"
+      },
+      {
+        "name": "Gaurav Gupta",
+        "role": "Account Delivery Head"
+      }
+    ],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": null,
+      "assetKey": "hero-ribbon",
+      "alt": "Abstract ribbon graphic",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null,
+    "date": "May 21, 2026",
+    "readTime": "7 mins"
+  },
+  "sections": [
+    {
+      "id": "introduction",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Introduction",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "introduction-copy",
+          "type": "richText",
+          "heading": null,
+          "body": null
+        }
+      ]
+    },
+    {
+      "id": "organizational-readiness",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Organizational Readiness",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "readiness-copy",
+          "type": "richText",
+          "heading": null,
+          "body": null
+        }
+      ]
+    },
+    {
+      "id": "guide-to-genai",
+      "type": "numbered_list",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "The Guide to GenAI",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "architecture",
+          "type": "numberedItem",
+          "number": 1,
+          "title": "Software and Hardware Architecture",
+          "body": null,
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "data-strategy",
+          "type": "numberedItem",
+          "number": 2,
+          "title": "Data Sensitivity and Storage Strategy",
+          "body": null,
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "risk",
+          "type": "numberedItem",
+          "number": 3,
+          "title": "Risk, Compliance, and Governance",
+          "body": null,
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "integration",
+          "type": "numberedItem",
+          "number": 4,
+          "title": "Integration into Enterprise Systems",
+          "body": null,
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "testing",
+          "type": "numberedItem",
+          "number": 5,
+          "title": "Testing and Evaluation Readiness",
+          "body": null,
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "resilience",
+          "type": "numberedItem",
+          "number": 6,
+          "title": "Deployment and Operational Resilience",
+          "body": null,
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "human-loop",
+          "type": "numberedItem",
+          "number": 7,
+          "title": "Human-in-the-Loop Operating Model",
+          "body": null,
+          "items": [],
+          "media": null
+        }
+      ]
+    },
+    {
+      "id": "conclusion",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Conclusion - Benefit vs. Risk",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "conclusion-copy",
+          "type": "richText",
+          "heading": null,
+          "body": null
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Ready To Get Your Enterprise With Agivant?",
+    "subheading": null,
+    "partner": null,
+    "primaryCta": {
+      "enabled": true,
+      "label": "Find your Amp'd score",
+      "href": null,
+      "external": false
+    },
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": null,
+      "external": false
+    }
+  },
+  "category": "Enterprise Architecture",
+  "topic": "agentic-ai-agentops",
+  "topicLabel": "Agentic AI & AgentOps",
+  "readTime": "7 min read",
+  "readTimeId": "deep",
+  "targetAudience": "technical",
+  "audienceLabel": "Technical Focus"
+}

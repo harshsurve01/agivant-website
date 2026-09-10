@@ -6,6 +6,8 @@ export interface SolutionMedia {
   assetKey: string | null;
   alt: string | null;
   caption: string | null;
+  width?: number | null;
+  height?: number | null;
 }
 
 export interface SolutionHero {
@@ -45,6 +47,9 @@ export interface SolutionSectionData {
     src?: string | null;
     poster?: string | null;
   } | null;
+  align?: "left" | "center" | null;
+  highlightPosition?: "start" | "end" | "colon" | null;
+  highlightCount?: number | null;
 }
 
 export interface SolutionSection {
@@ -62,6 +67,11 @@ export interface SolutionPage {
   pageType: string;
   slug: string;
   title: string;
+  cardTitle?: string | null;
+  cardThumbnail?: string | null;
+  thumbnail?: string | null;
+  category?: string | null;
+  domain?: string | null;
   seo: {
     title: string | null;
     description: string | null;

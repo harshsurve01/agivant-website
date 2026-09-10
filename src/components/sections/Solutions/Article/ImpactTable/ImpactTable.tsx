@@ -26,29 +26,134 @@ const RIBBON_ASSET =
 export function ImpactTable({ data, blocks }: ImpactTableProps) {
   if (!data || !blocks?.length) return null;
 
-  const { heading, description } = data;
+  const {
+    heading,
+    description,
+    closingStatement,
+    align = "center",
+    highlightPosition,
+    highlightCount,
+  } = data;
+  const isLeftAligned = align === "left";
+
   const columns =
     data.columns && data.columns.length > 0 ? data.columns : DEFAULT_COLUMNS;
+
+  const ribbonSrc = data.media?.src || RIBBON_ASSET;
+  const hasCustomRibbon = Boolean(data.media?.src);
+
+  const renderHeading = () => {
+    if (!heading) return null;
+
+    const colonIndex = heading.indexOf(":");
+    if (
+      colonIndex !== -1 &&
+      (highlightPosition === "colon" || !highlightPosition)
+    ) {
+      const prefix = heading.slice(0, colonIndex + 1);
+      const rest = heading.slice(colonIndex + 1);
+      return (
+        <>
+          <span className={styles.highlight}>{prefix}</span>
+          <span>{rest}</span>
+        </>
+      );
+    }
+
+    if (highlightPosition === "start") {
+      const words = heading.split(" ");
+      const count = highlightCount ?? 1;
+      const prefix = words.slice(0, count).join(" ");
+      const rest = words.slice(count).join(" ");
+      return (
+        <>
+          <span className={styles.highlight}>{prefix}</span>
+          {rest ? ` ${rest}` : ""}
+        </>
+      );
+    }
+
+    return heading;
+  };
+
+  const renderClosingStatement = () => {
+    if (!closingStatement) return null;
+
+    const colonIndex = closingStatement.indexOf(":");
+    if (colonIndex !== -1) {
+      const prefix = closingStatement.slice(0, colonIndex + 1);
+      const rest = closingStatement.slice(colonIndex + 1);
+      return (
+        <div className={styles.closingStatement}>
+          <p className={styles.closingParagraph}>
+            <span className={styles.closingHighlight}>{prefix}</span>
+            <span>{rest}</span>
+          </p>
+        </div>
+      );
+    }
+
+    return (
+      <div className={styles.closingStatement}>
+        <p className={styles.closingParagraph}>{closingStatement}</p>
+      </div>
+    );
+  };
 
   return (
     <section className={styles.section} id="impact-table">
       {/* Decorative Background Ribbon Layer */}
-      <div className={styles.ribbonWrapper} aria-hidden="true">
+      <div
+        className={clsx(
+          styles.ribbonWrapper,
+          hasCustomRibbon && styles.customRibbonWrapper
+        )}
+        aria-hidden="true"
+      >
         <Image
-          src={RIBBON_ASSET}
+          src={ribbonSrc}
           alt=""
-          width={1440}
-          height={500}
+          width={1682}
+          height={922}
           className={styles.ribbonImage}
+          loading="eager"
         />
       </div>
 
-      <Container className={styles.container}>
+      <Container
+        className={clsx(
+          styles.container,
+          isLeftAligned && styles.containerLeft
+        )}
+      >
         {/* Optional Header (renders only if provided in data) */}
         {(heading || description) && (
-          <header className={styles.header}>
-            {heading && <h2 className={styles.heading}>{heading}</h2>}
-            {description && <p className={styles.description}>{description}</p>}
+          <header
+            className={clsx(
+              styles.header,
+              isLeftAligned && styles.headerLeft
+            )}
+          >
+            {heading && (
+              <h2
+                className={clsx(
+                  styles.heading,
+                  isLeftAligned && styles.headingLeft
+                )}
+              >
+                {renderHeading()}
+              </h2>
+            )}
+            {description && (
+              <p
+                className={clsx(
+                  styles.description,
+                  isLeftAligned && styles.descriptionLeft
+                )}
+              >
+                {description}
+              </p>
+            )}
           </header>
         )}
 
@@ -86,6 +191,9 @@ export function ImpactTable({ data, blocks }: ImpactTableProps) {
             </tbody>
           </table>
         </div>
+
+        {/* Measurable Outcome / Closing Statement */}
+        {renderClosingStatement()}
       </Container>
     </section>
   );

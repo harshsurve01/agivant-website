@@ -25,23 +25,16 @@ export interface InstrumentationCardProps {
  * imports. Every value arrives via props.
  */
 export function InstrumentationCard({ card }: InstrumentationCardProps) {
-  const {
-    primaryTitle,
-    primaryDescription,
-    secondaryTitle,
-    secondaryDescription,
-    primaryTitleUnderlined,
-  } = card;
+  const title = card.title ?? card.primaryTitle ?? "";
+  const description =
+    card.description ??
+    card.body ??
+    [card.primaryDescription, card.secondaryDescription].filter(Boolean).join(" ");
 
   return (
     <article className={styles.card}>
- <h3 className={styles.primaryTitle}>{primaryTitle}</h3>
-      <p className={styles.primaryDescription}>{primaryDescription}</p>
-
-      <hr className={styles.divider} aria-hidden="true" />
-
-      <h3 className={styles.secondaryTitle}>{secondaryTitle}</h3>
-      <p className={styles.secondaryDescription}>{secondaryDescription}</p>
+      <h3 className={styles.title}>{title}</h3>
+      <p className={styles.description}>{description}</p>
     </article>
   );
 }
