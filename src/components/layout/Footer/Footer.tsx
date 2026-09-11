@@ -30,6 +30,8 @@ export interface FooterCustomCTA {
 }
 
 export interface FooterProps {
+  /** Optional custom CSS class name for scoped page-level adjustments. */
+  className?: string;
   /** Visual variant. Defaults to "default". */
   variant?: FooterVariant;
   /** Whether to render FooterNavigation. Defaults to false. */
@@ -50,6 +52,7 @@ export interface FooterProps {
  * Server Component: async, no "use client", no hooks, no state.
  */
 export async function Footer({
+  className,
   variant = "default",
   showNavigation = false,
   showBrandmark = true,
@@ -87,7 +90,7 @@ export async function Footer({
       : content.buttons);
 
   return (
-    <footer className={clsx(styles.footer, styles[variant])}>
+    <footer className={clsx(styles.footer, styles[variant], className)}>
       {!isMinimal && (
         <Container size="xl" className={styles.top}>
           <FooterCTA
@@ -104,12 +107,12 @@ export async function Footer({
       )}
 
       {showBrandmark ? (
-        <Container size="xl">
+        <Container size="xl" className={styles.brandmarkContainer}>
           <FooterBrandmark />
         </Container>
       ) : null}
 
-      <Container size="xl">
+      <Container size="xl" className={styles.copyrightContainer}>
         <FooterCopyright text={content.copyright} />
       </Container>
     </footer>

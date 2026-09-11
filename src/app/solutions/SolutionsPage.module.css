@@ -23,3 +23,10 @@
     --hero-ribbon-top: 5rem;
   }
 }
+
+/* Scoped brandmark image compositing for /solutions:
+   Enables the FinalCTA decorative gradient to visually composite over
+   Agivant-Home-Page-Liquid-Footer.svg while keeping the watermark letters visible. */
+.footer [class*="brandmark"] img {
+  mix-blend-mode: multiply;
+}

@@ -55,7 +55,7 @@ export default function SolutionsPage() {
           )}
         </main>
 
-        <Footer variant="minimal" />
+        <Footer variant="minimal" className={styles.footer} />
       </div>
     </GradientLayerProvider>
   );

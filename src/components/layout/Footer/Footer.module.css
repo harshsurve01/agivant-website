@@ -18,13 +18,23 @@
 
 .top {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   gap: var(--space-16);
   flex-wrap: wrap;
+}
+
+.brandmarkContainer {
+  position: relative;
+  z-index: 0;
+}
+
+.copyrightContainer {
+  position: relative;
+  z-index: 2;
 }
 
 /* --------------------------------------------------------------------

@@ -18,5 +18,5 @@
   object-fit: cover;
   opacity: 0.85;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
