@@ -344,35 +344,51 @@
         "eyebrow": null,
         "heading": "The Path Forward: Self-Evolving Workflows",
         "description": null,
+        "showBar": false,
+        "spacing": "standard",
+        "highlightPosition": "colon",
         "columns": [],
         "media": null,
         "cta": null
       },
       "blocks": [
         {
-          "id": "path-forward-copy",
+          "id": "path-forward-p1",
           "type": "richText",
           "heading": null,
-          "body": null
+          "body": "The future of digital commerce is fast. By eliminating the “coordination tax” that has been a thorn in the side of software engineering for decades, Agentic AI enables businesses to focus on what truly matters: innovation and customer experience."
+        },
+        {
+          "id": "path-forward-p2",
+          "type": "richText",
+          "heading": null,
+          "body": "At Agivant, tools aren’t just being made; Agivant is helping brands lead the shift toward a self-evolving, intelligent workflow. When your software stack can build, test, and heal itself, your team is finally free to dream bigger."
         }
       ]
     }
   ],
   "footerCta": {
     "enabled": true,
-    "heading": "Ready To Get Your Enterprise With Agivant?",
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
     "subheading": null,
     "partner": null,
+    "media": {
+      "kind": "animation",
+      "src": "/videos/ampd-Logo-Animation.gif",
+      "assetKey": "ampd-logo-animation",
+      "alt": "Amp'd",
+      "caption": null
+    },
     "primaryCta": {
       "enabled": true,
       "label": "Find your Amp'd score",
-      "href": null,
+      "href": "/ampd-score",
       "external": false
     },
     "secondaryCta": {
       "enabled": true,
       "label": "Talk to an Amp'd specialist",
-      "href": null,
+      "href": "/contact",
       "external": false
     }
   },

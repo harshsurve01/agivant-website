@@ -104,6 +104,7 @@ export interface BlogFooterCTA {
   heading: string;
   subheading: string | null;
   partner?: unknown | null;
+  media?: BlogMediaObject | null;
   primaryCta?: BlogCTAObject | null;
   secondaryCta?: BlogCTAObject | null;
 }

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import type { FooterButton } from "@/data/footer";
+import type { FooterButton, FooterBrandMedia } from "@/data/footer";
 import { Article } from "@/components/sections/Blogs/Article";
 import { GradientLayerProvider } from "@/components/effects/GradientLayer";
 import {
@@ -87,6 +87,15 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
           ctaData={{
             heading: article.footerCta.heading.replace(/<br\s*\/?>/gi, "\n"),
             description: article.footerCta.subheading ?? undefined,
+            brandMedia: article.footerCta.media?.src
+              ? {
+                  kind: (article.footerCta.media.kind as FooterBrandMedia["kind"]) ?? "animation",
+                  src: article.footerCta.media.src,
+                  alt: article.footerCta.media.alt ?? "Amp'd",
+                  width: 240,
+                  height: 80.46,
+                }
+              : undefined,
             buttons: footerButtons,
           }}
         />

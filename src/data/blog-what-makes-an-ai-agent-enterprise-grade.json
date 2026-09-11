@@ -23,7 +23,7 @@
     "partner": null,
     "media": {
       "kind": "image",
-      "src": null,
+      "src":"/images/blogs/innerpages/what-makes-an-ai-agent-hero-ribbon.png",
       "assetKey": "hero-ribbon",
       "alt": "Abstract enterprise-agent ribbon graphic",
       "caption": null
@@ -41,7 +41,7 @@
       "conditions": null,
       "data": {
         "eyebrow": null,
-        "heading": "Why Most AI Pilots Don't Survive Contact with Reality",
+        "heading": "Why Most AI Pilots Don't Survive Contact With Reality",
         "description": null,
         "columns": [],
         "media": null,
@@ -52,7 +52,7 @@
           "id": "pilot-copy",
           "type": "richText",
           "heading": null,
-          "body": null
+          "body": "The unsettling fact is that almost 85% of enterprise AI initiatives never advance past the pilot phase (Gartner, 2023). Broken integrations, uncontrollable model behavior, short-lived infrastructure, and governance gaps that expose compliance as soon as things go live are the obvious causes. Less than half of AI use cases actually scale within two years of piloting, according to McKinsey's 2023 State of AI report.¹ It's not a model quality issue, it's an architecture issue. It's actually not that difficult to create an AI agent that performs well in a demo space. But, it is a completely different challenge to build one that works inside a real enterprise. In all of its legacy systems, complex requirements, and organizational complexity. This article explains what enterprise-grade AI truly needs, including a working definition, the five important layers of the technology stack, and the six architectural pillars that distinguish costly experiments from production-ready systems."
         }
       ]
     },

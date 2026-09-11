@@ -33,6 +33,7 @@ import styles from "./ExecutiveBrief.module.css";
  * with zero changes required on this end.
  */
 export function ExecutiveBrief({
+  id,
   title,
   paragraphs,
   showBar = true,
@@ -75,8 +76,12 @@ export function ExecutiveBrief({
     }
 
     const words = title.split(" ");
-    if (highlightPosition === "start") {
-      const count = highlightCount ?? 1;
+    if (
+      highlightPosition === "start" ||
+      (!highlightPosition && title.startsWith("Why Most AI Pilots"))
+    ) {
+      const count =
+        highlightCount ?? (title.startsWith("Why Most AI Pilots") ? 4 : 1);
       const prefix = words.slice(0, count).join(" ");
       const rest = words.slice(count).join(" ");
       return (
@@ -102,6 +107,7 @@ export function ExecutiveBrief({
 
   return (
     <section
+      id={id}
       className={`${styles.executiveBrief} ${
         spacing === "standard" ? styles.standardSpacing : ""
       }`}

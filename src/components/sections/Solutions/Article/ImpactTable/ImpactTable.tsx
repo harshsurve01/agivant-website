@@ -26,7 +26,7 @@ const RIBBON_ASSET =
 export function ImpactTable({
   data,
   blocks,
-  variant = "default",
+  variant = "glass",
   className,
 }: ImpactTableProps) {
   if (!data || !blocks?.length) return null;
@@ -168,14 +168,6 @@ export function ImpactTable({
             styles.tableWrapper,
             variant === "glass" && styles.tableWrapperGlass
           )}
-          style={
-            variant === "glass"
-              ? {
-                  backdropFilter: "blur(16px)",
-                  WebkitBackdropFilter: "blur(16px)",
-                }
-              : undefined
-          }
         >
           <table
             className={clsx(

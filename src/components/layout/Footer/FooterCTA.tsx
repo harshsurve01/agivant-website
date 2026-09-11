@@ -117,15 +117,36 @@ export function FooterCTA({
         <h2 className={styles.heading}>
           {typeof heading === "string" ? (
             (() => {
-              const lines = heading.split(/<br\s*\/?>|\n/gi);
+              const rawLines = heading.split(/<br\s*\/?>|\n/gi);
+              let lines = rawLines;
+
+              // When brandMedia exists and heading is 1 or 2 lines containing the universal footer phrase:
+              // e.g. "Ready To Get Your Enterprise Amp'd With Agivant?" or "Ready To Get Your Enterprise With Agivant?"
+              if (brandMedia) {
+                if (rawLines.length === 1) {
+                  const match = rawLines[0].trim().match(/^(Ready To Get Your)\s+(Enterprise)(?:\s+Amp'd)?\s+(With Agivant\??)$/i);
+                  if (match) {
+                    lines = [match[1], match[2], match[3]];
+                  }
+                } else if (rawLines.length === 2) {
+                  const line2Match = rawLines[1].trim().match(/^(Enterprise)(?:\s+Amp'd)?\s+(With Agivant\??)$/i);
+                  if (line2Match) {
+                    lines = [rawLines[0].trim(), line2Match[1], line2Match[2]];
+                  }
+                }
+              }
 
               // When brandMedia exists and there are at least 3 segments (e.g. "Ready To Get Your<br>Enterprise<br>With Agivant?"):
               // Segment 1 remains line 1.
               // Segment 2 ("Enterprise") + brandMedia + Segment 3 ("With Agivant?") are combined into ONE visual line.
               if (brandMedia && lines.length >= 3) {
                 const firstSegment = lines[0].trim();
-                const secondSegment = lines[1].trim();
-                const thirdSegment = lines.slice(2).join(" ").trim();
+                let secondSegment = lines[1].trim();
+                let thirdSegment = lines.slice(2).join(" ").trim();
+
+                // Strip textual "Amp'd" if present in the text segments to avoid duplication with brandMedia
+                secondSegment = secondSegment.replace(/\s+Amp'd$/i, "");
+                thirdSegment = thirdSegment.replace(/^Amp'd\s+/i, "");
 
                 return (
                   <>

@@ -159,6 +159,17 @@
   align-items: flex-start;
 }
 
+/* Page-specific ribbon position modifier (e.g. for /blogs/what-makes-an-ai-agent-enterprise-grade) */
+.ribbonWrapper_top {
+  top: 30%;
+}
+
+@media (max-width: 768px) {
+  .ribbonWrapper_top {
+    top: 30%;
+  }
+}
+
 .ribbonImage {
   width: 100%;
   max-width: 1920px;

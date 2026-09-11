@@ -35,6 +35,7 @@ export function Article(props: ArticleProps) {
         role: a.role ?? "",
       })),
       ribbonSrc: data.hero.media?.src ?? undefined,
+      slug: data.slug,
     };
 
     return (
@@ -55,6 +56,7 @@ export function Article(props: ArticleProps) {
               return (
                 <ExecutiveBrief
                   key={section.id}
+                  id={section.id}
                   title={section.data.heading ?? "Executive Brief"}
                   paragraphs={paragraphs}
                 />
@@ -396,25 +398,30 @@ export function Article(props: ArticleProps) {
                     );
                   }
 
-                  const isExecutiveBrief = section.id === "executive-brief";
+                  const isPilotReality = section.id === "pilot-reality";
+                  const isExecutiveBrief =
+                    section.id === "executive-brief" || isPilotReality;
                   const showBar =
                     (section.data.showBar as boolean | undefined) ??
                     isExecutiveBrief;
                   const spacing =
                     (section.data.spacing as "hero" | "standard" | undefined) ??
                     (isExecutiveBrief ? "hero" : "standard");
-                  const highlightPosition = section.data
-                    .highlightPosition as
-                    | "start"
-                    | "end"
-                    | "colon"
-                    | undefined;
-                  const highlightCount = section.data
-                    .highlightCount as number | undefined;
+                  const highlightPosition =
+                    (section.data.highlightPosition as
+                      | "start"
+                      | "end"
+                      | "colon"
+                      | undefined) ??
+                    (isPilotReality ? "start" : undefined);
+                  const highlightCount =
+                    (section.data.highlightCount as number | undefined) ??
+                    (isPilotReality ? 4 : undefined);
 
                   return (
                     <ExecutiveBrief
                       key={section.id}
+                      id={section.id}
                       title={section.data.heading ?? "Overview"}
                       paragraphs={paragraphs}
                       showBar={showBar}

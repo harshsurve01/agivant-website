@@ -17,11 +17,10 @@
      token step — kept as an explicit value rather than forcing it
      onto an unrelated width token. */
   max-width: 58rem;
-  background-color: #fff;
+  background: #fefefe00;
   border-radius: 999px;
   padding: var(--space-4);
   padding-inline-start: var(--space-6);
-  box-shadow: 0 12px 32px rgba(87, 87, 87, 0.12);
 }
 
 .solid {
@@ -31,9 +30,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #fff;
+  border: 1px solid #fcfbfb;
   border-radius: 999px;
-  background: rgba(217, 217, 217, 0);
+  background: #ffffff00;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.2),

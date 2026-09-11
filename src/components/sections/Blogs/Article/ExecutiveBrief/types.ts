@@ -6,6 +6,8 @@
  * file 7pLktxswHgy5YvtLZXwsq0.
  */
 export interface ExecutiveBriefProps {
+  /** Optional HTML id for section anchor targeting. */
+  id?: string;
   /**
    * Section heading, e.g. "Executive Brief". Figma renders the last
    * word in the brand highlight color — same two-tone treatment

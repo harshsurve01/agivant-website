@@ -34,4 +34,8 @@ export interface ArticleHeroProps {
   ribbonSrc?: string;
   /** Optional natural height for next/image aspect ratio preservation. Defaults to 395. */
   ribbonHeight?: number;
+  /** Optional slug of the blog article for page-specific Hero layout adaptations. */
+  slug?: string;
+  /** Optional explicit ribbon vertical positioning override. */
+  ribbonPosition?: "default" | "top";
 }

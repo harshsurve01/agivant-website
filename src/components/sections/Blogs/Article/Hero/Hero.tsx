@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { HeroBackground } from "@/components/ui/HeroBackground";
 import { Container } from "@/components/ui/Container";
 import { PageRibbon } from "@/components/ui/PageRibbon";
@@ -13,10 +14,17 @@ export function Hero({
   authors,
   ribbonSrc = DEFAULT_BLOG_HERO_RIBBON,
   ribbonHeight,
+  slug,
+  ribbonPosition,
 }: ArticleHeroProps) {
   const actualRibbonSrc = ribbonSrc || DEFAULT_BLOG_HERO_RIBBON;
   const actualHeight =
     ribbonHeight ?? (actualRibbonSrc.includes("page2") ? 520 : 395);
+
+  const isRibbonTop =
+    ribbonPosition === "top" ||
+    slug === "what-makes-an-ai-agent-enterprise-grade" ||
+    actualRibbonSrc.includes("what-makes-an-ai-agent");
 
   return (
     <section className={styles.hero} data-hero-interaction-root>
@@ -31,7 +39,10 @@ export function Hero({
         src={actualRibbonSrc}
         width={1440}
         height={actualHeight}
-        className={styles.ribbonWrapper}
+        className={clsx(
+          styles.ribbonWrapper,
+          isRibbonTop && styles.ribbonWrapper_top
+        )}
         imageClassName={styles.ribbonImage}
         priority
       />

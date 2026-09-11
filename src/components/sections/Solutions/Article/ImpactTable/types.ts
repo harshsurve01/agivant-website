@@ -3,6 +3,6 @@ import type { SolutionSectionData, SolutionSectionBlock } from "@/data/solutionP
 export interface ImpactTableProps {
   data: SolutionSectionData;
   blocks: SolutionSectionBlock[];
-  variant?: "default" | "glass";
+  variant?: "glass" | "default";
   className?: string;
 }
