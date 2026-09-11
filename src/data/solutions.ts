@@ -36,7 +36,8 @@ export interface SolutionsLandingPageDocument {
   footerCta: {
     enabled: boolean;
     heading: string;
-    subheading: string | null;
+    description?: string | null;
+    subheading?: string | null;
     partner: unknown | null;
     primaryCta: {
       enabled: boolean;

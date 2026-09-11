@@ -238,6 +238,7 @@ export default async function SolutionInnerPage({
                   key={section.id}
                   data={section.data}
                   blocks={section.blocks}
+                  variant="glass"
                 />
               );
 

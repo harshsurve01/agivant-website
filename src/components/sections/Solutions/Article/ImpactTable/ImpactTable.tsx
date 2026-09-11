@@ -23,7 +23,12 @@ const RIBBON_ASSET =
  *
  * Server Component: all data arrives via typed props from solutionPage.json.
  */
-export function ImpactTable({ data, blocks }: ImpactTableProps) {
+export function ImpactTable({
+  data,
+  blocks,
+  variant = "default",
+  className,
+}: ImpactTableProps) {
   if (!data || !blocks?.length) return null;
 
   const {
@@ -101,7 +106,7 @@ export function ImpactTable({ data, blocks }: ImpactTableProps) {
   };
 
   return (
-    <section className={styles.section} id="impact-table">
+    <section className={clsx(styles.section, className)} id="impact-table">
       {/* Decorative Background Ribbon Layer */}
       <div
         className={clsx(
@@ -158,8 +163,26 @@ export function ImpactTable({ data, blocks }: ImpactTableProps) {
         )}
 
         {/* 3-Column Comparison Table */}
-        <div className={styles.tableWrapper}>
-          <table className={styles.table}>
+        <div
+          className={clsx(
+            styles.tableWrapper,
+            variant === "glass" && styles.tableWrapperGlass
+          )}
+          style={
+            variant === "glass"
+              ? {
+                  backdropFilter: "blur(16px)",
+                  WebkitBackdropFilter: "blur(16px)",
+                }
+              : undefined
+          }
+        >
+          <table
+            className={clsx(
+              styles.table,
+              variant === "glass" && styles.tableGlass
+            )}
+          >
             <thead>
               <tr className={styles.headerRow}>
                 {columns.map((col, idx) => (

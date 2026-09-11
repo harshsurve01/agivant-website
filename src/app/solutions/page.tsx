@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import type { FooterButton } from "@/data/footer";
 import { Hero } from "@/components/sections/Solutions/Article/Hero";
 import { SolutionsHub } from "@/components/sections/Solutions/SolutionsHub";
+import { FinalCTA } from "@/components/sections/CaseStudies/Article/FinalCTA";
 import { GradientLayerProvider } from "@/components/effects/GradientLayer";
 import {
   solutionsHero,
@@ -25,35 +25,13 @@ export const metadata: Metadata = {
  *
  * Renders:
  * - Universal Header
- * - Solutions Landing Hero (reusing the shared Hero component and shared HeroBackground)
+ * - Solutions Landing Hero (reusing shared Hero component and shared HeroBackground)
  * - SolutionsHub: SearchBar, 2-column scrollable Solution cards, and sticky Filters panel
- * - Footer (connected to page-level footerCta)
+ * - FinalCTA (Footer3): Reused from Case Study Single Page with Amp'd highlight and CTA buttons
+ * - Footer: Minimal brandmark + copyright layout footer
  */
 export default function SolutionsPage() {
   const solutionItems = getSolutionHubItems();
-  const footerButtons: FooterButton[] = [];
-  if (
-    solutionsFooterCta?.primaryCta?.enabled &&
-    solutionsFooterCta.primaryCta.label
-  ) {
-    footerButtons.push({
-      label: solutionsFooterCta.primaryCta.label,
-      href: solutionsFooterCta.primaryCta.href ?? "/ampd-score",
-      variant: "dark",
-      icon: "arrow-up-right",
-    });
-  }
-  if (
-    solutionsFooterCta?.secondaryCta?.enabled &&
-    solutionsFooterCta.secondaryCta.label
-  ) {
-    footerButtons.push({
-      label: solutionsFooterCta.secondaryCta.label,
-      href: solutionsFooterCta.secondaryCta.href ?? "/contact",
-      variant: "primary",
-      icon: "cube",
-    });
-  }
 
   return (
     <GradientLayerProvider>
@@ -63,22 +41,21 @@ export default function SolutionsPage() {
         <main className={styles.main}>
           <Hero {...solutionsHero} className={styles.hero} />
           <SolutionsHub solutions={solutionItems} />
+          {solutionsFooterCta?.enabled && (
+            <FinalCTA
+              heading={solutionsFooterCta.heading}
+              description={
+                solutionsFooterCta.description ??
+                solutionsFooterCta.subheading ??
+                undefined
+              }
+              primaryCta={solutionsFooterCta.primaryCta ?? undefined}
+              secondaryCta={solutionsFooterCta.secondaryCta ?? undefined}
+            />
+          )}
         </main>
 
-        <Footer
-          ctaData={
-            solutionsFooterCta?.enabled
-              ? {
-                  heading: solutionsFooterCta.heading.replace(
-                    /<br\s*\/?>/gi,
-                    "\n"
-                  ),
-                  description: solutionsFooterCta.subheading ?? undefined,
-                  buttons: footerButtons,
-                }
-              : undefined
-          }
-        />
+        <Footer variant="minimal" />
       </div>
     </GradientLayerProvider>
   );
