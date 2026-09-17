@@ -13,8 +13,7 @@
 .partners {
   position: relative; /* required so <Gradient/>'s marker in Partners.tsx positions against this section */
   width: 100%;
-  /* No background-color here anymore — see AIStack.module.css's note. */
-  padding-block: var(--space-40); /* TODO(figma): confirm exact section vertical rhythm */
+  padding-top:20rem ;
 }
 
 /* The static #9D84F2 glow that used to live here as .partners::after

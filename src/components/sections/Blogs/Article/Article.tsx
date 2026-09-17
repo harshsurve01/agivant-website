@@ -10,6 +10,7 @@ import { ImpactTable } from "@/components/sections/Solutions/Article/ImpactTable
 import type { ArticleProps } from "./types";
 import type { ArticleHeroProps } from "./Hero";
 import type { ImpactTableProps } from "@/components/sections/Solutions/Article/ImpactTable";
+import type { Phase1Props } from "./Phase1/types";
 
 /**
  * Article
@@ -97,6 +98,33 @@ export function Article(props: ArticleProps) {
                   highlightCount={2}
                   closingParagraph={
                     (section.data.closingParagraph as string) ?? null
+                  }
+                />
+              );
+            }
+
+            case "enterprise-grade-meaning": {
+              const cards = section.blocks.map((b) => ({
+                title: b.title ?? "",
+                description: b.body ?? b.description ?? "",
+              }));
+              return (
+                <Phase1
+                  key={section.id}
+                  eyebrow={section.data.eyebrow}
+                  title={
+                    section.data.heading ??
+                    'What Does "Enterprise-Grade AI" Actually Mean'
+                  }
+                  description={section.data.description}
+                  cards={cards}
+                  columns={3}
+                  ribbonSrc={null}
+                  highlightPosition="end"
+                  highlightCount={4}
+                  closingParagraph={
+                    (section.data.closingParagraph as string | null | undefined) ??
+                    null
                   }
                 />
               );
@@ -293,8 +321,14 @@ export function Article(props: ArticleProps) {
                       cards={cards}
                       columns={cols}
                       ribbonSrc={(section.data.ribbonSrc as string | null | undefined)}
-                      highlightPosition={(section.data.highlightPosition as "start" | "end" | undefined)}
+                      highlightPosition={
+                        section.data.highlightPosition as Phase1Props["highlightPosition"]
+                      }
                       highlightCount={(section.data.highlightCount as number | undefined)}
+                      highlightStartIndex={
+                        (section.data.highlightStartIndex as number | undefined) ??
+                        (section.data.highlightStart as number | undefined)
+                      }
                       closingParagraph={(section.data.closingParagraph as string | null | undefined)}
                     />
                   );

@@ -63,49 +63,49 @@
       "conditions": null,
       "data": {
         "eyebrow": null,
-        "heading": "What Does “Enterprise-Grade AI” Actually Mean",
-        "description": null,
+        "heading": "What Does \"Enterprise-Grade AI\" Actually Mean",
+        "description": "It’s a term that’s used carelessly. In reality, enterprise-grade AI refers to a system that has been purposefully designed to function dependably, securely, and at scale in intricate business settings, not merely in a sandbox. Deployment success is clearly correlated with infrastructure depth and governance maturity, according to the Stanford AI Index 2024. Based on that, an AI system’s true eligibility is determined by five characteristics:",
         "columns": [],
         "media": null,
         "cta": null
       },
       "blocks": [
         {
-          "id": "operational-reliability",
+          "id": "operational-durability",
           "type": "card",
           "eyebrow": null,
-          "title": "Operational reliability",
-          "body": null,
+          "title": "Operational durability",
+          "body": "Consistent performance under real-world concurrency, not just test conditions",
           "media": null,
           "cta": null,
           "items": []
         },
         {
-          "id": "systems-integration",
+          "id": "systemic-integration",
           "type": "card",
           "eyebrow": null,
-          "title": "Systems integration",
-          "body": null,
+          "title": "Systemic integration",
+          "body": "It works with your existing stack, not in spite of it",
           "media": null,
           "cta": null,
           "items": []
         },
         {
-          "id": "governance-audit",
+          "id": "governed-evolution",
           "type": "card",
           "eyebrow": null,
-          "title": "Governance and audit",
-          "body": null,
+          "title": "Governed evolution",
+          "body": "The system adapts, but within controlled, auditable boundaries.",
           "media": null,
           "cta": null,
           "items": []
         },
         {
-          "id": "monitoring-recovery",
+          "id": "regulatory-alignment",
           "type": "card",
           "eyebrow": null,
-          "title": "Monitoring & recovery",
-          "body": null,
+          "title": "Regulatory alignment",
+          "body": "Demonstrably compliant across the industries and jurisdictions it operates in",
           "media": null,
           "cta": null,
           "items": []
@@ -115,7 +115,7 @@
           "type": "card",
           "eyebrow": null,
           "title": "Explainability",
-          "body": null,
+          "body": "Decisions can be traced, interrogated, and explained to stakeholders who need to know",
           "media": null,
           "cta": null,
           "items": []

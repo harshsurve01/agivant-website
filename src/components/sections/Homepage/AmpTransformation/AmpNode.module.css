@@ -8,8 +8,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 318.74px;
-  height: 88.44px;
+  width: 20rem;
+  height: 5.625rem;
   max-width: 100%;
   box-sizing: border-box;
   padding-inline: var(--space-6);
@@ -29,4 +29,5 @@
   color: var(--color-text-primary);
   text-align: center;
   line-height: 1.3;
+  width:15rem;
 }

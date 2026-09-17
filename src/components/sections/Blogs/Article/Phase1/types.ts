@@ -54,8 +54,10 @@ export interface Phase1Props {
   ribbonSrc?: string | null;
   /** Optional closing paragraph rendered below the card grid. */
   closingParagraph?: string | null;
-  /** Which part of the heading is highlighted: 'start' or 'end'. Defaults to 'start'. */
-  highlightPosition?: "start" | "end";
+  /** Which part of the heading is highlighted: 'start', 'end', 'middle', or 'quotes'. Defaults to 'start'. */
+  highlightPosition?: "start" | "end" | "middle" | "quotes";
   /** How many words to highlight. Defaults to 1. */
   highlightCount?: number;
+  /** Starting word index when highlightPosition is 'middle' (0-indexed). */
+  highlightStartIndex?: number;
 }

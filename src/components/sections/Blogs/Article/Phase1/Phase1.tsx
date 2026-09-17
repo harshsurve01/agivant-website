@@ -47,19 +47,55 @@ export function Phase1({
   closingParagraph,
   highlightPosition = "start",
   highlightCount = 1,
+  highlightStartIndex,
 }: Phase1Props) {
   const words = title.split(" ");
   const effectiveRibbon =
     ribbonSrc === undefined ? BLOG_HERO_RIBBON : ribbonSrc;
 
   let lead = "";
-  let rest = "";
-  if (highlightPosition === "end") {
+  let highlighted = "";
+  let tail = "";
+
+  if (highlightPosition === "quotes") {
+    const quoteMatch = title.match(/^(.*?)(["“][^"”]+["”])(.*)$/);
+    if (quoteMatch) {
+      lead = quoteMatch[1].trimEnd();
+      highlighted = quoteMatch[2].trim();
+      tail = quoteMatch[3].trimStart();
+    } else {
+      lead = "";
+      highlighted = words.slice(0, highlightCount).join(" ");
+      tail = words.slice(highlightCount).join(" ");
+    }
+  } else if (highlightPosition === "middle") {
+    const start =
+      highlightStartIndex ?? (title.match(/["“]/) ? undefined : 1);
+    if (start !== undefined) {
+      lead = words.slice(0, start).join(" ");
+      highlighted = words.slice(start, start + highlightCount).join(" ");
+      tail = words.slice(start + highlightCount).join(" ");
+    } else {
+      const quoteMatch = title.match(/^(.*?)(["“][^"”]+["”])(.*)$/);
+      if (quoteMatch) {
+        lead = quoteMatch[1].trimEnd();
+        highlighted = quoteMatch[2].trim();
+        tail = quoteMatch[3].trimStart();
+      } else {
+        lead = words.slice(0, 1).join(" ");
+        highlighted = words.slice(1, 1 + highlightCount).join(" ");
+        tail = words.slice(1 + highlightCount).join(" ");
+      }
+    }
+  } else if (highlightPosition === "end") {
     lead = words.slice(0, -highlightCount).join(" ");
-    rest = words.slice(-highlightCount).join(" ");
+    highlighted = words.slice(-highlightCount).join(" ");
+    tail = "";
   } else {
-    lead = words.slice(0, highlightCount).join(" ");
-    rest = words.slice(highlightCount).join(" ");
+    // "start" or default
+    lead = "";
+    highlighted = words.slice(0, highlightCount).join(" ");
+    tail = words.slice(highlightCount).join(" ");
   }
 
   const gridClass = columns === 3 ? styles.gridCols3 : styles.grid;
@@ -80,18 +116,9 @@ export function Phase1({
         {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
 
         <h2 className={styles.title}>
-          {highlightPosition === "end" ? (
-            <>
-              {lead}
-              {rest ? " " : ""}
-              <span className={styles.highlight}>{rest}</span>
-            </>
-          ) : (
-            <>
-              <span className={styles.highlight}>{lead}</span>
-              {rest ? ` ${rest}` : ""}
-            </>
-          )}
+          {lead ? `${lead} ` : ""}
+          <span className={styles.highlight}>{highlighted}</span>
+          {tail ? ` ${tail}` : ""}
         </h2>
 
         {description && <p className={styles.description}>{description}</p>}

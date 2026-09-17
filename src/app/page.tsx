@@ -41,7 +41,7 @@ export default async function Home() {
       <div className={styles.bottomGroup}>
         {/* Continuous decorative ribbon artwork spanning Client Testimonials into Footer */}
         <Image
-          src="/images/techtalk/talktech-ribbon.png"
+          src="/images/testimonials/bg-ribbon.png"
           alt=""
           width={1400}
           height={875}

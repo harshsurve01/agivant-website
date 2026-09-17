@@ -14,11 +14,16 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------
-   Section rhythm
-   Kept as a true global helper because every page section — regardless
-   of which component renders inside it — shares the same vertical
-   rhythm. This is a page-composition concern, not a component concern.
+   Section baseline & rhythm
+   Kept as true global helpers because page sections share the same
+   vertical baseline and rhythm. This is a page-composition concern.
+   Component-specific CSS Module rules (.hero, mobile resets) carry
+   higher class specificity (0, 1, 0) and preserve intentional overrides.
    -------------------------------------------------------------------- */
+section {
+  min-height: 100vh;
+}
+
 .section {
   padding-block: var(--space-24);
 }

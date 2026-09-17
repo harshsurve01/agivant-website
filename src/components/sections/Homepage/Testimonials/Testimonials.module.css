@@ -5,7 +5,7 @@
 .section {
   position: relative;
   width: 100%;
-  padding-block: var(--space-20) var(--space-16);
+  padding-block: var(--space-16) var(--space-16);
   background-color: transparent;
 }
 
@@ -43,7 +43,7 @@
 .ctaWrap {
   display: flex;
   justify-content: center;
-  margin-top: var(--space-10);
+  margin-top: var(--space-6);
 }
 
 .ctaLink {
@@ -52,7 +52,7 @@
 
 @media (max-width: 768px) {
   .section {
-    padding-block: var(--space-12) var(--space-10);
+    padding-block: var(--space-12) var(--space-12);
   }
 
   .heading {
@@ -64,6 +64,6 @@
   }
 
   .ctaWrap {
-    margin-top: var(--space-6);
+    margin-top: var(--space-4);
   }
 }

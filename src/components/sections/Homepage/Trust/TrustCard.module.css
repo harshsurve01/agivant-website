@@ -81,7 +81,7 @@
   margin: 0;
   position: relative;
   z-index: 1;
-  max-width: 542px;
+  max-width: 45rem;
   font-size: var(--font-size-xl);
   line-height: 1.4583;
   font-weight: var(--font-weight-regular);
