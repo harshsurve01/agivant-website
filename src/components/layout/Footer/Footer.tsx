@@ -25,7 +25,7 @@ export type FooterVariant = "default" | "minimal" | "partners" | "partner-detail
 export interface FooterCustomCTA {
   heading: string | { line1: string; line2?: string; line3?: string };
   description?: string;
-  brandMedia?: FooterBrandMedia;
+  brandMedia?: FooterBrandMedia | null;
   buttons: FooterButton[];
 }
 
@@ -73,8 +73,10 @@ export async function Footer({
   const description = ctaData?.description;
 
   const brandMedia =
-    ctaData?.brandMedia ??
-    (isPartners || isPartnerDetail ? undefined : content.brandMedia);
+    ctaData?.brandMedia === null
+      ? undefined
+      : (ctaData?.brandMedia ??
+        (isPartners || isPartnerDetail ? undefined : content.brandMedia));
 
   const buttons: FooterButton[] =
     ctaData?.buttons ??
