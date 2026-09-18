@@ -24,13 +24,14 @@ const PARTNER_SLOT_TIMINGS: PartnerLogoSlotTiming[] = [
   { holdMs: 2200 },
   { holdMs: 2800 },
   { holdMs: 4000 },
+  { holdMs: 2600 },
 ];
 
 /**
  * Partners
  *
  * "Agivant Is Trusted By Global Partners" — a Showcase Section.
- * Feeds PartnerLogoStrip with 4 fixed logo pairs (getPartnerLogoPairs)
+ * Feeds PartnerLogoStrip with 5 fixed logo pairs (getPartnerLogoPairs)
  * — one pair per slot, each pair owned entirely by its own LogoShift
  * instance. All per-slot animation lives inside
  * PartnerLogoStrip/LogoShift; this component still has no

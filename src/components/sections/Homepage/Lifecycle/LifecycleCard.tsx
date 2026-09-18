@@ -6,6 +6,7 @@ interface LifecycleCardProps {
   stage: LifecycleStage;
   isActive?: boolean;
   onMouseEnter?: () => void;
+  onLearnMore?: () => void;
 }
 
 /**
@@ -20,6 +21,7 @@ export function LifecycleCard({
   stage,
   isActive = false,
   onMouseEnter,
+  onLearnMore,
 }: LifecycleCardProps) {
   return (
     <article
@@ -31,6 +33,16 @@ export function LifecycleCard({
       <div className={styles.content}>
         <h3 className={styles.title}>{stage.title}</h3>
         <p className={styles.description}>{stage.description}</p>
+        <button
+          type="button"
+          className={styles.learnMore}
+          onClick={(e) => {
+            e.stopPropagation();
+            onLearnMore?.();
+          }}
+        >
+          Learn more &gt;
+        </button>
       </div>
 
       <div

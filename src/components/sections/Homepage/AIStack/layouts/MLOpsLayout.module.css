@@ -24,7 +24,7 @@
   position: relative;
   flex-shrink: 0;
   height: 7rem; /* TODO(figma): confirm exact ribbon height */
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-4);
     margin-inline: calc(var(--space-3) );
   pointer-events: none;
   transform: translateZ(50px);

@@ -85,15 +85,16 @@ function assetExists(publicSrc: string): boolean {
 /** Group of logos assigned to one slot. */
 export type PartnerLogoGroup = PartnerLogo[];
 
-/** 4 slots with 3 + 3 + 2 + 2 capacity for the 10-partner roster. */
-const SLOT_CAPACITIES = [3, 3, 2, 2];
+/** 5 slots with 2 + 2 + 2 + 2 + 2 capacity for the 10-partner roster. */
+const SLOT_CAPACITIES = [2, 2, 2, 2, 2];
 
 /**
- * Builds the 4 slot groups consumed by the 4 LogoShift instances:
- * - Slot 0 (3): Glean, ServiceNow, GEMINI
- * - Slot 1 (3): NVIDIA, AWS, Azure
- * - Slot 2 (2): Salesforce, Databricks
- * - Slot 3 (2): Shopify, TigerGraph
+ * Builds the 5 slot groups consumed by the 5 LogoShift instances:
+ * - Slot 0 (2): Glean, ServiceNow
+ * - Slot 1 (2): GEMINI, NVIDIA
+ * - Slot 2 (2): AWS, Azure
+ * - Slot 3 (2): Salesforce, Databricks
+ * - Slot 4 (2): Shopify, TigerGraph
  *
  * Deterministic, never randomized, all 10 partners represented with zero duplicates.
  */

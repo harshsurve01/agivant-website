@@ -181,7 +181,7 @@
       "data": {
         "eyebrow": "Traditional SDLC",
         "heading": "AI-Native Engineering Lifecycle",
-        "description": "We engineer the spec, agents accelerate the build and production signals improve every cycle",
+        "description": "We engineer the spec, agentic systems accelerate the build and production signals improve every cycle ",
         "columns": [],
         "media": null,
         "cta": null
@@ -192,7 +192,7 @@
           "type": "card",
           "eyebrow": "Governed",
           "title": "Architect",
-          "body": "Translate business intent into an executable architecture, data, integration, identity model, policy constraints, and security posture before anything is built.",
+          "body": "Translate business intent into an executable architecture, data, integration, identity model, policy constraints, and security posture before anything is built",
           "media": {
             "kind": "image",
             "src": "/images/lifecycle/architect.png",
@@ -201,7 +201,10 @@
             "caption": null
           },
           "cta": null,
-          "items": []
+          "items": [
+            "Every strong build starts with clarity before code. We translate business intent into an executable specification, mapping the data model, integration points, identity structure, policy constraints, security posture and operating requirements the workflow needs to function reliably in the enterprise.",
+            "That specification becomes the shared contract across business, engineering and governance teams. Everyone aligns on what is being built, how it should behave and the conditions it must satisfy before implementation begins. Governance is designed into the specification from the start, creating a clear foundation for everything that follows."
+          ]
         },
         {
           "id": "build",
@@ -211,13 +214,16 @@
           "body": "Engineers harness agents to implement the spec, generating code and assembling production-ready workflows inside your environment",
           "media": {
             "kind": "image",
-            "src": "/images/lifecycle/build.png",
+            "src": "/images/lifecycle/build1.png",
             "assetKey": "lifecycle-build",
             "alt": "Build stage visualization",
             "caption": null
           },
           "cta": null,
-          "items": []
+          "items": [
+            "This is where the specification comes alive. As part of the Amp’d approach, Agivant uses Bolt to help engineers harness AI agents to turn the agreed spec into working code, integrations and assembled workflows within your enterprise environment and against the systems they are designed to serve.",
+            "Agents accelerate the build while engineers guide the decisions that require business context, integration judgment, quality control and edge-case handling. With a clear specification upfront and Bolt supporting the engineering process, implementation moves faster with greater consistency, while staying aligned to the intended design, controls and business outcomes."
+          ]
         },
         {
           "id": "tune",
@@ -227,13 +233,16 @@
           "body": "Validate against live signals, refine design and code, lift quality and performance without rebuilding from scratch",
           "media": {
             "kind": "image",
-            "src": "/images/lifecycle/tune.png",
+            "src": "/images/lifecycle/trust.png",
             "assetKey": "lifecycle-tune",
             "alt": "Tune stage visualization",
             "caption": null
           },
           "cta": null,
-          "items": []
+          "items": [
+            "A working build still needs to be tested against the realities it’s designed for. We validate workflows across business scenarios, expected outputs, integrations, performance thresholds, security controls and edge cases, then refine the design, code and agent behavior wherever needed.",
+            "The goal is to harden the solution before it operates at scale. Tune closes the gap between something that works technically and something the enterprise can confidently depend on, improving quality and readiness without repeatedly reworking the solution from the ground up."
+          ]
         },
         {
           "id": "operate",
@@ -249,7 +258,10 @@
             "caption": null
           },
           "cta": null,
-          "items": []
+          "items": [
+            "Once the solution is ready, the focus shifts to running it reliably in the enterprise. Workflows operate with observability, cost controls, security, performance monitoring and clear accountability built into the operating model from day one.",
+            "Teams have visibility into how the system is performing, how resources are being used and where attention is required. This creates the confidence to scale across users, workloads and business scenarios while keeping the solution within defined operational, governance and performance guardrails."
+          ]
         },
         {
           "id": "evolve",
@@ -265,14 +277,17 @@
             "caption": null
           },
           "cta": null,
-          "items": []
+          "items": [
+            "Every build creates knowledge worth carrying forward. Proven specifications, engineering patterns, reusable code, agent logic and validated components are captured so the next build can start from what has already been created and tested.",
+            "This turns individual engagements into a growing base of reusable engineering capability. New solutions can build on proven assets and patterns, helping Agivant move faster, improve consistency and bring more value into every successive build."
+          ]
         },
         {
           "id": "lifecycle-summary",
           "type": "summary_card",
           "eyebrow": null,
           "title": "Amplify",
-          "body": "Every stage ships faster, costs less, and amplifies the next. That's what gets your enterprise Amp'd.",
+          "body": "Every stage ships faster, costs less, and amplifies the next. That’s what gets your enterprise Amp’d",
           "media": null,
           "cta": {
             "enabled": true,
@@ -280,7 +295,10 @@
             "href": "/amp-d",
             "external": false
           },
-          "items": []
+          "items": [
+            "Amplify is how Agivant turns every stage into greater enterprise value. Clearer specifications strengthen the build, reusable assets accelerate delivery, proven patterns improve consistency and everything created along the way gives the next build a stronger starting point.",
+            "Each gain carries forward across workflows, teams and use cases, helping enterprises move faster and get more from every AI investment. That continuous amplification of enterprise value is Amp’d."
+          ]
         }
       ]
     },
@@ -291,7 +309,7 @@
       "conditions": null,
       "data": {
         "eyebrow": null,
-        "heading": "Engineering Every Layer Of Your<br>AI Stack",
+        "heading": "Engineering Every Layer Of The<br>AI Stack",
         "description": "Agivant engineers the agentic AI, applications, platforms, data and operations that make the autonomous enterprise work",
         "columns": [],
         "media": null,
@@ -308,10 +326,10 @@
           "type": "card",
           "eyebrow": "Agentic",
           "title": "Agentic AI & AgentOps",
-          "body": "We engineer agent-led workflows with orchestration, guardrails and policy enforcement, built in from the first line of the spec.",
+          "body": "We engineer agent-led autonomous workflows with orchestration, guardrails and policy enforcement, built in from the first line of the spec",
           "media": {
             "kind": "image",
-            "src": "/images/ai-stack/rectangle1.png",
+            "src": "/images/ai-stack/card1.png",
             "assetKey": "ai-stack-agentic",
             "alt": "Agentic AI & AgentOps background",
             "caption": null
@@ -324,10 +342,10 @@
           "type": "card",
           "eyebrow": "AI / ML",
           "title": "AI & ML Engineering",
-          "body": "We build RAG systems, predictive models, agent-led assistants and inference services engineered to spec and built for real business value.",
+          "body": "We build RAG systems, predictive models, AI-powered assistants and inference services engineered to spec and built for real business value",
           "media": {
             "kind": "image",
-            "src": "/images/ai-stack/bg2.png",
+            "src": "/images/ai-stack/card2.png",
             "assetKey": "ai-stack-aiml",
             "alt": "AI & ML Engineering background",
             "caption": null
@@ -336,53 +354,54 @@
           "items": ["aiml"]
         },
         {
+          "id": "mlops-ai-operations",
+          "type": "card",
+          "eyebrow": "Platform",
+          "title": "MLOps & Scalable ML Platforms ",
+          "body": "We operationalize models and agents with deployment pipelines, observability, evaluation and the runtime controls that keep autonomous production systems reliable and improving  ",
+          "media": {
+            "kind": "image",
+            "src": "/images/ai-stack/card3.png",
+            "assetKey": "ai-stack-mlops",
+            "alt": "MLOps & Scalable ML Platforms background",
+            "caption": null
+          },
+          "cta": null,
+          "items": ["mlops"]
+        },
+        {
+          "id": "ai-ready-data-engineering",
+          "type": "card",
+          "eyebrow": "Data",
+          "title": "Data Engineering & Data Science",
+          "body": "We build pipelines, semantic layers, knowledge graphs and vector retrieval so agentic systems have reliable ground truth from day one",
+          "media": {
+            "kind": "image",
+            "src": "/images/ai-stack/card4.png",
+            "assetKey": "ai-stack-data",
+            "alt": "Data Engineering & Data Science background",
+            "caption": null
+          },
+          "cta": null,
+          "items": ["data"]
+        },
+                {
           "id": "cloud-platform-engineering",
           "type": "card",
           "eyebrow": "Cloud",
           "title": "Cloud & Platform Engineering",
-          "body": "We modernize cloud and platform so agentic AI systems run at enterprise scale, resilient and self-healing as they carry what comes next.",
+          "body": "We modernize cloud and platform so agentic AI systems run at enterprise scale, resilient and self-healing as they carry what comes next",
           "media": {
             "kind": "image",
-            "src": "/images/ai-stack/rectangle4.png",
+            "src": "/images/ai-stack/card5.png",
             "assetKey": "ai-stack-cloud",
             "alt": "Cloud & Platform Engineering background",
             "caption": null
           },
           "cta": null,
           "items": ["cloud"]
-        },
-        {
-          "id": "ai-ready-data-engineering",
-          "type": "card",
-          "eyebrow": "Data",
-          "title": "AI-Ready Data Engineering",
-          "body": "We build pipelines, semantic layers, knowledge graphs and vector retrieval so agentic systems have reliable ground truth from day one.",
-          "media": {
-            "kind": "image",
-            "src": "/images/ai-stack/rectangle3.png",
-            "assetKey": "ai-stack-data",
-            "alt": "AI-Ready Data Engineering background",
-            "caption": null
-          },
-          "cta": null,
-          "items": ["data"]
-        },
-        {
-          "id": "mlops-ai-operations",
-          "type": "card",
-          "eyebrow": "Platform",
-          "title": "MLOps & AI Operations",
-          "body": "We operationalize agents with deployment pipelines, observability, evaluation and the runtime controls that keep autonomous production systems reliable and improving.",
-          "media": {
-            "kind": "image",
-            "src": "/images/ai-stack/rectangle5.png",
-            "assetKey": "ai-stack-mlops",
-            "alt": "MLOps & AI Operations background",
-            "caption": null
-          },
-          "cta": null,
-          "items": ["mlops"]
         }
+
       ]
     },
     {
@@ -393,7 +412,7 @@
       "data": {
         "eyebrow": null,
         "heading": "Agivant Is Trusted By<br>Global Partners",
-        "description": "Agivant works across the cloud, data, AI and workflow platforms enterprises depend on.",
+        "description": "Agivant works across the cloud, data, AI and workflow platforms enterprises depend on",
         "columns": [],
         "media": null,
         "cta": {
@@ -613,7 +632,7 @@
           "body": "A Fortune 500 sales team was losing weeks to manual quoting. SME-dependent, impossible to scale. Agivant wired agentic systems into the existing sales platform. The revenue team runs the business now. The agents run the process.",
           "media": {
             "kind": "image",
-            "src": "/images/proof/agentic-quote-accelerator.png",
+            "src": "/images/proof/agentic-Quote-accelerator.png",
             "assetKey": "case-quote-accelerator",
             "alt": "Abstract flowing wave artwork for the Agentic Quote Accelerator case study",
             "caption": null
@@ -638,7 +657,7 @@
           "body": "GCE to GKE migration with AI-driven SRE taking ownership of steady-state operations. Reliability built into the architecture, not added after. The engineering team moved from firefighting to strategy.",
           "media": {
             "kind": "image",
-            "src": "/images/proof/ai-native-transformation.png",
+            "src": "/images/proof/ai-Native.png",
             "assetKey": "case-ai-native-sre",
             "alt": "Abstract flowing wave artwork for the AI-Native SRE Transformation case study",
             "caption": null
@@ -663,7 +682,7 @@
           "body": "Manual transaction operations could not scale without adding headcount. Agivant architected a multi-agent system across global financial market platforms. Five million transactions a month. No human in the routine loop.",
           "media": {
             "kind": "image",
-            "src": "/images/proof/global-market-agentic-network.png",
+            "src": "/images/proof/global-Markets-Agent-Network.png",
             "assetKey": "case-global-markets",
             "alt": "Abstract flowing wave artwork for the Global Markets Agent Network case study",
             "caption": null

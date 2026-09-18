@@ -86,7 +86,7 @@ export function AmpExperience({ header, leftColumn, hub, rightColumn }: AmpExper
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: experience,
-          start: "top 15%",
+          start: "top 17%",
           end: `+=${PIN_SCROLL_DISTANCE}`,
           pin: true,
           pinSpacing: true,

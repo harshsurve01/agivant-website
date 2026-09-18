@@ -93,6 +93,7 @@ export async function Lifecycle() {
             title={summary.title}
             description={summary.description}
             cta={summary.cta}
+            details={summary.details}
           />
         </div>
       </Container>

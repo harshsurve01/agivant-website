@@ -15,8 +15,8 @@
 .line {
   position: absolute;
   top: 3.5rem; /* centers on .node's vertical middle (7rem / 2) */
-  left: 3rem; /* starts at first node center */
-  right: 3rem; /* ends at last node center */
+  left: 4rem; /* starts at first node center */
+  right: 4rem; /* ends at last node center */
   height: 1px;
   background-color: var(--color-border-default);
 }

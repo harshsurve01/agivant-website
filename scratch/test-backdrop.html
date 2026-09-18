@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    margin: 0;
+    padding: 40px;
+    font-family: sans-serif;
+    background: #ffffff;
+  }
+  .content {
+    font-size: 32px;
+    color: #000;
+  }
+  .overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    -webkit-backdrop-filter: blur(16px);
+  }
+  @supports (backdrop-filter: blur(0)) {
+    .overlay {
+      backdrop-filter: blur(16px);
+    }
+  }
+  .modal {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    font-size: 24px;
+    color: purple;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="content">
+    <h1>This text should be visibly blurred behind the transparent overlay</h1>
+    <p>Lots of details here. The quick brown fox jumps over the lazy dog. 1234567890.</p>
+    <div style="width: 200px; height: 100px; background: red;">Red Box</div>
+  </div>
+  <div class="overlay">
+    <div class="modal">Sharp Modal Content (Unblurred)</div>
+  </div>
+</body>
+</html>

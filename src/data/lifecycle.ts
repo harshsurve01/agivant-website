@@ -29,6 +29,7 @@ export interface LifecycleStage {
   description: string;
   status?: string;
   media: LifecycleMediaData;
+  details: string[];
 }
 
 export interface LifecycleSummaryData {
@@ -38,6 +39,7 @@ export interface LifecycleSummaryData {
     label: string;
     href: string;
   };
+  details: string[];
 }
 
 function getLifecycleSection() {
@@ -77,6 +79,7 @@ export async function getLifecycleStages(): Promise<LifecycleStage[]> {
       src: block.media?.src ?? "",
       alt: block.media?.alt ?? "",
     },
+    details: (block.items as string[]) ?? [],
   }));
 }
 
@@ -91,5 +94,6 @@ export async function getLifecycleSummary(): Promise<LifecycleSummaryData> {
       label: summaryBlock?.cta?.label ?? "See Amp'd in action",
       href: summaryBlock?.cta?.href ?? "/amp-d",
     },
+    details: (summaryBlock?.items as string[]) ?? [],
   };
 }
