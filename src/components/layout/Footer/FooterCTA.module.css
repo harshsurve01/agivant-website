@@ -10,7 +10,7 @@
   align-items: center;
   text-align: center;
   gap: var(--space-10);
-  max-width: 72rem;
+  max-width: var(--container-2xl, 90rem);
   margin-inline: auto;
   width: 100%;
 }
@@ -20,7 +20,7 @@
   font-family: var(--font-family-heading);
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-7xl); /* 64px (4rem) */
-  line-height: 1;
+  line-height: var(--line-height-tight, 1.15);
   letter-spacing: var(--letter-spacing-normal);
   color: var(--color-text-primary);
   text-align: center;
@@ -28,6 +28,11 @@
 
 .headingLine {
   display: block;
+}
+
+.headingHighlight {
+  color: var(--color-brand-primary);
+  white-space: nowrap;
 }
 
 .brandLine {

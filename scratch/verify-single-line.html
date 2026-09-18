@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-family-heading: 'Poppins', sans-serif;
+  --font-weight-bold: 600;
+  --font-size-7xl: 4rem; /* 64px */
+  --line-height-tight: 1.15;
+  --color-brand-primary: #8500DF;
+  --color-text-primary: #000000;
+  --container-2xl: 1440px;
+}
+* { box-sizing: border-box; }
+body { margin: 0; padding: 40px; background: #fff; }
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2.5rem;
+  max-width: var(--container-2xl, 90rem);
+  margin-inline: auto;
+  width: 100%;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-7xl);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.headingLine {
+  display: block;
+}
+
+.headingHighlight {
+  color: var(--color-brand-primary);
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div class="cta">
+  <h2 class="heading">
+    <span class="headingLine">
+      Ready to get your enterprise <span class="headingHighlight">Amp'd?</span>
+    </span>
+  </h2>
+</div>
+<div id="info"></div>
+<script>
+window.addEventListener('load', async () => {
+  await document.fonts.ready;
+  const heading = document.querySelector('.heading');
+  const line = document.querySelector('.headingLine');
+  const highlight = document.querySelector('.headingHighlight');
+  const rectH = heading.getBoundingClientRect();
+  const rectL = line.getBoundingClientRect();
+  const rectHigh = highlight.getBoundingClientRect();
+  
+  // Height check: If single line, rectL.height will be ~73.6px (1 line box). If 2 lines, height would be ~147px.
+  const info = {
+    headingWidth: rectH.width,
+    headingHeight: rectH.height,
+    lineWidth: rectL.width,
+    lineHeight: rectL.height,
+    highlightTop: rectHigh.top,
+    lineTop: rectL.top,
+    isSingleLine: rectL.height < 100 && rectHigh.top === rectL.top
+  };
+  document.getElementById('info').innerText = JSON.stringify(info);
+});
+</script>
+</body>
+</html>

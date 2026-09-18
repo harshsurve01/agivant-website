@@ -175,7 +175,7 @@ export function FooterCTA({
                 const isSecondLine =
                   index === 1 || trimmed.toLowerCase() === "enterprise";
 
-                if (brandMedia && isSecondLine) {
+                if (brandMedia && isSecondLine && !/Amp'd\??/i.test(trimmed)) {
                   return (
                     <span
                       key={index}
@@ -193,6 +193,23 @@ export function FooterCTA({
                           priority
                         />
                       </span>
+                    </span>
+                  );
+                }
+
+                if (/Amp'd\??/i.test(trimmed)) {
+                  const parts = trimmed.split(/(Amp'd\??)/i);
+                  return (
+                    <span key={index} className={styles.headingLine}>
+                      {parts.map((part, pIdx) =>
+                        /Amp'd\??/i.test(part) ? (
+                          <span key={pIdx} className={styles.headingHighlight}>
+                            {part}
+                          </span>
+                        ) : (
+                          part
+                        )
+                      )}
                     </span>
                   );
                 }
@@ -231,9 +248,24 @@ export function FooterCTA({
                 </span>
               ) : (
                 <span className={styles.headingLine}>
-                  {"line2" in heading
-                    ? heading.line2
-                    : `${heading.line2Prefix ?? ""} ${heading.line2Brand ?? ""}`.trim()}
+                  {(() => {
+                    const line2Text =
+                      "line2" in heading
+                        ? heading.line2
+                        : `${heading.line2Prefix ?? ""} ${heading.line2Brand ?? ""}`.trim();
+                    if (line2Text && /Amp'd\??/i.test(line2Text)) {
+                      return line2Text.split(/(Amp'd\??)/i).map((part, pIdx) =>
+                        /Amp'd\??/i.test(part) ? (
+                          <span key={pIdx} className={styles.headingHighlight}>
+                            {part}
+                          </span>
+                        ) : (
+                          part
+                        )
+                      );
+                    }
+                    return line2Text;
+                  })()}
                 </span>
               )}
               {!brandMedia && heading.line3 ? (

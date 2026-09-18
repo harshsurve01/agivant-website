@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+body { font-family: 'Poppins', sans-serif; margin: 0; padding: 40px; background: #fff; }
+.heading-64 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 1.15;
+  white-space: nowrap;
+  display: inline-block;
+}
+.heading-64-bold {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1.15;
+  white-space: nowrap;
+  display: inline-block;
+}
+.heading-56 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 1.15;
+  white-space: nowrap;
+  display: inline-block;
+}
+.heading-48 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 1.15;
+  white-space: nowrap;
+  display: inline-block;
+}
+</style>
+</head>
+<body>
+<div id="h64" class="heading-64">Ready to get your enterprise <span style="color: #8500DF">Amp'd?</span></div>
+<div id="h64b" class="heading-64-bold">Ready to get your enterprise <span style="color: #8500DF">Amp'd?</span></div>
+<div id="h56" class="heading-56">Ready to get your enterprise <span style="color: #8500DF">Amp'd?</span></div>
+<div id="h48" class="heading-48">Ready to get your enterprise <span style="color: #8500DF">Amp'd?</span></div>
+<div id="res"></div>
+<script>
+window.addEventListener('load', async () => {
+  await document.fonts.ready;
+  const res = {
+    h64: document.getElementById('h64').getBoundingClientRect().width,
+    h64b: document.getElementById('h64b').getBoundingClientRect().width,
+    h56: document.getElementById('h56').getBoundingClientRect().width,
+    h48: document.getElementById('h48').getBoundingClientRect().width,
+  };
+  document.getElementById('res').innerText = JSON.stringify(res);
+});
+</script>
+</body>
+</html>

@@ -25,6 +25,7 @@
   text-align: center;
   gap: var(--space-16);
   flex-wrap: wrap;
+  max-width: var(--container-2xl, 1440px);
 }
 
 .brandmarkContainer {
