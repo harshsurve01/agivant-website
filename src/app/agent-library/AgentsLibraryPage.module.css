@@ -1,0 +1,32 @@
+/* ==========================================================================
+   SolutionsPage.module.css
+   Page-level styling and layout constraints for /solutions.
+   ========================================================================== */
+
+.page {
+  position: relative;
+  width: 100%;
+  overflow-x: clip;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+}
+
+.hero {
+  --hero-ribbon-top: 5rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    --hero-ribbon-top: 5rem;
+  }
+}
+
+/* Scoped brandmark image compositing for /solutions:
+   Enables the FinalCTA decorative gradient to visually composite over
+   Agivant-Home-Page-Liquid-Footer.svg while keeping the watermark letters visible. */
+.footer [class*="brandmark"] img {
+  mix-blend-mode: multiply;
+}

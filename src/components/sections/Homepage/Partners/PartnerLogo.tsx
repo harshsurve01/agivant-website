@@ -71,8 +71,8 @@ export function PartnerLogo({ logo, active = true }: PartnerLogoProps) {
       <img
         src={logo.image.src}
         alt={logo.image.alt}
-        width={140}
-        height={40}
+        width={290}
+        height={90}
         className={styles.logo}
         draggable={false}
       />

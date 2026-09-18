@@ -106,6 +106,7 @@ export async function Footer({
         </Container>
       )}
 
+      <>
       {showBrandmark ? (
         <Container size="xl" className={styles.brandmarkContainer}>
           <FooterBrandmark />
@@ -115,6 +116,7 @@ export async function Footer({
       <Container size="xl" className={styles.copyrightContainer}>
         <FooterCopyright text={content.copyright} />
       </Container>
+      </>
     </footer>
   );
 }

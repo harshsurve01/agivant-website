@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
+  width: 100%;
 }
 
 .link:focus-visible {
@@ -23,10 +24,10 @@
    * land as HTML attributes, not an inline style — no !important
    * fight needed to make width/height: auto win.
    */
-  width: auto;
+  width: 100%;
   height: auto;
-  max-width: 140px; /* TODO(figma): confirm exact per-logo bounding box — the measured 1233.74×89.35 frame covers all four logos combined, not one */
-  max-height: 40px; /* TODO(figma): confirm exact logo height */
+  max-width: none; /* TODO(figma): confirm exact per-logo bounding box — the measured 1233.74×89.35 frame covers all four logos combined, not one */
+  max-height: 85px; /* TODO(figma): confirm exact logo height */
   object-fit: contain;
   user-select: none;
 } 
