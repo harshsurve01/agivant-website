@@ -1,0 +1,329 @@
+.section {
+  position: relative;
+  z-index: 1;
+  margin-top: calc(var(--space-32) * -1);
+  padding-bottom: var(--space-32);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.leftCol {
+  padding-top: var(--space-8);
+}
+
+.sectionTitle {
+  margin: 0 0 var(--space-8);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+}
+
+.sectionTitle span {
+  color: var(--color-brand-primary);
+}
+
+.contactList {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.itemRow {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.itemIcon {
+  width: 3rem;
+  height: 3rem;
+  display: block;
+}
+
+.itemBody {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-brand-primary);
+}
+
+.text,
+.link {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--color-hover-primary);
+}
+
+.socialWrap {
+  margin-top: var(--space-12);
+}
+
+.socialTitle {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-text-primary);
+}
+
+.socialLinks {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.socialLink {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  text-decoration: none;
+  transition:
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.socialLink:hover {
+  transform: translateY(-1px);
+  opacity: 0.85;
+}
+
+.socialIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.formCard {
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  background: color-mix(in srgb, white 92%, #f4ecff);
+  box-shadow: var(--shadow-md);
+}
+
+.formTitle {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.formLead {
+  margin: var(--space-2) 0 var(--space-6);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.label {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.875rem;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background: white;
+  outline: none;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: color-mix(
+    in srgb,
+    var(--color-brand-primary) 35%,
+    var(--color-border-default)
+  );
+  box-shadow: var(--shadow-focus);
+}
+
+.submit {
+  justify-self: stretch;
+  width: 100%;
+}
+
+.careersCard {
+    position: relative;
+  min-height: 80vh;
+  margin-top: var(--space-24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.careersContent {
+  display: grid;
+  width: 100%;
+  display: flex;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background:rgba(217, 217, 217, 0.2);
+  backdrop-filter: blur(20px);
+  --webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-md);
+  /* padding: var(--space-12); */
+}
+.careersContentInner {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.careersContentInnerContent {
+  width: 100%;
+  padding: 5rem 4.2rem;
+  flex:6;
+}
+
+.careersTitle {
+  margin-bottom:var(--space-6);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+}
+
+.careersTitle span {
+  color: var(--color-brand-primary);
+}
+
+.careersText {
+  margin: 0;
+  /* max-width: 40ch; */
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+}
+
+.careersText + .careersText {
+  margin-top: var(--space-3);
+}
+
+.careersArt {
+  min-height: 13rem;
+  height: 100%;
+  width: 100%;
+  flex: 4;
+  border-radius: var(--radius-xl);
+  background-image: url("/images/contact/career-art.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.05);
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .leftCol {
+    padding-top: 0;
+  }
+
+  .careersCard {
+    min-height: 80vh;
+    grid-template-columns: 1fr;
+  }
+
+  .careersArt {
+    min-height: 10rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    margin-top: calc(var(--space-12) * -1);
+    padding-bottom: var(--space-20);
+  }
+
+  .sectionTitle {
+    font-size: var(--font-size-2xl);
+  }
+
+  .itemRow {
+    grid-template-columns: 2.75rem 1fr;
+    gap: var(--space-3);
+  }
+
+  .itemIcon {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .formCard {
+    padding: var(--space-6);
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .careersContent {
+    padding: var(--space-8);
+  }
+
+  .careersTitle {
+    font-size: var(--font-size-2xl);
+  }
+}
