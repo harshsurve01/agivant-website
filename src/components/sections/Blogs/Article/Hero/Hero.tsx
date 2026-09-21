@@ -54,7 +54,7 @@ export function Hero({
           `data-hero-interaction-root` is the pointer-tracking boundary
           HeroParticleField looks up via closest(), and must stay on an
           ancestor containing both HeroBackground and Content. */}
-      <HeroBackground />
+      <HeroBackground showEllipse={false} />
 
       {/* Decorative ribbon layer spanning across lower visual area */}
       {showRibbon && actualRibbonSrc && (

@@ -41,7 +41,7 @@ export function Hero({
       data-hero-interaction-root
     >
       {/* Shared decorative background with ambient glows and particle canvas */}
-      <HeroBackground />
+      <HeroBackground showEllipse={false} />
 
       {/* Shared Solution decorative ribbon flowing across the lower area */}
       <PageRibbon

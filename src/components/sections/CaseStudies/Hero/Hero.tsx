@@ -23,7 +23,7 @@ export function Hero({ heading, description, search }: CaseStudiesHeroProps) {
   return (
     <section className={styles.hero} data-hero-interaction-root>
       {/* Background with particle tracking */}
-      <HeroBackground />
+      <HeroBackground showEllipse={false} />
 
       {/* Content */}
       <Container className={styles.container}>

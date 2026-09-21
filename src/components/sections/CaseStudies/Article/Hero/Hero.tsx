@@ -24,7 +24,7 @@ export function Hero({ heading, description, media }: CaseStudyArticleHeroProps)
   return (
     <section className={styles.hero} data-hero-interaction-root>
       {/* Decorative background only */}
-      <HeroBackground />
+      <HeroBackground showEllipse={false} />
 
       {/* Decorative ribbon across bottom if provided */}
       {media?.src && (

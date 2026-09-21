@@ -17,7 +17,7 @@ import type { PartnersHeroProps } from "./types";
 export function Hero({ heading, description }: PartnersHeroProps) {
   return (
     <section className={styles.hero} data-hero-interaction-root>
-      <HeroBackground />
+      <HeroBackground showEllipse={false} />
 
       <Container className={styles.container}>
         <div className={styles.content}>

@@ -34,7 +34,7 @@ export interface TechTalkHeroProps {
 export function Hero({ heading, description, cta }: TechTalkHeroProps) {
   return (
     <section className={styles.hero} data-hero-interaction-root>
-      <HeroBackground />
+      <HeroBackground showEllipse={false} />
 
       {/* Content */}
       <Container className={styles.container}>

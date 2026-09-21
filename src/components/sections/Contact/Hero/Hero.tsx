@@ -20,7 +20,7 @@ export function Hero({
 }: ContactHeroProps) {
   return (
     <section className={styles.hero} data-hero-interaction-root>
-      <HeroBackground />
+      <HeroBackground showEllipse={false} />
 
       <PageRibbon
         src={ribbonSrc}
