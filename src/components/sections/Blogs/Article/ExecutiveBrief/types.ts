@@ -36,5 +36,9 @@ export interface ExecutiveBriefProps {
   highlightPosition?: "start" | "end" | "colon";
   /** Word count for the highlight if using 'start' or 'end'. */
   highlightCount?: number;
+  /** Optional background decorative ribbon image URL. */
+  ribbonSrc?: string | null;
+  /** Optional scoped CSS class name for positioning the ribbon. */
+  ribbonClassName?: string;
 }
 

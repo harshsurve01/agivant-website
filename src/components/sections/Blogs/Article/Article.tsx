@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Hero } from "./Hero";
 import { ExecutiveBrief } from "./ExecutiveBrief";
 import { Phase1 } from "./Phase1";
@@ -8,10 +9,12 @@ import { Conclusion } from "./Conclusion";
 import { SplitContent } from "./SplitContent";
 import { ImpactTable } from "@/components/sections/Solutions/Article/ImpactTable";
 import { EnterpriseAIPillar } from "./EnterpriseAIPillar";
+import { BlogPageGradientLayer } from "./BlogPageGradientLayer";
 import type { ArticleProps } from "./types";
 import type { ArticleHeroProps } from "./Hero";
 import type { ImpactTableProps } from "@/components/sections/Solutions/Article/ImpactTable";
 import type { Phase1Props } from "./Phase1/types";
+import styles from "./Article.module.css";
 
 /**
  * Article
@@ -41,13 +44,17 @@ export function Article(props: ArticleProps) {
     };
 
     return (
-      <>
-        <Hero {...heroProps} />
+      <article className={styles.article}>
+        <BlogPageGradientLayer />
 
-        {data.sections.map((section) => {
+        <div className={styles.content}>
+          <Hero {...heroProps} />
+
+          {data.sections.map((section) => {
           if (!section.enabled) return null;
 
-          switch (section.id) {
+          const renderSection = () => {
+            switch (section.id) {
             case "executive-brief": {
               const paragraphs = section.blocks
                 .flatMap((b) => (b.body ? b.body.split(/\n\s*\n/) : []))
@@ -77,6 +84,7 @@ export function Article(props: ArticleProps) {
                   title={section.data.heading ?? "Establishing Baselines"}
                   description={section.data.description}
                   cards={cards}
+                  ribbonSrc={section.data.media?.src}
                 />
               );
             }
@@ -446,11 +454,16 @@ export function Article(props: ArticleProps) {
                 }
 
                 case "comparison_table": {
+                  const isBlogPage3Table =
+                    section.id === "enterprise-agent-stack";
                   return (
                     <ImpactTable
                       key={section.id}
                       data={section.data as unknown as ImpactTableProps["data"]}
                       blocks={section.blocks as unknown as ImpactTableProps["blocks"]}
+                      className={
+                        isBlogPage3Table ? styles.extendedRibbonTable : undefined
+                      }
                     />
                   );
                 }
@@ -533,6 +546,14 @@ export function Article(props: ArticleProps) {
                     (section.data.highlightCount as number | undefined) ??
                     (isPilotReality ? 4 : undefined);
 
+                  const isEnterpriseGuide =
+                    data.slug ===
+                    "agentic-ai-transforming-software-engineering-digital-commerce-enterprise-guide";
+                  const ribbonClassName =
+                    isEnterpriseGuide && section.id === "path-forward"
+                      ? styles.enterpriseGuideConclusionRibbon
+                      : undefined;
+
                   return (
                     <ExecutiveBrief
                       key={section.id}
@@ -543,27 +564,44 @@ export function Article(props: ArticleProps) {
                       spacing={spacing}
                       highlightPosition={highlightPosition}
                       highlightCount={highlightCount}
+                      ribbonSrc={section.data.media?.src}
+                      ribbonClassName={ribbonClassName}
                     />
                   );
                 }
               }
             }
           }
+        };
+
+          const rendered = renderSection();
+          if (!rendered) return null;
+
+          return (
+            <Fragment key={section.id}>
+              {rendered}
+            </Fragment>
+          );
         })}
-      </>
+        </div>
+      </article>
     );
   }
 
   // Legacy ArticlePageData fallback
   return (
-    <>
-      <Hero {...props.hero} />
-      <ExecutiveBrief {...props.executiveBrief} />
-      <Phase1 {...props.phase1} />
-      <Phase2 {...props.phase2} />
-      <Phase3 {...props.phase3} />
-      <Phase4 {...props.phase4} />
-      <Conclusion {...props.conclusion} />
-    </>
+    <article className={styles.article}>
+      <BlogPageGradientLayer />
+
+      <div className={styles.content}>
+        <Hero {...props.hero} />
+        <ExecutiveBrief {...props.executiveBrief} />
+        <Phase1 {...props.phase1} />
+        <Phase2 {...props.phase2} />
+        <Phase3 {...props.phase3} />
+        <Phase4 {...props.phase4} />
+        <Conclusion {...props.conclusion} />
+      </div>
+    </article>
   );
 }

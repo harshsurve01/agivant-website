@@ -101,6 +101,7 @@ export function Phase1({
   const gridClass = columns === 3 ? styles.gridCols3 : styles.grid;
 
   return (
+    
     <section className={styles.phase1}>
       {effectiveRibbon && (
         <PageRibbon

@@ -1,0 +1,74 @@
+/* ==========================================================================
+   StatsCard.module.css
+   Visual presentation for an individual statistics card in the Running Today section.
+   Matching Figma reference:
+   - Stat: Poppins SemiBold 36px / 32px line-height in Agivant purple (#8500DF)
+   - Description: Poppins Regular 16px / 25px line-height in #141517
+   - Card: 20px radius, white surface, subtle 1px border, soft shadow
+   - Tinted variant: subtle lavender background for the final milestone card
+   ========================================================================== */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(2rem, 3.5vh, 2.6rem) var(--space-6);
+  min-height: 190px;
+  height: 100%;
+  border-radius: 1.25rem; /* 20px */
+  background:#d9d9d920;
+  border: 1px solid #ffffff;
+box-shadow: 0 4px 8px rgba(4, 4, 4, 0.15);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+
+
+.value {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-4xl); /* 36px (2.25rem) */
+  line-height: 32px;
+  letter-spacing: 0;
+  color: var(--color-brand-primary); /* #8500DF */
+  margin: 0;
+}
+
+.label {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-md); /* 16px (1rem) */
+  line-height: 25px;
+  letter-spacing: 0;
+  color: #141517;
+  margin-top: var(--space-3); /* ~10-12px */
+  margin-bottom: 0;
+  max-width: 20rem;
+}
+
+@media (max-width: 640px) {
+  .card {
+    min-height: 160px;
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .value {
+    font-size: 2rem;
+    line-height: 28px;
+  }
+
+  .label {
+    font-size: var(--font-size-base);
+    line-height: 22px;
+  }
+}

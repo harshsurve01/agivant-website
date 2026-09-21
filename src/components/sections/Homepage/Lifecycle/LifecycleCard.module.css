@@ -53,6 +53,9 @@
   flex: 0 0 282px;
   opacity: 1;
   z-index: 2;
+  background-color: #ffffff;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 
 .cardActive .title {
@@ -119,6 +122,22 @@
   outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
   border-radius: var(--radius-sm, 0.25rem);
+}
+
+.callout {
+  margin-top: auto;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--font-weight-semibold, 500);
+  line-height: var(--line-height-snug, 1.25);
+  color: var(--color-text-muted, #71717A);
+  text-align: center;
+  padding-inline: var(--space-2);
+  transition: color var(--transition-base, 250ms ease);
+}
+
+.calloutActive {
+  color: var(--color-brand-primary, #8500DF);
 }
 
 .media {

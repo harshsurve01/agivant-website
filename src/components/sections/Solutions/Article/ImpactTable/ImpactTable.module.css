@@ -20,8 +20,7 @@
    min-height: auto;
   padding-top: var(--space-20);
   padding-bottom: var(--space-24);
-  overflow-x: clip;
-  overflow-y: visible;
+  overflow: clip;
   box-sizing: border-box;
   isolation: isolate;
 }
@@ -41,13 +40,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0.39;
+  opacity: 0.35;
 }
 
 .customRibbonWrapper {
-  top:125%;
-  transform: translateY(-46%);
-  opacity: 0.45;
+  top:50%;
+  transform: translateY(-50%);
+  opacity: 0.5;
 }
 
 .ribbonImage {

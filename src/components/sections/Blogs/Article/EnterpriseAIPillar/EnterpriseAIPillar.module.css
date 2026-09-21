@@ -9,6 +9,7 @@
   min-height: auto;
   padding-block: var(--space-8, 2rem) var(--space-12, 3rem);
   box-sizing: border-box;
+  z-index: 2;
 }
 
 .container {

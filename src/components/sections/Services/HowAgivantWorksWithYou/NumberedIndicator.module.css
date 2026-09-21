@@ -1,0 +1,121 @@
+/* ==========================================================================
+   NumberedIndicator.module.css
+   Horizontal numbered pagination track (1 --- 2 --- ③ --- 4 --- 5)
+   synchronized with the 5 Lifecycle stages.
+   ========================================================================== */
+
+.track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-4);
+  width: 100%;
+  max-width: var(--container-xl);
+  align-items: center;
+  justify-items: center;
+  margin-top: var(--space-8);
+}
+
+.line {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background-color: var(--color-neutral-300, #CBD5E1);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.slot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-full, 9999px);
+  cursor: pointer;
+  font-family: var(--font-family-base);
+  transition: width var(--transition-base, 250ms ease),
+    height var(--transition-base, 250ms ease),
+    background-color var(--transition-base, 250ms ease),
+    color var(--transition-base, 250ms ease),
+    box-shadow var(--transition-base, 250ms ease),
+    transform var(--transition-base, 250ms ease);
+  outline: none;
+  padding: 0;
+  user-select: none;
+}
+
+.buttonInactive {
+  width: 28px;
+  height: 28px;
+  background-color: var(--color-neutral-300, #CBD5E1);
+  color: var(--color-text-secondary, #64748B);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.buttonInactive:hover {
+  background-color: #94A3B8;
+  color: #FFFFFF;
+  transform: scale(1.1);
+}
+
+.buttonActive {
+  width: 38px;
+  height: 38px;
+  background-color: var(--color-brand-primary, #8500DF);
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(133, 0, 223, 0.4);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-brand-primary, #8500DF);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1200px) {
+  .track {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-6);
+  }
+
+  .line {
+    display: none;
+  }
+
+  .slot {
+    width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .track {
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .buttonInactive {
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
+  }
+
+  .buttonActive {
+    width: 34px;
+    height: 34px;
+    font-size: 0.875rem;
+  }
+}

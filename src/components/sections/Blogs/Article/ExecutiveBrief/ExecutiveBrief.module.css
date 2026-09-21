@@ -12,10 +12,35 @@
    section-padding rhythm already used by Episodes.module.css, rather
    than inventing a new step. */
 .executiveBrief {
+  position: relative;
   width: 100%;
   min-height: auto;
   padding-top: 15rem;
   padding-bottom: var(--space-24);
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+.ribbonWrapper {
+  position: absolute;
+  inset-inline: 0;
+  width: 100%;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.ribbonImage {
+  width: 100%;
+  min-width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .standardSpacing {

@@ -1,0 +1,17 @@
+/* ==========================================================================
+   ServicesPage.module.css
+   Page-level styling for the Services Landing Page (/services).
+   ========================================================================== */
+
+.page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}

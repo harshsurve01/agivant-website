@@ -70,7 +70,13 @@
         "heading": "Establishing Baselines",
         "description": null,
         "columns": [],
-        "media": null,
+        "media": {
+          "kind": "image",
+          "src": "/images/solutions/landing-page-hero.png",
+          "assetKey": "table-ribbon-2",
+          "alt": "Establishing Baselines decorative ribbon",
+          "caption": null
+        },
         "cta": null
       },
       "blocks": [

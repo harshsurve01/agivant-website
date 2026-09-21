@@ -1,3 +1,5 @@
+import Image from "next/image";
+import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import type { ExecutiveBriefProps } from "./types";
 import styles from "./ExecutiveBrief.module.css";
@@ -40,6 +42,8 @@ export function ExecutiveBrief({
   spacing = "hero",
   highlightPosition,
   highlightCount,
+  ribbonSrc,
+  ribbonClassName,
 }: ExecutiveBriefProps) {
   const renderHeading = () => {
     if (!title) return null;
@@ -60,28 +64,9 @@ export function ExecutiveBrief({
       );
     }
 
-    const colonIndex = title.indexOf(":");
-    if (
-      colonIndex !== -1 &&
-      (highlightPosition === "colon" || !highlightPosition)
-    ) {
-      const prefix = title.slice(0, colonIndex + 1);
-      const rest = title.slice(colonIndex + 1);
-      return (
-        <>
-          <span className={styles.highlight}>{prefix}</span>
-          <span>{rest}</span>
-        </>
-      );
-    }
-
-    const words = title.split(" ");
-    if (
-      highlightPosition === "start" ||
-      (!highlightPosition && title.startsWith("Why Most AI Pilots"))
-    ) {
-      const count =
-        highlightCount ?? (title.startsWith("Why Most AI Pilots") ? 4 : 1);
+    if (highlightPosition === "start") {
+      const words = title.split(" ");
+      const count = highlightCount ?? 1;
       const prefix = words.slice(0, count).join(" ");
       const rest = words.slice(count).join(" ");
       return (
@@ -92,14 +77,25 @@ export function ExecutiveBrief({
       );
     }
 
-    // Default: highlight the last word(s)
-    const count = highlightCount ?? 1;
-    const rest = words.slice(0, -count).join(" ");
-    const highlighted = words.slice(-count).join(" ");
+    const colonIndex = title.indexOf(":");
+    if (colonIndex !== -1 && (highlightPosition === "colon" || !highlightPosition)) {
+      const prefix = title.slice(0, colonIndex + 1);
+      const rest = title.slice(colonIndex + 1);
+      return (
+        <>
+          <span>{prefix}</span>
+          <span className={styles.highlight}>{rest}</span>
+        </>
+      );
+    }
 
+    const words = title.split(" ");
+    const count = highlightCount ?? 1;
+    const prefix = words.slice(0, -count).join(" ");
+    const highlighted = words.slice(-count).join(" ");
     return (
       <>
-        {rest ? `${rest} ` : ""}
+        {prefix ? `${prefix} ` : ""}
         <span className={styles.highlight}>{highlighted}</span>
       </>
     );
@@ -108,11 +104,28 @@ export function ExecutiveBrief({
   return (
     <section
       id={id}
-      className={`${styles.executiveBrief} ${
-        spacing === "standard" ? styles.standardSpacing : ""
-      }`}
+      className={clsx(
+        styles.executiveBrief,
+        spacing === "standard" && styles.standardSpacing
+      )}
     >
-      <Container>
+      {ribbonSrc && (
+        <div
+          className={clsx(styles.ribbonWrapper, ribbonClassName)}
+          aria-hidden="true"
+        >
+          <Image
+            src={ribbonSrc}
+            alt=""
+            width={1682}
+            height={922}
+            className={styles.ribbonImage}
+            loading="eager"
+          />
+        </div>
+      )}
+
+      <Container className={styles.container}>
         {showBar ? (
           <div className={styles.headingRow}>
             <span className={styles.bar} aria-hidden="true" />

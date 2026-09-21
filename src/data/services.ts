@@ -1,0 +1,224 @@
+import servicesPageJson from "./servicesPage.json";
+
+export interface StandardizedSEO {
+  title: string | null;
+  description: string | null;
+  canonical: string | null;
+  ogImage: string | null;
+}
+
+export interface StandardizedMediaObject {
+  kind: string;
+  src: string;
+  assetKey: string | null;
+  alt: string | null;
+  caption: string | null;
+  width?: number | null;
+  height?: number | null;
+}
+
+export interface StandardizedCTAObject {
+  enabled: boolean;
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+export interface ServicesHeroData {
+  eyebrow: string | null;
+  title: string;
+  subtitle: string | null;
+  summary: string;
+  authors: unknown[];
+  partner: unknown | null;
+  media: StandardizedMediaObject | null;
+  primaryCta: StandardizedCTAObject | null;
+  secondaryCta: StandardizedCTAObject | null;
+}
+
+export interface RunningTodayMetric {
+  id: string;
+  type: "metric" | string;
+  value: string;
+  label: string;
+  detail: string | null;
+}
+
+export interface RunningTodaySectionData {
+  id: string;
+  heading: string;
+  description: string;
+  metrics: RunningTodayMetric[];
+}
+
+export interface ServicesFooterCTA {
+  enabled: boolean;
+  heading: string;
+  subheading: string | null;
+  partner: unknown | null;
+  media?: StandardizedMediaObject | null;
+  primaryCta: StandardizedCTAObject | null;
+  secondaryCta: StandardizedCTAObject | null;
+}
+
+export interface ServicesPageDocument {
+  schemaVersion: string;
+  pageType: string;
+  slug: string;
+  title: string;
+  seo: StandardizedSEO;
+  hero: ServicesHeroData;
+  sections: unknown[];
+  footerCta: ServicesFooterCTA;
+}
+
+const pageData = servicesPageJson as ServicesPageDocument;
+
+/**
+ * Returns the full normalized Services Landing Page document.
+ */
+export function getServicesPage(): ServicesPageDocument {
+  return pageData;
+}
+
+/**
+ * Returns the Hero section content for the Services Landing Page.
+ */
+export function getServicesHero(): ServicesHeroData {
+  return pageData.hero;
+}
+
+/**
+ * Returns the Running Today, Across Enterprises section content.
+ */
+export function getRunningTodaySection(): RunningTodaySectionData {
+  const section = (pageData.sections as any[]).find(
+    (s) => s.id === "running-today-across-enterprises"
+  );
+  if (!section) {
+    throw new Error(
+      "Section running-today-across-enterprises not found in servicesPage.json"
+    );
+  }
+  return {
+    id: section.id,
+    heading: section.data.heading ?? "Running Today, Across Enterprises",
+    description: section.data.description ?? "",
+    metrics: section.blocks ?? [],
+  };
+}
+
+export interface HowAgivantWorksWithYouStage {
+  id: string;
+  title: string;
+  description: string;
+  callout: string;
+  media: StandardizedMediaObject;
+}
+
+export interface HowAgivantWorksWithYouData {
+  id: string;
+  heading: string;
+  description: string;
+  stages: HowAgivantWorksWithYouStage[];
+}
+
+/**
+ * Returns the How Agivant Works With You section content.
+ */
+export function getHowAgivantWorksWithYouSection(): HowAgivantWorksWithYouData {
+  const section = (pageData.sections as any[]).find(
+    (s) => s.id === "how-agivant-works-with-you"
+  );
+  if (!section) {
+    throw new Error(
+      "Section how-agivant-works-with-you not found in servicesPage.json"
+    );
+  }
+  return {
+    id: section.id,
+    heading: section.data.heading ?? "How Agivant Works With You",
+    description: section.data.description ?? "",
+    stages: (section.blocks ?? []).map((b: any) => ({
+      id: b.id,
+      title: b.title ?? "",
+      description: b.body ?? "",
+      callout: Array.isArray(b.items) && b.items.length > 0 ? b.items[0] : "",
+      media: {
+        kind: b.media?.kind ?? "image",
+        src: b.media?.src ?? "",
+        alt: b.media?.alt ?? "",
+        assetKey: b.media?.assetKey ?? null,
+        caption: null,
+      },
+    })),
+  };
+}
+
+export interface AmpdStepData {
+  id: string;
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface HowYourEnterpriseGetsAmpdSectionData {
+  id: string;
+  heading: string;
+  description: string;
+  steps: AmpdStepData[];
+}
+
+/**
+ * Returns the How your enterprise gets Amp'd section content.
+ */
+export function getHowYourEnterpriseGetsAmpdSection(): HowYourEnterpriseGetsAmpdSectionData {
+  const section = (pageData.sections as any[]).find(
+    (s) => s.id === "how-your-enterprise-gets-ampd"
+  );
+  if (!section) {
+    throw new Error(
+      "Section how-your-enterprise-gets-ampd not found in servicesPage.json"
+    );
+  }
+  return {
+    id: section.id,
+    heading: section.data.heading ?? "How your enterprise gets Amp'd",
+    description: section.data.description ?? "",
+    steps: (section.blocks ?? []).map((b: any) => ({
+      id: b.id,
+      number: String(b.number ?? "").padStart(2, "0"),
+      title: b.title ?? "",
+      description: b.body ?? "",
+    })),
+  };
+}
+
+export interface WhyAgivantSectionData {
+  id: string;
+  data: any;
+  blocks: any[];
+}
+
+/**
+ * Returns the Why Agivant comparison table section content.
+ */
+export function getWhyAgivantSection(): WhyAgivantSectionData {
+  const section = (pageData.sections as any[]).find(
+    (s) => s.id === "why-agivant"
+  );
+  if (!section) {
+    throw new Error("Section why-agivant not found in servicesPage.json");
+  }
+  return {
+    id: section.id,
+    data: section.data,
+    blocks: section.blocks ?? [],
+  };
+}
+
+export const servicesHeroData = pageData.hero;
+export const servicesFooterCta = pageData.footerCta;
+
+
+

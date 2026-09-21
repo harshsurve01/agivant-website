@@ -215,7 +215,13 @@
         "spacing": "standard",
         "highlightPosition": "colon",
         "columns": [],
-        "media": null,
+        "media": {
+          "kind": "image",
+          "src": "/images/solutions/landing-page-hero.png",
+          "assetKey": "landing-page-hero",
+          "alt": "Conclusion transition decorative ribbon",
+          "caption": null
+        },
         "cta": null
       },
       "blocks": [

@@ -1,0 +1,44 @@
+/* ==========================================================================
+   Article.module.css
+   Establishes the article-level positioning context and stacking order.
+   ========================================================================== */
+
+.article {
+  position: relative;
+  width: 100%;
+  overflow-x: clip; /* clip horizontal glow bleed to avoid horizontal scrollbar */
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* Scoped ImpactTable modifier for Blog Page 3 ("The Enterprise AI Agent Stack") */
+.extendedRibbonTable {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+  isolation: auto !important;
+  position: relative;
+  z-index: 1;
+}
+
+.extendedRibbonTable [class*="ribbonWrapper"] {
+  top: 18% !important;
+  transform: translateY(-15%) !important;
+  pointer-events: none;
+}
+
+/* Scoped Conclusion ribbon modifier for Enterprise Guide Blog to straddle boundary into previous section */
+.enterpriseGuideConclusionRibbon {
+  top: -38rem !important;
+  pointer-events: none;
+}
+
+/* Ensure Phase2 content sits above overlapping background ribbons */
+.content :global([class*="phase2"]) {
+  position: relative;
+  z-index: 2;
+}
+
