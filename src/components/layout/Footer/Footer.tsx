@@ -106,14 +106,13 @@ export async function Footer({
       className={clsx(
         styles.footer,
         styles[variant],
-        isPartnerCard && styles.partnerCardFooter,
         className
       )}
     >
       {!isMinimal && (
         <Container
           size="xl"
-          className={clsx(styles.top, isPartnerCard && styles.topPartnerCard)}
+          className={styles.top}
         >
           {isPartnerCard ? (
             <PartnerFooterCTA
@@ -140,10 +139,7 @@ export async function Footer({
       {showBrandmark ? (
         <Container
           size="xl"
-          className={clsx(
-            styles.brandmarkContainer,
-            isPartnerCard && styles.brandmarkPartnerCard
-          )}
+          className={styles.brandmarkContainer}
         >
           <FooterBrandmark />
         </Container>
@@ -151,10 +147,7 @@ export async function Footer({
 
       <Container
         size="xl"
-        className={clsx(
-          styles.copyrightContainer,
-          isPartnerCard && styles.copyrightPartnerCard
-        )}
+        className={styles.copyrightContainer}
       >
         <FooterCopyright text={content.copyright} />
       </Container>
