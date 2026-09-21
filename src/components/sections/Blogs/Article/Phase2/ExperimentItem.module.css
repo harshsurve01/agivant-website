@@ -52,10 +52,11 @@
    Same weight/size pairing MetricCard uses for its own card titles.
    -------------------------------------------------------------------- */
 .title {
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-snug);
-  color: #8500df;
+  color: var(--color-brand-primary);
   margin: 0 0 0.5rem; /* ~8px, estimated title->body gap */
 }
 
@@ -64,6 +65,7 @@
    Same body-copy token pairing used throughout Phase1/ExecutiveBrief.
    -------------------------------------------------------------------- */
 .descriptionParagraph {
+  font-family: var(--font-family-base);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-relaxed);
@@ -87,7 +89,7 @@
   width: 100%;
   height: 1px;
   border: none;
-  background-color: var(--color-border-strong);
+  background-color: var(--color-border-default);
   margin: 0;
 }
 
@@ -99,5 +101,6 @@
   .badge {
     width: 3rem;
     height: 3rem;
+    font-size: var(--font-size-lg);
   }
 }

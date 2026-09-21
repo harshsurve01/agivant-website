@@ -1,0 +1,190 @@
+/* ==========================================================================
+   HowYourEnterpriseGetsAmpd.module.css
+   Section 4 of the Services Landing Page: "How your enterprise gets Amp'd".
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding-top: clamp(4.5rem, 8vh, 6.5rem);
+  padding-bottom: clamp(5rem, 9vh, 7.5rem);
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.inner {
+  max-width: 1060px;
+  margin-inline: auto;
+  width: 100%;
+  text-align: left;
+}
+
+.header {
+  margin-bottom: clamp(2.5rem, 5vh, 3.5rem);
+  text-align: left;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-family-base, "Poppins", sans-serif);
+  font-size: clamp(2rem, 3.5vw, 2.25rem); /* 36px on desktop */
+  font-weight: 600;
+  line-height: 50px;
+  letter-spacing: 0;
+  color: var(--color-black, #000000);
+}
+
+.highlight {
+  color: var(--color-brand-primary, #8500DF);
+}
+
+.description {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-family: var(--font-family-base, "Poppins", sans-serif);
+  font-size: 1.125rem; /* 18px */
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0;
+  color: #141517;
+}
+
+/* --------------------------------------------------------------------
+   Steps List & Vertical Rows
+   -------------------------------------------------------------------- */
+.stepList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8, 2rem);
+  padding-block: 1.75rem; /* 28px top and bottom */
+  width: 100%;
+}
+
+.step:first-child {
+  padding-top: 0;
+}
+
+.step:not(:last-child) {
+  border-bottom: 1px solid var(--color-brand-primary, #8500DF);
+}
+
+.step:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: #F3F4F6;
+  font-family: var(--font-family-base, "Poppins", sans-serif);
+  font-size: 1.25rem; /* 20px */
+  font-weight: 600;
+  line-height: 1;
+  color: #000000;
+  user-select: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem; /* ~6px */
+  flex: 1;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-family-base, "Poppins", sans-serif);
+  font-size: 1.25rem; /* 20px */
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0;
+  color: var(--color-brand-primary, #8500DF);
+}
+
+.stepDescription {
+  margin: 0;
+  font-family: var(--font-family-base, "Poppins", sans-serif);
+  font-size: 1.125rem; /* 18px */
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0;
+  color: #141517;
+}
+
+/* --------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .heading {
+    font-size: clamp(1.625rem, 5vw, 2rem);
+    line-height: 1.25;
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 24px;
+    margin-top: 0.75rem;
+  }
+
+  .header {
+    margin-bottom: var(--space-8, 2rem);
+  }
+
+  .step {
+    gap: var(--space-5, 1.25rem);
+    padding-block: 1.25rem;
+  }
+
+  .circle {
+    width: 48px;
+    height: 48px;
+    font-size: 1.0625rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+    line-height: 1.2;
+  }
+
+  .stepDescription {
+    font-size: 1rem;
+    line-height: 23px;
+  }
+}
+
+@media (max-width: 480px) {
+  .step {
+    gap: var(--space-4, 1rem);
+    padding-block: 1.125rem;
+  }
+
+  .circle {
+    width: 42px;
+    height: 42px;
+    font-size: 0.9375rem;
+  }
+
+  .title {
+    font-size: 1.0625rem;
+  }
+
+  .stepDescription {
+    font-size: 0.9375rem;
+    line-height: 22px;
+  }
+}

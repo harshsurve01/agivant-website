@@ -14,6 +14,8 @@ export interface HeroBackgroundProps {
   showGlows?: boolean;
   /** Fine-grained override for Figma ellipse stroke. Defaults to showDecorativeLayers. */
   showEllipse?: boolean;
+  /** Fine-grained override for interactive particle canvas. Defaults to showDecorativeLayers. */
+  showParticles?: boolean;
 }
 
 /**
@@ -54,6 +56,7 @@ export function HeroBackground({
   showDecorativeLayers = true,
   showGlows = showDecorativeLayers,
   showEllipse = showDecorativeLayers,
+  showParticles = showDecorativeLayers,
 }: HeroBackgroundProps = {}) {
   return (
     <div className={styles.experience}>
@@ -97,7 +100,7 @@ export function HeroBackground({
         </>
       )}
 
-      <HeroParticleField />
+      {showParticles && <HeroParticleField />}
 
       {/* Decorative design asset, not generated geometry — exported
           directly from Figma. Treated exactly like the ampd-wordmark

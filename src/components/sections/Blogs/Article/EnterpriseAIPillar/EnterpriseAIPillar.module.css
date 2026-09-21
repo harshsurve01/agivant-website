@@ -1,0 +1,199 @@
+/* ==========================================================================
+   EnterpriseAIPillar.module.css
+   Reusable Single Pillar component for Blog Page 3 ("The 6 Pillars of Enterprise-Grade AI")
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  padding-block: var(--space-8, 2rem) var(--space-12, 3rem);
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Overarching Section Title (e.g. "The 6 Pillars of Enterprise-Grade AI") */
+.sectionTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold, 700);
+  line-height: var(--line-height-tight, 1.2);
+  color: var(--color-text-primary, #000000);
+  margin: 0 0 2.5rem;
+}
+
+/* Pillar Title: "Pillar X: Title" */
+.pillarTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold, 700);
+  line-height: var(--line-height-tight, 1.25);
+  color: var(--color-text-primary, #000000);
+  letter-spacing: var(--letter-spacing-tight, -0.015em);
+  margin: 0 0 1.75rem;
+}
+
+.titlePrefix {
+  color: var(--color-brand-primary, #8500DF);
+  margin-right: 0.35em;
+}
+
+/* Stack of rows */
+.cardsStack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Problem Row: Variant A (Split) */
+.problemRowSplit {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Problem Row: Variant B (Full) */
+.problemRowFull {
+  display: block;
+  width: 100%;
+}
+
+/* Base Glass Card */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2.25rem 2.5rem;
+  border-radius: var(--radius-xl);
+  background-color: var(--surface-glass-bg, #d9d9d920);
+  border: var(--surface-glass-border, 1px solid #ffffff);
+  box-shadow: var(--surface-glass-shadow, inset 0 0 4px rgba(4, 4, 4, 0.1));
+  backdrop-filter: blur(var(--surface-glass-blur, 16px));
+  -webkit-backdrop-filter: blur(var(--surface-glass-blur, 16px));
+  box-sizing: border-box;
+}
+
+/* Card with Ribbon */
+.cardWithRibbon {
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+  min-height: 180px;
+}
+
+.cardLabel {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold, 600);
+  line-height: var(--line-height-snug, 1.35);
+  color: var(--color-brand-primary, #8500DF);
+  margin: 0 0 1rem;
+}
+
+.cardText {
+  font-size: var(--font-size-lg);
+
+  color: var(--color-text-secondary, #000000);
+  margin: 0;
+}
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+  max-width: 62%;
+  width: 100%;
+}
+
+/* Bullets in Implementation Card */
+.bulletList {
+  list-style: disc;
+  padding-inline-start: 1.25rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bulletItem {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular, 400);
+  line-height: var(--line-height-relaxed, 1.7);
+  color: var(--color-text-secondary, #000000);
+}
+
+.bulletItem strong {
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-text-primary, #000000);
+}
+
+/* Ribbon Container inside Implementation & POV cards */
+.ribbonWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 44%;
+  max-width: 480px;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.ribbonImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right center;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 991px) {
+  .cardContent {
+    max-width: 70%;
+  }
+
+  .ribbonWrapper {
+    width: 38%;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-block: var(--space-6, 1.5rem) var(--space-8, 2rem);
+  }
+
+  .problemRowSplit {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .cardsStack {
+    gap: 1.25rem;
+  }
+
+  .card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .cardContent {
+    max-width: 100%;
+  }
+
+  .ribbonWrapper {
+    width: 65%;
+    opacity: 0.15;
+  }
+}

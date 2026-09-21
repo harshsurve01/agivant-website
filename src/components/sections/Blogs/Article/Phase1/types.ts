@@ -37,6 +37,8 @@ export interface Phase1Card {
 }
 
 export interface Phase1Props {
+  /** Optional HTML id for section anchor targeting. */
+  id?: string;
   /** Small label above the heading, e.g. "Phase 1". */
   eyebrow?: string | null;
   /** Section heading, e.g. "Establishing Baselines". */
@@ -46,7 +48,7 @@ export interface Phase1Props {
   /** The metric cards, rendered in order. */
   cards: Phase1Card[];
   /** Optional column count for the grid. Defaults to 2. */
-  columns?: 2 | 3;
+  columns?: 1 | 2 | 3;
   /**
    * Optional ribbon background image path.
    * Defaults to BLOG_HERO_RIBBON. Pass null to disable the ribbon.
@@ -54,8 +56,8 @@ export interface Phase1Props {
   ribbonSrc?: string | null;
   /** Optional closing paragraph rendered below the card grid. */
   closingParagraph?: string | null;
-  /** Which part of the heading is highlighted: 'start', 'end', 'middle', or 'quotes'. Defaults to 'start'. */
-  highlightPosition?: "start" | "end" | "middle" | "quotes";
+  /** Which part of the heading is highlighted: 'start', 'end', 'middle', 'quotes', 'colon', or 'period'. Defaults to 'start'. */
+  highlightPosition?: "start" | "end" | "middle" | "quotes" | "colon" | "period";
   /** How many words to highlight. Defaults to 1. */
   highlightCount?: number;
   /** Starting word index when highlightPosition is 'middle' (0-indexed). */

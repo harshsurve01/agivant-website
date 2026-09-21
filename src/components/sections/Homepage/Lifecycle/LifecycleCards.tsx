@@ -1,33 +1,51 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { LifecycleCard } from "./LifecycleCard";
+import { LifecycleCard, type LifecycleCardStage } from "./LifecycleCard";
 import { LifecycleIndicator } from "./LifecycleIndicator";
+import { NumberedIndicator } from "./NumberedIndicator";
 import { LifecycleModal } from "./LifecycleModal";
-import type { LifecycleStage } from "@/data/lifecycle";
 import styles from "./LifecycleCards.module.css";
 
 const AUTO_ROTATE_INTERVAL_MS = 5000;
 
-interface LifecycleCardsProps {
-  stages: LifecycleStage[];
+export interface LifecycleCardsProps {
+  stages: LifecycleCardStage[];
+  initialActiveIndex?: number;
+  autoRotate?: boolean;
+  autoRotateIntervalMs?: number;
+  enableModal?: boolean;
+  indicatorVariant?: "dots" | "numbered";
+  renderIndicator?: (props: {
+    totalStages: number;
+    activeIndex: number;
+    onSelectIndex: (index: number) => void;
+  }) => React.ReactNode;
 }
 
 /**
  * LifecycleCards
  *
  * Renders all 5 Lifecycle stages side-by-side in a horizontal grid with:
- * - Viewport-aware automatic 5-second active-card rotation (runs only when in viewport)
+ * - Viewport-aware automatic active-card rotation (runs only when in viewport)
  * - Hover priority override (pauses automatic rotation during user interaction)
  * - Seamless resume from current active index on mouse leave or re-entering viewport
- * - Coordinated indicator tracking
+ * - Customizable indicator renderer (e.g. NumberedIndicator)
  * - Stage details modal on "Learn more" click
  */
-export function LifecycleCards({ stages }: LifecycleCardsProps) {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+export function LifecycleCards({
+  stages,
+  initialActiveIndex = 0,
+  autoRotate = true,
+  autoRotateIntervalMs = AUTO_ROTATE_INTERVAL_MS,
+  enableModal = true,
+  indicatorVariant = "dots",
+  renderIndicator,
+}: LifecycleCardsProps) {
+  const [activeIndex, setActiveIndex] = useState<number>(initialActiveIndex);
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const [isInView, setIsInView] = useState<boolean>(false);
-  const [activeModalStage, setActiveModalStage] = useState<LifecycleStage | null>(null);
+  const [activeModalStage, setActiveModalStage] = useState<LifecycleCardStage | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -46,14 +64,16 @@ export function LifecycleCards({ stages }: LifecycleCardsProps) {
   }, []);
 
   useEffect(() => {
-    if (!isInView || isPaused || activeModalStage !== null || stages.length <= 1) return;
+    if (!autoRotate || !isInView || isPaused || activeModalStage !== null || stages.length <= 1) {
+      return;
+    }
 
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % stages.length);
-    }, AUTO_ROTATE_INTERVAL_MS);
+    }, autoRotateIntervalMs);
 
     return () => clearInterval(timer);
-  }, [isInView, isPaused, activeModalStage, stages.length]);
+  }, [autoRotate, autoRotateIntervalMs, isInView, isPaused, activeModalStage, stages.length]);
 
   return (
     <div
@@ -71,22 +91,44 @@ export function LifecycleCards({ stages }: LifecycleCardsProps) {
             stage={stage}
             isActive={activeIndex === index}
             onMouseEnter={() => setActiveIndex(index)}
-            onLearnMore={() => setActiveModalStage(stage)}
+            onClick={() => setActiveIndex(index)}
+            onLearnMore={() => {
+              if (enableModal) {
+                setActiveModalStage(stage);
+              }
+            }}
           />
         ))}
       </div>
 
-      <LifecycleIndicator
-        totalStages={stages.length}
-        activeIndex={activeIndex}
-      />
+      {renderIndicator ? (
+        renderIndicator({
+          totalStages: stages.length,
+          activeIndex,
+          onSelectIndex: (index) => setActiveIndex(index),
+        })
+      ) : indicatorVariant === "numbered" ? (
+        <NumberedIndicator
+          totalStages={stages.length}
+          activeIndex={activeIndex}
+          onSelectIndex={(index) => setActiveIndex(index)}
+        />
+      ) : (
+        <LifecycleIndicator
+          totalStages={stages.length}
+          activeIndex={activeIndex}
+        />
+      )}
 
-      <LifecycleModal
-        isOpen={activeModalStage !== null}
-        onClose={() => setActiveModalStage(null)}
-        title={activeModalStage?.title ?? ""}
-        details={activeModalStage?.details ?? []}
-      />
+      {enableModal && (
+        <LifecycleModal
+          isOpen={activeModalStage !== null}
+          onClose={() => setActiveModalStage(null)}
+          title={activeModalStage?.title ?? ""}
+          details={activeModalStage?.details ?? []}
+        />
+      )}
     </div>
   );
 }
+

@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { ExperimentItem } from "./ExperimentItem";
 import type { Phase2Props } from "./types";
@@ -42,6 +43,7 @@ import styles from "./Phase2.module.css";
  * with zero changes required on this end.
  */
 export function Phase2({
+  id,
   eyebrow,
   title,
   description,
@@ -50,6 +52,11 @@ export function Phase2({
   highlightCount,
 }: Phase2Props) {
   const renderHeading = () => {
+    const headingClassName = clsx(
+      styles.title,
+      !description && styles.titleWithoutDesc
+    );
+
     if (
       highlightPosition === "colon" ||
       (!highlightPosition && title.includes(":"))
@@ -59,7 +66,7 @@ export function Phase2({
         const highlighted = title.slice(0, colonIdx + 1);
         const plain = title.slice(colonIdx + 1);
         return (
-          <h2 className={styles.title}>
+          <h2 className={headingClassName}>
             <span className={styles.highlight}>{highlighted}</span>
             {plain}
           </h2>
@@ -74,9 +81,21 @@ export function Phase2({
       const highlighted = words.slice(0, count).join(" ");
       const rest = words.slice(count).join(" ");
       return (
-        <h2 className={styles.title}>
+        <h2 className={headingClassName}>
           <span className={styles.highlight}>{highlighted}</span>
           {rest ? ` ${rest}` : ""}
+        </h2>
+      );
+    }
+
+    if (highlightPosition === "end") {
+      const count = Math.min(highlightCount ?? 1, words.length);
+      const prefix = words.slice(0, -count).join(" ");
+      const highlighted = words.slice(-count).join(" ");
+      return (
+        <h2 className={headingClassName}>
+          {prefix ? `${prefix} ` : ""}
+          <span className={styles.highlight}>{highlighted}</span>
         </h2>
       );
     }
@@ -84,7 +103,7 @@ export function Phase2({
     // Default: first word plain, rest highlighted (Blog 1 backwards-compatible behavior)
     const rest = words.slice(1).join(" ");
     return (
-      <h2 className={styles.title}>
+      <h2 className={headingClassName}>
         {words[0]}
         {rest ? " " : ""}
         <span className={styles.highlight}>{rest}</span>
@@ -93,12 +112,13 @@ export function Phase2({
   };
 
   return (
-    <section className={styles.phase2}>
+    <section id={id} className={styles.phase2}>
       <Container>
         {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
         {renderHeading()}
-        <p className={styles.description}>{description}</p>
-
+        {description ? (
+          <p className={styles.description}>{description}</p>
+        ) : null}
 
         <div className={styles.list}>
           {items.map((item, index) => (

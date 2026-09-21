@@ -1,8 +1,11 @@
+import clsx from "clsx";
 import type { Phase1Card } from "./types";
 import styles from "./MetricCard.module.css";
 
 export interface MetricCardProps {
   card: Phase1Card;
+  /** Whether the card should expand to full width of container (e.g. single-column layout). */
+  fullWidth?: boolean;
 }
 
 /**
@@ -24,13 +27,24 @@ export interface MetricCardProps {
  * Server Component: no "use client", no hooks, no state, no data
  * imports. Every value arrives via props.
  */
-export function MetricCard({ card }: MetricCardProps) {
+export function MetricCard({ card, fullWidth }: MetricCardProps) {
   const hasReferences = Array.isArray(card.references) && card.references.length > 0;
+  const paragraphs = card.description
+    ? card.description.split(/\n\s*\n/).filter(Boolean)
+    : [];
 
   return (
-    <article className={styles.card}>
+    <article className={clsx(styles.card, fullWidth && styles.fullWidth)}>
       <h3 className={styles.title}>{card.title}</h3>
-      <p className={styles.description}>{card.description}</p>
+      {paragraphs.length > 0 ? (
+        paragraphs.map((paragraph, idx) => (
+          <p key={idx} className={styles.description}>
+            {paragraph}
+          </p>
+        ))
+      ) : (
+        <p className={styles.description}>{card.description}</p>
+      )}
 
       {hasReferences && (
         <>

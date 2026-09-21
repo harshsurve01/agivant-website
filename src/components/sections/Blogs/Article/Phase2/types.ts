@@ -33,6 +33,8 @@ export interface Phase2Item {
  * Phase1, just with a numbered-list layout instead of a card grid.
  */
 export interface Phase2Props {
+  /** Optional HTML id for section anchor targeting. */
+  id?: string;
   /** Small label above the heading, e.g. "Phase 2". */
   eyebrow?: string | null;
   /**
@@ -46,8 +48,8 @@ export interface Phase2Props {
    * Phase2.tsx, same pattern as the other two sections.
    */
   title: string;
-  /** Intro copy beneath the heading. */
-  description: string;
+  /** Intro copy beneath the heading. Optional. */
+  description?: string | null;
   /** The numbered items, rendered in order. */
   items: Phase2Item[];
   /** Which part of the heading receives the brand highlight: 'start', 'end', or 'colon'. Defaults to 'end' (or 'colon' if title contains ':'). */

@@ -1,0 +1,20 @@
+/* ==========================================================================
+   BlogArticlePage.module.css
+   Page-level scoped styles for blog article pages.
+   ========================================================================== */
+
+/* 
+   For "Is Your Tech Sabotaging Business?" blog page:
+   Desktop retains explicit 4-line structure per Figma.
+   On screens <= 768px, spans become inline so text wraps responsively and naturally
+   without forcing awkward 1-2 word breaks or horizontal overflow.
+*/
+@media (max-width: 768px) {
+  .techSabotagingFooter [class*="headingLine"] {
+    display: inline;
+  }
+
+  .techSabotagingFooter [class*="headingLine"]::after {
+    content: " ";
+  }
+}

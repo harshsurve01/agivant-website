@@ -1,0 +1,168 @@
+/* ==========================================================================
+   Hero.module.css (Services Landing Page: /services)
+
+   Owns layout, spacing, and typography composition for the Services Hero.
+   Designed to match the reference screenshot with high visual fidelity:
+   - Clean, light background with subtle warm radial ambient gradient
+   - Large centered hero heading in Agivant purple (#8500DF)
+   - Supporting description with balanced 2-line layout
+   - Primary CTA button ("Talk to an Amp'd specialist ↗")
+   - Flowing wave artwork (/images/services/hero-ribbon.png) positioned
+     underneath the content
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: clamp(4.5rem, 9.5vh, 6.75rem);
+  padding-bottom: clamp(14rem, 24vh, 22rem);
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: clamp(2.35rem, 4.2vw, 3.75rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.18;
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-brand-primary);
+  max-width: 58rem;
+  margin: 0;
+}
+
+.headingLine {
+  display: block;
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.6;
+  color: var(--color-neutral-600);
+  max-width: 48.5rem;
+  margin-top: var(--space-6);
+  margin-bottom: 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--space-8);
+}
+
+/* --------------------------------------------------------------------
+   Flowing wave artwork (PageRibbon integration)
+   Positioned underneath the hero content layer across the lower area.
+   -------------------------------------------------------------------- */
+.ribbonWrapper {
+  position: absolute;
+  inset-inline: 0;
+  bottom: -15%;
+  width: 100%;
+  z-index: 5;
+  pointer-events: none;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  line-height: 0;
+}
+
+.ribbonImage {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------- */
+@media (min-width: 1921px) {
+  .ribbonImage {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .content {
+    padding-top: var(--space-12);
+    padding-bottom: clamp(11rem, 20vh, 16rem);
+  }
+
+  .heading {
+    font-size: clamp(2.15rem, 5vw, 2.9rem);
+    max-width: 48rem;
+  }
+
+  .description {
+    max-width: 42rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .content {
+    padding-top: var(--space-10);
+    padding-bottom: clamp(8rem, 18vh, 12rem);
+  }
+
+  .heading {
+    font-size: clamp(1.85rem, 6vw, 2.35rem);
+    line-height: 1.22;
+  }
+
+  .description {
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+    margin-top: var(--space-5);
+  }
+
+  .actions {
+    margin-top: var(--space-6);
+  }
+
+  .ribbonImage {
+    min-width: 768px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding-top: var(--space-8);
+    padding-bottom: 7rem;
+  }
+
+  .heading {
+    font-size: 1.7rem;
+  }
+
+  .description {
+    font-size: var(--font-size-sm);
+  }
+
+  .ribbonImage {
+    min-width: 600px;
+  }
+}

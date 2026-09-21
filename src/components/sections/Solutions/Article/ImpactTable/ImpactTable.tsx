@@ -78,6 +78,19 @@ export function ImpactTable({
       );
     }
 
+    if (highlightPosition === "end") {
+      const words = heading.split(" ");
+      const count = highlightCount ?? 1;
+      const prefix = words.slice(0, -count).join(" ");
+      const highlighted = words.slice(-count).join(" ");
+      return (
+        <>
+          {prefix ? `${prefix} ` : ""}
+          <span className={styles.highlight}>{highlighted}</span>
+        </>
+      );
+    }
+
     return heading;
   };
 

@@ -16,6 +16,7 @@
    rhythm is reused rather than invented. */
 .phase2 {
   width: 100%;
+   min-height: auto;
   padding-block: var(--space-16);
 }
 
@@ -41,12 +42,17 @@
    Phase1 — see Phase2Props.title doc comment).
    -------------------------------------------------------------------- */
 .title {
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-tight);
   color: var(--color-text-primary);
   margin: 0 0 0.75rem; /* 12px, estimated from screenshot's tighter title->description gap vs. Phase1 */
+}
+
+.titleWithoutDesc {
+  margin-bottom: 2.5rem;
 }
 
 .highlight {
@@ -58,6 +64,7 @@
    Same token pairing as Phase1's own intro paragraph.
    -------------------------------------------------------------------- */
 .description {
+  font-family: var(--font-family-base);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-relaxed);
@@ -75,4 +82,18 @@
 .list {
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: clamp(1.75rem, 6vw, var(--font-size-4xl));
+  }
+
+  .phase2 {
+    padding-block: var(--space-10);
+  }
+
+  .titleWithoutDesc {
+    margin-bottom: 1.5rem;
+  }
 }

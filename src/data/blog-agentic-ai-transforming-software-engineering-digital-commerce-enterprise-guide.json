@@ -194,7 +194,7 @@
           "id": "human-in-the-loop",
           "type": "numberedItem",
           "number": 7,
-          "index": "07cc",
+          "index": "07",
           "title": "Human-in-the-Loop Operating Model",
           "body": "Despite advances, GenAI remains probabilistic and therefore prone to error. Enterprises should establish a human-in-the-loop policy that defines where oversight is mandatory.\n\nThe rule of thumb: any workflow that alters data, moves money, or changes customer state must require human approval. In such workflows, GenAI should accelerate human productivity by generating drafts, recommendations, or insights, while final authority remains with professionals.\n\nThis model provides both accountability and speed. It prevents uncontrolled automation while still delivering efficiency gains.",
           "items": [],
@@ -215,7 +215,13 @@
         "spacing": "standard",
         "highlightPosition": "colon",
         "columns": [],
-        "media": null,
+        "media": {
+          "kind": "image",
+          "src": "/images/solutions/landing-page-hero.png",
+          "assetKey": "landing-page-hero",
+          "alt": "Conclusion transition decorative ribbon",
+          "caption": null
+        },
         "cta": null
       },
       "blocks": [

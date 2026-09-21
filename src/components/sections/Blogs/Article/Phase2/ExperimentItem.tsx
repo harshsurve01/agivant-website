@@ -24,7 +24,7 @@ export interface ExperimentItemProps {
  * imports. Every value arrives via props.
  */
 export function ExperimentItem({ item, showDivider }: ExperimentItemProps) {
-  const descriptionParagraphs = item.description
+  const descriptionParagraphs = (item.description ?? "")
     .split(/\n\s*\n/g)
     .map((p) => p.trim())
     .filter(Boolean);

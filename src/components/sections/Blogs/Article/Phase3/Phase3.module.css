@@ -11,6 +11,7 @@
 
 .phase3 {
   width: 100%;
+   min-height: auto;
   padding-block: var(--space-16); /* same section rhythm as every other Article section */
 }
 

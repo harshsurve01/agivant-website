@@ -1,0 +1,366 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "servicesLanding",
+  "slug": "/services",
+  "title": "Services",
+  "seo": {
+    "title": "500+ agents in production | Agivant Services",
+    "description": "Turn AI from isolated wins into an enterprise-wide operating advantage. Agivant engineers the agentic AI, applications, platforms, data and operations that make the autonomous enterprise work.",
+    "canonical": "/services",
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "500+ agents in production.<br>Every one started as a<br>data problem.",
+    "subtitle": null,
+    "summary": "Turn AI from isolated wins into an enterprise-wide operating advantage. Agivant engineers the agentic AI, applications, platforms, data and operations that make the autonomous enterprise work.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/services/hero-ribbon.png",
+      "assetKey": "services-hero-ribbon",
+      "alt": "Agivant flowing purple ribbon artwork",
+      "caption": null,
+      "width": 1920,
+      "height": 1080
+    },
+    "primaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": "/contact",
+      "external": false
+    },
+    "secondaryCta": null
+  },
+  "sections": [
+    {
+      "id": "running-today-across-enterprises",
+      "type": "stats",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Running Today, Across Enterprises",
+        "description": "Agent-led work already in production, measured and accountable.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "stat-agents-in-production",
+          "type": "metric",
+          "value": "500+",
+          "label": "AI agents in production",
+          "detail": null
+        },
+        {
+          "id": "stat-autonomous-workflows",
+          "type": "metric",
+          "value": "100+",
+          "label": "Autonomous workflows in production",
+          "detail": null
+        },
+        {
+          "id": "stat-ai-decisions",
+          "type": "metric",
+          "value": "30M+",
+          "label": "AI decisions and actions a year",
+          "detail": null
+        },
+        {
+          "id": "stat-automations-running",
+          "type": "metric",
+          "value": "1,500+",
+          "label": "Automations running",
+          "detail": null
+        },
+        {
+          "id": "stat-engineering-hours",
+          "type": "metric",
+          "value": "~150,000+",
+          "label": "Engineering hours returned a year",
+          "detail": null
+        },
+        {
+          "id": "stat-new-workflow-cadence",
+          "type": "metric",
+          "value": "Every 5 days",
+          "label": "A new autonomous workflow reaches production",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "id": "how-agivant-works-with-you",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "How Agivant Works With You",
+        "description": "Every enterprise is at a different point on the path from automation to autonomy.\nAgents get most of the attention, and they work once the layers beneath them do. We fix the data, build and scale the models, and design the agentic systems, starting from where your business actually is.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "cloud-platform-engineering",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Cloud & Platform Engineering",
+          "body": "The infrastructure your data, models, and agents will all eventually run on",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/architect.png",
+            "assetKey": "lifecycle-architect",
+            "alt": "Cloud & Platform Engineering stage visualization",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "START HERE IF → your systems run in isolation from each other"
+          ]
+        },
+        {
+          "id": "data-engineering-advanced-analytics",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Data Engineering & Advanced Analytics",
+          "body": "Clean, reliable data and analytics your teams can actually trust and act on",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/build1.png",
+            "assetKey": "lifecycle-build",
+            "alt": "Data Engineering & Advanced Analytics stage visualization",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "START HERE IF → Your teams trust different numbers for the same thing"
+          ]
+        },
+        {
+          "id": "ai-ml-engineering",
+          "type": "card",
+          "eyebrow": null,
+          "title": "AI & ML Engineering",
+          "body": "Models and RAG systems tuned to your domain, from spec to production",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/trust.png",
+            "assetKey": "lifecycle-tune",
+            "alt": "AI & ML Engineering stage visualization",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "START HERE IF → Your AI works in a demo and struggles in production"
+          ]
+        },
+        {
+          "id": "mlops-scalable-ml-platforms",
+          "type": "card",
+          "eyebrow": null,
+          "title": "MLOps & Scalable ML Platforms",
+          "body": "The release path that takes a model from notebook to production",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/operate.png",
+            "assetKey": "lifecycle-operate",
+            "alt": "MLOps & Scalable ML Platforms stage visualization",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "START HERE IF → Your models work great until real traffic hits"
+          ]
+        },
+        {
+          "id": "agentic-ai-agentops",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Agentic AI & AgentOps",
+          "body": "Autonomous agents that act on your behalf with accountability",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/evolve.png",
+            "assetKey": "lifecycle-evolve",
+            "alt": "Agentic AI & AgentOps stage visualization",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "START HERE IF → The foundation is ready and it's time to put it to work"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "how-your-enterprise-gets-ampd",
+      "type": "numbered_list",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "How your enterprise gets Amp'd",
+        "description": "Four moves, whichever pillar the work starts in.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "embed-in-48-hours",
+          "type": "numberedItem",
+          "number": "01",
+          "title": "Embed in 48 hours",
+          "body": "Forward Deployed Engineers join your team and start working in your environment from day two.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "find-the-first-opportunity",
+          "type": "numberedItem",
+          "number": "02",
+          "title": "Find the first opportunity",
+          "body": "Together, we find the most repetitive, high-effort workflow and choose where AI should start.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "put-ampd-to-work",
+          "type": "numberedItem",
+          "number": "03",
+          "title": "Put Amp'd to work",
+          "body": "Agivant’s proven AI Engineering toolkit: Bolt, production-grade agents and reusable engineering assets.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "prove-it-in-production",
+          "type": "numberedItem",
+          "number": "04",
+          "title": "Prove it in production",
+          "body": "We run it in production, watch how it performs, and measure the business impact.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "amplify-what-works",
+          "type": "numberedItem",
+          "number": "05",
+          "title": "Amplify what works",
+          "body": "Each use case leaves behind code, patterns and reusable engineering assets, so every build amplifies the next.",
+          "items": [],
+          "media": null
+        }
+      ]
+    },
+    {
+      "id": "why-agivant",
+      "type": "comparison_table",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Why Agivant?",
+        "description": null,
+        "align": "center",
+        "highlightPosition": "start",
+        "highlightCount": 1,
+        "columns": [
+          "Dimension",
+          "Traditional",
+          "Agivant"
+        ],
+        "media": {
+          "kind": "image",
+          "src": "/images/solutions/landing-page-hero.png",
+          "alt": "Decorative background ribbon",
+          "assetKey": "landing-page-hero",
+          "caption": null
+        },
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "workforce",
+          "type": "tableRow",
+          "cells": [
+            "Workforce",
+            "Developers with AI tooling added",
+            "100% AI/ML by composition"
+          ]
+        },
+        {
+          "id": "onboarding",
+          "type": "tableRow",
+          "cells": [
+            "Onboarding",
+            "Ramp quarter, transfer lag",
+            "Delivering in 48 hours"
+          ]
+        },
+        {
+          "id": "architecture",
+          "type": "tableRow",
+          "cells": [
+            "Architecture",
+            "Automation scripts and runbooks",
+            "Multi-agent orchestration with governance"
+          ]
+        },
+        {
+          "id": "scaling-model",
+          "type": "tableRow",
+          "cells": [
+            "Scaling model",
+            "Linear headcount growth",
+            "Autonomous scale, same team"
+          ]
+        },
+        {
+          "id": "cost-curve",
+          "type": "tableRow",
+          "cells": [
+            "Cost curve",
+            "More volume, more people",
+            "More volume, more agents"
+          ]
+        },
+        {
+          "id": "reference-posture",
+          "type": "tableRow",
+          "cells": [
+            "Reference posture",
+            "Selected references",
+            "100% referenceable"
+          ]
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Ready To Get Your<br>Enterprises",
+    "subheading": null,
+    "partner": null,
+    "media": {
+      "kind": "animation",
+      "src": "/videos/ampd-Logo-Animation.gif",
+      "assetKey": "ampd-logo-animation",
+      "alt": "Amp'd",
+      "caption": null
+    },
+    "primaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": "/contact",
+      "external": false
+    },
+    "secondaryCta": null
+  }
+}

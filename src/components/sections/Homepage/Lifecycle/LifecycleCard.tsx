@@ -2,10 +2,25 @@ import Image from "next/image";
 import type { LifecycleStage } from "@/data/lifecycle";
 import styles from "./LifecycleCard.module.css";
 
-interface LifecycleCardProps {
-  stage: LifecycleStage;
+export interface LifecycleCardStage {
+  id: string;
+  title: string;
+  description: string;
+  status?: string;
+  media: {
+    kind?: string;
+    src: string;
+    alt?: string | null;
+  };
+  details?: string[];
+  callout?: string;
+}
+
+export interface LifecycleCardProps {
+  stage: LifecycleCardStage;
   isActive?: boolean;
   onMouseEnter?: () => void;
+  onClick?: () => void;
   onLearnMore?: () => void;
 }
 
@@ -13,7 +28,7 @@ interface LifecycleCardProps {
  * LifecycleCard
  *
  * Renders a single portrait lifecycle card with title, description,
- * and bottom-aligned illustration.
+ * callout or learn more button, and bottom-aligned illustration.
  *
  * Supports default (253x436, img 180px) and active (282x486, img 248px) states.
  */
@@ -21,28 +36,42 @@ export function LifecycleCard({
   stage,
   isActive = false,
   onMouseEnter,
+  onClick,
   onLearnMore,
 }: LifecycleCardProps) {
+  const hasCallout = Boolean(stage.callout);
+
   return (
     <article
       className={`${styles.card} ${isActive ? styles.cardActive : styles.cardDefault}`}
       data-lifecycle-stage={stage.id}
       data-active={isActive}
       onMouseEnter={onMouseEnter}
+      onClick={onClick}
     >
       <div className={styles.content}>
         <h3 className={styles.title}>{stage.title}</h3>
         <p className={styles.description}>{stage.description}</p>
-        <button
-          type="button"
-          className={styles.learnMore}
-          onClick={(e) => {
-            e.stopPropagation();
-            onLearnMore?.();
-          }}
-        >
-          Learn more &gt;
-        </button>
+        {hasCallout ? (
+          <div
+            className={`${styles.callout} ${
+              isActive ? styles.calloutActive : ""
+            }`}
+          >
+            {stage.callout}
+          </div>
+        ) : (
+          <button
+            type="button"
+            className={styles.learnMore}
+            onClick={(e) => {
+              e.stopPropagation();
+              onLearnMore?.();
+            }}
+          >
+            Learn more &gt;
+          </button>
+        )}
       </div>
 
       <div
@@ -50,7 +79,7 @@ export function LifecycleCard({
       >
         <Image
           src={stage.media.src}
-          alt={stage.media.alt}
+          alt={stage.media.alt || stage.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 282px"
           className={styles.image}
@@ -59,3 +88,4 @@ export function LifecycleCard({
     </article>
   );
 }
+

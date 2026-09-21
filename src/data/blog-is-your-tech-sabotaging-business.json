@@ -11,12 +11,12 @@
   },
   "hero": {
     "eyebrow": null,
-    "title": "Is your Tech Sabotaging Business? Four Critical Digital Commerce Challenges Impacting your Business (And How to Fix Them)",
+    "title": "Is your Tech Sabotaging Business?<br>Four Critical Digital Commerce<br>Challenges Impacting your<br>Business (And How to Fix Them)",
     "subtitle": null,
     "summary": "Four critical digital commerce bottlenecks—from sluggish load times to fragmented data—and the architectural remedies to fix them.",
     "authors": [
       {
-        "name": "Praveen Nirgune",
+        "name": "Praveen Nirapure",
         "role": "Innovation & Solutions"
       },
       {
@@ -43,14 +43,15 @@
         "description": null,
         "columns": [],
         "media": null,
-        "cta": null
+        "cta": null,
+        "spacing": "standard"
       },
       "blocks": [
         {
           "id": "executive-brief-copy",
           "type": "richText",
           "heading": null,
-          "body": null
+          "body": "The world of digital-commerce is booming, and with good reason. Global e-commerce sales are projected to reach $8 trillion by 2025. For mid-market businesses, establishing a strong online presence is essential for growth and staying competitive. However, navigating the digital landscape comes with its own set of unique challenges.\n\nUS businesses bleed a staggering $4.6 trillion annually due to inefficient checkout journeys and a lack of secure payment choices. Is your business unknowingly contributing to that loss? If you aren't laser-focused on the underlying technology driving your online store, the answer might be a painful “yes.” Outdated technology, slow sites, and missed opportunities could be siphoning away your online sales. Let’s dig into common trouble spots and talk about solutions that can boost your bottom line."
         }
       ]
     },
@@ -62,9 +63,15 @@
       "data": {
         "eyebrow": null,
         "heading": "Slow loading times hurt conversions: Is Your Site Too Slow?",
-        "description": "Today’s online shoppers are notoriously impatient. If your site takes even a second too long to load, you can lose customers before they see your offer.",
+        "description": "Today’s online shoppers are notoriously impatient. If your site takes an age to load, they'll bounce to a competitor without a second thought. Did you know that a one-second delay can decrease conversions by up to 7%? Here's the fix:",
         "columns": [],
-        "media": null,
+        "media": {
+          "kind": "image",
+          "src": "/images/blogs/page-ribbon1.png",
+          "assetKey": "page-ribbon1",
+          "alt": "Flowing decorative ribbon",
+          "caption": null
+        },
         "cta": null
       },
       "blocks": [
@@ -72,8 +79,8 @@
           "id": "image-tricks",
           "type": "card",
           "eyebrow": null,
-          "title": "Image Tricks",
-          "body": "Smaller image files mean faster loading, but visual quality still matters. Use modern image formats and optimized assets.",
+          "title": "Image Tricks:",
+          "body": "Smaller image files mean faster loading, but you don’t have to sacrifice quality. There are plenty of easy optimization tricks out there.",
           "media": null,
           "cta": null,
           "items": []
@@ -82,8 +89,8 @@
           "id": "cdns",
           "type": "card",
           "eyebrow": null,
-          "title": "CDNs to the Rescue",
-          "body": "Content Delivery Networks distribute assets closer to customers so pages load faster wherever they are.",
+          "title": "CDNs to the Rescue:",
+          "body": "Content Delivery Networks are like magic for speed. They get your product pages to customers faster, no matter where they’re located.",
           "media": null,
           "cta": null,
           "items": []
@@ -92,8 +99,8 @@
           "id": "pwas",
           "type": "card",
           "eyebrow": null,
-          "title": "The Power of PWAs",
-          "body": "Progressive Web Apps can make mobile experiences feel faster and more app-like.",
+          "title": "The Power of PWAs:",
+          "body": "Make your mobile site feel snappy like a native app with Progressive Web App technology. It’s a game-changer.",
           "media": null,
           "cta": null,
           "items": []
@@ -102,8 +109,8 @@
           "id": "technical",
           "type": "card",
           "eyebrow": null,
-          "title": "Getting More Technical",
-          "body": "For deeper performance issues, review asynchronous loading, network requests, caching and other delivery bottlenecks.",
+          "title": "Getting More Technical:",
+          "body": "If you’re seeing serious slowdowns, especially during sales peaks, your tech stack might need an upgrade. This is where, calling in an expert like Agivant to assess the situation can help.",
           "media": null,
           "cta": null,
           "items": []
@@ -118,13 +125,13 @@
       "data": {
         "eyebrow": null,
         "heading": "Checkout Friction = Lost Sales. How Smooth is Yours?",
-        "description": "Intricate checkout journeys drive potential customers away. Customers are increasingly impatient when it comes to payment and security friction.",
+        "description": "Inefficient checkouts journeys drive potential customers away. Customers are increasingly more impatient when it comes to their choice of payment and security is always on top of the mind. Additionally business are required to be compliances like PCI DSS if they are handling customer payment information.",
         "columns": [],
         "media": null,
         "cta": {
           "enabled": true,
           "label": "Read case study",
-          "href": null,
+          "href": "/case-studies",
           "external": false
         }
       },
@@ -133,7 +140,7 @@
           "id": "checkout-friction-copy",
           "type": "richText",
           "heading": null,
-          "body": null
+          "body": "Inefficient checkouts journeys drive potential customers away. Customers are increasingly more impatient when it comes to their choice of payment and security is always on top of the mind. Additionally business are required to be compliances like PCI DSS if they are handling customer payment information."
         }
       ]
     },
@@ -146,6 +153,8 @@
         "eyebrow": null,
         "heading": "Buying must be effortless:",
         "description": null,
+        "highlightPosition": "start",
+        "highlightCount": 2,
         "columns": [],
         "media": null,
         "cta": null
@@ -155,8 +164,8 @@
           "id": "streamlined-flow",
           "type": "numberedItem",
           "number": 1,
-          "title": "Streamlined Flow",
-          "body": "Minimize form fields, offer guest checkout options and remove unnecessary steps.",
+          "title": "Streamlined Flows:",
+          "body": "Minimize form fields, offer guest checkout options. Streamlining the process requires careful analysis of existing flows and an in-depth understanding of customer preferences",
           "items": [],
           "media": null
         },
@@ -164,8 +173,8 @@
           "id": "pci-gateway",
           "type": "numberedItem",
           "number": 2,
-          "title": "PCI-Compliant Gateway",
-          "body": "Integrate a trusted payment gateway with seamless UX and strong compliance.",
+          "title": "PCI-Compliant Gateways:",
+          "body": "Integrate multiple, popular gateways with seamless experiences. Partnering with an e-commerce expert can ensure you provide the most popular, secure options, integrated seamlessly within your checkout experience.",
           "items": [],
           "media": null
         },
@@ -173,8 +182,8 @@
           "id": "security",
           "type": "numberedItem",
           "number": 3,
-          "title": "Security That Doesn't Slow Things Down",
-          "body": "Protect customer data while keeping authentication and fraud prevention unobtrusive.",
+          "title": "Security That Doesn’t Slow Things Down",
+          "body": "Protect customer data (it's essential!) but do it in a way that’s both robust and invisible to the customer. Achieving this balance requires expertise in the latest security protocols and fraud prevention technologies.",
           "items": [],
           "media": null
         },
@@ -183,7 +192,7 @@
           "type": "numberedItem",
           "number": 4,
           "title": "Tokenization & Risk Scoring Systems",
-          "body": "Enhance security without adding customer friction.",
+          "body": "Enhance security without adding customer hassle.",
           "items": [],
           "media": null
         }
@@ -196,9 +205,11 @@
       "conditions": null,
       "data": {
         "eyebrow": null,
-        "heading": "Inability to Tap Into New-age Channels for Customer Engagement Stifle Growth. Meet Customers Where They Are: Expand Your Reach",
-        "description": null,
-        "columns": [],
+        "heading": "Inability to Tap Into New - age Channels for Customer Engagement Stifle Growth. Meet Customers Where They Are: Expand Your Reach",
+        "description": "If you’re not playing the social commerce game, you’re missing out big time. These channels aren’t nice-to-haves anymore, they’re essential. Social commerce is poised to grow to more than $2 trillion by 2025.",
+        "highlightPosition": "period",
+        "columnCount": 1,
+        "columns": 1,
         "media": null,
         "cta": null
       },
@@ -207,8 +218,8 @@
           "id": "seamless",
           "type": "card",
           "eyebrow": null,
-          "title": "Seamless is the Goal",
-          "body": "Customers should feel a natural extension of your main store across every engagement channel.",
+          "title": "Seamless is the Goal:",
+          "body": "Your social media shop needs to feel like a natural extension of your main store. Achieving this requires deep knowledge of how to unify your shopper journey across platforms.\n\nRecently at Agivant, we have helped our customers integrate their e-commerce platform to Meta within a week!",
           "media": null,
           "cta": null,
           "items": []
@@ -217,8 +228,8 @@
           "id": "chatbots",
           "type": "card",
           "eyebrow": null,
-          "title": "Chatbots Are Your 24/7 Sales Assistants",
-          "body": "Answer questions, offer recommendations and guide customers through conversational commerce.",
+          "title": "Chatbots Are Your 24/7 Sales Assistants:",
+          "body": "Answer questions, offer recommendations, anytime, on the channels your customers use most. Harnessing the power of conversational AI makes this possible.",
           "media": null,
           "cta": null,
           "items": []
@@ -228,7 +239,7 @@
           "type": "card",
           "eyebrow": null,
           "title": "AR Gets Personal",
-          "body": "Let customers experience products in their own space and increase engagement in commerce experiences.",
+          "body": "Let customers see products in their own space? That’s powerful, and increasingly expected within the e-commerce experience. Implementing these cutting-edge technologies takes careful planning and execution.",
           "media": null,
           "cta": null,
           "items": []
@@ -243,9 +254,17 @@
       "data": {
         "eyebrow": null,
         "heading": "Data: The Key to Smarter Growth",
-        "description": "Data should be the intelligence behind your tools.",
-        "columns": [],
-        "media": null,
+        "description": "Data shouldn’t be intimidating. With the right tools, it’s like a crystal ball for your business. Here’s how to harness its power:",
+        "highlightPosition": "colon",
+        "columnCount": 2,
+        "columns": 2,
+        "media": {
+          "kind": "image",
+          "src": "/images/blogs/innerpages/page-ribbon2.png",
+          "assetKey": "page-ribbon2",
+          "alt": "Flowing decorative ribbon",
+          "caption": null
+        },
         "cta": null
       },
       "blocks": [
@@ -254,7 +273,7 @@
           "type": "card",
           "eyebrow": null,
           "title": "All Your Data in One Place",
-          "body": "Bring customer, product, sales and channel data together to reveal patterns and improve decision making.",
+          "body": "Seeing the big picture is key for spotting those “aha!” insights. Building a centralized data infrastructure is often the first step towards gaining actionable information.\n\nAgivant’s Cloud Data Platform solution for eCommerce business cuts across multiple channels with ready-to-use integrations with Commerce system and ready-to-use business dashboards covering key expectations from business stakeholders.",
           "media": null,
           "cta": null,
           "items": []
@@ -263,8 +282,8 @@
           "id": "predict-future",
           "type": "card",
           "eyebrow": null,
-          "title": "Predict the Future (Well, Customer Behavior!)",
-          "body": "Use predictive analytics to anticipate what customers may do next.",
+          "title": "Predict the Future (Well, Customer Behavior):",
+          "body": "Knowing what shoppers will do next gives you a huge advantage. This is where predictive analytics and machine learning come into play.",
           "media": null,
           "cta": null,
           "items": []
@@ -273,8 +292,8 @@
           "id": "personalize",
           "type": "card",
           "eyebrow": null,
-          "title": "Make Every Experience Personal",
-          "body": "Use customer context and behavior to tailor experiences and recommendations.",
+          "title": "Make Every Experience Personal:",
+          "body": "Tailored offers and content keep customers returning for more. Personalization is no longer a “nice-to-have”; it’s an expectation – and it’s made possible by harnessing your data effectively.",
           "media": null,
           "cta": null,
           "items": []
@@ -283,8 +302,8 @@
           "id": "test-repeat",
           "type": "card",
           "eyebrow": null,
-          "title": "Test, Tweak, Repeat",
-          "body": "Continuously experiment, measure outcomes and improve digital experiences.",
+          "title": "Test, Tweak, Repeat:",
+          "body": "Never stop using data to make your site and marketing even better. A/B testing and continuous optimization are hallmarks of a truly data-driven e-commerce business.\n\nDon’t Let Tech Hold You Back\nRegularly reassess your technology to find those hidden bottlenecks that hinder growth. Sometimes small tweaks can mean huge gains in revenue!",
           "media": null,
           "cta": null,
           "items": []

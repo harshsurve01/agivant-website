@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Hero } from "./Hero";
 import { ExecutiveBrief } from "./ExecutiveBrief";
 import { Phase1 } from "./Phase1";
@@ -7,10 +8,13 @@ import { Phase4 } from "./Phase4";
 import { Conclusion } from "./Conclusion";
 import { SplitContent } from "./SplitContent";
 import { ImpactTable } from "@/components/sections/Solutions/Article/ImpactTable";
+import { EnterpriseAIPillar } from "./EnterpriseAIPillar";
+import { BlogPageGradientLayer } from "./BlogPageGradientLayer";
 import type { ArticleProps } from "./types";
 import type { ArticleHeroProps } from "./Hero";
 import type { ImpactTableProps } from "@/components/sections/Solutions/Article/ImpactTable";
 import type { Phase1Props } from "./Phase1/types";
+import styles from "./Article.module.css";
 
 /**
  * Article
@@ -35,18 +39,26 @@ export function Article(props: ArticleProps) {
         name: a.name,
         role: a.role ?? "",
       })),
-      ribbonSrc: data.hero.media?.src ?? undefined,
+      ribbonSrc:
+        data.hero.media === null ||
+        data.slug === "is-your-tech-sabotaging-business"
+          ? null
+          : (data.hero.media?.src ?? undefined),
       slug: data.slug,
     };
 
     return (
-      <>
-        <Hero {...heroProps} />
+      <article className={styles.article}>
+        <BlogPageGradientLayer />
 
-        {data.sections.map((section) => {
+        <div className={styles.content}>
+          <Hero {...heroProps} />
+
+          {data.sections.map((section) => {
           if (!section.enabled) return null;
 
-          switch (section.id) {
+          const renderSection = () => {
+            switch (section.id) {
             case "executive-brief": {
               const paragraphs = section.blocks
                 .flatMap((b) => (b.body ? b.body.split(/\n\s*\n/) : []))
@@ -54,12 +66,143 @@ export function Article(props: ArticleProps) {
               if (paragraphs.length === 0 && section.data.description) {
                 paragraphs.push(section.data.description);
               }
+              const spacing =
+                (section.data.spacing as "hero" | "standard" | undefined) ??
+                (data.slug === "is-your-tech-sabotaging-business"
+                  ? "standard"
+                  : "hero");
               return (
                 <ExecutiveBrief
                   key={section.id}
                   id={section.id}
                   title={section.data.heading ?? "Executive Brief"}
                   paragraphs={paragraphs}
+                  spacing={spacing}
+                />
+              );
+            }
+
+            case "slow-loading-times": {
+              const cards = section.blocks.map((b) => ({
+                title: b.title ?? "",
+                description: b.body ?? b.description ?? "",
+              }));
+              return (
+                <Phase1
+                  key={section.id}
+                  eyebrow={section.data.eyebrow}
+                  title={
+                    section.data.heading ??
+                    "Slow loading times hurt conversions: Is Your Site Too Slow?"
+                  }
+                  description={section.data.description}
+                  cards={cards}
+                  ribbonSrc={section.data.media?.src}
+                  highlightPosition="colon"
+                />
+              );
+            }
+
+            case "checkout-friction": {
+              const paragraphs = section.blocks
+                .flatMap((b) => (b.body ? b.body.split(/\n\s*\n/) : []))
+                .filter(Boolean);
+              if (paragraphs.length === 0 && section.data.description) {
+                paragraphs.push(section.data.description);
+              }
+              const cta = section.data.cta?.enabled
+                ? {
+                    label: section.data.cta.label ?? "Read case study",
+                    href: section.data.cta.href ?? "/case-studies",
+                    external: section.data.cta.external ?? false,
+                  }
+                : null;
+              return (
+                <ExecutiveBrief
+                  key={section.id}
+                  id={section.id}
+                  title={
+                    section.data.heading ??
+                    "Checkout Friction = Lost Sales. How Smooth is Yours?"
+                  }
+                  paragraphs={paragraphs}
+                  showBar={false}
+                  spacing="standard"
+                  highlightPosition="period"
+                  cta={cta}
+                />
+              );
+            }
+
+            case "buying-must-be-effortless": {
+              const items = section.blocks.map((b, idx) => ({
+                index:
+                  (b.index as string) ??
+                  String(b.number ?? idx + 1).padStart(2, "0"),
+                title: b.title ?? "",
+                description: b.body ?? b.description ?? "",
+              }));
+              return (
+                <Phase2
+                  key={section.id}
+                  id={section.id}
+                  eyebrow={section.data.eyebrow}
+                  title={section.data.heading ?? "Buying must be effortless:"}
+                  description={section.data.description}
+                  items={items}
+                  highlightPosition={
+                    (section.data.highlightPosition as
+                      | "start"
+                      | "end"
+                      | "colon"
+                      | undefined) ?? "start"
+                  }
+                  highlightCount={
+                    (section.data.highlightCount as number | undefined) ?? 2
+                  }
+                />
+              );
+            }
+
+            case "new-age-channels": {
+              const cards = section.blocks.map((b) => ({
+                title: b.title ?? "",
+                description: b.body ?? b.description ?? "",
+              }));
+              return (
+                <Phase1
+                  key={section.id}
+                  id={section.id}
+                  eyebrow={section.data.eyebrow}
+                  title={section.data.heading ?? ""}
+                  description={section.data.description}
+                  cards={cards}
+                  columns={1}
+                  ribbonSrc={null}
+                  highlightPosition="period"
+                />
+              );
+            }
+
+            case "data-smarter-growth": {
+              const cards = section.blocks.map((b) => ({
+                title: b.title ?? "",
+                description: b.body ?? b.description ?? "",
+              }));
+              return (
+                <Phase1
+                  key={section.id}
+                  id={section.id}
+                  eyebrow={section.data.eyebrow}
+                  title={
+                    section.data.heading ??
+                    "Data: The Key to Smarter Growth"
+                  }
+                  description={section.data.description}
+                  cards={cards}
+                  columns={2}
+                  ribbonSrc={section.data.media?.src}
+                  highlightPosition="colon"
                 />
               );
             }
@@ -76,6 +219,7 @@ export function Article(props: ArticleProps) {
                   title={section.data.heading ?? "Establishing Baselines"}
                   description={section.data.description}
                   cards={cards}
+                  ribbonSrc={section.data.media?.src}
                 />
               );
             }
@@ -301,6 +445,86 @@ export function Article(props: ArticleProps) {
             }
 
             default: {
+              if (section.id.startsWith("pillar-") || section.type === "pillar") {
+                const problemBlock =
+                  section.blocks.find(
+                    (b) =>
+                      b.id.endsWith("-problem") ||
+                      b.type === "problem" ||
+                      b.title?.toLowerCase().includes("problem")
+                  ) ?? section.blocks[0];
+
+                const whyBlock = section.blocks.find(
+                  (b) =>
+                    b.id.endsWith("-meaning") ||
+                    b.id.endsWith("-why") ||
+                    b.id.endsWith("-why-it-matters") ||
+                    b.type === "why_it_matters" ||
+                    b.title?.toLowerCase().includes("why it matters") ||
+                    b.title?.toLowerCase().includes("what it means")
+                );
+
+                const implBlock = section.blocks.find(
+                  (b) =>
+                    b.id.endsWith("-implementation") ||
+                    b.type === "implementation" ||
+                    b.title?.toLowerCase().includes("implementation")
+                );
+
+                const povBlock = section.blocks.find(
+                  (b) =>
+                    b.id.endsWith("-mvp") ||
+                    b.id.endsWith("-pov") ||
+                    b.type === "pov" ||
+                    b.title?.toLowerCase().includes("pov") ||
+                    b.title?.toLowerCase().includes("mvp")
+                );
+
+                const sectionTitle =
+                  (section.data.sectionTitle as string | undefined) ??
+                  (section.id === "pillar-1"
+                    ? "The 6 Pillars of Enterprise-Grade AI"
+                    : null);
+
+                return (
+                  <EnterpriseAIPillar
+                    key={section.id}
+                    id={section.id}
+                    sectionTitle={sectionTitle}
+                    title={section.data.heading ?? ""}
+                    problemLayout={
+                      (section.data.problemLayout as "split" | "full" | undefined) ??
+                      (whyBlock?.body ? "split" : "full")
+                    }
+                    problem={{
+                      label: problemBlock?.title ?? "The problem",
+                      content: problemBlock?.body ?? problemBlock?.description ?? "",
+                    }}
+                    whyItMatters={
+                      whyBlock && (whyBlock.body || whyBlock.description)
+                        ? {
+                            label: whyBlock.title ?? "Why it matters",
+                            content: whyBlock.body ?? whyBlock.description ?? "",
+                          }
+                        : null
+                    }
+                    implementation={{
+                      label: implBlock?.title ?? "Enterprise Implementation",
+                      items: implBlock?.items ?? [],
+                      content: implBlock?.body ?? implBlock?.description ?? undefined,
+                      ribbonSrc: implBlock?.media?.src,
+                      ribbonAlt: implBlock?.media?.alt ?? undefined,
+                    }}
+                    pov={{
+                      label: povBlock?.title ?? "Agivant POV",
+                      content: povBlock?.body ?? povBlock?.description ?? "",
+                      ribbonSrc: povBlock?.media?.src,
+                      ribbonAlt: povBlock?.media?.alt ?? undefined,
+                    }}
+                  />
+                );
+              }
+
               switch (section.type) {
                 case "card_grid": {
                   const cards = section.blocks.map((b) => ({
@@ -308,13 +532,17 @@ export function Article(props: ArticleProps) {
                     description: b.body ?? b.description ?? "",
                   }));
                   const cols =
-                    ((section.data.columns as unknown) === 3 ||
-                      section.data.columnCount === 3)
-                      ? 3
-                      : 2;
+                    ((section.data.columns as unknown) === 1 ||
+                      section.data.columnCount === 1)
+                      ? 1
+                      : ((section.data.columns as unknown) === 3 ||
+                          section.data.columnCount === 3)
+                        ? 3
+                        : 2;
                   return (
                     <Phase1
                       key={section.id}
+                      id={section.id}
                       eyebrow={section.data.eyebrow}
                       title={section.data.heading ?? ""}
                       description={section.data.description}
@@ -345,6 +573,7 @@ export function Article(props: ArticleProps) {
                   return (
                     <Phase2
                       key={section.id}
+                      id={section.id}
                       eyebrow={section.data.eyebrow}
                       title={section.data.heading ?? ""}
                       description={section.data.description ?? ""}
@@ -365,11 +594,16 @@ export function Article(props: ArticleProps) {
                 }
 
                 case "comparison_table": {
+                  const isBlogPage3Table =
+                    section.id === "enterprise-agent-stack";
                   return (
                     <ImpactTable
                       key={section.id}
                       data={section.data as unknown as ImpactTableProps["data"]}
                       blocks={section.blocks as unknown as ImpactTableProps["blocks"]}
+                      className={
+                        isBlogPage3Table ? styles.extendedRibbonTable : undefined
+                      }
                     />
                   );
                 }
@@ -452,6 +686,14 @@ export function Article(props: ArticleProps) {
                     (section.data.highlightCount as number | undefined) ??
                     (isPilotReality ? 4 : undefined);
 
+                  const isEnterpriseGuide =
+                    data.slug ===
+                    "agentic-ai-transforming-software-engineering-digital-commerce-enterprise-guide";
+                  const ribbonClassName =
+                    isEnterpriseGuide && section.id === "path-forward"
+                      ? styles.enterpriseGuideConclusionRibbon
+                      : undefined;
+
                   return (
                     <ExecutiveBrief
                       key={section.id}
@@ -462,27 +704,44 @@ export function Article(props: ArticleProps) {
                       spacing={spacing}
                       highlightPosition={highlightPosition}
                       highlightCount={highlightCount}
+                      ribbonSrc={section.data.media?.src}
+                      ribbonClassName={ribbonClassName}
                     />
                   );
                 }
               }
             }
           }
+        };
+
+          const rendered = renderSection();
+          if (!rendered) return null;
+
+          return (
+            <Fragment key={section.id}>
+              {rendered}
+            </Fragment>
+          );
         })}
-      </>
+        </div>
+      </article>
     );
   }
 
   // Legacy ArticlePageData fallback
   return (
-    <>
-      <Hero {...props.hero} />
-      <ExecutiveBrief {...props.executiveBrief} />
-      <Phase1 {...props.phase1} />
-      <Phase2 {...props.phase2} />
-      <Phase3 {...props.phase3} />
-      <Phase4 {...props.phase4} />
-      <Conclusion {...props.conclusion} />
-    </>
+    <article className={styles.article}>
+      <BlogPageGradientLayer />
+
+      <div className={styles.content}>
+        <Hero {...props.hero} />
+        <ExecutiveBrief {...props.executiveBrief} />
+        <Phase1 {...props.phase1} />
+        <Phase2 {...props.phase2} />
+        <Phase3 {...props.phase3} />
+        <Phase4 {...props.phase4} />
+        <Conclusion {...props.conclusion} />
+      </div>
+    </article>
   );
 }

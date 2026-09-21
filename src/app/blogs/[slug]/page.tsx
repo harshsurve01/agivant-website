@@ -10,6 +10,7 @@ import {
   getBlogDetail,
   getAllBlogDetailSlugs,
 } from "@/data/blogDetail";
+import styles from "./BlogArticlePage.module.css";
 
 interface BlogArticlePageProps {
   params: Promise<{ slug: string }>;
@@ -74,6 +75,23 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
     });
   }
 
+  let footerHeading = article.footerCta?.heading;
+  if (article.slug === "is-your-tech-sabotaging-business" && footerHeading) {
+    footerHeading = footerHeading
+      .replace(
+        "Need Help Making Sense Of It All? ",
+        "Need Help Making Sense Of It All?<br />"
+      )
+      .replace(
+        "We Are Always Happy To Chat About ",
+        "We Are Always Happy To Chat About<br />"
+      )
+      .replace(
+        "The Latest E-Commerce Trends ",
+        "The Latest E-Commerce Trends<br />"
+      );
+  }
+
   return (
     <GradientLayerProvider>
       <Header />
@@ -84,8 +102,15 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
 
       {article.showFooter !== false && article.footerCta?.enabled ? (
         <Footer
+          className={
+            article.slug === "is-your-tech-sabotaging-business"
+              ? styles.techSabotagingFooter
+              : undefined
+          }
           ctaData={{
-            heading: article.footerCta.heading.replace(/<br\s*\/?>/gi, "\n"),
+            heading: footerHeading
+              ? footerHeading.replace(/<br\s*\/?>/gi, "\n")
+              : article.footerCta.heading.replace(/<br\s*\/?>/gi, "\n"),
             description: article.footerCta.subheading ?? undefined,
             brandMedia: article.footerCta.media?.src
               ? {
@@ -95,7 +120,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                   width: 240,
                   height: 80.46,
                 }
-              : undefined,
+              : null,
             buttons: footerButtons,
           }}
         />
