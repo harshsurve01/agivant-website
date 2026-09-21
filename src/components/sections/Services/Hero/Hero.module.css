@@ -54,7 +54,7 @@
   font-weight: var(--font-weight-regular);
   line-height: 1.6;
   color: var(--color-neutral-600);
-  max-width: 48.5rem;
+  max-width: 56rem;
   margin-top: var(--space-6);
   margin-bottom: 0;
 }
