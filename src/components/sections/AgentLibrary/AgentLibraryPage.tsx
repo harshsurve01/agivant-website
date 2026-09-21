@@ -183,10 +183,22 @@ export function AgentLibraryPage() {
         right="15%"
         size="40rem"
         stops={["#b31aef44 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
-        opacity={0.25}
+        opacity={0.15}
         blur="90px"
       />
-      
+        <Gradient
+   kind="linear"
+        angle="180deg"
+        top="55%"
+        left="-10%"
+        size="30rem"
+        stops={[
+          "color-mix(in srgb, #EDBF79 70%, transparent) 0%",
+          "transparent 100%",
+        ]}
+        opacity={0.5}
+        blur="60px"
+      />
       <div className={styles.page}>
         <main className={styles.main}>
           <section className={styles.heroWrapper}>
