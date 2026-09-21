@@ -30,8 +30,8 @@ export interface ArticleHeroProps {
   readTime: string;
   /** One or more bylines, rendered left-to-right in Figma's order. */
   authors: ArticleHeroAuthor[];
-  /** Optional decorative ribbon image path. Defaults to standard blog hero ribbon. */
-  ribbonSrc?: string;
+  /** Optional decorative ribbon image path. Set null to explicitly disable ribbon. Defaults to standard blog hero ribbon. */
+  ribbonSrc?: string | null;
   /** Optional natural height for next/image aspect ratio preservation. Defaults to 395. */
   ribbonHeight?: number;
   /** Optional slug of the blog article for page-specific Hero layout adaptations. */

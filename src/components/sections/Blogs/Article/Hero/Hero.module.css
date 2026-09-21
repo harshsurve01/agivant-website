@@ -24,6 +24,10 @@
   overflow-y: visible;
 }
 
+.hero_noRibbon {
+  min-height: auto;
+}
+
 .container {
   position: relative;
   z-index: 1;
@@ -137,6 +141,8 @@
 @media (max-width: 768px) {
   .heading {
     max-width: 100%;
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+    line-height: 1.2;
   }
 
   .metaRow {

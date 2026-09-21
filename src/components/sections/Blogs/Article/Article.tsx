@@ -39,7 +39,11 @@ export function Article(props: ArticleProps) {
         name: a.name,
         role: a.role ?? "",
       })),
-      ribbonSrc: data.hero.media?.src ?? undefined,
+      ribbonSrc:
+        data.hero.media === null ||
+        data.slug === "is-your-tech-sabotaging-business"
+          ? null
+          : (data.hero.media?.src ?? undefined),
       slug: data.slug,
     };
 
@@ -62,12 +66,143 @@ export function Article(props: ArticleProps) {
               if (paragraphs.length === 0 && section.data.description) {
                 paragraphs.push(section.data.description);
               }
+              const spacing =
+                (section.data.spacing as "hero" | "standard" | undefined) ??
+                (data.slug === "is-your-tech-sabotaging-business"
+                  ? "standard"
+                  : "hero");
               return (
                 <ExecutiveBrief
                   key={section.id}
                   id={section.id}
                   title={section.data.heading ?? "Executive Brief"}
                   paragraphs={paragraphs}
+                  spacing={spacing}
+                />
+              );
+            }
+
+            case "slow-loading-times": {
+              const cards = section.blocks.map((b) => ({
+                title: b.title ?? "",
+                description: b.body ?? b.description ?? "",
+              }));
+              return (
+                <Phase1
+                  key={section.id}
+                  eyebrow={section.data.eyebrow}
+                  title={
+                    section.data.heading ??
+                    "Slow loading times hurt conversions: Is Your Site Too Slow?"
+                  }
+                  description={section.data.description}
+                  cards={cards}
+                  ribbonSrc={section.data.media?.src}
+                  highlightPosition="colon"
+                />
+              );
+            }
+
+            case "checkout-friction": {
+              const paragraphs = section.blocks
+                .flatMap((b) => (b.body ? b.body.split(/\n\s*\n/) : []))
+                .filter(Boolean);
+              if (paragraphs.length === 0 && section.data.description) {
+                paragraphs.push(section.data.description);
+              }
+              const cta = section.data.cta?.enabled
+                ? {
+                    label: section.data.cta.label ?? "Read case study",
+                    href: section.data.cta.href ?? "/case-studies",
+                    external: section.data.cta.external ?? false,
+                  }
+                : null;
+              return (
+                <ExecutiveBrief
+                  key={section.id}
+                  id={section.id}
+                  title={
+                    section.data.heading ??
+                    "Checkout Friction = Lost Sales. How Smooth is Yours?"
+                  }
+                  paragraphs={paragraphs}
+                  showBar={false}
+                  spacing="standard"
+                  highlightPosition="period"
+                  cta={cta}
+                />
+              );
+            }
+
+            case "buying-must-be-effortless": {
+              const items = section.blocks.map((b, idx) => ({
+                index:
+                  (b.index as string) ??
+                  String(b.number ?? idx + 1).padStart(2, "0"),
+                title: b.title ?? "",
+                description: b.body ?? b.description ?? "",
+              }));
+              return (
+                <Phase2
+                  key={section.id}
+                  id={section.id}
+                  eyebrow={section.data.eyebrow}
+                  title={section.data.heading ?? "Buying must be effortless:"}
+                  description={section.data.description}
+                  items={items}
+                  highlightPosition={
+                    (section.data.highlightPosition as
+                      | "start"
+                      | "end"
+                      | "colon"
+                      | undefined) ?? "start"
+                  }
+                  highlightCount={
+                    (section.data.highlightCount as number | undefined) ?? 2
+                  }
+                />
+              );
+            }
+
+            case "new-age-channels": {
+              const cards = section.blocks.map((b) => ({
+                title: b.title ?? "",
+                description: b.body ?? b.description ?? "",
+              }));
+              return (
+                <Phase1
+                  key={section.id}
+                  id={section.id}
+                  eyebrow={section.data.eyebrow}
+                  title={section.data.heading ?? ""}
+                  description={section.data.description}
+                  cards={cards}
+                  columns={1}
+                  ribbonSrc={null}
+                  highlightPosition="period"
+                />
+              );
+            }
+
+            case "data-smarter-growth": {
+              const cards = section.blocks.map((b) => ({
+                title: b.title ?? "",
+                description: b.body ?? b.description ?? "",
+              }));
+              return (
+                <Phase1
+                  key={section.id}
+                  id={section.id}
+                  eyebrow={section.data.eyebrow}
+                  title={
+                    section.data.heading ??
+                    "Data: The Key to Smarter Growth"
+                  }
+                  description={section.data.description}
+                  cards={cards}
+                  columns={2}
+                  ribbonSrc={section.data.media?.src}
+                  highlightPosition="colon"
                 />
               );
             }
@@ -397,13 +532,17 @@ export function Article(props: ArticleProps) {
                     description: b.body ?? b.description ?? "",
                   }));
                   const cols =
-                    ((section.data.columns as unknown) === 3 ||
-                      section.data.columnCount === 3)
-                      ? 3
-                      : 2;
+                    ((section.data.columns as unknown) === 1 ||
+                      section.data.columnCount === 1)
+                      ? 1
+                      : ((section.data.columns as unknown) === 3 ||
+                          section.data.columnCount === 3)
+                        ? 3
+                        : 2;
                   return (
                     <Phase1
                       key={section.id}
+                      id={section.id}
                       eyebrow={section.data.eyebrow}
                       title={section.data.heading ?? ""}
                       description={section.data.description}
@@ -434,6 +573,7 @@ export function Article(props: ArticleProps) {
                   return (
                     <Phase2
                       key={section.id}
+                      id={section.id}
                       eyebrow={section.data.eyebrow}
                       title={section.data.heading ?? ""}
                       description={section.data.description ?? ""}

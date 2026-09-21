@@ -45,7 +45,7 @@
 
 .standardSpacing {
   padding-top: var(--space-16);
-  padding-bottom: var(--space-16);
+  padding-bottom: var(--space-24);
 }
 
 /* --------------------------------------------------------------------
@@ -88,6 +88,7 @@
    purple).
    -------------------------------------------------------------------- */
 .title {
+  font-family: var(--font-family-heading);
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-tight);
@@ -120,6 +121,7 @@
 }
 
 .paragraph {
+  font-family: var(--font-family-base);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-relaxed);
@@ -127,7 +129,27 @@
   margin: 0;
 }
 
+.ctaWrapper {
+  margin-top: 2.25rem; /* ~36px spacing between paragraph and CTA */
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ctaLink {
+  text-decoration: none;
+  display: inline-flex;
+}
+
 @media (max-width: 768px) {
+  .title {
+    font-size: clamp(1.75rem, 6vw, var(--font-size-4xl));
+  }
+
+  .standardSpacing {
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-16);
+  }
+
   .body {
     max-width: 100%;
   }

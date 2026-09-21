@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import clsx from "clsx";
 import { HeroBackground } from "@/components/ui/HeroBackground";
 import { Container } from "@/components/ui/Container";
@@ -17,7 +18,9 @@ export function Hero({
   slug,
   ribbonPosition,
 }: ArticleHeroProps) {
-  const actualRibbonSrc = ribbonSrc || DEFAULT_BLOG_HERO_RIBBON;
+  const showRibbon =
+    ribbonSrc !== null && slug !== "is-your-tech-sabotaging-business";
+  const actualRibbonSrc = ribbonSrc ?? DEFAULT_BLOG_HERO_RIBBON;
   const actualHeight =
     ribbonHeight ?? (actualRibbonSrc.includes("page2") ? 520 : 395);
 
@@ -26,8 +29,27 @@ export function Hero({
     slug === "what-makes-an-ai-agent-enterprise-grade" ||
     actualRibbonSrc.includes("what-makes-an-ai-agent");
 
+  const renderTitle = () => {
+    if (
+      typeof title === "string" &&
+      (title.includes("<br") || title.includes("\n"))
+    ) {
+      const parts = title.split(/<br\s*\/?>|\n/gi);
+      return parts.map((part, i) => (
+        <Fragment key={i}>
+          {i > 0 && <br />}
+          {part}
+        </Fragment>
+      ));
+    }
+    return title;
+  };
+
   return (
-    <section className={styles.hero} data-hero-interaction-root>
+    <section
+      className={clsx(styles.hero, !showRibbon && styles.hero_noRibbon)}
+      data-hero-interaction-root
+    >
       {/* Decorative background only — identical usage to TechTalk/Blogs.
           `data-hero-interaction-root` is the pointer-tracking boundary
           HeroParticleField looks up via closest(), and must stay on an
@@ -35,22 +57,24 @@ export function Hero({
       <HeroBackground />
 
       {/* Decorative ribbon layer spanning across lower visual area */}
-      <PageRibbon
-        src={actualRibbonSrc}
-        width={1440}
-        height={actualHeight}
-        className={clsx(
-          styles.ribbonWrapper,
-          isRibbonTop && styles.ribbonWrapper_top
-        )}
-        imageClassName={styles.ribbonImage}
-        priority
-      />
+      {showRibbon && actualRibbonSrc && (
+        <PageRibbon
+          src={actualRibbonSrc}
+          width={1440}
+          height={actualHeight}
+          className={clsx(
+            styles.ribbonWrapper,
+            isRibbonTop && styles.ribbonWrapper_top
+          )}
+          imageClassName={styles.ribbonImage}
+          priority
+        />
+      )}
 
       {/* Content */}
       <Container className={styles.container}>
         <div className={styles.content}>
-          <h1 className={styles.heading}>{title}</h1>
+          <h1 className={styles.heading}>{renderTitle()}</h1>
 
           {/* Figma node 2097:1271 — a plain divider line, not
               re-implemented as an image. Its own decorative ellipse

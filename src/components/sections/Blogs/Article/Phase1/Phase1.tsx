@@ -38,6 +38,7 @@ import styles from "./Phase1.module.css";
 const BLOG_HERO_RIBBON = "/images/blogs/innerpages/hero-ribbon.png";
 
 export function Phase1({
+  id,
   eyebrow,
   title,
   description,
@@ -57,7 +58,29 @@ export function Phase1({
   let highlighted = "";
   let tail = "";
 
-  if (highlightPosition === "quotes") {
+  if (highlightPosition === "period") {
+    const periodIndex = title.indexOf(".");
+    if (periodIndex !== -1) {
+      lead = "";
+      highlighted = title.slice(0, periodIndex + 1);
+      tail = title.slice(periodIndex + 1).trimStart();
+    } else {
+      lead = "";
+      highlighted = words.slice(0, highlightCount).join(" ");
+      tail = words.slice(highlightCount).join(" ");
+    }
+  } else if (highlightPosition === "colon") {
+    const colonIndex = title.indexOf(":");
+    if (colonIndex !== -1) {
+      lead = "";
+      highlighted = title.slice(0, colonIndex + 1);
+      tail = title.slice(colonIndex + 1).trimStart();
+    } else {
+      lead = "";
+      highlighted = words.slice(0, highlightCount).join(" ");
+      tail = words.slice(highlightCount).join(" ");
+    }
+  } else if (highlightPosition === "quotes") {
     const quoteMatch = title.match(/^(.*?)(["“][^"”]+["”])(.*)$/);
     if (quoteMatch) {
       lead = quoteMatch[1].trimEnd();
@@ -98,11 +121,16 @@ export function Phase1({
     tail = words.slice(highlightCount).join(" ");
   }
 
-  const gridClass = columns === 3 ? styles.gridCols3 : styles.grid;
+  const gridClass =
+    columns === 1
+      ? styles.gridCols1
+      : columns === 3
+        ? styles.gridCols3
+        : styles.grid;
 
   return (
     
-    <section className={styles.phase1}>
+    <section id={id} className={styles.phase1}>
       {effectiveRibbon && (
         <PageRibbon
           src={effectiveRibbon}
@@ -126,7 +154,11 @@ export function Phase1({
 
         <div className={gridClass}>
           {cards.map((card) => (
-            <MetricCard key={card.title} card={card} />
+            <MetricCard
+              key={card.title}
+              card={card}
+              fullWidth={columns === 1}
+            />
           ))}
         </div>
 

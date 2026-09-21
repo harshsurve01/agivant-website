@@ -32,13 +32,19 @@ export interface ExecutiveBriefProps {
   showBar?: boolean;
   /** Section spacing variant: 'hero' (under-hero with large top padding) or 'standard' (standard section padding-block). Defaults to 'hero'. */
   spacing?: "hero" | "standard";
-  /** Which part of the heading receives the brand highlight: 'start', 'end', or 'colon'. Defaults to 'end' (or 'colon' if title contains ':'). */
-  highlightPosition?: "start" | "end" | "colon";
+  /** Which part of the heading receives the brand highlight: 'start', 'end', 'colon', or 'period'. Defaults to 'end' (or 'colon' if title contains ':'). */
+  highlightPosition?: "start" | "end" | "colon" | "period";
   /** Word count for the highlight if using 'start' or 'end'. */
   highlightCount?: number;
   /** Optional background decorative ribbon image URL. */
   ribbonSrc?: string | null;
   /** Optional scoped CSS class name for positioning the ribbon. */
   ribbonClassName?: string;
+  /** Optional CTA button below body copy. */
+  cta?: {
+    label: string;
+    href?: string | null;
+    external?: boolean;
+  } | null;
 }
 

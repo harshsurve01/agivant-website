@@ -60,6 +60,19 @@
   margin: 0;
   width: 100%;
   max-width: 30.875rem; /* 494px, Figma's card width minus the left/right padding above */
+  white-space: pre-line;
+}
+
+.description + .description {
+  margin-top: var(--space-4);
+}
+
+.fullWidth {
+  max-width: 100%;
+}
+
+.fullWidth .description {
+  max-width: 100%;
 }
 
 /* --------------------------------------------------------------------
