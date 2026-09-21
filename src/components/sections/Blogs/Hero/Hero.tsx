@@ -52,7 +52,7 @@ export function Hero({ heading, description, search }: BlogsHeroProps) {
           pointer-tracking boundary HeroParticleField looks up via
           closest(), and must stay on an ancestor containing both
           HeroBackground and Content. */}
-      <HeroBackground />
+      <HeroBackground showEllipse={false} />
 
       {/* Content */}
       <Container className={styles.container}>
