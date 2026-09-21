@@ -1,0 +1,157 @@
+/* ==========================================================================
+   PartnerAgentTeams.module.css
+   Section 4: Coordinated Agent Teams for Shopify Partner page.
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-16);
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  max-width: 1204px;
+  margin-inline: auto;
+}
+
+.headingWrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.headingWrapperNoBar {
+  display: block;
+  gap: 0;
+}
+
+.accentBar {
+  width: 4px;
+  height: 1.75rem;
+  margin-top: 0.35rem;
+  background-color: var(--color-brand-primary);
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.heading {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-brand-primary);
+  margin: 0;
+  white-space: pre-line;
+}
+
+.headingBuiltOn {
+  color: inherit;
+}
+
+.headingHighlight {
+  color: var(--color-brand-primary);
+}
+
+.headingRest {
+  color: var(--color-text-primary);
+}
+
+/* Description paragraph */
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-8);
+  max-width: 54rem;
+}
+
+/* 4-Card Horizontal Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+
+/* Closing purple statement */
+.closingStatement {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-brand-primary);
+  margin: 0;
+}
+
+.closingStatementProminent {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-brand-primary);
+  margin-top: var(--space-4);
+  max-width: 70rem;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .section {
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-12);
+  }
+
+  .heading {
+    font-size: var(--font-size-3xl);
+  }
+
+  .closingStatementProminent {
+    font-size: var(--font-size-3xl);
+    max-width: 100%;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-10);
+  }
+
+  .heading {
+    font-size: var(--font-size-2xl);
+  }
+
+  .description {
+    font-size: var(--font-size-md);
+    margin-bottom: var(--space-6);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .closingStatement {
+    font-size: var(--font-size-md);
+  }
+
+  .closingStatementProminent {
+    font-size: var(--font-size-2xl);
+    line-height: var(--line-height-snug);
+    margin-top: var(--space-2);
+  }
+}

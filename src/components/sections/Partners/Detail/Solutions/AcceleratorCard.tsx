@@ -33,7 +33,11 @@ export function AcceleratorCard({
 }: AcceleratorCardProps) {
   // Natural intrinsic dimensions based on the source image files
   const naturalWidth = 278;
-  const naturalHeight = accelerator.id === "quote-accelerator" ? 234 : 183;
+  const naturalHeight =
+    accelerator.id === "quote-accelerator" ||
+    accelerator.id === "stockout-response"
+      ? 234
+      : 183;
 
   return (
     <div

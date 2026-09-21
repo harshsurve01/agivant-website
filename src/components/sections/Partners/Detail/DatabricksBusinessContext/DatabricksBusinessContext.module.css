@@ -1,0 +1,126 @@
+/* ==========================================================================
+   DatabricksBusinessContext.module.css
+   Databricks Partner Section 4 (Business Context Card Grid)
+   Consumes design tokens exclusively from variables.css.
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-20);
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  max-width: 1204px; /* Figma: 1204px */
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------
+   Section Heading & Supporting Intro
+   -------------------------------------------------------------------- */
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl); /* 36px */
+  font-weight: var(--font-weight-bold); /* 600 SemiBold */
+  line-height: var(--line-height-snug); /* 1.25 */
+  color: var(--color-text-primary);
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0 0 var(--space-5) 0;
+  width: 100%;
+}
+
+.headingHighlight {
+  color: var(--color-brand-primary); /* Agivant purple: #8500DF */
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg); /* 18px */
+  font-weight: var(--font-weight-regular); /* 400 Regular */
+  line-height: var(--line-height-relaxed); /* 1.65 */
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-10) 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* --------------------------------------------------------------------
+   Four-Card Grid (Single row on desktop)
+   -------------------------------------------------------------------- */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+  width: 100%;
+  align-items: stretch;
+}
+
+/* Scoped card overrides applied to shared GlassCard */
+.card {
+  padding: var(--space-8) var(--space-6) !important;
+  min-height: 285px;
+  height: 100%;
+}
+
+/* --------------------------------------------------------------------
+   Closing Paragraph below cards
+   -------------------------------------------------------------------- */
+.closingStatement {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg); /* 18px */
+  font-weight: var(--font-weight-regular); /* 400 Regular */
+  line-height: var(--line-height-relaxed); /* 1.65 */
+  color: var(--color-text-primary);
+  margin: var(--space-10) 0 0 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* --------------------------------------------------------------------
+   Responsive Adaptations
+   -------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-12);
+  }
+
+  .heading {
+    font-size: var(--font-size-2xl); /* 24px on mobile */
+    margin-bottom: var(--space-4);
+  }
+
+  .description {
+    font-size: var(--font-size-md); /* 16px on mobile */
+    margin-bottom: var(--space-6);
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .card {
+    min-height: auto;
+    padding: var(--space-6) !important;
+  }
+
+  .closingStatement {
+    font-size: var(--font-size-md); /* 16px on mobile */
+    margin-top: var(--space-6);
+  }
+}

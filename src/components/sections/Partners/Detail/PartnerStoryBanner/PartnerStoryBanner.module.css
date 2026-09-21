@@ -1,0 +1,101 @@
+/* ==========================================================================
+   PartnerStoryBanner.module.css
+   Dedicated presentation component for the Shopify Partner narrative banner section:
+   1. Large visual image at the top
+   2. Heading below the image with purple accent
+   3. Supporting paragraph below the heading
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-top: 0;
+  padding-bottom: var(--space-10);
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  max-width: 1204px;
+  margin-inline: auto;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-2xl, 1.5rem);
+  overflow: hidden;
+  margin-bottom: var(--space-8);
+  line-height: 0;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4816 / 1006;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-2xl, 1.5rem);
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0;
+  max-width: 74rem;
+  white-space: pre-line;
+}
+
+.purpleText {
+  color: var(--color-brand-primary);
+}
+
+.darkText {
+  color: var(--color-text-primary);
+}
+
+.description {
+  width: 100%;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin: 0;
+  max-width: 68rem;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-16);
+  }
+
+  .imageWrapper {
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-6);
+  }
+
+  .image {
+    border-radius: var(--radius-xl);
+  }
+
+  .heading {
+    font-size: var(--font-size-2xl);
+  }
+
+  .description {
+    font-size: var(--font-size-md);
+  }
+}

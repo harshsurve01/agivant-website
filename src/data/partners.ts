@@ -4,6 +4,8 @@ import path from "path";
 import homepageJson from "./homepage.json";
 import partnersPageJson from "./partnersPage.json";
 import partnerDetailJson from "./partners.json";
+import databricksDetailJson from "./partner-databricks.json";
+import shopifyDetailJson from "./partner-shopify.json";
 
 /**
  * data/partners.ts
@@ -244,6 +246,7 @@ import type {
   PartnerDetailData,
   PartnerHeroData,
   PartnerIntroData,
+  PartnerStoryBannerData,
   AgenticEnterpriseData,
   AgenticEnterpriseBlockData,
   PartnerAccelerator,
@@ -251,6 +254,11 @@ import type {
   PartnerProductionProofData,
   PartnerBuiltOnGeminiData,
   PartnerCTAData,
+  DatabricksAgenticExecutionData,
+  DatabricksBusinessContextData,
+  DatabricksControlData,
+  PartnerAgentTeamsData,
+  PartnerAlternatingContentData,
 } from "@/types/partnerDetail";
 
 /* ==========================================================================
@@ -319,6 +327,7 @@ export interface StandardizedSectionBlock {
   eyebrow?: string | null;
   title?: string | null;
   quote?: string | null;
+  statement?: string | null;
   authorName?: string | null;
   authorRole?: string | null;
   authorImage?: StandardizedMediaObject | null;
@@ -327,15 +336,27 @@ export interface StandardizedSectionBlock {
   items?: string[];
   description?: string;
   /** Frontend-only preserved fields */
+  supportingStatement?: string;
+  closingStatement?: string;
   paragraphs?: string[];
   metric?: string;
   badge?: string;
   caseStudySlug?: string;
   slug?: string;
+  headingStructure?: {
+    highlight?: string;
+    text?: string;
+    prefix?: string;
+    suffix?: string;
+    rest?: string;
+  } | null;
+  layout?: string;
+  isCard?: boolean;
   isTall?: boolean;
   challenge?: string;
   solution?: string;
   agentTeamTitle?: string;
+  agentTeamDescription?: string;
   agents?: Array<{ name: string; role: string }>;
   proof?: {
     headline: string;
@@ -360,6 +381,7 @@ export interface StandardizedSectionData {
   cta: StandardizedCTAObject | null;
   /** Frontend-only preserved structural / layout metadata */
   layout?: "text-image" | "text-metrics" | "image-text" | string;
+  supportingStatement?: string;
   closingStatement?: string;
   highlights?: string[];
   metrics?: Array<{ value: string; label: string }>;
@@ -396,6 +418,7 @@ export interface StandardizedFooterCTA {
   partner: StandardizedPartnerRef;
   primaryCta: StandardizedCTAObject | null;
   secondaryCta: StandardizedCTAObject | null;
+  media?: StandardizedMediaObject | null;
   /** Frontend-only: draft banner text */
   rawHeading?: string;
 }
@@ -414,6 +437,8 @@ export interface StandardizedPartnerDetailPage {
 
 export const PARTNERS_DETAIL_DATA: Record<string, StandardizedPartnerDetailPage> = {
   [partnerDetailJson.slug]: partnerDetailJson,
+  [databricksDetailJson.slug]: databricksDetailJson as unknown as StandardizedPartnerDetailPage,
+  [shopifyDetailJson.slug]: shopifyDetailJson as unknown as StandardizedPartnerDetailPage,
 };
 
 /**
@@ -429,25 +454,28 @@ function mapStandardizedToPartnerDetail(
     description: data.seo.description ?? "",
   };
 
-  let headingLine1 = data.title;
-  let headingLine2 = "";
-  if (data.hero.heading) {
-    const parts = data.hero.heading.split(/<br\s*\/?>/i);
-    headingLine1 = parts[0];
-    headingLine2 = parts[1] ?? "";
-  } else if (data.hero.headingLine1) {
+  const headingLines: string[] = data.hero.heading
+    ? data.hero.heading.split(/<br\s*\/?>/i)
+    : [];
+  let headingLine1 = headingLines[0] ?? data.title;
+  let headingLine2 = headingLines[1] ?? "";
+  if (!data.hero.heading && data.hero.headingLine1) {
     headingLine1 = data.hero.headingLine1;
     headingLine2 = data.hero.headingLine2 ?? "";
+    headingLines.push(headingLine1);
+    if (headingLine2) headingLines.push(headingLine2);
   }
 
   const hero: PartnerHeroData = {
     headingLine1,
     headingLine2,
+    headingLines: headingLines.length > 0 ? headingLines : undefined,
     partnerLogo: {
       src: data.hero.partner.logo.src ?? "",
       alt: data.hero.partner.logo.alt ?? data.hero.partner.name,
       width: data.hero.partner.logo.width,
       height: data.hero.partner.logo.height,
+      assetKey: data.hero.partner.logo.assetKey ?? undefined,
     },
     ribbonSrc: data.hero.ribbonSrc ?? data.hero.media?.src ?? "",
   };
@@ -456,6 +484,7 @@ function mapStandardizedToPartnerDetail(
   const quoteSec = data.sections.find((s) => s.id === "customer-quote");
   const quoteBlock = quoteSec?.blocks?.[0];
 
+  let introPrefix = introSec?.data.headingStructure?.prefix;
   let introHighlight = introSec?.data.headingStructure?.highlight;
   let introSuffix = introSec?.data.headingStructure?.suffix;
   if (!introHighlight && introSec?.data.heading) {
@@ -470,29 +499,211 @@ function mapStandardizedToPartnerDetail(
     }
   }
 
-  const intro: PartnerIntroData = {
-    heading: {
-      highlight: introHighlight ?? "",
-      suffix: introSuffix ?? "",
-    },
-    paragraphs:
-      introSec?.blocks?.[0]?.paragraphs ??
-      (introSec?.blocks?.[0]?.body ? [introSec.blocks[0].body] : []),
-    leadershipQuote: {
-      quote: quoteBlock?.quote ?? "",
-      author: {
-        name: quoteBlock?.authorName ?? "",
-        role: quoteBlock?.authorRole ?? "",
-        portraitSrc: quoteBlock?.authorImage?.src ?? "",
-      },
-    },
-    cta: quoteSec?.data.cta?.enabled
+  const leadershipQuote = quoteBlock?.quote
+    ? {
+        quote: quoteBlock.quote,
+        author: {
+          name: quoteBlock.authorName ?? "",
+          role: quoteBlock.authorRole ?? "",
+          portraitSrc: quoteBlock.authorImage?.src ?? "",
+        },
+      }
+    : undefined;
+
+  const statementText =
+    quoteBlock?.statement ??
+    (quoteBlock?.type === "statement" || quoteSec?.type === "statement_card"
+      ? quoteBlock?.body
+      : undefined);
+
+  const statementCard = statementText
+    ? {
+        text: statementText,
+      }
+    : undefined;
+
+  const intro: PartnerIntroData | undefined =
+    introSec || quoteSec
       ? {
-          label: quoteSec.data.cta.label ?? "",
-          href: quoteSec.data.cta.href ?? "",
+          heading: {
+            prefix: introPrefix,
+            highlight: introHighlight ?? "",
+            suffix: introSuffix ?? "",
+          },
+          paragraphs:
+            introSec?.blocks?.[0]?.paragraphs ??
+            (introSec?.blocks?.[0]?.body ? [introSec.blocks[0].body] : []),
+          leadershipQuote,
+          statementCard,
+          cta: quoteSec?.data.cta?.enabled
+            ? {
+                label: quoteSec.data.cta.label ?? "",
+                href: quoteSec.data.cta.href ?? "",
+                icon: (quoteSec.data.cta as { icon?: string }).icon ?? undefined,
+              }
+            : undefined,
         }
-      : undefined,
-  };
+      : undefined;
+
+  const storyBannerSec = data.sections.find(
+    (s) =>
+      s.data.layout === "image-stacked" ||
+      (data.slug === "shopify" && s.id === "autonomous-workflows")
+  );
+
+  const storyBanner: PartnerStoryBannerData | undefined = storyBannerSec
+    ? {
+        image: {
+          src: storyBannerSec.data.media?.src ?? "",
+          alt: storyBannerSec.data.media?.alt ?? "",
+          width: storyBannerSec.data.media?.width ?? 4816,
+          height: storyBannerSec.data.media?.height ?? 1006,
+        },
+        heading: {
+          highlight:
+            storyBannerSec.data.headingStructure?.highlight ?? "Get Amp'd to move",
+          text:
+            storyBannerSec.data.headingStructure?.text ??
+            storyBannerSec.data.heading ??
+            "",
+        },
+        description:
+          storyBannerSec.blocks?.[0]?.body ??
+          storyBannerSec.data.description ??
+          "",
+      }
+    : undefined;
+
+  const agentTeamsSec = data.sections.find(
+    (s) =>
+      s.id === "coordinated-agent-teams" ||
+      s.id === "built-on-databricks" ||
+      s.id === "industry-accelerators"
+  );
+
+  const agentTeams: PartnerAgentTeamsData | undefined = agentTeamsSec
+    ? {
+        heading: agentTeamsSec.data.heading ?? "",
+        description: agentTeamsSec.data.description ?? "",
+        cards: (agentTeamsSec.blocks ?? []).map((b) => ({
+          id: b.id,
+          title: b.title ?? undefined,
+          text: b.body ?? "",
+          ribbon: b.media?.src ?? "",
+        })),
+        closingStatement:
+          (agentTeamsSec.data as { closingStatement?: string }).closingStatement ??
+          undefined,
+      }
+    : undefined;
+
+  const alternatingSec = data.sections.find(
+    (s) =>
+      s.id === "scale-and-control" ||
+      s.type === "alternating_content"
+  );
+
+  const alternatingContent: PartnerAlternatingContentData | undefined = alternatingSec
+    ? {
+        id: alternatingSec.id,
+        rows: (alternatingSec.blocks ?? []).map((b) => {
+          let highlight = b.headingStructure?.highlight;
+          let text = b.headingStructure?.text;
+          if (!highlight && b.heading) {
+            const parts = b.heading.split(/<br\s*\/?>|\n/);
+            highlight = parts[0];
+            text = parts.slice(1).join(" ");
+          }
+          return {
+            id: b.id,
+            heading: {
+              highlight: highlight ?? "",
+              text: text ?? "",
+            },
+            description: b.body ?? "",
+            image: {
+              src: b.media?.src ?? "",
+              alt: b.media?.alt ?? "",
+              width: b.media?.width ?? 437,
+              height: b.media?.height ?? 279,
+            },
+            imagePosition: (b.layout === "image-text" ? "left" : "right") as "left" | "right",
+            isCard: Boolean(b.isCard),
+          };
+        }),
+      }
+    : undefined;
+
+  let databricksAgenticExecution: DatabricksAgenticExecutionData | undefined;
+  const databricksSec =
+    data.slug === "databricks"
+      ? data.sections.find((s) => s.id === "autonomous-workflows")
+      : undefined;
+
+  if (databricksSec) {
+    const block = databricksSec.blocks?.[0];
+    const mediaSource = block?.media ?? databricksSec.data.media;
+    databricksAgenticExecution = {
+      eyebrow: block?.eyebrow ?? databricksSec.data.eyebrow ?? "",
+      heading: block?.heading ?? databricksSec.data.heading ?? "",
+      supportingStatement:
+        block?.supportingStatement ?? databricksSec.data.supportingStatement ?? "",
+      paragraphs:
+        block?.paragraphs ??
+        (block?.body ? [block.body] : databricksSec.data.description ? [databricksSec.data.description] : []),
+      closingStatement:
+        block?.closingStatement ?? databricksSec.data.closingStatement ?? "",
+      image: {
+        src: mediaSource?.src ?? "/images/partners/gemini/agentic-enterprise/agentic-enterprise-ambition.png",
+        alt: mediaSource?.alt ?? "Amp’d by Agivant",
+        width: mediaSource?.width ?? 437,
+        height: mediaSource?.height ?? 408,
+      },
+    };
+  }
+
+  let databricksBusinessContext: DatabricksBusinessContextData | undefined;
+  const businessContextSec =
+    data.slug === "databricks"
+      ? data.sections.find((s) => s.id === "business-context")
+      : undefined;
+
+  if (businessContextSec) {
+    databricksBusinessContext = {
+      heading: businessContextSec.data.heading ?? "",
+      description: businessContextSec.data.description ?? "",
+      cards: (businessContextSec.blocks ?? []).map((b) => ({
+        id: b.id,
+        title: b.title ?? "",
+        description: b.body ?? b.description ?? "",
+      })),
+      closingStatement: businessContextSec.data.closingStatement ?? "",
+    };
+  }
+
+  let databricksControl: DatabricksControlData | undefined;
+  const controlSec =
+    data.slug === "databricks"
+      ? data.sections.find((s) => s.id === "control" || s.id === "agent-control")
+      : undefined;
+
+  if (controlSec) {
+    const block = controlSec.blocks?.[0];
+    const mediaSource = block?.media ?? controlSec.data.media;
+    databricksControl = {
+      heading: block?.heading ?? controlSec.data.heading ?? "",
+      description:
+        block?.body ??
+        controlSec.data.description ??
+        "",
+      image: {
+        src: mediaSource?.src ?? "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
+        alt: mediaSource?.alt ?? "Keep cost, access, and agent behavior under clear control",
+        width: mediaSource?.width ?? 437,
+        height: mediaSource?.height ?? 279,
+      },
+    };
+  }
 
   const storySectionIds = [
     "autonomous-workflows",
@@ -500,16 +711,22 @@ function mapStandardizedToPartnerDetail(
     "control",
     "google-cloud-scale",
   ];
-  const storySections = data.sections.filter((s) =>
-    storySectionIds.includes(s.id)
+  const storySections = data.sections.filter(
+    (s) =>
+      storySectionIds.includes(s.id) &&
+      s.id !== storyBannerSec?.id &&
+      s.id !== databricksSec?.id &&
+      s.id !== controlSec?.id
   );
 
-  const agenticEnterprise: AgenticEnterpriseData = {
-    blocks: storySections.map((sec) => {
-      const block = sec.blocks?.[0];
+  const agenticEnterprise: AgenticEnterpriseData | undefined =
+    storySections.length > 0
+      ? {
+          blocks: storySections.map((sec) => {
+            const block = sec.blocks?.[0];
 
-      let blockHeading: AgenticEnterpriseBlockData["heading"] = {
-        highlight: sec.data.headingStructure?.highlight,
+            let blockHeading: AgenticEnterpriseBlockData["heading"] = {
+              highlight: sec.data.headingStructure?.highlight,
         suffix: sec.data.headingStructure?.suffix,
         prefix: sec.data.headingStructure?.prefix,
         text: sec.data.headingStructure?.text,
@@ -521,6 +738,8 @@ function mapStandardizedToPartnerDetail(
           const ampMatch = h.match(/^(Get Amp['’]d)\s*(.*)$/i);
           if (ampMatch) {
             blockHeading = { highlight: ampMatch[1], text: ampMatch[2] };
+          } else if (h.match(/^Amp['’]d/i)) {
+            blockHeading = { highlight: h };
           } else {
             blockHeading = { text: h };
           }
@@ -560,18 +779,24 @@ function mapStandardizedToPartnerDetail(
         }
       }
 
+      const mediaSource = block?.media ?? sec.data.media;
+
       return {
         id: sec.id,
         layout: sec.data.layout as AgenticEnterpriseBlockData["layout"],
+        eyebrow: block?.eyebrow ?? sec.data.eyebrow ?? undefined,
         heading: blockHeading,
+        supportingStatement:
+          block?.supportingStatement ?? sec.data.supportingStatement ?? undefined,
         body: block?.body ?? sec.data.description ?? "",
-        closingStatement: sec.data.closingStatement,
-        image: sec.data.media?.src
+        paragraphs: block?.paragraphs ?? undefined,
+        closingStatement: block?.closingStatement ?? sec.data.closingStatement,
+        image: mediaSource?.src
           ? {
-              src: sec.data.media.src,
-              alt: sec.data.media.alt ?? "",
-              width: sec.data.media.width ?? 437,
-              height: sec.data.media.height ?? 279,
+              src: mediaSource.src,
+              alt: mediaSource.alt ?? "",
+              width: mediaSource.width ?? 437,
+              height: mediaSource.height ?? 279,
             }
           : undefined,
         metrics: block?.items?.length
@@ -582,27 +807,44 @@ function mapStandardizedToPartnerDetail(
           : undefined,
       };
     }),
-  };
+  } : undefined;
 
-  const solutionsSec = data.sections.find((s) => s.id === "gemini-solutions");
+  const solutionsSec = data.sections.find(
+    (s) =>
+      s.id === "gemini-solutions" ||
+      s.id === "solutions" ||
+      s.id === "databricks-solutions" ||
+      s.id === "shopify-solutions" ||
+      s.id === "accelerate"
+  );
   let solPrefix = solutionsSec?.data.headingStructure?.prefix;
   let solHighlight = solutionsSec?.data.headingStructure?.highlight;
+  let solSuffix = solutionsSec?.data.headingStructure?.suffix;
+  let solText = solutionsSec?.data.headingStructure?.text;
   if (!solHighlight && solutionsSec?.data.heading) {
-    const parts = solutionsSec.data.heading.split(/<br\s*\/?>/i);
-    if (parts.length >= 2) {
-      solPrefix = parts[0] + "\n";
-      solHighlight = parts[1];
+    const target = "Scale on the Databricks";
+    if (solutionsSec.data.heading.startsWith(target)) {
+      solHighlight = target;
+      solSuffix = solutionsSec.data.heading.slice(target.length).trim();
     } else {
-      solPrefix = solutionsSec.data.heading;
-      solHighlight = "";
+      const parts = solutionsSec.data.heading.split(/<br\s*\/?>/i);
+      if (parts.length >= 2) {
+        solPrefix = parts[0] + "\n";
+        solHighlight = parts[1];
+      } else {
+        solPrefix = solutionsSec.data.heading;
+        solHighlight = "";
+      }
     }
   }
 
   const solutions: PartnerSolutionsData | undefined = solutionsSec
     ? {
         heading: {
-          prefix: solPrefix ?? "",
-          highlight: solHighlight ?? "",
+          prefix: solPrefix,
+          highlight: solHighlight,
+          suffix: solSuffix,
+          text: solText,
         },
         description: solutionsSec.data.description ?? "",
         accelerators: (solutionsSec.blocks ?? []).map((b) => ({
@@ -617,12 +859,9 @@ function mapStandardizedToPartnerDetail(
           challenge: b.challenge ?? "",
           solution: b.solution ?? "",
           agentTeamTitle: b.agentTeamTitle,
-          agents: b.agents ?? [],
-          proof: (b.proof as PartnerAccelerator["proof"]) ?? {
-            headline: "",
-            description: "",
-            video: { provider: "youtube", id: "", poster: "", title: "" },
-          },
+          agentTeamDescription: b.agentTeamDescription,
+          agents: b.agents,
+          proof: b.proof as PartnerAccelerator["proof"],
         })),
       }
     : undefined;
@@ -666,9 +905,16 @@ function mapStandardizedToPartnerDetail(
       }
     : undefined;
 
-  const builtSec = data.sections.find((s) => s.id === "built-on-gemini");
+  const builtSec = data.sections.find(
+    (s) =>
+      s.id === "built-on-gemini" ||
+      s.id === "built-on-shopify" ||
+      s.id === "built-on"
+  );
   let builtHighlight = builtSec?.data.headingStructure?.highlight;
-  let builtRest = builtSec?.data.headingStructure?.rest;
+  let builtRest =
+    builtSec?.data.headingStructure?.rest ??
+    builtSec?.data.headingStructure?.text;
   if (!builtHighlight && builtSec?.data.heading) {
     const target = "Built on";
     if (builtSec.data.heading.startsWith(target)) {
@@ -703,14 +949,27 @@ function mapStandardizedToPartnerDetail(
       }
     : undefined;
 
-  const cta: PartnerCTAData = {
-    heading: data.footerCta.rawHeading ?? data.footerCta.heading,
-    description: data.footerCta.subheading ?? "",
-    buttonLabel:
-      data.footerCta.secondaryCta?.label ?? "Talk to an Amp'd specialist",
-    buttonHref: data.footerCta.secondaryCta?.href ?? "/contact",
-    buttonIcon: data.footerCta.secondaryCta?.icon as PartnerCTAData["buttonIcon"],
-  };
+  const cta: PartnerCTAData | undefined = data.footerCta?.enabled
+    ? {
+        heading: data.footerCta.rawHeading ?? data.footerCta.heading,
+        description: data.footerCta.subheading ?? "",
+        buttonLabel:
+          data.footerCta.secondaryCta?.label ?? "Talk to an Amp'd specialist",
+        buttonHref: data.footerCta.secondaryCta?.href ?? "/contact",
+        buttonIcon: data.footerCta.secondaryCta?.icon as PartnerCTAData["buttonIcon"],
+        buttonVariant:
+          (data.footerCta.secondaryCta as { variant?: "primary" | "dark" })?.variant ??
+          (data.footerCta.media ? "dark" : "primary"),
+        media: data.footerCta.media?.src
+          ? {
+              src: data.footerCta.media.src,
+              alt: data.footerCta.media.alt ?? "",
+              width: data.footerCta.media.width,
+              height: data.footerCta.media.height,
+            }
+          : undefined,
+      }
+    : undefined;
 
   return {
     slug: data.slug,
@@ -718,7 +977,13 @@ function mapStandardizedToPartnerDetail(
     meta,
     hero,
     intro,
+    storyBanner,
+    agentTeams,
+    alternatingContent,
     agenticEnterprise,
+    databricksAgenticExecution,
+    databricksBusinessContext,
+    databricksControl,
     solutions,
     productionProof,
     builtOnGemini,

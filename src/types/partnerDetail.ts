@@ -10,11 +10,13 @@
 export interface PartnerHeroData {
   headingLine1: string;
   headingLine2: string;
+  headingLines?: string[];
   partnerLogo: {
     src: string;
     alt: string;
     width?: number;
     height?: number;
+    assetKey?: string;
   };
   ribbonSrc: string;
 }
@@ -28,16 +30,23 @@ export interface LeadershipQuoteData {
   };
 }
 
+export interface StatementCardData {
+  text: string;
+}
+
 export interface PartnerIntroData {
   heading: {
+    prefix?: string;
     highlight: string;
     suffix: string;
   };
   paragraphs: string[];
-  leadershipQuote: LeadershipQuoteData;
+  leadershipQuote?: LeadershipQuoteData;
+  statementCard?: StatementCardData;
   cta?: {
     label: string;
     href: string;
+    icon?: string;
   };
 }
 
@@ -48,14 +57,17 @@ export interface AgenticEnterpriseMetricsData {
 
 export interface AgenticEnterpriseBlockData {
   id: string;
-  layout?: "text-image" | "text-metrics" | "image-text";
+  layout?: "text-image" | "text-metrics" | "image-text" | "image-stacked" | "stacked";
+  eyebrow?: string;
   heading: {
     prefix?: string;
     highlight?: string;
     suffix?: string;
     text?: string;
   };
+  supportingStatement?: string;
   body: string;
+  paragraphs?: string[];
   closingStatement?: string;
   image?: {
     src: string;
@@ -133,14 +145,17 @@ export interface PartnerAccelerator {
   challenge: string;
   solution: string;
   agentTeamTitle?: string;
-  agents: AgentTeamMember[];
-  proof: AcceleratorProofData;
+  agentTeamDescription?: string;
+  agents?: AgentTeamMember[];
+  proof?: AcceleratorProofData;
 }
 
 export interface PartnerSolutionsData {
   heading: {
-    prefix: string;
-    highlight: string;
+    prefix?: string;
+    highlight?: string;
+    suffix?: string;
+    text?: string;
   };
   description: string;
   accelerators: PartnerAccelerator[];
@@ -152,6 +167,13 @@ export interface PartnerCTAData {
   buttonLabel: string;
   buttonHref: string;
   buttonIcon?: "cube" | "arrow-up-right";
+  buttonVariant?: "primary" | "dark";
+  media?: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+  };
 }
 
 export interface ProductionProofCardData {
@@ -200,6 +222,94 @@ export interface PartnerBuiltOnGeminiData {
   cards: BuiltOnGeminiCardData[];
 }
 
+export interface PartnerStoryBannerData {
+  image: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+  heading: {
+    highlight?: string;
+    text: string;
+  };
+  description: string;
+}
+
+export interface DatabricksAgenticExecutionData {
+  eyebrow: string;
+  heading: string;
+  supportingStatement: string;
+  paragraphs: string[];
+  closingStatement: string;
+  image: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+}
+
+export interface PartnerBusinessContextCard {
+  id: string;
+  title: string;
+  description: string;
+}
+
+export interface DatabricksBusinessContextData {
+  heading: string;
+  description: string;
+  cards: PartnerBusinessContextCard[];
+  closingStatement: string;
+}
+
+export interface DatabricksControlData {
+  heading: string;
+  description: string;
+  image: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+}
+
+export interface PartnerAgentTeamsCardData {
+  id: string;
+  title?: string;
+  text: string;
+  ribbon: string;
+}
+
+export interface PartnerAgentTeamsData {
+  heading: string;
+  description: string;
+  cards: PartnerAgentTeamsCardData[];
+  closingStatement?: string;
+}
+
+export interface PartnerAlternatingRowData {
+  id: string;
+  heading: {
+    highlight: string;
+    text: string;
+  };
+  description: string;
+  image: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+  };
+  imagePosition: "left" | "right";
+  isCard?: boolean;
+}
+
+export interface PartnerAlternatingContentData {
+  id?: string;
+  rows: PartnerAlternatingRowData[];
+}
+
 export interface PartnerDetailData {
   slug: string;
   name: string;
@@ -208,10 +318,18 @@ export interface PartnerDetailData {
     description: string;
   };
   hero: PartnerHeroData;
-  intro: PartnerIntroData;
+  intro?: PartnerIntroData;
+  storyBanner?: PartnerStoryBannerData;
+  agentTeams?: PartnerAgentTeamsData;
+  alternatingContent?: PartnerAlternatingContentData;
   agenticEnterprise?: AgenticEnterpriseData;
+  databricksAgenticExecution?: DatabricksAgenticExecutionData;
+  databricksBusinessContext?: DatabricksBusinessContextData;
+  databricksControl?: DatabricksControlData;
   solutions?: PartnerSolutionsData;
   productionProof?: PartnerProductionProofData;
   builtOnGemini?: PartnerBuiltOnGeminiData;
   cta?: PartnerCTAData;
 }
+
+

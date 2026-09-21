@@ -8,9 +8,14 @@
   position: relative;
   width: 100%;
   padding-top: var(--space-8);
-  padding-bottom: var(--space-20);
+  padding-bottom: var(--space-12);
   overflow: visible;
   z-index: 2;
+  height: auto;
+}
+
+.hasStatementCard {
+  padding-bottom: var(--space-4);
 }
 
 .container {
@@ -22,16 +27,23 @@
 /* Heading with vertical accent bar */
 .headingWrapper {
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   gap: var(--space-3);
   margin-bottom: var(--space-6);
 }
 
 .accentBar {
   width: 4px;
+  height: 1.75rem;
+  margin-top: 0.35rem;
   background-color: var(--color-brand-primary);
   border-radius: var(--radius-full);
   flex-shrink: 0;
+}
+
+.headingBlock {
+  display: block;
+  color: var(--color-text-primary);
 }
 
 .heading {
@@ -67,6 +79,31 @@
   line-height: var(--line-height-relaxed);
   color: var(--color-text-primary);
   margin: 0;
+}
+
+/* Statement / Highlight Glass Card */
+.statementCard {
+  position: relative;
+  width: 100%;
+  background-color: #d9d9d920;
+  border: 1px solid #ffffff;
+  border-radius: var(--radius-2xl, 1.5rem);
+  padding: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem);
+  box-shadow:
+    inset 0 0 4px rgba(4, 4, 4, 0.08),
+    inset 0 0 0 rgba(0, 0, 0, 0);
+  overflow: hidden;
+}
+
+.statementText {
+  text-align: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  max-width: 52rem;
+  margin: 0 auto;
 }
 
 /* Leadership Quote Glass Card */
@@ -161,13 +198,14 @@
 }
 
 .quoteText {
-  width: 49.245rem;
+  width: 100%;
+  max-width: 49.245rem;
   font-family: var(--font-family-base);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-regular);
   line-height: 1.6;
   color: var(--color-text-primary);
-  margin-bottom:2.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .dropCap {
@@ -277,7 +315,21 @@
     vertical-align: -4px;
   }
 
+  .statementCard {
+    padding: var(--space-6) var(--space-4);
+    border-radius: var(--radius-xl, 1rem);
+  }
+
+  .statementText {
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-normal);
+  }
+
   .ctaWrapper {
     margin-top: var(--space-8);
+  }
+
+  .hasStatementCard {
+    padding-bottom: var(--space-3);
   }
 }

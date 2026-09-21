@@ -193,3 +193,57 @@
   right: -0.375rem;
   border-left-color: var(--color-brand-primary);
 }
+
+/* --------------------------------------------------------------------
+   Compact Variant (for 4-column horizontal layouts, e.g. Shopify)
+   Preserves 100% of the surface glass, border radius, inner glow,
+   and arrow divider design tokens with scaled proportions for 4 columns.
+   -------------------------------------------------------------------- */
+.cardCompact {
+  min-height: 25.5rem;
+  height: 100%;
+}
+
+.ribbonWrapperCompact {
+  height: 13.5rem;
+}
+
+.contentCompact {
+  padding: var(--space-5) var(--space-4) var(--space-6);
+  gap: var(--space-4);
+}
+
+.textCompact {
+  max-width: 100%;
+  font-size: var(--font-size-md);
+  line-height: 1.45;
+}
+
+.lineCompact {
+  width: 100%;
+  max-width: 13.5rem;
+}
+
+.bodyWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.cardTitle {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-brand-primary);
+  margin: 0;
+  text-align: center;
+}
+
+.cardTitleCompact {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+

@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
@@ -6,7 +7,13 @@ import { PageRibbon } from "@/components/ui/PageRibbon";
 import { GradientLayerProvider } from "@/components/effects/GradientLayer";
 import { PartnerHero } from "@/components/sections/Partners/Detail/PartnerHero";
 import { PartnerIntro } from "@/components/sections/Partners/Detail/PartnerIntro";
+import { PartnerStoryBanner } from "@/components/sections/Partners/Detail/PartnerStoryBanner";
+import { PartnerAgentTeams } from "@/components/sections/Partners/Detail/PartnerAgentTeams";
+import { PartnerAlternatingContent } from "@/components/sections/Partners/Detail/PartnerAlternatingContent";
 import { AgenticEnterprise } from "@/components/sections/Partners/Detail/AgenticEnterprise";
+import { DatabricksAgenticExecution } from "@/components/sections/Partners/Detail/DatabricksAgenticExecution";
+import { DatabricksBusinessContext } from "@/components/sections/Partners/Detail/DatabricksBusinessContext";
+import { DatabricksControl } from "@/components/sections/Partners/Detail/DatabricksControl";
 import { Solutions } from "@/components/sections/Partners/Detail/Solutions";
 import { ProductionProof } from "@/components/sections/Partners/Detail/ProductionProof";
 import { BuiltOnGemini } from "@/components/sections/Partners/Detail/BuiltOnGemini";
@@ -51,7 +58,12 @@ export default async function PartnerDetailPage({
 
   return (
     <GradientLayerProvider>
-      <div className={styles.page}>
+      <div
+        className={clsx(
+          styles.page,
+          slug === "shopify" && styles.shopifyPage
+        )}
+      >
         <Header />
 
         {partner.hero.ribbonSrc && (
@@ -59,8 +71,15 @@ export default async function PartnerDetailPage({
             src={partner.hero.ribbonSrc}
             width={1440}
             height={696}
-            className={styles.ribbonWrapper}
-            imageClassName={styles.ribbonImage}
+            className={clsx(
+              styles.ribbonWrapper,
+              slug === "databricks" && styles.databricksRibbonWrapper,
+              slug === "shopify" && styles.shopifyRibbonWrapper
+            )}
+            imageClassName={clsx(
+              styles.ribbonImage,
+              slug === "shopify" && styles.shopifyRibbonImage
+            )}
             priority
           />
         )}
@@ -149,30 +168,71 @@ export default async function PartnerDetailPage({
         <main id="main-content">
           <PartnerHero hero={partner.hero} />
           {partner.intro && <PartnerIntro intro={partner.intro} />}
+          {partner.storyBanner && (
+            <PartnerStoryBanner data={partner.storyBanner} />
+          )}
+          {slug === "shopify" && partner.agentTeams && (
+            <PartnerAgentTeams data={partner.agentTeams} />
+          )}
+          {partner.alternatingContent && (
+            <PartnerAlternatingContent data={partner.alternatingContent} />
+          )}
           {partner.agenticEnterprise && (
             <AgenticEnterprise data={partner.agenticEnterprise} />
           )}
-          {partner.solutions && <Solutions data={partner.solutions} />}
-          {partner.productionProof && (
-            <ProductionProof data={partner.productionProof} />
+          {partner.databricksAgenticExecution && (
+            <DatabricksAgenticExecution
+              data={partner.databricksAgenticExecution}
+            />
           )}
-          {partner.builtOnGemini && (
-            <BuiltOnGemini data={partner.builtOnGemini} />
+          {partner.databricksBusinessContext && (
+            <DatabricksBusinessContext
+              data={partner.databricksBusinessContext}
+            />
+          )}
+          {partner.databricksControl && (
+            <DatabricksControl data={partner.databricksControl} />
+          )}
+          {partner.solutions && <Solutions data={partner.solutions} />}
+          {slug !== "shopify" && partner.agentTeams && (
+            <PartnerAgentTeams data={partner.agentTeams} />
+          )}
+          {slug === "shopify" ? (
+            <>
+              {partner.builtOnGemini && (
+                <BuiltOnGemini data={partner.builtOnGemini} />
+              )}
+              {partner.productionProof && (
+                <ProductionProof data={partner.productionProof} />
+              )}
+            </>
+          ) : (
+            <>
+              {partner.productionProof && (
+                <ProductionProof data={partner.productionProof} />
+              )}
+              {partner.builtOnGemini && (
+                <BuiltOnGemini data={partner.builtOnGemini} />
+              )}
+            </>
           )}
         </main>
 
         <Footer
-          variant="partner-detail"
+          variant={partner.cta?.media ? "partner-card" : "partner-detail"}
           ctaData={
             partner.cta
               ? {
                   heading: partner.cta.heading,
                   description: partner.cta.description,
+                  media: partner.cta.media,
                   buttons: [
                     {
                       label: partner.cta.buttonLabel,
                       href: partner.cta.buttonHref,
-                      variant: "primary",
+                      variant:
+                        partner.cta.buttonVariant ??
+                        (partner.cta.media ? "dark" : "primary"),
                       icon: partner.cta.buttonIcon ?? "cube",
                     },
                   ],

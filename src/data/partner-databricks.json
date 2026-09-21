@@ -1,0 +1,508 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "partnershipLanding",
+  "slug": "databricks",
+  "title": "Turn your enterprise data into context your AI agents can trust, with Databricks",
+  "name": "Databricks",
+  "seo": {
+    "title": "Databricks Partnership | Agivant",
+    "description": "Turn your enterprise data into context your AI agents can trust, with Databricks and Agivant Technologies.",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Turn your enterprise data into context your AI agents can trust, with Databricks",
+    "subtitle": null,
+    "summary": null,
+    "authors": [],
+    "partner": {
+      "name": "Databricks",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/databricks.png",
+        "assetKey": "databricks-logo",
+        "alt": "Databricks logo",
+        "caption": null,
+        "width": 340,
+        "height": 124
+      }
+    },
+    "media": {
+      "kind": "image",
+      "src": "/images/services/hero-ribbon.png",
+      "assetKey": "services-hero-ribbon",
+      "alt": "Flowing hero ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null,
+    "heading": "Turn your enterprise data<br>into context your AI<br>agents can trust, with"
+  },
+  "sections": [
+    {
+      "id": "production-value",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "headingStructure": null,
+        "description": "Agivant's Databricks practice gives AI agents the one thing that makes their answers trustworthy: real business context. As a Databricks Bronze Partner, Agivant builds agents that reason over governed data and show results in days and weeks.\n\nBuilt on the Databricks Data + AI Platform, with Lakebase Postgres, Unity Catalog, and Genie, Agivant moves teams from isolated pilots to production agents that act safely on real business questions.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "intro-copy",
+          "type": "rich_text",
+          "heading": null,
+          "body": "Agivant's Databricks practice gives AI agents the one thing that makes their answers trustworthy: real business context. As a Databricks Bronze Partner, Agivant builds agents that reason over governed data and show results in days and weeks.\n\nBuilt on the Databricks Data + AI Platform, with Lakebase Postgres, Unity Catalog, and Genie, Agivant moves teams from isolated pilots to production agents that act safely on real business questions.",
+          "paragraphs": [
+            "Agivant's Databricks practice gives AI agents the one thing that makes their answers trustworthy: real business context. As a Databricks Bronze Partner, Agivant builds agents that reason over governed data and show results in days and weeks.",
+            "Built on the Databricks Data + AI Platform, with Lakebase Postgres, Unity Catalog, and Genie, Agivant moves teams from isolated pilots to production agents that act safely on real business questions."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "customer-quote",
+      "type": "quote",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "See the accelerators in action",
+          "href": "#accelerators",
+          "icon": "cube",
+          "external": false
+        }
+      },
+      "blocks": [
+        {
+          "id": "quote-1",
+          "type": "quote",
+          "quote": "The biggest limiting factor for enterprise AI right now is not intelligence, it is context. Models are capable, but most organizations still cannot connect them reliably to the data and business logic that make an answer trustworthy. Databricks has been building toward a platform where governed data and agents work together as a single foundation, and that matches exactly what we see with our own clients. As a Databricks Bronze Partner, Agivant is focused on helping enterprises turn that foundation into production AI systems that create measurable business value.",
+          "authorName": "Ajay Malgaonkar",
+          "authorRole": "Chief Digital Delivery Officer, Agivant Technologies",
+          "authorImage": {
+            "kind": "image",
+            "src": "/images/partners/gemini/intro/ajay-malgaonkar.png",
+            "assetKey": "partnership-quote-author",
+            "alt": "Ajay Malgaonkar",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "autonomous-workflows",
+      "type": "split_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": "From data intelligence to agentic execution.",
+        "heading": "Amp’d by Agivant",
+        "headingStructure": {
+          "highlight": "Amp’d by Agivant"
+        },
+        "supportingStatement": "Build the agent. Ground it in enterprise context. Govern it from day one. Put it into production.",
+        "description": "Amp’d by Agivant is our accelerated approach to building production AI agents on Databricks.",
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-ambition.png",
+          "assetKey": "agentic-enterprise-ambition",
+          "alt": "Amp’d by Agivant",
+          "caption": null,
+          "width": 437,
+          "height": 408
+        },
+        "cta": null,
+        "layout": "text-image",
+        "closingStatement": "Every build amplifies the next."
+      },
+      "blocks": [
+        {
+          "id": "ampd-agivant",
+          "type": "split_content",
+          "eyebrow": "From data intelligence to agentic execution.",
+          "heading": "Amp’d by Agivant",
+          "supportingStatement": "Build the agent. Ground it in enterprise context. Govern it from day one. Put it into production.",
+          "body": "Amp’d by Agivant is our accelerated approach to building production AI agents on Databricks.",
+          "paragraphs": [
+            "Amp’d by Agivant is our accelerated approach to building production AI agents on Databricks.",
+            "Our Forward Deployed Engineers work directly with business and technology teams to turn high-value workflows into production agents using the latest Databricks capabilities, from **Agent Bricks and Genie Agents to Unity Catalog, Lakebase, MLflow and AI Gateway.**",
+            "Every engagement produces reusable agent patterns, governed data assets, evaluation frameworks and deployment components that accelerate the next use case."
+          ],
+          "closingStatement": "Every build amplifies the next.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-ambition.png",
+            "assetKey": "agentic-enterprise-ambition",
+            "alt": "Amp’d by Agivant",
+            "caption": null,
+            "width": 437,
+            "height": 408
+          }
+        }
+      ]
+    },
+    {
+      "id": "business-context",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Give every agent the business context to answer with confidence.",
+        "description": "Agivant combines Genie Ontology, Genie Agents, Agent Bricks and Unity Catalog to ground agents in the business context behind enterprise data, from trusted definitions of revenue, risk, and customer to the relationships and workflows that connect them.",
+        "columns": [],
+        "media": null,
+        "cta": null,
+        "closingStatement": "When agents can reason over the same governed data and business context the organization runs on, the next question is who watches them."
+      },
+      "blocks": [
+        {
+          "id": "genie-ontology",
+          "type": "card",
+          "title": "Genie Ontology",
+          "body": "gives agents a shared understanding of business entities, relationships, metrics, and terminology."
+        },
+        {
+          "id": "agent-bricks",
+          "type": "card",
+          "title": "Agent Bricks",
+          "body": "enables domain-specific agents to reason over governed enterprise data and execute business workflows."
+        },
+        {
+          "id": "genie-agents",
+          "type": "card",
+          "title": "Genie Agents",
+          "body": "turn natural-language business questions into governed, actionable insights directly on enterprise data."
+        },
+        {
+          "id": "lakebase",
+          "type": "card",
+          "title": "Lakebase",
+          "body": "brings operational and transactional context alongside analytical data, giving agents a more complete view of the business."
+        }
+      ]
+    },
+    {
+      "id": "control",
+      "type": "split_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Keep cost, access, and agent behavior under clear control",
+        "description": "Agivant uses **Unity Catalog, AI Gateway, MLflow, and Databricks’ built-in governance capabilities** to control what agents can access, which models and tools they can use, and how they behave in production. Evaluation and observability help teams continuously measure agent quality, while human checkpoints and policy-driven guardrails keep high-impact decisions under control.",
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
+          "assetKey": "databricks-control-governance",
+          "alt": "Keep cost, access, and agent behavior under clear control",
+          "caption": null,
+          "width": 437,
+          "height": 279
+        },
+        "cta": null,
+        "layout": "image-text"
+      },
+      "blocks": [
+        {
+          "id": "control-copy",
+          "type": "richText",
+          "heading": null,
+          "body": "Agivant uses **Unity Catalog, AI Gateway, MLflow, and Databricks’ built-in governance capabilities** to control what agents can access, which models and tools they can use, and how they behave in production. Evaluation and observability help teams continuously measure agent quality, while human checkpoints and policy-driven guardrails keep high-impact decisions under control.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
+            "assetKey": "databricks-control-governance",
+            "alt": "Keep cost, access, and agent behavior under clear control",
+            "caption": null,
+            "width": 437,
+            "height": 279
+          }
+        }
+      ]
+    },
+    {
+      "id": "solutions",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Scale on the Databricks Data + AI Platform with certified engineering",
+        "description": "Databricks-certified engineers stand up secure foundations, package reusable accelerators, and work in focused sprints. This is what an Amp'd enterprise looks like in production.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "data-ai-modernization",
+          "type": "card",
+          "eyebrow": "Platform foundation",
+          "title": "Data & AI platform\nmodernization",
+          "body": "One trusted foundation for the data agents and analysts both depend on.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "assetKey": "databricks-sol-1",
+            "alt": "Data & AI platform modernization",
+            "caption": null
+          },
+          "challenge": "Enterprise data and applications remain fragmented across analytical, transactional, and operational systems, limiting what AI agents can understand and act on.",
+          "solution": "Agivant modernizes enterprise data and AI foundations on the Databricks Data Intelligence Platform, bringing together Lakeflow, Unity Catalog, Lakebase, and AI capabilities so agents and applications can work from trusted, governed enterprise data."
+        },
+        {
+          "id": "genie-ontology-sol",
+          "type": "card",
+          "eyebrow": "Trusted context",
+          "title": "Business context\nwith Genie Ontology",
+          "body": "Give agents the definitions the business already stands behind.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/cpq-lens.png",
+            "assetKey": "databricks-sol-2",
+            "alt": "Business context with Genie Ontology",
+            "caption": null
+          },
+          "challenge": "Enterprise data and applications remain fragmented across analytical, transactional, and operational systems, limiting what AI agents can understand and act on.",
+          "solution": "Agivant modernizes enterprise data and AI foundations on the Databricks Data Intelligence Platform, bringing together Lakeflow, Unity Catalog, Lakebase, and AI capabilities so agents and applications can work from trusted, governed enterprise data."
+        },
+        {
+          "id": "agent-bricks-sol",
+          "type": "card",
+          "eyebrow": "Pilots to production",
+          "title": "Production agents and\ncoworkers with Agent Bricks",
+          "body": "Cross the gap where most AI programs stall.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/sourcex.png",
+            "assetKey": "databricks-sol-3",
+            "alt": "Production agents and coworkers with Agent Bricks",
+            "caption": null
+          },
+          "challenge": "Enterprise data and applications remain fragmented across analytical, transactional, and operational systems, limiting what AI agents can understand and act on.",
+          "solution": "Agivant modernizes enterprise data and AI foundations on the Databricks Data Intelligence Platform, bringing together Lakeflow, Unity Catalog, Lakebase, and AI capabilities so agents and applications can work from trusted, governed enterprise data."
+        }
+      ]
+    },
+    {
+      "id": "built-on-databricks",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Built on the Databricks Data + AI Platform",
+        "description": "Industry accelerators built on the same governed data and agent foundation.",
+        "closingStatement": "Agents move fast, which is exactly why merchants stay the ones who decide.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "financial-services-acc",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Financial Services",
+          "body": "Agents that reason over financial data within policy.",
+          "media": {
+            "kind": "image",
+            "src": "/images/solutions/verbatim-ai.png",
+            "assetKey": "databricks-acc-1",
+            "alt": "Financial Services",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "healthcare-acc",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Healthcare",
+          "body": "Trusted context for clinical and operational calls.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/strategic-sourcing.png",
+            "assetKey": "databricks-acc-2",
+            "alt": "Healthcare",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "semiconductor-acc",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Semiconductor",
+          "body": "Engineering and yield questions answered on live data.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/zeroq.png",
+            "assetKey": "databricks-acc-3",
+            "alt": "Semiconductor",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "technology-acc",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Technology",
+          "body": "Product and support agents grounded in your systems.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "assetKey": "databricks-acc-4",
+            "alt": "Technology",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "proof-from-production",
+      "type": "case_study_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Proof from production.",
+        "description": "Gemini Enterprise engagements already running, with outcomes measured in the environment they were built for.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "developer-productivity-on-gemini",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Developer productivity on Gemini",
+          "body": "Gemini-native code assistance across a global technology estate, working inside the tools engineers already use.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/developer-productivity.png",
+            "assetKey": "production-proof-1",
+            "alt": "Developer productivity on Gemini",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "/case-studies/developer-productivity-on-gemini",
+            "external": false
+          },
+          "items": [],
+          "metric": "35 percent faster cycles · 30 to 40 percent higher developer productivity",
+          "caseStudySlug": "developer-productivity-on-gemini",
+          "badge": "Client success",
+          "isTall": false
+        },
+        {
+          "id": "conversational-analytics-and-hyper-automation",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Conversational analytics\nand hyper-automation",
+          "body": "Multilingual conversational analytics that read intent, answer at source, and route only what needs a person.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/conversational-analytics.png",
+            "assetKey": "production-proof-2",
+            "alt": "Conversational analytics and hyper-automation",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "/case-studies/conversational-analytics-and-hyper-automation",
+            "external": false
+          },
+          "items": [],
+          "metric": "Around 90 percent automation · 94 percent confidence · 50 plus languages",
+          "caseStudySlug": "conversational-analytics-and-hyper-automation",
+          "badge": "Client success",
+          "isTall": false
+        },
+        {
+          "id": "enterprise-mlops-on-vertex-ai",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Enterprise MLOps on Vertex AI",
+          "body": "The model lifecycle automated end to end, from training through release and monitoring.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/enterprise-mlops.png",
+            "assetKey": "production-proof-3",
+            "alt": "Enterprise MLOps on Vertex AI",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "/case-studies/enterprise-mlops-on-vertex-ai",
+            "external": false
+          },
+          "items": [],
+          "metric": "30 to 50 percent lower operating cost",
+          "caseStudySlug": "enterprise-mlops-on-vertex-ai",
+          "badge": "Client success",
+          "isTall": true
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Put Databricks to work for measurable business impact.",
+    "subheading": "Give agents a foundation they can trust, and put them into production where the business can measure the result.",
+    "partner": {
+      "name": "Databricks",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/databricks.png",
+        "assetKey": "partner-databricks",
+        "alt": "Databricks logo",
+        "caption": null
+      }
+    },
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/solution-ribbon-02.png",
+      "assetKey": "databricks-cta-artwork",
+      "alt": "Put Databricks to work for measurable business impact",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Book a Databricks assessment",
+      "href": "/contact",
+      "external": false,
+      "icon": "cube",
+      "variant": "dark"
+    }
+  }
+}

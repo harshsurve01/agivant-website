@@ -31,8 +31,14 @@ export function BuiltOnGeminiCard({ card }: BuiltOnGeminiCardProps) {
     badge = "Solution",
   } = card;
 
+  const href = slug
+    ? slug.startsWith("/") || slug.startsWith("#")
+      ? slug
+      : `/solutions/${slug}`
+    : "#";
+
   return (
-    <Link href={`/solutions/${slug}`} className={styles.cardLink}>
+    <Link href={href} className={styles.cardLink}>
       <article className={styles.card}>
         {/* Top Image Frame */}
         <div className={styles.imageWrapper}>
@@ -53,8 +59,8 @@ export function BuiltOnGeminiCard({ card }: BuiltOnGeminiCardProps) {
         <div className={styles.cardBody}>
           <h3 className={styles.title}>{title}</h3>
           <p className={styles.description}>{description}</p>
-          <p className={styles.metric}>{metric}</p>
-          <span className={styles.cta}>{ctaLabel}</span>
+          {metric && <p className={styles.metric}>{metric}</p>}
+          {ctaLabel && <span className={styles.cta}>{ctaLabel}</span>}
         </div>
       </article>
     </Link>

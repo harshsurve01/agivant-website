@@ -8,9 +8,9 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: 880px; /* Figma: 958px Frame 14 height minus Header height */
+  min-height: 100vh; /* Figma: 958px Frame 14 height minus Header height */
   padding-top: var(--space-24);
-  padding-bottom: var(--space-12);
+  padding-bottom: var(--space-16);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -64,6 +64,19 @@
   object-fit: contain;
 }
 
+.databricksLogo {
+  max-height: 100px;
+  max-width: min(340px, 75vw);
+  margin-top: calc(-1 * var(--space-2));
+}
+
+.shopifyLogo {
+  max-height: 5.25rem;
+  max-width: min(15.625rem, 80vw);
+  width: auto;
+  height: auto;
+}
+
 @media (max-width: 1024px) {
   .hero {
     min-height: 720px;
@@ -89,5 +102,16 @@
 
   .partnerLogo {
     max-height: 48px;
+  }
+
+  .databricksLogo {
+    max-height: 64px;
+    max-width: min(240px, 75vw);
+    margin-top: 0;
+  }
+
+  .shopifyLogo {
+    max-height: 3.75rem;
+    max-width: min(11.25rem, 70vw);
   }
 }

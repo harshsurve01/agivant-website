@@ -22,7 +22,15 @@
    Section Header
    -------------------------------------------------------------------- */
 .headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-6);
   margin-bottom: var(--space-10);
+  max-width: 100%;
+}
+
+.headerContent {
   max-width: 68rem;
 }
 
@@ -53,8 +61,10 @@
   margin: 0;
 }
 
+
+
 /* --------------------------------------------------------------------
-   4 Accelerator Cards Grid
+   4 Accelerator Cards Grid & 5+ Cards Carousel Track
    -------------------------------------------------------------------- */
 .cardsGrid {
   display: grid;
@@ -62,6 +72,49 @@
   gap: var(--space-5);
   margin-bottom: var(--space-8);
   align-items: stretch;
+}
+
+.cardsGrid3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.carouselTrack {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  padding-top: var(--space-1);
+  padding-bottom: 2rem;
+  margin-bottom: calc(var(--space-8) - 2rem);
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.carouselTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.carouselTrackDragging {
+  cursor: grabbing !important;
+  scroll-behavior: auto !important;
+  scroll-snap-type: none !important;
+}
+
+.carouselTrackDragging * {
+  cursor: grabbing !important;
+  user-select: none !important;
+}
+
+.carouselTrack .card {
+  flex: 0 0 calc((100% - 3 * var(--space-5)) / 4);
+  min-width: 270px;
+  max-width: 286px;
+  scroll-snap-align: start;
 }
 
 .card {
@@ -153,7 +206,6 @@
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--letter-spacing-wide);
   color: var(--color-neutral-600);
-  text-transform: uppercase;
   margin: 0 0 var(--space-3) 0;
   transition: color var(--transition-fast);
 }
@@ -195,6 +247,8 @@
   display: block;
   width: 100%;
   height: auto;
+  pointer-events: none;
+  -webkit-user-drag: none;
 }
 
 /* Inactive cards: reduced opacity ONLY for main content (title, category, description, image) */
@@ -282,6 +336,17 @@
   color: var(--color-brand-primary);
   text-align: center;
   margin: 0 0 var(--space-8) 0;
+}
+
+.agentTeamSummary {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base); /* 15px */
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  text-align: center;
+  max-width: 52rem;
+  margin: 0 auto;
 }
 
 .agentsGrid {
@@ -408,6 +473,11 @@
     gap: var(--space-6);
   }
 
+  .carouselTrack .card {
+    flex: 0 0 calc((100% - var(--space-5)) / 2);
+    max-width: none;
+  }
+
   .displayPanel {
     padding: var(--space-8);
   }
@@ -432,6 +502,13 @@
     padding-bottom: var(--space-16);
   }
 
+  .headerWrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+
   .heading {
     font-size: var(--font-size-2xl); /* 24px */
   }
@@ -443,6 +520,11 @@
   .cardsGrid {
     grid-template-columns: 1fr;
     gap: var(--space-6);
+  }
+
+  .carouselTrack .card {
+    flex: 0 0 85%;
+    max-width: none;
   }
 
   .card {

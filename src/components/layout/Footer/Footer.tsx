@@ -6,6 +6,7 @@ import {
 } from "@/data/footer";
 import { Container } from "@/components/ui/Container";
 import { FooterCTA } from "./FooterCTA";
+import { PartnerFooterCTA } from "./PartnerFooterCTA";
 import { FooterNavigation } from "./FooterNavigation";
 import { FooterBrandmark } from "./FooterBrandmark";
 import { FooterCopyright } from "./FooterCopyright";
@@ -19,13 +20,21 @@ import styles from "./Footer.module.css";
  *               single purple CTA button, faded brandmark, and copyright.
  * - "partner-detail": Variant for Partner Detail pages with centered heading, supporting description paragraph,
  *                     single primary button (with cube icon), faded brandmark, and copyright.
+ * - "partner-card" (or "partner"): Reusable horizontal glass card variant for Partner pages (Databricks, ServiceNow, etc.)
+ *                                  with left artwork, right heading/description/button, faded brandmark, and copyright.
  */
-export type FooterVariant = "default" | "minimal" | "partners" | "partner-detail";
+export type FooterVariant = "default" | "minimal" | "partners" | "partner-detail" | "partner-card" | "partner";
 
 export interface FooterCustomCTA {
   heading: string | { line1: string; line2?: string; line3?: string };
   description?: string;
   brandMedia?: FooterBrandMedia | null;
+  media?: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+  } | null;
   buttons: FooterButton[];
 }
 
@@ -47,7 +56,7 @@ export interface FooterProps {
  *
  * Global layout component combining the site's final CTA with its footer brandmark and copyright.
  * Supports "default" centered footer, "partners" landing footer, "partner-detail" CMS-driven footer,
- * and "minimal" logo+copyright variant.
+ * "partner-card" horizontal glass card footer, and "minimal" logo+copyright variant.
  *
  * Server Component: async, no "use client", no hooks, no state.
  */
@@ -62,6 +71,7 @@ export async function Footer({
 
   const isPartners = variant === "partners";
   const isPartnerDetail = variant === "partner-detail";
+  const isPartnerCard = variant === "partner-card" || variant === "partner";
   const isMinimal = variant === "minimal";
 
   const heading =
@@ -76,7 +86,7 @@ export async function Footer({
     ctaData?.brandMedia === null
       ? undefined
       : (ctaData?.brandMedia ??
-        (isPartners || isPartnerDetail ? undefined : content.brandMedia));
+        (isPartners || isPartnerDetail || isPartnerCard ? undefined : content.brandMedia));
 
   const buttons: FooterButton[] =
     ctaData?.buttons ??
@@ -92,33 +102,62 @@ export async function Footer({
       : content.buttons);
 
   return (
-    <footer className={clsx(styles.footer, styles[variant], className)}>
+    <footer
+      className={clsx(
+        styles.footer,
+        styles[variant],
+        isPartnerCard && styles.partnerCardFooter,
+        className
+      )}
+    >
       {!isMinimal && (
-        <Container size="xl" className={styles.top}>
-          <FooterCTA
-            heading={heading}
-            description={description}
-            brandMedia={brandMedia}
-            buttons={buttons}
-            variant={variant}
-          />
+        <Container
+          size="xl"
+          className={clsx(styles.top, isPartnerCard && styles.topPartnerCard)}
+        >
+          {isPartnerCard ? (
+            <PartnerFooterCTA
+              heading={heading}
+              description={description}
+              media={ctaData?.media}
+              buttons={buttons}
+            />
+          ) : (
+            <FooterCTA
+              heading={heading}
+              description={description}
+              brandMedia={brandMedia}
+              buttons={buttons}
+              variant={variant}
+            />
+          )}
           {showNavigation ? (
             <FooterNavigation links={content.navigation} />
           ) : null}
         </Container>
       )}
 
-      <>
       {showBrandmark ? (
-        <Container size="xl" className={styles.brandmarkContainer}>
+        <Container
+          size="xl"
+          className={clsx(
+            styles.brandmarkContainer,
+            isPartnerCard && styles.brandmarkPartnerCard
+          )}
+        >
           <FooterBrandmark />
         </Container>
       ) : null}
 
-      <Container size="xl" className={styles.copyrightContainer}>
+      <Container
+        size="xl"
+        className={clsx(
+          styles.copyrightContainer,
+          isPartnerCard && styles.copyrightPartnerCard
+        )}
+      >
         <FooterCopyright text={content.copyright} />
       </Container>
-      </>
     </footer>
   );
 }

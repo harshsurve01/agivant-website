@@ -1,0 +1,153 @@
+/* ==========================================================================
+   PartnerAlternatingContent.module.css
+   Section 5: Alternating Content/Image Rows for Shopify Partner page.
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-20);
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  max-width: 1204px;
+  margin-inline: auto;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  width: 100%;
+}
+
+/* Base row: Text Left, Image Right */
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-10);
+  width: 100%;
+}
+
+/* Image Left, Text Right */
+.imageLeft {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+}
+
+.imageLeft .imageWrapper {
+  order: -1;
+}
+
+/* Row 2: Frosted Glass Panel Card */
+.cardRow {
+  background: rgba(217, 217, 217, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #ffffff;
+  border-radius: var(--radius-2xl, 1.5rem);
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.08);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 44rem;
+}
+
+.heading {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0;
+}
+
+.purpleText {
+  display: block;
+  color: var(--color-brand-primary);
+}
+
+.darkText {
+  display: block;
+  color: var(--color-text-primary);
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  border-radius: var(--radius-2xl, 1.5rem);
+  overflow: hidden;
+  line-height: 0;
+  justify-self: end;
+}
+
+.imageLeft .imageWrapper {
+  justify-self: start;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 437 / 279;
+  object-fit: cover;
+  border-radius: var(--radius-2xl, 1.5rem);
+  display: block;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 900px) {
+  .section {
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-12);
+  }
+
+  .rows {
+    gap: var(--space-8);
+  }
+
+  .row,
+  .imageLeft {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .imageLeft .imageWrapper {
+    order: 0;
+  }
+
+  .imageWrapper {
+    max-width: 100%;
+    justify-self: center;
+  }
+
+  .heading {
+    font-size: var(--font-size-2xl);
+  }
+
+  .description {
+    font-size: var(--font-size-md);
+  }
+
+  .cardRow {
+    padding: var(--space-6) var(--space-4);
+  }
+}

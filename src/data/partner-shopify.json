@@ -1,0 +1,752 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "partnershipLanding",
+  "slug": "shopify",
+  "title": "Turn a lean team into an AI-powered commerce operation, with Shopify",
+  "name": "Shopify",
+  "seo": {
+    "title": "Shopify Partnership | Agivant",
+    "description": "Turn a lean team into an AI-powered commerce operation, with Shopify and Agivant Technologies.",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Turn a lean team into an AI-powered commerce operation, with Shopify",
+    "subtitle": null,
+    "summary": null,
+    "authors": [],
+    "partner": {
+      "name": "Shopify",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/shopify.png",
+        "assetKey": "shopify-logo",
+        "alt": "Shopify",
+        "caption": null,
+        "width": 249,
+        "height": 91
+      }
+    },
+    "media": {
+      "kind": "image",
+      "src": "/images/solutions/landing-page-hero.png",
+      "assetKey": "solutions-landing-hero",
+      "alt": "Flowing hero ribbon",
+      "caption": null,
+      "width": 1434,
+      "height": 757
+    },
+    "primaryCta": null,
+    "secondaryCta": null,
+    "heading": "Turn a lean team into an<br>AI-powered commerce<br>operation, with"
+  },
+  "sections": [
+    {
+      "id": "production-value",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Give every Shopify store an AI agent workforce,<br>with merchants in control.",
+        "headingStructure": {
+          "prefix": "Give every Shopify store an AI agent workforce,",
+          "highlight": "with merchants in control.",
+          "suffix": ""
+        },
+        "description": "Agivant’s Shopify practice adds an agentic intelligence layer on top of the store merchants already run, turning routine commerce decisions into work agents handle and merchants approve, with results in days and weeks.\n\nBuilt on Shopify, Agivant reads catalog, order, customer, and review signals in real time, then runs coordinated agent teams that bring each decision to the merchant for a single approval.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "intro-copy",
+          "type": "rich_text",
+          "heading": null,
+          "body": null,
+          "paragraphs": [
+            "Agivant’s Shopify practice adds an agentic intelligence layer on top of the store merchants already run, turning routine commerce decisions into work agents handle and merchants approve, with results in days and weeks.",
+            "Built on Shopify, Agivant reads catalog, order, customer, and review signals in real time, then runs coordinated agent teams that bring each decision to the merchant for a single approval."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "customer-quote",
+      "type": "statement_card",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "See the accelerators in action",
+          "href": "#accelerators",
+          "icon": "cube",
+          "external": false
+        }
+      },
+      "blocks": [
+        {
+          "id": "statement-1",
+          "type": "statement",
+          "statement": "Shopify powers the storefront. Agivant powers the intelligence behind it, so merchants never have to choose between running the store and growing it."
+        }
+      ]
+    },
+    {
+      "id": "autonomous-workflows",
+      "type": "split_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Get Amp'd to move from AI ambition to autonomous commerce<br>with Shopify.",
+        "headingStructure": {
+          "highlight": "Get Amp'd to move",
+          "text": "from AI ambition to autonomous commerce\nwith Shopify."
+        },
+        "description": "Amp'd by Agivant runs inside the store. Forward Deployed Engineers wire coordinated agents into inventory, sentiment, and buyer-facing workflows, each one production grade and observable, and every hardened workflow becomes a reusable asset the next store inherits. Every build amplifies the next.",
+        "layout": "image-stacked",
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/full-width-image.png",
+          "assetKey": "shopify-full-width-banner",
+          "alt": "Agivant and Shopify autonomous commerce architecture",
+          "caption": null,
+          "width": 4816,
+          "height": 1006
+        },
+        "columns": [],
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "autonomous-workflows-copy",
+          "type": "rich_text",
+          "heading": null,
+          "body": "Amp'd by Agivant runs inside the store. Forward Deployed Engineers wire coordinated agents into inventory, sentiment, and buyer-facing workflows, each one production grade and observable, and every hardened workflow becomes a reusable asset the next store inherits. Every build amplifies the next.",
+          "paragraphs": [
+            "Amp'd by Agivant runs inside the store. Forward Deployed Engineers wire coordinated agents into inventory, sentiment, and buyer-facing workflows, each one production grade and observable, and every hardened workflow becomes a reusable asset the next store inherits. Every build amplifies the next."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "coordinated-agent-teams",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Put coordinated agent teams to work across\nthe whole store.",
+        "description": "Agivant connects to Shopify through native APIs, feeding catalog, order, customer, and review data into a shared knowledge graph every agent reasons over.",
+        "closingStatement": "Agents move fast, which is exactly why merchants stay the ones who decide.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "agent-card-1",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Inventory, forecasting, supplier, marketing, and finance agents coordinate on a stockout before it costs a sale.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-01.png",
+            "assetKey": "solution-ribbon-1",
+            "alt": "Inventory, forecasting, supplier, marketing, and finance agents",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "agent-card-2",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "A sentiment agent reads every review as it lands, clusters the theme, and stages a recovery campaign by customer value.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-02.png",
+            "assetKey": "solution-ribbon-2",
+            "alt": "Sentiment agent",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "agent-card-3",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "A buyer agent makes the store addressable by AI assistants, completing orders without a checkout funnel.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-03.png",
+            "assetKey": "solution-ribbon-3",
+            "alt": "Buyer agent",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "agent-card-4",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "A channel revenue agent watches AI sales channels around the clock and rebalances catalog, pricing, and stock signals to protect margin.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-04.png",
+            "assetKey": "solution-ribbon-4",
+            "alt": "Channel revenue agent",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "scale-and-control",
+      "type": "alternating_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "scale-google-cloud",
+          "type": "row",
+          "eyebrow": null,
+          "title": null,
+          "headingStructure": {
+            "highlight": "Scale securely on Google Cloud",
+            "text": "with Marketplace-ready accelerators."
+          },
+          "body": "Certified Gemini Enterprise engineers deploy on secure Google Cloud infrastructure, and Agivant's industry-validated accelerators are available directly through Google Cloud Marketplace. Standardized 90-day sprints turn ambition into measurable ROI, while enterprise-grade governance scales with every new workload. This is what an Amp'd enterprise looks like in production.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-google-cloud.png",
+            "assetKey": "agentic-enterprise-google-cloud",
+            "alt": "Scale securely on Google Cloud with Marketplace-ready accelerators",
+            "caption": null,
+            "width": 437,
+            "height": 279
+          },
+          "layout": "text-image",
+          "isCard": false
+        },
+        {
+          "id": "merchants-in-control",
+          "type": "row",
+          "eyebrow": null,
+          "title": null,
+          "headingStructure": {
+            "highlight": "Keep merchants in control",
+            "text": "while agents run the work."
+          },
+          "body": "Every decision reaches the Control Tower with its reasoning, the alternatives weighed, and the next step, so a merchant can approve, adjust, or reject in seconds. Agents handle the coordination; merchants own the call.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
+            "assetKey": "agentic-enterprise-control",
+            "alt": "Keep merchants in control while agents run the work",
+            "caption": null,
+            "width": 437,
+            "height": 279
+          },
+          "layout": "image-text",
+          "isCard": true
+        }
+      ]
+    },
+    {
+      "id": "shopify-solutions",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Scale on Shopify without a rip-and-replace.",
+        "headingStructure": {
+          "highlight": "Scale on Shopify",
+          "text": "without a rip-and-replace."
+        },
+        "description": "Agivant sits on top of the Shopify stack through native API integration, so there is no data migration and no rebuild. New agent roles compose on the same substrate as merchants grow. This is what an Amp'd enterprise looks like in production.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "stockout-response",
+          "type": "card",
+          "eyebrow": "Inventory intelligence",
+          "title": "Stockout Response",
+          "body": "Catch a stockout before it costs a sale.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "assetKey": "shopify-solution-stockout",
+            "alt": "Stockout Response accelerator",
+            "caption": null
+          },
+          "cta": null,
+          "items": [],
+          "challenge": "When a hero SKU runs hours from zero, every minute of manual coordination is revenue lost. By the time a person notices, the shortfall has started.",
+          "solution": "The Inventory Intelligence accelerator detects stockout risk in real time, coordinates supplier evaluation, redirects ad spend, and brings one decision screen to the merchant before the crisis hits.",
+          "agentTeamTitle": "Meet the agent team",
+          "agentTeamDescription": "Inventory, Forecasting, Supplier, Marketing, and Finance agents coordinate autonomously, weighing vendor SLA scores, demand projections, and budget headroom first.",
+          "proof": {
+            "headline": "Up to 40%",
+            "description": "reduction in lost revenue from stockout events",
+            "highlights": [
+              "Alert to decision-ready in seconds",
+              "97% of inventory decisions automated",
+              "Vendor, demand, and budget signals weighed in one pass"
+            ],
+            "video": {
+              "provider": "youtube",
+              "id": "sFzmpcG6RkY",
+              "poster": "/images/techtalk/episodes/image1.jpg",
+              "title": "Stockout Response — Inventory intelligence accelerator"
+            }
+          }
+        },
+        {
+          "id": "sentiment-recovery",
+          "type": "card",
+          "eyebrow": "Sentiment Intelligence",
+          "title": "Sentiment\nRecovery",
+          "body": "Win back at-risk customers before they churn.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/sourcex.png",
+            "assetKey": "shopify-solution-sentiment",
+            "alt": "Sentiment Recovery accelerator",
+            "caption": null
+          },
+          "cta": null,
+          "items": [],
+          "challenge": "When negative reviews land or customer sentiment drops, support teams are caught reacting too late. Manual recovery outreach is slow, uncoordinated, and misses high-value churn risks.",
+          "solution": "The Sentiment Recovery accelerator ingests customer feedback across channels in real time, clusters dissatisfaction themes, and drafts tailored win-back campaigns for merchant approval.",
+          "agentTeamTitle": "Meet the agent team",
+          "agentTeamDescription": "Sentiment, Support, Retention, and Campaign agents coordinate autonomously to identify churn risk and trigger targeted recovery actions.",
+          "proof": {
+            "headline": "3.2x Higher",
+            "description": "customer win-back rate across retention campaigns",
+            "highlights": [
+              "Real-time negative review interception",
+              "Automated customer value clustering",
+              "Personalized win-back offers staged in minutes"
+            ],
+            "video": {
+              "provider": "youtube",
+              "id": "sFzmpcG6RkY",
+              "poster": "/images/techtalk/episodes/image2.jpg",
+              "title": "Sentiment Recovery — Sentiment intelligence accelerator"
+            }
+          }
+        },
+        {
+          "id": "conversational-commerce",
+          "type": "card",
+          "eyebrow": "Buyer agent commerce",
+          "title": "Conversational\nCommerce",
+          "body": "Make the store sell inside the assistant, not only on the page.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/sourcex.png",
+            "assetKey": "shopify-solution-conversational",
+            "alt": "Conversational Commerce accelerator",
+            "caption": null
+          },
+          "cta": null,
+          "items": [],
+          "challenge": "AI-native buyer agents and search assistants struggle to transact directly with standard storefronts, losing potential buyers who prefer natural conversation over traditional navigation.",
+          "solution": "The Conversational Commerce accelerator turns catalog, inventory, and checkout APIs into a conversational interface that AI assistants can discover, query, and transact with.",
+          "agentTeamTitle": "Meet the agent team",
+          "agentTeamDescription": "Catalog, Discovery, Checkout, and Recommendation agents coordinate autonomously to deliver frictionless assistant-driven sales.",
+          "proof": {
+            "headline": "+28% Lift",
+            "description": "in conversational checkout conversion rates",
+            "highlights": [
+              "Native AI assistant transaction endpoints",
+              "Zero-friction conversational checkout",
+              "Dynamic SKU recommendations based on buyer intent"
+            ],
+            "video": {
+              "provider": "youtube",
+              "id": "sFzmpcG6RkY",
+              "poster": "/images/techtalk/episodes/image3.png",
+              "title": "Conversational Commerce — Buyer agent commerce accelerator"
+            }
+          }
+        },
+        {
+          "id": "channel-revenue-manager",
+          "type": "card",
+          "eyebrow": "Channel intelligence",
+          "title": "Channel Revenue\nManager",
+          "body": "Send every AI channel more of what sells, and protect the margin.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/zeroqueue.png",
+            "assetKey": "shopify-solution-channel",
+            "alt": "Channel Revenue Manager accelerator",
+            "caption": null
+          },
+          "cta": null,
+          "items": [],
+          "challenge": "Multi-channel AI distribution surfaces fragmented pricing, margin erosion, and imbalanced inventory allocation across fast-moving third-party platforms.",
+          "solution": "Channel Revenue Manager watches channel performance continuously, rebalancing product allocation, promotional pacing, and pricing signals while enforcing margin guardrails.",
+          "agentTeamTitle": "Meet the agent team",
+          "agentTeamDescription": "Channel Allocation, Pricing, Margin Defense, and Demand Forecast agents coordinate around the clock to protect store profitability.",
+          "proof": {
+            "headline": "+18% Margin",
+            "description": "protected across distributed AI sales channels",
+            "highlights": [
+              "Automated channel margin defense",
+              "Real-time cross-channel inventory rebalancing",
+              "Continuous pricing elasticity monitoring"
+            ],
+            "video": {
+              "provider": "youtube",
+              "id": "sFzmpcG6RkY",
+              "poster": "/images/techtalk/episodes/image1.jpg",
+              "title": "Channel Revenue Manager — Channel intelligence accelerator"
+            }
+          }
+        },
+        {
+          "id": "catalog-position-intelligence",
+          "type": "card",
+          "eyebrow": "Competitive intelligence",
+          "title": "Global Catalog\nPosition Intelligence",
+          "body": "Know where you rank the moment an AI assistant compares you.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/cpq-lens.png",
+            "assetKey": "shopify-solution-catalog",
+            "alt": "Global Catalog Position Intelligence accelerator",
+            "caption": null
+          },
+          "cta": null,
+          "items": [],
+          "challenge": "Merchants lack visibility into how AI recommendation engines and buyer agents rank and present their products compared to competing offerings in live shopper conversations.",
+          "solution": "Global Catalog Position Intelligence tracks product discoverability across leading AI search and buyer agents, alerting merchants to ranking shifts and optimizing product positioning.",
+          "agentTeamTitle": "Meet the agent team",
+          "agentTeamDescription": "Catalog Benchmarking, Competitive Discovery, Search Position, and Optimization agents coordinate to maintain top ranking in AI agent results.",
+          "proof": {
+            "headline": "Top 3 Rank",
+            "description": "placement across 85% of target AI discovery queries",
+            "highlights": [
+              "Continuous AI assistant ranking surveillance",
+              "Competitor catalog comparison in real time",
+              "Actionable attribute and metadata optimization prompts"
+            ],
+            "video": {
+              "provider": "youtube",
+              "id": "sFzmpcG6RkY",
+              "poster": "/images/techtalk/episodes/image2.jpg",
+              "title": "Global Catalog Position Intelligence — Competitive intelligence accelerator"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "built-on-shopify",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Built on Shopify.",
+        "headingStructure": {
+          "highlight": "Built on",
+          "rest": "Shopify."
+        },
+        "description": "More decisions the same agent layer can run, composed on one knowledge graph.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "dynamic-pricing",
+          "type": "card",
+          "eyebrow": "Solution",
+          "title": "Dynamic pricing",
+          "body": "Prices tuned to demand and margin.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/agentic-quote-accelerator.png",
+            "assetKey": "shopify-built-dynamic-pricing",
+            "alt": "Dynamic pricing",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "See the solution >>",
+            "href": "/solutions/dynamic-pricing",
+            "external": false
+          },
+          "items": [],
+          "slug": "dynamic-pricing",
+          "badge": "Solution"
+        },
+        {
+          "id": "supplier-negotiation",
+          "type": "card",
+          "eyebrow": "Solution",
+          "title": "Supplier negotiation",
+          "body": "Terms and SLAs handled by agents.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/strategic-sourcing.png",
+            "assetKey": "shopify-built-supplier-negotiation",
+            "alt": "Supplier negotiation",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "See the solution >>",
+            "href": "/solutions/supplier-negotiation",
+            "external": false
+          },
+          "items": [],
+          "slug": "supplier-negotiation",
+          "badge": "Solution"
+        },
+        {
+          "id": "post-purchase-journeys",
+          "type": "card",
+          "eyebrow": "Solution",
+          "title": "Post-purchase journeys",
+          "body": "Follow-ups staged automatically.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/zeroq.png",
+            "assetKey": "shopify-built-post-purchase",
+            "alt": "Post-purchase journeys",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "See the solution >>",
+            "href": "/solutions/post-purchase-journeys",
+            "external": false
+          },
+          "items": [],
+          "slug": "post-purchase-journeys",
+          "badge": "Solution"
+        },
+        {
+          "id": "returns-reduction",
+          "type": "card",
+          "eyebrow": "Solution",
+          "title": "Returns reduction",
+          "body": "Root causes caught early.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/agentic-quote-accelerator.png",
+            "assetKey": "shopify-built-returns-reduction",
+            "alt": "Returns reduction",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "See the solution >>",
+            "href": "/solutions/returns-reduction",
+            "external": false
+          },
+          "items": [],
+          "slug": "returns-reduction",
+          "badge": "Solution"
+        },
+        {
+          "id": "demand-forecasting",
+          "type": "card",
+          "eyebrow": "Solution",
+          "title": "Demand forecasting",
+          "body": "Stock aligned to real signals.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/strategic-sourcing.png",
+            "assetKey": "shopify-built-demand-forecasting",
+            "alt": "Demand forecasting",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "See the solution >>",
+            "href": "/solutions/demand-forecasting",
+            "external": false
+          },
+          "items": [],
+          "slug": "demand-forecasting",
+          "badge": "Solution"
+        },
+        {
+          "id": "cross-sell-sequencing",
+          "type": "card",
+          "eyebrow": "Solution",
+          "title": "Cross-sell sequencing",
+          "body": "Follow-ups staged automatically.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/zeroq.png",
+            "assetKey": "shopify-built-cross-sell",
+            "alt": "Cross-sell sequencing",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "See the solution >>",
+            "href": "/solutions/cross-sell-sequencing",
+            "external": false
+          },
+          "items": [],
+          "metric": "Next-best offers, timed.",
+          "slug": "cross-sell-sequencing",
+          "badge": "Solution"
+        }
+      ]
+    },
+    {
+      "id": "proof-from-production",
+      "type": "case_study_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Proof from production.",
+        "description": "Gemini Enterprise engagements already running, with outcomes measured in the environment they were built for.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "developer-productivity-on-gemini",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Developer productivity on Gemini",
+          "body": "Gemini-native code assistance across a global technology estate, working inside the tools engineers already use.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/developer-productivity.png",
+            "assetKey": "production-proof-1",
+            "alt": "Developer productivity on Gemini",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "/case-studies/developer-productivity-on-gemini",
+            "external": false
+          },
+          "items": [],
+          "metric": "35 percent faster cycles · 30 to 40 percent higher developer productivity",
+          "caseStudySlug": "developer-productivity-on-gemini",
+          "badge": "Client success",
+          "isTall": false
+        },
+        {
+          "id": "conversational-analytics-and-hyper-automation",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Conversational analytics\nand hyper-automation",
+          "body": "Multilingual conversational analytics that read intent, answer at source, and route only what needs a person.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/conversational-analytics.png",
+            "assetKey": "production-proof-2",
+            "alt": "Conversational analytics and hyper-automation",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "/case-studies/conversational-analytics-and-hyper-automation",
+            "external": false
+          },
+          "items": [],
+          "metric": "Around 90 percent automation · 94 percent confidence · 50 plus languages",
+          "caseStudySlug": "conversational-analytics-and-hyper-automation",
+          "badge": "Client success",
+          "isTall": false
+        },
+        {
+          "id": "enterprise-mlops-on-vertex-ai",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Enterprise MLOps on Vertex AI",
+          "body": "The model lifecycle automated end to end, from training through release and monitoring.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/enterprise-mlops.png",
+            "assetKey": "production-proof-3",
+            "alt": "Enterprise MLOps on Vertex AI",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "/case-studies/enterprise-mlops-on-vertex-ai",
+            "external": false
+          },
+          "items": [],
+          "metric": "30 to 50 percent lower operating cost",
+          "caseStudySlug": "enterprise-mlops-on-vertex-ai",
+          "badge": "Client success",
+          "isTall": true
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Give every Shopify<br>merchant an AI workforce.",
+    "subheading": "An agentic intelligence layer that makes every store fully reasoned-over by agents, with merchants firmly in control.",
+    "partner": {
+      "name": "Shopify",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/shopify-logo.png",
+        "assetKey": "shopify-logo",
+        "alt": "Shopify logo",
+        "caption": null
+      }
+    },
+    "primaryCta": null,
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Book a Shopify assessment",
+      "href": "/contact",
+      "external": false,
+      "icon": "cube",
+      "variant": "primary"
+    }
+  }
+}

@@ -70,7 +70,10 @@ export function FooterCTA({
                 key={index}
                 className={
                   isPartnerDetail
-                    ? styles.headingLinePartnerDetail
+                    ? clsx(
+                        styles.headingLinePartnerDetail,
+                        index === 0 && styles.headingLinePartnerDetailHighlight
+                      )
                     : styles.headingLinePartners
                 }
               >
@@ -82,7 +85,10 @@ export function FooterCTA({
               <span
                 className={
                   isPartnerDetail
-                    ? styles.headingLinePartnerDetail
+                    ? clsx(
+                        styles.headingLinePartnerDetail,
+                        styles.headingLinePartnerDetailHighlight
+                      )
                     : styles.headingLinePartners
                 }
               >

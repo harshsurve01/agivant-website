@@ -11,7 +11,7 @@
 }
 
 .ribbonWrapper {
-  top: 260px; /* Figma: y=262px, starts below headline and spans across bottom of Hero into Section 2 */
+  top: 60px; /* Figma: y=262px, starts below headline and spans across bottom of Hero into Section 2 */
   z-index: 1;
 }
 
@@ -42,3 +42,73 @@
     min-width: 900px;
   }
 }
+
+/* Shopify-specific Hero Ribbon positioning */
+.shopifyRibbonWrapper {
+  top: 3.75rem;
+  z-index: 1;
+}
+
+.shopifyRibbonImage {
+  width: 100%;
+  max-width: 1920px;
+  height: auto;
+}
+
+@media (max-width: 1024px) {
+  .shopifyRibbonWrapper {
+    top: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .shopifyRibbonWrapper {
+    top: 2.5rem;
+  }
+
+  .shopifyRibbonImage {
+    min-width: 768px;
+  }
+}
+
+/* ==========================================================================
+   Shopify Partner Page: Partner Story Banner Spacing
+   Shifts ONLY the Partner Story Banner section up closer to the section above
+   ========================================================================== */
+
+.shopifyPage :global(#partner-story-banner) {
+  margin-top: -2.5rem;
+  padding-top: 0;
+}
+
+@media (max-width: 1024px) {
+  .shopifyPage :global(#partner-story-banner) {
+    margin-top: -1.75rem;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .shopifyPage :global(#partner-story-banner) {
+    margin-top: -1rem;
+    padding-top: 0;
+  }
+}
+
+/* ==========================================================================
+   Shopify Partner Page: Built on Shopify Section Spacing
+   Keeps the section visually close to the preceding Solutions section
+   ========================================================================== */
+
+.shopifyPage :global(#built-on-gemini) {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-16);
+}
+
+@media (max-width: 768px) {
+  .shopifyPage :global(#built-on-gemini) {
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-12);
+  }
+}
+

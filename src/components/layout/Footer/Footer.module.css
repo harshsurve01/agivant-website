@@ -87,3 +87,80 @@
 .minimal [class*="brandmark"] {
   margin-top: var(--space-4);
 }
+
+/* --------------------------------------------------------------------
+   Reusable Partner Card Variant (Databricks, ServiceNow, etc.)
+   -------------------------------------------------------------------- */
+.partner-card,
+.partner,
+.partnerCardFooter {
+  min-height: auto;
+  padding-block: var(--space-24) var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.partner-card::before,
+.partner::before,
+.partnerCardFooter::before {
+  content: none;
+  display: none;
+  flex: none;
+}
+
+.partner-card > *,
+.partner > *,
+.partnerCardFooter > * {
+  flex: 0 0 auto;
+  margin-inline: auto;
+}
+
+.topPartnerCard {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: var(--container-xl, 1280px);
+  margin-inline: auto;
+  margin-bottom: var(--space-12);
+}
+
+.brandmarkPartnerCard {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  max-width: var(--container-xl, 1280px);
+  opacity: 0.35;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-8);
+}
+
+.copyrightPartnerCard {
+  position: relative;
+  bottom: auto;
+  z-index: 2;
+  width: 100%;
+  margin-top: var(--space-4);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .partner-card,
+  .partner,
+  .partnerCardFooter {
+    padding-block: var(--space-12) var(--space-6);
+  }
+
+  .topPartnerCard {
+    margin-bottom: var(--space-8);
+  }
+
+  .brandmarkPartnerCard {
+    margin-top: var(--space-4);
+  }
+}

@@ -19,9 +19,11 @@ export function SolutionDisplayPanel({
   pointerLeft,
   panelRef,
 }: SolutionDisplayPanelProps) {
-  const halfIndex = Math.ceil(accelerator.agents.length / 2);
-  const leftAgents = accelerator.agents.slice(0, halfIndex);
-  const rightAgents = accelerator.agents.slice(halfIndex);
+  const agents = accelerator.agents || [];
+  const hasAgents = agents.length > 0;
+  const halfIndex = Math.ceil(agents.length / 2);
+  const leftAgents = agents.slice(0, halfIndex);
+  const rightAgents = agents.slice(halfIndex);
 
   return (
     <div ref={panelRef} className={styles.displayPanel}>
@@ -47,35 +49,43 @@ export function SolutionDisplayPanel({
         </div>
       </div>
 
-      {/* Divider */}
-      <hr className={styles.panelDivider} />
+      {/* Bottom section: Meet the agent team (only rendered if agents or agentTeamDescription exist) */}
+      {(hasAgents || accelerator.agentTeamDescription) && (
+        <>
+          <hr className={styles.panelDivider} />
+          <div className={styles.panelBottomSection}>
+            <h4 className={styles.agentTeamHeading}>
+              {accelerator.agentTeamTitle || "Meet the agent team"}
+            </h4>
 
-      {/* Bottom section: Meet the agent team */}
-      <div className={styles.panelBottomSection}>
-        <h4 className={styles.agentTeamHeading}>
-          {accelerator.agentTeamTitle || "Meet the agent team"}
-        </h4>
-
-        <div className={styles.agentsGrid}>
-          <div className={styles.agentsCol}>
-            {leftAgents.map((agent) => (
-              <p key={agent.name} className={styles.agentItem}>
-                <strong className={styles.agentName}>{agent.name}:</strong>{" "}
-                <span className={styles.agentRole}>{agent.role}</span>
+            {accelerator.agentTeamDescription ? (
+              <p className={styles.agentTeamSummary}>
+                {accelerator.agentTeamDescription}
               </p>
-            ))}
-          </div>
+            ) : (
+              <div className={styles.agentsGrid}>
+                <div className={styles.agentsCol}>
+                  {leftAgents.map((agent) => (
+                    <p key={agent.name} className={styles.agentItem}>
+                      <strong className={styles.agentName}>{agent.name}:</strong>{" "}
+                      <span className={styles.agentRole}>{agent.role}</span>
+                    </p>
+                  ))}
+                </div>
 
-          <div className={styles.agentsCol}>
-            {rightAgents.map((agent) => (
-              <p key={agent.name} className={styles.agentItem}>
-                <strong className={styles.agentName}>{agent.name}:</strong>{" "}
-                <span className={styles.agentRole}>{agent.role}</span>
-              </p>
-            ))}
+                <div className={styles.agentsCol}>
+                  {rightAgents.map((agent) => (
+                    <p key={agent.name} className={styles.agentItem}>
+                      <strong className={styles.agentName}>{agent.name}:</strong>{" "}
+                      <span className={styles.agentRole}>{agent.role}</span>
+                    </p>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 }

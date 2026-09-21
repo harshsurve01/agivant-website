@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
+import { SolutionCard } from "./SolutionCard";
 import styles from "./Solution.module.css";
 import type { SolutionProps } from "./types";
 import { Gradient } from "@/components/effects/Gradient";
@@ -50,24 +51,11 @@ export function Solution({ title, items }: SolutionProps) {
             const ribbon = typeof item === "string" ? undefined : item.ribbon;
 
             return (
-              <li key={index} className={styles.card}>
-                {ribbon ? (
-                  <div className={styles.ribbonWrapper}>
-                    <Image
-                      src={ribbon}
-                      alt=""
-                      width={401}
-                      height={345}
-                      className={styles.ribbonImage}
-                    />
-                  </div>
-                ) : null}
-
-                <div className={styles.content}>
-                  <p className={styles.text}>{text}</p>
-                  <span className={styles.line} aria-hidden="true" />
-                </div>
-              </li>
+              <SolutionCard
+                key={index}
+                text={text}
+                ribbon={ribbon}
+              />
             );
           })}
         </ul>

@@ -1,0 +1,215 @@
+/* ==========================================================================
+   DatabricksAgenticExecution.module.css
+   Databricks Partner Section 3 (From data intelligence to agentic execution)
+   Consumes design tokens exclusively from variables.css.
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-20);
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  max-width: 1204px; /* Figma: 1204px */
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------
+   Full-width Header Block (Eyebrow, Heading, Supporting Statement)
+   -------------------------------------------------------------------- */
+.header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: var(--space-10); /* Spacing between supporting statement and 2-column grid */
+}
+
+.eyebrow {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl); /* 36px */
+  font-weight: var(--font-weight-bold); /* 600 SemiBold */
+  line-height: 50px;
+  color: var(--color-text-primary); /* Black */
+  letter-spacing: var(--letter-spacing-normal);
+  margin: 0 0 var(--space-4) 0;
+  width: 100%;
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-7xl); /* 64px */
+  font-weight: var(--font-weight-bold); /* 600 SemiBold */
+  line-height: 1.25; /* ~80px */
+  color: var(--color-brand-primary); /* Agivant purple: #8500DF */
+  letter-spacing: var(--letter-spacing-normal);
+  margin: 0 0 var(--space-6) 0;
+  width: 100%;
+}
+
+.supportingStatement {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl); /* 36px */
+  font-weight: var(--font-weight-bold); /* 600 SemiBold */
+  line-height: 50px;
+  color: #7c808b; /* Figma Gray */
+  letter-spacing: var(--letter-spacing-normal);
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* --------------------------------------------------------------------
+   Two-Column Content Grid (Paragraphs on left, 437x408 image on right)
+   -------------------------------------------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 437px;
+  justify-content: space-between;
+  align-items: start;
+  gap: var(--space-12);
+  width: 100%;
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  max-width: 710px; /* Figma line-length control matching 1204px grid */
+  width: 100%;
+}
+
+.paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.body {
+  width: 100%;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg); /* 18px */
+  font-weight: var(--font-weight-regular); /* 400 Regular */
+  line-height: var(--line-height-relaxed); /* 1.65 */
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.body strong {
+  font-weight: var(--font-weight-bold); /* 600 SemiBold */
+}
+
+.closingStatement {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl); /* 36px */
+  font-weight: var(--font-weight-bold); /* 600 SemiBold */
+  line-height: 50px;
+  color: var(--color-brand-primary); /* Agivant purple */
+  letter-spacing: var(--letter-spacing-normal);
+  margin: var(--space-8) 0 0 0;
+  padding: 0;
+  width: 100%;
+}
+
+.rightCol {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 437px;
+  height: 408px;
+  border-radius: 35px; /* Figma: CornerRadius 35 */
+  overflow: hidden;
+  line-height: 0;
+  flex-shrink: 0;
+  margin-top: -4rem;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 35px;
+}
+
+/* --------------------------------------------------------------------
+   Responsive Adaptations
+   -------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+  }
+
+  .leftCol {
+    max-width: 100%;
+  }
+
+  .imageWrapper {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 437 / 408;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-16);
+  }
+
+  .header {
+    margin-bottom: var(--space-6);
+  }
+
+  .eyebrow {
+    font-size: var(--font-size-2xl); /* 24px */
+    line-height: var(--line-height-snug);
+    margin-bottom: var(--space-2);
+  }
+
+  .heading {
+    font-size: var(--font-size-4xl); /* 36px */
+    line-height: var(--line-height-snug);
+    margin-bottom: var(--space-4);
+  }
+
+  .supportingStatement {
+    font-size: var(--font-size-xl); /* 20px */
+    line-height: var(--line-height-normal);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .body {
+    font-size: var(--font-size-md); /* 16px */
+  }
+
+  .closingStatement {
+    font-size: var(--font-size-2xl); /* 24px */
+    line-height: var(--line-height-snug);
+    margin-top: var(--space-6);
+  }
+
+  .imageWrapper {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 437 / 408;
+    border-radius: var(--radius-xl);
+  }
+
+  .image {
+    border-radius: var(--radius-xl);
+  }
+}
