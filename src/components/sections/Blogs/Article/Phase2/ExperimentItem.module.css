@@ -63,13 +63,17 @@
    Description
    Same body-copy token pairing used throughout Phase1/ExecutiveBrief.
    -------------------------------------------------------------------- */
-.description {
+.descriptionParagraph {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
   margin: 0;
   max-width: 65rem; /* estimated wrap width from screenshot */
+}
+
+.descriptionParagraph + .descriptionParagraph {
+  margin-top: var(--space-4);
 }
 
 /* --------------------------------------------------------------------

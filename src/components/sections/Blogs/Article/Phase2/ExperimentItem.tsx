@@ -24,6 +24,11 @@ export interface ExperimentItemProps {
  * imports. Every value arrives via props.
  */
 export function ExperimentItem({ item, showDivider }: ExperimentItemProps) {
+  const descriptionParagraphs = item.description
+    .split(/\n\s*\n/g)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
   return (
     <div className={styles.item}>
       <div className={styles.row}>
@@ -33,7 +38,15 @@ export function ExperimentItem({ item, showDivider }: ExperimentItemProps) {
 
         <div className={styles.content}>
           <h3 className={styles.title}>{item.title}</h3>
-          <p className={styles.description}>{item.description}</p>
+          {descriptionParagraphs.length > 0 ? (
+            descriptionParagraphs.map((paragraph, idx) => (
+              <p key={idx} className={styles.descriptionParagraph}>
+                {paragraph}
+              </p>
+            ))
+          ) : (
+            <p className={styles.descriptionParagraph}>{item.description}</p>
+          )}
         </div>
       </div>
 
