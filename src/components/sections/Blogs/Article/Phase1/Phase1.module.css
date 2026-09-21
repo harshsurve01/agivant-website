@@ -12,6 +12,7 @@
 .phase1 {
   position: relative;
   width: 100%;
+   min-height: auto;
   padding-block: var(--space-16);
   overflow-x: clip;
   overflow-y: visible;

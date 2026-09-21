@@ -130,13 +130,22 @@
       "data": {
         "eyebrow": null,
         "heading": "The Enterprise AI Agent Stack",
-        "description": null,
+        "description": "There are five architectural layers in every enterprise AI deployment. Patchy implementations fail in unexpected ways because flaws at any one layer have a tendency to spread.",
+        "align": "left",
+        "highlightPosition": "end",
+        "highlightCount": 3,
         "columns": [
           "Metric",
           "Traditional SDLC",
           "Agentic AI (Agivant)"
         ],
-        "media": null,
+        "media": {
+          "kind": "image",
+          "src": "/images/solutions/table-ribbon-2.png",
+          "assetKey": null,
+          "alt": "Abstract background ribbon",
+          "caption": null
+        },
         "cta": null
       },
       "blocks": [
@@ -144,18 +153,18 @@
           "id": "stack-1",
           "type": "tableRow",
           "cells": [
-            "Interfaces",
-            null,
-            null
+            "Interface",
+            "Credit Decisions",
+            "User-facing access and agent touchpoints"
           ]
         },
         {
           "id": "stack-2",
           "type": "tableRow",
           "cells": [
-            "Infrastructure",
-            null,
-            null
+            "Orchestration",
+            "Credit Decisions",
+            "Sequences and coordinates multi-agent tasks"
           ]
         },
         {
@@ -163,39 +172,41 @@
           "type": "tableRow",
           "cells": [
             "Data",
-            null,
-            null
+            "Credit Decisions",
+            "Enforces compliance and Responsible AI"
           ]
         },
         {
           "id": "stack-4",
           "type": "tableRow",
           "cells": [
-            "Reasoning",
-            null,
-            null
+            "Governance",
+            "Credit Decisions",
+            "Ingests and contextualises enterprise data"
           ]
         },
         {
           "id": "stack-5",
           "type": "tableRow",
           "cells": [
-            "Observability",
-            null,
-            null
+            "Infrastructure",
+            "Credit Decisions",
+            "Underpins scale, resilience, and observability"
           ]
         }
       ]
     },
     {
       "id": "pillar-1",
-      "type": "card_grid",
+      "type": "pillar",
       "enabled": true,
       "conditions": null,
       "data": {
         "eyebrow": null,
+        "sectionTitle": "The 6 Pillars of Enterprise-Grade AI",
         "heading": "Pillar 1: Seamless Interoperability",
         "description": null,
+        "problemLayout": "split",
         "columns": [],
         "media": null,
         "cta": null
@@ -206,7 +217,7 @@
           "type": "card",
           "eyebrow": null,
           "title": "The problem",
-          "body": null,
+          "body": "Ingests and contextualises enterprise dataEnforces compliance and Responsible AIUnderpins scale, resilience, and observabilityArchitecture diagrams don't resemble actual enterprise environments. They are a combination of third-party APIs, cloud-native platforms, in-house tools, and legacy systems that have been pieced together over many years. If an AI agent is unable to navigate that without costly custom engineering, it is creating problems rather than solving them.",
           "media": null,
           "cta": null,
           "items": []
@@ -215,8 +226,8 @@
           "id": "p1-meaning",
           "type": "card",
           "eyebrow": null,
-          "title": "What it means",
-          "body": null,
+          "title": "Why it matters",
+          "body": "One of the main causes of deployments stalling after the pilot phase is integration failure. Teams create workarounds when agents are unable to communicate with DevOps toolchains, CRMs, or data warehouses, and these workarounds get worse.",
           "media": null,
           "cta": null,
           "items": []
@@ -225,27 +236,31 @@
           "id": "p1-implementation",
           "type": "card",
           "eyebrow": null,
-          "title": "Enterprise implementation",
+          "title": "Enterprise Implementation",
           "body": null,
           "media": {
             "kind": "image",
-            "src": null,
+            "src": "/images/blogs/pillar1-a.png",
             "assetKey": "pillar-1-ribbon",
             "alt": "Abstract ribbon graphic",
             "caption": null
           },
           "cta": null,
-          "items": []
+          "items": [
+            "Protocol flexibility: Agents should manage REST, GraphQL, gRPC, and legacy SOAP.",
+            "Pre-built connectors for Salesforce, ServiceNow, GitHub, SAP, and Jira",
+            "Event-driven architecture for real-time, bidirectional data flow – see: GenAI frameworks"
+          ]
         },
         {
           "id": "p1-mvp",
           "type": "card",
           "eyebrow": null,
-          "title": "Agent MVP",
-          "body": null,
+          "title": "Agivant POV",
+          "body": "Agivant builds agents to meet environments as-is – no rearchitecting required before they start adding value.",
           "media": {
             "kind": "image",
-            "src": null,
+            "src": "/images/blogs/pillar1-b.png",
             "assetKey": "pillar-1-ribbon-2",
             "alt": "Abstract ribbon graphic",
             "caption": null
@@ -257,13 +272,14 @@
     },
     {
       "id": "pillar-2",
-      "type": "card_grid",
+      "type": "pillar",
       "enabled": true,
       "conditions": null,
       "data": {
         "eyebrow": null,
         "heading": "Pillar 2: Scalability and Performance",
         "description": null,
+        "problemLayout": "split",
         "columns": [],
         "media": null,
         "cta": null
@@ -274,7 +290,7 @@
           "type": "card",
           "eyebrow": null,
           "title": "The problem",
-          "body": null,
+          "body": "Many AI agents appear fantastic until they are required to manage actual workloads. Real-time telemetry, cross-team workloads, and thousands of concurrent requests are not stress-test scenarios; rather, they are Monday morning.",
           "media": null,
           "cta": null,
           "items": []
@@ -283,8 +299,8 @@
           "id": "p2-meaning",
           "type": "card",
           "eyebrow": null,
-          "title": "What it means",
-          "body": null,
+          "title": "Why it matters",
+          "body": "According to McKinsey, the main distinction between successful and unsuccessful pilots is infrastructure scalability.² SLA compliance and business continuity are directly impacted by performance degradation in customer-facing operations, which is rarely merely a technical problem.",
           "media": null,
           "cta": null,
           "items": []
@@ -293,27 +309,31 @@
           "id": "p2-implementation",
           "type": "card",
           "eyebrow": null,
-          "title": "Enterprise implementation",
+          "title": "Enterprise Implementation",
           "body": null,
           "media": {
             "kind": "image",
-            "src": null,
+            "src": "/images/blogs/pillar2-a.png",
             "assetKey": "pillar-2-ribbon",
             "alt": "Abstract ribbon graphic",
             "caption": null
           },
           "cta": null,
-          "items": []
+          "items": [
+            "Horizontal scaling with distributed pipelines built for parallel, real-time input",
+            "Kubernetes-based container orchestration for dynamic resource allocation",
+            "Async processing queues to absorb demand spikes without bottlenecking"
+          ]
         },
         {
           "id": "p2-mvp",
           "type": "card",
           "eyebrow": null,
-          "title": "Agent MVP",
-          "body": null,
+          "title": "Agivant POV",
+          "body": "Agivant's AI Pods architecture enables modular, scalable deployment — capacity expands with operational need, not with re-engineering effort.",
           "media": {
             "kind": "image",
-            "src": null,
+            "src": "/images/blogs/pillar2-b.png",
             "assetKey": "pillar-2-ribbon-2",
             "alt": "Abstract ribbon graphic",
             "caption": null
@@ -325,13 +345,14 @@
     },
     {
       "id": "pillar-3",
-      "type": "card_grid",
+      "type": "pillar",
       "enabled": true,
       "conditions": null,
       "data": {
         "eyebrow": null,
         "heading": "Pillar 3: Operational Reliability and Monitoring",
         "description": null,
+        "problemLayout": "split",
         "columns": [],
         "media": null,
         "cta": null
@@ -342,7 +363,7 @@
           "type": "card",
           "eyebrow": null,
           "title": "The problem",
-          "body": null,
+          "body": "AI agents are dynamic, in contrast to static scripts. They can cause cascading errors across linked systems, deteriorate gradually, or fail silently-often before anyone realizes something is wrong.",
           "media": null,
           "cta": null,
           "items": []
@@ -351,8 +372,8 @@
           "id": "p3-meaning",
           "type": "card",
           "eyebrow": null,
-          "title": "What it means",
-          "body": null,
+          "title": "Why it matters",
+          "body": "Observability gaps are one of the least addressed failure modes in enterprise deployments, according to the Stanford AI Index 2024.³ Even a brief, undetected failure can cause core operations to be disrupted in high-availability environments.",
           "media": null,
           "cta": null,
           "items": []
@@ -361,27 +382,31 @@
           "id": "p3-implementation",
           "type": "card",
           "eyebrow": null,
-          "title": "Enterprise implementation",
+          "title": "Enterprise Implementation",
           "body": null,
           "media": {
             "kind": "image",
-            "src": null,
+            "src": "/images/blogs/pillar3-a.png",
             "assetKey": "pillar-3-ribbon",
             "alt": "Abstract ribbon graphic",
             "caption": null
           },
           "cta": null,
-          "items": []
+          "items": [
+            "Real-time dashboards tracking behaviour, output quality, and end-to-end latency",
+            "Anomaly detection pipelines that surface issues automatically, not after a support ticket",
+            "Automated failover and self-healing to maintain SLA commitments under infrastructure stress"
+          ]
         },
         {
           "id": "p3-mvp",
           "type": "card",
           "eyebrow": null,
-          "title": "Agent MVP",
-          "body": null,
+          "title": "Agivant POV",
+          "body": "Agivant's deployments include observability tooling aligned to Agentic QA standards — agent behaviour is continuously validated against production baselines.",
           "media": {
             "kind": "image",
-            "src": null,
+            "src": "/images/blogs/pillar3-b.png",
             "assetKey": "pillar-3-ribbon-2",
             "alt": "Abstract ribbon graphic",
             "caption": null
@@ -393,13 +418,14 @@
     },
     {
       "id": "pillar-4",
-      "type": "card_grid",
+      "type": "pillar",
       "enabled": true,
       "conditions": null,
       "data": {
         "eyebrow": null,
         "heading": "Pillar 4: Governance, Versioning, and Responsible AI",
         "description": null,
+        "problemLayout": "full",
         "columns": [],
         "media": null,
         "cta": null
@@ -410,7 +436,7 @@
           "type": "card",
           "eyebrow": null,
           "title": "The problem",
-          "body": null,
+          "body": "Agentic systems are able to adapt and learn. That flexibility turns into a liability in the absence of governance safeguards; models drift, decisions become unclear, and accountability vanishes. The most underdeveloped capability in enterprise AI programs, according to McKinsey, is governance.Why it matters Governance is positioned as an operational function rather than a compliance checkbox in NIST's AI Risk Management Framework. Every AI-influenced decision in regulated industries, such as finance, healthcare, and insurance, must be traceable, auditable, and defendable.",
           "media": null,
           "cta": null,
           "items": []
@@ -419,27 +445,32 @@
           "id": "p4-implementation",
           "type": "card",
           "eyebrow": null,
-          "title": "Enterprise implementation",
+          "title": "Enterprise Implementation",
           "body": null,
           "media": {
             "kind": "image",
-            "src": null,
+            "src": "/images/blogs/pillar4-a.png",
             "assetKey": "pillar-4-ribbon",
             "alt": "Abstract ribbon graphic",
             "caption": null
           },
           "cta": null,
-          "items": []
+          "items": [
+            "Model versioning with rollback: every update documented, staged, and fully reversible",
+            "Comprehensive audit trails that show who approved what, when, and with what data",
+            "RBAC limiting modification rights to agent logic, training data, and deployment configs",
+            "Responsible AI frameworks: bias detection, fairness checks, human-in-the-loop checkpoints"
+          ]
         },
         {
           "id": "p4-mvp",
           "type": "card",
           "eyebrow": null,
-          "title": "Agent MVP",
-          "body": null,
+          "title": "Agivant POV",
+          "body": "Agivant treats governance as an architectural requirement – bias auditing, explainability tooling, and policy-aligned access controls are embedded from the start, not added later.",
           "media": {
             "kind": "image",
-            "src": null,
+            "src": "/images/blogs/pillar4-b.png",
             "assetKey": "pillar-4-ribbon-2",
             "alt": "Abstract ribbon graphic",
             "caption": null
@@ -451,13 +482,14 @@
     },
     {
       "id": "pillar-5",
-      "type": "card_grid",
+      "type": "pillar",
       "enabled": true,
       "conditions": null,
       "data": {
         "eyebrow": null,
         "heading": "Pillar 5: Explainability and Decision Traceability",
         "description": null,
+        "problemLayout": "full",
         "columns": [],
         "media": null,
         "cta": null
@@ -468,7 +500,7 @@
           "type": "card",
           "eyebrow": null,
           "title": "The problem",
-          "body": null,
+          "body": "In high-stakes situations, accuracy is insufficient. “The model said so” is not a suitable response when a compliance officer, auditor, or regulator inquires about the reasoning behind an AI’s decision. Why it matters Explainability is considered a fundamental risk mitigation capability in NIST’s AI RMF. An inability to provide an explanation for an AI decision can be a regulatory violation in and of itself, particularly in the financial services and healthcare industries.",
           "media": null,
           "cta": null,
           "items": []
@@ -477,27 +509,31 @@
           "id": "p5-implementation",
           "type": "card",
           "eyebrow": null,
-          "title": "Enterprise implementation",
+          "title": "Enterprise Implementation",
           "body": null,
           "media": {
             "kind": "image",
-            "src": null,
+            "src": "/images/blogs/pillar5-a.png",
             "assetKey": "pillar-5-ribbon",
             "alt": "Abstract ribbon graphic",
             "caption": null
           },
           "cta": null,
-          "items": []
+          "items": [
+            "Decision logs and lineage tracking: results that can be linked to the original inputs and stages of reasoning",
+            "Semantic layers contextualising structured and unstructured data across systems",
+            "Human-readable dashboards summarising agent rationale, context, and confidence levels – see: GenAI frameworks"
+          ]
         },
         {
           "id": "p5-mvp",
           "type": "card",
           "eyebrow": null,
-          "title": "Agent MVP",
-          "body": null,
+          "title": "Agivant POV",
+          "body": "Agivant's agents are built with traceable decision architectures – compliance teams can audit outputs and reconstruct reasoning chains without custom tooling.",
           "media": {
             "kind": "image",
-            "src": null,
+            "src": "/images/blogs/pillar5-b.png",
             "assetKey": "pillar-5-ribbon-2",
             "alt": "Abstract ribbon graphic",
             "caption": null
@@ -509,13 +545,14 @@
     },
     {
       "id": "pillar-6",
-      "type": "card_grid",
+      "type": "pillar",
       "enabled": true,
       "conditions": null,
       "data": {
         "eyebrow": null,
         "heading": "Pillar 6: Security and Compliance by Design",
         "description": null,
+        "problemLayout": "full",
         "columns": [],
         "media": null,
         "cta": null
@@ -526,7 +563,7 @@
           "type": "card",
           "eyebrow": null,
           "title": "The problem",
-          "body": null,
+          "body": "Agents become high-value targets when they have access to sensitive data, such as financial transactions, clinical information, and customer records. Retrofitting security after deployment doesn’t constitute true security. It’s hopefulness.Why it matters GDPR, SOC 2 Type II, and HIPAA each impose specific requirements on data access, residency, and audit documentation. A single misconfigured API or overprivileged access role can create cross-jurisdictional exposure.",
           "media": null,
           "cta": null,
           "items": []
@@ -535,27 +572,33 @@
           "id": "p6-implementation",
           "type": "card",
           "eyebrow": null,
-          "title": "Enterprise implementation",
+          "title": "Enterprise Implementation",
           "body": null,
           "media": {
             "kind": "image",
-            "src": null,
+            "src": "/images/blogs/pillar6-a.png",
             "assetKey": "pillar-6-ribbon",
             "alt": "Abstract ribbon graphic",
             "caption": null
           },
           "cta": null,
-          "items": []
+          "items": [
+            "End-to-end encryption for data in transit and at rest, across every system touchpoint",
+            "RBAC and data access controls enforcing least-privilege access to sensitive sources and APIs",
+            "Secure API design: token-based auth, rate limiting, input validation, anomaly detection",
+            "Data residency compliance for GDPR and HIPAA jurisdictional requirements",
+            "SOC 2 Type II-aligned audit logging for third-party attestation readiness"
+          ]
         },
         {
           "id": "p6-mvp",
           "type": "card",
           "eyebrow": null,
-          "title": "Agent MVP",
-          "body": null,
+          "title": "Agivant POV",
+          "body": "Agivant has deployed in financial services, healthcare, and insurance environments meeting GDPR, HIPAA, and SOC 2 Type II requirements – without compromising deployment speed.",
           "media": {
             "kind": "image",
-            "src": null,
+            "src": "/images/blogs/pillar6-b.png",
             "assetKey": "pillar-6-ribbon-2",
             "alt": "Abstract ribbon graphic",
             "caption": null
@@ -574,16 +617,26 @@
         "eyebrow": null,
         "heading": "Built for Enterprise. Proven at Scale.",
         "description": null,
+        "showBar": false,
+        "spacing": "standard",
+        "highlightPosition": "start",
+        "highlightCount": 3,
         "columns": [],
         "media": null,
         "cta": null
       },
       "blocks": [
         {
-          "id": "built-copy",
+          "id": "built-copy-1",
           "type": "richText",
           "heading": null,
-          "body": null
+          "body": "It’s not about trying harder to get from pilot to production; it’s about building from the ground up. The gap between experiment and production-grade performance is consistently reduced by organizations that treat interoperability, scalability, reliability, governance, explainability, and security as fundamental design requirements."
+        },
+        {
+          "id": "built-copy-2",
+          "type": "richText",
+          "heading": null,
+          "body": "Agivant’s enterprise AI deployments, built in partnership with Google Cloud, AWS, TigerGraph, and Visa, deliver: up to 60% faster execution, 3x operational efficiency, and 2x data processing capacity across complex multi-environment deployments."
         }
       ]
     }

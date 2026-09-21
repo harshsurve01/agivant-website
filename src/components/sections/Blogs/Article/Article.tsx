@@ -7,6 +7,7 @@ import { Phase4 } from "./Phase4";
 import { Conclusion } from "./Conclusion";
 import { SplitContent } from "./SplitContent";
 import { ImpactTable } from "@/components/sections/Solutions/Article/ImpactTable";
+import { EnterpriseAIPillar } from "./EnterpriseAIPillar";
 import type { ArticleProps } from "./types";
 import type { ArticleHeroProps } from "./Hero";
 import type { ImpactTableProps } from "@/components/sections/Solutions/Article/ImpactTable";
@@ -301,6 +302,86 @@ export function Article(props: ArticleProps) {
             }
 
             default: {
+              if (section.id.startsWith("pillar-") || section.type === "pillar") {
+                const problemBlock =
+                  section.blocks.find(
+                    (b) =>
+                      b.id.endsWith("-problem") ||
+                      b.type === "problem" ||
+                      b.title?.toLowerCase().includes("problem")
+                  ) ?? section.blocks[0];
+
+                const whyBlock = section.blocks.find(
+                  (b) =>
+                    b.id.endsWith("-meaning") ||
+                    b.id.endsWith("-why") ||
+                    b.id.endsWith("-why-it-matters") ||
+                    b.type === "why_it_matters" ||
+                    b.title?.toLowerCase().includes("why it matters") ||
+                    b.title?.toLowerCase().includes("what it means")
+                );
+
+                const implBlock = section.blocks.find(
+                  (b) =>
+                    b.id.endsWith("-implementation") ||
+                    b.type === "implementation" ||
+                    b.title?.toLowerCase().includes("implementation")
+                );
+
+                const povBlock = section.blocks.find(
+                  (b) =>
+                    b.id.endsWith("-mvp") ||
+                    b.id.endsWith("-pov") ||
+                    b.type === "pov" ||
+                    b.title?.toLowerCase().includes("pov") ||
+                    b.title?.toLowerCase().includes("mvp")
+                );
+
+                const sectionTitle =
+                  (section.data.sectionTitle as string | undefined) ??
+                  (section.id === "pillar-1"
+                    ? "The 6 Pillars of Enterprise-Grade AI"
+                    : null);
+
+                return (
+                  <EnterpriseAIPillar
+                    key={section.id}
+                    id={section.id}
+                    sectionTitle={sectionTitle}
+                    title={section.data.heading ?? ""}
+                    problemLayout={
+                      (section.data.problemLayout as "split" | "full" | undefined) ??
+                      (whyBlock?.body ? "split" : "full")
+                    }
+                    problem={{
+                      label: problemBlock?.title ?? "The problem",
+                      content: problemBlock?.body ?? problemBlock?.description ?? "",
+                    }}
+                    whyItMatters={
+                      whyBlock && (whyBlock.body || whyBlock.description)
+                        ? {
+                            label: whyBlock.title ?? "Why it matters",
+                            content: whyBlock.body ?? whyBlock.description ?? "",
+                          }
+                        : null
+                    }
+                    implementation={{
+                      label: implBlock?.title ?? "Enterprise Implementation",
+                      items: implBlock?.items ?? [],
+                      content: implBlock?.body ?? implBlock?.description ?? undefined,
+                      ribbonSrc: implBlock?.media?.src,
+                      ribbonAlt: implBlock?.media?.alt ?? undefined,
+                    }}
+                    pov={{
+                      label: povBlock?.title ?? "Agivant POV",
+                      content: povBlock?.body ?? povBlock?.description ?? "",
+                      ribbonSrc: povBlock?.media?.src,
+                      ribbonAlt: povBlock?.media?.alt ?? undefined,
+                    }}
+                  />
+                );
+              }
+
               switch (section.type) {
                 case "card_grid": {
                   const cards = section.blocks.map((b) => ({

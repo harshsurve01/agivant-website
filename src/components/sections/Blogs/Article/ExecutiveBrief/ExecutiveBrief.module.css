@@ -13,8 +13,9 @@
    than inventing a new step. */
 .executiveBrief {
   width: 100%;
+  min-height: auto;
   padding-top: 15rem;
-  padding-bottom: var(--space-16);
+  padding-bottom: var(--space-24);
 }
 
 .standardSpacing {

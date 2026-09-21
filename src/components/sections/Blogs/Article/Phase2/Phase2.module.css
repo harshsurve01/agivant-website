@@ -16,6 +16,7 @@
    rhythm is reused rather than invented. */
 .phase2 {
   width: 100%;
+   min-height: auto;
   padding-block: var(--space-16);
 }
 
