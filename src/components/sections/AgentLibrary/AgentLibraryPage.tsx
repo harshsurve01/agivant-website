@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import { createPortal } from "react-dom";
 import { GradientLayerProvider } from "@/components/effects/GradientLayer";
 import { Container } from "@/components/ui/Container";
 import { Hero } from "@/components/sections/Solutions/Article/Hero";
@@ -71,6 +72,7 @@ export function AgentLibraryPage() {
     "All capabilities"
   );
   const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
   const [page, setPage] = useState(0);
   const pageSize = 10;
 
@@ -162,6 +164,10 @@ export function AgentLibraryPage() {
   };
 
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
     if (!selectedAgent) return;
 
     const originalOverflow = document.body.style.overflow;
@@ -173,6 +179,109 @@ export function AgentLibraryPage() {
   }, [selectedAgent]);
 
   const closeAgentModal = () => setSelectedAgent(null);
+
+  const modalContent = selectedAgent ? (
+    <div className={styles.modalBackdrop} onClick={closeAgentModal}>
+      <div
+        className={styles.modal}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="agent-modal-title"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          type="button"
+          className={styles.closeButton}
+          onClick={closeAgentModal}
+          aria-label="Close agent details"
+        >
+          ×
+        </button>
+
+        <h3 id="agent-modal-title" className={styles.modalTitle}>
+          {selectedAgent.name}
+        </h3>
+
+        <div className={styles.modalSection}>
+          <h4 className={styles.modalSectionTitle}>What I Do</h4>
+          <p>{selectedAgent.popup.whatIDo}</p>
+        </div>
+
+        <div className={styles.modalSection}>
+          <h4 className={styles.modalSectionTitle}>Problems Solved</h4>
+          <ul>
+            {selectedAgent.popup.problemsSolved.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className={styles.modalSection}>
+          <h4 className={styles.modalSectionTitle}>Outcomes Delivered</h4>
+          <ul>
+            {selectedAgent.popup.outcomesDelivered.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className={styles.modalSection}>
+          <h4 className={styles.modalSectionTitle}>Executive Owner</h4>
+          <div className={styles.pillRow}>
+            {selectedAgent.popup.targetPersonas.map((persona) => (
+              <span className={styles.pill} key={persona}>
+                {persona}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.modalSection}>
+          <h4 className={styles.modalSectionTitle}>Industries</h4>
+          <div className={styles.pillRow}>
+            {selectedAgent.popup.industries.map((industry) => (
+              <span className={styles.pill} key={industry}>
+                {industry}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.modalSection}>
+          <h4 className={styles.modalSectionTitle}>Domains</h4>
+          <div className={styles.pillRow}>
+            {selectedAgent.popup.domains.map((domain) => (
+              <span className={styles.pill} key={domain}>
+                {domain}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.modalSection}>
+          <h4 className={styles.modalSectionTitle}>Capabilities</h4>
+          <div className={styles.pillRow}>
+            {selectedAgent.popup.capabilities.map((capability) => (
+              <span className={styles.pill} key={capability}>
+                {capability}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.modalSection}>
+          <h4 className={styles.modalSectionTitle}>Tech Stack</h4>
+          <div className={styles.pillRow}>
+            {selectedAgent.popup.techStack.map((item) => (
+              <span className={styles.pill} key={item}>
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : null;
 
   return (
     <GradientLayerProvider>
@@ -346,108 +455,9 @@ export function AgentLibraryPage() {
           </Container>
         </main>
 
-        {selectedAgent && (
-          <div className={styles.modalBackdrop} onClick={closeAgentModal}>
-            <div
-              className={styles.modal}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="agent-modal-title"
-              onClick={(event) => event.stopPropagation()}
-            >
-              <button
-                type="button"
-                className={styles.closeButton}
-                onClick={closeAgentModal}
-                aria-label="Close agent details"
-              >
-                ×
-              </button>
-
-              <h3 id="agent-modal-title" className={styles.modalTitle}>
-                {selectedAgent.name}
-              </h3>
-
-              <div className={styles.modalSection}>
-                <h4 className={styles.modalSectionTitle}>What I Do</h4>
-                <p>{selectedAgent.popup.whatIDo}</p>
-              </div>
-
-              <div className={styles.modalSection}>
-                <h4 className={styles.modalSectionTitle}>Problems Solved</h4>
-                <ul>
-                  {selectedAgent.popup.problemsSolved.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className={styles.modalSection}>
-                <h4 className={styles.modalSectionTitle}>Outcomes Delivered</h4>
-                <ul>
-                  {selectedAgent.popup.outcomesDelivered.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className={styles.modalSection}>
-                <h4 className={styles.modalSectionTitle}>Executive Owner</h4>
-                <div className={styles.pillRow}>
-                  {selectedAgent.popup.targetPersonas.map((persona) => (
-                    <span className={styles.pill} key={persona}>
-                      {persona}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className={styles.modalSection}>
-                <h4 className={styles.modalSectionTitle}>Industries</h4>
-                <div className={styles.pillRow}>
-                  {selectedAgent.popup.industries.map((industry) => (
-                    <span className={styles.pill} key={industry}>
-                      {industry}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className={styles.modalSection}>
-                <h4 className={styles.modalSectionTitle}>Domains</h4>
-                <div className={styles.pillRow}>
-                  {selectedAgent.popup.domains.map((domain) => (
-                    <span className={styles.pill} key={domain}>
-                      {domain}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className={styles.modalSection}>
-                <h4 className={styles.modalSectionTitle}>Capabilities</h4>
-                <div className={styles.pillRow}>
-                  {selectedAgent.popup.capabilities.map((capability) => (
-                    <span className={styles.pill} key={capability}>
-                      {capability}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className={styles.modalSection}>
-                <h4 className={styles.modalSectionTitle}>Tech Stack</h4>
-                <div className={styles.pillRow}>
-                  {selectedAgent.popup.techStack.map((item) => (
-                    <span className={styles.pill} key={item}>
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+        {isMounted && modalContent
+          ? createPortal(modalContent, document.body)
+          : null}
       </div>
     </GradientLayerProvider>
   );
