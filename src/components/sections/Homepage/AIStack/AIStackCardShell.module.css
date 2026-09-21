@@ -88,7 +88,7 @@
   border-radius: var(--radius-md);
   /* WORKAROUND (lightningcss/Turbopack bug — parcel-bundler/lightningcss#695):
      lightningcss's prefix-minimization pass drops the unprefixed
-     backdrop-filter whenever -webkit-backdrop-filter is also present
+     backdrop-filter whenever--webkit-backdrop-filter is also present
      in the SAME declaration block, even with identical values or a
      var() indirection — already confirmed against this project's
      header. -webkit- stays here; the unprefixed line moves to its own
@@ -96,7 +96,7 @@
      across rule boundaries. See Header.module.css for the same fix.
      TODO(figma): blur radius (20px) is a best-effort match, not
      measured off a spec. */
-  -webkit-backdrop-filter: blur(36px);
+ --webkit-backdrop-filter: blur(36px);
    box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
     inset 0 0 0 rgba(0, 0, 0, 0);
 }

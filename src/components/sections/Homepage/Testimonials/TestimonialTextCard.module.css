@@ -14,7 +14,7 @@
   padding: var(--space-8) var(--space-6) var(--space-6);
   box-sizing: border-box;
   user-select: none;
-  -webkit-backdrop-filter: blur(16px);
+ --webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }

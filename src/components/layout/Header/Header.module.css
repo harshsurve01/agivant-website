@@ -66,7 +66,7 @@
 
   /* WORKAROUND (lightningcss/Turbopack bug — parcel-bundler/lightningcss#695):
      lightningcss's prefix-minimization pass drops the unprefixed
-     backdrop-filter whenever -webkit-backdrop-filter is also present in
+     backdrop-filter whenever--webkit-backdrop-filter is also present in
      the same declaration block — even when the value is identical or
      routed through a var(). It operates on the targets/prefixing pass,
      not a literal-text dedup, so tricks inside one rule don't survive it.
@@ -75,7 +75,7 @@
      block the minifier's pairing logic doesn't reach across. Remove both
      once the upstream bug is fixed and confirmed in this project's
      lightningcss version. */
-  -webkit-backdrop-filter: blur(36px) saturate(10%);
+ --webkit-backdrop-filter: blur(36px) saturate(10%);
 
   /* Unchanged from before — already an exact match to the reference
      card's border color/opacity (rgba(255,255,255,.3)), just applied

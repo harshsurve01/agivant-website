@@ -52,7 +52,7 @@
   overflow: hidden;
   background: rgba(255, 255, 255, 0);
   backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+ --webkit-backdrop-filter: blur(24px);
   display: flex;
   align-items: center;
   justify-content: center;
