@@ -80,6 +80,35 @@
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  .partner-detail,
+  .partner-card,
+  .partner {
+    min-height: auto;
+    padding-block: var(--space-12) var(--space-6);
+  }
+
+  .partner-detail:before,
+  .partner-card:before,
+  .partner:before {
+    display: none;
+  }
+
+  .partner-detail > *,
+  .partner-card > *,
+  .partner > * {
+    flex: 0 0 auto;
+  }
+
+  .partner-detail .copyrightContainer,
+  .partner-card .copyrightContainer,
+  .partner .copyrightContainer {
+    position: relative;
+    bottom: auto;
+    margin-top: var(--space-6);
+  }
+}
+
 /* --------------------------------------------------------------------
    Minimal Variant: Faded Logo + Copyright only (no CTA, no navigation)
    -------------------------------------------------------------------- */
