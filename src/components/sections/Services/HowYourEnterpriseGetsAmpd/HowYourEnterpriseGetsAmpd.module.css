@@ -69,6 +69,11 @@
   width: 100%;
 }
 
+.step:hover .circle {
+  background-color: var(--color-brand-primary, #8500DF);
+  color: #ffffff;
+}
+
 .step:first-child {
   padding-top: 0;
 }
@@ -97,6 +102,7 @@
   line-height: 1;
   color: #000000;
   user-select: none;
+  transition: all 0.3s ease;
 }
 
 .content {

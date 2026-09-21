@@ -25,6 +25,11 @@
    here instead of introducing a new fill color for the same "soft
    gray surface" look.
    -------------------------------------------------------------------- */
+
+.row:hover .badge { 
+  background-color: var(--color-brand-primary);
+  color: #ffffff;
+}
 .badge {
   display: flex;
   align-items: center;
@@ -39,6 +44,7 @@
   color: var(--color-text-primary);
  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.1),
     inset 0 0 0 rgba(0, 0, 0, 0);
+    transition: all 0.3s ease;
 }
 
 .content {
