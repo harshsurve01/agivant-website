@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { Hero } from "@/components/sections/Solutions/Article/Hero";
 import agentLibraryData from "@/data/agents.json";
 import styles from "./AgentLibraryPage.module.css";
+import { Gradient } from "@/components/effects/Gradient";
 
 type AgentCategory = {
   id: string;
@@ -175,6 +176,17 @@ export function AgentLibraryPage() {
 
   return (
     <GradientLayerProvider>
+      <Gradient
+        kind="linear"
+        angle="180deg"
+        top="20%"
+        right="15%"
+        size="40rem"
+        stops={["#b31aef44 0%", "#f6048d 31%", "#f88c54 78%", "#ff7670 100%"]}
+        opacity={0.25}
+        blur="90px"
+      />
+      
       <div className={styles.page}>
         <main className={styles.main}>
           <section className={styles.heroWrapper}>
