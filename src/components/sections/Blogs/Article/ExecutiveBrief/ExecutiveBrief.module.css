@@ -45,7 +45,7 @@
   width: 0.5rem; /* 8px, node 2097:1288 */
   min-height: 2rem; /* 32px, node 2097:1288 */
   align-self: stretch;
-  border-radius: var(--radius-sm);
+  /* border-radius: var(--radius-sm); */
   background-color: var(--color-brand-primary);
   flex-shrink: 0;
 }

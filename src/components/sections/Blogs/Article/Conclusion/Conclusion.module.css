@@ -31,7 +31,7 @@
   display: block;
   width: 0.5rem; /* 8px, matches ExecutiveBrief's accent bar */
   height: 2rem; /* 32px, matches ExecutiveBrief's accent bar */
-  border-radius: var(--radius-sm);
+  /* border-radius: var(--radius-sm); */
   background-color: var(--color-brand-primary);
   flex-shrink: 0;
 }
