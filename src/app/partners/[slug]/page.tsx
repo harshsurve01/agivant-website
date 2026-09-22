@@ -16,6 +16,7 @@ import { DatabricksBusinessContext } from "@/components/sections/Partners/Detail
 import { DatabricksControl } from "@/components/sections/Partners/Detail/DatabricksControl";
 import { PartnerDeploymentCard } from "@/components/sections/Partners/Detail/PartnerDeploymentCard";
 import { ServiceNowWorkflowFamilies } from "@/components/sections/Partners/Detail/ServiceNowWorkflowFamilies";
+import { WhatAgentsDo } from "@/components/sections/Solutions/Article/WhatAgentsDo";
 import { Solutions } from "@/components/sections/Partners/Detail/Solutions";
 import { ProductionProof } from "@/components/sections/Partners/Detail/ProductionProof";
 import { BuiltOnGemini } from "@/components/sections/Partners/Detail/BuiltOnGemini";
@@ -243,6 +244,14 @@ export default async function PartnerDetailPage({
                   data={partner.workflowFamilies}
                 />
               )}
+              {partner.coordinatedAgents && (
+                <WhatAgentsDo
+                  data={partner.coordinatedAgents.data}
+                  blocks={partner.coordinatedAgents.blocks}
+                  variant="partner"
+                  id="coordinated-agents"
+                />
+              )}
             </>
           )}
           {partner.solutions && (
@@ -262,8 +271,17 @@ export default async function PartnerDetailPage({
           {partner.partnerDeploymentCard && (
             <PartnerDeploymentCard
               data={partner.partnerDeploymentCard}
+              imagePosition={partner.partnerDeploymentCard.imagePosition}
               height="auto"
-              id="scale-deployment"
+              id={slug === "servicenow" ? "teams-in-control" : "scale-deployment"}
+            />
+          )}
+          {slug === "servicenow" && partner.databricksControlSecondary && (
+            <DatabricksControl
+              data={partner.databricksControlSecondary}
+              imagePosition="left"
+              height="auto"
+              id="scale-servicenow"
             />
           )}
           {slug !== "shopify" && partner.agentTeams && (
@@ -286,7 +304,7 @@ export default async function PartnerDetailPage({
               {partner.productionProof && (
                 <ProductionProof
                   data={partner.productionProof}
-                  height={slug === "glean" ? "auto" : undefined}
+                  height={slug === "glean" || slug === "servicenow" ? "auto" : undefined}
                 />
               )}
               {partner.builtOnGemini && (

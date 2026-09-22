@@ -342,12 +342,28 @@ export interface PartnerDeploymentCardData {
     raw?: string;
   };
   description: string;
+  closingStatement?: string;
   image: {
     src: string;
     alt: string;
     width?: number;
     height?: number;
   };
+  imagePosition?: "left" | "right";
+}
+
+export interface PartnerWhatAgentsDoData {
+  data: {
+    heading?: string | null;
+    description?: string | null;
+    eyebrow?: string | null;
+    closingStatement?: string | null;
+  };
+  blocks: Array<{
+    id: string;
+    title?: string | null;
+    body?: string | null;
+  }>;
 }
 
 export interface PartnerDetailData {
@@ -370,6 +386,7 @@ export interface PartnerDetailData {
   databricksControlTertiary?: DatabricksControlData;
   partnerDeploymentCard?: PartnerDeploymentCardData;
   workflowFamilies?: WorkflowFamiliesData;
+  coordinatedAgents?: PartnerWhatAgentsDoData;
   solutions?: PartnerSolutionsData;
   productionProof?: PartnerProductionProofData;
   builtOnGemini?: PartnerBuiltOnGeminiData;

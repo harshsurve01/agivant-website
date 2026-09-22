@@ -263,6 +263,7 @@ import type {
   PartnerAlternatingContentData,
   PartnerDeploymentCardData,
   WorkflowFamiliesData,
+  PartnerWhatAgentsDoData,
 } from "@/types/partnerDetail";
 
 /* ==========================================================================
@@ -730,6 +731,8 @@ function mapStandardizedToPartnerDetail(
   const controlSecondarySec =
     data.slug === "glean"
       ? data.sections.find((s) => (s.id === "control" || s.id === "figure-work") && s !== controlSec)
+      : data.slug === "servicenow"
+      ? data.sections.find((s) => s.id === "scale-certified" || s.id === "certified-engineering")
       : undefined;
 
   if (controlSecondarySec) {
@@ -741,11 +744,15 @@ function mapStandardizedToPartnerDetail(
         block?.body ??
         controlSecondarySec.data.description ??
         "",
+      closingStatement:
+        (block as { closingStatement?: string })?.closingStatement ??
+        controlSecondarySec.data.closingStatement ??
+        undefined,
       image: {
-        src: mediaSource?.src ?? "/images/partners/glean-domain-decisions.png",
-        alt: mediaSource?.alt ?? "Every figure an agent states, it can show the work for.",
-        width: mediaSource?.width ?? 437,
-        height: mediaSource?.height ?? 279,
+        src: mediaSource?.src ?? (data.slug === "servicenow" ? "/images/partners/states-card.png" : "/images/partners/glean-domain-decisions.png"),
+        alt: mediaSource?.alt ?? (data.slug === "servicenow" ? "Scale on ServiceNow with certified engineering." : "Every figure an agent states, it can show the work for."),
+        width: mediaSource?.width ?? (data.slug === "servicenow" ? 1748 : 437),
+        height: mediaSource?.height ?? (data.slug === "servicenow" ? 1116 : 279),
       },
     };
   }
@@ -818,11 +825,33 @@ function mapStandardizedToPartnerDetail(
     };
   }
 
+  let coordinatedAgents: PartnerWhatAgentsDoData | undefined;
+  const coordinatedAgentsSec = data.sections.find(
+    (s) => s.id === "coordinated-agents"
+  );
+
+  if (coordinatedAgentsSec) {
+    coordinatedAgents = {
+      data: {
+        heading: coordinatedAgentsSec.data.heading ?? null,
+        description: coordinatedAgentsSec.data.description ?? null,
+        eyebrow: coordinatedAgentsSec.data.eyebrow ?? null,
+        closingStatement: coordinatedAgentsSec.data.closingStatement ?? null,
+      },
+      blocks: (coordinatedAgentsSec.blocks ?? []).map((b) => ({
+        id: b.id,
+        title: b.title ?? null,
+        body: b.body ?? null,
+      })),
+    };
+  }
+
   let partnerDeploymentCard: PartnerDeploymentCardData | undefined;
   const deploymentCardSec = data.sections.find(
     (s) =>
       s.id === "deployment-card" ||
       s.id === "scale-inside" ||
+      s.id === "teams-in-control" ||
       s.type === "deployment_card"
   );
 
@@ -833,24 +862,30 @@ function mapStandardizedToPartnerDetail(
       heading: {
         highlight:
           block?.headingStructure?.highlight ??
-          deploymentCardSec.data.headingStructure?.highlight ??
-          "Scale inside the Glean",
+          deploymentCardSec.data.headingStructure?.highlight,
         text:
           block?.headingStructure?.text ??
-          deploymentCardSec.data.headingStructure?.text ??
-          "deployment already running.",
+          deploymentCardSec.data.headingStructure?.text,
         raw: block?.heading ?? deploymentCardSec.data.heading ?? "",
       },
       description:
         block?.body ??
         deploymentCardSec.data.description ??
         "",
+      closingStatement:
+        (block as { closingStatement?: string })?.closingStatement ??
+        deploymentCardSec.data.closingStatement ??
+        undefined,
       image: {
         src: mediaSource?.src ?? "/images/partners/tint-card-image.png",
         alt: mediaSource?.alt ?? "Scale inside the Glean deployment already running",
         width: mediaSource?.width ?? 2300,
         height: mediaSource?.height ?? 1516,
       },
+      imagePosition:
+        (deploymentCardSec.data.layout === "text-image" ? "right" : undefined) ??
+        (deploymentCardSec.data.layout === "image-text" ? "left" : undefined) ??
+        (data.slug === "servicenow" ? "right" : "left"),
     };
   }
 
@@ -1020,9 +1055,13 @@ function mapStandardizedToPartnerDetail(
       }
     : undefined;
 
-  const proofSec = data.sections.find(
-    (s) => s.id === "proof-from-production"
-  );
+  const proofSec =
+    data.sections.find((s) => s.id === "proof-from-production") ??
+    (data.slug === "servicenow"
+      ? (partnerDetailJson.sections.find(
+          (s) => s.id === "proof-from-production"
+        ) as StandardizedSection | undefined)
+      : undefined);
   let proofHighlight = proofSec?.data.headingStructure?.highlight;
   let proofRest = proofSec?.data.headingStructure?.rest;
   if (!proofHighlight && proofSec?.data.heading) {
@@ -1142,6 +1181,7 @@ function mapStandardizedToPartnerDetail(
     databricksControlTertiary,
     partnerDeploymentCard,
     workflowFamilies,
+    coordinatedAgents,
     solutions,
     productionProof,
     builtOnGemini,

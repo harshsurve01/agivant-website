@@ -1,34 +1,36 @@
+import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import type { WhatAgentsDoProps } from "./types";
 import styles from "./WhatAgentsDo.module.css";
 
-const HIGHLIGHT_PHRASE = "let them work the tools";
+const HIGHLIGHT_PHRASES = ["let them work the tools", "Put coordinated agents"];
 
 /**
  * Renders the heading with the designated phrase highlighted in brand purple.
  */
 function renderHeading(heading: string) {
-  if (heading.includes(HIGHLIGHT_PHRASE)) {
-    const parts = heading.split(HIGHLIGHT_PHRASE);
-    return (
-      <>
-        {parts[0]}
-        <span className={styles.highlight}>{HIGHLIGHT_PHRASE}</span>
-        {parts[1] || ""}
-      </>
-    );
+  for (const phrase of HIGHLIGHT_PHRASES) {
+    if (heading.includes(phrase)) {
+      const parts = heading.split(phrase);
+      return (
+        <>
+          {parts[0]}
+          <span className={styles.highlight}>{phrase}</span>
+          {parts[1] || ""}
+        </>
+      );
+    }
   }
   return heading;
 }
 
 /**
- * WhatAgentsDo (Solution Inner Page: /solutions/[slug])
+ * WhatAgentsDo (Solution Inner Page: /solutions/[slug], Partner Detail: /partners/[slug])
  *
- * Section 02 of the Solution Inner Page:
- * - Centered heading ("Give agents a goal and let them work the tools")
- *   with "let them work the tools" rendered in brand purple.
- * - Centered intro description.
- * - Centered purple uppercase eyebrow: "WHAT THE AGENTS DO".
+ * Reusable card grid section:
+ * - Heading with brand purple highlighted phrase
+ * - Intro description
+ * - Optional uppercase eyebrow
  * - 2-column responsive grid of horizontal cards matching the exact reference:
  *   - Off-white card surface with rounded corners and subtle shadow.
  *   - Left-notched chevron indentation cut directly into the card silhouette.
@@ -38,13 +40,26 @@ function renderHeading(heading: string) {
  *
  * Server Component: all data arrives via typed props; no client state.
  */
-export function WhatAgentsDo({ data, blocks }: WhatAgentsDoProps) {
+export function WhatAgentsDo({
+  data,
+  blocks,
+  className,
+  id = "what-agents-do",
+  variant = "default",
+}: WhatAgentsDoProps) {
   if (!data || !blocks?.length) return null;
 
   const { heading, description, eyebrow, closingStatement } = data;
 
   return (
-    <section className={styles.section} id="what-agents-do">
+    <section
+      className={clsx(
+        styles.section,
+        variant === "partner" && styles.partnerSection,
+        className
+      )}
+      id={id}
+    >
       <Container className={styles.container}>
         <header className={styles.header}>
           {heading && (

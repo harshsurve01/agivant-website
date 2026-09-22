@@ -10,6 +10,7 @@ export interface PartnerDeploymentCardProps {
   height?: SectionHeight;
   className?: string;
   id?: string;
+  imagePosition?: "left" | "right";
 }
 
 /**
@@ -26,14 +27,20 @@ function renderHeading(heading: PartnerDeploymentCardData["heading"]) {
   }
 
   const raw = heading.raw || heading.text || "";
-  const target = "Scale inside the Glean";
-  if (raw.startsWith(target)) {
-    return (
-      <>
-        <span className={styles.headingHighlight}>{target}</span>
-        {raw.slice(target.length)}
-      </>
-    );
+  const highlightTargets = [
+    "Scale inside the Glean",
+    "Keep teams in control",
+  ];
+
+  for (const target of highlightTargets) {
+    if (raw.startsWith(target)) {
+      return (
+        <>
+          <span className={styles.headingHighlight}>{target}</span>
+          {raw.slice(target.length)}
+        </>
+      );
+    }
   }
 
   return raw;
@@ -43,7 +50,8 @@ function renderHeading(heading: PartnerDeploymentCardData["heading"]) {
  * PartnerDeploymentCard
  *
  * Reusable wide rounded card section for partner detail pages.
- * Displays decorative ribbon artwork on the left and heading + body on the right.
+ * Displays decorative ribbon artwork and heading + body + optional closing statement.
+ * Supports image on the left (Glean default) or right (ServiceNow).
  * Consumes design tokens exclusively from variables.css.
  * Server Component: pure presentation, zero client overhead.
  */
@@ -52,8 +60,12 @@ export function PartnerDeploymentCard({
   height = "auto",
   className,
   id = "scale-deployment",
+  imagePosition: propImagePosition,
 }: PartnerDeploymentCardProps) {
   if (!data) return null;
+
+  const imagePosition = propImagePosition || data.imagePosition || "left";
+  const isImageRight = imagePosition === "right";
 
   return (
     <Section
@@ -62,7 +74,7 @@ export function PartnerDeploymentCard({
       id={id}
     >
       <Container size="xl" className={styles.container}>
-        <div className={styles.card}>
+        <div className={clsx(styles.card, isImageRight && styles.imageRight)}>
           <div className={styles.ribbonWrapper} aria-hidden="true">
             <Image
               src={data.image.src}
@@ -76,6 +88,9 @@ export function PartnerDeploymentCard({
           <div className={styles.content}>
             <h2 className={styles.heading}>{renderHeading(data.heading)}</h2>
             <p className={styles.description}>{data.description}</p>
+            {data.closingStatement && (
+              <p className={styles.closingStatement}>{data.closingStatement}</p>
+            )}
           </div>
         </div>
       </Container>

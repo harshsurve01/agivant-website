@@ -219,12 +219,135 @@
           "items": []
         }
       ]
+    },
+    {
+      "id": "coordinated-agents",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Put coordinated agents to work across the incident lifecycle.",
+        "description": "On ServiceNow, agents read every incident, defect, and change record the moment it lands, follow it through each sub-cycle, and surface discrepancies before they reach production.",
+        "closingStatement": "Every automated action stays visible in a system of record the team already trusts.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "coordinated-agents-1",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Sub-cycle times tracked for milestones like Build Complete and UAT Deployment Complete across the full ticket lifecycle",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "coordinated-agents-2",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Application changes linked automatically to the incident, supporting automation and the left-shift of requirements",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "coordinated-agents-3",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Aggregate and metrics dashboards refreshed in real time across incident, defect, and change records",
+          "media": null,
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "coordinated-agents-4",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Data discrepancy dashboards that flag mismatches before they become production issues",
+          "media": null,
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "teams-in-control",
+      "type": "deployment_card",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Keep teams in control while agents run the queue.",
+        "description": "Every Agivant agent is production grade from day one, observable and always on. System validations and controls sit in front of every automated step, so high-stakes changes route for human review while routine triage runs on its own. Teams set the rules, and agents apply them the same way, incident after incident.",
+        "closingStatement": "All of it runs on the data already inside the ServiceNow instance.",
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/queue-card-image.png",
+          "assetKey": "queue-card-image",
+          "alt": "Keep teams in control while agents run the queue.",
+          "caption": null,
+          "width": 553,
+          "height": 379
+        },
+        "layout": "text-image",
+        "cta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "scale-certified",
+      "type": "split_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Scale on ServiceNow with certified engineering.",
+        "description": "Agivant connects through native ServiceNow APIs and IntegrationHub, so incident, defect, and change data flow into the automation layer on top of the instance the enterprise already runs. Its engineers are AI-native by background, and a library of more than 200 production agents is the starting point for multi-agent orchestration. Security is certified to SOC 2, ISO, and PCI DSS, and the validation and controls layer is composable, so new checks, dashboards, and workflows build on the same substrate. This is what an Amp'd enterprise looks like in production.",
+        "closingStatement": null,
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/states-card.png",
+          "assetKey": "states-card",
+          "alt": "Scale on ServiceNow with certified engineering.",
+          "caption": null,
+          "width": 1748,
+          "height": 1116
+        },
+        "layout": "image-text",
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "scale-certified-copy",
+          "type": "richText",
+          "heading": "Scale on ServiceNow with certified engineering.",
+          "body": "Agivant connects through native ServiceNow APIs and IntegrationHub, so incident, defect, and change data flow into the automation layer on top of the instance the enterprise already runs. Its engineers are AI-native by background, and a library of more than 200 production agents is the starting point for multi-agent orchestration. Security is certified to SOC 2, ISO, and PCI DSS, and the validation and controls layer is composable, so new checks, dashboards, and workflows build on the same substrate. This is what an Amp'd enterprise looks like in production.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/states-card.png",
+            "assetKey": "states-card",
+            "alt": "Scale on ServiceNow with certified engineering.",
+            "caption": null,
+            "width": 1748,
+            "height": 1116
+          }
+        }
+      ]
     }
   ],
   "footerCta": {
-    "enabled": false,
-    "heading": "Ready to put ServiceNow to work?",
-    "subheading": null,
+    "enabled": true,
+    "heading": "Put ServiceNow to work for measurable business impact.",
+    "subheading": "Start with one queue or one portfolio, and Agivant stands up a ServiceNow operation that runs the work in days and weeks.",
     "partner": {
       "name": "ServiceNow",
       "logo": {
@@ -235,7 +358,21 @@
         "caption": null
       }
     },
+    "media": {
+      "kind": "image",
+      "src": "/images/partners/gemini/accelerators/agentic-quote-accelerator.png",
+      "assetKey": "servicenow-cta-artwork",
+      "alt": "Put ServiceNow to work for measurable business impact",
+      "caption": null
+    },
     "primaryCta": null,
-    "secondaryCta": null
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Book a ServiceNow assessment",
+      "href": "/contact",
+      "external": false,
+      "icon": "cube",
+      "variant": "dark"
+    }
   }
 }
