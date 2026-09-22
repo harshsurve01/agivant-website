@@ -20,10 +20,12 @@ import styles from "./Footer.module.css";
  *               single purple CTA button, faded brandmark, and copyright.
  * - "partner-detail": Variant for Partner Detail pages with centered heading, supporting description paragraph,
  *                     single primary button (with cube icon), faded brandmark, and copyright.
+ * - "service-detail": Variant for Service Detail pages with centered 2-line heading (line 1 purple, line 2 black),
+ *                     single primary button (with cube icon), faded brandmark, and copyright.
  * - "partner-card" (or "partner"): Reusable horizontal glass card variant for Partner pages (Databricks, ServiceNow, etc.)
  *                                  with left artwork, right heading/description/button, faded brandmark, and copyright.
  */
-export type FooterVariant = "default" | "minimal" | "partners" | "partner-detail" | "partner-card" | "partner";
+export type FooterVariant = "default" | "minimal" | "partners" | "partner-detail" | "service-detail" | "partner-card" | "partner";
 
 export interface FooterCustomCTA {
   heading: string | { line1: string; line2?: string; line3?: string };
@@ -56,7 +58,7 @@ export interface FooterProps {
  *
  * Global layout component combining the site's final CTA with its footer brandmark and copyright.
  * Supports "default" centered footer, "partners" landing footer, "partner-detail" CMS-driven footer,
- * "partner-card" horizontal glass card footer, and "minimal" logo+copyright variant.
+ * "service-detail" service inner page footer, "partner-card" horizontal glass card footer, and "minimal" logo+copyright variant.
  *
  * Server Component: async, no "use client", no hooks, no state.
  */
@@ -70,7 +72,7 @@ export async function Footer({
   const content = await getFooterContent();
 
   const isPartners = variant === "partners";
-  const isPartnerDetail = variant === "partner-detail";
+  const isPartnerDetail = variant === "partner-detail" || variant === "service-detail";
   const isPartnerCard = variant === "partner-card" || variant === "partner";
   const isMinimal = variant === "minimal";
 

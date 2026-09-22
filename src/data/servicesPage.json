@@ -119,7 +119,12 @@
             "alt": "Cloud & Platform Engineering stage visualization",
             "caption": null
           },
-          "cta": null,
+          "cta": {
+            "enabled": true,
+            "label": "START HERE →",
+            "href": "/services/cloud-platform-engineering",
+            "external": false
+          },
           "items": [
             "START HERE IF → your systems run in isolation from each other"
           ]
@@ -137,7 +142,12 @@
             "alt": "Data Engineering & Advanced Analytics stage visualization",
             "caption": null
           },
-          "cta": null,
+          "cta": {
+            "enabled": true,
+            "label": "START HERE →",
+            "href": "/services/data-engineering-advanced-analytics",
+            "external": false
+          },
           "items": [
             "START HERE IF → Your teams trust different numbers for the same thing"
           ]
@@ -155,7 +165,12 @@
             "alt": "AI & ML Engineering stage visualization",
             "caption": null
           },
-          "cta": null,
+          "cta": {
+            "enabled": true,
+            "label": "START HERE →",
+            "href": "/services/ai-ml-engineering",
+            "external": false
+          },
           "items": [
             "START HERE IF → Your AI works in a demo and struggles in production"
           ]
@@ -173,7 +188,12 @@
             "alt": "MLOps & Scalable ML Platforms stage visualization",
             "caption": null
           },
-          "cta": null,
+          "cta": {
+            "enabled": true,
+            "label": "START HERE →",
+            "href": "/services/mlops-scalable-ml-platforms",
+            "external": false
+          },
           "items": [
             "START HERE IF → Your models work great until real traffic hits"
           ]
@@ -191,7 +211,12 @@
             "alt": "Agentic AI & AgentOps stage visualization",
             "caption": null
           },
-          "cta": null,
+          "cta": {
+            "enabled": true,
+            "label": "START HERE →",
+            "href": "/services/agentic-ai-agentops",
+            "external": false
+          },
           "items": [
             "START HERE IF → The foundation is ready and it's time to put it to work"
           ]

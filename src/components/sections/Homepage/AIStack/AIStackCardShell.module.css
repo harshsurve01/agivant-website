@@ -33,12 +33,12 @@
      and collapse every layered child onto one plane — which is
      exactly the bug this comment is here to prevent regressing. */
   isolation: isolate; /* keeps this card's z-index layers scoped to itself */
-  overflow: visible;
+  overflow: var(--service-stack-card-overflow, visible);
   /* Matches `.shell`'s own border-radius below so the static clip
      mask lines up with the rotating border's rounded corners — this
      radius has no visible border of its own here, it just shapes the
      clip. */
-  border-radius: var(--radius-lg, 1rem); /* TODO(design-tokens): confirm token name */
+  border-radius: var(--service-stack-card-radius, var(--radius-lg, 1rem)); /* TODO(design-tokens): confirm token name */
   /* Fallback backdrop only: at extreme tilt angles `.shell`'s rotated
      edges can momentarily expose a sliver of the static clip box
      behind them. Not the card's visible surface color — `.background`
@@ -55,7 +55,7 @@
      window frame around tilting content. `border`/`border-radius`
      aren't grouping properties (unlike overflow/isolation above), so
      they're safe on a preserve-3d element. */
-  border-radius: var(--radius-md, 1rem); /* TODO(design-tokens): confirm token name */
+  border-radius: var(--service-stack-card-radius, var(--radius-md, 1rem)); /* TODO(design-tokens): confirm token name */
   border: 1px solid #fff;
   /* This is the ONLY element that rotates, and therefore the ONLY
      element that may carry `transform-style: preserve-3d` without a
@@ -85,7 +85,7 @@
      blur visible; it only existed before to add a tinted glass look,
      which is explicitly not wanted here. */
   background-color: #c6c6c60c;
-  border-radius: var(--radius-md);
+  border-radius: var(--service-stack-card-radius, var(--radius-md));
   /* WORKAROUND (lightningcss/Turbopack bug — parcel-bundler/lightningcss#695):
      lightningcss's prefix-minimization pass drops the unprefixed
      backdrop-filter whenever--webkit-backdrop-filter is also present
@@ -153,6 +153,8 @@
   z-index: 1;
   width: 100%;
   height: 100%;
+  border-radius: var(--service-stack-card-radius, var(--radius-md, 1rem));
+  overflow: var(--service-stack-card-overflow, visible);
   /* This is the hand-off point from shell to layout. The shell has
      no idea what's inside `children`, but it still has to keep the
      3D context open — without `preserve-3d` here, ANY translateZ a

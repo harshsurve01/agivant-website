@@ -65,15 +65,17 @@
 }
 
 /* --------------------------------------------------------------------
-   Partner Detail Page Variant (Figma: Frame 1707482290)
+   Partner Detail & Service Detail Page Variant (Figma: Frame 1707482290)
    -------------------------------------------------------------------- */
 .partner-detail,
+.service-detail,
 .partner-card,
 .partner {
   padding-block: var(--space-24) var(--space-4);
 }
 
 .partner-detail .top,
+.service-detail .top,
 .partner-card .top,
 .partner .top {
   justify-content: center;
@@ -82,6 +84,7 @@
 
 @media (max-width: 768px) {
   .partner-detail,
+  .service-detail,
   .partner-card,
   .partner {
     min-height: auto;
@@ -89,18 +92,21 @@
   }
 
   .partner-detail:before,
+  .service-detail:before,
   .partner-card:before,
   .partner:before {
     display: none;
   }
 
   .partner-detail > *,
+  .service-detail > *,
   .partner-card > *,
   .partner > * {
     flex: 0 0 auto;
   }
 
   .partner-detail .copyrightContainer,
+  .service-detail .copyrightContainer,
   .partner-card .copyrightContainer,
   .partner .copyrightContainer {
     position: relative;

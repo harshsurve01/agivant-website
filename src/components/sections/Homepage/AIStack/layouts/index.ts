@@ -21,6 +21,7 @@ import { MLOpsLayout } from "./MLOpsLayout";
 import type { AIStackLayoutProps } from "./types";
 
 export type { AIStackLayoutProps } from "./types";
+export { AIStackBullets } from "./AIStackBullets";
 
 export const layouts: Record<AIStackCardData["layout"], ComponentType<AIStackLayoutProps>> = {
   agentic: AgenticLayout,

@@ -17,7 +17,9 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: var(--space-6);
+  padding-top: var(--service-stack-card-padding-top, var(--space-6));
+  padding-inline: var(--service-stack-card-padding-inline, var(--space-6));
+  padding-bottom: var(--service-stack-card-padding-bottom, var(--space-6));
   gap: var(--space-4);
   /* Direct child of the shell's `.content` (which is preserve-3d).
      This box itself has two children — `.text` and `.ribbon` — that
@@ -30,8 +32,11 @@
 .text {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--service-stack-title-content-gap, var(--space-2));
   flex-shrink: 0; /* text keeps its natural height; ribbon takes the rest */
+  position: relative;
+  z-index: var(--service-stack-text-z-index, 1);
+  transform: translateZ(var(--service-stack-text-translate-z, 40px));
   /* `.title` and `.description` below get different translateZ
      values from EACH OTHER, not just from `.ribbon`. Without
      preserve-3d here, both would collapse onto whatever plane `.text`
@@ -45,30 +50,33 @@
   font-weight: var(--font-weight-semibold);
   /* Depth order (nearest → farthest) is badge, title, description,
      ribbon, background — set in AIStackCardShell + here. */
-  transform: translateZ(40px);
+  transform: translateZ(var(--service-stack-text-translate-z, 40px));
   padding-top: var(--space-16);
-  
-   /* TODO(figma): confirm exact shadow for text block */
+}
+
+.titleNoBadge {
+  padding-top: 0;
 }
 
 .description {
-  font-size: var(--font-size-md);
+  font-size: var(--service-stack-desc-font-size, var(--font-size-md));
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
-  transform: translateZ(40px);
+  transform: translateZ(var(--service-stack-text-translate-z, 40px));
 }
 
 .ribbon {
-  top: -10px;
-  position: relative;
+  top: var(--service-stack-ribbon-top, -10px);
+  position: var(--service-stack-ribbon-position, relative);
   flex: 1; /* fills remaining height below the text block */
   min-height: 1rem; /* TODO(figma): confirm minimum ribbon height */
   /* Bleed to the card's own edges — the shell clips this with its
      border-radius + overflow: hidden, so it never escapes the card. */
-  margin-inline: calc(var(--space-2) * -1);
-  margin-bottom: calc(var(--space-2) * -1);
+  margin-inline: var(--service-stack-ribbon-margin-inline, calc(var(--space-2) * -1));
+  margin-bottom: var(--service-stack-ribbon-margin-bottom, calc(var(--space-2) * -1));
   pointer-events: none;
-  transform: translateZ(88px);
+  z-index: var(--service-stack-ribbon-z-index, 0);
+  transform: translateZ(var(--service-stack-ribbon-translate-z, 88px));
   overflow: hidden;
 }
 

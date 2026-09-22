@@ -1,4 +1,6 @@
 import Image from "next/image";
+import clsx from "clsx";
+import { AIStackBullets } from "./AIStackBullets";
 import type { AIStackLayoutProps } from "./types";
 import styles from "./DataEngineeringLayout.module.css";
 
@@ -19,17 +21,29 @@ import styles from "./DataEngineeringLayout.module.css";
 export function DataEngineeringLayout({
   title,
   description,
+  bullets,
   backgroundImage,
   accentColor,
   ribbonPosition,
+  hasBadge,
 }: AIStackLayoutProps) {
   return (
     <div className={styles.layout}>
       <div className={styles.text}>
-        <h3 className={styles.title} style={{ color: accentColor }}>
+        <h3
+          className={clsx(
+            styles.title,
+            hasBadge === false && styles.titleNoBadge
+          )}
+          style={{ color: accentColor }}
+        >
           {title}
         </h3>
-        <p className={styles.description}>{description}</p>
+        {bullets && bullets.length > 0 ? (
+          <AIStackBullets bullets={bullets} />
+        ) : (
+          description && <p className={styles.description}>{description}</p>
+        )}
       </div>
 
       <div className={styles.ribbon} aria-hidden="true">

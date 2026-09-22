@@ -22,6 +22,7 @@
 
 .aiStack {
   position: relative;
+  z-index: 1;
   width: 100%;
   /* No background-color here anymore — the page's base color now
      lives on GradientLayer's .root; this section must stay transparent
@@ -43,4 +44,71 @@
      header and grid, so this is split out from .inner's shared gap
      rather than forcing both gaps to the same value. */
   margin-top: var(--space-4); /* TODO(figma): confirm exact grid-to-CTA spacing */
+}
+
+/* ==========================================================================
+   Service Inner Page Scoped Variant (.serviceVariant)
+   Centralized control points for Service Stack cards.
+   Edit these CSS custom properties to tweak card visuals.
+   ========================================================================== */
+
+.serviceVariant {
+  /* ========================================================================
+     SERVICE INNER PAGE AI STACK CARD CONTROLS
+     Centralized control points for Service Inner Page AI Stack cards.
+     Edit these CSS custom properties to tweak card visuals.
+     Homepage AI Stack cards do not receive this class and remain default.
+     ======================================================================== */
+
+  /* 1. Card Border Radius: 25px equivalent (25 / 16 = 1.5625rem) */
+  --service-stack-card-radius: var(--font-size-xl); /* 1.5625rem / 25px */
+
+  /* 2. Service Card Content Padding */
+  --service-stack-card-padding-top: 2rem;
+  --service-stack-card-padding-inline: 1.5rem;
+  --service-stack-card-padding-bottom: 1.25rem;
+
+  /* 3. Title → Description / Bullet Gap (Increased breathing room) */
+  --service-stack-title-content-gap: 1.25rem;
+
+  /* Typography / Font Size Controls */
+  /* To increase card description / bullet text font size, uncomment or adjust below: */
+  /* e.g. var(--font-size-base) (0.9375rem / 15px) or var(--font-size-md) (1rem / 16px) */
+  /* --service-stack-desc-font-size: 0.9375rem; */
+
+  /* To increase section header subtitle font size, adjust below: */
+  /* --service-stack-header-desc-font-size: var(--font-size-xl); */
+
+  /* 4. Text Stacking & 3D Layer (Text sits on top) */
+  --service-stack-text-z-index: 2;
+  --service-stack-text-translate-z: 40px;
+
+  /* 5. Ribbon Stacking & 3D Layer (Ribbon sits in background) */
+  --service-stack-ribbon-z-index: 0;
+  --service-stack-ribbon-translate-z: 10px;
+
+  /* 6. Bottom Ribbons Positioning & Bleed (Cards 1, 2, 4, 5) */
+  --service-stack-ribbon-position: relative;
+  --service-stack-ribbon-top: 0px;
+  --service-stack-ribbon-left: 0px;
+  /* Bleed across horizontal padding to touch card borders: */
+  --service-stack-ribbon-margin-inline: calc(var(--service-stack-card-padding-inline) * -1);
+  /* Bleed to bottom edge of card: */
+  --service-stack-ribbon-margin-bottom: calc(var(--service-stack-card-padding-bottom) * -1);
+
+  /* 7. Zero-Trust Card (Card 3) Specific Controls */
+  /* Top ribbon in normal flow so text sits BELOW it */
+  --service-stack-cloud-ribbon-position: relative;
+  --service-stack-cloud-ribbon-top: 0px;
+  --service-stack-cloud-ribbon-left: 0px;
+  --service-stack-cloud-ribbon-right: 0px;
+  --service-stack-cloud-ribbon-width: 100%;
+  --service-stack-cloud-ribbon-height: 4.75rem;
+  --service-stack-cloud-ribbon-margin-bottom: 0.75rem;
+  --service-stack-cloud-ribbon-margin-inline: 0px;
+  /* Zero-trust content top position */
+  --service-stack-cloud-content-top: 0px;
+
+  /* 8. Card Overflow Clipping (clips bleeding artwork to card radius) */
+  --service-stack-card-overflow: hidden;
 }

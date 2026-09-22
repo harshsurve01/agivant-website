@@ -1,9 +1,11 @@
+import clsx from "clsx";
 import { AIStackCard } from "./AIStackCard";
 import type { AIStackCardData } from "@/data/ai-stack";
 import styles from "./AIStackGrid.module.css";
 
 interface AIStackGridProps {
   cards: AIStackCardData[];
+  variant?: "default" | "service";
 }
 
 /**
@@ -26,9 +28,14 @@ interface AIStackGridProps {
  * Component) — Server Components can render Client Components, just
  * not the reverse.
  */
-export function AIStackGrid({ cards }: AIStackGridProps) {
+export function AIStackGrid({ cards, variant = "default" }: AIStackGridProps) {
   return (
-    <div className={styles.grid}>
+    <div
+      className={clsx(
+        styles.grid,
+        variant === "service" && styles.gridService
+      )}
+    >
       {cards.map((card) => (
         <div key={card.id} className={styles.gridItem}>
           <AIStackCard card={card} />

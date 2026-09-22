@@ -14,7 +14,8 @@
  */
 export interface AIStackLayoutProps {
   title: string;
-  description: string;
+  description?: string;
+  bullets?: string[];
   backgroundImage: string;
   accentColor: string;
   /**
@@ -23,4 +24,9 @@ export interface AIStackLayoutProps {
    * art sits, and this only overrides that default.
    */
   ribbonPosition?: string;
+  /**
+   * Whether a numbered badge is present on the card shell (default: true).
+   * When false, the layout removes badge-related top clearance.
+   */
+  hasBadge?: boolean;
 }

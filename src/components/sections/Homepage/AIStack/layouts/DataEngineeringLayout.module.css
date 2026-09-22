@@ -12,7 +12,9 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: var(--space-6);
+  padding-top: var(--service-stack-card-padding-top, var(--space-6));
+  padding-inline: var(--service-stack-card-padding-inline, var(--space-6));
+  padding-bottom: var(--service-stack-card-padding-bottom, var(--space-6));
   gap: var(--space-4);
   /* Direct child of the shell's preserve-3d `.content`; keeps that
      3D context open so `.text` and `.ribbon` below can sit at
@@ -23,8 +25,11 @@
 .text {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--service-stack-title-content-gap, var(--space-2));
   flex-shrink: 0;
+  position: relative;
+  z-index: var(--service-stack-text-z-index, 1);
+  transform: translateZ(var(--service-stack-text-translate-z, 40px));
   /* `.title` and `.description` need independent depths from each
      other, so this wrapper has to stay a 3D participant too. */
   transform-style: preserve-3d;
@@ -36,27 +41,32 @@
   font-weight: var(--font-weight-semibold);
   /* Depth order (nearest → farthest) is badge, title, description,
      ribbon, background — set in AIStackCardShell + here. */
-  transform: translateZ(40px);
-   padding-top: var(--space-16);
+  transform: translateZ(var(--service-stack-text-translate-z, 40px));
+  padding-top: var(--space-16);
+}
+
+.titleNoBadge {
+  padding-top: 0;
 }
 
 .description {
-  font-size: var(--font-size-md);
+  font-size: var(--service-stack-desc-font-size, var(--font-size-md));
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
-  transform: translateZ(40px);
+  transform: translateZ(var(--service-stack-text-translate-z, 40px));
 }
 
 .ribbon {
-  top: 15px;
-  left: -1px;
-  position: relative;
+  top: var(--service-stack-ribbon-top, 15px);
+  left: var(--service-stack-ribbon-left, -1px);
+  position: var(--service-stack-ribbon-position, relative);
   flex: 1;
   min-height: 7rem; /* TODO(figma): confirm minimum ribbon height */
-  margin-inline: calc(var(--space-1) * -1);
-  margin-bottom: var(--space-1) ;
+  margin-inline: var(--service-stack-ribbon-margin-inline, calc(var(--space-1) * -1));
+  margin-bottom: var(--service-stack-ribbon-margin-bottom, var(--space-1));
   pointer-events: none;
-  transform: translateZ(78px);
+  z-index: var(--service-stack-ribbon-z-index, 0);
+  transform: translateZ(var(--service-stack-ribbon-translate-z, 78px));
 }
 
 .ribbonImage {

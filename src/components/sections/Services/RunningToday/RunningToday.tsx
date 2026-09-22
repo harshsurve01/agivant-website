@@ -10,25 +10,29 @@ const HIGHLIGHT_PHRASE = "Running Today,";
 /**
  * RunningToday
  *
- * Section 2 of the Services Landing Page: "Running Today, Across Enterprises".
- * Renders:
- * - Centered section title with purple accent for "Running Today," and black for "Across Enterprises"
- * - Centered supporting description: "Agent-led work already in production, measured and accountable."
- * - 3x2 responsive card grid of statistics
- * - Subtle lavender tint on the final milestone card ("Every 5 days")
+ * Reusable stats section used on:
+ * 1. Services Landing Page: "Running Today, Across Enterprises" (3x2 6-metric grid)
+ * 2. Service Inner Pages: Dedicated 4-metric grid with optional tags and intro paragraph
  *
  * GRADIENT: Two ambient glows portaled into the shared GradientLayer canvas.
- * Position/size/opacity can be tuned here without touching the section layout.
- *
  * Server Component: all data arrives via props; no client state.
  */
 export function RunningToday({
   heading,
   description,
   metrics,
+  tags,
+  columns = "auto",
   className,
-  tintLastCard = true,
+  tintLastCard,
 }: RunningTodayProps) {
+  const isFourColumns =
+    columns === 4 || (columns === "auto" && metrics.length === 4);
+  const shouldTint =
+    tintLastCard !== undefined
+      ? tintLastCard
+      : !isFourColumns; // Default: true for 6 cards (landing), false for 4 cards (inner pages)
+
   const renderHeading = (text: string) => {
     if (text.includes(HIGHLIGHT_PHRASE)) {
       const parts = text.split(HIGHLIGHT_PHRASE);
@@ -69,14 +73,32 @@ export function RunningToday({
       />
 
       <Container size="xl">
-        <div className={styles.header}>
-          <h2 className={styles.heading}>{renderHeading(heading)}</h2>
-          {description && <p className={styles.description}>{description}</p>}
-        </div>
+        {(heading || description) && (
+          <div className={styles.header}>
+            {heading && (
+              <h2 className={styles.heading}>{renderHeading(heading)}</h2>
+            )}
+            {description && (
+              <p
+                className={clsx(
+                  styles.description,
+                  !heading && styles.introOnly
+                )}
+              >
+                {description}
+              </p>
+            )}
+          </div>
+        )}
 
-        <div className={styles.grid}>
+        <div
+          className={clsx(
+            styles.grid,
+            isFourColumns && styles.gridColumns4
+          )}
+        >
           {metrics.map((metric, index) => {
-            const isLast = tintLastCard && index === metrics.length - 1;
+            const isLast = shouldTint && index === metrics.length - 1;
             return (
               <StatsCard
                 key={metric.id}
@@ -87,6 +109,16 @@ export function RunningToday({
             );
           })}
         </div>
+
+        {tags && tags.length > 0 && (
+          <div className={styles.tags}>
+            {tags.map((tag) => (
+              <span key={tag} className={styles.tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
       </Container>
     </section>
   );

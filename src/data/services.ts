@@ -1,4 +1,5 @@
 import servicesPageJson from "./servicesPage.json";
+import serviceCloudPlatformEngineeringJson from "./service-cloud-platform-engineering.json";
 
 export interface StandardizedSEO {
   title: string | null;
@@ -22,6 +23,8 @@ export interface StandardizedCTAObject {
   label: string;
   href: string;
   external?: boolean;
+  icon?: string;
+  variant?: string;
 }
 
 export interface ServicesHeroData {
@@ -53,7 +56,7 @@ export interface RunningTodaySectionData {
 
 export interface ServicesFooterCTA {
   enabled: boolean;
-  heading: string;
+  heading: string | null;
   subheading: string | null;
   partner: unknown | null;
   media?: StandardizedMediaObject | null;
@@ -114,6 +117,7 @@ export interface HowAgivantWorksWithYouStage {
   description: string;
   callout: string;
   media: StandardizedMediaObject;
+  cta?: StandardizedCTAObject | null;
 }
 
 export interface HowAgivantWorksWithYouData {
@@ -151,6 +155,7 @@ export function getHowAgivantWorksWithYouSection(): HowAgivantWorksWithYouData {
         assetKey: b.media?.assetKey ?? null,
         caption: null,
       },
+      cta: b.cta ?? null,
     })),
   };
 }
@@ -165,8 +170,14 @@ export interface AmpdStepData {
 export interface HowYourEnterpriseGetsAmpdSectionData {
   id: string;
   heading: string;
-  description: string;
+  description?: string | null;
   steps: AmpdStepData[];
+  media?: {
+    src: string;
+    alt?: string;
+    width?: number;
+    height?: number;
+  } | null;
 }
 
 /**
@@ -219,6 +230,25 @@ export function getWhyAgivantSection(): WhyAgivantSectionData {
 
 export const servicesHeroData = pageData.hero;
 export const servicesFooterCta = pageData.footerCta;
+
+import type {
+  ServiceDetailHeroData,
+  ServiceDetailPageDocument,
+} from "@/types/serviceDetail";
+
+export type { ServiceDetailHeroData, ServiceDetailPageDocument };
+
+const SERVICE_PAGES: Record<string, ServiceDetailPageDocument> = {
+  "cloud-platform-engineering": serviceCloudPlatformEngineeringJson as ServiceDetailPageDocument,
+};
+
+export function getServicePage(slug: string): ServiceDetailPageDocument | null {
+  return SERVICE_PAGES[slug] ?? null;
+}
+
+export function getAllServiceSlugs(): string[] {
+  return Object.keys(SERVICE_PAGES);
+}
 
 
 

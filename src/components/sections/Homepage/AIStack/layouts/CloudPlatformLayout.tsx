@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { AIStackBullets } from "./AIStackBullets";
 import type { AIStackLayoutProps } from "./types";
 import styles from "./CloudPlatformLayout.module.css";
 
@@ -20,6 +21,7 @@ import styles from "./CloudPlatformLayout.module.css";
 export function CloudPlatformLayout({
   title,
   description,
+  bullets,
   backgroundImage,
   accentColor,
   ribbonPosition,
@@ -40,7 +42,11 @@ export function CloudPlatformLayout({
         <h3 className={styles.title} style={{ color: accentColor }}>
           {title}
         </h3>
-        <p className={styles.description}>{description}</p>
+        {bullets && bullets.length > 0 ? (
+          <AIStackBullets bullets={bullets} />
+        ) : (
+          description && <p className={styles.description}>{description}</p>
+        )}
       </div>
     </div>
   );

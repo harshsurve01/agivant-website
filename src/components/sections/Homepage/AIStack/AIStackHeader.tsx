@@ -1,39 +1,52 @@
 import styles from "./AIStackHeader.module.css";
 
 interface AIStackHeaderProps {
-  heading: {
-    line1: string;
-    line2Prefix: string;
-    highlight: string;
-  };
-  description: string;
+  heading:
+    | {
+        line1: string;
+        line2Prefix: string;
+        highlight: string;
+      }
+    | string;
+  description?: string | null;
 }
 
 /**
  * AIStackHeader
  *
- * Owns the section's heading block: two explicit lines ("Engineering
- * Every Layer" / "Of Your AI Stack", with only "AI Stack" accent-
- * colored) plus the supporting description. Three distinct fields
- * (see data/ai-stack.ts), not one string — matches the same reasoning
- * as Hero's and Lifecycle's title objects: each piece needs different
- * styling a merged string couldn't carry.
- *
- * Lines are explicit <span> blocks rather than relying on text wrap,
- * same precedent as Hero.module.css's .headingLine — deterministic
- * breaks regardless of container width.
+ * Owns the section's heading block.
+ * Supports structured heading object (Homepage) or string heading (Service Inner Page).
+ * For string headings like "Foundation For The Agentic Enterprise", "Foundation"
+ * receives the purple highlight and the rest renders in text primary.
  *
  * Server Component: no "use client", no hooks, no state.
  */
 export function AIStackHeader({ heading, description }: AIStackHeaderProps) {
+  const renderHeading = () => {
+    if (typeof heading === "string") {
+      if (heading.startsWith("Foundation")) {
+        const rest = heading.slice("Foundation".length);
+        return (
+          <span className={styles.headingLine}>
+            <span className={styles.highlight}>Foundation</span>
+            {rest}
+          </span>
+        );
+      }
+      return <span className={styles.headingLine}>{heading}</span>;
+    }
+
+    return (
+      <span className={styles.headingLine}>
+        {heading.line1} <span className={styles.highlight}>{heading.highlight}</span>
+      </span>
+    );
+  };
+
   return (
     <div className={styles.header}>
-      <h2 className={styles.heading}>
-        <span className={styles.headingLine}>{heading.line1} <span className={styles.highlight}>{heading.highlight}</span></span>
-
-      </h2>
-
-      <p className={styles.description}>{description}</p>
+      <h2 className={styles.heading}>{renderHeading()}</h2>
+      {description ? <p className={styles.description}>{description}</p> : null}
     </div>
   );
 }

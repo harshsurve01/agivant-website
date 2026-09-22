@@ -6,7 +6,7 @@ import { AIStackBadge } from "./AIStackBadge";
 import styles from "./AIStackCardShell.module.css";
 
 interface AIStackCardShellProps {
-  badge: string;
+  badge?: string;
   children: ReactNode;
 }
 
@@ -120,9 +120,11 @@ export function AIStackCardShell({ badge, children }: AIStackCardShellProps) {
       >
         <div className={styles.background} aria-hidden="true" />
 
-        <div className={styles.badgeLayer}>
-          <AIStackBadge label={badge} />
-        </div>
+        {badge ? (
+          <div className={styles.badgeLayer}>
+            <AIStackBadge label={badge} />
+          </div>
+        ) : null}
 
         <div className={styles.content}>{children}</div>
       </div>

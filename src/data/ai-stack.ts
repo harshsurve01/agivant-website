@@ -23,7 +23,8 @@ export interface AIStackCardData {
   id: string;
   title: string;
   description: string;
-  badge: string;
+  bullets?: string[];
+  badge?: string;
   backgroundImage: string;
   accentColor: string;
   ribbonPosition?: string;

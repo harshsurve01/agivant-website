@@ -27,11 +27,11 @@
 }
 
 .highlight {
-  color: var(--color-accent-primary, #8500DF); /* TODO(design-tokens): confirm brand-purple token name */
+  color: var(--color-brand-primary, #8500DF);
 }
 
 .description {
-  font-size: var(--font-size-lg);
+  font-size: var(--service-stack-header-desc-font-size, var(--font-size-lg));
   color: var(--color-text-secondary);
 }
 

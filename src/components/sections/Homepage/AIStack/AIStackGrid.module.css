@@ -41,6 +41,10 @@
   width: 100%;
 }
 
+.gridService {
+  grid-template-columns: 0.85fr 1.15fr 1.15fr;
+}
+
 .gridItem {
   /* Card fills its grid cell; actual visual styling (background,
      border, ribbon art) lives in AIStackCardShell/layouts, not here —
@@ -53,7 +57,8 @@
 }
 
 @media (max-width: 1024px) {
-  .grid {
+  .grid,
+  .gridService {
     /* the 3-column ratio has no meaning once we're down to 2 columns */
     grid-template-columns: repeat(2, 1fr);
   }

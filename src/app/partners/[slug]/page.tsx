@@ -199,26 +199,20 @@ export default async function PartnerDetailPage({
           )}
           {slug === "glean" ? (
             <>
-              {partner.databricksControl && (
+              {partner.databricksControlTertiary && (
                 <DatabricksControl
-                  data={partner.databricksControl}
+                  data={partner.databricksControlTertiary}
                   imagePosition="right"
                   height="auto"
-                  id="domain-decisions"
+                  id="judgment"
                 />
               )}
-              {partner.databricksBusinessContext && (
-                <DatabricksBusinessContext
-                  data={partner.databricksBusinessContext}
+              {partner.partnerDeploymentCard && (
+                <PartnerDeploymentCard
+                  data={partner.partnerDeploymentCard}
+                  imagePosition={partner.partnerDeploymentCard.imagePosition}
                   height="auto"
-                />
-              )}
-              {partner.databricksControlSecondary && (
-                <DatabricksControl
-                  data={partner.databricksControlSecondary}
-                  imagePosition="left"
-                  height="auto"
-                  id="control"
+                  id="scale-deployment"
                 />
               )}
             </>
@@ -260,20 +254,38 @@ export default async function PartnerDetailPage({
               height={slug === "shopify" || slug === "glean" ? "auto" : undefined}
             />
           )}
-          {slug === "glean" && partner.databricksControlTertiary && (
-            <DatabricksControl
-              data={partner.databricksControlTertiary}
-              imagePosition="right"
-              height="auto"
-              id="judgment"
-            />
+          {slug === "glean" && (
+            <>
+              {partner.databricksControl && (
+                <DatabricksControl
+                  data={partner.databricksControl}
+                  imagePosition="right"
+                  height="auto"
+                  id="domain-decisions"
+                />
+              )}
+              {partner.databricksBusinessContext && (
+                <DatabricksBusinessContext
+                  data={partner.databricksBusinessContext}
+                  height="auto"
+                />
+              )}
+              {partner.databricksControlSecondary && (
+                <DatabricksControl
+                  data={partner.databricksControlSecondary}
+                  imagePosition="left"
+                  height="auto"
+                  id="control"
+                />
+              )}
+            </>
           )}
-          {partner.partnerDeploymentCard && (
+          {slug === "servicenow" && partner.partnerDeploymentCard && (
             <PartnerDeploymentCard
               data={partner.partnerDeploymentCard}
               imagePosition={partner.partnerDeploymentCard.imagePosition}
               height="auto"
-              id={slug === "servicenow" ? "teams-in-control" : "scale-deployment"}
+              id="teams-in-control"
             />
           )}
           {slug === "servicenow" && partner.databricksControlSecondary && (

@@ -46,7 +46,8 @@ export function FooterCTA({
   variant = "default",
 }: FooterCTAProps) {
   const isPartners = variant === "partners";
-  const isPartnerDetail = variant === "partner-detail";
+  const isPartnerDetail =
+    variant === "partner-detail" || variant === "service-detail";
 
   return (
     <div
@@ -65,21 +66,35 @@ export function FooterCTA({
           }
         >
           {typeof heading === "string" ? (
-            heading.split(/<br\s*\/?>|\n/gi).map((line, index) => (
-              <span
-                key={index}
-                className={
-                  isPartnerDetail
-                    ? clsx(
-                        styles.headingLinePartnerDetail,
-                        index === 0 && styles.headingLinePartnerDetailHighlight
-                      )
-                    : styles.headingLinePartners
-                }
-              >
-                {line}
-              </span>
-            ))
+            (() => {
+              let lines: string[];
+              if (heading.includes("<br") || heading.includes("\n")) {
+                lines = heading.split(/<br\s*\/?>|\n/gi);
+              } else if (heading.startsWith("Ready For A Platform That")) {
+                lines = [
+                  "Ready For A Platform That",
+                  heading.slice("Ready For A Platform That".length).trim(),
+                ];
+              } else {
+                lines = [heading];
+              }
+
+              return lines.map((line, index) => (
+                <span
+                  key={index}
+                  className={
+                    isPartnerDetail
+                      ? clsx(
+                          styles.headingLinePartnerDetail,
+                          index === 0 && styles.headingLinePartnerDetailHighlight
+                        )
+                      : styles.headingLinePartners
+                  }
+                >
+                  {line}
+                </span>
+              ));
+            })()
           ) : (
             <>
               <span

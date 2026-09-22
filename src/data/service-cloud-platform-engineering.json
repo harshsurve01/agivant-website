@@ -1,0 +1,357 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "service",
+  "slug": "cloud-platform-engineering",
+  "title": "Cloud & Platform Engineering",
+  "seo": {
+    "title": "Cloud & Platform Engineering | Agivant",
+    "description": null,
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Cloud and platform engineering<br>that carries agentic AI at scale",
+    "subtitle": null,
+    "summary": null,
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/solutions/innerpages/goal-driven-agents-enterprise-workflows/hero-ribbon.png",
+      "assetKey": "service-cloud-platform-engineering-hero-ribbon",
+      "alt": "Cloud and platform engineering hero ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "sections": [
+    {
+      "id": "running-today",
+      "type": "stats",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": "We modernize cloud and platform so agentic AI systems run at enterprise scale, resilient and self-healing as they carry what comes next. The foundation is engineered for AI workloads across AWS, Azure and Google Cloud, sized for where autonomy runs well, with human control kept over the rest.",
+        "columns": [],
+        "media": null,
+        "cta": null,
+        "tags": [
+          "SRE teams",
+          "Platform reliability engineering",
+          "AIOps teams",
+          "Production operations"
+        ]
+      },
+      "blocks": [
+        {
+          "id": "effort-reduction",
+          "type": "metric",
+          "value": "60%",
+          "label": "L2 Effort reduction",
+          "detail": null
+        },
+        {
+          "id": "faster-mttr",
+          "type": "metric",
+          "value": "90%",
+          "label": "Faster MTTR",
+          "detail": null
+        },
+        {
+          "id": "reliability-target",
+          "type": "metric",
+          "value": "99.9%",
+          "label": "Reliability Target",
+          "detail": null
+        },
+        {
+          "id": "infra-cost-cut",
+          "type": "metric",
+          "value": "30–50%",
+          "label": "Infra cost cut",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "id": "foundation",
+      "type": "ai-stack",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Foundation For The Agentic Enterprise",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "ai-native-platform-foundations",
+          "type": "card",
+          "title": "AI-native platform foundations",
+          "layout": "agentic",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/ai-native-card.png",
+            "assetKey": "service-ai-native-card",
+            "alt": "AI-native platform foundations card",
+            "caption": null
+          },
+          "bullets": [
+            "Architecture shaped for high-throughput inference and agent traffic",
+            "Capacity planned by prediction, with idle spend engineered out",
+            "Slot utilization raised from under half to close to full on large estates",
+            "Cost and performance tuned together from day one"
+          ]
+        },
+        {
+          "id": "cloud-modernization-migration",
+          "type": "card",
+          "title": "Cloud modernization and migration",
+          "layout": "data",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/cloud-modern-card.png",
+            "assetKey": "service-cloud-modern-card",
+            "alt": "Cloud modernization and migration card",
+            "caption": null
+          },
+          "bullets": [
+            "Dependency and workload analysis automated before a wave begins",
+            "Repeatable migration patterns applied across the estate",
+            "Migration run far faster on automated workstreams",
+            "Engineering judgment reserved for the decisions that carry risk"
+          ]
+        },
+        {
+          "id": "zero-trust-security",
+          "type": "card",
+          "title": "Zero-trust security architecture",
+          "layout": "cloud",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/zero-trust-card.png",
+            "assetKey": "service-zero-trust-card",
+            "alt": "Zero-trust security architecture card",
+            "caption": null
+          },
+          "bullets": [
+            "Identity-based access across services and data",
+            "Security controls written into the platform architecture",
+            "Real-time anomaly detection across distributed microservices",
+            "Threats classified and contained live, including DDoS interception"
+          ]
+        },
+        {
+          "id": "container-orchestration",
+          "type": "card",
+          "title": "Container orchestration and self-healing operations",
+          "layout": "data",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/container-card.png",
+            "assetKey": "service-container-card",
+            "alt": "Container orchestration and self-healing operations card",
+            "caption": null
+          },
+          "bullets": [
+            "Container orchestration with automated failover and recovery",
+            "Scaling that follows demand without manual intervention",
+            "Known failure modes resolved before a human is paged",
+            "Recovery measured in minutes on production incidents"
+          ]
+        },
+        {
+          "id": "compute-economics",
+          "type": "card",
+          "title": "Compute economics and spend control",
+          "layout": "data",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/compute-economics-card.png",
+            "assetKey": "service-compute-economics-card",
+            "alt": "Compute economics and spend control card",
+            "caption": null
+          },
+          "bullets": [
+            "Spend tracked as a first-class operational signal",
+            "Over-provisioning and under-provisioning removed by predictive allocation",
+            "Workloads scheduled across large core and storage estates",
+            "Cost held steady while volume climbs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-ampd-way",
+      "type": "numbered_list",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "The Amp'd Way",
+        "description": null,
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/solutions/landing-page-ribbon.png",
+          "assetKey": "service-ampd-way-ribbon",
+          "alt": "The Amp'd Way ribbon illustration",
+          "caption": null
+        },
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "read-the-estate",
+          "type": "numberedItem",
+          "number": "01",
+          "title": "Read the estate",
+          "body": "Dependencies, workload patterns and spend are analyzed before any target architecture is drawn.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "design-for-ai-workloads",
+          "type": "numberedItem",
+          "number": "02",
+          "title": "Design for AI workloads",
+          "body": "Capacity is planned by prediction, and security and recovery are placed in the architecture from the start.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "move-in-waves",
+          "type": "numberedItem",
+          "number": "03",
+          "title": "Move in waves",
+          "body": "Automation carries the repeatable work, and each wave lands with its own rollback and acceptance criteria.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "run-it-self-healing",
+          "type": "numberedItem",
+          "number": "04",
+          "title": "Run it self-healing",
+          "body": "Known failure modes resolve automatically, anomalies are contained live, and cost is tuned in runtime.",
+          "items": [],
+          "media": null
+        }
+      ]
+    },
+    {
+      "id": "client-success-production",
+      "type": "case_study_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Client success<br>in production, at scale",
+        "description": "See how Agivant engineers real business value for the autonomous enterprise, across several industries",
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "See more client stories",
+          "href": "/case-studies",
+          "external": false
+        }
+      },
+      "blocks": [
+        {
+          "id": "support-operations-agents",
+          "type": "card",
+          "eyebrow": "Global technology leader",
+          "title": "Support operations run by agents",
+          "body": "Agents carry classification, deduplication and routing across the support queue, with...",
+          "slot": "top-left",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/agentic-Quote-accelerator.png",
+            "assetKey": "case-quote-accelerator",
+            "alt": "Support operations run by agents",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/support-operations-run-by-agents",
+            "external": false
+          },
+          "items": []
+        },
+        {
+          "id": "generative-commerce-thirteen-workstreams",
+          "type": "card",
+          "eyebrow": "Global technology leader",
+          "title": "Generative commerce across thirteen workstreams",
+          "body": "One program carried thirteen workstreams across the commerce estate, tracked on revenue and conversion.",
+          "footer": "$30M revenue added · 35 to 40% faster time to market · 50% lower overhead",
+          "slot": "tall-right",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/ai-Native.png",
+            "assetKey": "case-ai-native-sre",
+            "alt": "Generative commerce across thirteen workstreams",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/generative-commerce-across-thirteen-workstreams",
+            "external": false
+          },
+          "items": [
+            "",
+            "",
+            "$30M revenue added · 35 to 40% faster time to market · 50% lower overhead"
+          ]
+        },
+        {
+          "id": "million-core-compute-farm",
+          "type": "card",
+          "eyebrow": "Global technology leader",
+          "title": "A million-core compute farm at full utilization",
+          "body": "A very large estate carries its job volume with idle compute engineered out...",
+          "slot": "bottom-left",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/global-Markets-Agent-Network.png",
+            "assetKey": "case-global-markets",
+            "alt": "A million-core compute farm at full utilization",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/million-core-compute-farm",
+            "external": false
+          },
+          "items": []
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Ready For A Platform That Carries Agentic AI At Full Scale?",
+    "subheading": null,
+    "partner": null,
+    "primaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": "/contact",
+      "external": false,
+      "icon": "cube",
+      "variant": "primary"
+    },
+    "secondaryCta": null
+  }
+}

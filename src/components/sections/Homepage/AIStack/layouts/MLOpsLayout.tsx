@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { AIStackBullets } from "./AIStackBullets";
 import type { AIStackLayoutProps } from "./types";
 import styles from "./MLOpsLayout.module.css";
 
@@ -18,6 +19,7 @@ import styles from "./MLOpsLayout.module.css";
 export function MLOpsLayout({
   title,
   description,
+  bullets,
   backgroundImage,
   accentColor,
   ribbonPosition,
@@ -38,7 +40,11 @@ export function MLOpsLayout({
         <h3 className={styles.title} style={{ color: accentColor }}>
           {title}
         </h3>
-        <p className={styles.description}>{description}</p>
+        {bullets && bullets.length > 0 ? (
+          <AIStackBullets bullets={bullets} />
+        ) : (
+          description && <p className={styles.description}>{description}</p>
+        )}
       </div>
     </div>
   );

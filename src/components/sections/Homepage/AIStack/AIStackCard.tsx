@@ -30,9 +30,11 @@ export function AIStackCard({ card }: AIStackCardProps) {
       <Layout
         title={card.title}
         description={card.description}
+        bullets={card.bullets}
         backgroundImage={card.backgroundImage}
         accentColor={card.accentColor}
         ribbonPosition={card.ribbonPosition}
+        hasBadge={Boolean(card.badge)}
       />
     </AIStackCardShell>
   );

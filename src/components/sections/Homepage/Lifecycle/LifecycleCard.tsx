@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { LifecycleStage } from "@/data/lifecycle";
 import styles from "./LifecycleCard.module.css";
 
@@ -14,6 +15,12 @@ export interface LifecycleCardStage {
   };
   details?: string[];
   callout?: string;
+  cta?: {
+    enabled?: boolean;
+    label?: string;
+    href?: string;
+    external?: boolean;
+  } | null;
 }
 
 export interface LifecycleCardProps {
@@ -40,7 +47,6 @@ export function LifecycleCard({
   onLearnMore,
 }: LifecycleCardProps) {
   const hasCallout = Boolean(stage.callout);
-
   return (
     <article
       className={`${styles.card} ${isActive ? styles.cardActive : styles.cardDefault}`}
@@ -58,7 +64,18 @@ export function LifecycleCard({
               isActive ? styles.calloutActive : ""
             }`}
           >
-            {stage.callout}
+            {stage.cta?.href ? (
+              <Link
+                href={stage.cta.href}
+                className={styles.calloutLink}
+                onClick={(e) => e.stopPropagation()}
+                aria-label={`${stage.callout} - ${stage.title}`}
+              >
+                {stage.callout}
+              </Link>
+            ) : (
+              stage.callout
+            )}
           </div>
         ) : (
           <button
