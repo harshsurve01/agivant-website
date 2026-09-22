@@ -24,6 +24,17 @@ section {
   min-height: 100vh;
 }
 
+section.section--auto,
+.section--auto {
+  min-height: auto !important;
+  height: auto;
+}
+
+section.section--viewport,
+.section--viewport {
+  min-height: 100vh;
+}
+
 .section {
   padding-block: var(--space-24);
 }

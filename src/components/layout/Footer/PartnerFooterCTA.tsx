@@ -45,6 +45,29 @@ function renderPartnerHeading(heading: string | { line1: string; line2?: string 
     );
   }
 
+  // Support Glean: "Put Glean to work on the questions"
+  const gleanTarget = "Put Glean to work";
+  if (heading.startsWith(gleanTarget)) {
+    const remainder = heading.slice(gleanTarget.length);
+    const parts = remainder.split(/<br\s*\/?>|\n/gi);
+    if (parts.length >= 2) {
+      return (
+        <>
+          <span className={styles.headingHighlight}>{gleanTarget}</span>
+          <span className={styles.headingRest}>{parts[0]}</span>
+          <br />
+          <span className={styles.headingRest}>{parts.slice(1).join(" ")}</span>
+        </>
+      );
+    }
+    return (
+      <>
+        <span className={styles.headingHighlight}>{gleanTarget}</span>
+        <span className={styles.headingRest}>{remainder}</span>
+      </>
+    );
+  }
+
   const marker = "to work for";
   const markerIdx = heading.indexOf(marker);
   if (markerIdx !== -1) {

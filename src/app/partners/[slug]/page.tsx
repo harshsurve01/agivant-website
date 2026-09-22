@@ -14,6 +14,8 @@ import { AgenticEnterprise } from "@/components/sections/Partners/Detail/Agentic
 import { DatabricksAgenticExecution } from "@/components/sections/Partners/Detail/DatabricksAgenticExecution";
 import { DatabricksBusinessContext } from "@/components/sections/Partners/Detail/DatabricksBusinessContext";
 import { DatabricksControl } from "@/components/sections/Partners/Detail/DatabricksControl";
+import { PartnerDeploymentCard } from "@/components/sections/Partners/Detail/PartnerDeploymentCard";
+import { ServiceNowWorkflowFamilies } from "@/components/sections/Partners/Detail/ServiceNowWorkflowFamilies";
 import { Solutions } from "@/components/sections/Partners/Detail/Solutions";
 import { ProductionProof } from "@/components/sections/Partners/Detail/ProductionProof";
 import { BuiltOnGemini } from "@/components/sections/Partners/Detail/BuiltOnGemini";
@@ -61,7 +63,8 @@ export default async function PartnerDetailPage({
       <div
         className={clsx(
           styles.page,
-          slug === "shopify" && styles.shopifyPage
+          slug === "shopify" && styles.shopifyPage,
+          slug === "servicenow" && styles.servicenowPage
         )}
       >
         <Header />
@@ -69,16 +72,18 @@ export default async function PartnerDetailPage({
         {partner.hero.ribbonSrc && (
           <PageRibbon
             src={partner.hero.ribbonSrc}
-            width={1440}
-            height={696}
+            width={partner.hero.ribbonWidth ?? 1440}
+            height={partner.hero.ribbonHeight ?? 696}
             className={clsx(
               styles.ribbonWrapper,
               slug === "databricks" && styles.databricksRibbonWrapper,
-              slug === "shopify" && styles.shopifyRibbonWrapper
+              slug === "shopify" && styles.shopifyRibbonWrapper,
+              slug === "glean" && styles.gleanRibbonWrapper
             )}
             imageClassName={clsx(
               styles.ribbonImage,
-              slug === "shopify" && styles.shopifyRibbonImage
+              slug === "shopify" && styles.shopifyRibbonImage,
+              slug === "glean" && styles.gleanRibbonImage
             )}
             priority
           />
@@ -167,40 +172,110 @@ export default async function PartnerDetailPage({
       />
         <main id="main-content">
           <PartnerHero hero={partner.hero} />
-          {partner.intro && <PartnerIntro intro={partner.intro} />}
+          {partner.intro && (
+            <PartnerIntro
+              intro={partner.intro}
+              height={slug === "glean" ? "auto" : undefined}
+            />
+          )}
           {partner.storyBanner && (
-            <PartnerStoryBanner data={partner.storyBanner} />
+            <PartnerStoryBanner
+              data={partner.storyBanner}
+              height={slug === "shopify" ? "auto" : undefined}
+            />
           )}
           {slug === "shopify" && partner.agentTeams && (
-            <PartnerAgentTeams data={partner.agentTeams} />
+            <PartnerAgentTeams data={partner.agentTeams} height="auto" />
           )}
           {partner.alternatingContent && (
-            <PartnerAlternatingContent data={partner.alternatingContent} />
+            <PartnerAlternatingContent
+              data={partner.alternatingContent}
+              height={slug === "shopify" ? "auto" : undefined}
+            />
           )}
           {partner.agenticEnterprise && (
             <AgenticEnterprise data={partner.agenticEnterprise} />
           )}
-          {partner.databricksAgenticExecution && (
-            <DatabricksAgenticExecution
-              data={partner.databricksAgenticExecution}
+          {slug === "glean" ? (
+            <>
+              {partner.databricksControl && (
+                <DatabricksControl
+                  data={partner.databricksControl}
+                  imagePosition="right"
+                  height="auto"
+                  id="domain-decisions"
+                />
+              )}
+              {partner.databricksBusinessContext && (
+                <DatabricksBusinessContext
+                  data={partner.databricksBusinessContext}
+                  height="auto"
+                />
+              )}
+              {partner.databricksControlSecondary && (
+                <DatabricksControl
+                  data={partner.databricksControlSecondary}
+                  imagePosition="left"
+                  height="auto"
+                  id="control"
+                />
+              )}
+            </>
+          ) : (
+            <>
+              {partner.databricksAgenticExecution && (
+                <DatabricksAgenticExecution
+                  data={partner.databricksAgenticExecution}
+                />
+              )}
+              {partner.databricksBusinessContext && (
+                <DatabricksBusinessContext
+                  data={partner.databricksBusinessContext}
+                />
+              )}
+              {partner.databricksControl && (
+                <DatabricksControl
+                  data={partner.databricksControl}
+                />
+              )}
+              {partner.workflowFamilies && (
+                <ServiceNowWorkflowFamilies
+                  data={partner.workflowFamilies}
+                />
+              )}
+            </>
+          )}
+          {partner.solutions && (
+            <Solutions
+              data={partner.solutions}
+              height={slug === "shopify" || slug === "glean" ? "auto" : undefined}
             />
           )}
-          {partner.databricksBusinessContext && (
-            <DatabricksBusinessContext
-              data={partner.databricksBusinessContext}
+          {slug === "glean" && partner.databricksControlTertiary && (
+            <DatabricksControl
+              data={partner.databricksControlTertiary}
+              imagePosition="right"
+              height="auto"
+              id="judgment"
             />
           )}
-          {partner.databricksControl && (
-            <DatabricksControl data={partner.databricksControl} />
+          {partner.partnerDeploymentCard && (
+            <PartnerDeploymentCard
+              data={partner.partnerDeploymentCard}
+              height="auto"
+              id="scale-deployment"
+            />
           )}
-          {partner.solutions && <Solutions data={partner.solutions} />}
           {slug !== "shopify" && partner.agentTeams && (
             <PartnerAgentTeams data={partner.agentTeams} />
           )}
           {slug === "shopify" ? (
             <>
               {partner.builtOnGemini && (
-                <BuiltOnGemini data={partner.builtOnGemini} />
+                <BuiltOnGemini
+                  data={partner.builtOnGemini}
+                  height="auto"
+                />
               )}
               {partner.productionProof && (
                 <ProductionProof data={partner.productionProof} />
@@ -209,7 +284,10 @@ export default async function PartnerDetailPage({
           ) : (
             <>
               {partner.productionProof && (
-                <ProductionProof data={partner.productionProof} />
+                <ProductionProof
+                  data={partner.productionProof}
+                  height={slug === "glean" ? "auto" : undefined}
+                />
               )}
               {partner.builtOnGemini && (
                 <BuiltOnGemini data={partner.builtOnGemini} />

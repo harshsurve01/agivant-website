@@ -1,0 +1,21 @@
+/* ==========================================================================
+   Section.module.css
+   Layout primitive controlling section-level height and vertical rhythm.
+   Consumes design tokens exclusively from variables.css.
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+}
+
+/* Default viewport-filling baseline (100vh) */
+.viewport {
+  min-height: 100vh;
+}
+
+/* Explicit content-driven auto height */
+.auto {
+  min-height: auto !important;
+  height: auto;
+}

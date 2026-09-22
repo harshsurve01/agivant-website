@@ -18,6 +18,14 @@
   padding-bottom: var(--space-4);
 }
 
+.hasSupportingStatement {
+  padding-bottom: var(--space-4);
+}
+
+.hasSupportingStatement .paragraphs {
+  margin-bottom: var(--space-8);
+}
+
 .container {
   position: relative;
   max-width: 1200px;
@@ -245,12 +253,29 @@
   color: var(--color-text-secondary);
 }
 
+/* Supporting Statement (Plain Typography Block) */
+.supportingStatement {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
+  max-width: 100%;
+  margin: 0 0 var(--space-8) 0;
+}
+
 /* Accelerator CTA */
 .ctaWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: var(--space-10);
+}
+
+.ctaLeft {
+  justify-content: flex-start;
+  margin-top: 0;
 }
 
 /* Responsive Adaptations */
@@ -329,7 +354,21 @@
     margin-top: var(--space-8);
   }
 
+  .ctaLeft {
+    margin-top: 0;
+  }
+
+  .supportingStatement {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-normal);
+    margin-bottom: var(--space-6);
+  }
+
   .hasStatementCard {
+    padding-bottom: var(--space-3);
+  }
+
+  .hasSupportingStatement {
     padding-bottom: var(--space-3);
   }
 }

@@ -45,7 +45,7 @@ export function GlassCard({
         )}
       </div>
 
-      <h3 className={styles.cardTitle}>{title}</h3>
+      {title ? <h3 className={styles.cardTitle}>{title}</h3> : null}
       <p className={styles.cardDescription}>{description}</p>
     </div>
   );

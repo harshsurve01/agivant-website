@@ -257,6 +257,15 @@
   opacity: 0.35;
 }
 
+.cardInactive:hover .cardBody,
+.cardInactive:hover .cardImageWrapper {
+  opacity: 0.75;
+}
+
+.cardInactive:hover .arrowBadge {
+  color: var(--color-brand-primary);
+}
+
 .cardActive .cardBody,
 .cardActive .cardImageWrapper {
   opacity: 1;

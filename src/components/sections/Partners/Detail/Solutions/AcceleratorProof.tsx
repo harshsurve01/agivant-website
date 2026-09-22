@@ -22,10 +22,14 @@ export function AcceleratorProof({ proof }: AcceleratorProofProps) {
   return (
     <div className={styles.proofSection}>
       {/* Top Banner Card */}
-      <div className={styles.proofBanner}>
-        <h3 className={styles.proofHeadline}>{proof.headline}</h3>
-        <p className={styles.proofDescription}>{proof.description}</p>
-      </div>
+      {proof.headline ? (
+        <div className={styles.proofBanner}>
+          <h3 className={styles.proofHeadline}>{proof.headline}</h3>
+          {proof.description && (
+            <p className={styles.proofDescription}>{proof.description}</p>
+          )}
+        </div>
+      ) : null}
 
       {/* Highlights / Metric Summary line */}
       {proof.highlights && proof.highlights.length > 0 && (

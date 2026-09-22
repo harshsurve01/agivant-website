@@ -5,11 +5,13 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Cube } from "@/components/ui/Icon/Cube";
 import { Gradient } from "@/components/effects/Gradient";
+import { Section, type SectionHeight } from "@/components/ui/Section";
 import type { PartnerIntroData } from "@/types/partnerDetail";
 import styles from "./PartnerIntro.module.css";
 
 export interface PartnerIntroProps {
   intro: PartnerIntroData;
+  height?: SectionHeight;
 }
 
 /**
@@ -24,7 +26,15 @@ export interface PartnerIntroProps {
  * - Consumes design tokens exclusively from variables.css.
  */
 export function PartnerIntro({ intro }: PartnerIntroProps) {
-  const { heading, paragraphs, leadershipQuote, statementCard, cta } = intro;
+  const {
+    heading,
+    paragraphs,
+    leadershipQuote,
+    statementCard,
+    supportingStatement,
+    ctaAlign,
+    cta,
+  } = intro;
 
   const quoteText = leadershipQuote?.quote ?? "";
   const firstLetter = quoteText.charAt(0);
@@ -34,12 +44,13 @@ export function PartnerIntro({ intro }: PartnerIntroProps) {
     <section
       className={clsx(
         styles.section,
-        statementCard && styles.hasStatementCard
+        statementCard && styles.hasStatementCard,
+        supportingStatement && styles.hasSupportingStatement
       )}
       id="partner-intro"
     >
-      {/* Soft ambient background gradients when statementCard is present */}
-      {statementCard && (
+      {/* Soft ambient background gradients when statementCard or supportingStatement is present */}
+      {(statementCard || supportingStatement) && (
         <>
           <Gradient
             kind="linear"
@@ -69,26 +80,27 @@ export function PartnerIntro({ intro }: PartnerIntroProps) {
 
       <Container size="xl" className={styles.container}>
         {/* Section Heading with Purple Vertical Accent Bar (rendered only if heading copy exists) */}
-        {Boolean(
-          heading?.prefix?.trim() ||
-            heading?.highlight?.trim() ||
-            heading?.suffix?.trim()
-        ) && (
-          <div className={styles.headingWrapper}>
-            <span className={styles.accentBar} aria-hidden="true" />
-            <h2 className={styles.heading}>
-              {heading.prefix && (
-                <span className={styles.headingBlock}>{heading.prefix}</span>
-              )}
-              {heading.highlight && (
-                <span className={styles.purpleText}>{heading.highlight} </span>
-              )}
-              {heading.suffix && (
-                <span className={styles.darkText}>{heading.suffix}</span>
-              )}
-            </h2>
-          </div>
-        )}
+        {heading &&
+          Boolean(
+            heading.prefix?.trim() ||
+              heading.highlight?.trim() ||
+              heading.suffix?.trim()
+          ) && (
+            <div className={styles.headingWrapper}>
+              <span className={styles.accentBar} aria-hidden="true" />
+              <h2 className={styles.heading}>
+                {heading.prefix && (
+                  <span className={styles.headingBlock}>{heading.prefix}</span>
+                )}
+                {heading.highlight && (
+                  <span className={styles.purpleText}>{heading.highlight} </span>
+                )}
+                {heading.suffix && (
+                  <span className={styles.darkText}>{heading.suffix}</span>
+                )}
+              </h2>
+            </div>
+          )}
 
         {/* Intro Paragraphs */}
         <div className={styles.paragraphs}>
@@ -195,9 +207,19 @@ export function PartnerIntro({ intro }: PartnerIntroProps) {
           </div>
         )}
 
+        {/* Supporting Statement (Plain Typography Block) */}
+        {supportingStatement && (
+          <p className={styles.supportingStatement}>{supportingStatement}</p>
+        )}
+
         {/* Accelerator CTA */}
         {cta && (
-          <div className={styles.ctaWrapper}>
+          <div
+            className={clsx(
+              styles.ctaWrapper,
+              (ctaAlign === "left" || supportingStatement) && styles.ctaLeft
+            )}
+          >
             <Link href={cta.href}>
               <Button
                 variant="primary"

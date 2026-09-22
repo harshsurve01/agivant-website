@@ -1,12 +1,15 @@
 import Image from "next/image";
 import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
+import { Section, type SectionHeight } from "@/components/ui/Section";
 import { Gradient } from "@/components/effects/Gradient";
 import type { PartnerAlternatingContentData } from "@/types/partnerDetail";
 import styles from "./PartnerAlternatingContent.module.css";
 
 export interface PartnerAlternatingContentProps {
   data: PartnerAlternatingContentData;
+  height?: SectionHeight;
+  className?: string;
 }
 
 /**
@@ -26,11 +29,17 @@ export interface PartnerAlternatingContentProps {
  */
 export function PartnerAlternatingContent({
   data,
+  height = "viewport",
+  className,
 }: PartnerAlternatingContentProps) {
   if (!data?.rows?.length) return null;
 
   return (
-    <section className={styles.section} id="partner-alternating-content">
+    <Section
+      height={height}
+      className={clsx(styles.section, className)}
+      id="partner-alternating-content"
+    >
       {/* Soft ambient background gradients positioned behind content */}
       <Gradient
         top="45%"
@@ -92,6 +101,6 @@ export function PartnerAlternatingContent({
           ))}
         </div>
       </Container>
-    </section>
+    </Section>
   );
 }

@@ -1,0 +1,241 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "partnershipLanding",
+  "slug": "servicenow",
+  "title": "Move enterprise operations onto ServiceNow and let agents run the work.",
+  "name": "ServiceNow",
+  "seo": {
+    "title": "ServiceNow Partnership | Agivant",
+    "description": "Move enterprise operations onto ServiceNow and let agents run the work with Agivant Technologies.",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Move enterprise operations onto ServiceNow and let agents run the work.",
+    "subtitle": null,
+    "summary": null,
+    "authors": [],
+    "partner": {
+      "name": "ServiceNow",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/servicenow.png",
+        "assetKey": "servicenow-logo",
+        "alt": "ServiceNow logo",
+        "caption": null,
+        "width": 249,
+        "height": 91
+      }
+    },
+    "media": {
+      "kind": "image",
+      "src": "/images/partners/partner-hero-ribbon.png",
+      "assetKey": "partner-hero-ribbon",
+      "alt": "Partner Hero Ribbon",
+      "caption": null
+    },
+    "ribbonSrc": "/images/partners/partner-hero-ribbon.png",
+    "primaryCta": null,
+    "secondaryCta": null,
+    "heading": "Move enterprise operations<br>onto ServiceNow and let<br>agents run the work."
+  },
+  "sections": [
+    {
+      "id": "production-value",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "headingStructure": null,
+        "description": "Agivant runs a dedicated ServiceNow practice that owns the operate layer. It moves homegrown ticketing and defect systems onto ServiceNow, then keeps incident, portfolio, and change work running with agents that triage, track, and correct in real time, with results in days and weeks.\n\nBuilt on the Now Platform, with Flow Designer, Predictive Intelligence, Now Assist, IntegrationHub, Event Management, and the CMDB, Agivant reasons over lives incident, defect, and change data across every workflow family ServiceNow ships: Technology, Employee, Creator, and Customer.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "intro-copy",
+          "type": "rich_text",
+          "heading": null,
+          "body": null,
+          "paragraphs": [
+            "Agivant runs a dedicated ServiceNow practice that owns the operate layer. It moves homegrown ticketing and defect systems onto ServiceNow, then keeps incident, portfolio, and change work running with agents that triage, track, and correct in real time, with results in days and weeks.",
+            "Built on the Now Platform, with Flow Designer, Predictive Intelligence, Now Assist, IntegrationHub, Event Management, and the CMDB, Agivant reasons over lives incident, defect, and change data across every workflow family ServiceNow ships: Technology, Employee, Creator, and Customer."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "customer-quote",
+      "type": "statement",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "See what we build on ServiceNow",
+          "href": "#solutions",
+          "icon": "cube",
+          "external": false
+        }
+      },
+      "blocks": [
+        {
+          "id": "statement-1",
+          "type": "statement",
+          "statement": "Most ServiceNow engagements end at go-live. Agivant stays for the operate layer, embedding agents where decisions get made, so the platform runs the work and keeps the system of record current at the same time."
+        }
+      ]
+    },
+    {
+      "id": "control",
+      "type": "split_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Get Amp'd to move from migration to autonomous ServiceNow operations.",
+        "description": "A ServiceNow operation earns its keep in production. Amp'd is how Agivant gets there. Bolt scaffolds the agent workforce, Forward Deployed Engineers rebuild the migration inside the enterprise's own ServiceNow instance, and production grade agents take over triage, cycle-time tracking, and validation against live incident data. Each engagement ships with evaluation and rollback, and every hardened workflow becomes a reusable asset the next build starts from. Every build amplifies the next.",
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
+          "assetKey": "agentic-enterprise-control",
+          "alt": "Get Amp'd to move from migration to autonomous ServiceNow operations.",
+          "caption": null,
+          "width": 437,
+          "height": 279
+        },
+        "cta": null,
+        "layout": "image-text"
+      },
+      "blocks": [
+        {
+          "id": "control-copy",
+          "type": "richText",
+          "heading": null,
+          "body": "A ServiceNow operation earns its keep in production. Amp'd is how Agivant gets there. Bolt scaffolds the agent workforce, Forward Deployed Engineers rebuild the migration inside the enterprise's own ServiceNow instance, and production grade agents take over triage, cycle-time tracking, and validation against live incident data. Each engagement ships with evaluation and rollback, and every hardened workflow becomes a reusable asset the next build starts from. Every build amplifies the next.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
+            "assetKey": "agentic-enterprise-control",
+            "alt": "Get Amp'd to move from migration to autonomous ServiceNow operations.",
+            "caption": null,
+            "width": 437,
+            "height": 279
+          }
+        }
+      ]
+    },
+    {
+      "id": "workflow-families",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Show up across every workflow family ServiceNow ships.",
+        "description": "Agivant builds, runs, and hardens across all four workflow families ServiceNow ships, each engineered for the outcome it owes the business. Where most ServiceNow partners specialize in one family, Agivant carries the same engineering standard across all of them.",
+        "closingStatement": "One practice, one standard, across the whole platform.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "workflow-technology",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Technology workflows: service that resolves before it escalates.",
+          "body": "Agents triage incidents and problems the moment a ticket lands, and request and catalog fulfillment runs on its own. Change automation reconciles every release against live configuration data in the CMDB, so the record and the running estate stay in step.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-ambition.png",
+            "assetKey": "agentic-enterprise-ambition",
+            "alt": "Technology workflows: service that resolves before it escalates.",
+            "caption": null
+          },
+          "layout": "image-text",
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "workflow-employee",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Employee workflows: people productive on day one, cleanly separated on the last.",
+          "body": "Provisioning fans out across IT, facilities, and payroll so a new hire is ready to work on day one, and separation runs with provable access revocation on the last. Front-door deflection settles routine requests before a case is ever opened.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/strategic-sourcing.png",
+            "assetKey": "strategic-sourcing",
+            "alt": "Employee workflows: people productive on day one, cleanly separated on the last.",
+            "caption": null
+          },
+          "layout": "text-image",
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "workflow-creator",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Creator workflows: custom logic that outlasts every upgrade.",
+          "body": "Agivant engineers upgrade-safe scoped applications for what the platform did not ship, wired into enterprise systems of record through IntegrationHub. Automated regression coverage runs on every release, so customization holds through each ServiceNow upgrade.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-google-cloud.png",
+            "assetKey": "agentic-enterprise-google-cloud",
+            "alt": "Creator workflows: custom logic that outlasts every upgrade.",
+            "caption": null
+          },
+          "layout": "image-text",
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "workflow-customer",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Customer workflows: answers on the first channel a customer chooses.",
+          "body": "Case and interaction management runs across every channel, backed by self-service portals and knowledge design that resolve common questions on the spot. Entitlement-driven commitments hold each response to the service level the customer is owed.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/agentic-quote-accelerator.png",
+            "assetKey": "agentic-quote-accelerator",
+            "alt": "Customer workflows: answers on the first channel a customer chooses.",
+            "caption": null
+          },
+          "layout": "text-image",
+          "cta": null,
+          "items": []
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready to put ServiceNow to work?",
+    "subheading": null,
+    "partner": {
+      "name": "ServiceNow",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/servicenow.png",
+        "assetKey": "servicenow-logo",
+        "alt": "ServiceNow logo",
+        "caption": null
+      }
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  }
+}

@@ -1,10 +1,14 @@
+import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
+import { Section, type SectionHeight } from "@/components/ui/Section";
 import { GlassCard } from "@/components/sections/CaseStudies/Article/GlassCard";
 import type { DatabricksBusinessContextData } from "@/types/partnerDetail";
 import styles from "./DatabricksBusinessContext.module.css";
 
 export interface DatabricksBusinessContextProps {
   data: DatabricksBusinessContextData;
+  height?: SectionHeight;
+  className?: string;
 }
 
 /**
@@ -12,14 +16,16 @@ export interface DatabricksBusinessContextProps {
  * while keeping the heading data as one conceptual field in JSON.
  */
 function renderHeading(heading: string) {
-  const target = "Give every agent";
-  if (heading.startsWith(target)) {
-    return (
-      <>
-        <span className={styles.headingHighlight}>{target}</span>
-        {heading.slice(target.length)}
-      </>
-    );
+  const targets = ["Give every agent", "Put a whole domain"];
+  for (const target of targets) {
+    if (heading.startsWith(target)) {
+      return (
+        <>
+          <span className={styles.headingHighlight}>{target}</span>
+          {heading.slice(target.length)}
+        </>
+      );
+    }
   }
   return heading;
 }
@@ -40,11 +46,17 @@ function renderHeading(heading: string) {
  */
 export function DatabricksBusinessContext({
   data,
+  height = "viewport",
+  className,
 }: DatabricksBusinessContextProps) {
   if (!data) return null;
 
   return (
-    <section className={styles.section} id="business-context">
+    <Section
+      height={height}
+      className={clsx(styles.section, className)}
+      id="business-context"
+    >
       <Container size="xl" className={styles.container}>
         <h2 className={styles.heading}>{renderHeading(data.heading)}</h2>
         {data.description && (
@@ -66,6 +78,6 @@ export function DatabricksBusinessContext({
           <p className={styles.closingStatement}>{data.closingStatement}</p>
         )}
       </Container>
-    </section>
+    </Section>
   );
 }

@@ -1,10 +1,13 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
+import { Section, type SectionHeight } from "@/components/ui/Section";
 import type { PartnerStoryBannerData } from "@/types/partnerDetail";
 import styles from "./PartnerStoryBanner.module.css";
 
 export interface PartnerStoryBannerProps {
   data: PartnerStoryBannerData;
+  height?: SectionHeight;
+  className?: string;
 }
 
 /**
@@ -17,11 +20,19 @@ export interface PartnerStoryBannerProps {
  *
  * Server Component: pure presentation, zero client overhead.
  */
-export function PartnerStoryBanner({ data }: PartnerStoryBannerProps) {
+export function PartnerStoryBanner({
+  data,
+  height = "viewport",
+  className,
+}: PartnerStoryBannerProps) {
   const { image, heading, description } = data;
 
   return (
-    <section className={styles.section} id="partner-story-banner">
+    <Section
+      height={height}
+      className={styles.section}
+      id="partner-story-banner"
+    >
       <Container size="xl" className={styles.container}>
         {image && (
           <div className={styles.imageWrapper}>
@@ -50,6 +61,6 @@ export function PartnerStoryBanner({ data }: PartnerStoryBannerProps) {
           {description && <p className={styles.description}>{description}</p>}
         </div>
       </Container>
-    </section>
+    </Section>
   );
 }

@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
+import { Section, type SectionHeight } from "@/components/ui/Section";
 import { Gradient } from "@/components/effects/Gradient";
 import { SolutionCard } from "@/components/sections/CaseStudies/Article/Solution";
 import type { PartnerAgentTeamsData } from "@/types/partnerDetail";
@@ -7,6 +8,8 @@ import styles from "./PartnerAgentTeams.module.css";
 
 export interface PartnerAgentTeamsProps {
   data: PartnerAgentTeamsData;
+  height?: SectionHeight;
+  className?: string;
 }
 
 /**
@@ -42,14 +45,19 @@ function renderHeading(heading: string) {
  *
  * Server Component: all content arrives via props from JSON.
  */
-export function PartnerAgentTeams({ data }: PartnerAgentTeamsProps) {
+export function PartnerAgentTeams({
+  data,
+  height = "viewport",
+  className,
+}: PartnerAgentTeamsProps) {
   const { heading, description, cards, closingStatement } = data;
   const isBuiltOn = heading.startsWith("Built on the");
   const hasAccentBar = !isBuiltOn;
 
   return (
-    <section
-      className={styles.section}
+    <Section
+      height={height}
+      className={clsx(styles.section, className)}
       id={isBuiltOn ? "built-on-platform" : "partner-agent-teams"}
     >
       {/* Soft ambient background gradients positioned behind content */}
@@ -123,6 +131,6 @@ export function PartnerAgentTeams({ data }: PartnerAgentTeamsProps) {
           </p>
         )}
       </Container>
-    </section>
+    </Section>
   );
 }

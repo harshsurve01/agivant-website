@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
+import { Section, type SectionHeight } from "@/components/ui/Section";
 import type { PartnerSolutionsData } from "@/types/partnerDetail";
 import { AcceleratorCard } from "./AcceleratorCard";
 import { SolutionDisplayPanel } from "./SolutionDisplayPanel";
@@ -11,6 +12,8 @@ import styles from "./Solutions.module.css";
 
 export interface SolutionsProps {
   data?: PartnerSolutionsData;
+  height?: SectionHeight;
+  className?: string;
 }
 
 /**
@@ -31,7 +34,11 @@ export interface SolutionsProps {
  */
 const AUTO_ROTATE_INTERVAL_MS = 5000;
 
-export function Solutions({ data }: SolutionsProps) {
+export function Solutions({
+  data,
+  height = "viewport",
+  className,
+}: SolutionsProps) {
   if (!data?.accelerators?.length) return null;
 
   const isCarousel = data.accelerators.length >= 5;
@@ -216,7 +223,12 @@ export function Solutions({ data }: SolutionsProps) {
     data.accelerators.find((a) => a.id === activeId) || data.accelerators[0];
 
   return (
-    <section ref={sectionRef} className={styles.section} id="solutions">
+    <Section
+      ref={sectionRef}
+      height={height}
+      className={clsx(styles.section, className)}
+      id="solutions"
+    >
       <Container size="xl" className={styles.container}>
         {/* Section Header */}
         <div className={styles.headerWrapper}>
@@ -313,6 +325,6 @@ export function Solutions({ data }: SolutionsProps) {
             No independent state; switching cards updates both. */}
         <AcceleratorProof proof={activeAccelerator.proof} />
       </Container>
-    </section>
+    </Section>
   );
 }

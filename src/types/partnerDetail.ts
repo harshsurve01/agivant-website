@@ -19,6 +19,8 @@ export interface PartnerHeroData {
     assetKey?: string;
   };
   ribbonSrc: string;
+  ribbonWidth?: number;
+  ribbonHeight?: number;
 }
 
 export interface LeadershipQuoteData {
@@ -35,7 +37,7 @@ export interface StatementCardData {
 }
 
 export interface PartnerIntroData {
-  heading: {
+  heading?: {
     prefix?: string;
     highlight: string;
     suffix: string;
@@ -43,6 +45,8 @@ export interface PartnerIntroData {
   paragraphs: string[];
   leadershipQuote?: LeadershipQuoteData;
   statementCard?: StatementCardData;
+  supportingStatement?: string;
+  ctaAlign?: "left" | "center";
   cta?: {
     label: string;
     href: string;
@@ -266,6 +270,7 @@ export interface DatabricksBusinessContextData {
 export interface DatabricksControlData {
   heading: string;
   description: string;
+  closingStatement?: string;
   image: {
     src: string;
     alt: string;
@@ -310,6 +315,41 @@ export interface PartnerAlternatingContentData {
   rows: PartnerAlternatingRowData[];
 }
 
+export interface WorkflowFamiliesCardData {
+  id: string;
+  title: string;
+  body: string;
+  image: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+  };
+  imagePosition: "left" | "right";
+}
+
+export interface WorkflowFamiliesData {
+  heading: string;
+  description: string;
+  cards: WorkflowFamiliesCardData[];
+  closingStatement?: string;
+}
+
+export interface PartnerDeploymentCardData {
+  heading: {
+    highlight?: string;
+    text?: string;
+    raw?: string;
+  };
+  description: string;
+  image: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+  };
+}
+
 export interface PartnerDetailData {
   slug: string;
   name: string;
@@ -326,6 +366,10 @@ export interface PartnerDetailData {
   databricksAgenticExecution?: DatabricksAgenticExecutionData;
   databricksBusinessContext?: DatabricksBusinessContextData;
   databricksControl?: DatabricksControlData;
+  databricksControlSecondary?: DatabricksControlData;
+  databricksControlTertiary?: DatabricksControlData;
+  partnerDeploymentCard?: PartnerDeploymentCardData;
+  workflowFamilies?: WorkflowFamiliesData;
   solutions?: PartnerSolutionsData;
   productionProof?: PartnerProductionProofData;
   builtOnGemini?: PartnerBuiltOnGeminiData;

@@ -57,7 +57,9 @@ export function PartnerHero({ hero }: PartnerHeroProps) {
                 className={clsx(
                   styles.partnerLogo,
                   hero.partnerLogo.assetKey === "databricks-logo" && styles.databricksLogo,
-                  hero.partnerLogo.assetKey === "shopify-logo" && styles.shopifyLogo
+                  hero.partnerLogo.assetKey === "shopify-logo" && styles.shopifyLogo,
+                  hero.partnerLogo.assetKey === "servicenow-logo" && styles.servicenowLogo,
+                  hero.partnerLogo.assetKey === "glean-logo" && styles.gleanLogo
                 )}
                 priority
               />

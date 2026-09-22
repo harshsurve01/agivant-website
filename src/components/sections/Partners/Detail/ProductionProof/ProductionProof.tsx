@@ -1,16 +1,21 @@
+import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
+import { Section, type SectionHeight } from "@/components/ui/Section";
 import type { PartnerProductionProofData } from "@/types/partnerDetail";
 import { ProductionProofCard } from "./ProductionProofCard";
 import styles from "./ProductionProof.module.css";
 
 export interface ProductionProofProps {
   data?: PartnerProductionProofData;
+  height?: SectionHeight;
+  className?: string;
+  id?: string;
 }
 
 /**
  * ProductionProof
  *
- * "Proof from production." section on the Gemini Enterprise Partner Detail page.
+ * "Proof from production." section on Partner Detail pages.
  * Sits after Section 04 Solutions & Accelerator Proof.
  *
  * Features:
@@ -19,13 +24,22 @@ export interface ProductionProofProps {
  * - Zero hover enlargement or track resizing
  * - Data-driven and responsive
  */
-export function ProductionProof({ data }: ProductionProofProps) {
+export function ProductionProof({
+  data,
+  height = "viewport",
+  className,
+  id = "proof-from-production",
+}: ProductionProofProps) {
   if (!data || !data.cards?.length) return null;
 
   const [card1, card2, card3] = data.cards;
 
   return (
-    <section className={styles.section} id="proof-from-production">
+    <Section
+      height={height}
+      className={clsx(styles.section, className)}
+      id={id}
+    >
       <Container size="xl" className={styles.container}>
         <div className={styles.layout}>
           {/* Left Editorial Column */}
@@ -52,6 +66,6 @@ export function ProductionProof({ data }: ProductionProofProps) {
           </div>
         </div>
       </Container>
-    </section>
+    </Section>
   );
 }

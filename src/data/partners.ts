@@ -6,6 +6,8 @@ import partnersPageJson from "./partnersPage.json";
 import partnerDetailJson from "./partners.json";
 import databricksDetailJson from "./partner-databricks.json";
 import shopifyDetailJson from "./partner-shopify.json";
+import servicenowDetailJson from "./partner-servicenow.json";
+import gleanDetailJson from "./partner-glean.json";
 
 /**
  * data/partners.ts
@@ -259,6 +261,8 @@ import type {
   DatabricksControlData,
   PartnerAgentTeamsData,
   PartnerAlternatingContentData,
+  PartnerDeploymentCardData,
+  WorkflowFamiliesData,
 } from "@/types/partnerDetail";
 
 /* ==========================================================================
@@ -317,6 +321,8 @@ export interface StandardizedHero {
   heading?: string;
   /** Frontend-only: ribbon asset path for decorative PageRibbon */
   ribbonSrc?: string;
+  ribbonWidth?: number;
+  ribbonHeight?: number;
 }
 
 export interface StandardizedSectionBlock {
@@ -439,6 +445,8 @@ export const PARTNERS_DETAIL_DATA: Record<string, StandardizedPartnerDetailPage>
   [partnerDetailJson.slug]: partnerDetailJson,
   [databricksDetailJson.slug]: databricksDetailJson as unknown as StandardizedPartnerDetailPage,
   [shopifyDetailJson.slug]: shopifyDetailJson as unknown as StandardizedPartnerDetailPage,
+  [servicenowDetailJson.slug]: servicenowDetailJson as unknown as StandardizedPartnerDetailPage,
+  [gleanDetailJson.slug]: gleanDetailJson as unknown as StandardizedPartnerDetailPage,
 };
 
 /**
@@ -478,6 +486,8 @@ function mapStandardizedToPartnerDetail(
       assetKey: data.hero.partner.logo.assetKey ?? undefined,
     },
     ribbonSrc: data.hero.ribbonSrc ?? data.hero.media?.src ?? "",
+    ribbonWidth: data.hero.ribbonWidth ?? (data.hero.media?.width as number | undefined),
+    ribbonHeight: data.hero.ribbonHeight ?? (data.hero.media?.height as number | undefined),
   };
 
   const introSec = data.sections.find((s) => s.id === "production-value");
@@ -512,29 +522,40 @@ function mapStandardizedToPartnerDetail(
 
   const statementText =
     quoteBlock?.statement ??
-    (quoteBlock?.type === "statement" || quoteSec?.type === "statement_card"
+    (quoteBlock?.type === "statement" || quoteSec?.type === "statement_card" || quoteSec?.type === "statement"
       ? quoteBlock?.body
       : undefined);
 
-  const statementCard = statementText
-    ? {
-        text: statementText,
-      }
-    : undefined;
+  const statementCard =
+    statementText && quoteSec?.type === "statement_card"
+      ? {
+          text: statementText,
+        }
+      : undefined;
+
+  const supportingStatement =
+    statementText && (quoteSec?.type === "statement" || (!quoteSec?.type && quoteBlock?.type === "statement"))
+      ? statementText
+      : undefined;
 
   const intro: PartnerIntroData | undefined =
     introSec || quoteSec
       ? {
-          heading: {
-            prefix: introPrefix,
-            highlight: introHighlight ?? "",
-            suffix: introSuffix ?? "",
-          },
+          heading:
+            introPrefix || introHighlight || introSuffix
+              ? {
+                  prefix: introPrefix,
+                  highlight: introHighlight ?? "",
+                  suffix: introSuffix ?? "",
+                }
+              : undefined,
           paragraphs:
             introSec?.blocks?.[0]?.paragraphs ??
             (introSec?.blocks?.[0]?.body ? [introSec.blocks[0].body] : []),
           leadershipQuote,
           statementCard,
+          supportingStatement,
+          ctaAlign: quoteSec?.type === "statement" ? "left" : "center",
           cta: quoteSec?.data.cta?.enabled
             ? {
                 label: quoteSec.data.cta.label ?? "",
@@ -664,8 +685,8 @@ function mapStandardizedToPartnerDetail(
 
   let databricksBusinessContext: DatabricksBusinessContextData | undefined;
   const businessContextSec =
-    data.slug === "databricks"
-      ? data.sections.find((s) => s.id === "business-context")
+    data.slug === "databricks" || data.slug === "glean"
+      ? data.sections.find((s) => s.id === "business-context" || s.id === "domain-stack")
       : undefined;
 
   if (businessContextSec) {
@@ -683,8 +704,8 @@ function mapStandardizedToPartnerDetail(
 
   let databricksControl: DatabricksControlData | undefined;
   const controlSec =
-    data.slug === "databricks"
-      ? data.sections.find((s) => s.id === "control" || s.id === "agent-control")
+    data.slug === "databricks" || data.slug === "servicenow" || data.slug === "glean"
+      ? data.sections.find((s) => s.id === "control" || s.id === "agent-control" || s.id === "domain-decisions")
       : undefined;
 
   if (controlSec) {
@@ -705,19 +726,151 @@ function mapStandardizedToPartnerDetail(
     };
   }
 
+  let databricksControlSecondary: DatabricksControlData | undefined;
+  const controlSecondarySec =
+    data.slug === "glean"
+      ? data.sections.find((s) => (s.id === "control" || s.id === "figure-work") && s !== controlSec)
+      : undefined;
+
+  if (controlSecondarySec) {
+    const block = controlSecondarySec.blocks?.[0];
+    const mediaSource = block?.media ?? controlSecondarySec.data.media;
+    databricksControlSecondary = {
+      heading: block?.heading ?? controlSecondarySec.data.heading ?? "",
+      description:
+        block?.body ??
+        controlSecondarySec.data.description ??
+        "",
+      image: {
+        src: mediaSource?.src ?? "/images/partners/glean-domain-decisions.png",
+        alt: mediaSource?.alt ?? "Every figure an agent states, it can show the work for.",
+        width: mediaSource?.width ?? 437,
+        height: mediaSource?.height ?? 279,
+      },
+    };
+  }
+
+  let databricksControlTertiary: DatabricksControlData | undefined;
+  const controlTertiarySec =
+    data.slug === "glean"
+      ? data.sections.find((s) => s.id === "judgment" || s.id === "keep-judgment")
+      : undefined;
+
+  if (controlTertiarySec) {
+    const block = controlTertiarySec.blocks?.[0];
+    const mediaSource = block?.media ?? controlTertiarySec.data.media;
+    databricksControlTertiary = {
+      heading: block?.heading ?? controlTertiarySec.data.heading ?? "",
+      description:
+        block?.body ??
+        controlTertiarySec.data.description ??
+        "",
+      closingStatement:
+        (block as { closingStatement?: string })?.closingStatement ??
+        controlTertiarySec.data.closingStatement ??
+        undefined,
+      image: {
+        src: mediaSource?.src ?? "/images/partners/states-card.png",
+        alt: mediaSource?.alt ?? "Keep judgment with the people who own the outcome.",
+        width: mediaSource?.width ?? 1748,
+        height: mediaSource?.height ?? 1116,
+      },
+    };
+  }
+
+  let workflowFamilies: WorkflowFamiliesData | undefined;
+  const workflowFamiliesSec = data.sections.find(
+    (s) => s.id === "workflow-families"
+  );
+
+  if (workflowFamiliesSec) {
+    workflowFamilies = {
+      heading: workflowFamiliesSec.data.heading ?? "",
+      description: workflowFamiliesSec.data.description ?? "",
+      closingStatement:
+        workflowFamiliesSec.data.closingStatement ?? undefined,
+      cards: (workflowFamiliesSec.blocks ?? []).map((b, idx) => {
+        const layout = (b as { layout?: string })?.layout;
+        const imagePosition: "left" | "right" =
+          layout === "text-image"
+            ? "right"
+            : layout === "image-text"
+            ? "left"
+            : idx % 2 === 0
+            ? "left"
+            : "right";
+
+        return {
+          id: b.id,
+          title: b.title ?? "",
+          body: b.body ?? "",
+          image: {
+            src:
+              b.media?.src ??
+              "/images/partners/gemini/agentic-enterprise/agentic-enterprise-ambition.png",
+            alt: b.media?.alt ?? b.title ?? "",
+            width: b.media?.width ?? 340,
+            height: b.media?.height ?? 240,
+          },
+          imagePosition,
+        };
+      }),
+    };
+  }
+
+  let partnerDeploymentCard: PartnerDeploymentCardData | undefined;
+  const deploymentCardSec = data.sections.find(
+    (s) =>
+      s.id === "deployment-card" ||
+      s.id === "scale-inside" ||
+      s.type === "deployment_card"
+  );
+
+  if (deploymentCardSec) {
+    const block = deploymentCardSec.blocks?.[0];
+    const mediaSource = block?.media ?? deploymentCardSec.data.media;
+    partnerDeploymentCard = {
+      heading: {
+        highlight:
+          block?.headingStructure?.highlight ??
+          deploymentCardSec.data.headingStructure?.highlight ??
+          "Scale inside the Glean",
+        text:
+          block?.headingStructure?.text ??
+          deploymentCardSec.data.headingStructure?.text ??
+          "deployment already running.",
+        raw: block?.heading ?? deploymentCardSec.data.heading ?? "",
+      },
+      description:
+        block?.body ??
+        deploymentCardSec.data.description ??
+        "",
+      image: {
+        src: mediaSource?.src ?? "/images/partners/tint-card-image.png",
+        alt: mediaSource?.alt ?? "Scale inside the Glean deployment already running",
+        width: mediaSource?.width ?? 2300,
+        height: mediaSource?.height ?? 1516,
+      },
+    };
+  }
+
   const storySectionIds = [
     "autonomous-workflows",
     "agent-teams",
     "control",
     "google-cloud-scale",
   ];
-  const storySections = data.sections.filter(
-    (s) =>
-      storySectionIds.includes(s.id) &&
-      s.id !== storyBannerSec?.id &&
-      s.id !== databricksSec?.id &&
-      s.id !== controlSec?.id
-  );
+  const storySections =
+    data.slug === "glean" || data.slug === "databricks" || data.slug === "shopify"
+      ? []
+      : data.sections.filter(
+          (s) =>
+            storySectionIds.includes(s.id) &&
+            s.id !== storyBannerSec?.id &&
+            s.id !== databricksSec?.id &&
+            s.id !== controlSec?.id &&
+            s.id !== controlSecondarySec?.id
+        );
 
   const agenticEnterprise: AgenticEnterpriseData | undefined =
     storySections.length > 0
@@ -815,6 +968,7 @@ function mapStandardizedToPartnerDetail(
       s.id === "solutions" ||
       s.id === "databricks-solutions" ||
       s.id === "shopify-solutions" ||
+      s.id === "glean-solutions" ||
       s.id === "accelerate"
   );
   let solPrefix = solutionsSec?.data.headingStructure?.prefix;
@@ -984,6 +1138,10 @@ function mapStandardizedToPartnerDetail(
     databricksAgenticExecution,
     databricksBusinessContext,
     databricksControl,
+    databricksControlSecondary,
+    databricksControlTertiary,
+    partnerDeploymentCard,
+    workflowFamilies,
     solutions,
     productionProof,
     builtOnGemini,

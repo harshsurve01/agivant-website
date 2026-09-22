@@ -77,6 +77,20 @@
   height: auto;
 }
 
+.servicenowLogo {
+  max-height: 4rem;
+  max-width: min(17.5rem, 80vw);
+  width: auto;
+  height: auto;
+}
+
+.gleanLogo {
+  max-height: 4.25rem;
+  max-width: min(14rem, 80vw);
+  width: auto;
+  height: auto;
+}
+
 @media (max-width: 1024px) {
   .hero {
     min-height: 720px;
@@ -113,5 +127,15 @@
   .shopifyLogo {
     max-height: 3.75rem;
     max-width: min(11.25rem, 70vw);
+  }
+
+  .servicenowLogo {
+    max-height: 2.75rem;
+    max-width: min(13rem, 75vw);
+  }
+
+  .gleanLogo {
+    max-height: 2.75rem;
+    max-width: min(10rem, 70vw);
   }
 }

@@ -1,10 +1,16 @@
 import Image from "next/image";
+import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
+import { Section, type SectionHeight } from "@/components/ui/Section";
 import type { DatabricksControlData } from "@/types/partnerDetail";
 import styles from "./DatabricksControl.module.css";
 
 export interface DatabricksControlProps {
   data: DatabricksControlData;
+  imagePosition?: "left" | "right";
+  height?: SectionHeight;
+  className?: string;
+  id?: string;
 }
 
 /**
@@ -13,14 +19,22 @@ export interface DatabricksControlProps {
  * Preserves the heading as one single conceptual data field.
  */
 function renderHeading(heading: string) {
-  const target = "Keep cost,";
-  if (heading.startsWith(target)) {
-    return (
-      <>
-        <span className={styles.headingHighlight}>{target}</span>
-        {heading.slice(target.length)}
-      </>
-    );
+  const targets = [
+    "Keep cost,",
+    "Get Amp’d to move",
+    "Get Amp'd to move",
+    "Every figure an agent states,",
+    "Keep judgment with",
+  ];
+  for (const target of targets) {
+    if (heading.startsWith(target)) {
+      return (
+        <>
+          <span className={styles.headingHighlight}>{target}</span>
+          {heading.slice(target.length)}
+        </>
+      );
+    }
   }
   return heading;
 }
@@ -75,13 +89,28 @@ function renderBodyWithBold(text: string) {
  * Consumes design tokens exclusively from variables.css.
  * Server Component: pure presentation, zero client overhead.
  */
-export function DatabricksControl({ data }: DatabricksControlProps) {
+export function DatabricksControl({
+  data,
+  imagePosition = "left",
+  height = "viewport",
+  className,
+  id = "control",
+}: DatabricksControlProps) {
   if (!data) return null;
 
   return (
-    <section className={styles.section} id="control">
+    <Section
+      height={height}
+      className={clsx(styles.section, className)}
+      id={id}
+    >
       <Container size="xl" className={styles.container}>
-        <div className={styles.contentGrid}>
+        <div
+          className={clsx(
+            styles.contentGrid,
+            imagePosition === "right" && styles.imageRight
+          )}
+        >
           <div className={styles.imageWrapper}>
             <Image
               src={data.image.src}
@@ -94,9 +123,12 @@ export function DatabricksControl({ data }: DatabricksControlProps) {
           <div className={styles.textContent}>
             <h2 className={styles.heading}>{renderHeading(data.heading)}</h2>
             <p className={styles.body}>{renderBodyWithBold(data.description)}</p>
+            {data.closingStatement && (
+              <p className={styles.closingStatement}>{data.closingStatement}</p>
+            )}
           </div>
         </div>
       </Container>
-    </section>
+    </Section>
   );
 }

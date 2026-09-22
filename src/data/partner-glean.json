@@ -1,0 +1,647 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "partnershipLanding",
+  "slug": "glean",
+  "title": "Give Glean the domain depth that makes an answer worth acting on",
+  "name": "Glean",
+  "seo": {
+    "title": "Glean Partnership | Agivant",
+    "description": "Give Glean the domain depth that makes an answer worth acting on with Agivant Technologies.",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Give Glean the domain depth that makes an answer worth acting on",
+    "subtitle": null,
+    "summary": null,
+    "authors": [],
+    "partner": {
+      "name": "Glean",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/glean.png",
+        "assetKey": "glean-logo",
+        "alt": "Glean",
+        "caption": null,
+        "width": 249,
+        "height": 91
+      }
+    },
+    "media": {
+      "kind": "image",
+      "src": "/images/partners/glean-hero-ribbon.png",
+      "assetKey": "glean-hero-ribbon",
+      "alt": "Glean Hero Ribbon",
+      "caption": null,
+      "width": 4320,
+      "height": 3299
+    },
+    "ribbonSrc": "/images/partners/glean-hero-ribbon.png",
+    "ribbonWidth": 4320,
+    "ribbonHeight": 3299,
+    "primaryCta": null,
+    "secondaryCta": null,
+    "heading": "Give Glean the domain<br>depth that makes an<br>answer worth acting on"
+  },
+  "sections": [
+    {
+      "id": "production-value",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "production-value-copy",
+          "type": "richText",
+          "heading": null,
+          "body": "Agivant’s Glean practice builds domain accelerators natively on the Work AI platform, so the assistant employees already open answers the specialized questions their function runs on, with results in days and weeks.\n\nBuilt on Glean’s Enterprise Graph, Glean Agents, and Glean Chat, Agivant adds domain ontology, coordinated agent teams, and workflow embedding across assurance, marketing, engineering, documentation, design, and insurance, wherever a general answer stops short of a decision.\n\nGlean covers the horizontal work of the whole enterprise. Agivant goes vertical inside it, adding the depth a single function needs without asking anyone to open a second application.",
+          "paragraphs": [
+            "Agivant’s Glean practice builds domain accelerators natively on the Work AI platform, so the assistant employees already open answers the specialized questions their function runs on, with results in days and weeks.",
+            "Built on Glean’s Enterprise Graph, Glean Agents, and Glean Chat, Agivant adds domain ontology, coordinated agent teams, and workflow embedding across assurance, marketing, engineering, documentation, design, and insurance, wherever a general answer stops short of a decision.",
+            "Glean covers the horizontal work of the whole enterprise. Agivant goes vertical inside it, adding the depth a single function needs without asking anyone to open a second application."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "customer-quote",
+      "type": "quote",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "See the accelerators in action",
+          "href": "#accelerators",
+          "icon": "cube",
+          "external": false
+        }
+      },
+      "blocks": [
+        {
+          "id": "quote-1",
+          "type": "quote",
+          "quote": "Enterprise AI is entering a new phase where organizations are moving beyond experimentation toward operational AI systems that can drive real business outcomes at scale. Our collaboration with Glean enables enterprises to combine Work AI with scalable AI engineering, agentic architectures, and enterprise-grade operational frameworks to accelerate intelligent automation and AI adoption across the enterprise.",
+          "authorName": "Ajay Malgaonkar",
+          "authorRole": "Chief Digital Delivery Officer, Agivant Technologies",
+          "authorImage": {
+            "kind": "image",
+            "src": "/images/partners/gemini/intro/ajay-malgaonkar.png",
+            "assetKey": "partnership-quote-author",
+            "alt": "Ajay Malgaonkar",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "domain-decisions",
+      "type": "split_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Get Amp’d to move from enterprise search to domain decisions on Glean.",
+        "headingStructure": {
+          "highlight": "Get Amp’d to move"
+        },
+        "description": "A domain stack earns its keep in production. Amp’d is how Agivant gets there. Bolt scaffolds the agent stack, Forward Deployed Engineers build inside the enterprise’s own Glean instance, and production grade agents reason over the Enterprise Graph the company already trusts. Each engagement ships with evaluation and rollback, and every hardened domain stack becomes a reusable asset the next build starts from. Every build amplifies the next.",
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/glean/domain-decisions.png",
+          "assetKey": "glean-domain-decisions",
+          "alt": "Domain decisions on Glean",
+          "caption": null,
+          "width": 437,
+          "height": 279
+        },
+        "cta": null,
+        "layout": "text-image"
+      },
+      "blocks": [
+        {
+          "id": "domain-decisions-copy",
+          "type": "richText",
+          "heading": "Get Amp’d to move from enterprise search to domain decisions on Glean.",
+          "headingStructure": {
+            "highlight": "Get Amp’d to move"
+          },
+          "body": "A domain stack earns its keep in production. Amp’d is how Agivant gets there. Bolt scaffolds the agent stack, Forward Deployed Engineers build inside the enterprise’s own Glean instance, and production grade agents reason over the Enterprise Graph the company already trusts. Each engagement ships with evaluation and rollback, and every hardened domain stack becomes a reusable asset the next build starts from. Every build amplifies the next.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/glean/domain-decisions.png",
+            "assetKey": "glean-domain-decisions",
+            "alt": "Domain decisions on Glean",
+            "caption": null,
+            "width": 437,
+            "height": 279
+          }
+        }
+      ]
+    },
+    {
+      "id": "business-context",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Put a whole domain stack to work inside Glean.",
+        "headingStructure": {
+          "highlight": "Put a whole domain"
+        },
+        "description": "Each accelerator ships as a complete stack, engineered for the function that owns the outcome.",
+        "columns": [],
+        "media": null,
+        "cta": null,
+        "closingStatement": "Depth is only worth having when the numbers behind it hold up."
+      },
+      "blocks": [
+        {
+          "id": "domain-ontology",
+          "type": "card",
+          "title": "",
+          "body": "A domain ontology carrying the vocabulary, entities, and rules the function already works by"
+        },
+        {
+          "id": "coordinated-agents",
+          "type": "card",
+          "title": "",
+          "body": "Coordinated agents that split the question, each one accountable for its part of the answer"
+        },
+        {
+          "id": "workflow-embedding",
+          "type": "card",
+          "title": "",
+          "body": "Workflow embedding at the point where the decision actually gets made"
+        },
+        {
+          "id": "answers-glean-chat",
+          "type": "card",
+          "title": "",
+          "body": "Answers that arrive in Glean Chat, and in the Slack and ServiceNow surfaces Glean already runs in"
+        }
+      ]
+    },
+    {
+      "id": "control",
+      "type": "split_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Every figure an agent states, it can show the work for.",
+        "headingStructure": {
+          "highlight": "Every figure an agent states,"
+        },
+        "description": "Value at risk, attribution, regulatory exposure: each quantified claim is derived from live enterprise data, with the source records and the derivation attached. An analyst can trace the reasoning before the number reaches a board pack or a regulator, which is what makes it usable in the first place.",
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/glean-domain-decisions.png",
+          "assetKey": "glean-domain-decisions",
+          "alt": "Every figure an agent states, it can show the work for.",
+          "caption": null,
+          "width": 437,
+          "height": 279
+        },
+        "cta": null,
+        "layout": "image-text"
+      },
+      "blocks": [
+        {
+          "id": "control-copy",
+          "type": "richText",
+          "heading": "Every figure an agent states, it can show the work for.",
+          "headingStructure": {
+            "highlight": "Every figure an agent states,"
+          },
+          "body": "Value at risk, attribution, regulatory exposure: each quantified claim is derived from live enterprise data, with the source records and the derivation attached. An analyst can trace the reasoning before the number reaches a board pack or a regulator, which is what makes it usable in the first place.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/glean-domain-decisions.png",
+            "assetKey": "glean-domain-decisions",
+            "alt": "Every figure an agent states, it can show the work for.",
+            "caption": null,
+            "width": 437,
+            "height": 279
+          }
+        }
+      ]
+    },
+    {
+      "id": "solutions",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Domain accelerators, built natively on Glean.",
+        "headingStructure": {
+          "highlight": "Domain accelerators,",
+          "text": "built natively on Glean."
+        },
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "business-assurance-intelligence",
+          "type": "card",
+          "eyebrow": "Revenue and risk assurance",
+          "title": "Business Assurance\nIntelligence",
+          "body": "Find the leakage while it is still worth recovering.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "assetKey": "glean-acc-1",
+            "alt": "Business Assurance Intelligence",
+            "caption": null
+          },
+          "challenge": "Assurance teams sample a slice of transactions and reconstruct the rest after the quarter closes, so control breaks and revenue leakage surface long after the money moved.",
+          "solution": "Coordinated agents read transaction, policy, and control data where it sits, quantify value at risk with the derivation attached, and route each finding to the owner who can act on it.",
+          "proof": {
+            "headline": "",
+            "description": "",
+            "video": {
+              "provider": "youtube",
+              "id": "sFzmpcG6RkY",
+              "poster": "/images/partners/glean/video-poster.png",
+              "title": "Business Assurance Intelligence"
+            }
+          }
+        },
+        {
+          "id": "revenue-assurance-intelligence",
+          "type": "card",
+          "eyebrow": "Revenue and risk assurance",
+          "title": "Business Assurance\nIntelligence",
+          "body": "Find the leakage while it is still worth recovering.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/cpq-lens.png",
+            "assetKey": "glean-acc-2",
+            "alt": "Business Assurance Intelligence",
+            "caption": null
+          },
+          "challenge": "Assurance teams sample a slice of transactions and reconstruct the rest after the quarter closes, so control breaks and revenue leakage surface long after the money moved.",
+          "solution": "Coordinated agents read transaction, policy, and control data where it sits, quantify value at risk with the derivation attached, and route each finding to the owner who can act on it.",
+          "proof": {
+            "headline": "",
+            "description": "",
+            "video": {
+              "provider": "youtube",
+              "id": "sFzmpcG6RkY",
+              "poster": "/images/partners/glean/video-poster.png",
+              "title": "Business Assurance Intelligence"
+            }
+          }
+        },
+        {
+          "id": "marketing-intelligence",
+          "type": "card",
+          "eyebrow": "CMO office",
+          "title": "Marketing\nIntelligence",
+          "body": "Settle the spend question with one version of the numbers.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/sourcex.png",
+            "assetKey": "glean-acc-3",
+            "alt": "Marketing Intelligence",
+            "caption": null
+          },
+          "challenge": "Marketing and finance teams debate attribution models and campaign efficacy across siloed channels, leaving spend decisions ungrounded in reconciled revenue impact.",
+          "solution": "Marketing agents synthesize cross-channel metrics, unify attribution logic on the Enterprise Graph, and provide decision-makers with a single, verifiable version of performance numbers.",
+          "proof": {
+            "headline": "",
+            "description": "",
+            "video": {
+              "provider": "youtube",
+              "id": "sFzmpcG6RkY",
+              "poster": "/images/partners/glean/video-poster.png",
+              "title": "Marketing Intelligence"
+            }
+          }
+        },
+        {
+          "id": "autonomous-technical-documentation",
+          "type": "card",
+          "eyebrow": "Product and support content",
+          "title": "Autonomous Technical\nDocumentation",
+          "body": "Documentation that keeps pace with the release train.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/zeroqueue.png",
+            "assetKey": "glean-acc-4",
+            "alt": "Autonomous Technical Documentation",
+            "caption": null
+          },
+          "challenge": "Engineering ships changes faster than technical writers can update documentation, causing stale guides, broken integration references, and escalated support volume.",
+          "solution": "Documentation agents monitor code repositories, pull requests, and API schemas to generate, verify, and publish synchronized technical documentation automatically.",
+          "proof": {
+            "headline": "",
+            "description": "",
+            "video": {
+              "provider": "youtube",
+              "id": "sFzmpcG6RkY",
+              "poster": "/images/partners/glean/video-poster.png",
+              "title": "Autonomous Technical Documentation"
+            }
+          }
+        },
+        {
+          "id": "engineering-productivity-intelligence",
+          "type": "card",
+          "eyebrow": "Engineering operations",
+          "title": "Engineering\nProductivity Intelligence",
+          "body": "See where cycle time actually goes.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "assetKey": "glean-acc-5",
+            "alt": "Engineering Productivity Intelligence",
+            "caption": null
+          },
+          "challenge": "Engineering leaders lack granular visibility into true cycle time bottlenecks across code review, CI/CD pipelines, and environment provisioning, relying on anecdotal metrics.",
+          "solution": "Productivity agents trace development telemetry end-to-end, identifying friction points, idle pull requests, and test suite delays to optimize team throughput.",
+          "proof": {
+            "headline": "",
+            "description": "",
+            "video": {
+              "provider": "youtube",
+              "id": "sFzmpcG6RkY",
+              "poster": "/images/partners/glean/video-poster.png",
+              "title": "Engineering Productivity Intelligence"
+            }
+          }
+        },
+        {
+          "id": "design-simulation-support-intelligence",
+          "type": "card",
+          "eyebrow": "Product engineering",
+          "title": "Design & Simulation\nSupport Intelligence",
+          "body": "Stop paying twice for a simulation someone already ran.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/cpq-lens.png",
+            "assetKey": "glean-acc-6",
+            "alt": "Design & Simulation Support Intelligence",
+            "caption": null
+          },
+          "challenge": "Product engineering teams repeatedly re-run expensive computational simulations and design evaluations because historical outputs are locked in individual workstations or obscure folders.",
+          "solution": "Simulation agents catalog, index, and surface prior design simulations, parameters, and results within Glean Chat so engineers never duplicate costly compute runs.",
+          "proof": {
+            "headline": "",
+            "description": "",
+            "video": {
+              "provider": "youtube",
+              "id": "sFzmpcG6RkY",
+              "poster": "/images/partners/glean/video-poster.png",
+              "title": "Design & Simulation Support Intelligence"
+            }
+          }
+        },
+        {
+          "id": "insurance-intelligence-hub",
+          "type": "card",
+          "eyebrow": "Underwriting and claims",
+          "title": "Insurance\nIntelligence Hub",
+          "body": "Read the submission against the policy wording, every time.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/sourcex.png",
+            "assetKey": "glean-acc-7",
+            "alt": "Insurance Intelligence Hub",
+            "caption": null
+          },
+          "challenge": "Underwriters and claims adjusters manually review complex multi-page policy wordings, endorsements, and loss histories under strict turnaround deadlines, increasing coverage error risk.",
+          "solution": "Insurance intelligence agents cross-reference submissions against policy clauses, underwriting guidelines, and regulatory filings in seconds to deliver auditable decision matrices.",
+          "proof": {
+            "headline": "",
+            "description": "",
+            "video": {
+              "provider": "youtube",
+              "id": "sFzmpcG6RkY",
+              "poster": "/images/partners/glean/video-poster.png",
+              "title": "Insurance Intelligence Hub"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "judgment",
+      "type": "split_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Keep judgment with the people who own the outcome.",
+        "headingStructure": {
+          "highlight": "Keep judgment with"
+        },
+        "description": "Every Agivant agent on Glean is production grade from day one, observable and always on. Agents assemble the evidence and state the recommendation, and the underwriter, the analyst, or the engineer makes the call with the reasoning in front of them. Routine retrieval and reconciliation run on their own, while anything carrying money or regulatory weight routes for human approval first.",
+        "closingStatement": "All of it runs inside the Glean instance the enterprise already trusts.",
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/states-card.png",
+          "assetKey": "states-card",
+          "alt": "Keep judgment with the people who own the outcome.",
+          "caption": null,
+          "width": 1748,
+          "height": 1116
+        },
+        "cta": null,
+        "layout": "text-image"
+      },
+      "blocks": [
+        {
+          "id": "judgment-copy",
+          "type": "richText",
+          "heading": "Keep judgment with the people who own the outcome.",
+          "headingStructure": {
+            "highlight": "Keep judgment with"
+          },
+          "body": "Every Agivant agent on Glean is production grade from day one, observable and always on. Agents assemble the evidence and state the recommendation, and the underwriter, the analyst, or the engineer makes the call with the reasoning in front of them. Routine retrieval and reconciliation run on their own, while anything carrying money or regulatory weight routes for human approval first.",
+          "closingStatement": "All of it runs inside the Glean instance the enterprise already trusts.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/states-card.png",
+            "assetKey": "states-card",
+            "alt": "Keep judgment with the people who own the outcome.",
+            "caption": null,
+            "width": 1748,
+            "height": 1116
+          }
+        }
+      ]
+    },
+    {
+      "id": "deployment-card",
+      "type": "deployment_card",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Scale inside the Glean deployment already running.",
+        "headingStructure": {
+          "highlight": "Scale inside the Glean",
+          "text": "deployment already running."
+        },
+        "description": "Agivant builds on Glean’s Enterprise Graph and agent framework, so there is no second index to maintain and no parallel interface for anyone to adopt. New domain stacks compose on the same substrate as the practice grows, and security is certified to SOC 2, ISO, and PCI DSS. This is what an Amp’d enterprise looks like in production.",
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/tint-card-image.png",
+          "assetKey": "tint-card-image",
+          "alt": "Scale inside the Glean deployment already running",
+          "caption": null,
+          "width": 2300,
+          "height": 1516
+        },
+        "cta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "proof-from-production",
+      "type": "case_study_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Proof from production.",
+        "description": "Gemini Enterprise engagements already running, with outcomes measured in the environment they were built for.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "developer-productivity-on-gemini",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Developer productivity on Gemini",
+          "body": "Gemini-native code assistance across a global technology estate, working inside the tools engineers already use.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/developer-productivity.png",
+            "assetKey": "production-proof-1",
+            "alt": "Developer productivity on Gemini",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "/case-studies/developer-productivity-on-gemini",
+            "external": false
+          },
+          "items": [],
+          "metric": "35 percent faster cycles · 30 to 40 percent higher developer productivity",
+          "caseStudySlug": "developer-productivity-on-gemini",
+          "badge": "Client success",
+          "isTall": false
+        },
+        {
+          "id": "conversational-analytics-and-hyper-automation",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Conversational analytics\nand hyper-automation",
+          "body": "Multilingual conversational analytics that read intent, answer at source, and route only what needs a person.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/conversational-analytics.png",
+            "assetKey": "production-proof-2",
+            "alt": "Conversational analytics and hyper-automation",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "/case-studies/conversational-analytics-and-hyper-automation",
+            "external": false
+          },
+          "items": [],
+          "metric": "Around 90 percent automation · 94 percent confidence · 50 plus languages",
+          "caseStudySlug": "conversational-analytics-and-hyper-automation",
+          "badge": "Client success",
+          "isTall": false
+        },
+        {
+          "id": "enterprise-mlops-on-vertex-ai",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Enterprise MLOps on Vertex AI",
+          "body": "The model lifecycle automated end to end, from training through release and monitoring.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/enterprise-mlops.png",
+            "assetKey": "production-proof-3",
+            "alt": "Enterprise MLOps on Vertex AI",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "/case-studies/enterprise-mlops-on-vertex-ai",
+            "external": false
+          },
+          "items": [],
+          "metric": "30 to 50 percent lower operating cost",
+          "caseStudySlug": "enterprise-mlops-on-vertex-ai",
+          "badge": "Client success",
+          "isTall": true
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Put Glean to work on the questions\nyour domain experts own.",
+    "subheading": "Give agents a foundation they can trust, and put them into production where the business can measure the result.",
+    "partner": {
+      "name": "Glean",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/glean.png",
+        "assetKey": "glean-logo",
+        "alt": "Glean",
+        "caption": null
+      }
+    },
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/solution-ribbon-02.png",
+      "assetKey": "glean-cta-artwork",
+      "alt": "Put Glean to work on the questions your domain experts own",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Book a Glean assessment",
+      "href": "/contact",
+      "external": false,
+      "icon": "cube",
+      "variant": "dark"
+    }
+  }
+}

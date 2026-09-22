@@ -1,10 +1,14 @@
+import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
+import { Section, type SectionHeight } from "@/components/ui/Section";
 import type { PartnerBuiltOnGeminiData } from "@/types/partnerDetail";
 import { BuiltOnGeminiCard } from "./BuiltOnGeminiCard";
 import styles from "./BuiltOnGemini.module.css";
 
 export interface BuiltOnGeminiProps {
   data?: PartnerBuiltOnGeminiData;
+  height?: SectionHeight;
+  className?: string;
 }
 
 /**
@@ -21,11 +25,19 @@ export interface BuiltOnGeminiProps {
  * - Arrow badge rotation to ↙ on hover (zero card enlargement or layout shift)
  * - Semantic, typed data layer integration
  */
-export function BuiltOnGemini({ data }: BuiltOnGeminiProps) {
+export function BuiltOnGemini({
+  data,
+  height = "viewport",
+  className,
+}: BuiltOnGeminiProps) {
   if (!data || !data.cards?.length) return null;
 
   return (
-    <section className={styles.section} id="built-on-gemini">
+    <Section
+      height={height}
+      className={clsx(styles.section, className)}
+      id="built-on-gemini"
+    >
       <Container size="xl" className={styles.container}>
         {/* Centered Section Header */}
         <div className={styles.headerWrapper}>
@@ -45,6 +57,6 @@ export function BuiltOnGemini({ data }: BuiltOnGeminiProps) {
           ))}
         </div>
       </Container>
-    </section>
+    </Section>
   );
 }
