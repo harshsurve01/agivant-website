@@ -209,8 +209,8 @@
           "body": "Case and interaction management runs across every channel, backed by self-service portals and knowledge design that resolve common questions on the spot. Entitlement-driven commitments hold each response to the service level the customer is owed.",
           "media": {
             "kind": "image",
-            "src": "/images/partners/gemini/accelerators/agentic-Quote-accelerator.png",
-            "assetKey": "agentic-Quote-accelerator",
+            "src": "/images/partners/gemini/accelerators/agentic-quote-accelerator.png",
+            "assetKey": "agentic-quote-accelerator",
             "alt": "Customer workflows: answers on the first channel a customer chooses.",
             "caption": null
           },
@@ -360,7 +360,7 @@
     },
     "media": {
       "kind": "image",
-      "src": "/images/partners/gemini/accelerators/agentic-Quote-accelerator.png",
+      "src": "/images/partners/gemini/accelerators/agentic-quote-accelerator.png",
       "assetKey": "servicenow-cta-artwork",
       "alt": "Put ServiceNow to work for measurable business impact",
       "caption": null

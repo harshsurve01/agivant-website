@@ -1,0 +1,213 @@
+/* ==========================================================================
+   CleanData.module.css
+   Editorial / masonry bento section for Service Inner Page:
+   "Clean Data, Confident AI"
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  --service-stack-card-radius: 1.5625rem; /* 25px */
+  --service-stack-card-overflow: hidden;
+  --service-stack-desc-font-size: var(--font-size-md);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vh, 4rem);
+}
+
+.heading {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-black);
+  margin: 0;
+}
+
+.highlight {
+  color: var(--color-brand-primary); /* #8500DF */
+}
+
+/* --------------------------------------------------------------------------
+   Masonry Grid Layout (3 lanes: 2fr 1fr 1fr)
+   -------------------------------------------------------------------------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--space-2);
+  width: 100%;
+  align-items: stretch;
+}
+
+.laneLeft {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+}
+
+.laneLeftBottomRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  width: 100%;
+  flex: 1;
+}
+
+.laneCenter {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.laneRight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Card Internal Composition
+   -------------------------------------------------------------------------- */
+
+.cardContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.mediaTop {
+  width: 100%;
+  line-height: 0;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  overflow: hidden;
+}
+
+.mediaTopImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.mediaBottom {
+  width: 100%;
+  line-height: 0;
+  margin-top: auto;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  overflow: hidden;
+}
+
+.mediaBottomImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.textBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.cardTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--color-brand-primary);
+  margin: 0;
+}
+
+/* Continuous Center Lane Card (Text on top, artwork below in single shell) */
+.centerCardContent {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.centerCardContent .textBody {
+  flex: 0 0 auto;
+}
+
+.centerMediaBottom {
+  width: 100%;
+  flex: 1;
+  min-height: 25rem;
+  margin-top: auto;
+  line-height: 0;
+  overflow: hidden;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  display: flex;
+  align-items: flex-end;
+}
+
+.centerMediaImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .laneLeft {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .laneLeft {
+    grid-column: auto;
+    gap: var(--space-5);
+  }
+
+  .laneLeftBottomRow {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .laneCenter,
+  .laneRight {
+    gap: var(--space-5);
+  }
+
+  .textBody {
+    padding: var(--space-5);
+  }
+
+  .centerMediaBottom {
+    min-height: 18rem;
+  }
+}

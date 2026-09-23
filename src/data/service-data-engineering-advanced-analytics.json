@@ -78,14 +78,322 @@
           "detail": null
         }
       ]
+    },
+    {
+      "id": "clean-data",
+      "type": "clean-data",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Clean Data, Confident AI",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null,
+        "tags": []
+      },
+      "blocks": [
+        {
+          "id": "ai-ready-platforms",
+          "type": "card",
+          "title": "AI-ready data platforms and semantic layers",
+          "description": null,
+          "bullets": [
+            "Semantic layers and vector retrieval built for agent access",
+            "One source serving models and analytics from the same ground truth",
+            "Observability, CMDB, identity and ticket history consolidated into one warehouse",
+            "Context an agent can act on from its first day in production"
+          ],
+          "media": {
+            "kind": "image",
+            "src": "/images/services/Ai-ready-platform.png",
+            "width": 1234,
+            "height": 550,
+            "alt": "AI-ready data platforms and semantic layers"
+          },
+          "layout": "media-top"
+        },
+        {
+          "id": "real-time-pipelines",
+          "type": "card",
+          "title": "Real-time pipelines and streaming",
+          "description": null,
+          "bullets": [
+            "Streaming pipelines for live operational signals",
+            "Batch and real-time paths engineered as a single system",
+            "Anomaly detection that stops bad data at source",
+            "Auto-recovery within minutes on pipeline failures"
+          ],
+          "media": {
+            "kind": "image",
+            "src": "/images/services/real-time-pipeline.png",
+            "width": 616,
+            "height": 1508,
+            "alt": "Real-time pipelines and streaming artwork"
+          },
+          "layout": "split-center"
+        },
+        {
+          "id": "advanced-analytics",
+          "type": "card",
+          "title": "Advanced analytics and knowledge graphs",
+          "description": null,
+          "bullets": [
+            "Predictive and prescriptive analytics traceable to the source records",
+            "Knowledge graphs connecting entities across functions and systems",
+            "Forecasts that hold their accuracy as data volume grows",
+            "Context an agent can reason over without a person assembling it first"
+          ],
+          "media": {
+            "kind": "image",
+            "src": "/images/services/advance-analytics.png",
+            "width": 617,
+            "height": 288,
+            "alt": "Advanced analytics and knowledge graphs"
+          },
+          "layout": "media-top"
+        },
+        {
+          "id": "data-quality",
+          "type": "card",
+          "title": "Data quality, lineage and traceability",
+          "description": null,
+          "bullets": [
+            "Quality checks built into the pipeline itself",
+            "Lineage tracked with Unity Catalog, Microsoft Purview or AWS Lake Formation",
+            "Silent failures surfaced before a report reaches the business",
+            "Business reports on time, every cycle"
+          ],
+          "media": {
+            "kind": "image",
+            "src": "/images/services/data-quality.png",
+            "width": 618,
+            "height": 409,
+            "alt": "Data quality, lineage and traceability"
+          },
+          "layout": "media-top"
+        },
+        {
+          "id": "conversational-analytics",
+          "type": "card",
+          "title": "Conversational analytics for leadership",
+          "description": null,
+          "bullets": [
+            "Conversational analytics running on a semantic layer",
+            "Cross-function views assembled from one consolidated source",
+            "Reporting adoption measured by how often the numbers get used",
+            "Confidence in agent output built on numbers leadership already trusts"
+          ],
+          "media": {
+            "kind": "image",
+            "src": "/images/services/conversational-analytics.png",
+            "width": 578,
+            "height": 372,
+            "alt": "Conversational analytics for leadership"
+          },
+          "layout": "media-bottom"
+        },
+        {
+          "id": "data-operations",
+          "type": "card",
+          "title": "Data operations and annotation at scale",
+          "description": null,
+          "bullets": [
+            "Annotation pipelines automated across the bulk of task volume",
+            "Records processed continuously at sustained accuracy",
+            "Quality scored on every record processed",
+            "Processing time on ground-truth work cut sharply"
+          ],
+          "media": {
+            "kind": "image",
+            "src": "/images/services/data-operations.png",
+            "width": 618,
+            "height": 422,
+            "alt": "Data operations and annotation at scale"
+          },
+          "layout": "media-top"
+        }
+      ]
+    },
+    {
+      "id": "the-ampd-way",
+      "type": "lifecycle",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "The Amp'd Way",
+        "description": null,
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/services/bg-ribbon.png",
+          "width": 1440,
+          "height": 1834,
+          "alt": "The Amp'd Way background ribbon"
+        },
+        "cta": null,
+        "tags": [],
+        "initialActiveIndex": 2
+      },
+      "blocks": [
+        {
+          "id": "consolidate-the-sources",
+          "type": "card",
+          "number": 1,
+          "title": "Consolidate the sources",
+          "description": "Observability, identity, ticket history and business data are brought into one warehouse worth building on.",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/architect.png",
+            "alt": "Consolidate the sources"
+          }
+        },
+        {
+          "id": "engineer-the-pipelines-to-hold",
+          "type": "card",
+          "number": 2,
+          "title": "Engineer the pipelines to hold",
+          "description": "Streaming and batch paths are built together, with anomaly detection and recovery inside the pipeline.",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/operate.png",
+            "alt": "Engineer the pipelines to hold"
+          }
+        },
+        {
+          "id": "add-the-analytics-and-retrieval-layer",
+          "type": "card",
+          "number": 3,
+          "title": "Add the analytics and retrieval layer",
+          "description": "Semantic layers, vector retrieval and knowledge graphs make the same ground truth readable by agents, forecasts and analysts alike.",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/evolve.png",
+            "alt": "Add the analytics and retrieval layer"
+          }
+        },
+        {
+          "id": "make-the-data-traceable",
+          "type": "card",
+          "number": 4,
+          "title": "Make the data traceable",
+          "description": "Quality checks and lineage get built in, so every number traces to its source and the business trusts what it reads.",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/build1.png",
+            "alt": "Make the data traceable"
+          }
+        }
+      ]
+    },
+    {
+      "id": "client-success-production",
+      "type": "case_study_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Client success<br>in production, at scale",
+        "description": "See how Agivant engineers real business value for the autonomous enterprise, across several industries",
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "See more client stories",
+          "href": "/case-studies",
+          "external": false
+        }
+      },
+      "blocks": [
+        {
+          "id": "support-operations-agents",
+          "type": "card",
+          "eyebrow": "Global technology leader",
+          "title": "Support operations run by agents",
+          "body": "Agents carry classification, deduplication and routing across the support queue, with...",
+          "slot": "top-left",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/agentic-quote-accelerator.png",
+            "assetKey": "case-quote-accelerator",
+            "alt": "Support operations run by agents",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/support-operations-run-by-agents",
+            "external": false
+          },
+          "items": []
+        },
+        {
+          "id": "generative-commerce-thirteen-workstreams",
+          "type": "card",
+          "eyebrow": "Global technology leader",
+          "title": "Generative commerce across thirteen workstreams",
+          "body": "One program carried thirteen workstreams across the commerce estate, tracked on revenue and conversion.",
+          "footer": "$30M revenue added · 35 to 40% faster time to market · 50% lower overhead",
+          "slot": "tall-right",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/ai-Native.png",
+            "assetKey": "case-ai-native-sre",
+            "alt": "Generative commerce across thirteen workstreams",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/generative-commerce-across-thirteen-workstreams",
+            "external": false
+          },
+          "items": [
+            "",
+            "",
+            "$30M revenue added · 35 to 40% faster time to market · 50% lower overhead"
+          ]
+        },
+        {
+          "id": "million-core-compute-farm",
+          "type": "card",
+          "eyebrow": "Global technology leader",
+          "title": "A million-core compute farm at full utilization",
+          "body": "A very large estate carries its job volume with idle compute engineered out...",
+          "slot": "bottom-left",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/global-Markets-Agent-Network.png",
+            "assetKey": "case-global-markets",
+            "alt": "A million-core compute farm at full utilization",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/million-core-compute-farm",
+            "external": false
+          },
+          "items": []
+        }
+      ]
     }
   ],
   "footerCta": {
-    "enabled": false,
-    "heading": null,
+    "enabled": true,
+    "heading": "Ready To Build Your AI A<br>Foundation It Can Trust?",
     "subheading": null,
     "partner": null,
-    "primaryCta": null,
+    "primaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": "/contact",
+      "external": false,
+      "icon": "cube",
+      "variant": "primary"
+    },
     "secondaryCta": null
   }
 }

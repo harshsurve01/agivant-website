@@ -1,6 +1,8 @@
 import servicesPageJson from "./servicesPage.json";
 import serviceCloudPlatformEngineeringJson from "./service-cloud-platform-engineering.json";
 import serviceDataEngineeringAdvancedAnalyticsJson from "./service-data-engineering-advanced-analytics.json";
+import serviceAiMlEngineeringJson from "./service-ai-ml-engineering.json";
+import serviceAgenticAiAgentopsJson from "./service-agentic-ai-agentops.json";
 
 export interface StandardizedSEO {
   title: string | null;
@@ -242,6 +244,8 @@ export type { ServiceDetailHeroData, ServiceDetailPageDocument };
 const SERVICE_PAGES: Record<string, ServiceDetailPageDocument> = {
   "cloud-platform-engineering": serviceCloudPlatformEngineeringJson as ServiceDetailPageDocument,
   "data-engineering-advanced-analytics": serviceDataEngineeringAdvancedAnalyticsJson as ServiceDetailPageDocument,
+  "ai-ml-engineering": serviceAiMlEngineeringJson as ServiceDetailPageDocument,
+  "agentic-ai-agentops": serviceAgenticAiAgentopsJson as ServiceDetailPageDocument,
 };
 
 export function getServicePage(slug: string): ServiceDetailPageDocument | null {
@@ -251,6 +255,10 @@ export function getServicePage(slug: string): ServiceDetailPageDocument | null {
 export function getAllServiceSlugs(): string[] {
   return Object.keys(SERVICE_PAGES);
 }
+
+export const canonicalServiceProofSection = (
+  serviceCloudPlatformEngineeringJson.sections as any[]
+).find((s) => s.id === "client-success-production");
 
 
 

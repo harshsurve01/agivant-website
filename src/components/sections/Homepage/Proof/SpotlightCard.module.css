@@ -259,7 +259,7 @@
 .cardLink[data-slot="topLeft"] .description,
 .cardLink[data-slot="bottomLeft"] .description {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  --webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -278,7 +278,7 @@
 .cardLink[data-slot="topLeft"]:focus-visible .description,
 .cardLink[data-slot="bottomLeft"]:hover .description,
 .cardLink[data-slot="bottomLeft"]:focus-visible .description {
-  -webkit-line-clamp: unset;
+  --webkit-line-clamp: unset;
 }
 
 .cardLink[data-slot="topRight"]:hover .body,

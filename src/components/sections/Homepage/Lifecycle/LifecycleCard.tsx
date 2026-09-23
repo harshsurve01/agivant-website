@@ -29,6 +29,7 @@ export interface LifecycleCardProps {
   onMouseEnter?: () => void;
   onClick?: () => void;
   onLearnMore?: () => void;
+  showLearnMore?: boolean;
 }
 
 /**
@@ -45,6 +46,7 @@ export function LifecycleCard({
   onMouseEnter,
   onClick,
   onLearnMore,
+  showLearnMore = true,
 }: LifecycleCardProps) {
   const hasCallout = Boolean(stage.callout);
   return (
@@ -77,7 +79,7 @@ export function LifecycleCard({
               stage.callout
             )}
           </div>
-        ) : (
+        ) : showLearnMore ? (
           <button
             type="button"
             className={styles.learnMore}
@@ -88,7 +90,7 @@ export function LifecycleCard({
           >
             Learn more &gt;
           </button>
-        )}
+        ) : null}
       </div>
 
       <div

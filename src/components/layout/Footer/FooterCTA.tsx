@@ -75,6 +75,12 @@ export function FooterCTA({
                   "Ready For A Platform That",
                   heading.slice("Ready For A Platform That".length).trim(),
                 ];
+              } else if (heading.toLowerCase().includes("ready to build your ai a foundation")) {
+                const idx = heading.toLowerCase().indexOf("foundation") + "foundation".length;
+                lines = [
+                  heading.slice(0, idx).trim(),
+                  heading.slice(idx).trim(),
+                ];
               } else {
                 lines = [heading];
               }

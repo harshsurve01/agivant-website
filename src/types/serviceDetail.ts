@@ -28,6 +28,7 @@ export interface ServiceDetailSectionData {
   media?: StandardizedMediaObject | null;
   cta?: StandardizedCTAObject | null;
   tags?: string[];
+  initialActiveIndex?: number;
 }
 
 export interface ServiceDetailSection {

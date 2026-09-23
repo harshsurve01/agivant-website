@@ -15,6 +15,7 @@ export interface LifecycleCardsProps {
   autoRotate?: boolean;
   autoRotateIntervalMs?: number;
   enableModal?: boolean;
+  showLearnMore?: boolean;
   indicatorVariant?: "dots" | "numbered";
   renderIndicator?: (props: {
     totalStages: number;
@@ -39,6 +40,7 @@ export function LifecycleCards({
   autoRotate = true,
   autoRotateIntervalMs = AUTO_ROTATE_INTERVAL_MS,
   enableModal = true,
+  showLearnMore,
   indicatorVariant = "dots",
   renderIndicator,
 }: LifecycleCardsProps) {
@@ -90,6 +92,7 @@ export function LifecycleCards({
             key={stage.id}
             stage={stage}
             isActive={activeIndex === index}
+            showLearnMore={showLearnMore ?? enableModal}
             onMouseEnter={() => setActiveIndex(index)}
             onClick={() => setActiveIndex(index)}
             onLearnMore={() => {

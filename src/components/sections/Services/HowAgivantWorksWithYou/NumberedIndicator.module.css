@@ -6,13 +6,12 @@
 
 .track {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: var(--space-4);
   width: 100%;
   max-width: var(--container-xl);
-  align-items: center;
-  justify-items: center;
   margin-top: var(--space-8);
 }
 
@@ -25,6 +24,8 @@
   background-color: var(--color-neutral-300, #CBD5E1);
   transform: translateY(-50%);
   z-index: 0;
+  transition: left var(--transition-base, 250ms ease),
+    right var(--transition-base, 250ms ease);
 }
 
 .slot {
@@ -34,6 +35,18 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  transition: max-width var(--transition-base, 250ms ease),
+    flex var(--transition-base, 250ms ease);
+}
+
+.slotDefault {
+  max-width: 15.8125rem;
+  flex: 0 1 15.8125rem;
+}
+
+.slotActive {
+  max-width: 17.625rem;
+  flex: 0 0 17.625rem;
 }
 
 .button {
@@ -96,7 +109,11 @@
     display: none;
   }
 
-  .slot {
+  .slot,
+  .slotDefault,
+  .slotActive {
+    max-width: none;
+    flex: 0 0 auto;
     width: auto;
   }
 }

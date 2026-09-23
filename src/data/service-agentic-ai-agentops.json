@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "service",
+  "slug": "agentic-ai-agentops",
+  "title": "Agentic AI & AgentOps",
+  "seo": {
+    "title": "Agentic AI & AgentOps | Agivant",
+    "description": "Agentic AI and Agent Ops that runs the work and answers for every action.",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Agentic AI and Agent Ops<br>that runs the work and<br>answers for every action",
+    "subtitle": null,
+    "summary": null,
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/services/agentic-ai-hero-ribbon.png",
+      "assetKey": "service-agentic-ai-hero-ribbon",
+      "alt": "Agentic AI and Agent Ops hero ribbon",
+      "caption": null,
+      "width": 5760,
+      "height": 4391
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "sections": [],
+  "footerCta": {
+    "enabled": false,
+    "heading": null,
+    "subheading": null,
+    "partner": null,
+    "primaryCta": null,
+    "secondaryCta": null
+  }
+}

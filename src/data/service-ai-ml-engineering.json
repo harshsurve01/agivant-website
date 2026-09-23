@@ -1,0 +1,288 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "service",
+  "slug": "ai-ml-engineering",
+  "title": "AI & ML Engineering",
+  "seo": {
+    "title": "AI & ML Engineering | Agivant",
+    "description": null,
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "AI and ML engineering<br>built for the domain and<br>tuned for results",
+    "subtitle": null,
+    "summary": null,
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/services/aiml-engineer-hero-ribbon.png",
+      "assetKey": "service-ai-ml-engineering-hero-ribbon",
+      "alt": "AI and ML engineering hero ribbon",
+      "caption": null,
+      "width": 1440,
+      "height": 888
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "sections": [
+    {
+      "id": "running-today",
+      "type": "stats",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": "We build RAG systems, predictive models, AI-powered assistants, and inference services engineered to spec and build real business value. Each one is tuned to your domain and measured on a number the business already watches. The repeatable analysis moves to the system, and your team spends its time where judgment is actually needed.",
+        "columns": [],
+        "media": null,
+        "cta": null,
+        "tags": [
+          "Data science team",
+          "Product engineering",
+          "Domain specialists",
+          "Application teams"
+        ]
+      },
+      "blocks": [
+        {
+          "id": "content-velocity",
+          "type": "metric",
+          "value": "10x",
+          "label": "Content velocity",
+          "detail": null
+        },
+        {
+          "id": "test-doc-automation",
+          "type": "metric",
+          "value": "90%",
+          "label": "Test-doc automation",
+          "detail": null
+        },
+        {
+          "id": "languages-zero-lag",
+          "type": "metric",
+          "value": "50+",
+          "label": "Languages, zero lag",
+          "detail": null
+        },
+        {
+          "id": "qa-coverage",
+          "type": "metric",
+          "value": "100%",
+          "label": "QA coverage",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "id": "engineered-for-domain-tuned-for-impact",
+      "type": "service-capability-cards",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Engineered for domain, tuned for impact",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null,
+        "tags": []
+      },
+      "blocks": [
+        {
+          "id": "ai-strategy-and-architecture",
+          "type": "capability-card",
+          "title": "AI strategy and architecture",
+          "summary": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/services/ai-strategy.png",
+            "alt": "AI strategy and architecture"
+          },
+          "bullets": [
+            "Model, data and serving choices mapped to the outcome they move",
+            "A sequenced build plan with the first release named up front",
+            "Architecture chosen on fit to the domain",
+            "Success measured on a business number agreed before engineering begins"
+          ]
+        },
+        {
+          "id": "model-customization-and-fine-tuning",
+          "type": "capability-card",
+          "title": "Model customization and fine-tuning",
+          "summary": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/services/model-customisation.png",
+            "alt": "Model customization and fine-tuning"
+          },
+          "bullets": [
+            "Fine-tuning and adaptation on enterprise-specific data",
+            "Domain benchmarks agreed and tested against before release",
+            "Accuracy held steady well past launch",
+            "Retraining pipelines that keep the system current as data shifts"
+          ]
+        },
+        {
+          "id": "rag-and-decision-intelligence",
+          "type": "capability-card",
+          "title": "RAG and decision intelligence",
+          "summary": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/services/rag-and-decision.png",
+            "alt": "RAG and decision intelligence"
+          },
+          "bullets": [
+            "Retrieval grounded in current, trusted enterprise sources",
+            "Reasoning steps recorded and open to audit",
+            "Knowledge graphs connecting entities across functions",
+            "Proprietary context used with IP held inside a secure enclave"
+          ]
+        },
+        {
+          "id": "ai-powered-assistants",
+          "type": "capability-card",
+          "title": "AI-powered assistants",
+          "summary": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/services/ai-powered.png",
+            "alt": "AI-powered assistants"
+          },
+          "bullets": [
+            "Support, voice and document workloads served continuously",
+            "Quality attributes scored automatically on every interaction",
+            "Root cause analysis carried inside the pipeline itself",
+            "Multilingual systems standing up across regions from a single build"
+          ]
+        },
+        {
+          "id": "inference-services-and-enterprise-integration",
+          "type": "capability-card",
+          "title": "Inference services and enterprise integration",
+          "summary": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/services/inference-services.png",
+            "alt": "Inference services and enterprise integration"
+          },
+          "bullets": [
+            "Native integration with enterprise data, identity and services",
+            "Inference engineered for sustained production load",
+            "Text, voice and document workloads on one architecture",
+            "Accuracy monitored so it holds as volume climbs"
+          ]
+        },
+        {
+          "id": "legacy-code-understanding-and-rebuild",
+          "type": "capability-card",
+          "title": "Legacy code understanding and rebuild",
+          "summary": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/services/legacy-code.png",
+            "alt": "Legacy code understanding and rebuild"
+          },
+          "bullets": [
+            "Legacy business logic read and narrated for engineering review",
+            "Domain-specific code conversion automated across large codebases",
+            "Specialist attention spent on validating the result",
+            "Multi-year rewrite programs compressed to a fraction of the original plan"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-ampd-way",
+      "type": "how-your-enterprise-gets-ampd",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "The Amp’d Way",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "fix-the-target",
+          "type": "numberedItem",
+          "number": "01",
+          "title": "Fix the target",
+          "body": "The business number comes first, with the workload, the volume and the tolerance for error named alongside it.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "ground-it-in-your-domain",
+          "type": "numberedItem",
+          "number": "02",
+          "title": "Ground it in your domain",
+          "body": "Data, retrieval and evaluation benchmarks are built from the enterprise sources your people already trust.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "engineer-against-the-domain",
+          "type": "numberedItem",
+          "number": "03",
+          "title": "Engineer against the domain",
+          "body": "The system is tuned on your data and checked against domain benchmarks before it goes live.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "tune-in-production",
+          "type": "numberedItem",
+          "number": "04",
+          "title": "Tune in production",
+          "body": "Drift is monitored and retraining runs on a pipeline, so accuracy holds as a sustained property while the system runs.",
+          "items": [],
+          "media": null
+        }
+      ]
+    },
+    {
+      "id": "client-success-production",
+      "type": "case_study_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Client success<br>in production, at scale",
+        "description": "See how Agivant engineers real business value for the autonomous enterprise, across several industries",
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "See more client stories",
+          "href": "/case-studies",
+          "external": false
+        }
+      }
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Ready To Engineer AI That Moves <br>The Numbers That Matter?",
+    "subheading": null,
+    "partner": null,
+    "primaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": "/contact",
+      "external": false,
+      "icon": "cube",
+      "variant": "primary"
+    },
+    "secondaryCta": null
+  }
+}

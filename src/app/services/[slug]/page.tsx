@@ -3,12 +3,17 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { GradientLayerProvider } from "@/components/effects/GradientLayer";
-import { Hero } from "@/components/sections/Services/Article";
+import { Hero, CleanData, ServiceCapabilityCards } from "@/components/sections/Services/Article";
 import { RunningToday } from "@/components/sections/Services/RunningToday";
 import { AIStack } from "@/components/sections/Homepage/AIStack";
 import { HowYourEnterpriseGetsAmpd } from "@/components/sections/Services/HowYourEnterpriseGetsAmpd";
+import { Lifecycle } from "@/components/sections/Homepage/Lifecycle";
 import { ProofSection } from "@/components/sections/Homepage/Proof";
-import { getServicePage, getAllServiceSlugs } from "@/data/services";
+import {
+  getServicePage,
+  getAllServiceSlugs,
+  canonicalServiceProofSection,
+} from "@/data/services";
 import type {
   ServiceDetailPageDocument,
   ServiceDetailSection,
@@ -70,6 +75,16 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 />
               );
 
+            case "clean-data":
+            case "editorial-bento":
+              return (
+                <CleanData
+                  key={section.id}
+                  heading={section.data.heading ?? undefined}
+                  cards={(section.blocks ?? []) as any}
+                />
+              );
+
             case "ai-stack":
               return (
                 <AIStack
@@ -125,10 +140,50 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 />
               );
 
+            case "lifecycle":
+            case "ampd-way":
+              return (
+                <Lifecycle
+                  key={section.id}
+                  heading={section.data.heading ?? "The Amp'd Way"}
+                  eyebrow={section.data.eyebrow ?? null}
+                  description={section.data.description ?? null}
+                  stages={(section.blocks ?? []).map((b: any) => ({
+                    id: b.id,
+                    title: b.title ?? "",
+                    description: b.body ?? b.description ?? "",
+                    media: {
+                      src: b.media?.src ?? "/images/lifecycle/architect.png",
+                      alt: b.media?.alt ?? b.title,
+                    },
+                  }))}
+                  initialActiveIndex={section.data.initialActiveIndex ?? 2}
+                  autoRotate={false}
+                  enableModal={false}
+                  showLearnMore={false}
+                  indicatorVariant="numbered"
+                  showConnector={false}
+                  showSummary={false}
+                  ribbon={
+                    section.data.media
+                      ? {
+                          src: section.data.media.src,
+                          alt: section.data.media.alt ?? "",
+                          width: section.data.media.width ?? 1440,
+                          height: section.data.media.height ?? 1834,
+                        }
+                      : null
+                  }
+                />
+              );
+
             case "case_study_grid":
             case "proof":
             case "client-success": {
-              const blocks = (section.blocks ?? []) as any[];
+              let blocks = (section.blocks ?? []) as any[];
+              if (!blocks || blocks.length === 0) {
+                blocks = (canonicalServiceProofSection?.blocks ?? []) as any[];
+              }
               const topLeft = blocks.find((b) => b.slot === "top-left") ?? blocks[0];
               const tallRight =
                 blocks.find(
@@ -147,13 +202,22 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                   key={section.id}
                   header={{
                     heading:
-                      section.data.heading ??
+                      section.data?.heading ??
+                      canonicalServiceProofSection?.data?.heading ??
                       "Client success<br>in production, at scale",
-                    description: section.data.description ?? "",
+                    description:
+                      section.data?.description ??
+                      canonicalServiceProofSection?.data?.description ??
+                      "",
                     cta: {
                       label:
-                        section.data.cta?.label ?? "See more client stories",
-                      href: section.data.cta?.href ?? "/case-studies",
+                        section.data?.cta?.label ??
+                        canonicalServiceProofSection?.data?.cta?.label ??
+                        "See more client stories",
+                      href:
+                        section.data?.cta?.href ??
+                        canonicalServiceProofSection?.data?.cta?.href ??
+                        "/case-studies",
                     },
                   }}
                   caseStudies={sortedBlocks.map((block: any) => {
@@ -175,7 +239,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                       image: {
                         src:
                           block.media?.src ??
-                          "/images/proof/agentic-Quote-accelerator.png",
+                          "/images/proof/agentic-quote-accelerator.png",
                         alt: block.media?.alt ?? block.title ?? "Case study visual",
                       },
                       theme: "default",
@@ -185,6 +249,17 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 />
               );
             }
+
+            case "service-capability-cards":
+            case "capability-cards":
+            case "impact-cards":
+              return (
+                <ServiceCapabilityCards
+                  key={section.id}
+                  heading={section.data.heading ?? undefined}
+                  cards={(section.blocks ?? []) as any}
+                />
+              );
 
             default:
               return null;
