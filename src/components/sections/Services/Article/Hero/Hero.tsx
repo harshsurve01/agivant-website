@@ -36,6 +36,8 @@ export function Hero({
       : null;
 
   const ribbonSrc = media?.src || DEFAULT_HERO_RIBBON;
+  const isMirrored = ribbonSrc.includes("goal-driven-agents");
+  const isLandingPageRibbon = ribbonSrc.includes("landing-page");
 
   return (
     <section
@@ -50,8 +52,15 @@ export function Hero({
         src={ribbonSrc}
         width={media?.width || 1440}
         height={media?.height || 502}
-        className={clsx(styles.ribbonWrapper, ribbonClassName)}
-        imageClassName={styles.ribbonImage}
+        className={clsx(
+          styles.ribbonWrapper,
+          isLandingPageRibbon && styles.ribbonLandingPage,
+          ribbonClassName
+        )}
+        imageClassName={clsx(
+          styles.ribbonImage,
+          isMirrored && styles.ribbonMirrored
+        )}
         priority
       />
 

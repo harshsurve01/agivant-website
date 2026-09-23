@@ -18,7 +18,7 @@
   },
   "blocks": [
     {
-      "id": "agentic-quote-accelerator",
+      "id": "agentic-Quote-accelerator",
       "type": "card",
       "eyebrow": "Enterprise Sales",
       "title": "Agentic Quote Accelerator",
@@ -33,7 +33,7 @@
       "cta": {
         "enabled": true,
         "label": "Read case study",
-        "href": "/case-studies/agentic-quote-accelerator",
+        "href": "/case-studies/agentic-Quote-accelerator",
         "external": false
       },
       "items": [

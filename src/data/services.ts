@@ -1,5 +1,6 @@
 import servicesPageJson from "./servicesPage.json";
 import serviceCloudPlatformEngineeringJson from "./service-cloud-platform-engineering.json";
+import serviceDataEngineeringAdvancedAnalyticsJson from "./service-data-engineering-advanced-analytics.json";
 
 export interface StandardizedSEO {
   title: string | null;
@@ -240,6 +241,7 @@ export type { ServiceDetailHeroData, ServiceDetailPageDocument };
 
 const SERVICE_PAGES: Record<string, ServiceDetailPageDocument> = {
   "cloud-platform-engineering": serviceCloudPlatformEngineeringJson as ServiceDetailPageDocument,
+  "data-engineering-advanced-analytics": serviceDataEngineeringAdvancedAnalyticsJson as ServiceDetailPageDocument,
 };
 
 export function getServicePage(slug: string): ServiceDetailPageDocument | null {

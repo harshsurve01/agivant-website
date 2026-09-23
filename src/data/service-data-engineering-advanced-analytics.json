@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "service",
+  "slug": "data-engineering-advanced-analytics",
+  "title": "Data Engineering & Advanced Analytics",
+  "seo": {
+    "title": "Data Engineering & Advanced Analytics | Agivant",
+    "description": null,
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Data engineering and<br>advanced analytics<br>a dependable AI foundation",
+    "subtitle": null,
+    "summary": null,
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/solutions/landing-page-ribbon.png",
+      "assetKey": "service-data-engineering-hero-ribbon",
+      "alt": "Data engineering and advanced analytics hero ribbon",
+      "caption": null,
+      "width": 1434,
+      "height": 757
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "sections": [
+    {
+      "id": "running-today",
+      "type": "stats",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": "We build pipelines, semantic layers, knowledge graphs and vector retrieval so agentic systems have reliable ground truth from day one. One team owns the pipelines and the analytics that run on them, so the mechanical work runs on its own and your team spends its time where judgment is actually needed.",
+        "columns": [],
+        "media": null,
+        "cta": null,
+        "tags": [
+          "Data platform teams",
+          "Analytics teams",
+          "Data Operations",
+          "Ground-truth and annotation teams"
+        ]
+      },
+      "blocks": [
+        {
+          "id": "annotation-automation",
+          "type": "metric",
+          "value": "80%",
+          "label": "Annotation automation",
+          "detail": null
+        },
+        {
+          "id": "records-month",
+          "type": "metric",
+          "value": "90%",
+          "label": "Records/Month",
+          "detail": null
+        },
+        {
+          "id": "processing-time-cut",
+          "type": "metric",
+          "value": "50%",
+          "label": "Processing time cut",
+          "detail": null
+        },
+        {
+          "id": "quality-confidence",
+          "type": "metric",
+          "value": "90%",
+          "label": "Quality Confidence",
+          "detail": null
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": false,
+    "heading": null,
+    "subheading": null,
+    "partner": null,
+    "primaryCta": null,
+    "secondaryCta": null
+  }
+}

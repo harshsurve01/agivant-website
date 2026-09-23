@@ -45,12 +45,13 @@
   display: block;
 }
 
-/* Two-tone typography: Line 1 = Purple, Line 2 = Black */
-.headingLine:first-child {
+/* Two-tone typography: Preceding lines = Purple, Last line = Black */
+.headingLine {
+  display: block;
   color: var(--color-brand-primary);
 }
 
-.headingLine:nth-child(n + 2) {
+.headingLine:last-child {
   color: var(--color-text-primary);
 }
 
@@ -65,7 +66,7 @@
 .ribbonWrapper {
   position: absolute;
   inset-inline: 0;
-  top: 25rem;
+  top: var(--hero-ribbon-top, 25rem);
   z-index: 5;
   pointer-events: none;
   display: flex;
@@ -73,11 +74,18 @@
   align-items: flex-start;
 }
 
+.ribbonLandingPage {
+  top: 10rem;
+}
+
 .ribbonImage {
   width: 100%;
   max-width: 1920px;
   height: auto;
   object-fit: cover;
+}
+
+.ribbonMirrored {
   transform: scaleX(-1);
 }
 
@@ -116,6 +124,10 @@
 
   .ribbonWrapper {
     top: 13rem;
+  }
+
+  .ribbonLandingPage {
+    top: 6rem;
   }
 
   .ribbonImage {

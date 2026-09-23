@@ -54,8 +54,8 @@ export async function generateMetadata({
 
 // Fallback image asset mapping for proof cards without live CMS URLs
 const PROOF_IMAGES: Record<string, string> = {
-  "quote-accelerator": "/images/proof/agentic-quote-accelerator.png",
-  "case-quote-accelerator": "/images/proof/agentic-quote-accelerator.png",
+  "quote-accelerator": "/images/proof/agentic-Quote-accelerator.png",
+  "case-quote-accelerator": "/images/proof/agentic-Quote-accelerator.png",
   "sre": "/images/proof/ai-native-transformation.png",
   "case-ai-native-sre": "/images/proof/ai-native-transformation.png",
   "markets": "/images/proof/global-market-agentic-network.png",
@@ -119,7 +119,7 @@ export default async function SolutionInnerPage({
       block.media?.src ||
       (block.media?.assetKey && PROOF_IMAGES[block.media.assetKey]) ||
       PROOF_IMAGES[block.id] ||
-      "/images/proof/agentic-quote-accelerator.png";
+      "/images/proof/agentic-Quote-accelerator.png";
 
     const items = block.items ?? [];
     let metric: string | undefined = undefined;

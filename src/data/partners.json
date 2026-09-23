@@ -250,7 +250,7 @@
           "body": "Compress complex quoting cycles from days to minutes.",
           "media": {
             "kind": "image",
-            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "src": "/images/partners/gemini/solutions/agentic-Quote-accelerator.png",
             "assetKey": "gemini-solution-1",
             "alt": "Agentic Quote Accelerator",
             "caption": null
@@ -657,14 +657,14 @@
       },
       "blocks": [
         {
-          "id": "agentic-quote-accelerator",
+          "id": "agentic-Quote-accelerator",
           "type": "card",
           "eyebrow": "Solution",
           "title": "Agentic Quote Accelerator",
           "body": "Seven agents work alongside the CRM already in place, carrying an RFQ through discovery, pricing, approvals, and proposal.",
           "media": {
             "kind": "image",
-            "src": "/images/partners/gemini/accelerators/agentic-quote-accelerator.png",
+            "src": "/images/partners/gemini/accelerators/agentic-Quote-accelerator.png",
             "assetKey": "gemini-built-1",
             "alt": "Agentic Quote Accelerator",
             "caption": null
@@ -672,11 +672,11 @@
           "cta": {
             "enabled": true,
             "label": "See the solution >>",
-            "href": "/solutions/agentic-quote-accelerator",
+            "href": "/solutions/agentic-Quote-accelerator",
             "external": false
           },
           "items": [],
-          "slug": "agentic-quote-accelerator",
+          "slug": "agentic-Quote-accelerator",
           "metric": "60 percent faster quote cycles · 2 to 5 percent order value uplift",
           "badge": "Solution"
         },
