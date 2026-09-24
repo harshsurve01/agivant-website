@@ -39,6 +39,8 @@ export function Hero({
   const isMirrored = ribbonSrc.includes("goal-driven-agents");
   const isLandingPageRibbon = ribbonSrc.includes("landing-page");
   const isAgenticAiRibbon = ribbonSrc.includes("agentic-ai");
+  const isMlopsRibbon =
+    Boolean(media?.assetKey?.includes("mlops")) || ribbonSrc.includes("mlops");
 
   return (
     <section
@@ -57,6 +59,7 @@ export function Hero({
           styles.ribbonWrapper,
           isLandingPageRibbon && styles.ribbonLandingPage,
           isAgenticAiRibbon && styles.ribbonAgenticAi,
+          isMlopsRibbon && styles.ribbonMlops,
           ribbonClassName
         )}
         imageClassName={clsx(

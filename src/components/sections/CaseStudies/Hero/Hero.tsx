@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { HeroBackground } from "@/components/ui/HeroBackground";
 import { Container } from "@/components/ui/Container";
 import { SearchBar } from "@/components/ui/SearchBar";
@@ -17,7 +18,10 @@ import type { CaseStudiesHeroProps } from "./types";
  * `data-hero-interaction-root` enables pointer tracking across the full Hero for HeroParticleField.
  */
 export function Hero({ heading, description, search }: CaseStudiesHeroProps) {
-  const [firstLine, ...rest] = heading.split("\n");
+  const [firstLine = "", ...rest] = heading
+    .split(/<br\s*\/?>|\n/gi)
+    .map((line) => line.trim())
+    .filter(Boolean);
   const secondLine = rest.join(" ");
 
   return (
@@ -29,9 +33,13 @@ export function Hero({ heading, description, search }: CaseStudiesHeroProps) {
       <Container className={styles.container}>
         <div className={styles.content}>
           <h1 className={styles.heading}>
-            <span className={styles.headingLine}>{firstLine}</span>
+            <span className={clsx(styles.headingLine, styles.headingLineAccent)}>
+              {firstLine}
+            </span>
             {secondLine && (
-              <span className={styles.headingLine}>{secondLine}</span>
+              <span className={clsx(styles.headingLine, styles.headingLinePrimary)}>
+                {secondLine}
+              </span>
             )}
           </h1>
 

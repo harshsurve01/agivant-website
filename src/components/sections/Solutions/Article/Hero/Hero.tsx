@@ -28,12 +28,50 @@ export function Hero({
   className,
   ribbonClassName,
 }: SolutionHeroProps) {
-  const lines =
+  let lines =
     typeof heading === "string" && (heading.includes("<br") || heading.includes("\n"))
       ? heading.split(/<br\s*\/?>|\n/gi).map((line) => line.trim()).filter(Boolean)
       : null;
 
+  if (
+    !lines &&
+    typeof heading === "string" &&
+    heading.toLowerCase().includes("agentic operating layer")
+  ) {
+    const match = heading.match(/agentic\s+operating\s+layer/i);
+    if (match && match.index !== undefined) {
+      const splitEnd = match.index + match[0].length;
+      lines = [
+        heading.slice(0, splitEnd).trim(),
+        heading.slice(splitEnd).trim(),
+      ].filter(Boolean);
+    }
+  }
+
+  if (
+    !lines &&
+    typeof heading === "string" &&
+    heading.toLowerCase().includes("ai solutions powering real")
+  ) {
+    const match = heading.match(/ai\s+solutions\s+powering\s+real/i);
+    if (match && match.index !== undefined) {
+      const splitEnd = match.index + match[0].length;
+      lines = [
+        heading.slice(0, splitEnd).trim(),
+        heading.slice(splitEnd).trim(),
+      ].filter(Boolean);
+    }
+  }
+
   const ribbonSrc = media?.src || SHARED_HERO_RIBBON;
+
+  const isAgentLibrary =
+    typeof heading === "string" &&
+    heading.toLowerCase().includes("agentic operating layer");
+
+  const isSolutionsLanding =
+    typeof heading === "string" &&
+    heading.toLowerCase().includes("ai solutions powering real");
 
   return (
     <section
@@ -58,11 +96,31 @@ export function Hero({
         <div className={styles.content}>
           <h1 className={styles.heading}>
             {lines
-              ? lines.map((line, idx) => (
-                  <span key={idx} className={styles.headingLine}>
-                    {line}
-                  </span>
-                ))
+              ? lines.map((line, idx) => {
+                  let isPrimary = false;
+                  let isAccent = true;
+
+                  if (isAgentLibrary) {
+                    isAccent = idx === 0;
+                    isPrimary = idx === 1;
+                  } else if (isSolutionsLanding) {
+                    isPrimary = idx === 0;
+                    isAccent = idx === 1;
+                  }
+
+                  return (
+                    <span
+                      key={idx}
+                      className={clsx(
+                        styles.headingLine,
+                        isAccent && styles.headingLineAccent,
+                        isPrimary && styles.headingLinePrimary
+                      )}
+                    >
+                      {line}
+                    </span>
+                  );
+                })
               : heading}
           </h1>
           <p className={styles.description}>{description}</p>

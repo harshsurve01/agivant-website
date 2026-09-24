@@ -1,0 +1,345 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "service",
+  "slug": "mlops-scalable-ml-platforms",
+  "title": "MLOps & Scalable ML Platforms",
+  "seo": {
+    "title": "MLOps & Scalable ML Platforms | Agivant",
+    "description": "MLOps and scalable ML platforms that ship faster and stay reliable.",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "MLOps and scalable ML platforms<br>that ship faster and stay reliable",
+    "subtitle": null,
+    "summary": null,
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/solutions/innerpages/goal-driven-agents-enterprise-workflows/hero-ribbon.png",
+      "assetKey": "service-mlops-scalable-ml-platforms-hero-ribbon",
+      "alt": "MLOps and scalable ML platforms hero ribbon",
+      "caption": null,
+      "width": 1440,
+      "height": 502
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "sections": [
+    {
+      "id": "running-today",
+      "type": "stats",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": "We operationalize models and agents with deployment pipelines, observability, evaluation and the runtime controls that keep autonomous production systems reliable and improving. The platform beneath scales training and inference with the workload, so releases move from a hand-run risk to a routine step.",
+        "columns": [],
+        "media": null,
+        "cta": null,
+        "tags": [
+          "ML platform teams",
+          "Data science operations",
+          "Release engineering",
+          "AI infrastructure teams"
+        ]
+      },
+      "blocks": [
+        {
+          "id": "transactions-month",
+          "type": "metric",
+          "value": "5M+",
+          "label": "Transaction/month",
+          "detail": null
+        },
+        {
+          "id": "accuracy-sustained",
+          "type": "metric",
+          "value": "80%+",
+          "label": "Accuracy sustained",
+          "detail": null
+        },
+        {
+          "id": "processing-time-cut",
+          "type": "metric",
+          "value": "50%",
+          "label": "Processing time cut",
+          "detail": null
+        },
+        {
+          "id": "gpu-cost-reduction",
+          "type": "metric",
+          "value": "30–50%",
+          "label": "GPU cost reduction",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "id": "faster-releases-market-share-growth",
+      "type": "ai-stack",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Faster Releases, Market Share Growth",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "ml-cicd-release-engineering",
+          "type": "card",
+          "title": "ML CI/CD and release engineering",
+          "layout": "agentic",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/ai-native-card.png",
+            "assetKey": "service-ai-native-card",
+            "alt": "ML CI/CD and release engineering card",
+            "caption": null
+          },
+          "bullets": [
+            "Automated build, test and deploy for models and agents",
+            "Versioning that keeps rollback and audit simple",
+            "Test-case automation standing up in the first days and weeks",
+            "Releases that become a routine, scheduled step"
+          ]
+        },
+        {
+          "id": "scalable-ml-platforms",
+          "type": "card",
+          "title": "Scalable ML platforms for training and inference",
+          "layout": "data",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/cloud-modern-card.png",
+            "assetKey": "service-cloud-modern-card",
+            "alt": "Scalable ML platforms for training and inference card",
+            "caption": null
+          },
+          "bullets": [
+            "Distributed training for large models across the estate",
+            "Serving infrastructure engineered for sustained inference load",
+            "Processing that scales with data volume",
+            "GPU and compute capacity allocated by demand"
+          ]
+        },
+        {
+          "id": "model-observability-continuous-evaluation",
+          "type": "card",
+          "title": "Model observability and continuous evaluation",
+          "layout": "cloud",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/zero-trust-card.png",
+            "assetKey": "service-zero-trust-card",
+            "alt": "Model observability and continuous evaluation card",
+            "caption": null
+          },
+          "bullets": [
+            "Live monitoring of accuracy, latency and cost per model",
+            "Continuous evaluation against fresh production data",
+            "Drift caught in monitoring, ahead of the business noticing",
+            "Evaluation suites that travel with the model into every release"
+          ]
+        },
+        {
+          "id": "runtime-cost-infrastructure-optimization",
+          "type": "card",
+          "title": "Runtime cost and infrastructure optimization",
+          "layout": "data",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/container-card.png",
+            "assetKey": "service-container-card",
+            "alt": "Runtime cost and infrastructure optimization card",
+            "caption": null
+          },
+          "bullets": [
+            "Right-sized infrastructure for each workload",
+            "Cost tracked and optimized per model in production",
+            "Retraining automated as a closed loop, model by model",
+            "Spend held steady as data volume grows"
+          ]
+        },
+        {
+          "id": "operate-ownership-after-golive",
+          "type": "card",
+          "title": "Operate ownership after go-live",
+          "layout": "data",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/compute-economics-card.png",
+            "assetKey": "service-compute-economics-card",
+            "alt": "Operate ownership after go-live card",
+            "caption": null
+          },
+          "bullets": [
+            "Teams embedded, credentialed and working from day two",
+            "Ownership across pipelines, platforms, applications and analytics",
+            "The first automation shipped inside the first sprint",
+            "Teams brought along as systems move into autonomous operation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-ampd-way",
+      "type": "ampd-timeline",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "The Amp’d Way",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "embed-and-take-the-queue",
+          "type": "milestone",
+          "number": 1,
+          "title": "Embed and take the queue",
+          "body": "A credentialed team is working inside your operation within 48 hours, on the highest-toil workflows first."
+        },
+        {
+          "id": "automate-the-release-path",
+          "type": "milestone",
+          "number": 2,
+          "title": "Automate the release path",
+          "body": "Build, test, deploy and rollback become one pipeline for models and agents alike."
+        },
+        {
+          "id": "scale-the-platform",
+          "type": "milestone",
+          "number": 3,
+          "title": "Scale the platform",
+          "body": "Automation carries the repeatable work, and each wave lands with its own rollback and acceptance criteria."
+        },
+        {
+          "id": "improve-on-a-loop",
+          "type": "milestone",
+          "number": 4,
+          "title": "Improve on a loop",
+          "body": "Monitoring, retraining and evaluation run automatically, and the operate layer keeps taking on more of the estate."
+        }
+      ]
+    },
+    {
+      "id": "client-success-production",
+      "type": "case_study_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Client success<br>in production, at scale",
+        "description": "See how Agivant engineers real business value for the autonomous enterprise, across several industries",
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "See more client stories",
+          "href": "/case-studies",
+          "external": false
+        }
+      },
+      "blocks": [
+        {
+          "id": "support-operations-agents",
+          "type": "card",
+          "eyebrow": "Global technology leader",
+          "title": "Support operations run by agents",
+          "body": "Agents carry classification, deduplication and routing across the support queue, with...",
+          "slot": "top-left",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/agentic-quote-accelerator.png",
+            "assetKey": "case-quote-accelerator",
+            "alt": "Support operations run by agents",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/support-operations-run-by-agents",
+            "external": false
+          },
+          "items": []
+        },
+        {
+          "id": "generative-commerce-thirteen-workstreams",
+          "type": "card",
+          "eyebrow": "Global technology leader",
+          "title": "Generative commerce across thirteen workstreams",
+          "body": "One program carried thirteen workstreams across the commerce estate, tracked on revenue and conversion.",
+          "footer": "$30M revenue added · 35 to 40% faster time to market · 50% lower overhead",
+          "slot": "tall-right",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/ai-Native.png",
+            "assetKey": "case-ai-native-sre",
+            "alt": "Generative commerce across thirteen workstreams",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/generative-commerce-across-thirteen-workstreams",
+            "external": false
+          },
+          "items": [
+            "",
+            "",
+            "$30M revenue added · 35 to 40% faster time to market · 50% lower overhead"
+          ]
+        },
+        {
+          "id": "million-core-compute-farm",
+          "type": "card",
+          "eyebrow": "Global technology leader",
+          "title": "A million-core compute farm at full utilization",
+          "body": "A very large estate carries its job volume with idle compute engineered out...",
+          "slot": "bottom-left",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/global-Markets-Agent-Network.png",
+            "assetKey": "case-global-markets",
+            "alt": "A million-core compute farm at full utilization",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/million-core-compute-farm",
+            "external": false
+          },
+          "items": []
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Ready To Ship Models Faster And Keep Them Dependable?",
+    "subheading": null,
+    "partner": null,
+    "primaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": "/contact",
+      "external": false,
+      "icon": "cube",
+      "variant": "primary"
+    },
+    "secondaryCta": null
+  }
+}

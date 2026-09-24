@@ -49,6 +49,14 @@
   color: var(--color-brand-primary);
 }
 
+.headingLineAccent {
+  color: var(--color-brand-primary);
+}
+
+.headingLinePrimary {
+  color: var(--color-text-primary);
+}
+
 /* --------------------------------------------------------------------
    Description
    -------------------------------------------------------------------- */

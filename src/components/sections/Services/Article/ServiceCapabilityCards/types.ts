@@ -14,8 +14,16 @@ export interface ServiceCapabilityCardBlock {
   bullets: string[];
 }
 
+export interface ServiceCapabilityRibbonData {
+  src: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+}
+
 export interface ServiceCapabilityCardsProps {
   heading?: string;
   cards: ServiceCapabilityCardBlock[];
   className?: string;
+  ribbon?: ServiceCapabilityRibbonData | null;
 }

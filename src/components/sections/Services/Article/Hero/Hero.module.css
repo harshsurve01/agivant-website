@@ -16,6 +16,7 @@
   overflow-y: visible;
   --hero-ribbon-top: 5rem;
   --hero-ribbon-top-agentic: -5rem;
+  --hero-ribbon-top-mlops: 25rem;
 }
 
 .container {
@@ -39,7 +40,6 @@
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-normal);
-  max-width: 68rem;
 }
 
 /* Two-tone typography: Line 1 = Brand Purple, Following lines = Text Primary / Black */
@@ -77,6 +77,10 @@
 
 .ribbonAgenticAi {
   top: var(--hero-ribbon-top-agentic, -5rem);
+}
+
+.ribbonMlops {
+  top: var(--hero-ribbon-top-mlops, 15rem);
 }
 
 .ribbonImage {

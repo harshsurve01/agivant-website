@@ -3,6 +3,7 @@ import serviceCloudPlatformEngineeringJson from "./service-cloud-platform-engine
 import serviceDataEngineeringAdvancedAnalyticsJson from "./service-data-engineering-advanced-analytics.json";
 import serviceAiMlEngineeringJson from "./service-ai-ml-engineering.json";
 import serviceAgenticAiAgentopsJson from "./service-agentic-ai-agentops.json";
+import serviceMlopsScalableMlPlatformsJson from "./service-mlops-scalable-ml-platforms.json";
 
 export interface StandardizedSEO {
   title: string | null;
@@ -246,6 +247,7 @@ const SERVICE_PAGES: Record<string, ServiceDetailPageDocument> = {
   "data-engineering-advanced-analytics": serviceDataEngineeringAdvancedAnalyticsJson as ServiceDetailPageDocument,
   "ai-ml-engineering": serviceAiMlEngineeringJson as ServiceDetailPageDocument,
   "agentic-ai-agentops": serviceAgenticAiAgentopsJson as ServiceDetailPageDocument,
+  "mlops-scalable-ml-platforms": serviceMlopsScalableMlPlatformsJson as ServiceDetailPageDocument,
 };
 
 export function getServicePage(slug: string): ServiceDetailPageDocument | null {

@@ -7,6 +7,7 @@ import { Hero, CleanData, ServiceCapabilityCards } from "@/components/sections/S
 import { RunningToday } from "@/components/sections/Services/RunningToday";
 import { AIStack } from "@/components/sections/Homepage/AIStack";
 import { HowYourEnterpriseGetsAmpd } from "@/components/sections/Services/HowYourEnterpriseGetsAmpd";
+import { AmpdTimeline } from "@/components/sections/Services/AmpdTimeline";
 import { Lifecycle } from "@/components/sections/Homepage/Lifecycle";
 import { ProofSection } from "@/components/sections/Homepage/Proof";
 import {
@@ -174,6 +175,27 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                         }
                       : null
                   }
+                  showBackgroundArtwork={
+                    section.data.showBackgroundArtwork !== undefined
+                      ? Boolean(section.data.showBackgroundArtwork)
+                      : Boolean(section.data.media)
+                  }
+                />
+              );
+
+            case "ampd-timeline":
+            case "chronological-timeline":
+            case "timeline":
+              return (
+                <AmpdTimeline
+                  key={section.id}
+                  heading={section.data.heading ?? "The Amp’d Way"}
+                  items={(section.blocks ?? []).map((b: any, index: number) => ({
+                    id: b.id || `milestone-${index + 1}`,
+                    number: String(b.number ?? index + 1).padStart(2, "0"),
+                    title: b.title ?? "",
+                    description: b.body ?? b.description ?? "",
+                  }))}
                 />
               );
 
@@ -252,14 +274,37 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
             case "service-capability-cards":
             case "capability-cards":
-            case "impact-cards":
+            case "impact-cards": {
+              const hasRibbon =
+                Boolean(section.data.media) ||
+                section.id === "engineered-for-domain-tuned-for-impact" ||
+                Boolean(section.data.heading?.includes("Engineered for domain"));
+
+              const ribbon = section.data.media
+                ? {
+                    src: section.data.media.src,
+                    alt: section.data.media.alt ?? "",
+                    width: section.data.media.width ?? 1440,
+                    height: section.data.media.height ?? 1834,
+                  }
+                : hasRibbon
+                ? {
+                    src: "/images/services/bg-ribbon.png",
+                    alt: "Background decorative ribbon",
+                    width: 1440,
+                    height: 1834,
+                  }
+                : null;
+
               return (
                 <ServiceCapabilityCards
                   key={section.id}
                   heading={section.data.heading ?? undefined}
                   cards={(section.blocks ?? []) as any}
+                  ribbon={ribbon}
                 />
               );
+            }
 
             default:
               return null;

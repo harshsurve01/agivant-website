@@ -42,7 +42,10 @@ export interface BlogsHeroProps {
  * yet.
  */
 export function Hero({ heading, description, search }: BlogsHeroProps) {
-  const [eyebrow, ...rest] = heading.split("\n");
+  const [eyebrow = "", ...rest] = heading
+    .split(/<br\s*\/?>|\n/gi)
+    .map((line) => line.trim())
+    .filter(Boolean);
   const headline = rest.join(" ");
 
   return (

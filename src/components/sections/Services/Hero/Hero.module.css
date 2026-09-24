@@ -35,12 +35,11 @@
 
 .heading {
   font-family: var(--font-family-heading);
-  font-size: clamp(2.35rem, 4.2vw, 3.75rem);
+  font-size: var(--font-size-7xl);
   font-weight: var(--font-weight-bold);
   line-height: 1.18;
-  letter-spacing: var(--letter-spacing-tight);
+  letter-spacing: var(--letter-spacing-normal);
   color: var(--color-brand-primary);
-  max-width: 58rem;
   margin: 0;
 }
 
@@ -48,13 +47,21 @@
   display: block;
 }
 
+.headingLinePrimary {
+  color: var(--color-text-primary);
+}
+
+.headingLineAccent {
+  color: var(--color-brand-primary);
+}
+
 .description {
   font-family: var(--font-family-base);
-  font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-regular);
   line-height: 1.6;
   color: var(--color-neutral-600);
-  max-width: 56rem;
+  max-width: 75rem;
   margin-top: var(--space-6);
   margin-bottom: 0;
 }

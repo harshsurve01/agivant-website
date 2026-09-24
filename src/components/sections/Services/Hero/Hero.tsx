@@ -34,10 +34,21 @@ export function Hero({
   className,
   ribbonClassName,
 }: ServicesHeroProps) {
-  const lines =
+  let lines =
     typeof title === "string" && (title.includes("<br") || title.includes("\n"))
       ? title.split(/<br\s*\/?>|\n/gi).map((line) => line.trim()).filter(Boolean)
       : null;
+
+  if (!lines && typeof title === "string" && title.toLowerCase().includes("500+ agents in production")) {
+    const match = title.match(/500\+\s*agents\s+in\s+production\.?/i);
+    if (match && match.index !== undefined) {
+      const end = match.index + match[0].length;
+      lines = [
+        title.slice(0, end).trim(),
+        title.slice(end).trim(),
+      ];
+    }
+  }
 
   const ribbonSrc = media?.src || DEFAULT_RIBBON_SRC;
   const ribbonWidth = media?.width || 1920;
@@ -66,11 +77,22 @@ export function Hero({
         <div className={styles.content}>
           <h1 className={styles.heading}>
             {lines
-              ? lines.map((line, idx) => (
-                  <span key={idx} className={styles.headingLine}>
-                    {line}
-                  </span>
-                ))
+              ? lines.map((line, idx) => {
+                  const isPrimary = idx === 0;
+                  return (
+                    <span
+                      key={idx}
+                      className={clsx(
+                        styles.headingLine,
+                        isPrimary
+                          ? styles.headingLinePrimary
+                          : styles.headingLineAccent
+                      )}
+                    >
+                      {line}
+                    </span>
+                  );
+                })
               : title}
           </h1>
 

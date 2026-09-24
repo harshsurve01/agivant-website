@@ -29,6 +29,7 @@ export interface ServiceDetailSectionData {
   cta?: StandardizedCTAObject | null;
   tags?: string[];
   initialActiveIndex?: number;
+  showBackgroundArtwork?: boolean | null;
 }
 
 export interface ServiceDetailSection {

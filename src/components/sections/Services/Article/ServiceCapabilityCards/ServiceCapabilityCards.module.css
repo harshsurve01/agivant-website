@@ -15,6 +15,38 @@
   overflow-y: visible;
 }
 
+.hasRibbon {
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+.ribbonWrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 90rem;
+  pointer-events: none;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.ribbonImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
 .header {
   text-align: center;
   margin-bottom: var(--space-12, 2.5rem);

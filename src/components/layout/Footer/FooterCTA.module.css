@@ -105,6 +105,10 @@
   display: block;
 }
 
+.headingLinePartnersHighlight {
+  color: var(--color-brand-primary);
+}
+
 .buttonsPartners {
   display: flex;
   align-items: center;

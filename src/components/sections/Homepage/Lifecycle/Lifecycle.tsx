@@ -35,6 +35,7 @@ export interface LifecycleProps {
   showLearnMore?: boolean;
   indicatorVariant?: "dots" | "numbered";
   ribbon?: LifecycleRibbonData | null;
+  showBackgroundArtwork?: boolean;
   className?: string;
 }
 
@@ -63,6 +64,7 @@ export async function Lifecycle({
   showLearnMore = true,
   indicatorVariant = "dots",
   ribbon,
+  showBackgroundArtwork = true,
   className,
 }: LifecycleProps = {}) {
   const isCustomData = Boolean(propStages && propStages.length > 0);
@@ -87,9 +89,11 @@ export async function Lifecycle({
   const stages = propStages || stagesData;
   const summary = propSummary !== undefined ? propSummary : summaryData;
 
+  const hasActiveRibbon = showBackgroundArtwork && Boolean(ribbon);
+
   return (
-    <section className={clsx(styles.lifecycle, ribbon && styles.hasRibbon, className)}>
-      {ribbon && (
+    <section className={clsx(styles.lifecycle, hasActiveRibbon && styles.hasRibbon, className)}>
+      {hasActiveRibbon && ribbon && (
         <div className={styles.ribbonWrapper} aria-hidden="true">
           <Image
             src={ribbon.src}
@@ -103,7 +107,7 @@ export async function Lifecycle({
         </div>
       )}
 
-      {!ribbon && (
+      {showBackgroundArtwork && !ribbon && (
         <>
           <Gradient
             top="5%"

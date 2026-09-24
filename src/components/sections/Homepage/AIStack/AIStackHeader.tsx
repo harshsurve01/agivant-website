@@ -24,6 +24,15 @@ interface AIStackHeaderProps {
 export function AIStackHeader({ heading, description }: AIStackHeaderProps) {
   const renderHeading = () => {
     if (typeof heading === "string") {
+      if (heading.startsWith("Faster Releases,")) {
+        const rest = heading.slice("Faster Releases,".length);
+        return (
+          <span className={styles.headingLine}>
+            <span className={styles.highlight}>Faster Releases,</span>
+            {rest}
+          </span>
+        );
+      }
       if (heading.startsWith("Foundation")) {
         const rest = heading.slice("Foundation".length);
         return (

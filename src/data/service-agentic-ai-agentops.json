@@ -28,13 +28,349 @@
     "primaryCta": null,
     "secondaryCta": null
   },
-  "sections": [],
+  "sections": [
+    {
+      "id": "running-today",
+      "type": "stats",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": "We engineer agent-led autonomous workflows with orchestration, guardrails and policy enforcement, built in from the first line of the spec. Agents run the routine, unambiguous work, and AgentOps keeps them honest in production. The calls that need judgment go to a person.",
+        "columns": [],
+        "media": null,
+        "cta": null,
+        "tags": [
+          "Internal IT support",
+          "Developer support",
+          "Service desk teams",
+          "Escalation management"
+        ]
+      },
+      "blocks": [
+        {
+          "id": "operational-scale",
+          "type": "metric",
+          "value": "2x",
+          "label": "Operational scale",
+          "detail": null
+        },
+        {
+          "id": "confidence-maintained",
+          "type": "metric",
+          "value": "98%",
+          "label": "Confidence maintained",
+          "detail": null
+        },
+        {
+          "id": "triage-time",
+          "type": "metric",
+          "value": "~15min",
+          "label": "Triage time",
+          "detail": null
+        },
+        {
+          "id": "ticket-deflection",
+          "type": "metric",
+          "value": "60%",
+          "label": "Ticket deflection",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "id": "where-autonomy-meets-accountability",
+      "type": "service-capability-cards",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Where autonomy meets accountability",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null,
+        "tags": []
+      },
+      "blocks": [
+        {
+          "id": "agent-design-and-harness-engineering",
+          "type": "capability-card",
+          "title": "Agent design and harness engineering",
+          "summary": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/services/agent-design.png",
+            "alt": "Agent design and harness engineering"
+          },
+          "bullets": [
+            "Tool access, memory and action scope set per agent",
+            "Policy enforcement applied at the moment of action",
+            "Identity and registry assigned before an agent reaches production",
+            "Multi-agent orchestration, with specialist agents coordinating on one solution"
+          ]
+        },
+        {
+          "id": "spec-driven-agent-development",
+          "type": "capability-card",
+          "title": "Spec-driven agent development",
+          "summary": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/services/spec-driven.png",
+            "alt": "Spec-driven agent development"
+          },
+          "bullets": [
+            "Tool access, memory and action scope set per agent",
+            "Policy enforcement applied at the moment of action",
+            "Identity and registry assigned before an agent reaches production",
+            "Multi-agent orchestration, with specialist agents coordinating on one solution"
+          ]
+        },
+        {
+          "id": "agent-observability-and-drift-check",
+          "type": "capability-card",
+          "title": "Agent observability and drift-check",
+          "summary": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/services/agent-observability.png",
+            "alt": "Agent observability and drift-check"
+          },
+          "bullets": [
+            "Tool access, memory and action scope set per agent",
+            "Policy enforcement applied at the moment of action",
+            "Identity and registry assigned before an agent reaches production",
+            "Multi-agent orchestration, with specialist agents coordinating on one solution"
+          ]
+        },
+        {
+          "id": "enterprise-integration-and-human-control",
+          "type": "capability-card",
+          "title": "Enterprise integration and human control",
+          "summary": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/services/enterprise-integration.png",
+            "alt": "Enterprise integration and human control"
+          },
+          "bullets": [
+            "Tool access, memory and action scope set per agent",
+            "Policy enforcement applied at the moment of action",
+            "Identity and registry assigned before an agent reaches production",
+            "Multi-agent orchestration, with specialist agents coordinating on one solution"
+          ]
+        },
+        {
+          "id": "autonomous-support-and-service-operations",
+          "type": "capability-card",
+          "title": "Autonomous support and service operations",
+          "summary": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/services/autonomous-support.png",
+            "alt": "Autonomous support and service operations"
+          },
+          "bullets": [
+            "Tool access, memory and action scope set per agent",
+            "Policy enforcement applied at the moment of action",
+            "Identity and registry assigned before an agent reaches production",
+            "Multi-agent orchestration, with specialist agents coordinating on one solution"
+          ]
+        },
+        {
+          "id": "accelerators-as-a-starting-point",
+          "type": "capability-card",
+          "title": "Accelerators as a starting point",
+          "summary": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/services/accelerator-as.png",
+            "alt": "Accelerators as a starting point"
+          },
+          "bullets": [
+            "Tool access, memory and action scope set per agent",
+            "Policy enforcement applied at the moment of action",
+            "Identity and registry assigned before an agent reaches production",
+            "Multi-agent orchestration, with specialist agents coordinating on one solution"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-ampd-way",
+      "type": "lifecycle",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "The Amp'd Way",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "showBackgroundArtwork": false,
+        "cta": null,
+        "tags": [],
+        "initialActiveIndex": 2
+      },
+      "blocks": [
+        {
+          "id": "embed-and-take-the-queue",
+          "type": "card",
+          "number": 1,
+          "title": "Embed and take the queue",
+          "description": "A credentialed team is working inside your operation within 48 hours, on the highest-toil workflows first.",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/architect.png",
+            "alt": "Embed and take the queue"
+          }
+        },
+        {
+          "id": "automate-the-release-path",
+          "type": "card",
+          "number": 2,
+          "title": "Automate the release path",
+          "description": "Build, test, deploy and rollback become one pipeline for models and agents alike.",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/build1.png",
+            "alt": "Automate the release path"
+          }
+        },
+        {
+          "id": "scale-the-platform",
+          "type": "card",
+          "number": 3,
+          "title": "Scale the platform",
+          "description": "Training and inference capacity follows demand, with cost read at the same moment as throughput.",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/trust.png",
+            "alt": "Scale the platform"
+          }
+        },
+        {
+          "id": "improve-on-a-loop",
+          "type": "card",
+          "number": 4,
+          "title": "Improve on a loop",
+          "description": "Monitoring, retraining and evaluation run automatically, and the operate layer keeps taking on more of the estate.",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/operate.png",
+            "alt": "Improve on a loop"
+          }
+        }
+      ]
+    },
+    {
+      "id": "client-success-production",
+      "type": "case_study_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Client success<br>in production, at scale",
+        "description": "See how Agivant engineers real business value for the autonomous enterprise, across several industries",
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "See more client stories",
+          "href": "/case-studies",
+          "external": false
+        }
+      },
+      "blocks": [
+        {
+          "id": "support-operations-agents",
+          "type": "card",
+          "eyebrow": "Global technology leader",
+          "title": "Support operations run by agents",
+          "body": "Agents carry classification, deduplication and routing across the support queue, with...",
+          "slot": "top-left",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/agentic-quote-accelerator.png",
+            "assetKey": "case-quote-accelerator",
+            "alt": "Support operations run by agents",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/support-operations-run-by-agents",
+            "external": false
+          },
+          "items": []
+        },
+        {
+          "id": "generative-commerce-thirteen-workstreams",
+          "type": "card",
+          "eyebrow": "Global technology leader",
+          "title": "Generative commerce across thirteen workstreams",
+          "body": "One program carried thirteen workstreams across the commerce estate, tracked on revenue and conversion.",
+          "footer": "$30M revenue added · 35 to 40% faster time to market · 50% lower overhead",
+          "slot": "tall-right",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/ai-Native.png",
+            "assetKey": "case-ai-native-sre",
+            "alt": "Generative commerce across thirteen workstreams",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/generative-commerce-across-thirteen-workstreams",
+            "external": false
+          },
+          "items": [
+            "",
+            "",
+            "$30M revenue added · 35 to 40% faster time to market · 50% lower overhead"
+          ]
+        },
+        {
+          "id": "million-core-compute-farm",
+          "type": "card",
+          "eyebrow": "Global technology leader",
+          "title": "A million-core compute farm at full utilization",
+          "body": "A very large estate carries its job volume with idle compute engineered out...",
+          "slot": "bottom-left",
+          "media": {
+            "kind": "image",
+            "src": "/images/proof/global-Markets-Agent-Network.png",
+            "assetKey": "case-global-markets",
+            "alt": "A million-core compute farm at full utilization",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read case study",
+            "href": "/case-studies/million-core-compute-farm",
+            "external": false
+          },
+          "items": []
+        }
+      ]
+    }
+  ],
   "footerCta": {
-    "enabled": false,
-    "heading": null,
+    "enabled": true,
+    "heading": "Ready To Ship Models Faster And Keep Them Dependable?",
     "subheading": null,
     "partner": null,
-    "primaryCta": null,
+    "primaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": "/contact",
+      "external": false,
+      "icon": "cube",
+      "variant": "primary"
+    },
     "secondaryCta": null
   }
 }

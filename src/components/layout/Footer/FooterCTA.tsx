@@ -81,25 +81,60 @@ export function FooterCTA({
                   heading.slice(0, idx).trim(),
                   heading.slice(idx).trim(),
                 ];
+              } else if (heading.toLowerCase().includes("ready to ship models faster and")) {
+                const phraseMatch = heading.match(/ready to ship models faster and/i);
+                if (phraseMatch && phraseMatch.index !== undefined) {
+                  const splitEnd = phraseMatch.index + phraseMatch[0].length;
+                  lines = [
+                    heading.slice(0, splitEnd).trim(),
+                    heading.slice(splitEnd).trim(),
+                  ];
+                } else {
+                  lines = [heading];
+                }
+              } else if (heading.toLowerCase().includes("ready to put the right")) {
+                const phraseMatch = heading.match(/ready to put the right/i);
+                if (phraseMatch && phraseMatch.index !== undefined) {
+                  const splitEnd = phraseMatch.index + phraseMatch[0].length;
+                  lines = [
+                    heading.slice(0, splitEnd).trim(),
+                    heading.slice(splitEnd).trim(),
+                  ];
+                } else {
+                  lines = [heading];
+                }
               } else {
                 lines = [heading];
               }
 
-              return lines.map((line, index) => (
-                <span
-                  key={index}
-                  className={
-                    isPartnerDetail
-                      ? clsx(
-                          styles.headingLinePartnerDetail,
-                          index === 0 && styles.headingLinePartnerDetailHighlight
-                        )
-                      : styles.headingLinePartners
-                  }
-                >
-                  {line}
-                </span>
-              ));
+              const isLine2Highlight = heading
+                .toLowerCase()
+                .includes("ready to ship models faster and");
+
+              return lines.map((line, index) => {
+                const isHighlighted = isLine2Highlight
+                  ? index === 1
+                  : index === 0;
+
+                return (
+                  <span
+                    key={index}
+                    className={
+                      isPartnerDetail
+                        ? clsx(
+                            styles.headingLinePartnerDetail,
+                            isHighlighted && styles.headingLinePartnerDetailHighlight
+                          )
+                        : clsx(
+                            styles.headingLinePartners,
+                            isPartners && index === 0 && styles.headingLinePartnersHighlight
+                          )
+                    }
+                  >
+                    {line}
+                  </span>
+                );
+              });
             })()
           ) : (
             <>
@@ -110,7 +145,10 @@ export function FooterCTA({
                         styles.headingLinePartnerDetail,
                         styles.headingLinePartnerDetailHighlight
                       )
-                    : styles.headingLinePartners
+                    : clsx(
+                        styles.headingLinePartners,
+                        isPartners && styles.headingLinePartnersHighlight
+                      )
                 }
               >
                 {heading.line1}

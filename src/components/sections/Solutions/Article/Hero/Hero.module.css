@@ -44,6 +44,14 @@
   display: block;
 }
 
+.headingLinePrimary {
+  color: var(--color-text-primary);
+}
+
+.headingLineAccent {
+  color: var(--color-brand-primary);
+}
+
 .description {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-regular);
