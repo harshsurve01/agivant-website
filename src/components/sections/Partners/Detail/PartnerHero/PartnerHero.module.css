@@ -47,6 +47,14 @@
   display: block;
 }
 
+.headingLineAccent {
+  color: var(--color-brand-primary);
+}
+
+.headingLinePrimary {
+  color: var(--color-text-primary);
+}
+
 .logoWrapper {
   display: flex;
   justify-content: center;
@@ -137,5 +145,112 @@
   .gleanLogo {
     max-height: 2.75rem;
     max-width: min(10rem, 70vw);
+  }
+}
+
+/* ==========================================================================
+   NVIDIA-Specific Hero Layout & Typography
+   Strict rule: all new dimensional values use rem and variables.css tokens.
+   ========================================================================== */
+
+.nvidiaHero {
+  min-height: 85vh;
+  padding-top: var(--space-20, 5rem);
+  padding-bottom: var(--space-16, 4rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.nvidiaContent {
+  max-width: 68rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+}
+
+.nvidiaHeading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-base, "Poppins", sans-serif);
+  font-size: clamp(2.75rem, 5.5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-brand-primary, #8500DF);
+  margin-bottom: var(--space-4, 1rem);
+  text-align: center;
+}
+
+.nvidiaLine1 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  flex-wrap: wrap;
+}
+
+.nvidiaBrandText {
+  color: var(--color-brand-primary, #8500DF);
+  font-weight: 700;
+}
+
+.nvidiaLogoInline {
+  width: auto;
+  height: clamp(2.25rem, 4.5vw, 3.5rem);
+  max-height: clamp(2.25rem, 4.5vw, 3.5rem);
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.nvidiaLine2 {
+  display: block;
+  color: var(--color-brand-primary, #8500DF);
+  font-weight: 700;
+  margin-top: 0.125rem;
+}
+
+.nvidiaSubtitle {
+  margin: 0;
+  font-family: var(--font-family-base, "Poppins", sans-serif);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-text-primary, #000000);
+  max-width: 48rem;
+  text-align: center;
+}
+
+@media (max-width: 48rem) {
+  .nvidiaHero {
+    min-height: 65vh;
+    padding-top: var(--space-12, 3rem);
+    padding-bottom: var(--space-8, 2rem);
+  }
+
+  .nvidiaHeading {
+    font-size: clamp(2rem, 6.5vw, 2.75rem);
+    line-height: 1.2;
+  }
+
+  .nvidiaLine1 {
+    gap: 0.625rem;
+  }
+
+  .nvidiaLogoInline {
+    height: clamp(1.625rem, 5vw, 2.125rem);
+    max-height: clamp(1.625rem, 5vw, 2.125rem);
+  }
+
+  .nvidiaSubtitle {
+    font-size: 1.0625rem;
   }
 }

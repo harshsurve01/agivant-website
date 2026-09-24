@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Link from "next/link";
 import { HeroBackground } from "@/components/ui/HeroBackground";
 import { Container } from "@/components/ui/Container";
@@ -32,6 +33,20 @@ export interface TechTalkHeroProps {
  * `data-hero-interaction-root` enables pointer tracking across the full Hero for HeroParticleField.
  */
 export function Hero({ heading, description, cta }: TechTalkHeroProps) {
+  let lines: string[] | null = null;
+  if (typeof heading === "string" && (heading.includes("<br") || heading.includes("\n"))) {
+    lines = heading.split(/<br\s*\/?>|\n/gi).map((l) => l.trim()).filter(Boolean);
+  } else if (typeof heading === "string" && heading.toLowerCase().includes("inside production ai, with the")) {
+    const match = heading.match(/inside\s+production\s+ai,\s+with\s+the/i);
+    if (match && match.index !== undefined) {
+      const splitEnd = match.index + match[0].length;
+      lines = [
+        heading.slice(0, splitEnd).trim(),
+        heading.slice(splitEnd).trim(),
+      ].filter(Boolean);
+    }
+  }
+
   return (
     <section className={styles.hero} data-hero-interaction-root>
       <HeroBackground showEllipse={false} />
@@ -39,7 +54,25 @@ export function Hero({ heading, description, cta }: TechTalkHeroProps) {
       {/* Content */}
       <Container className={styles.container}>
         <div className={styles.content}>
-          <h1 className={styles.heading}>{heading}</h1>
+          <h1 className={styles.heading}>
+            {lines ? (
+              lines.map((line, idx) => (
+                <span
+                  key={idx}
+                  className={clsx(
+                    styles.headingLine,
+                    idx === 0
+                      ? styles.headingLineAccent
+                      : styles.headingLinePrimary
+                  )}
+                >
+                  {line}
+                </span>
+              ))
+            ) : (
+              heading
+            )}
+          </h1>
 
           <p className={styles.description}>{description}</p>
 

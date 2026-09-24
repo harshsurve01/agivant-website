@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "partnershipLanding",
+  "slug": "nvidia",
+  "title": "HyperCore | NVIDIA Partnership | Agivant",
+  "name": "NVIDIA",
+  "seo": {
+    "title": "NVIDIA Partnership | Agivant HyperCore",
+    "description": "HyperCore: The Accelerated Intelligence Core for the Enterprise with NVIDIA and Agivant Technologies.",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Agivant HyperCore",
+    "subtitle": "The Accelerated Intelligence Core for the Enterprise",
+    "summary": null,
+    "authors": [],
+    "partner": {
+      "name": "NVIDIA",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/nvidia.png",
+        "assetKey": "nvidia-logo",
+        "alt": "NVIDIA",
+        "caption": null,
+        "width": 249,
+        "height": 91
+      }
+    },
+    "media": {
+      "kind": "image",
+      "src": "/images/partners/nvidia-hero-ribbon.png",
+      "assetKey": "nvidia-hero-ribbon",
+      "alt": "NVIDIA HyperCore hero ribbon",
+      "caption": null,
+      "width": 2878,
+      "height": 1582
+    },
+    "primaryCta": null,
+    "secondaryCta": null,
+    "heading": "Agivant<br>HyperCore",
+    "ribbonSrc": "/images/partners/nvidia-hero-ribbon.png",
+    "ribbonWidth": 2878,
+    "ribbonHeight": 1582
+  },
+  "sections": [],
+  "footerCta": {
+    "enabled": false,
+    "heading": "",
+    "subheading": null,
+    "partner": {
+      "name": "NVIDIA",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/nvidia.png",
+        "assetKey": "partner-nvidia",
+        "alt": "NVIDIA logo",
+        "caption": null
+      }
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  }
+}

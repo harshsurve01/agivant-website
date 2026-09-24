@@ -37,6 +37,18 @@
   max-width: 62rem;
 }
 
+.headingLine {
+  display: block;
+}
+
+.headingLineAccent {
+  color: var(--color-brand-primary);
+}
+
+.headingLinePrimary {
+  color: var(--color-text-primary);
+}
+
 .description {
   font-family: var(--font-family-base);
   font-size: var(--font-size-xl);

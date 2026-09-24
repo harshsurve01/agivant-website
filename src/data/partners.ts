@@ -8,6 +8,7 @@ import databricksDetailJson from "./partner-databricks.json";
 import shopifyDetailJson from "./partner-shopify.json";
 import servicenowDetailJson from "./partner-servicenow.json";
 import gleanDetailJson from "./partner-glean.json";
+import nvidiaDetailJson from "./partner-nvidia.json";
 
 /**
  * data/partners.ts
@@ -448,6 +449,7 @@ export const PARTNERS_DETAIL_DATA: Record<string, StandardizedPartnerDetailPage>
   [shopifyDetailJson.slug]: shopifyDetailJson as unknown as StandardizedPartnerDetailPage,
   [servicenowDetailJson.slug]: servicenowDetailJson as unknown as StandardizedPartnerDetailPage,
   [gleanDetailJson.slug]: gleanDetailJson as unknown as StandardizedPartnerDetailPage,
+  [nvidiaDetailJson.slug]: nvidiaDetailJson as unknown as StandardizedPartnerDetailPage,
 };
 
 /**
@@ -479,6 +481,7 @@ function mapStandardizedToPartnerDetail(
     headingLine1,
     headingLine2,
     headingLines: headingLines.length > 0 ? headingLines : undefined,
+    subtitle: data.hero.subtitle ?? data.hero.summary ?? null,
     partnerLogo: {
       src: data.hero.partner.logo.src ?? "",
       alt: data.hero.partner.logo.alt ?? data.hero.partner.name,

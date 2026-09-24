@@ -21,6 +21,7 @@ export interface PartnerHeroData {
   ribbonSrc: string;
   ribbonWidth?: number;
   ribbonHeight?: number;
+  subtitle?: string | null;
 }
 
 export interface LeadershipQuoteData {
