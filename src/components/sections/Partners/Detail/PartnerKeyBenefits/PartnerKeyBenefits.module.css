@@ -1,0 +1,75 @@
+/* ==========================================================================
+   PartnerKeyBenefits.module.css
+   NVIDIA Partner Detail Page - Section 2: Key Benefits
+   Strict rem units exclusively from variables.css design tokens.
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-20);
+  overflow: visible;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.intro {
+  max-width: 62rem;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-8);
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  margin-bottom: var(--space-8);
+}
+
+.purpleText {
+  color: var(--color-brand-primary);
+}
+
+.darkText {
+  color: var(--color-text-primary);
+}
+
+.cardsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  width: 100%;
+}
+
+@media (max-width: 48rem) {
+  .section {
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-12);
+  }
+
+  .intro {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-6);
+  }
+
+  .heading {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--space-6);
+  }
+
+  .cardsGrid {
+    justify-content: center;
+    gap: var(--space-5);
+  }
+}
+

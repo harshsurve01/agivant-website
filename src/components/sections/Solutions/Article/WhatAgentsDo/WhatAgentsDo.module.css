@@ -39,7 +39,29 @@
 }
 
 .section.partnerSection .description {
-  max-width: 58rem;
+  max-width: 68rem;
+}
+
+/* Heading with vertical accent bar */
+.headingWrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4, 1rem);
+  margin-bottom: var(--space-4, 1rem);
+  text-align: left;
+}
+
+.headingWrapper .heading {
+  margin-bottom: 0;
+}
+
+.accentBar {
+  width: 5px;
+  height: 2.25rem;
+  margin-top: 0.15rem;
+  background-color: var(--color-brand-primary, #8500DF);
+  border-radius: var(--radius-full, 9999px);
+  flex-shrink: 0;
 }
 
 .container {
@@ -286,6 +308,15 @@
 
   .heading {
     font-size: var(--font-size-3xl);
+  }
+
+  .headingWrapper {
+    gap: var(--space-3, 0.75rem);
+  }
+
+  .accentBar {
+    height: 1.75rem;
+    margin-top: 0.15rem;
   }
 
   .description {

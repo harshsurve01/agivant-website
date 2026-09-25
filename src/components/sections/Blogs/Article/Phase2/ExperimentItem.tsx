@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { Phase2Item } from "./types";
 import styles from "./ExperimentItem.module.css";
 
@@ -5,6 +6,8 @@ export interface ExperimentItemProps {
   item: Phase2Item;
   /** Whether to render the divider below this item. False for the last item in the list. */
   showDivider: boolean;
+  /** Optional divider style; "accent" uses the brand colour. Defaults to the neutral rule. */
+  dividerVariant?: "default" | "accent";
 }
 
 /**
@@ -23,7 +26,11 @@ export interface ExperimentItemProps {
  * Server Component: no "use client", no hooks, no state, no data
  * imports. Every value arrives via props.
  */
-export function ExperimentItem({ item, showDivider }: ExperimentItemProps) {
+export function ExperimentItem({
+  item,
+  showDivider,
+  dividerVariant = "default",
+}: ExperimentItemProps) {
   const descriptionParagraphs = (item.description ?? "")
     .split(/\n\s*\n/g)
     .map((p) => p.trim())
@@ -50,7 +57,15 @@ export function ExperimentItem({ item, showDivider }: ExperimentItemProps) {
         </div>
       </div>
 
-      {showDivider && <hr className={styles.divider} aria-hidden="true" />}
+      {showDivider && (
+        <hr
+          className={clsx(
+            styles.divider,
+            dividerVariant === "accent" && styles.dividerAccent
+          )}
+          aria-hidden="true"
+        />
+      )}
     </div>
   );
 }

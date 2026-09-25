@@ -44,7 +44,472 @@
     "ribbonWidth": 2878,
     "ribbonHeight": 1582
   },
-  "sections": [],
+  "sections": [
+    {
+      "id": "key-benefits",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Key Benefits",
+        "description": "Enterprises operating at hyperscale face a new reality: intelligence alone is no longer a differentiator—performance is. HyperCore is the GPU-native operating layer for the autonomous enterprise.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "gpu-native",
+          "type": "card",
+          "title": "GPU-Native",
+          "metric": "Performance",
+          "body": "NVIDIA full stack.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/nvidia/gpu-native.png",
+            "assetKey": "nvidia-gpu-native",
+            "alt": "GPU-Native Performance",
+            "caption": null,
+            "width": 1024,
+            "height": 576
+          }
+        },
+        {
+          "id": "cycle-speed",
+          "type": "card",
+          "title": "Cycle Speed",
+          "metric": "40–60%",
+          "body": "Lower dev cycles.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/nvidia/cycle-speed.png",
+            "assetKey": "nvidia-cycle-speed",
+            "alt": "Cycle Speed 40–60%",
+            "caption": null,
+            "width": 1024,
+            "height": 576
+          }
+        },
+        {
+          "id": "latency",
+          "type": "card",
+          "title": "Latency",
+          "metric": "Ultra-Low",
+          "body": "TensorRT optimized.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/nvidia/latency.png",
+            "assetKey": "nvidia-latency",
+            "alt": "Ultra-Low Latency",
+            "caption": null,
+            "width": 1024,
+            "height": 576
+          }
+        },
+        {
+          "id": "reliability",
+          "type": "card",
+          "title": "Reliability",
+          "metric": "Industrial",
+          "body": "Production uptime.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/nvidia/reliability.png",
+            "assetKey": "nvidia-reliability",
+            "alt": "Industrial Reliability",
+            "caption": null,
+            "width": 1024,
+            "height": 576
+          }
+        },
+        {
+          "id": "efficiency",
+          "type": "card",
+          "title": "Efficiency",
+          "metric": "Optimized",
+          "body": "Lower compute spend.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/nvidia/efficiency.png",
+            "assetKey": "nvidia-efficiency",
+            "alt": "Optimized Efficiency",
+            "caption": null,
+            "width": 1024,
+            "height": 576
+          }
+        }
+      ]
+    },
+    {
+      "id": "agivant-advantage",
+      "type": "stages",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Agivant's Advantage",
+        "description": "Agivant's Advantage Built on NVIDIA’s stack to transform fragmented AI initiatives into a cohesive core",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "build",
+          "type": "stage",
+          "step": "01",
+          "title": "Build",
+          "body": "Accelerated deployment through Agivant’s POD-based execution model."
+        },
+        {
+          "id": "deploy",
+          "type": "stage",
+          "step": "02",
+          "title": "Deploy",
+          "body": "Production-grade speed and reliability on NVIDIA’s computing stack."
+        },
+        {
+          "id": "run",
+          "type": "stage",
+          "step": "03",
+          "title": "Run",
+          "body": "Efficient, high-performance intelligence core for hyperscale agents."
+        }
+      ]
+    },
+    {
+      "id": "industry-evolution",
+      "type": "comparison_table",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Industry Evolution",
+        "description": "Reframing AI as foundational operating infrastructure for machine-speed execution.",
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/nvidia/evolution-card-ribbon.png",
+          "assetKey": "nvidia-evolution-card-ribbon",
+          "alt": "Industry Evolution decorative ribbon",
+          "caption": null,
+          "width": 4692,
+          "height": 920
+        },
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "legacy-approach",
+          "type": "card",
+          "title": "Legacy Enterprise Approach",
+          "items": [
+            {
+              "label": "AI as Software",
+              "description": "Disconnected application layer managed as a silo."
+            },
+            {
+              "label": "Experimentation",
+              "description": "Isolated pilot projects without industrial scalability."
+            },
+            {
+              "label": "Human Bottlenecks",
+              "description": "High-latency cycles dependent on manual human workflow."
+            }
+          ]
+        },
+        {
+          "id": "modern-approach",
+          "type": "card",
+          "title": "Legacy Enterprise Approach",
+          "items": [
+            {
+              "label": "AI as Core Infrastructure",
+              "description": "GPUs as first-class citizens in the technical stack."
+            },
+            {
+              "label": "Industrialized Intelligence",
+              "description": "Production-grade throughput with 99.9% intelligence uptime."
+            },
+            {
+              "label": "Autonomous Execution",
+              "description": "Operating at machine speed with enterprise-grade trust."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "infrastructure-design-principles",
+      "type": "stats",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Infrastructure Design Principles",
+        "description": "Built on NVIDIA’s stack to transform fragmented AI initiatives into a cohesive core.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "latency",
+          "type": "metric",
+          "eyebrow": "Latency",
+          "value": "Designed out",
+          "label": "No tuning later",
+          "detail": null
+        },
+        {
+          "id": "real-time",
+          "type": "metric",
+          "eyebrow": "Real-Time",
+          "value": "Execution",
+          "label": "In-flight reasoning",
+          "detail": null
+        },
+        {
+          "id": "optimization",
+          "type": "metric",
+          "eyebrow": "Optimization",
+          "value": "NVIDIA-Native",
+          "label": "CUDA first",
+          "detail": null
+        },
+        {
+          "id": "governance",
+          "type": "metric",
+          "eyebrow": "Governance",
+          "value": "Outcomes",
+          "label": "Human monitored",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "id": "solutions",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Agile POD-Based Delivery Model",
+        "headingStructure": {
+          "highlight": "Agile POD-Based",
+          "suffix": "Delivery Model"
+        },
+        "subheading": "Structuring Teams for High-Performance AI Acceleration",
+        "description": "Agivant organizes work into scalable, skill-combination PODs—small, cross-functional autonomous teams (6–12 people) operating on Agile principles. This model enables fast iteration, rapid prototyping in the HRP Lab, and reliable production delivery for enterprise AI systems.",
+        "columns": [
+          "",
+          "Key Roles"
+        ],
+        "media": null,
+        "cta": null,
+        "closingStatement": "Horizontal DevOps, MLOps, and Platform Engineering teams manage NVIDIA-powered environments to ensure enterprise-wide scalability and operational consistency."
+      },
+      "blocks": [
+        {
+          "id": "automation-coe",
+          "type": "card",
+          "eyebrow": "Primary Mandate",
+          "title": "Automation CoE",
+          "body": "Enterprise standards, reusable frameworks, and governance.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "assetKey": "nvidia-pod-automation-coe",
+            "alt": "Automation CoE",
+            "caption": null
+          },
+          "challenge": "Provides standards, reusable frameworks, and governance across the enterprise. Focuses on Agentic AI agents, RPA + AI hybrids, and scalable automation patterns.",
+          "items": [
+            "Agentic AI frameworks and guardrails",
+            "RPA + AI hybrid architectures",
+            "Event-driven AI (Kafka, API orchestration)",
+            "DevOps pipelines with GPU support (CI/CD, NVIDIA Docker)"
+          ],
+          "highlightStatement": "CUDA-native development, multi-GPU training, and TensorRT-optimized inference pipelines enabling rapid experimentation and production readiness."
+        },
+        {
+          "id": "development-pods",
+          "type": "card",
+          "eyebrow": "Primary Mandate",
+          "title": "Development PODs",
+          "body": "Rapid build and deployment of production-grade AI systems.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/cpq-lens.png",
+            "assetKey": "nvidia-pod-development-pods",
+            "alt": "Development PODs",
+            "caption": null
+          },
+          "challenge": "Cross-functional teams building custom LLMs or deploying agentic bots, leveraging NVIDIA hardware to achieve 5–10× faster development cycles.",
+          "items": [
+            "Solution Architect – CUDA-optimized architectures",
+            "AI Engineers – LLM fine-tuning with TensorRT-LLM",
+            "Data Engineers – GPU-accelerated ingestion (cuDF, RAPIDS)",
+            "Developers / QA – PyTorch + CUDA testing pipelines"
+          ],
+          "highlightStatement": "CUDA-native development, multi-GPU training, and TensorRT-optimized inference pipelines enabling rapid experimentation and production readiness."
+        },
+        {
+          "id": "sustenance-pods",
+          "type": "card",
+          "eyebrow": "Pilots to production",
+          "title": "Sustenance PODs",
+          "body": "Long-term performance, reliability, and cost efficiency.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/sourcex.png",
+            "assetKey": "nvidia-pod-sustenance-pods",
+            "alt": "Sustenance PODs",
+            "caption": null
+          },
+          "challenge": "Dedicated teams responsible for ongoing operations, monitoring, and post-go-live enhancements.",
+          "items": [
+            "L2 / L3 Support – Model drift management",
+            "Performance tuning of inference servers",
+            "Program management of GPU cluster scale",
+            "Integration and stress testing"
+          ],
+          "highlightStatement": "Optimized inference servers, GPU auto-scaling, and performance tuning for sustained, enterprise-scale AI operations."
+        }
+      ]
+    },
+    {
+      "id": "capability-portfolio",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Capability Portfolio",
+        "description": "Production-ready capabilities for Generative and Agentic systems.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "accelerated-llm-training",
+          "type": "card",
+          "eyebrow": "CUSTOM DOMAIN MODELS",
+          "title": "Accelerated LLM Training & Fine-Tuning",
+          "body": "Enterprises can no longer rely solely on generic models. We build and fine-tune domain-specific LLMs that understand your business context.",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/agent-design.png",
+            "assetKey": "nvidia-cap-accelerated-llm-training",
+            "alt": "Accelerated LLM Training & Fine-Tuning",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "CUDA Optimization: PyTorch/TensorFlow optimized for A100/H100 GPUs, slashing training time from weeks to hours.",
+            "Rapid Iteration: Validated in our Hyperintelligent Rapid Prototype Lab (HRP Lab)."
+          ]
+        },
+        {
+          "id": "high-performance-inference",
+          "type": "card",
+          "eyebrow": "REAL-TIME REASONING & AUTONOMOUS ACTION",
+          "title": "High-Performance Inference for Agentic AI",
+          "body": "Agivant builds Agentic AI systems that demand ultra-low latency to feel “human” and responsive.",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/spec-driven.png",
+            "assetKey": "nvidia-cap-high-performance-inference",
+            "alt": "High-Performance Inference for Agentic AI",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Production Latency: Using TensorRT and Triton Inference Server for multi-step agents.",
+            "Scalable: Optimized for Salesforce Agentforce integrations and omnichannel bots."
+          ]
+        },
+        {
+          "id": "gpu-accelerated-data-processing",
+          "type": "card",
+          "eyebrow": "NEXT-GEN PLATFORMS FOR REAL-TIME INSIGHTS",
+          "title": "GPU-Accelerated Data Processing",
+          "body": "Breaking the bottlenecks of CPU-based processing for modern enterprise data velocity.",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/agent-observability.png",
+            "assetKey": "nvidia-cap-gpu-accelerated-data-processing",
+            "alt": "GPU-Accelerated Data Processing",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "RAPIDS Advantage: Leveraging cuDF to accelerate ETL pipelines and feature engineering.",
+            "Industry Impact: Processing terabytes of data in near real time for BFSI and eCommerce."
+          ]
+        },
+        {
+          "id": "computer-vision-multimodal-ai",
+          "type": "card",
+          "eyebrow": "BEYOND TEXT: PROCESSING THE WORLD VISUALLY",
+          "title": "Computer Vision & Multimodal AI",
+          "body": "Extending enterprise intelligence beyond text into visual and multimodal understanding.",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/enterprise-integration.png",
+            "assetKey": "nvidia-cap-computer-vision-multimodal-ai",
+            "alt": "Computer Vision & Multimodal AI",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Visual Workloads: High-speed OCR, visual search, and video analysis using cuDNN.",
+            "Multimodal GenAI: Seamlessly combining text, image, and audio workflows."
+          ]
+        },
+        {
+          "id": "infrastructure-optimization",
+          "type": "card",
+          "eyebrow": "MAXIMIZING ROI ON NVIDIA-POWERED CLOUDS",
+          "title": "Infrastructure Optimization",
+          "body": "Ensuring optimal performance and cost efficiency across GPU-powered cloud environments.",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/autonomous-support.png",
+            "assetKey": "nvidia-cap-infrastructure-optimization",
+            "alt": "Infrastructure Optimization",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Cloud Agnostic: Optimizing workloads on Azure AI and AWS SageMaker GPU instances.",
+            "MLOps: Dynamic scaling to prevent waste while guaranteeing CUDA performance."
+          ]
+        },
+        {
+          "id": "advanced-model-distillation",
+          "type": "card",
+          "eyebrow": "KEY NVIDIA TOOLS & FRAMEWORKS",
+          "title": "Advanced Model Distillation & Efficiency",
+          "body": "Creating compact, high-performance models optimized for enterprise-scale deployment.",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/accelerator-as.png",
+            "assetKey": "nvidia-cap-advanced-model-distillation",
+            "alt": "Advanced Model Distillation & Efficiency",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "NVIDIA NeMo & Aligner: Enables Knowledge Distillation (KD) via TensorRT ModelOpt and supports KD during Supervised Fine-Tuning (SFT).",
+            "TAO & Minitron: Pruning and distilling larger models (e.g., Llama-3.1 8B → 4B) using Logits-Distillation (KL-Divergence)."
+          ]
+        }
+      ]
+    }
+  ],
   "footerCta": {
     "enabled": false,
     "heading": "",

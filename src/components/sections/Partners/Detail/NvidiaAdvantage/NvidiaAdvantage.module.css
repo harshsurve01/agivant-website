@@ -1,0 +1,304 @@
+/* ==========================================================================
+   NvidiaAdvantage.module.css
+   NVIDIA Partner Detail Page - "Agivant's Advantage" section.
+   Strict rem units and variables.css design tokens.
+   ========================================================================== */
+
+/* ==========================================================================
+   MANUAL TUNING CONTROLS FOR THE 3 STAGES
+   Edit these CSS variables directly in rem units to adjust positioning.
+   The dynamic SVG curve connects automatically to the markers.
+   ========================================================================== */
+
+.section {
+  /* --- 1. OVERALL TRACK & SPACING --- */
+  --advantage-track-max-width: 82rem;         /* Overall width container of the 3 cards */
+  --advantage-cards-gap: var(--space-6);      /* Horizontal gap between card columns */
+
+  /* --- 2. BUILD CARD (STAGE 01) --- */
+  --advantage-card-1-x: 0rem;                 /* Build horizontal shift: (+) moves right, (-) moves left */
+  --advantage-card-1-y: 4rem;                 /* Build vertical offset: (+) moves down, (-) moves up */
+  --advantage-marker-1-x: 8.25rem;            /* Point 01 circle position from left of Build card */
+
+  /* --- 3. DEPLOY CARD (STAGE 02) --- */
+  --advantage-card-2-x: 1rem;                 /* Deploy horizontal shift: (+) moves right, (-) moves left */
+  --advantage-card-2-y: 12rem;              /* Deploy vertical offset: (+) moves down, (-) moves up */
+  --advantage-marker-2-x: 8.25rem;            /* Point 02 circle position from left of Deploy card */
+
+  /* --- 4. RUN CARD (STAGE 03) --- */
+  --advantage-card-3-x: 1rem;                 /* Run horizontal shift: (+) moves right, (-) moves left */
+  --advantage-card-3-y: 19rem;                /* Run vertical offset: (+) moves down, (-) moves up */
+  --advantage-marker-3-x: 8.25rem;            /* Point 03 circle position from left of Run card */
+
+  /* --- 5. CURVE SHAPE CONTROLS (Bézier Tuning) --- */
+  --advantage-curve-1-height: 7rem;        /* Arc 1 height above Marker 01 (+ increases crest) */
+  --advantage-curve-2-height: 12rem;         /* Arc 2 height above Marker 02 (+ increases crest) */
+  --advantage-curve-1-bend: 0.625;             /* Horizontal curvature pull of Arc 1 (0.2 to 0.5) */
+  --advantage-curve-2-bend: 0.95;             /* Horizontal curvature pull of Arc 2 (0.2 to 0.5) */
+
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-24);
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0 0 var(--space-3) 0;
+}
+
+.purpleText {
+  color: var(--color-brand-primary);
+}
+
+.darkText {
+  color: var(--color-text-primary);
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  max-width: 54rem;
+  margin: 0 0 var(--space-32) 0;
+}
+
+/* ==========================================================================
+   Stages Track & Background SVG Path
+   ========================================================================== */
+
+.track {
+  position: relative;
+  width: 100%;
+  max-width: var(--advantage-track-max-width, 82rem);
+  min-height: 24rem;
+}
+
+.pathSvg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.basePath {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.22);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 6;
+}
+
+.flowPath {
+  fill: none;
+  stroke: var(--color-brand-primary);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 6;
+}
+
+.maskPath {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 8;
+  stroke-dasharray: 20 100;
+  stroke-dashoffset: 20;
+  animation: flowAlongPath 3.5s linear infinite;
+}
+
+@keyframes flowAlongPath {
+  0% {
+    stroke-dashoffset: 20;
+  }
+  100% {
+    stroke-dashoffset: -100;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flowPath {
+    display: none;
+  }
+  .maskPath {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   Stages Layout & Staggered Cards
+   ========================================================================== */
+
+.stagesGrid {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: var(--advantage-cards-gap, var(--space-6));
+}
+
+.stageItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 18.5rem;
+  flex-shrink: 0;
+}
+
+/* Staggered vertical positioning & manual offsets */
+.stageItem:nth-child(1) {
+  margin-top: var(--advantage-card-1-y, 0rem);
+  transform: translateX(var(--advantage-card-1-x, 0rem));
+}
+
+.stageItem:nth-child(2) {
+  margin-top: var(--advantage-card-2-y, 5.25rem);
+  transform: translateX(var(--advantage-card-2-x, 0rem));
+}
+
+.stageItem:nth-child(3) {
+  margin-top: var(--advantage-card-3-y, 8rem);
+  transform: translateX(var(--advantage-card-3-x, 0rem));
+}
+
+/* Stage Marker Positioning */
+.markerWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-3);
+  z-index: 3;
+}
+
+.stageItem:nth-child(1) .markerWrapper {
+  margin-left: var(--advantage-marker-1-x, 8.25rem);
+}
+
+.stageItem:nth-child(2) .markerWrapper {
+  margin-left: var(--advantage-marker-2-x, 8.25rem);
+}
+
+.stageItem:nth-child(3) .markerWrapper {
+  margin-left: var(--advantage-marker-3-x, 8.25rem);
+}
+
+.numberMarker {
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* Stage Card Surface */
+.card {
+  width: 21rem;
+  min-height: 9.5rem;
+  box-sizing: border-box;
+  padding: var(--space-8) var(--space-8);
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.363);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255);
+  box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.14);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.18);
+}
+
+.cardTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-brand-primary);
+  margin: 0 0 var(--space-3) 0;
+}
+
+.cardBody {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 64rem) {
+  .section {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-16);
+  }
+
+  .heading {
+    font-size: var(--font-size-3xl);
+  }
+
+  .description {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-8);
+  }
+
+  .stagesGrid {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .stageItem {
+    width: 100%;
+    max-width: 22rem;
+    align-items: center;
+  }
+
+  .stageItem:nth-child(1),
+  .stageItem:nth-child(2),
+  .stageItem:nth-child(3) {
+    margin-top: 0;
+  }
+
+  .stageItem:nth-child(1) .markerWrapper,
+  .stageItem:nth-child(2) .markerWrapper,
+  .stageItem:nth-child(3) .markerWrapper {
+    margin-left: 0;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 22rem;
+  }
+}

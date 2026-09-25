@@ -20,6 +20,12 @@ import { WhatAgentsDo } from "@/components/sections/Solutions/Article/WhatAgents
 import { Solutions } from "@/components/sections/Partners/Detail/Solutions";
 import { ProductionProof } from "@/components/sections/Partners/Detail/ProductionProof";
 import { BuiltOnGemini } from "@/components/sections/Partners/Detail/BuiltOnGemini";
+import { PartnerKeyBenefits } from "@/components/sections/Partners/Detail/PartnerKeyBenefits";
+import { NvidiaAdvantage } from "@/components/sections/Partners/Detail/NvidiaAdvantage";
+import { NvidiaIndustryEvolution } from "@/components/sections/Partners/Detail/NvidiaIndustryEvolution";
+import { RunningToday } from "@/components/sections/Services/RunningToday";
+import { ServiceCapabilityCards } from "@/components/sections/Services/Article/ServiceCapabilityCards";
+import { Phase2 } from "@/components/sections/Blogs/Article/Phase2";
 import { getPartnerDetail, getAllPartnerSlugs } from "@/data/partners";
 import styles from "./PartnerDetailPage.module.css";
 import { Gradient } from "@/components/effects/Gradient";
@@ -65,7 +71,10 @@ export default async function PartnerDetailPage({
         className={clsx(
           styles.page,
           slug === "shopify" && styles.shopifyPage,
-          slug === "servicenow" && styles.servicenowPage
+          slug === "servicenow" && styles.servicenowPage,
+          slug === "salesforce" && styles.salesforcePage,
+          slug === "tigergraph" && styles.tigergraphPage,
+          slug === "aws" && styles.awsPage
         )}
       >
         <Header />
@@ -80,13 +89,18 @@ export default async function PartnerDetailPage({
               slug === "databricks" && styles.databricksRibbonWrapper,
               slug === "shopify" && styles.shopifyRibbonWrapper,
               slug === "glean" && styles.gleanRibbonWrapper,
-              slug === "nvidia" && styles.nvidiaRibbonWrapper
+              slug === "nvidia" && styles.nvidiaRibbonWrapper,
+              slug === "salesforce" && styles.salesforceRibbonWrapper,
+              slug === "tigergraph" && styles.tigergraphRibbonWrapper,
+              slug === "aws" && styles.awsRibbonWrapper
             )}
             imageClassName={clsx(
               styles.ribbonImage,
               slug === "shopify" && styles.shopifyRibbonImage,
               slug === "glean" && styles.gleanRibbonImage,
-              slug === "nvidia" && styles.nvidiaRibbonImage
+              slug === "nvidia" && styles.nvidiaRibbonImage,
+              slug === "tigergraph" && styles.tigergraphRibbonImage,
+              slug === "aws" && styles.awsRibbonImage
             )}
             priority
           />
@@ -179,10 +193,32 @@ export default async function PartnerDetailPage({
         )}
         <main id="main-content">
           <PartnerHero hero={partner.hero} />
+          {partner.keyBenefits && (
+            <PartnerKeyBenefits data={partner.keyBenefits} />
+          )}
+          {partner.nvidiaAdvantage && (
+            <NvidiaAdvantage data={partner.nvidiaAdvantage} />
+          )}
+          {partner.industryEvolution && (
+            <NvidiaIndustryEvolution data={partner.industryEvolution} />
+          )}
+          {partner.infrastructurePrinciples && (
+            <RunningToday
+              heading={partner.infrastructurePrinciples.heading}
+              description={partner.infrastructurePrinciples.description}
+              metrics={partner.infrastructurePrinciples.metrics}
+              columns={4}
+              align="left"
+              highlightPhrase="Infrastructure"
+              tintLastCard={false}
+              id="infrastructure-design-principles"
+              className={styles.nvidiaInfrastructureSection}
+            />
+          )}
           {partner.intro && (
             <PartnerIntro
               intro={partner.intro}
-              height={slug === "glean" ? "auto" : undefined}
+              height={slug === "glean" || slug === "aws" ? "auto" : undefined}
             />
           )}
           {partner.storyBanner && (
@@ -194,10 +230,28 @@ export default async function PartnerDetailPage({
           {slug === "shopify" && partner.agentTeams && (
             <PartnerAgentTeams data={partner.agentTeams} height="auto" />
           )}
-          {partner.alternatingContent && (
+          {slug === "salesforce" && partner.agentTeams && (
+            <PartnerAgentTeams
+              data={partner.agentTeams}
+              columns={3}
+              align="center"
+              hoverable
+            />
+          )}
+          {slug !== "salesforce" && slug !== "tigergraph" && partner.alternatingContent && (
             <PartnerAlternatingContent
               data={partner.alternatingContent}
-              height={slug === "shopify" ? "auto" : undefined}
+              height={slug === "shopify" || slug === "aws" ? "auto" : undefined}
+            />
+          )}
+          {slug === "aws" && partner.partnerDeploymentCard && (
+            <PartnerDeploymentCard
+              data={partner.partnerDeploymentCard}
+              imagePosition={partner.partnerDeploymentCard.imagePosition}
+              height="auto"
+              id="aws-data-ai-stack"
+              accentHeading
+              largeBodyText
             />
           )}
           {partner.agenticEnterprise && (
@@ -229,7 +283,7 @@ export default async function PartnerDetailPage({
                   data={partner.databricksAgenticExecution}
                 />
               )}
-              {partner.databricksBusinessContext && (
+              {slug !== "tigergraph" && partner.databricksBusinessContext && (
                 <DatabricksBusinessContext
                   data={partner.databricksBusinessContext}
                 />
@@ -250,6 +304,7 @@ export default async function PartnerDetailPage({
                   blocks={partner.coordinatedAgents.blocks}
                   variant="partner"
                   id="coordinated-agents"
+                  showAccentBar={slug === "tigergraph"}
                 />
               )}
             </>
@@ -257,7 +312,40 @@ export default async function PartnerDetailPage({
           {partner.solutions && (
             <Solutions
               data={partner.solutions}
-              height={slug === "shopify" || slug === "glean" ? "auto" : undefined}
+              height={
+                slug === "shopify" || slug === "glean" || slug === "nvidia" || slug === "tigergraph"
+                  ? "auto"
+                  : undefined
+              }
+              align={slug === "salesforce" ? "center" : undefined}
+              columnDivider={slug === "salesforce" || slug === "nvidia" || slug === "tigergraph"}
+              reverseArrows={slug === "salesforce" || slug === "nvidia"}
+              accentInactiveTitles={slug === "salesforce" || slug === "nvidia"}
+              largeBodyText={slug === "salesforce"}
+              nvidiaTypography={slug === "nvidia"}
+              variant={slug === "tigergraph" ? "tigergraph" : undefined}
+            />
+          )}
+          {partner.capabilityPortfolio && (
+            <ServiceCapabilityCards
+              {...partner.capabilityPortfolio}
+              id="capability-portfolio"
+              className={styles.nvidiaCapabilityPortfolioSection}
+            />
+          )}
+          {slug === "salesforce" && partner.aiCapabilities && (
+            <Phase2
+              id="ai-data-capabilities"
+              title={partner.aiCapabilities.heading}
+              items={partner.aiCapabilities.items}
+              highlightPosition="start"
+              highlightCount={3}
+              dividerVariant="accent"
+            />
+          )}
+          {slug === "salesforce" && partner.alternatingContent && (
+            <PartnerAlternatingContent
+              data={partner.alternatingContent}
             />
           )}
           {slug === "glean" && (
@@ -302,8 +390,29 @@ export default async function PartnerDetailPage({
               id="scale-servicenow"
             />
           )}
-          {slug !== "shopify" && partner.agentTeams && (
-            <PartnerAgentTeams data={partner.agentTeams} />
+          {slug !== "shopify" && slug !== "salesforce" && partner.agentTeams && (
+            <PartnerAgentTeams
+              data={partner.agentTeams}
+              columns={slug === "tigergraph" ? 3 : undefined}
+              height={slug === "tigergraph" ? "auto" : undefined}
+              hoverable={slug === "tigergraph" ? true : undefined}
+              id={slug === "tigergraph" ? "connected-data-use-cases" : undefined}
+            />
+          )}
+          {slug === "tigergraph" && partner.databricksBusinessContext && (
+            <DatabricksBusinessContext
+              data={partner.databricksBusinessContext}
+              height="auto"
+              id="engineering-depth"
+            />
+          )}
+          {slug === "tigergraph" && partner.alternatingContent && (
+            <PartnerAlternatingContent
+              data={partner.alternatingContent}
+              variant="tigergraph"
+              height="auto"
+              id="get-ampd"
+            />
           )}
           {slug === "shopify" ? (
             <>
@@ -322,7 +431,7 @@ export default async function PartnerDetailPage({
               {partner.productionProof && (
                 <ProductionProof
                   data={partner.productionProof}
-                  height={slug === "glean" || slug === "servicenow" ? "auto" : undefined}
+                  height={slug === "glean" || slug === "servicenow" || slug === "tigergraph" ? "auto" : undefined}
                 />
               )}
               {partner.builtOnGemini && (

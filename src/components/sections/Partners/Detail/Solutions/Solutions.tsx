@@ -14,6 +14,20 @@ export interface SolutionsProps {
   data?: PartnerSolutionsData;
   height?: SectionHeight;
   className?: string;
+  /** Header alignment. Defaults to "left". */
+  align?: "left" | "center";
+  /** Vertical divider between the panel's two columns. Defaults to false. */
+  columnDivider?: boolean;
+  /** Swap card arrow directions (active ↗, inactive ↙). Defaults to false. */
+  reverseArrows?: boolean;
+  /** Keep card titles in the accent colour and fully opaque when inactive. Defaults to false. */
+  accentInactiveTitles?: boolean;
+  /** Set the description, card and panel body text to --font-size-lg. Defaults to false. */
+  largeBodyText?: boolean;
+  /** NVIDIA 3-tier typography standard (4xl heading, xl card titles, lg all other text). */
+  nvidiaTypography?: boolean;
+  /** Page-specific variant (e.g. "tigergraph"). Defaults to "default". */
+  variant?: "default" | "tigergraph";
 }
 
 /**
@@ -38,6 +52,13 @@ export function Solutions({
   data,
   height = "viewport",
   className,
+  align = "left",
+  columnDivider = false,
+  reverseArrows = false,
+  accentInactiveTitles = false,
+  largeBodyText = false,
+  nvidiaTypography = false,
+  variant = "default",
 }: SolutionsProps) {
   if (!data?.accelerators?.length) return null;
 
@@ -226,12 +247,23 @@ export function Solutions({
     <Section
       ref={sectionRef}
       height={height}
-      className={clsx(styles.section, className)}
+      className={clsx(
+        styles.section,
+        largeBodyText && styles.sectionLargeText,
+        nvidiaTypography && styles.nvidiaTypography,
+        variant === "tigergraph" && styles.tigergraphSolutions,
+        className
+      )}
       id="solutions"
     >
       <Container size="xl" className={styles.container}>
         {/* Section Header */}
-        <div className={styles.headerWrapper}>
+        <div
+          className={clsx(
+            styles.headerWrapper,
+            align === "center" && styles.headerWrapperCentered
+          )}
+        >
           <div className={styles.headerContent}>
             <h2 className={styles.heading}>
               {data.heading.highlight && !data.heading.prefix ? (
@@ -269,6 +301,9 @@ export function Solutions({
                 </>
               )}
             </h2>
+            {data.subheading && (
+              <p className={styles.subheading}>{data.subheading}</p>
+            )}
             {data.description && (
               <p className={styles.subtitle}>{data.description}</p>
             )}
@@ -282,7 +317,8 @@ export function Solutions({
             styles.cardsGrid,
             data.accelerators.length === 3 && styles.cardsGrid3,
             isCarousel && styles.carouselTrack,
-            isDragging && styles.carouselTrackDragging
+            isDragging && styles.carouselTrackDragging,
+            accentInactiveTitles && styles.cardsGridAccentTitles
           )}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
@@ -307,6 +343,8 @@ export function Solutions({
               cardRef={(el) => {
                 cardRefs.current[index] = el;
               }}
+              reverseArrow={reverseArrows}
+              variant={variant}
             />
           ))}
         </div>
@@ -318,12 +356,20 @@ export function Solutions({
           panelRef={(el) => {
             panelRef.current = el;
           }}
+          columnLabels={data.columnLabels}
+          columnDivider={columnDivider}
+          variant={variant}
         />
 
         {/* Accelerator Proof — headline, metrics, and video for the
             SAME activeAccelerator driving SolutionDisplayPanel above.
             No independent state; switching cards updates both. */}
         <AcceleratorProof proof={activeAccelerator.proof} />
+
+        {/* Optional closing statement below display panel */}
+        {data.closingStatement && (
+          <p className={styles.closingStatement}>{data.closingStatement}</p>
+        )}
       </Container>
     </Section>
   );

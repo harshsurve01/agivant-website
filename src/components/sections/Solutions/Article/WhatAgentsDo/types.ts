@@ -23,4 +23,5 @@ export interface WhatAgentsDoProps {
   className?: string;
   id?: string;
   variant?: "default" | "partner";
+  showAccentBar?: boolean;
 }

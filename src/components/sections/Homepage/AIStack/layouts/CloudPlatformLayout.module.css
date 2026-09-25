@@ -45,7 +45,8 @@
   flex-direction: column;
   gap: var(--service-stack-title-content-gap, var(--space-2));
   padding-top: var(--service-stack-cloud-content-top, 0);
-  padding-inline: var(--service-stack-card-padding-inline, var(--space-6));
+  /* Homepage text inset: see --ai-stack-text-padding-inline in AIStack.module.css. */
+  padding-inline: var(--ai-stack-text-padding-inline, var(--service-stack-card-padding-inline, var(--space-6)));
   padding-bottom: var(--service-stack-card-padding-bottom, var(--space-6));
   position: relative;
   z-index: var(--service-stack-text-z-index, 1);

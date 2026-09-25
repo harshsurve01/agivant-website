@@ -663,7 +663,7 @@
           "cta": {
             "enabled": true,
             "label": "Read more >>",
-            "href": "/case-studies/developer-productivity-on-gemini",
+            "href": "",
             "external": false
           },
           "items": [],
@@ -688,7 +688,7 @@
           "cta": {
             "enabled": true,
             "label": "Read more >>",
-            "href": "/case-studies/conversational-analytics-and-hyper-automation",
+            "href": "",
             "external": false
           },
           "items": [],
@@ -713,7 +713,7 @@
           "cta": {
             "enabled": true,
             "label": "Read more >>",
-            "href": "/case-studies/enterprise-mlops-on-vertex-ai",
+            "href": "",
             "external": false
           },
           "items": [],

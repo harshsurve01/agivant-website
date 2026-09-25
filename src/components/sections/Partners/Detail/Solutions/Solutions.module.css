@@ -21,6 +21,16 @@
 /* --------------------------------------------------------------------
    Section Header
    -------------------------------------------------------------------- */
+/* Optional centered header (align="center") */
+.headerWrapperCentered {
+  justify-content: center;
+  text-align: center;
+}
+
+.headerWrapperCentered .headerContent {
+  margin-inline: auto;
+}
+
 .headerWrapper {
   display: flex;
   justify-content: space-between;
@@ -50,6 +60,15 @@
 
 .purpleText {
   color: var(--color-brand-primary);
+}
+
+.subheading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg); /* 18px */
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-3) 0;
 }
 
 .subtitle {
@@ -251,6 +270,31 @@
   -webkit-user-drag: none;
 }
 
+/* Optional (accentInactiveTitles): titles stay in the accent colour at full
+   opacity; the rest of an inactive card keeps the existing dimming. */
+.cardsGridAccentTitles .cardTitle {
+  color: var(--color-brand-primary);
+}
+
+.cardsGridAccentTitles .cardCategory {
+  color: var(--color-brand-primary);
+}
+
+.cardsGridAccentTitles .cardInactive .cardBody {
+  opacity: 1;
+}
+
+.cardsGridAccentTitles .cardInactive .cardCategory,
+.cardsGridAccentTitles .cardInactive .cardDescription {
+  opacity: 0.35;
+  transition: opacity var(--transition-base);
+}
+
+.cardsGridAccentTitles .cardInactive:hover .cardCategory,
+.cardsGridAccentTitles .cardInactive:hover .cardDescription {
+  opacity: 0.75;
+}
+
 /* Inactive cards: reduced opacity ONLY for main content (title, category, description, image) */
 .cardInactive .cardBody,
 .cardInactive .cardImageWrapper {
@@ -325,6 +369,71 @@
   line-height: var(--line-height-relaxed);
   color: var(--color-text-primary);
   margin: 0;
+}
+
+/* Optional (largeBodyText): description, card body and panel text at
+   --font-size-lg (18px); card titles stay at --font-size-xl (20px) */
+.sectionLargeText .subtitle,
+.sectionLargeText .cardDescription,
+.sectionLargeText .panelText {
+  font-size: var(--font-size-lg);
+}
+
+/* Optional capability list in the panel's first column */
+.panelList {
+  margin: 0;
+  padding-left: var(--space-5);
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.panelList .panelText {
+  line-height: var(--line-height-normal);
+}
+
+/* Optional vertical divider between the two panel columns (columnDivider) */
+.panelTopRowDivided {
+  position: relative;
+}
+
+.panelTopRowDivided::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 0.125rem;
+  transform: translateX(-50%);
+  background: color-mix(in srgb, var(--color-text-primary) 40%, transparent);
+}
+
+/* Bottom highlighted pill statement inside display panel */
+.highlightPill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: color-mix(in srgb, var(--color-brand-primary) 18%, #ffffff);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-full);
+  margin-top: var(--space-8);
+}
+
+/* Optional closing statement below display panel */
+.closingStatement {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin-top: var(--space-8);
+  margin-bottom: 0;
 }
 
 .panelDivider {
@@ -549,6 +658,10 @@
     gap: var(--space-6);
   }
 
+  .panelTopRowDivided::before {
+    display: none;
+  }
+
   .panelDivider {
     margin: var(--space-6) 0;
   }
@@ -592,5 +705,110 @@
     font-size: var(--font-size-xs);
     margin-top: var(--space-4);
     margin-bottom: var(--space-5);
+  }
+}
+
+/* ==========================================================================
+   NVIDIA Typography Standard:
+   1. SECTION HEADINGS: 36px equivalent (--font-size-4xl)
+   2. CARD TITLES: 20px equivalent (--font-size-xl)
+   3. ALL OTHER TEXT: 18px equivalent (--font-size-lg)
+   ========================================================================== */
+.nvidiaTypography .heading {
+  font-size: var(--font-size-4xl);
+}
+
+.nvidiaTypography .cardTitle {
+  font-size: var(--font-size-xl);
+}
+
+.nvidiaTypography .subheading,
+.nvidiaTypography .subtitle,
+.nvidiaTypography .cardCategory,
+.nvidiaTypography .cardDescription,
+.nvidiaTypography .panelSectionTitle,
+.nvidiaTypography .panelText,
+.nvidiaTypography .panelList,
+.nvidiaTypography .panelList li,
+.nvidiaTypography .panelList .panelText,
+.nvidiaTypography .highlightPill,
+.nvidiaTypography .closingStatement {
+  font-size: var(--font-size-lg);
+}
+
+.nvidiaTypography .cardCategory {
+  letter-spacing: normal;
+}
+
+/* --------------------------------------------------------------------
+   TigerGraph Section 3 Variant
+   -------------------------------------------------------------------- */
+.tigergraphSolutions .headerWrapper {
+  margin-bottom: var(--space-8);
+}
+
+.tigergraphCard {
+  min-height: 22.5rem;
+  background: #d9d9d920;
+  border: 1px solid #ffffff;
+  border-radius: var(--radius-2xl, 1.5rem);
+}
+
+.tigergraphCard .cardContent {
+  padding: var(--space-5) var(--space-5) var(--space-2) var(--space-5);
+}
+
+.tigergraphCard .cardBody {
+  margin-bottom: var(--space-4);
+  min-height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tigergraphCard .cardTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg); /* 18px */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.35;
+  text-align: center;
+  margin: 0;
+}
+
+.tigergraphPanel {
+  background: #F9F9FA;
+  border: 1px solid #ffffff;
+  border-radius: var(--radius-2xl, 1.5rem);
+  padding: var(--space-10) var(--space-12);
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.08);
+}
+
+.tigergraphPanelDescription {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base); /* 16px */
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  text-align: center;
+  max-width: 54rem;
+  margin: 0 auto var(--space-10);
+}
+
+.tigergraphSolutions .panelList {
+  gap: var(--space-2);
+}
+
+@media (max-width: 768px) {
+  .tigergraphCard {
+    min-height: auto;
+  }
+
+  .tigergraphPanel {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .tigergraphPanelDescription {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-6);
   }
 }

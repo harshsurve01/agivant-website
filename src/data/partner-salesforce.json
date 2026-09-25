@@ -1,0 +1,479 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "partnershipLanding",
+  "slug": "salesforce",
+  "title": "Salesforce",
+  "name": "Salesforce",
+  "seo": {
+    "title": "Salesforce Partnership | Agivant",
+    "description": "Agivant builds Agentforce agents and generative AI into the workflows your teams already run, so reps close faster and service teams resolve more, with results in days and weeks",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Salesforce",
+    "subtitle": null,
+    "summary": "Agivant builds Agentforce agents and generative AI into the workflows your teams already run, so reps close faster and service teams resolve more, with results in days and weeks",
+    "authors": [],
+    "partner": {
+      "name": "Salesforce",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/salesforce.png",
+        "assetKey": "salesforce-logo",
+        "alt": "Salesforce",
+        "caption": null,
+        "width": 249,
+        "height": 91
+      }
+    },
+    "media": {
+      "kind": "image",
+      "src": "/images/partners/salesforce-hero-ribbon.png",
+      "assetKey": "salesforce-hero-ribbon",
+      "alt": "Salesforce hero ribbon",
+      "caption": null,
+      "width": 2878,
+      "height": 1109
+    },
+    "primaryCta": null,
+    "secondaryCta": null,
+    "heading": "AI-assisted sales and service,<br>engineered into"
+  },
+  "sections": [
+    {
+      "id": "production-value",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Salesforce expertise, backed by AI and data engineering",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "production-value-copy",
+          "type": "richText",
+          "heading": null,
+          "body": "Agivant helps enterprises get more out of Salesforce with AI engineering, Agentforce, generative AI, intelligent automation, data platforms, and cloud engineering. As a Salesforce Consulting Partner, Agivant helps organizations modernize customer experiences, automate workflows, raise productivity, and scale AI adoption across Sales, Service, IT, and Commerce."
+        }
+      ]
+    },
+    {
+      "id": "customer-quote",
+      "type": "statement_card",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "statement-1",
+          "type": "statement",
+          "statement": "Agivant pairs Salesforce expertise with enterprise data and cloud engineering, so CRM workflows built on manual steps start running on live data and AI assistance."
+        }
+      ]
+    },
+    {
+      "id": "coordinated-agent-teams",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "What Agivant brings to Salesforce",
+        "description": "Agivant brings together Salesforce consulting, Agentforce implementation, GenAI, intelligent automation, engineering productivity, data platforms, and observability, so organizations get measurable returns from the Salesforce platform they already run.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "salesforce-capability-1",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Salesforce and Agentforce implementation mapped to business objectives and enterprise workflows",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/sourcex.png",
+            "assetKey": "salesforce-capability-1",
+            "alt": "Salesforce and Agentforce implementation",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "salesforce-capability-2",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "AI-enabled customer and employee experiences across Sales, Service, Commerce, and IT",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-02.png",
+            "assetKey": "salesforce-capability-2",
+            "alt": "AI-enabled customer and employee experiences",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "salesforce-capability-3",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "GenAI-powered automation for sales assistance, service workflows, development, testing, and operations",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-03.png",
+            "assetKey": "salesforce-capability-3",
+            "alt": "GenAI-powered automation",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "salesforce-capability-4",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Salesforce-connected data, analytics, observability, and AI-driven infrastructure capabilities",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/agentic-quote-accelerator.png",
+            "assetKey": "salesforce-capability-4",
+            "alt": "Salesforce-connected data and analytics",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "salesforce-capability-5",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Composable accelerators that shorten adoption and move use cases into production faster",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/strategic-sourcing.png",
+            "assetKey": "salesforce-capability-5",
+            "alt": "Composable accelerators",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "salesforce-capability-6",
+          "type": "card",
+          "eyebrow": null,
+          "title": null,
+          "body": "Engineering-led delivery focused on productivity, customer experience, reliability, and measurable business outcomes",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "assetKey": "salesforce-capability-6",
+            "alt": "Engineering-led delivery",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "solutions",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Featured Salesforce solutions",
+        "description": "Each solution applies AI and customer intelligence to one focused sales or engineering use case.",
+        "columns": [
+          "Key capabilities",
+          "Reported outcomes"
+        ],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "salesforce-sales-conversion",
+          "type": "card",
+          "eyebrow": null,
+          "title": "AI-powered sales conversion",
+          "body": "An AI sales assistant built on Salesforce with Vertex AI and Gemini supports reps from pre-call preparation through live conversations to post-call analysis.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "assetKey": "salesforce-sales-conversion",
+            "alt": "AI-powered sales conversion",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Pre-call customer intelligence",
+            "Real-time conversation assistance",
+            "Post-call summaries and action items",
+            "Salesforce-integrated sales workflows"
+          ],
+          "solution": "50–75% reduction in research time, 20% increase in call volume, 15–20% improvement in close rates, and 10–15% increase in revenue growth."
+        },
+        {
+          "id": "salesforce-developer-productivity",
+          "type": "card",
+          "eyebrow": null,
+          "title": "GenAI-driven Salesforce developer productivity",
+          "body": "Agivant brings GenAI and Gemini to Salesforce development, so teams code, test, and debug faster",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/cpq-lens.png",
+            "assetKey": "salesforce-developer-productivity",
+            "alt": "GenAI-driven Salesforce developer productivity",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Apex and Lightning Web Components assistance",
+            "Test case and test asset generation",
+            "Code review and debugging support",
+            "AI-assisted development workflows"
+          ],
+          "solution": "30–40% automation of repetitive coding and 10–15% reduction in debugging time."
+        },
+        {
+          "id": "salesforce-sustainability-insights",
+          "type": "card",
+          "eyebrow": null,
+          "title": "AI-powered sustainability insights",
+          "body": "The Sustainability Planner combines Salesforce CRM with GenAI to find sustainability-focused customers and read their priorities, so sales teams go into each conversation informed.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/sourcex.png",
+            "assetKey": "salesforce-sustainability-insights",
+            "alt": "AI-powered sustainability insights",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Sustainability-focused customer insights",
+            "Opportunity identification",
+            "Salesforce sales engagement integration",
+            "Contextual customer conversations"
+          ],
+          "solution": "15% increase in upsell success rates and 25–30% improvement in sales engagement efficiency."
+        }
+      ]
+    },
+    {
+      "id": "ai-data-capabilities",
+      "type": "numbered_list",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "AI And Data Capabilities Behind The Salesforce Practice",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "ai-ml-services",
+          "type": "numberedItem",
+          "number": 1,
+          "title": "AI & ML Services",
+          "body": "AI solutions tied to business returns, spanning generative AI, agentic AI, MLOps, and data labeling, integrated with Salesforce and connected enterprise systems.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "modern-data-platforms",
+          "type": "numberedItem",
+          "number": 2,
+          "title": "Modern data platforms",
+          "body": "Analytics and Salesforce-connected data built on platforms such as Databricks, Snowflake, and BigQuery.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "ai-infrastructure-aiops",
+          "type": "numberedItem",
+          "number": 3,
+          "title": "AI-driven infrastructure and AIOps",
+          "body": "Observability and anomaly detection with automated incident response, using tools such as Gemini, New Relic, and Datadog to keep operations reliable.",
+          "items": [],
+          "media": null
+        }
+      ]
+    },
+    {
+      "id": "get-more-from-salesforce",
+      "type": "alternating_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "get-more-salesforce",
+          "type": "row",
+          "eyebrow": null,
+          "title": null,
+          "heading": "Get more from Salesforce with Agivant",
+          "body": "Start with the priority that matters most, whether that is sales conversion, service modernization, faster Salesforce development, operational intelligence, or wider AI adoption. Agivant brings Salesforce, Agentforce, GenAI, data, observability, and cloud engineering to it as one team.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
+            "assetKey": "salesforce-get-more",
+            "alt": "Get more from Salesforce with Agivant",
+            "caption": null,
+            "width": 437,
+            "height": 279
+          },
+          "layout": "image-text",
+          "isCard": true
+        }
+      ]
+    },
+    {
+      "id": "proof-from-production",
+      "type": "case_study_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Proof from production.",
+        "description": "Gemini Enterprise engagements already running, with outcomes measured in the environment they were built for.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "developer-productivity-on-gemini",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Developer productivity on Gemini",
+          "body": "Gemini-native code assistance across a global technology estate, working inside the tools engineers already use.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/developer-productivity.png",
+            "assetKey": "production-proof-1",
+            "alt": "Developer productivity on Gemini",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "",
+            "external": false
+          },
+          "items": [],
+          "metric": "35 percent faster cycles · 30 to 40 percent higher developer productivity",
+          "caseStudySlug": "developer-productivity-on-gemini",
+          "badge": "Client success",
+          "isTall": false
+        },
+        {
+          "id": "conversational-analytics-and-hyper-automation",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Conversational analytics\nand hyper-automation",
+          "body": "Multilingual conversational analytics that read intent, answer at source, and route only what needs a person.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/conversational-analytics.png",
+            "assetKey": "production-proof-2",
+            "alt": "Conversational analytics and hyper-automation",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "",
+            "external": false
+          },
+          "items": [],
+          "metric": "Around 90 percent automation · 94 percent confidence · 50 plus languages",
+          "caseStudySlug": "conversational-analytics-and-hyper-automation",
+          "badge": "Client success",
+          "isTall": false
+        },
+        {
+          "id": "enterprise-mlops-on-vertex-ai",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Enterprise MLOps on Vertex AI",
+          "body": "The model lifecycle automated end to end, from training through release and monitoring.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/enterprise-mlops.png",
+            "assetKey": "production-proof-3",
+            "alt": "Enterprise MLOps on Vertex AI",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "",
+            "external": false
+          },
+          "items": [],
+          "metric": "30 to 50 percent lower operating cost",
+          "caseStudySlug": "enterprise-mlops-on-vertex-ai",
+          "badge": "Client success",
+          "isTall": true
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Work with Agivant to build<br>connected Salesforce experiences.",
+    "subheading": null,
+    "partner": {
+      "name": "Salesforce",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/salesforce.png",
+        "assetKey": "partner-salesforce",
+        "alt": "Salesforce",
+        "caption": null
+      }
+    },
+    "primaryCta": null,
+    "secondaryCta": {
+      "enabled": true,
+      "label": "View Agivant on the Salesforce AppExchange",
+      "href": "/contact",
+      "external": false,
+      "icon": "cube",
+      "variant": "primary"
+    }
+  }
+}

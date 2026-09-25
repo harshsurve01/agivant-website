@@ -61,22 +61,60 @@
 /* --------------------------------------------------------------------------
    Right Asymmetric Cards Grid
    -------------------------------------------------------------------------- */
+/* Spotlight container (Homepage Proof pattern, "large-right" arrangement):
+   one 2x2 grid whose TRACKS are animated on hover by ProductionProof.tsx
+   (grid-template-columns/rows written inline). 1fr/1fr is the rest split.
+   Rest size matches the previous layout: two 400px (25rem) columns and the
+   tall card's 40.625rem height. */
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 400px));
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: var(--space-5);
-  justify-content: end;
+  width: 100%;
+  max-width: calc(2 * 25rem + var(--space-5));
+  height: 40.625rem;
+  margin-left: auto;
+  overflow: visible;
 }
 
-.leftCol {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
+.topLeftSlot,
+.bottomLeftSlot,
+.largeSlot {
+  min-width: 0;
+  min-height: 0;
 }
 
-.rightCol {
-  display: flex;
-  flex-direction: column;
+.topLeftSlot {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.bottomLeftSlot {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.largeSlot {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.topLeftSlot .cardLink,
+.bottomLeftSlot .cardLink,
+.largeSlot .cardLink,
+.topLeftSlot .card,
+.bottomLeftSlot .card,
+.largeSlot .card {
+  height: 100%;
+}
+
+/* Homepage Proof sibling dim: while one card is hovered/focused, the others
+   blur and fade (values from Homepage SpotlightContainer.module.css). */
+.grid:has(.cardLink:hover, .cardLink:focus-visible)
+  .cardLink:not(:hover):not(:focus-visible) {
+  filter: blur(4px);
+  opacity: 0.9;
 }
 
 /* --------------------------------------------------------------------------
@@ -88,6 +126,7 @@
   text-decoration: none;
   border-radius: var(--radius-xl);
   outline: none;
+  transition: filter 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .cardLink:focus-visible .card {
@@ -101,7 +140,10 @@
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  /* Homepage Proof card motion (SpotlightCard.module.css) */
+  transition:
+    transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .cardShort {
@@ -112,9 +154,23 @@
   height: 40.625rem; /* 321px * 2 + 20px gap = 662px for exact alignment */
 }
 
-.cardLink:hover .card {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.2);
+.cardLink:hover .card,
+.cardLink:focus-visible .card {
+  transform: translateY(-0.5rem);
+  box-shadow:
+    0 28px 48px -16px rgba(15, 23, 42, 0.52),
+    0 10px 20px -8px rgba(15, 23, 42, 0.36);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: box-shadow 0.55s ease;
+  }
+
+  .cardLink:hover .card,
+  .cardLink:focus-visible .card {
+    transform: none;
+  }
 }
 
 /* Layer 1: Artwork */
@@ -161,7 +217,7 @@
 }
 
 .corner svg {
-  transition: transform var(--transition-base, 250ms ease);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   transform-origin: center;
 }
 
@@ -228,12 +284,16 @@
   margin: var(--space-1) 0 0 0;
   line-height: 1.4;
 }
+/* Tall card text scales with the card: 17rem at the 25rem rest width
+   (card 25rem - 1rem body inset - 2 x 1.25rem padding = 21.5rem of text
+   area), so it keeps the same proportion as the spotlight grows/shrinks
+   the card. */
 .rightCol .description {
-  width: 17rem; /* control tall card description independently */
+  width: calc(100% * 17 / 21.5); /* control tall card description independently */
 }
 
 .rightCol .metric {
-  width: 17rem; /* control tall card metric independently */
+  width: calc(100% * 17 / 21.5); /* control tall card metric independently */
 }
 .cta {
   font-family: var(--font-family-base);
@@ -253,7 +313,7 @@
   }
 
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    max-width: none;
   }
 }
 
@@ -265,10 +325,6 @@
 
   .editorial {
     position: static;
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -285,13 +341,21 @@
 
   .grid {
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
     gap: var(--space-4);
+    height: auto;
   }
 
-  .leftCol {
-    gap: var(--space-4);
+  .topLeftSlot,
+  .bottomLeftSlot,
+  .largeSlot {
+    grid-column: 1;
+    grid-row: auto;
   }
 
+  .topLeftSlot .card,
+  .bottomLeftSlot .card,
+  .largeSlot .card,
   .cardShort,
   .cardTall {
     height: 321px;

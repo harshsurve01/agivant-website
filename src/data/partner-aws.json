@@ -1,0 +1,166 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "partnershipLanding",
+  "slug": "aws",
+  "title": "AWS",
+  "name": "AWS",
+  "seo": {
+    "title": "AWS Partnership | Agivant",
+    "description": "Agivant runs a dedicated AWS practice that builds the full data and AI stack on the cloud your data already sits on. It starts with one business challenge, gets the data behind it ready, and takes the answer all the way to agents working in production, with results in days and weeks.",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "AWS",
+    "subtitle": null,
+    "summary": "Agivant runs a dedicated AWS practice that builds the full data and AI stack on the cloud your data already sits on. It starts with one business challenge, gets the data behind it ready, and takes the answer all the way to agents working in production, with results in days and weeks.",
+    "authors": [],
+    "partner": {
+      "name": "AWS",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/aws.png",
+        "assetKey": "aws-logo",
+        "alt": "AWS",
+        "caption": null,
+        "width": 249,
+        "height": 91
+      }
+    },
+    "media": {
+      "kind": "image",
+      "src": "/images/solutions/landing-page-hero.png",
+      "assetKey": "aws-hero-ribbon",
+      "alt": "AWS hero ribbon",
+      "caption": null,
+      "width": 1434,
+      "height": 757
+    },
+    "primaryCta": null,
+    "secondaryCta": null,
+    "heading": "Data and AI on<br>built to run the business"
+  },
+  "sections": [
+    {
+      "id": "production-value",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "production-value-copy",
+          "type": "richText",
+          "heading": null,
+          "body": "Built on AWS, with Amazon Redshift, AWS Glue, Amazon S3, Amazon Kinesis, Amazon Neptune, Amazon SageMaker AI, Amazon Bedrock, and Bedrock AgentCore, Agivant engineers cost into the architecture before the first bill arrives."
+        }
+      ]
+    },
+    {
+      "id": "customer-quote",
+      "type": "statement",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "Book a AWS assessment",
+          "href": null,
+          "icon": "cube",
+          "external": false
+        }
+      },
+      "blocks": []
+    },
+    {
+      "id": "get-more-from-aws",
+      "type": "alternating_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "get-more-aws",
+          "type": "row",
+          "eyebrow": null,
+          "title": null,
+          "heading": "Get Amp'd to move from cloud data to agents in production on AWS",
+          "body": "A data and AI stack earns its keep in production. Amp’d is how Agivant gets there. Bolt scaffolds the agent stack, Forward Deployed Engineers build inside the enterprise’s own AWS accounts, and production grade agents reason over data the business already trusts. Each engagement ships with evaluation and rollback, and every hardened pipeline and agent becomes a reusable asset the next build starts from. Every build amplifies the next.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
+            "assetKey": "aws-get-more",
+            "alt": "Get Amp'd to move from cloud data to agents in production on AWS",
+            "caption": null,
+            "width": 874,
+            "height": 558
+          },
+          "layout": "image-text",
+          "isCard": true
+        }
+      ]
+    },
+    {
+      "id": "aws-data-ai-stack",
+      "type": "deployment_card",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Why AWS carries a data and AI stack end to end",
+        "description": "When a stack has to run the business, it helps that every piece was built to work with the next. Redshift and an S3 data lake hold the facts. Neptune holds how those facts connect. SageMaker AI and Bedrock turn them into predictions and answers, and AgentCore runs the agents that act on them. Fewer vendors in the chain means fewer places for things to break, and one bill to explain instead of five.",
+        "closingStatement": null,
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/queue-card-image.png",
+          "assetKey": "aws-data-ai-stack",
+          "alt": "Why AWS carries a data and AI stack end to end",
+          "caption": null,
+          "width": 553,
+          "height": 379
+        },
+        "layout": "text-image",
+        "cta": null
+      },
+      "blocks": []
+    }
+  ],
+  "footerCta": {
+    "enabled": false,
+    "heading": "",
+    "subheading": null,
+    "partner": {
+      "name": "AWS",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/aws.png",
+        "assetKey": "partner-aws",
+        "alt": "AWS",
+        "caption": null
+      }
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  }
+}

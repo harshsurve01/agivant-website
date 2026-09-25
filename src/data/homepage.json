@@ -74,7 +74,13 @@
           "eyebrow": "Amplified",
           "title": "AI-Native since inception",
           "body": "Agivant is built AI-native, with engineers and AI Agents working as one",
-          "media": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/trust/card-ribbon2.png",
+            "assetKey": "trust-card-ribbon-2",
+            "alt": "",
+            "caption": null
+          },
           "cta": null,
           "items": []
         },
@@ -84,7 +90,13 @@
           "eyebrow": "Connected",
           "title": "Proven expertise across modern AI engineering",
           "body": "Agivant delivers proven expertise across AI, data, cloud, workflows, business, infra systems enterprises depend on",
-          "media": null,
+          "media": {
+            "kind": "image",
+            "src": "/images/trust/card-ribbon3.png",
+            "assetKey": "trust-card-ribbon-3",
+            "alt": "",
+            "caption": null
+          },
           "cta": null,
           "items": []
         }

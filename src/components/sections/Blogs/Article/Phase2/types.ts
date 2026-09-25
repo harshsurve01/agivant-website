@@ -56,4 +56,6 @@ export interface Phase2Props {
   highlightPosition?: "start" | "end" | "colon";
   /** Word count for the highlight if using 'start' or 'end'. */
   highlightCount?: number;
+  /** Divider style between items. Defaults to "default" (current neutral rule). */
+  dividerVariant?: "default" | "accent";
 }

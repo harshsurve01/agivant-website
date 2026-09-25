@@ -38,4 +38,20 @@ export interface RunningTodayProps {
    * Default: true for 6 cards (landing page), false when 4 cards.
    */
   tintLastCard?: boolean;
+
+  /**
+   * Header alignment: "center" (default) or "left".
+   */
+  align?: "center" | "left";
+
+  /**
+   * Optional phrase to highlight in brand purple in the heading.
+   * Defaults to "Running Today,".
+   */
+  highlightPhrase?: string;
+
+  /**
+   * Optional DOM id for the section.
+   */
+  id?: string;
 }

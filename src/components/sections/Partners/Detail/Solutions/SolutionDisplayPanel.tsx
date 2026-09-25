@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { PartnerAccelerator } from "@/types/partnerDetail";
 import styles from "./Solutions.module.css";
 
@@ -5,6 +6,12 @@ export interface SolutionDisplayPanelProps {
   accelerator: PartnerAccelerator;
   pointerLeft: number | null;
   panelRef?: (el: HTMLDivElement | null) => void;
+  /** Optional titles for the two columns; defaults to the existing titles. */
+  columnLabels?: string[];
+  /** Show a vertical divider between the two columns. Defaults to false. */
+  columnDivider?: boolean;
+  /** Page-specific variant (e.g. "tigergraph"). Defaults to "default". */
+  variant?: "default" | "tigergraph";
 }
 
 /**
@@ -18,7 +25,16 @@ export function SolutionDisplayPanel({
   accelerator,
   pointerLeft,
   panelRef,
+  columnLabels,
+  columnDivider = false,
+  variant = "default",
 }: SolutionDisplayPanelProps) {
+  const [firstLabel, secondLabel] =
+    columnLabels && columnLabels.length === 2
+      ? columnLabels
+      : ["The challenge", "The solution"];
+  const listItems = accelerator.items ?? [];
+
   const agents = accelerator.agents || [];
   const hasAgents = agents.length > 0;
   const halfIndex = Math.ceil(agents.length / 2);
@@ -26,7 +42,13 @@ export function SolutionDisplayPanel({
   const rightAgents = agents.slice(halfIndex);
 
   return (
-    <div ref={panelRef} className={styles.displayPanel}>
+    <div
+      ref={panelRef}
+      className={clsx(
+        styles.displayPanel,
+        variant === "tigergraph" && styles.tigergraphPanel
+      )}
+    >
       {/* Dynamic pointer notch */}
       {pointerLeft !== null && (
         <div
@@ -36,18 +58,61 @@ export function SolutionDisplayPanel({
         />
       )}
 
+      {/* Top description for TigerGraph */}
+      {variant === "tigergraph" && accelerator.description && (
+        <p className={styles.tigergraphPanelDescription}>
+          {accelerator.description}
+        </p>
+      )}
+
       {/* Top row: The challenge vs The solution */}
-      <div className={styles.panelTopRow}>
+      <div
+        className={clsx(
+          styles.panelTopRow,
+          columnDivider && styles.panelTopRowDivided
+        )}
+      >
         <div className={styles.panelCol}>
-          <h4 className={styles.panelSectionTitle}>The challenge</h4>
-          <p className={styles.panelText}>{accelerator.challenge}</p>
+          {firstLabel ? (
+            <h4 className={styles.panelSectionTitle}>{firstLabel}</h4>
+          ) : null}
+          {listItems.length > 0 && !accelerator.challenge ? (
+            <ul className={styles.panelList}>
+              {listItems.map((item) => (
+                <li key={item} className={styles.panelText}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className={styles.panelText}>{accelerator.challenge}</p>
+          )}
         </div>
 
         <div className={styles.panelCol}>
-          <h4 className={styles.panelSectionTitle}>The solution</h4>
-          <p className={styles.panelText}>{accelerator.solution}</p>
+          {secondLabel ? (
+            <h4 className={styles.panelSectionTitle}>{secondLabel}</h4>
+          ) : null}
+          {listItems.length > 0 && accelerator.challenge ? (
+            <ul className={styles.panelList}>
+              {listItems.map((item) => (
+                <li key={item} className={styles.panelText}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className={styles.panelText}>{accelerator.solution}</p>
+          )}
         </div>
       </div>
+
+      {/* Bottom highlighted pill statement */}
+      {accelerator.highlightStatement && (
+        <div className={styles.highlightPill}>
+          {accelerator.highlightStatement}
+        </div>
+      )}
 
       {/* Bottom section: Meet the agent team (only rendered if agents or agentTeamDescription exist) */}
       {(hasAgents || accelerator.agentTeamDescription) && (

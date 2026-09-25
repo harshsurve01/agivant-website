@@ -77,6 +77,7 @@ export async function Trust() {
                   description={card.description}
                   badge={card.badge}
                   accentColor={card.accentColor}
+                  ribbonSrc={card.ribbonSrc}
                 />
               </div>
             ))}

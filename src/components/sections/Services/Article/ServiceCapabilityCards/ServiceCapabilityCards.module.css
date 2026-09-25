@@ -52,6 +52,17 @@
   margin-bottom: var(--space-12, 2.5rem);
 }
 
+.headerLeft {
+  text-align: left;
+  max-width: 73.375rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.headerLeft .heading {
+  text-align: left;
+}
+
 .heading {
   margin: 0;
   font-size: var(--font-size-4xl, 2.25rem);
@@ -64,6 +75,13 @@
 
 .headingHighlight {
   color: var(--color-brand-primary, #8500DF);
+}
+
+.description {
+  margin: var(--space-3, 0.75rem) 0 0;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed, 1.625);
+  color: var(--color-text-primary, #000000);
 }
 
 /* --------------------------------------------------------------------
@@ -306,3 +324,87 @@
     line-height: 1.4;
   }
 }
+
+/* --------------------------------------------------------------------
+   NVIDIA Card Variant & Elements
+   -------------------------------------------------------------------- */
+.cardNvidia {
+  --card-height: 33.75rem;
+}
+
+.cardNvidia .cardTitle {
+  color: var(--color-brand-primary, #8500DF);
+}
+
+.cardLabel {
+  display: block;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-neutral-500, #718096);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider, 0.05em);
+  margin-top: var(--space-1, 0.25rem);
+  margin-bottom: var(--space-2, 0.5rem);
+}
+
+.cardDescription {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-normal, 1.5);
+  color: var(--color-text-primary, #000000);
+}
+
+.cardFooter {
+  margin-top: var(--space-4, 1rem);
+  display: flex;
+  align-items: center;
+}
+
+.cardNvidia .bulletItem {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-normal, 1.5);
+  color: var(--color-text-primary, #000000);
+}
+
+.cardNvidia .bulletDot {
+  color: var(--color-brand-primary, #8500DF);
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.bulletPrefix {
+  color: var(--color-brand-primary, #8500DF);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+/* --------------------------------------------------------------------
+   NVIDIA Typography Standard:
+   1. Headings: 4xl (36px equivalent)
+   2. Card titles: xl (20px equivalent)
+   3. All other text: lg (18px equivalent)
+   -------------------------------------------------------------------- */
+.nvidiaTypography .heading {
+  font-size: var(--font-size-4xl);
+}
+
+.nvidiaTypography .description {
+  font-size: var(--font-size-lg);
+}
+
+.nvidiaTypographyCard .cardTitle {
+  font-size: var(--font-size-xl);
+}
+
+.nvidiaTypographyCard .cardLabel,
+.nvidiaTypographyCard .cardDescription,
+.nvidiaTypographyCard .bulletItem,
+.nvidiaTypographyCard .toggleButton {
+  font-size: var(--font-size-lg);
+}
+
+@media (max-width: 40rem) {
+  .cardNvidia {
+    --card-height: 36rem;
+  }
+}
+

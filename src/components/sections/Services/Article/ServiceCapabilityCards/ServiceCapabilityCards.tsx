@@ -27,16 +27,26 @@ const HIGHLIGHT_PHRASES = [
  * Server Component: renders client card items as interactive leaves.
  */
 export function ServiceCapabilityCards({
+  id,
   heading,
+  description,
+  align = "center",
+  highlightPhrase,
   cards,
   className,
   ribbon,
+  variant = "default",
+  nvidiaTypography = false,
 }: ServiceCapabilityCardsProps) {
   const renderHeading = (text?: string) => {
     if (!text) return null;
     const cleanText = text.replace(/<br\s*\/?>/gi, " ");
 
-    for (const phrase of HIGHLIGHT_PHRASES) {
+    const phrases = highlightPhrase
+      ? [highlightPhrase, ...HIGHLIGHT_PHRASES]
+      : HIGHLIGHT_PHRASES;
+
+    for (const phrase of phrases) {
       if (cleanText.includes(phrase)) {
         const parts = cleanText.split(phrase);
         return (
@@ -52,7 +62,16 @@ export function ServiceCapabilityCards({
   };
 
   return (
-    <section className={clsx(styles.section, ribbon && styles.hasRibbon, className)}>
+    <section
+      id={id}
+      className={clsx(
+        styles.section,
+        ribbon && styles.hasRibbon,
+        variant === "nvidia" && styles.nvidiaVariant,
+        nvidiaTypography && styles.nvidiaTypography,
+        className
+      )}
+    >
       {/* ── Background Ribbon (when provided) ── */}
       {ribbon && (
         <div className={styles.ribbonWrapper} aria-hidden="true">
@@ -87,14 +106,27 @@ export function ServiceCapabilityCards({
 
       <Container size="xl" className={styles.container}>
         {heading && (
-          <header className={styles.header}>
+          <header
+            className={clsx(
+              styles.header,
+              align === "left" && styles.headerLeft
+            )}
+          >
             <h2 className={styles.heading}>{renderHeading(heading)}</h2>
+            {description && (
+              <p className={styles.description}>{description}</p>
+            )}
           </header>
         )}
 
-        <div className={styles.grid}>
+        <div className={clsx(styles.grid, variant === "nvidia" && styles.gridNvidia)}>
           {cards.map((card) => (
-            <ServiceCapabilityCardItem key={card.id} card={card} />
+            <ServiceCapabilityCardItem
+              key={card.id}
+              card={card}
+              variant={variant}
+              nvidiaTypography={nvidiaTypography}
+            />
           ))}
         </div>
       </Container>

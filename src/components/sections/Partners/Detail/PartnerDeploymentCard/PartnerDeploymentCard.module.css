@@ -130,6 +130,17 @@
 }
 
 /* --------------------------------------------------------------------
+   Optional variant: larger body text (largeBodyText prop)
+   Desktop/tablet only; the existing mobile sizes below are kept.
+   -------------------------------------------------------------------- */
+@media (min-width: 769px) {
+  .largeBodyText .description,
+  .largeBodyText .closingStatement {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* --------------------------------------------------------------------
    Responsive Adaptations
    -------------------------------------------------------------------- */
 @media (max-width: 1024px) {

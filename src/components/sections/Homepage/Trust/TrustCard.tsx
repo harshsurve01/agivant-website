@@ -7,6 +7,8 @@ interface TrustCardProps {
   description: string;
   badge: string;
   accentColor: string;
+  /** Optional ribbon artwork; overrides only the default background image. */
+  ribbonSrc?: string;
 }
 
 /**
@@ -18,8 +20,11 @@ interface TrustCardProps {
  * and the title can theme themselves without TrustCard reaching into
  * either of their stylesheets.
  */
-export function TrustCard({ title, description, badge, accentColor }: TrustCardProps) {
-  const accentStyle = { "--trust-accent": "var(--color-purple-500)" } as CSSProperties;
+export function TrustCard({ title, description, badge, accentColor, ribbonSrc }: TrustCardProps) {
+  const accentStyle = {
+    "--trust-accent": "var(--color-purple-500)",
+    ...(ribbonSrc ? { backgroundImage: `url("${ribbonSrc}")` } : {}),
+  } as CSSProperties;
 
   return (
     <article className={styles.card} style={accentStyle} data-accent={accentColor}>

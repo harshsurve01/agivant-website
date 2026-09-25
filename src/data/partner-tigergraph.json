@@ -1,0 +1,495 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "partnershipLanding",
+  "slug": "tigergraph",
+  "title": "TigerGraph",
+  "name": "TigerGraph",
+  "seo": {
+    "title": "TigerGraph Partnership | Agivant",
+    "description": "Agivant builds agents that reason across how customers, accounts, suppliers, and assets connect, using TigerGraph’s native graph engine and GraphRAG.",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "TigerGraph",
+    "subtitle": "Agivant builds agents that reason across how customers, accounts, suppliers, and assets connect, using TigerGraph’s native graph engine and GraphRAG. Most teams see first results in days and weeks.",
+    "summary": "Agivant builds agents that reason across how customers, accounts, suppliers, and assets connect, using TigerGraph’s native graph engine and GraphRAG. Most teams see first results in days and weeks.",
+    "authors": [],
+    "partner": {
+      "name": "TigerGraph",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/tigergraph.png",
+        "assetKey": "tigergraph-logo",
+        "alt": "TigerGraph",
+        "caption": null,
+        "width": 249,
+        "height": 91
+      }
+    },
+    "media": {
+      "kind": "image",
+      "src": "/images/solutions/landing-page-hero.png",
+      "assetKey": "solutions-landing-hero",
+      "alt": "Flowing hero ribbon",
+      "caption": null,
+      "width": 1434,
+      "height": 757
+    },
+    "primaryCta": {
+      "enabled": true,
+      "label": "Book a TigerGraph assessment",
+      "href": "/contact",
+      "icon": "cube"
+    },
+    "secondaryCta": null,
+    "heading": "Relationship-aware AI agents,<br>engineered on",
+    "ribbonSrc": "/images/solutions/landing-page-hero.png",
+    "ribbonWidth": 1434,
+    "ribbonHeight": 757
+  },
+  "sections": [
+    {
+      "id": "coordinated-agents",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "What Agivant brings to TigerGraph",
+        "description": "TigerGraph stores and traverses the connections. Agivant engineers everything around them: the data that feeds the graph, the schemas that shape it, the agents that act on what it shows, and the controls that keep people in charge.",
+        "closingStatement": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "tigergraph-bring-1",
+          "type": "card",
+          "body": "Graph schema design mapped to the questions the business needs answered"
+        },
+        {
+          "id": "tigergraph-bring-2",
+          "type": "card",
+          "body": "Real-time ingestion pipelines that keep the graph current as transactions and events land"
+        },
+        {
+          "id": "tigergraph-bring-3",
+          "type": "card",
+          "body": "Multi-hop traversal logic written in GSQL and tuned for production load"
+        },
+        {
+          "id": "tigergraph-bring-4",
+          "type": "card",
+          "body": "GraphRAG grounding, so agent answers carry the relationships and context behind them"
+        },
+        {
+          "id": "tigergraph-bring-5",
+          "type": "card",
+          "body": "Human checkpoints in front of high-stakes decisions, with evaluation and rollback from the first sprint"
+        },
+        {
+          "id": "tigergraph-bring-6",
+          "type": "card",
+          "body": "Reusable schemas, traversal logic, ingestion pipelines, and agent patterns that carry into the next use case"
+        }
+      ]
+    },
+    {
+      "id": "solutions",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Where Agivant applies TigerGraph",
+        "description": "Each of these starts with a question a row-level query struggles to answer.",
+        "columns": [
+          "Key capabilities",
+          "Reported outcomes"
+        ],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "fraud-ring-detection",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Fraud ring detection",
+          "body": "Organized fraud runs as a network of shared devices, addresses, accounts, and intermediaries. Agivant builds agents on TigerGraph that trace those links as transactions land and bring the ring to investigators while it is still active.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "assetKey": "tigergraph-fraud-ring",
+            "alt": "Fraud ring detection",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Multi-hop traversal across accounts, devices, locations, and transaction chains",
+            "Ring and anomaly detection as patterns form",
+            "Risk-scored cases, prioritized for investigators",
+            "Investigator review before any account action"
+          ],
+          "solution": "up to 60% reduction in fraud ring detection time and up to 35% of cases auto-prioritized by risk score"
+        },
+        {
+          "id": "supply-chain-risk-intelligence",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Supply chain risk\nintelligence",
+          "body": "Organized fraud runs as a network of shared devices, addresses, accounts, and intermediaries. Agivant builds agents on TigerGraph that trace those links as transactions land and bring the ring to investigators while it is still active.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/sourcex.png",
+            "assetKey": "tigergraph-supply-chain",
+            "alt": "Supply chain risk intelligence",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Multi-tier supplier network mapping",
+            "Concentration and sanctions exposure scoring",
+            "Disruption alerts with the full dependency chain",
+            "Planner review before rerouting decisions"
+          ],
+          "solution": "up to 45% reduction in multi-tier risk exposure time and up to 80% of the supplier network mapped automatically"
+        },
+        {
+          "id": "entity-resolution-customer-360",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Entity resolution and\ncustomer 360",
+          "body": "The same customer or counterparty shows up across CRM, billing, support, and compliance systems under different names and IDs. Agivant resolves those records into one entity in TigerGraph, so downstream agents reason over the whole relationship.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/cpq-lens.png",
+            "assetKey": "tigergraph-entity-resolution",
+            "alt": "Entity resolution and customer 360",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Probabilistic and deterministic record matching",
+            "Golden record built in the graph",
+            "Full relationship map per entity",
+            "Shared entity layer for downstream agents"
+          ],
+          "solution": "up to 95% entity match accuracy across fragmented sources and up to 70% of duplicate entities resolved automatically"
+        },
+        {
+          "id": "anti-money-laundering-network-analysis",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Anti-money\nlaundering network\nanalysis",
+          "body": "Laundering hides in layered transaction chains and ownership structures. Agivant traces fund flows and resolves beneficial ownership across the graph, then assembles an investigation-ready evidence trail for compliance analysts.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/zeroqueue.png",
+            "assetKey": "tigergraph-aml-analysis",
+            "alt": "Anti-money laundering network analysis",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Fund-flow tracing across multi-hop chains",
+            "Beneficial ownership resolution",
+            "Evidence trails assembled for review",
+            "Compliance analyst sign-off on every case"
+          ],
+          "solution": "up to 50% reduction in investigation preparation time and up to 65% of fund flows traced automatically"
+        }
+      ]
+    },
+    {
+      "id": "connected-data-use-cases",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "More connected-data use cases on TigerGraph",
+        "description": "The same graph and agent layer extends to other decisions that depend on relationships.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "tigergraph-usecase-1",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Know Your Customer (KYC)",
+          "body": "Entity risk scored across every relationship.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/sourcex.png",
+            "assetKey": "tigergraph-usecase-1",
+            "alt": "Know Your Customer (KYC)",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "tigergraph-usecase-2",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Network security",
+          "body": "Threat paths traced through the full topology.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-02.png",
+            "assetKey": "tigergraph-usecase-2",
+            "alt": "Network security",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "tigergraph-usecase-3",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Recommendation engines",
+          "body": "Next-best actions grounded in real connections.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-03.png",
+            "assetKey": "tigergraph-usecase-3",
+            "alt": "Recommendation engines",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "tigergraph-usecase-4",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Master data management",
+          "body": "One resolved entity, every system.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/agentic-quote-accelerator.png",
+            "assetKey": "tigergraph-usecase-4",
+            "alt": "Master data management",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "tigergraph-usecase-5",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Clinical pathways",
+          "body": "Patient journeys traced across providers.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/strategic-sourcing.png",
+            "assetKey": "tigergraph-usecase-5",
+            "alt": "Clinical pathways",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "tigergraph-usecase-6",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Telecom network optimization",
+          "body": "Capacity and faults traced across the network.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "assetKey": "tigergraph-usecase-6",
+            "alt": "Telecom network optimization",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "engineering-depth",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Engineering depth behind the TigerGraph practice",
+        "description": "Agivant’s wider engineering practices connect TigerGraph work to the data, agents, and platforms around it.",
+        "columns": [],
+        "media": null,
+        "cta": null,
+        "closingStatement": null
+      },
+      "blocks": [
+        {
+          "id": "agentic-ai-agentops",
+          "type": "card",
+          "title": "Agentic AI and AgentOps",
+          "body": "Agent orchestration and guardrails, with human checkpoints in front of high-stakes calls."
+        },
+        {
+          "id": "data-engineering",
+          "type": "card",
+          "title": "Data engineering",
+          "body": "Pipelines that feed the graph from transactional systems and event streams in near real time."
+        },
+        {
+          "id": "ai-ml-engineering",
+          "type": "card",
+          "title": "AI and ML engineering",
+          "body": "Graph-derived features feeding risk and churn predictions."
+        },
+        {
+          "id": "cloud-platform-engineering",
+          "type": "card",
+          "title": "Cloud and platform engineering",
+          "body": "Secure TigerGraph deployments on the cloud the enterprise already runs, observable from day one."
+        }
+      ]
+    },
+    {
+      "id": "get-ampd",
+      "type": "alternating_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "get-ampd-tigergraph",
+          "type": "row",
+          "eyebrow": null,
+          "title": null,
+          "heading": "Get Amp’d on TigerGraph",
+          "body": "Amp’d is how Agivant builds on TigerGraph. Forward Deployed Engineers sit with business and technology teams to turn one high-value workflow into a production agent on connected enterprise data. Every engagement leaves behind graph schemas, traversal logic, ingestion pipelines, and agent patterns the next use case builds on. Every build amplifies the next.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
+            "assetKey": "tigergraph-get-ampd",
+            "alt": "Get Amp’d on TigerGraph",
+            "caption": null,
+            "width": 437,
+            "height": 279
+          },
+          "layout": "image-text",
+          "isCard": true
+        }
+      ]
+    },
+    {
+      "id": "proof-from-production",
+      "type": "case_study_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Proof from production.",
+        "description": "Gemini Enterprise engagements already running, with outcomes measured in the environment they were built for.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "developer-productivity-on-gemini",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Developer productivity on Gemini",
+          "body": "Gemini-native code assistance across a global technology estate, working inside the tools engineers already use.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/developer-productivity.png",
+            "assetKey": "production-proof-1",
+            "alt": "Developer productivity on Gemini",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "",
+            "external": false
+          },
+          "items": [],
+          "metric": "35 percent faster cycles · 30 to 40 percent higher developer productivity",
+          "caseStudySlug": "developer-productivity-on-gemini",
+          "badge": "Client success",
+          "isTall": false
+        },
+        {
+          "id": "conversational-analytics-and-hyper-automation",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Conversational analytics\nand hyper-automation",
+          "body": "Multilingual conversational analytics that read intent, answer at source, and route only what needs a person.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/conversational-analytics.png",
+            "assetKey": "production-proof-2",
+            "alt": "Conversational analytics and hyper-automation",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "",
+            "external": false
+          },
+          "items": [],
+          "metric": "Around 90 percent automation · 94 percent confidence · 50 plus languages",
+          "caseStudySlug": "conversational-analytics-and-hyper-automation",
+          "badge": "Client success",
+          "isTall": false
+        },
+        {
+          "id": "enterprise-mlops-on-vertex-ai",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Enterprise MLOps on Vertex AI",
+          "body": "The model lifecycle automated end to end, from training through release and monitoring.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/enterprise-mlops.png",
+            "assetKey": "production-proof-3",
+            "alt": "Enterprise MLOps on Vertex AI",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "",
+            "external": false
+          },
+          "items": [],
+          "metric": "30 to 50 percent lower operating cost",
+          "caseStudySlug": "enterprise-mlops-on-vertex-ai",
+          "badge": "Client success",
+          "isTall": true
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": false,
+    "heading": "",
+    "description": "",
+    "columns": [],
+    "media": null,
+    "cta": null
+  }
+}

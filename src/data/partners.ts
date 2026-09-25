@@ -9,6 +9,9 @@ import shopifyDetailJson from "./partner-shopify.json";
 import servicenowDetailJson from "./partner-servicenow.json";
 import gleanDetailJson from "./partner-glean.json";
 import nvidiaDetailJson from "./partner-nvidia.json";
+import salesforceDetailJson from "./partner-salesforce.json";
+import tigergraphDetailJson from "./partner-tigergraph.json";
+import awsDetailJson from "./partner-aws.json";
 
 /**
  * data/partners.ts
@@ -265,6 +268,11 @@ import type {
   PartnerDeploymentCardData,
   WorkflowFamiliesData,
   PartnerWhatAgentsDoData,
+  NvidiaKeyBenefitsData,
+  NvidiaAdvantageData,
+  NvidiaIndustryEvolutionData,
+  PartnerInfrastructurePrinciplesData,
+  PartnerNumberedListData,
 } from "@/types/partnerDetail";
 
 /* ==========================================================================
@@ -450,6 +458,9 @@ export const PARTNERS_DETAIL_DATA: Record<string, StandardizedPartnerDetailPage>
   [servicenowDetailJson.slug]: servicenowDetailJson as unknown as StandardizedPartnerDetailPage,
   [gleanDetailJson.slug]: gleanDetailJson as unknown as StandardizedPartnerDetailPage,
   [nvidiaDetailJson.slug]: nvidiaDetailJson as unknown as StandardizedPartnerDetailPage,
+  [salesforceDetailJson.slug]: salesforceDetailJson as unknown as StandardizedPartnerDetailPage,
+  [tigergraphDetailJson.slug]: tigergraphDetailJson as unknown as StandardizedPartnerDetailPage,
+  [awsDetailJson.slug]: awsDetailJson as unknown as StandardizedPartnerDetailPage,
 };
 
 /**
@@ -492,6 +503,7 @@ function mapStandardizedToPartnerDetail(
     ribbonSrc: data.hero.ribbonSrc ?? data.hero.media?.src ?? "",
     ribbonWidth: data.hero.ribbonWidth ?? (data.hero.media?.width as number | undefined),
     ribbonHeight: data.hero.ribbonHeight ?? (data.hero.media?.height as number | undefined),
+    primaryCta: data.hero.primaryCta ?? null,
   };
 
   const introSec = data.sections.find((s) => s.id === "production-value");
@@ -507,6 +519,12 @@ function mapStandardizedToPartnerDetail(
     if (fullHeading.startsWith(highlightMatch)) {
       introHighlight = highlightMatch;
       introSuffix = fullHeading.slice(highlightMatch.length).trim();
+    } else if (data.slug === "salesforce" && fullHeading.includes(",")) {
+      // Salesforce: text up to and including the first comma is the accent;
+      // the rest renders as primary text. Copy stays in JSON.
+      const commaIdx = fullHeading.indexOf(",");
+      introHighlight = fullHeading.slice(0, commaIdx + 1);
+      introSuffix = fullHeading.slice(commaIdx + 1).trim();
     } else {
       introHighlight = fullHeading;
       introSuffix = "";
@@ -603,7 +621,8 @@ function mapStandardizedToPartnerDetail(
     (s) =>
       s.id === "coordinated-agent-teams" ||
       s.id === "built-on-databricks" ||
-      s.id === "industry-accelerators"
+      s.id === "industry-accelerators" ||
+      s.id === "connected-data-use-cases"
   );
 
   const agentTeams: PartnerAgentTeamsData | undefined = agentTeamsSec
@@ -635,9 +654,20 @@ function mapStandardizedToPartnerDetail(
           let highlight = b.headingStructure?.highlight;
           let text = b.headingStructure?.text;
           if (!highlight && b.heading) {
-            const parts = b.heading.split(/<br\s*\/?>|\n/);
-            highlight = parts[0];
-            text = parts.slice(1).join(" ");
+            if (
+              data.slug === "tigergraph" &&
+              (b.heading.startsWith("Get Amp’d") || b.heading.startsWith("Get Amp'd"))
+            ) {
+              const prefix = b.heading.startsWith("Get Amp’d")
+                ? "Get Amp’d"
+                : "Get Amp'd";
+              highlight = prefix;
+              text = b.heading.slice(prefix.length).trim();
+            } else {
+              const parts = b.heading.split(/<br\s*\/?>|\n/);
+              highlight = parts[0];
+              text = parts.slice(1).join(" ");
+            }
           }
           return {
             id: b.id,
@@ -689,8 +719,8 @@ function mapStandardizedToPartnerDetail(
 
   let databricksBusinessContext: DatabricksBusinessContextData | undefined;
   const businessContextSec =
-    data.slug === "databricks" || data.slug === "glean"
-      ? data.sections.find((s) => s.id === "business-context" || s.id === "domain-stack")
+    data.slug === "databricks" || data.slug === "glean" || data.slug === "tigergraph"
+      ? data.sections.find((s) => s.id === "business-context" || s.id === "domain-stack" || s.id === "engineering-depth")
       : undefined;
 
   if (businessContextSec) {
@@ -1018,6 +1048,23 @@ function mapStandardizedToPartnerDetail(
     if (solutionsSec.data.heading.startsWith(target)) {
       solHighlight = target;
       solSuffix = solutionsSec.data.heading.slice(target.length).trim();
+    } else if (
+      data.slug === "salesforce" &&
+      solutionsSec.data.heading.trim().includes(" ")
+    ) {
+      // Salesforce: first word is the accent, the rest is primary text.
+      // Copy stays in JSON.
+      const fullHeading = solutionsSec.data.heading.trim();
+      const spaceIdx = fullHeading.indexOf(" ");
+      solHighlight = fullHeading.slice(0, spaceIdx);
+      solSuffix = fullHeading.slice(spaceIdx + 1).trim();
+    } else if (
+      data.slug === "tigergraph" &&
+      solutionsSec.data.heading.startsWith("Where Agivant")
+    ) {
+      // TigerGraph: 'Where Agivant' is purple, the rest is primary text.
+      solHighlight = "Where Agivant";
+      solSuffix = solutionsSec.data.heading.slice("Where Agivant".length).trim();
     } else {
       const parts = solutionsSec.data.heading.split(/<br\s*\/?>/i);
       if (parts.length >= 2) {
@@ -1038,7 +1085,14 @@ function mapStandardizedToPartnerDetail(
           suffix: solSuffix,
           text: solText,
         },
+        subheading: (solutionsSec.data as any).subheading,
         description: solutionsSec.data.description ?? "",
+        closingStatement: (solutionsSec.data as any).closingStatement,
+        columnLabels:
+          Array.isArray(solutionsSec.data.columns) &&
+          solutionsSec.data.columns.length === 2
+            ? (solutionsSec.data.columns as string[])
+            : undefined,
         accelerators: (solutionsSec.blocks ?? []).map((b) => ({
           id: b.id,
           title: b.title ?? "",
@@ -1054,6 +1108,8 @@ function mapStandardizedToPartnerDetail(
           agentTeamDescription: b.agentTeamDescription,
           agents: b.agents,
           proof: b.proof as PartnerAccelerator["proof"],
+          items: b.items && b.items.length > 0 ? b.items : undefined,
+          highlightStatement: (b as any).highlightStatement,
         })),
       }
     : undefined;
@@ -1093,6 +1149,7 @@ function mapStandardizedToPartnerDetail(
           metric: b.metric ?? "",
           ctaLabel: b.cta?.label ?? "Read more >>",
           caseStudySlug: b.caseStudySlug ?? b.id,
+          href: b.cta?.href ?? "",
           image: {
             src: b.media?.src ?? "",
             alt: b.media?.alt ?? "",
@@ -1167,6 +1224,163 @@ function mapStandardizedToPartnerDetail(
       }
     : undefined;
 
+  let keyBenefits: NvidiaKeyBenefitsData | undefined;
+  const keyBenefitsSec = data.sections.find(
+    (s) => s.id === "key-benefits" || s.id === "benefits"
+  );
+  if (keyBenefitsSec) {
+    keyBenefits = {
+      heading: keyBenefitsSec.data.heading ?? "Key Benefits",
+      description: keyBenefitsSec.data.description ?? undefined,
+      cards: (keyBenefitsSec.blocks ?? []).map((b) => ({
+        id: b.id,
+        label: b.title ?? "",
+        value: b.metric ?? "",
+        description: b.body ?? b.description ?? "",
+        image: {
+          src: b.media?.src ?? "",
+          alt: b.media?.alt ?? b.title ?? "",
+          width: b.media?.width,
+          height: b.media?.height,
+        },
+      })),
+    };
+  }
+
+  let nvidiaAdvantage: NvidiaAdvantageData | undefined;
+  const advantageSec = data.sections.find(
+    (s) => s.id === "agivant-advantage" || s.id === "advantage"
+  );
+  if (advantageSec) {
+    nvidiaAdvantage = {
+      heading: advantageSec.data.heading ?? "Agivant's Advantage",
+      description: advantageSec.data.description ?? undefined,
+      stages: (advantageSec.blocks ?? []).map((b, idx) => ({
+        id: b.id,
+        step: (b as { step?: string }).step ?? `0${idx + 1}`,
+        title: b.title ?? "",
+        description: b.body ?? b.description ?? "",
+      })),
+    };
+  }
+
+  let industryEvolution: NvidiaIndustryEvolutionData | undefined;
+  const evolutionSec = data.sections.find(
+    (s) => s.id === "industry-evolution" || s.id === "evolution"
+  );
+  if (evolutionSec) {
+    const legacyBlock = evolutionSec.blocks?.find(
+      (b) => b.id === "legacy-approach" || b.id === "legacy"
+    );
+    const modernBlock = evolutionSec.blocks?.find(
+      (b) => b.id === "modern-approach" || b.id === "modern"
+    );
+    industryEvolution = {
+      heading: evolutionSec.data.heading ?? "Industry Evolution",
+      description: evolutionSec.data.description ?? undefined,
+      legacy: {
+        title: legacyBlock?.title ?? "Legacy Enterprise Approach",
+        items:
+          (
+            legacyBlock as {
+              items?: Array<{ label: string; description: string }>;
+            }
+          )?.items ?? [],
+      },
+      modern: {
+        title: modernBlock?.title ?? "Legacy Enterprise Approach",
+        items:
+          (
+            modernBlock as {
+              items?: Array<{ label: string; description: string }>;
+            }
+          )?.items ?? [],
+      },
+      ribbon: evolutionSec.data.media?.src
+        ? {
+            src: evolutionSec.data.media.src,
+            width: evolutionSec.data.media.width ?? 4692,
+            height: evolutionSec.data.media.height ?? 920,
+            alt: evolutionSec.data.media.alt ?? "Industry Evolution card ribbon",
+          }
+        : undefined,
+    };
+  }
+
+  let infrastructurePrinciples: PartnerInfrastructurePrinciplesData | undefined;
+  const infraSec = data.sections.find(
+    (s) =>
+      s.id === "infrastructure-design-principles" ||
+      s.id === "infrastructure-principles"
+  );
+  if (infraSec) {
+    infrastructurePrinciples = {
+      heading: infraSec.data.heading ?? "Infrastructure Design Principles",
+      description: infraSec.data.description ?? undefined,
+      metrics: (infraSec.blocks ?? []).map((b) => ({
+        id: b.id,
+        type: b.type ?? "metric",
+        eyebrow: (b as { eyebrow?: string }).eyebrow ?? null,
+        value:
+          (b as { value?: string; metric?: string; title?: string }).value ??
+          (b as { metric?: string }).metric ??
+          b.title ??
+          "",
+        label:
+          (b as { label?: string; body?: string; description?: string })
+            .label ??
+          (b as { body?: string }).body ??
+          b.description ??
+          "",
+        detail: (b as { detail?: string }).detail ?? null,
+      })),
+    };
+  }
+
+  let aiCapabilities: PartnerNumberedListData | undefined;
+  const aiCapabilitiesSec =
+    data.slug === "salesforce"
+      ? data.sections.find((s) => s.id === "ai-data-capabilities")
+      : undefined;
+  if (aiCapabilitiesSec) {
+    aiCapabilities = {
+      heading: aiCapabilitiesSec.data.heading ?? "",
+      items: (aiCapabilitiesSec.blocks ?? []).map((b, i) => ({
+        index: String(
+          (b as { number?: number | null }).number ?? i + 1
+        ).padStart(2, "0"),
+        title: b.title ?? "",
+        description: b.body ?? "",
+      })),
+    };
+  }
+
+  let capabilityPortfolio: PartnerDetailData["capabilityPortfolio"];
+  const capabilitySec = data.sections.find(
+    (s) => s.id === "capability-portfolio" || s.id === "capabilities"
+  );
+  if (capabilitySec) {
+    capabilityPortfolio = {
+      heading: capabilitySec.data.heading ?? "Capability Portfolio",
+      highlightPhrase: "Capability",
+      description: capabilitySec.data.description ?? undefined,
+      align: "left",
+      variant: data.slug === "nvidia" ? "nvidia" : "default",
+      nvidiaTypography: data.slug === "nvidia",
+      cards: (capabilitySec.blocks ?? []).map((b) => ({
+        id: b.id,
+        title: b.title ?? "",
+        label: b.eyebrow ?? undefined,
+        description: b.body ?? undefined,
+        media: {
+          src: b.media?.src ?? "",
+          alt: b.media?.alt ?? b.title ?? "",
+        },
+        bullets: (b.items as string[]) ?? [],
+      })),
+    };
+  }
+
   return {
     slug: data.slug,
     name: data.name ?? data.hero.partner.name,
@@ -1188,6 +1402,12 @@ function mapStandardizedToPartnerDetail(
     solutions,
     productionProof,
     builtOnGemini,
+    keyBenefits,
+    nvidiaAdvantage,
+    industryEvolution,
+    infrastructurePrinciples,
+    capabilityPortfolio,
+    aiCapabilities,
     cta,
   };
 }

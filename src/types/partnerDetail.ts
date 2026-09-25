@@ -7,6 +7,9 @@
  * directly into these interfaces without modifying presentation components.
  */
 
+import type { RunningTodayMetric } from "@/data/services";
+import type { ServiceCapabilityCardsProps } from "@/components/sections/Services/Article/ServiceCapabilityCards";
+
 export interface PartnerHeroData {
   headingLine1: string;
   headingLine2: string;
@@ -22,6 +25,12 @@ export interface PartnerHeroData {
   ribbonWidth?: number;
   ribbonHeight?: number;
   subtitle?: string | null;
+  primaryCta?: {
+    enabled?: boolean;
+    label: string | null;
+    href: string | null;
+    icon?: string;
+  } | null;
 }
 
 export interface LeadershipQuoteData {
@@ -153,6 +162,10 @@ export interface PartnerAccelerator {
   agentTeamDescription?: string;
   agents?: AgentTeamMember[];
   proof?: AcceleratorProofData;
+  /** Optional list for the panel's first column (from the card's `items`). */
+  items?: string[];
+  /** Optional highlight statement pill at the bottom of the display panel. */
+  highlightStatement?: string;
 }
 
 export interface PartnerSolutionsData {
@@ -162,8 +175,14 @@ export interface PartnerSolutionsData {
     suffix?: string;
     text?: string;
   };
+  /** Optional subheading rendered above the description. */
+  subheading?: string;
   description: string;
   accelerators: PartnerAccelerator[];
+  /** Optional panel column titles (from the section's `data.columns`). */
+  columnLabels?: string[];
+  /** Optional closing statement rendered beneath the display panel. */
+  closingStatement?: string;
 }
 
 export interface PartnerCTAData {
@@ -189,6 +208,9 @@ export interface ProductionProofCardData {
   metric: string;
   ctaLabel?: string;
   caseStudySlug: string;
+  /** Card destination (from the block's `cta.href`). Empty/absent: the
+   *  card renders without a link and does not navigate. */
+  href?: string;
   image: {
     src: string;
     alt: string;
@@ -391,7 +413,86 @@ export interface PartnerDetailData {
   solutions?: PartnerSolutionsData;
   productionProof?: PartnerProductionProofData;
   builtOnGemini?: PartnerBuiltOnGeminiData;
+  keyBenefits?: NvidiaKeyBenefitsData;
+  nvidiaAdvantage?: NvidiaAdvantageData;
+  industryEvolution?: NvidiaIndustryEvolutionData;
+  infrastructurePrinciples?: PartnerInfrastructurePrinciplesData;
+  capabilityPortfolio?: ServiceCapabilityCardsProps;
+  aiCapabilities?: PartnerNumberedListData;
   cta?: PartnerCTAData;
 }
 
+/**
+ * Numbered list section (from a `numbered_list` section with
+ * `numberedItem` blocks). Items match the Blogs Phase2Item shape.
+ */
+export interface PartnerNumberedListData {
+  heading: string;
+  items: Array<{
+    index: string;
+    title: string;
+    description: string;
+  }>;
+}
+
+export interface NvidiaBenefitCardData {
+  id: string;
+  label: string;
+  value: string;
+  description: string;
+  image: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+  };
+}
+
+export interface NvidiaKeyBenefitsData {
+  heading: string;
+  description?: string;
+  cards: NvidiaBenefitCardData[];
+}
+
+export interface NvidiaAdvantageStageData {
+  id: string;
+  step: string;
+  title: string;
+  description: string;
+}
+
+export interface NvidiaAdvantageData {
+  heading: string;
+  description?: string;
+  stages: NvidiaAdvantageStageData[];
+}
+
+export interface NvidiaIndustryEvolutionItem {
+  label: string;
+  description: string;
+}
+
+export interface NvidiaIndustryEvolutionColumn {
+  title: string;
+  items: NvidiaIndustryEvolutionItem[];
+}
+
+export interface NvidiaIndustryEvolutionData {
+  heading: string;
+  description?: string;
+  legacy: NvidiaIndustryEvolutionColumn;
+  modern: NvidiaIndustryEvolutionColumn;
+  ribbon?: {
+    src: string;
+    width: number;
+    height: number;
+    alt?: string;
+  };
+}
+
+export interface PartnerInfrastructurePrinciplesData {
+  heading: string;
+  description?: string;
+  metrics: RunningTodayMetric[];
+}
 

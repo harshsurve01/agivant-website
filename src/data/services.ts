@@ -49,6 +49,8 @@ export interface RunningTodayMetric {
   value: string;
   label: string;
   detail: string | null;
+  eyebrow?: string | null;
+  description?: string | null;
 }
 
 export interface RunningTodaySectionData {

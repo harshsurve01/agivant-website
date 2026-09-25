@@ -9,6 +9,10 @@ export interface AcceleratorCardProps {
   onClick: () => void;
   onMouseEnter: () => void;
   cardRef?: (el: HTMLDivElement | null) => void;
+  /** Swap arrow directions (active ↗, inactive ↙). Defaults to false. */
+  reverseArrow?: boolean;
+  /** Page-specific variant (e.g. "tigergraph"). Defaults to "default". */
+  variant?: "default" | "tigergraph";
 }
 
 /**
@@ -30,7 +34,11 @@ export function AcceleratorCard({
   onClick,
   onMouseEnter,
   cardRef,
+  reverseArrow = false,
+  variant = "default",
 }: AcceleratorCardProps) {
+  const showDownLeftArrow = reverseArrow ? !isActive : isActive;
+
   // Natural intrinsic dimensions based on the source image files
   const naturalWidth = 278;
   const naturalHeight =
@@ -58,7 +66,8 @@ export function AcceleratorCard({
       }}
       className={clsx(
         styles.card,
-        isActive ? styles.cardActive : styles.cardInactive
+        isActive ? styles.cardActive : styles.cardInactive,
+        variant === "tigergraph" && styles.tigergraphCard
       )}
     >
       {/* Top content area with inner padding */}
@@ -74,8 +83,8 @@ export function AcceleratorCard({
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              {isActive ? (
-                // In active state: arrow points down-left
+              {showDownLeftArrow ? (
+                // Default: active card arrow points down-left
                 <path
                   d="M10.5 3.5L3.5 10.5M3.5 10.5H9.5M3.5 10.5V4.5"
                   stroke="currentColor"
@@ -100,8 +109,16 @@ export function AcceleratorCard({
         {/* Card Body - reduced opacity when inactive */}
         <div className={styles.cardBody}>
           <h3 className={styles.cardTitle}>{accelerator.title}</h3>
-          <p className={styles.cardCategory}>{accelerator.category}</p>
-          <p className={styles.cardDescription}>{accelerator.description}</p>
+          {variant !== "tigergraph" && (
+            <>
+              {accelerator.category && (
+                <p className={styles.cardCategory}>{accelerator.category}</p>
+              )}
+              {accelerator.description && (
+                <p className={styles.cardDescription}>{accelerator.description}</p>
+              )}
+            </>
+          )}
         </div>
       </div>
 

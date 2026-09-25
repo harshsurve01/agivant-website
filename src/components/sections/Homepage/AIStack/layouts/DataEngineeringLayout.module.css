@@ -27,6 +27,10 @@
   flex-direction: column;
   gap: var(--service-stack-title-content-gap, var(--space-2));
   flex-shrink: 0;
+  /* Homepage text inset (see --ai-stack-text-padding-inline in
+     AIStack.module.css). .layout already pads by the card inset, so
+     only the difference is added here; without the variable this is 0. */
+  padding-inline: calc(var(--ai-stack-text-padding-inline, var(--service-stack-card-padding-inline, var(--space-6))) - var(--service-stack-card-padding-inline, var(--space-6)));
   position: relative;
   z-index: var(--service-stack-text-z-index, 1);
   transform: translateZ(var(--service-stack-text-translate-z, 40px));

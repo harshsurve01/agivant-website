@@ -50,6 +50,7 @@ export function Phase2({
   items,
   highlightPosition,
   highlightCount,
+  dividerVariant,
 }: Phase2Props) {
   const renderHeading = () => {
     const headingClassName = clsx(
@@ -126,6 +127,7 @@ export function Phase2({
               key={item.index}
               item={item}
               showDivider={index < items.length - 1}
+              dividerVariant={dividerVariant}
             />
           ))}
         </div>

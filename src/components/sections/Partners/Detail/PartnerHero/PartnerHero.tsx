@@ -1,7 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { HeroBackground } from "@/components/ui/HeroBackground";
+import { Button } from "@/components/ui/Button";
+import { Cube } from "@/components/ui/Icon/Cube";
 import type { PartnerHeroData } from "@/types/partnerDetail";
 import styles from "./PartnerHero.module.css";
 
@@ -39,15 +42,33 @@ export function PartnerHero({ hero }: PartnerHeroProps) {
       )
     );
 
+  const isSalesforce = hero.partnerLogo.assetKey === "salesforce-logo";
+
+  const isAws = hero.partnerLogo.assetKey === "aws-logo";
+
+  const isTigerGraph =
+    hero.partnerLogo.assetKey === "tigergraph-logo" ||
+    hero.partnerLogo.src.includes("tigergraph");
+
   return (
     <section
-      className={clsx(styles.hero, isNvidia && styles.nvidiaHero)}
+      className={clsx(
+        styles.hero,
+        isNvidia && styles.nvidiaHero,
+        isTigerGraph && styles.tigergraphHero
+      )}
       data-hero-interaction-root
     >
-      <HeroBackground showDecorativeLayers={!isNvidia} />
+      <HeroBackground showEllipse={false} />
 
       <Container className={styles.container}>
-        <div className={clsx(styles.content, isNvidia && styles.nvidiaContent)}>
+        <div
+          className={clsx(
+            styles.content,
+            isNvidia && styles.nvidiaContent,
+            isAws && styles.awsContent
+          )}
+        >
           {isNvidia ? (
             <>
               {/* Heading hierarchy:
@@ -87,11 +108,30 @@ export function PartnerHero({ hero }: PartnerHeroProps) {
                       key={idx}
                       className={clsx(
                         styles.headingLine,
-                        isDatabricks && idx === 0 && styles.headingLineAccent,
-                        isDatabricks && idx > 0 && styles.headingLinePrimary
+                        (isDatabricks || isSalesforce || isTigerGraph || isAws) &&
+                          idx === 0 &&
+                          styles.headingLineAccent,
+                        (isDatabricks || isSalesforce || isTigerGraph || isAws) &&
+                          idx > 0 &&
+                          styles.headingLinePrimary
                       )}
                     >
                       {line}
+                      {/* AWS: the logo supplies the "aws" wordmark inline
+                          at the end of the first heading line. */}
+                      {isAws && idx === 0 && (
+                        <>
+                          {" "}
+                          <Image
+                            src={hero.partnerLogo.src}
+                            alt={hero.partnerLogo.alt}
+                            width={hero.partnerLogo.width ?? 249}
+                            height={hero.partnerLogo.height ?? 91}
+                            className={styles.awsLogoInline}
+                            priority
+                          />
+                        </>
+                      )}
                     </span>
                   ))
                 ) : (
@@ -99,7 +139,8 @@ export function PartnerHero({ hero }: PartnerHeroProps) {
                     <span
                       className={clsx(
                         styles.headingLine,
-                        isDatabricks && styles.headingLineAccent
+                        (isDatabricks || isSalesforce || isTigerGraph) &&
+                          styles.headingLineAccent
                       )}
                     >
                       {hero.headingLine1}
@@ -107,7 +148,8 @@ export function PartnerHero({ hero }: PartnerHeroProps) {
                     <span
                       className={clsx(
                         styles.headingLine,
-                        isDatabricks && styles.headingLinePrimary
+                        (isDatabricks || isSalesforce || isTigerGraph) &&
+                          styles.headingLinePrimary
                       )}
                     >
                       {hero.headingLine2}
@@ -116,7 +158,7 @@ export function PartnerHero({ hero }: PartnerHeroProps) {
                 )}
               </h1>
 
-              {hero.partnerLogo && (
+              {hero.partnerLogo && !isAws && (
                 <div className={styles.logoWrapper}>
                   <Image
                     src={hero.partnerLogo.src}
@@ -128,10 +170,39 @@ export function PartnerHero({ hero }: PartnerHeroProps) {
                       hero.partnerLogo.assetKey === "databricks-logo" && styles.databricksLogo,
                       hero.partnerLogo.assetKey === "shopify-logo" && styles.shopifyLogo,
                       hero.partnerLogo.assetKey === "servicenow-logo" && styles.servicenowLogo,
-                      hero.partnerLogo.assetKey === "glean-logo" && styles.gleanLogo
+                      hero.partnerLogo.assetKey === "glean-logo" && styles.gleanLogo,
+                      isSalesforce && styles.salesforceLogo,
+                      isTigerGraph && styles.tigergraphLogo
                     )}
                     priority
                   />
+                </div>
+              )}
+
+              {hero.subtitle && (
+                <p
+                  className={clsx(
+                    styles.subtitle,
+                    isTigerGraph && styles.tigergraphSubtitle
+                  )}
+                >
+                  {hero.subtitle}
+                </p>
+              )}
+
+              {hero.primaryCta?.enabled && hero.primaryCta.label && (
+                <div className={styles.ctaWrapper}>
+                  <Link href={hero.primaryCta.href ?? "/contact"}>
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      rightIcon={
+                        hero.primaryCta.icon === "cube" ? <Cube /> : undefined
+                      }
+                    >
+                      {hero.primaryCta.label}
+                    </Button>
+                  </Link>
                 </div>
               )}
             </>

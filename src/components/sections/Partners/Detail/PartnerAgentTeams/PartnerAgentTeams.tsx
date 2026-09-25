@@ -10,23 +10,32 @@ export interface PartnerAgentTeamsProps {
   data: PartnerAgentTeamsData;
   height?: SectionHeight;
   className?: string;
+  id?: string;
+  /** Desktop column count. Defaults to 4; tablet/mobile breakpoints are unchanged. */
+  columns?: 3 | 4;
+  /** Header alignment. "center" centers heading + description and hides the accent bar. Defaults to "left". */
+  align?: "left" | "center";
+  /** Adds a subtle lift (2px up + shadow) on card hover. Defaults to false. */
+  hoverable?: boolean;
 }
 
 /**
- * Presentational helper to highlight "Built on the" in purple and keep the rest black.
+ * Presentational helper to highlight designated phrase in purple and keep the rest black.
  * Preserves the heading as ONE single conceptual data field.
  */
 function renderHeading(heading: string) {
-  const target = "Built on the";
-  if (heading.startsWith(target)) {
-    return (
-      <>
-        <span className={styles.headingHighlight}>{target}</span>{" "}
-        <span className={styles.headingRest}>
-          {heading.slice(target.length).trim()}
-        </span>
-      </>
-    );
+  const targets = ["Built on the", "More connected-data"];
+  for (const target of targets) {
+    if (heading.startsWith(target)) {
+      return (
+        <>
+          <span className={styles.headingHighlight}>{target}</span>{" "}
+          <span className={styles.headingRest}>
+            {heading.slice(target.length).trim()}
+          </span>
+        </>
+      );
+    }
   }
   return heading;
 }
@@ -34,12 +43,12 @@ function renderHeading(heading: string) {
 /**
  * PartnerAgentTeams
  *
- * Reusable horizontal card grid section for Partner pages (Shopify and Databricks).
+ * Reusable horizontal card grid section for Partner pages (Shopify, Databricks, Salesforce, TigerGraph).
  *
  * Renders:
  * 1. Heading (with optional vertical accent bar and brand purple accent)
  * 2. Supporting description paragraph
- * 3. 4 Solution/workflow cards arranged horizontally, reusing the Case Study SolutionCard component
+ * 3. 3 or 4 Solution/workflow cards arranged horizontally, reusing the Case Study SolutionCard component
  * 4. Optional closing purple statement below the cards
  * 5. Soft ambient glowing gradients positioned behind the content
  *
@@ -49,16 +58,22 @@ export function PartnerAgentTeams({
   data,
   height = "viewport",
   className,
+  id,
+  columns = 4,
+  align = "left",
+  hoverable = false,
 }: PartnerAgentTeamsProps) {
   const { heading, description, cards, closingStatement } = data;
   const isBuiltOn = heading.startsWith("Built on the");
-  const hasAccentBar = !isBuiltOn;
+  const isMoreConnected = heading.startsWith("More connected-data");
+  const isCentered = align === "center";
+  const hasAccentBar = !isBuiltOn && !isMoreConnected && !isCentered;
 
   return (
     <Section
       height={height}
       className={clsx(styles.section, className)}
-      id={isBuiltOn ? "built-on-platform" : "partner-agent-teams"}
+      id={id ?? (isBuiltOn ? "built-on-platform" : "partner-agent-teams")}
     >
       {/* Soft ambient background gradients positioned behind content */}
       <Gradient
@@ -88,14 +103,15 @@ export function PartnerAgentTeams({
         <div
           className={clsx(
             styles.headingWrapper,
-            isBuiltOn && styles.headingWrapperNoBar
+            (isBuiltOn || isMoreConnected) && styles.headingWrapperNoBar,
+            isCentered && styles.headingWrapperCentered
           )}
         >
           {hasAccentBar && <span className={styles.accentBar} aria-hidden="true" />}
           <h2
             className={clsx(
               styles.heading,
-              isBuiltOn && styles.headingBuiltOn
+              (isBuiltOn || isMoreConnected) && styles.headingBuiltOn
             )}
           >
             {renderHeading(heading)}
@@ -103,10 +119,19 @@ export function PartnerAgentTeams({
         </div>
 
         {/* Supporting description */}
-        {description && <p className={styles.description}>{description}</p>}
+        {description && (
+          <p
+            className={clsx(
+              styles.description,
+              isCentered && styles.descriptionCentered
+            )}
+          >
+            {description}
+          </p>
+        )}
 
         {/* 4 Cards arranged horizontally reusing Case Study SolutionCard */}
-        <div className={styles.grid}>
+        <div className={clsx(styles.grid, columns === 3 && styles.grid3)}>
           {cards.map((card) => (
             <SolutionCard
               key={card.id}
@@ -115,6 +140,7 @@ export function PartnerAgentTeams({
               text={card.text}
               ribbon={card.ribbon}
               variant="compact"
+              className={hoverable ? styles.cardHoverable : undefined}
             />
           ))}
         </div>

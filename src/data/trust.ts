@@ -14,6 +14,8 @@ export interface TrustCardData {
   description: string;
   badge: string;
   accentColor: string;
+  /** Optional card ribbon artwork (block media); cards without it use the default ribbon. */
+  ribbonSrc?: string;
 }
 
 // Runtime animation accent colors for GSAP ambient glow interpolation in TrustAnimation
@@ -39,5 +41,6 @@ export async function getTrustCards(): Promise<TrustCardData[]> {
     badge: block.eyebrow ?? "",
     accentColor:
       TRUST_ANIMATION_ACCENT_COLORS[block.id] ?? "#7C3AED",
+    ribbonSrc: block.media?.src ?? undefined,
   }));
 }

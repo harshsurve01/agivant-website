@@ -31,6 +31,29 @@
      padding-block: var(--space-24); /* TODO(figma): confirm exact section vertical rhythm */
 }
 
+/* --------------------------------------------------------------------
+   Homepage AI Stack: card TEXT horizontal padding (manual control).
+   Distance from the card edge to the title/description text in every
+   Homepage card. Only the text wrappers read this; images, card size and
+   grid are unaffected. Previous (and below-desktop) value: var(--space-6),
+   1.25rem. Service inner pages (.serviceVariant) don't get it.
+
+   The larger inset applies from 80rem (1280px = --container-xl) up, where
+   the Container is at its max width and every card has its fixed size.
+   Below that the cards shrink with the viewport and size to their text, so
+   extra inset would add a text line and change card/grid sizes; there the
+   previous inset is kept.
+   -------------------------------------------------------------------- */
+.aiStack:not(.serviceVariant) {
+  --ai-stack-text-padding-inline: var(--space-6); /* 1.25rem, unchanged below 1280px */
+}
+
+@media (min-width: 80rem) {
+  .aiStack:not(.serviceVariant) {
+    --ai-stack-text-padding-inline: var(--space-12); /* 1.625rem  <- edit this value */
+  }
+}
+
 .inner {
   position: relative;
   display: flex;

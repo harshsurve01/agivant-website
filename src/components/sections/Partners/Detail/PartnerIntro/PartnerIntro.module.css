@@ -29,6 +29,7 @@
 .container {
   position: relative;
   max-width: 1200px;
+  height: auto;
   margin-inline: auto;
 }
 

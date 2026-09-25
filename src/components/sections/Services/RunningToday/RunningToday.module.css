@@ -25,6 +25,11 @@
   margin-bottom: clamp(2.5rem, 5vh, 3.5rem);
 }
 
+.headerLeft {
+  align-items: flex-start;
+  text-align: left;
+}
+
 .heading {
   font-family: var(--font-family-heading);
   font-weight: var(--font-weight-semibold);

@@ -106,7 +106,7 @@
 /* NVIDIA-specific Hero Ribbon positioning */
 .nvidiaRibbonWrapper {
   top: 13.5rem;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   justify-content: center;
   pointer-events: none;
@@ -129,6 +129,108 @@
   .nvidiaRibbonWrapper {
     top: 9rem;
   }
+}
+
+/* Salesforce-specific Hero Ribbon positioning
+   --hero-ribbon-top is scoped to this wrapper only. Value derived from the
+   supplied Salesforce hero frame (1440px) against the ribbon asset's
+   transparent padding; tablet/mobile values pending Figma. */
+.salesforceRibbonWrapper {
+  --hero-ribbon-top: 24.5rem;
+  top: var(--hero-ribbon-top);
+  z-index: 1;
+}
+
+/* AWS-specific Hero Ribbon positioning
+   --hero-ribbon-top is scoped to this wrapper only. Value calibrated against
+   the supplied 1440px AWS hero frame (ribbon's left edge lands at the same
+   page position); tablet/mobile values pending Figma. */
+.awsRibbonWrapper {
+  --hero-ribbon-top: 12rem;
+  top: var(--hero-ribbon-top);
+  z-index: 1;
+}
+
+/* AWS page: every section after the hero sizes to its content instead of
+   the global 100vh section minimum (the hero keeps its own full height). */
+.awsPage :global(main > section:not([data-hero-interaction-root])) {
+  min-height: auto;
+}
+
+/* AWS Section 3 ("Get Amp'd ..." card): vertical breathing room. */
+.awsPage :global(#partner-alternating-content) {
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-24);
+}
+
+.awsRibbonImage {
+  width: 100%;
+  max-width: 1920px;
+  height: auto;
+}
+
+/* ==========================================================================
+   TigerGraph-specific Hero Ribbon positioning & Page layout
+   Adjust --tigergraph-ribbon-position to move the ribbon up/down independently.
+   ========================================================================== */
+
+.tigergraphRibbonWrapper {
+  --tigergraph-ribbon-position: 13rem;
+  top: var(--tigergraph-ribbon-position);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.tigergraphRibbonImage {
+  width: 100%;
+  max-width: 1920px;
+  min-width: 1200px;
+  height: auto;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .tigergraphRibbonWrapper {
+    --tigergraph-ribbon-position: 5rem;
+  }
+
+  .tigergraphRibbonImage {
+    min-width: 1024px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tigergraphRibbonWrapper {
+    --tigergraph-ribbon-position: 27rem;
+  }
+
+  .tigergraphRibbonImage {
+    min-width: 768px;
+  }
+}
+
+.tigergraphPage {
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   Salesforce Partner Page: AI And Data + "Get more from Salesforce"
+   Each section fills the viewport (100vh) with its content vertically
+   centred. #partner-alternating-content gets 100vh from the Section
+   component's default "viewport" height.
+   ========================================================================== */
+
+.salesforcePage :global(#ai-data-capabilities) {
+  min-height: 100vh;
+}
+
+.salesforcePage :global(#ai-data-capabilities),
+.salesforcePage :global(#partner-alternating-content) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* ==========================================================================
@@ -185,5 +287,36 @@
     padding-top: var(--space-4);
   }
 }
+
+/* ==========================================================================
+   NVIDIA Partner Page: Infrastructure Design Principles Section Spacing
+   ========================================================================== */
+.nvidiaInfrastructureSection {
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-24);
+}
+
+@media (max-width: 768px) {
+  .nvidiaInfrastructureSection {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-16);
+  }
+}
+
+/* ==========================================================================
+   NVIDIA Partner Page: Capability Portfolio Section Spacing
+   ========================================================================== */
+.nvidiaCapabilityPortfolioSection {
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-24);
+}
+
+@media (max-width: 768px) {
+  .nvidiaCapabilityPortfolioSection {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-16);
+  }
+}
+
 
 

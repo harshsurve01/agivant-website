@@ -38,7 +38,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--service-stack-title-content-gap, var(--space-2));
-  padding-inline: var(--space-6);
+  /* Homepage text inset: see --ai-stack-text-padding-inline in AIStack.module.css. */
+  padding-inline: var(--ai-stack-text-padding-inline, var(--space-6));
   padding-bottom: var(--space-6);
   /* `.title` and `.description` need independent depths from each
      other, so this wrapper has to stay a 3D participant too. */

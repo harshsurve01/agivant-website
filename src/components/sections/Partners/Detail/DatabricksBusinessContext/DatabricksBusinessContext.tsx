@@ -9,6 +9,7 @@ export interface DatabricksBusinessContextProps {
   data: DatabricksBusinessContextData;
   height?: SectionHeight;
   className?: string;
+  id?: string;
 }
 
 /**
@@ -16,7 +17,7 @@ export interface DatabricksBusinessContextProps {
  * while keeping the heading data as one conceptual field in JSON.
  */
 function renderHeading(heading: string) {
-  const targets = ["Give every agent", "Put a whole domain"];
+  const targets = ["Give every agent", "Put a whole domain", "Engineering depth"];
   for (const target of targets) {
     if (heading.startsWith(target)) {
       return (
@@ -48,6 +49,7 @@ export function DatabricksBusinessContext({
   data,
   height = "viewport",
   className,
+  id = "business-context",
 }: DatabricksBusinessContextProps) {
   if (!data) return null;
 
@@ -55,7 +57,7 @@ export function DatabricksBusinessContext({
     <Section
       height={height}
       className={clsx(styles.section, className)}
-      id="business-context"
+      id={id}
     >
       <Container size="xl" className={styles.container}>
         <h2 className={styles.heading}>{renderHeading(data.heading)}</h2>

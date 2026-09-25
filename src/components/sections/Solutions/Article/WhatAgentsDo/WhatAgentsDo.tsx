@@ -3,7 +3,11 @@ import { Container } from "@/components/ui/Container";
 import type { WhatAgentsDoProps } from "./types";
 import styles from "./WhatAgentsDo.module.css";
 
-const HIGHLIGHT_PHRASES = ["let them work the tools", "Put coordinated agents"];
+const HIGHLIGHT_PHRASES = [
+  "let them work the tools",
+  "Put coordinated agents",
+  "brings to TigerGraph",
+];
 
 /**
  * Renders the heading with the designated phrase highlighted in brand purple.
@@ -46,6 +50,7 @@ export function WhatAgentsDo({
   className,
   id = "what-agents-do",
   variant = "default",
+  showAccentBar = false,
 }: WhatAgentsDoProps) {
   if (!data || !blocks?.length) return null;
 
@@ -63,7 +68,14 @@ export function WhatAgentsDo({
       <Container className={styles.container}>
         <header className={styles.header}>
           {heading && (
-            <h2 className={styles.heading}>{renderHeading(heading)}</h2>
+            showAccentBar ? (
+              <div className={styles.headingWrapper}>
+                <span className={styles.accentBar} aria-hidden="true" />
+                <h2 className={styles.heading}>{renderHeading(heading)}</h2>
+              </div>
+            ) : (
+              <h2 className={styles.heading}>{renderHeading(heading)}</h2>
+            )
           )}
 
           {description && (

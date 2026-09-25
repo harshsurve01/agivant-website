@@ -20,14 +20,14 @@ interface SpotlightExperienceProps {
  *  normalize each pair of tracks against their own combined total —
  *  what a pair of fr values produces on screen is entirely about the
  *  RATIO between the two numbers, not their absolute size. */
-interface GridState {
+export interface GridState {
   col1: number;
   col2: number;
   row1: number;
   row2: number;
 }
 
-const REST: GridState = { col1: 1, col2: 1, row1: 1, row2: 1 };
+export const REST: GridState = { col1: 1, col2: 1, row1: 1, row2: 1 };
 
 /** HOVER_FR / OTHER_FR — the two fr values a pair of tracks animates
  *  between. At 1.175 / 0.85, a pair's hovered track ends up ~15.7%
@@ -40,8 +40,8 @@ const REST: GridState = { col1: 1, col2: 1, row1: 1, row2: 1 };
 const HOVER_FR = 1.45;
 const OTHER_FR = 0.5;
 
-const ANIMATION_DURATION = 0.55; // 450–600ms range
-const ANIMATION_EASE = "cubic-bezier(.22,.61,.36,1)";
+export const ANIMATION_DURATION = 0.55; // 450–600ms range
+export const ANIMATION_EASE = "cubic-bezier(.22,.61,.36,1)";
 
 /**
  * SpotlightExperience
@@ -187,7 +187,7 @@ export function SpotlightExperience({
  * The single source of truth for the container's target grid split
  * for a given hovered slot and layout arrangement.
  */
-function getGridTarget(
+export function getGridTarget(
   hoveredSlot: SpotlightSlot | null,
   layout: ProofLayoutVariant = "large-right"
 ): GridState {

@@ -11,6 +11,10 @@ export interface PartnerDeploymentCardProps {
   className?: string;
   id?: string;
   imagePosition?: "left" | "right";
+  /** Optional: render the whole heading in the brand purple (existing highlight style). */
+  accentHeading?: boolean;
+  /** Optional: description/closing statement at var(--font-size-lg) on desktop. */
+  largeBodyText?: boolean;
 }
 
 /**
@@ -46,6 +50,14 @@ function renderHeading(heading: PartnerDeploymentCardData["heading"]) {
   return raw;
 }
 
+/** Full heading as one plain string, for the accentHeading variant. */
+function headingText(heading: PartnerDeploymentCardData["heading"]) {
+  if (heading.highlight) {
+    return heading.text ? `${heading.highlight} ${heading.text}` : heading.highlight;
+  }
+  return heading.raw || heading.text || "";
+}
+
 /**
  * PartnerDeploymentCard
  *
@@ -61,6 +73,8 @@ export function PartnerDeploymentCard({
   className,
   id = "scale-deployment",
   imagePosition: propImagePosition,
+  accentHeading = false,
+  largeBodyText = false,
 }: PartnerDeploymentCardProps) {
   if (!data) return null;
 
@@ -74,7 +88,13 @@ export function PartnerDeploymentCard({
       id={id}
     >
       <Container size="xl" className={styles.container}>
-        <div className={clsx(styles.card, isImageRight && styles.imageRight)}>
+        <div
+          className={clsx(
+            styles.card,
+            isImageRight && styles.imageRight,
+            largeBodyText && styles.largeBodyText
+          )}
+        >
           <div className={styles.ribbonWrapper} aria-hidden="true">
             <Image
               src={data.image.src}
@@ -86,7 +106,15 @@ export function PartnerDeploymentCard({
             />
           </div>
           <div className={styles.content}>
-            <h2 className={styles.heading}>{renderHeading(data.heading)}</h2>
+            <h2 className={styles.heading}>
+              {accentHeading ? (
+                <span className={styles.headingHighlight}>
+                  {headingText(data.heading)}
+                </span>
+              ) : (
+                renderHeading(data.heading)
+              )}
+            </h2>
             <p className={styles.description}>{data.description}</p>
             {data.closingStatement && (
               <p className={styles.closingStatement}>{data.closingStatement}</p>

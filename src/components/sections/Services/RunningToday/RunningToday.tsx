@@ -25,6 +25,9 @@ export function RunningToday({
   columns = "auto",
   className,
   tintLastCard,
+  align = "center",
+  highlightPhrase = HIGHLIGHT_PHRASE,
+  id,
 }: RunningTodayProps) {
   const isFourColumns =
     columns === 4 || (columns === "auto" && metrics.length === 4);
@@ -34,13 +37,13 @@ export function RunningToday({
       : !isFourColumns; // Default: true for 6 cards (landing), false for 4 cards (inner pages)
 
   const renderHeading = (text: string) => {
-    if (text.includes(HIGHLIGHT_PHRASE)) {
-      const parts = text.split(HIGHLIGHT_PHRASE);
+    if (highlightPhrase && text.includes(highlightPhrase)) {
+      const parts = text.split(highlightPhrase);
       return (
         <>
           {parts[0]}
-          <span className={styles.highlight}>{HIGHLIGHT_PHRASE}</span>
-          {parts.slice(1).join(HIGHLIGHT_PHRASE)}
+          <span className={styles.highlight}>{highlightPhrase}</span>
+          {parts.slice(1).join(highlightPhrase)}
         </>
       );
     }
@@ -48,7 +51,7 @@ export function RunningToday({
   };
 
   return (
-    <section className={clsx(styles.section, className)}>
+    <section className={clsx(styles.section, className)} id={id}>
       {/* ── Services ambient gradients (tune position/size/opacity here) ── */}
       <Gradient
         top="5%"
@@ -74,7 +77,12 @@ export function RunningToday({
 
       <Container size="xl">
         {(heading || description) && (
-          <div className={styles.header}>
+          <div
+            className={clsx(
+              styles.header,
+              align === "left" && styles.headerLeft
+            )}
+          >
             {heading && (
               <h2 className={styles.heading}>{renderHeading(heading)}</h2>
             )}
@@ -104,6 +112,8 @@ export function RunningToday({
                 key={metric.id}
                 value={metric.value}
                 label={metric.label}
+                eyebrow={metric.eyebrow}
+                description={metric.description}
                 isTinted={isLast}
               />
             );
