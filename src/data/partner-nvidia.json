@@ -508,11 +508,166 @@
           ]
         }
       ]
+    },
+    {
+      "id": "market-validation",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Market Validation",
+        "description": "Pattern-based outcomes from Fortune-scale deployments.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "enterprise-ai-platforms",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Enterprise AI Platforms",
+          "body": "Global AI\nProduct Leader",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/inference-services.png",
+            "assetKey": "nvidia-market-val-1",
+            "alt": "Enterprise AI Platforms",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "technology-semiconductor",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Technology & Semiconductor",
+          "body": "Global Semiconductor\nTechnology Company",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/tune.png",
+            "assetKey": "nvidia-market-val-2",
+            "alt": "Technology & Semiconductor",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "cloud-platforms-ai-infrastructure",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Cloud Platforms & AI Infrastructure",
+          "body": "Global Cloud & AI\nInfrastructure Provider",
+          "media": {
+            "kind": "image",
+            "src": "/images/lifecycle/operate.png",
+            "assetKey": "nvidia-market-val-3",
+            "alt": "Cloud Platforms & AI Infrastructure",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "proof-from-production",
+      "type": "case_study_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Proof from production.",
+        "description": "Gemini Enterprise engagements already running, with outcomes measured in the environment they were built for.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "developer-productivity-on-gemini",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Developer productivity on Gemini",
+          "body": "Gemini-native code assistance across a global technology estate, working inside the tools engineers already use.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/developer-productivity.png",
+            "assetKey": "production-proof-1",
+            "alt": "Developer productivity on Gemini",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "",
+            "external": false
+          },
+          "items": [],
+          "metric": "35 percent faster cycles · 30 to 40 percent higher developer productivity",
+          "caseStudySlug": "developer-productivity-on-gemini",
+          "badge": "Client success",
+          "isTall": false
+        },
+        {
+          "id": "conversational-analytics-and-hyper-automation",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Conversational analytics and hyper-automation",
+          "body": "Multilingual conversational analytics that read intent, answer at source, and route only what needs a person.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/conversational-analytics.png",
+            "assetKey": "production-proof-2",
+            "alt": "Conversational analytics and hyper-automation",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "",
+            "external": false
+          },
+          "items": [],
+          "metric": "Around 90 percent automation · 94 percent confidence · 50 plus languages",
+          "caseStudySlug": "conversational-analytics-and-hyper-automation",
+          "badge": "Client success",
+          "isTall": false
+        },
+        {
+          "id": "enterprise-mlops-on-vertex-ai",
+          "type": "card",
+          "eyebrow": "Client success",
+          "title": "Enterprise MLOps on Vertex AI",
+          "body": "The model lifecycle automated end to end, from training through release and monitoring.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/proof/enterprise-mlops.png",
+            "assetKey": "production-proof-3",
+            "alt": "Enterprise MLOps on Vertex AI",
+            "caption": null
+          },
+          "cta": {
+            "enabled": true,
+            "label": "Read more >>",
+            "href": "",
+            "external": false
+          },
+          "items": [],
+          "metric": "30 to 50 percent lower operating cost",
+          "caseStudySlug": "enterprise-mlops-on-vertex-ai",
+          "badge": "Client success",
+          "isTall": true
+        }
+      ]
     }
   ],
   "footerCta": {
-    "enabled": false,
-    "heading": "",
+    "enabled": true,
+    "heading": "Ready To Get Your Enterprise<br>With Agivant?",
     "subheading": null,
     "partner": {
       "name": "NVIDIA",
@@ -524,7 +679,17 @@
         "caption": null
       }
     },
-    "primaryCta": null,
-    "secondaryCta": null
+    "primaryCta": {
+      "enabled": true,
+      "label": "Find your Amp'd score",
+      "href": "/ampd-score",
+      "external": false
+    },
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": "/contact",
+      "external": false
+    }
   }
 }

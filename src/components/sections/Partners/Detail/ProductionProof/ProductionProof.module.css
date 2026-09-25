@@ -366,3 +366,62 @@
     top: 32%;
   }
 }
+
+/* ==========================================================================
+   NVIDIA Typography Rules (Section Heading: 4xl, Card Title: xl semibold, Body: lg)
+   ========================================================================== */
+.nvidiaTypography .heading {
+  font-size: var(--font-size-4xl);
+}
+
+.nvidiaTypography .editorial .description {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  width: 17.5rem;
+}
+
+.nvidiaTypography .title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+.nvidiaTypography .bodyContent .description {
+  font-size: var(--font-size-lg);
+  line-height: 1.4;
+  width: 100%;
+  max-width: 22rem;
+}
+
+.nvidiaTypography .metric {
+  font-size: var(--font-size-lg);
+  line-height: 1.35;
+  width: 100%;
+  max-width: 22rem;
+}
+
+.nvidiaTypography .cta {
+  font-size: var(--font-size-lg);
+}
+
+.nvidiaTypography .bodyShort {
+  top: 24%;
+}
+
+.nvidiaTypography .bodyTall {
+  top: 52%;
+}
+
+@media (max-width: 1024px) {
+  .nvidiaTypography .editorial .description {
+    width: 100%;
+    max-width: 40rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nvidiaTypography .bodyShort,
+  .nvidiaTypography .bodyTall {
+    top: 22%;
+  }
+}
+

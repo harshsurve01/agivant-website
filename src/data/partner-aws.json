@@ -144,12 +144,465 @@
         "cta": null
       },
       "blocks": []
+    },
+    {
+      "id": "coordinated-agent-teams",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "What Agivant brings to AWS",
+        "description": "The same graph and agent layer extends to other decisions that depend on relationships.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "aws-capability-1",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Graph from the first sprint",
+          "body": "Amazon Neptune goes in early, so answers about fraud, suppliers, and customer networks carry the relationships behind them.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-05.png",
+            "assetKey": "aws-capability-1",
+            "alt": "Graph from the first sprint",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "aws-capability-2",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Analytics that runs beside the business",
+          "body": "Your production databases keep serving customers at full speed while Agivant builds the analytical layer alongside them.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-02.png",
+            "assetKey": "aws-capability-2",
+            "alt": "Analytics that runs beside the business",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "aws-capability-3",
+          "type": "card",
+          "eyebrow": null,
+          "title": "One team from pipeline to agent",
+          "body": "The engineers who write the Glue job also build the agent that relies on it, so nothing gets lost in a handover.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-03.png",
+            "assetKey": "aws-capability-3",
+            "alt": "One team from pipeline to agent",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "aws-capability-4",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Cost engineered in from the start",
+          "body": "Token budgets, cost tags, spend alerts, and right-sized compute go in with the first pipeline.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "assetKey": "aws-capability-4",
+            "alt": "Cost engineered in from the start",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "aws-capability-5",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Production from day one",
+          "body": "Every agent ships observable, with its own identity and a person approving anything that carries real money or risk.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/strategic-sourcing.png",
+            "assetKey": "aws-capability-5",
+            "alt": "Production from day one",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "aws-finops",
+      "type": "split_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "FinOps, designed in before the first bill arrives.",
+        "headingStructure": {
+          "highlight": "FinOps, designed in",
+          "text": "before the first bill arrives."
+        },
+        "description": "Standing up AWS is the easy part. Keeping the bill predictable once agents call foundation models thousands of times a day takes design. Agivant bakes financial accountability, visibility, and cost efficiency into the architecture and into how teams work, so finance watches the cost of AI grow rather than discovering it after the fact.",
+        "layout": "image-stacked",
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/full-width-image.png",
+          "assetKey": "shopify-full-width-banner",
+          "alt": "FinOps designed into AWS data and AI architecture",
+          "caption": null,
+          "width": 4816,
+          "height": 1006
+        },
+        "columns": [],
+        "cta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "aws-finops-capabilities",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "closingStatement": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "aws-finops-1",
+          "type": "card",
+          "body": "Token budgets per agent and per use case, with prompt caching and batch inference on Amazon Bedrock to curb repeat spend"
+        },
+        {
+          "id": "aws-finops-2",
+          "type": "card",
+          "body": "The lightest Bedrock option that answers well, with larger ones kept for the questions that need them"
+        },
+        {
+          "id": "aws-finops-3",
+          "type": "card",
+          "body": "Every workload tagged to an owner, with AWS Budgets and Cost Explorer showing spend by team and use case"
+        },
+        {
+          "id": "aws-finops-4",
+          "type": "card",
+          "body": "Storage tiers and Savings Plans matched to how each workload runs, with Redshift Serverless scaling down when queries stop"
+        },
+        {
+          "id": "aws-finops-outcome",
+          "type": "metric",
+          "eyebrow": "Reported outcomes",
+          "metric": "up to 70%",
+          "body": "lower token spend and up to 35% lower monthly cloud bill"
+        }
+      ]
+    },
+    {
+      "id": "aws-connected-layers",
+      "type": "ampd-timeline",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Put four connected layers to work, from data to agents.",
+        "headingStructure": {
+          "highlight": "Put four connected layers to work,",
+          "text": "from data to agents."
+        },
+        "description": "Each layer on AWS makes the next one work better. Clean data sharpens predictions, predictions ground answers, and answers people trust give agents something solid to act on.",
+        "supportingStatement": "Built with:",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "aws-layer-data",
+          "type": "milestone",
+          "number": 1,
+          "title": "DATA",
+          "heading": "Get the data ready, and keep it fresh.",
+          "body": "Agivant pulls data out of your transactional systems with AWS Glue, lands it in an Amazon S3 data lake, and shapes it into tables Amazon Redshift can query fast. With streaming through Amazon Kinesis, dashboards run minutes behind the business. Amazon Neptune maps how customers, accounts, suppliers, and assets connect, so the next question already has context.",
+          "items": [
+            "Amazon Redshift",
+            "AWS Glue",
+            "Amazon S3",
+            "Amazon Kinesis",
+            "Amazon Neptune"
+          ]
+        },
+        {
+          "id": "aws-layer-aiml",
+          "type": "milestone",
+          "number": 2,
+          "title": "AI/ML",
+          "heading": "Predict what happens next.",
+          "body": "Much of the value in enterprise AI still comes from good predictive data science. Agivant builds forecasting, churn, pricing, and anomaly detection on Amazon SageMaker AI, and retrains it automatically as new data lands. Analysts can call predictions straight from SQL with Amazon Redshift ML.",
+          "items": [
+            "Amazon SageMaker AI",
+            "SageMaker Pipelines",
+            "SageMaker Feature Store",
+            "Amazon Redshift ML"
+          ]
+        },
+        {
+          "id": "aws-layer-genai",
+          "type": "milestone",
+          "number": 3,
+          "title": "GENAI",
+          "heading": "Ask in plain English, and see what changed and why.",
+          "body": "Assistants on Amazon Bedrock answer the questions your business actually asks: where sales dipped, which customers are drifting, which anomaly needs attention this week, which events to watch next. A semantic layer of business definitions sits underneath, so recognized revenue and gross margin mean exactly what your finance team agrees they mean. Every answer shows its source and its definition, because an answer nobody can explain is hard to act on.",
+          "items": [
+            "Amazon Bedrock",
+            "Bedrock Knowledge Bases",
+            "Bedrock Guardrails",
+            "Amazon Neptune Analytics"
+          ]
+        },
+        {
+          "id": "aws-layer-agentic",
+          "type": "milestone",
+          "number": 4,
+          "title": "AGENTIC AI",
+          "heading": "Agents recommend the next best action, then follow through.",
+          "body": "Once an answer is clear, the agent lays out the next best action and what each option is likely to change. Your people pick the call, and agents carry it out: raise the ticket, reconcile the invoice, tell the customer, update the forecast. Agivant builds and runs them on Amazon Bedrock AgentCore, which gives every agent an identity, memory, a gateway to enterprise tools, and full observability.",
+          "items": [
+            "Amazon Bedrock AgentCore",
+            "Amazon Bedrock Agents",
+            "AWS Lambda",
+            "AWS Step Functions"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aws-scale-and-control",
+      "type": "alternating_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "aws-teams-in-control",
+          "type": "row",
+          "eyebrow": null,
+          "title": null,
+          "headingStructure": {
+            "highlight": "Keep teams in control",
+            "text": "while agents run the work."
+          },
+          "body": "Every Agivant agent is production grade from day one, observable and always on. Each one carries its own identity in AWS, and a person approves anything that moves real money or carries real risk. Routine steps run on their own, and the calls that need judgment route to the team that owns them.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-ambition.png",
+            "assetKey": "agentic-enterprise-ambition",
+            "alt": "Keep teams in control while agents run the work",
+            "caption": null,
+            "width": 874,
+            "height": 503
+          },
+          "layout": "text-image",
+          "isCard": false
+        },
+        {
+          "id": "aws-well-architected",
+          "type": "row",
+          "eyebrow": null,
+          "title": null,
+          "headingStructure": {
+            "highlight": "Scale on AWS with Well-Architected engineering.",
+            "text": ""
+          },
+          "body": "Agivant builds inside your own AWS accounts, so data and agents sit on the infrastructure the enterprise already runs. Every build follows the AWS Well-Architected Framework across all six pillars, and Forward Deployed Engineers work in focused sprints. This is what an Amp’d enterprise looks like in production.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
+            "assetKey": "agentic-enterprise-control",
+            "alt": "Scale on AWS with Well-Architected engineering",
+            "caption": null,
+            "width": 874,
+            "height": 558
+          },
+          "layout": "image-text",
+          "isCard": true
+        }
+      ]
+    },
+    {
+      "id": "solutions",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Industry solutions on AWS",
+        "headingStructure": {
+          "highlight": "Industry solutions",
+          "text": "on AWS"
+        },
+        "description": "Nobody opens a browser looking for a service name. They open it with a business challenge. These are the places AWS data and AI earn their keep first.",
+        "columns": [
+          "Key capabilities",
+          "Built with"
+        ],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "aws-financial-services",
+          "type": "card",
+          "eyebrow": "Fraud and exposure",
+          "title": "Financial services",
+          "body": "Spot fraud rings and risky exposure while there is still time to act.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "assetKey": "aws-financial-services",
+            "alt": "Financial services",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Account, device, payee, and address links mapped in Amazon Neptune",
+            "Risk scored by SageMaker AI as transactions land",
+            "Cases opened for investigators with the evidence attached",
+            "Investigator review before any account action"
+          ],
+          "solution": "Amazon Neptune · Amazon Redshift · Amazon SageMaker AI · Amazon Bedrock AgentCore",
+          "proof": {
+            "eyebrow": "Reported outcomes",
+            "headline": "up to 60%",
+            "description": "faster fraud ring detection and up to 30% fewer false positives"
+          }
+        },
+        {
+          "id": "aws-energy-utilities",
+          "type": "card",
+          "eyebrow": "Real-time operations",
+          "title": "Energy and utilities",
+          "body": "Keep customers and regulators informed the moment conditions change.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/sourcex.png",
+            "assetKey": "aws-energy-utilities",
+            "alt": "Energy and utilities",
+            "caption": null
+          },
+          "cta": null
+        },
+        {
+          "id": "aws-manufacturing-supply-chain",
+          "type": "card",
+          "eyebrow": "Network risk",
+          "title": "Manufacturing and supply chain",
+          "body": "See supplier disruption early enough to reroute.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/sourcex.png",
+            "assetKey": "aws-manufacturing-supply-chain",
+            "alt": "Manufacturing and supply chain",
+            "caption": null
+          },
+          "cta": null
+        },
+        {
+          "id": "aws-healthcare-life-sciences",
+          "type": "card",
+          "eyebrow": "Clinical and research",
+          "title": "Healthcare and life sciences",
+          "body": "Give care and research teams answers from every record they are cleared to see.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/zeroqueue.png",
+            "assetKey": "aws-healthcare-life-sciences",
+            "alt": "Healthcare and life sciences",
+            "caption": null
+          },
+          "cta": null
+        }
+      ]
+    },
+    {
+      "id": "how-engagement-runs",
+      "type": "numbered_list",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "How An Engagement Runs.",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "bring-one-business-challenge",
+          "type": "numberedItem",
+          "number": 1,
+          "title": "Bring one business challenge",
+          "body": "Something your team owns, with a number you want moved.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "map-it-to-the-stack",
+          "type": "numberedItem",
+          "number": 2,
+          "title": "Map it to the stack",
+          "body": "Agivant traces the data behind the challenge and designs the AWS architecture that answers it, with the running cost worked out up front.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "put-it-in-production",
+          "type": "numberedItem",
+          "number": 3,
+          "title": "Put it in production",
+          "body": "Forward Deployed Engineers build inside your own AWS accounts, with results in days and weeks.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "build-the-next-one-faster",
+          "type": "numberedItem",
+          "number": 4,
+          "title": "Build the next one faster",
+          "body": "Every pipeline and agent becomes a reusable asset the next build starts from.",
+          "items": [],
+          "media": null
+        }
+      ]
     }
   ],
   "footerCta": {
-    "enabled": false,
-    "heading": "",
-    "subheading": null,
+    "enabled": true,
+    "heading": "Bring one business<br>challenge to Agivant",
+    "subheading": "We will show you the AWS data and AI stack that answers it, what it takes to put it in production, and what it will cost to run before the first bill arrives.",
     "partner": {
       "name": "AWS",
       "logo": {
@@ -161,6 +614,13 @@
       }
     },
     "primaryCta": null,
-    "secondaryCta": null
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Book a data and AI working session",
+      "href": "",
+      "external": false,
+      "icon": "cube",
+      "variant": "primary"
+    }
   }
 }

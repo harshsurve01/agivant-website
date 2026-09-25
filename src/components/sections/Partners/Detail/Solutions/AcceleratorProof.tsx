@@ -24,6 +24,9 @@ export function AcceleratorProof({ proof }: AcceleratorProofProps) {
       {/* Top Banner Card */}
       {proof.headline ? (
         <div className={styles.proofBanner}>
+          {proof.eyebrow && (
+            <p className={styles.proofEyebrow}>{proof.eyebrow}</p>
+          )}
           <h3 className={styles.proofHeadline}>{proof.headline}</h3>
           {proof.description && (
             <p className={styles.proofDescription}>{proof.description}</p>

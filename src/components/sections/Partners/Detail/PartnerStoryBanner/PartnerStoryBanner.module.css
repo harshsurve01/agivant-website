@@ -76,6 +76,12 @@
   max-width: 68rem;
 }
 
+/* Optional centred alignment (align="center"); default stays left. */
+.textContentCenter {
+  align-items: center;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .section {
     padding-top: var(--space-2);

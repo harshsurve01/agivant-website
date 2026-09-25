@@ -17,6 +17,7 @@ import { DatabricksControl } from "@/components/sections/Partners/Detail/Databri
 import { PartnerDeploymentCard } from "@/components/sections/Partners/Detail/PartnerDeploymentCard";
 import { ServiceNowWorkflowFamilies } from "@/components/sections/Partners/Detail/ServiceNowWorkflowFamilies";
 import { WhatAgentsDo } from "@/components/sections/Solutions/Article/WhatAgentsDo";
+import { AmpdTimeline } from "@/components/sections/Services/AmpdTimeline";
 import { Solutions } from "@/components/sections/Partners/Detail/Solutions";
 import { ProductionProof } from "@/components/sections/Partners/Detail/ProductionProof";
 import { BuiltOnGemini } from "@/components/sections/Partners/Detail/BuiltOnGemini";
@@ -221,7 +222,7 @@ export default async function PartnerDetailPage({
               height={slug === "glean" || slug === "aws" ? "auto" : undefined}
             />
           )}
-          {partner.storyBanner && (
+          {slug !== "aws" && partner.storyBanner && (
             <PartnerStoryBanner
               data={partner.storyBanner}
               height={slug === "shopify" ? "auto" : undefined}
@@ -298,7 +299,7 @@ export default async function PartnerDetailPage({
                   data={partner.workflowFamilies}
                 />
               )}
-              {partner.coordinatedAgents && (
+              {slug !== "aws" && partner.coordinatedAgents && (
                 <WhatAgentsDo
                   data={partner.coordinatedAgents.data}
                   blocks={partner.coordinatedAgents.blocks}
@@ -309,7 +310,7 @@ export default async function PartnerDetailPage({
               )}
             </>
           )}
-          {partner.solutions && (
+          {slug !== "aws" && partner.solutions && (
             <Solutions
               data={partner.solutions}
               height={
@@ -331,6 +332,22 @@ export default async function PartnerDetailPage({
               {...partner.capabilityPortfolio}
               id="capability-portfolio"
               className={styles.nvidiaCapabilityPortfolioSection}
+            />
+          )}
+          {partner.marketValidation && (
+            <PartnerAgentTeams
+              data={partner.marketValidation}
+              columns={3}
+              align="center"
+              hoverable
+              height={slug === "nvidia" ? "viewport" : "auto"}
+              nvidiaTypography={slug === "nvidia"}
+              id="market-validation"
+              className={
+                slug === "nvidia"
+                  ? styles.nvidiaMarketValidationSection
+                  : undefined
+              }
             />
           )}
           {slug === "salesforce" && partner.aiCapabilities && (
@@ -393,10 +410,58 @@ export default async function PartnerDetailPage({
           {slug !== "shopify" && slug !== "salesforce" && partner.agentTeams && (
             <PartnerAgentTeams
               data={partner.agentTeams}
-              columns={slug === "tigergraph" ? 3 : undefined}
-              height={slug === "tigergraph" ? "auto" : undefined}
+              columns={slug === "tigergraph" || slug === "aws" ? 3 : undefined}
+              height={slug === "tigergraph" || slug === "aws" ? "auto" : undefined}
               hoverable={slug === "tigergraph" ? true : undefined}
               id={slug === "tigergraph" ? "connected-data-use-cases" : undefined}
+              hideAccentBar={slug === "aws" ? true : undefined}
+              headingHighlightWords={slug === "aws" ? 2 : undefined}
+            />
+          )}
+          {/* AWS FinOps: ribbon + heading/description, then capability cards
+              with the reported-outcomes panel, placed after "What Agivant brings". */}
+          {slug === "aws" && partner.storyBanner && (
+            <PartnerStoryBanner
+              data={partner.storyBanner}
+              height="auto"
+              align="center"
+            />
+          )}
+          {slug === "aws" && partner.coordinatedAgents && (
+            <WhatAgentsDo
+              data={partner.coordinatedAgents.data}
+              blocks={partner.coordinatedAgents.blocks}
+              variant="partner"
+              id="aws-finops"
+              outcome={partner.coordinatedAgents.outcome}
+            />
+          )}
+          {slug === "aws" && partner.timeline && (
+            <AmpdTimeline {...partner.timeline} />
+          )}
+          {slug === "aws" && partner.alternatingContentSecondary && (
+            <PartnerAlternatingContent
+              data={partner.alternatingContentSecondary}
+              height="auto"
+              id={partner.alternatingContentSecondary.id}
+            />
+          )}
+          {slug === "aws" && partner.solutions && (
+            <Solutions
+              data={partner.solutions}
+              height="auto"
+              align="center"
+              columnDivider
+            />
+          )}
+          {slug === "aws" && partner.aiCapabilities && (
+            <Phase2
+              id="how-engagement-runs"
+              title={partner.aiCapabilities.heading}
+              items={partner.aiCapabilities.items}
+              highlightPosition="start"
+              highlightCount={2}
+              dividerVariant="accent"
             />
           )}
           {slug === "tigergraph" && partner.databricksBusinessContext && (
@@ -442,23 +507,32 @@ export default async function PartnerDetailPage({
         </main>
 
         <Footer
-          variant={partner.cta?.media ? "partner-card" : "partner-detail"}
+          variant={
+            slug === "nvidia"
+              ? "default"
+              : partner.cta?.media
+              ? "partner-card"
+              : "partner-detail"
+          }
           ctaData={
             partner.cta
               ? {
                   heading: partner.cta.heading,
                   description: partner.cta.description,
                   media: partner.cta.media,
-                  buttons: [
-                    {
-                      label: partner.cta.buttonLabel,
-                      href: partner.cta.buttonHref,
-                      variant:
-                        partner.cta.buttonVariant ??
-                        (partner.cta.media ? "dark" : "primary"),
-                      icon: partner.cta.buttonIcon ?? "cube",
-                    },
-                  ],
+                  buttons:
+                    partner.cta.buttons && partner.cta.buttons.length > 0
+                      ? partner.cta.buttons
+                      : [
+                          {
+                            label: partner.cta.buttonLabel,
+                            href: partner.cta.buttonHref,
+                            variant:
+                              partner.cta.buttonVariant ??
+                              (partner.cta.media ? "dark" : "primary"),
+                            icon: partner.cta.buttonIcon ?? "cube",
+                          },
+                        ],
                 }
               : undefined
           }

@@ -7,6 +7,12 @@ export interface WhatAgentsDoData {
   closingStatement?: string | null;
 }
 
+export interface WhatAgentsDoOutcome {
+  label?: string | null;
+  value: string;
+  text?: string | null;
+}
+
 export interface WhatAgentsDoBlock {
   id: string;
   body?: string | null;
@@ -24,4 +30,6 @@ export interface WhatAgentsDoProps {
   id?: string;
   variant?: "default" | "partner";
   showAccentBar?: boolean;
+  /** Optional full-width outcome panel below the grid. Omitted = not rendered. */
+  outcome?: WhatAgentsDoOutcome;
 }

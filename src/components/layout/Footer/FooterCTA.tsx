@@ -112,6 +112,29 @@ export function FooterCTA({
                 .includes("ready to ship models faster and");
 
               return lines.map((line, index) => {
+                if (
+                  heading.toLowerCase().includes("bring one business") &&
+                  index === 1 &&
+                  line.toLowerCase().startsWith("challenge")
+                ) {
+                  const match = line.match(/^(challenge)\s*(.*)$/i);
+                  if (match) {
+                    return (
+                      <span
+                        key={index}
+                        className={styles.headingLinePartnerDetail}
+                      >
+                        <span
+                          className={styles.headingLinePartnerDetailHighlight}
+                        >
+                          {match[1]}
+                        </span>
+                        {match[2] ? ` ${match[2]}` : ""}
+                      </span>
+                    );
+                  }
+                }
+
                 const isHighlighted = isLine2Highlight
                   ? index === 1
                   : index === 0;
@@ -241,23 +264,39 @@ export function FooterCTA({
                   index === 1 || trimmed.toLowerCase() === "enterprise";
 
                 if (brandMedia && isSecondLine && !/Amp'd\??/i.test(trimmed)) {
+                  const brandFirst = trimmed.toLowerCase().startsWith("with");
                   return (
                     <span
                       key={index}
                       className={clsx(styles.headingLine, styles.brandLine)}
                     >
-                      <span>{trimmed}</span>
-                      <span className={styles.brandMediaWrapper}>
-                        <Image
-                          src={brandMedia.src}
-                          alt={brandMedia.alt}
-                          width={brandMedia.width ?? 360}
-                          height={brandMedia.height ?? 150}
-                          className={styles.brandMedia}
-                          unoptimized={brandMedia.src.endsWith(".svg") || brandMedia.src.endsWith(".gif")}
-                          priority
-                        />
-                      </span>
+                      {brandFirst && (
+                        <span className={styles.brandMediaWrapper}>
+                          <Image
+                            src={brandMedia.src}
+                            alt={brandMedia.alt}
+                            width={brandMedia.width ?? 360}
+                            height={brandMedia.height ?? 150}
+                            className={styles.brandMedia}
+                            unoptimized={brandMedia.src.endsWith(".svg") || brandMedia.src.endsWith(".gif")}
+                            priority
+                          />
+                        </span>
+                      )}
+                      <span>{brandFirst ? `\u00A0${trimmed}` : trimmed}</span>
+                      {!brandFirst && (
+                        <span className={styles.brandMediaWrapper}>
+                          <Image
+                            src={brandMedia.src}
+                            alt={brandMedia.alt}
+                            width={brandMedia.width ?? 360}
+                            height={brandMedia.height ?? 150}
+                            className={styles.brandMedia}
+                            unoptimized={brandMedia.src.endsWith(".svg") || brandMedia.src.endsWith(".gif")}
+                            priority
+                          />
+                        </span>
+                      )}
                     </span>
                   );
                 }

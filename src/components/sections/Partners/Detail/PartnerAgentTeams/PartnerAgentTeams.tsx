@@ -17,14 +17,33 @@ export interface PartnerAgentTeamsProps {
   align?: "left" | "center";
   /** Adds a subtle lift (2px up + shadow) on card hover. Defaults to false. */
   hoverable?: boolean;
+  /** Enforces NVIDIA page typography rules: 4xl heading, xl card title, lg body. */
+  nvidiaTypography?: boolean;
+  /** Hides the vertical accent bar beside a left-aligned heading. Defaults to false. */
+  hideAccentBar?: boolean;
+  /** Renders the first N words of the heading in purple and the rest in the primary text colour. Unset keeps the existing heading treatment. */
+  headingHighlightWords?: number;
 }
 
 /**
  * Presentational helper to highlight designated phrase in purple and keep the rest black.
  * Preserves the heading as ONE single conceptual data field.
  */
-function renderHeading(heading: string) {
-  const targets = ["Built on the", "More connected-data"];
+function renderHeading(heading: string, highlightWords?: number) {
+  if (highlightWords && highlightWords > 0) {
+    const words = heading.split(" ");
+    return (
+      <>
+        <span className={styles.headingHighlight}>
+          {words.slice(0, highlightWords).join(" ")}
+        </span>{" "}
+        <span className={styles.headingRest}>
+          {words.slice(highlightWords).join(" ")}
+        </span>
+      </>
+    );
+  }
+  const targets = ["Built on the", "More connected-data", "Market"];
   for (const target of targets) {
     if (heading.startsWith(target)) {
       return (
@@ -43,7 +62,7 @@ function renderHeading(heading: string) {
 /**
  * PartnerAgentTeams
  *
- * Reusable horizontal card grid section for Partner pages (Shopify, Databricks, Salesforce, TigerGraph).
+ * Reusable horizontal card grid section for Partner pages (Shopify, Databricks, Salesforce, TigerGraph, NVIDIA).
  *
  * Renders:
  * 1. Heading (with optional vertical accent bar and brand purple accent)
@@ -62,18 +81,23 @@ export function PartnerAgentTeams({
   columns = 4,
   align = "left",
   hoverable = false,
+  nvidiaTypography = false,
+  hideAccentBar = false,
+  headingHighlightWords,
 }: PartnerAgentTeamsProps) {
   const { heading, description, cards, closingStatement } = data;
   const isBuiltOn = heading.startsWith("Built on the");
   const isMoreConnected = heading.startsWith("More connected-data");
+  const isMarket = heading.startsWith("Market");
   const isCentered = align === "center";
-  const hasAccentBar = !isBuiltOn && !isMoreConnected && !isCentered;
+  const hasAccentBar =
+    !isBuiltOn && !isMoreConnected && !isMarket && !isCentered && !hideAccentBar;
 
   return (
     <Section
       height={height}
       className={clsx(styles.section, className)}
-      id={id ?? (isBuiltOn ? "built-on-platform" : "partner-agent-teams")}
+      id={id ?? (isBuiltOn ? "built-on-platform" : isMarket ? "market-validation" : "partner-agent-teams")}
     >
       {/* Soft ambient background gradients positioned behind content */}
       <Gradient
@@ -103,7 +127,8 @@ export function PartnerAgentTeams({
         <div
           className={clsx(
             styles.headingWrapper,
-            (isBuiltOn || isMoreConnected) && styles.headingWrapperNoBar,
+            (isBuiltOn || isMoreConnected || isMarket || hideAccentBar) &&
+              styles.headingWrapperNoBar,
             isCentered && styles.headingWrapperCentered
           )}
         >
@@ -111,10 +136,10 @@ export function PartnerAgentTeams({
           <h2
             className={clsx(
               styles.heading,
-              (isBuiltOn || isMoreConnected) && styles.headingBuiltOn
+              (isBuiltOn || isMoreConnected || isMarket) && styles.headingBuiltOn
             )}
           >
-            {renderHeading(heading)}
+            {renderHeading(heading, headingHighlightWords)}
           </h2>
         </div>
 
@@ -140,7 +165,10 @@ export function PartnerAgentTeams({
               text={card.text}
               ribbon={card.ribbon}
               variant="compact"
-              className={hoverable ? styles.cardHoverable : undefined}
+              className={clsx(
+                hoverable && styles.cardHoverable,
+                nvidiaTypography && styles.nvidiaCard
+              )}
             />
           ))}
         </div>

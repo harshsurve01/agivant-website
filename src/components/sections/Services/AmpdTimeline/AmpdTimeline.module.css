@@ -209,6 +209,40 @@
 }
 
 /* --------------------------------------------------------------------
+   Optional content (rendered only when the matching props are set)
+   -------------------------------------------------------------------- */
+.intro {
+  margin: var(--space-6) 0 0;
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
+  font-weight: 400;
+  color: #141517;
+  max-width: 66.25rem;
+}
+
+.subtitle {
+  margin: 0;
+  padding-top: 0.625rem;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.4;
+  color: var(--color-brand-primary, #8500DF);
+}
+
+.list {
+  margin: 0;
+  padding-top: 0.625rem;
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
+  color: #141517;
+  max-width: 56rem;
+}
+
+.listLabel {
+  color: var(--color-brand-primary, #8500DF);
+}
+
+/* --------------------------------------------------------------------
    Responsive Adjustments
    -------------------------------------------------------------------- */
 @media (max-width: 48rem) {
@@ -227,6 +261,13 @@
   }
 
   .description {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .intro,
+  .subtitle,
+  .list {
     font-size: 1rem;
     line-height: 1.5;
   }

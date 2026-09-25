@@ -21,6 +21,10 @@ export function AmpdTimeline({
   items,
   className,
   defaultActiveIndex = 0,
+  id,
+  headingHighlight,
+  description,
+  listLabel,
 }: AmpdTimelineProps) {
   const [activeIndex, setActiveIndex] = useState<number>(defaultActiveIndex);
 
@@ -29,6 +33,14 @@ export function AmpdTimeline({
   };
 
   const renderHeading = (text: string) => {
+    if (headingHighlight && text.startsWith(headingHighlight)) {
+      return (
+        <>
+          <span className={styles.highlight}>{headingHighlight}</span>
+          {text.slice(headingHighlight.length)}
+        </>
+      );
+    }
     const ampdMatch = text.match(/^(The Amp['’]d)(.*)$/i);
     if (ampdMatch) {
       return (
@@ -42,11 +54,12 @@ export function AmpdTimeline({
   };
 
   return (
-    <section className={`${styles.section} ${className || ""}`} aria-label={heading}>
+    <section className={`${styles.section} ${className || ""}`} aria-label={heading} id={id}>
       <Container size="xl">
         <div className={styles.inner}>
           <header className={styles.header}>
             <h2 className={styles.heading}>{renderHeading(heading)}</h2>
+            {description && <p className={styles.intro}>{description}</p>}
           </header>
 
           <div className={styles.timeline}>
@@ -95,7 +108,18 @@ export function AmpdTimeline({
                       data-active={isActive}
                     >
                       <div className={styles.accordionInner}>
+                        {item.subtitle && (
+                          <p className={styles.subtitle}>{item.subtitle}</p>
+                        )}
                         <p className={styles.description}>{item.description}</p>
+                        {item.listItems && item.listItems.length > 0 && (
+                          <p className={styles.list}>
+                            {listLabel && (
+                              <span className={styles.listLabel}>{listLabel} </span>
+                            )}
+                            {item.listItems.join(" · ")}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>

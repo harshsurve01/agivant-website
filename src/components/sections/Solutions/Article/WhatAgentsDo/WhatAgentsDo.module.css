@@ -281,6 +281,52 @@
 }
 
 /* --------------------------------------------------------------------
+   Optional outcome panel (rendered only when the `outcome` prop is set)
+   Full-width glass surface below the grid, using the shared glass tokens.
+   -------------------------------------------------------------------- */
+.outcome {
+  width: 100%;
+  max-width: 72rem;
+  margin: var(--space-8) 0 0;
+  padding: var(--space-8) var(--space-10);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+  background: var(--surface-glass-bg);
+  border: var(--surface-glass-border);
+  box-shadow: var(--surface-glass-shadow);
+  backdrop-filter: blur(var(--surface-glass-blur));
+  -webkit-backdrop-filter: blur(var(--surface-glass-blur));
+  border-radius: var(--radius-xl);
+}
+
+.outcomeLabel {
+  margin: 0;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+}
+
+.outcomeBody {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+}
+
+.outcomeValue {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-brand-primary);
+}
+
+/* --------------------------------------------------------------------
    Responsive Breakpoints
    -------------------------------------------------------------------- */
 @media (max-width: 1024px) {
@@ -346,5 +392,18 @@
   .closingStatement {
     font-size: var(--font-size-base);
     margin-top: var(--space-8);
+  }
+
+  .outcome {
+    margin-top: var(--space-6);
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .outcomeBody {
+    font-size: var(--font-size-base);
+  }
+
+  .outcomeValue {
+    font-size: var(--font-size-3xl);
   }
 }

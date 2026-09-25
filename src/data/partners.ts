@@ -356,6 +356,8 @@ export interface StandardizedSectionBlock {
   closingStatement?: string;
   paragraphs?: string[];
   metric?: string;
+  /** Milestone number (same contract as service `ampd-timeline` blocks) */
+  number?: number;
   badge?: string;
   caseStudySlug?: string;
   slug?: string;
@@ -375,6 +377,7 @@ export interface StandardizedSectionBlock {
   agentTeamDescription?: string;
   agents?: Array<{ name: string; role: string }>;
   proof?: {
+    eyebrow?: string;
     headline: string;
     description: string;
     metrics?: Array<{ value: string; label: string }>;
@@ -647,10 +650,11 @@ function mapStandardizedToPartnerDetail(
       s.type === "alternating_content"
   );
 
-  const alternatingContent: PartnerAlternatingContentData | undefined = alternatingSec
-    ? {
-        id: alternatingSec.id,
-        rows: (alternatingSec.blocks ?? []).map((b) => {
+  const mapAlternatingSection = (
+    sec: StandardizedSection
+  ): PartnerAlternatingContentData => ({
+        id: sec.id,
+        rows: (sec.blocks ?? []).map((b) => {
           let highlight = b.headingStructure?.highlight;
           let text = b.headingStructure?.text;
           if (!highlight && b.heading) {
@@ -686,8 +690,18 @@ function mapStandardizedToPartnerDetail(
             isCard: Boolean(b.isCard),
           };
         }),
-      }
+      });
+
+  const alternatingContent: PartnerAlternatingContentData | undefined = alternatingSec
+    ? mapAlternatingSection(alternatingSec)
     : undefined;
+
+  /** A second `alternating_content` section on the same page (none by default). */
+  const alternatingSecondarySec = data.sections.find(
+    (s) => s.type === "alternating_content" && s !== alternatingSec
+  );
+  const alternatingContentSecondary: PartnerAlternatingContentData | undefined =
+    alternatingSecondarySec ? mapAlternatingSection(alternatingSecondarySec) : undefined;
 
   let databricksAgenticExecution: DatabricksAgenticExecutionData | undefined;
   const databricksSec =
@@ -860,10 +874,13 @@ function mapStandardizedToPartnerDetail(
 
   let coordinatedAgents: PartnerWhatAgentsDoData | undefined;
   const coordinatedAgentsSec = data.sections.find(
-    (s) => s.id === "coordinated-agents"
+    (s) => s.id === "coordinated-agents" || s.id === "aws-finops-capabilities"
   );
 
   if (coordinatedAgentsSec) {
+    const outcomeBlock = (coordinatedAgentsSec.blocks ?? []).find(
+      (b) => b.type === "metric" && Boolean(b.metric)
+    );
     coordinatedAgents = {
       data: {
         heading: coordinatedAgentsSec.data.heading ?? null,
@@ -871,11 +888,22 @@ function mapStandardizedToPartnerDetail(
         eyebrow: coordinatedAgentsSec.data.eyebrow ?? null,
         closingStatement: coordinatedAgentsSec.data.closingStatement ?? null,
       },
-      blocks: (coordinatedAgentsSec.blocks ?? []).map((b) => ({
-        id: b.id,
-        title: b.title ?? null,
-        body: b.body ?? null,
-      })),
+      blocks: (coordinatedAgentsSec.blocks ?? [])
+        .filter((b) => b !== outcomeBlock)
+        .map((b) => ({
+          id: b.id,
+          title: b.title ?? null,
+          body: b.body ?? null,
+        })),
+      ...(outcomeBlock?.metric
+        ? {
+            outcome: {
+              label: outcomeBlock.eyebrow ?? null,
+              value: outcomeBlock.metric,
+              text: outcomeBlock.body ?? null,
+            },
+          }
+        : {}),
     };
   }
 
@@ -1116,7 +1144,7 @@ function mapStandardizedToPartnerDetail(
 
   const proofSec =
     data.sections.find((s) => s.id === "proof-from-production") ??
-    (data.slug === "servicenow"
+    (data.slug === "servicenow" || data.slug === "aws"
       ? (partnerDetailJson.sections.find(
           (s) => s.id === "proof-from-production"
         ) as StandardizedSection | undefined)
@@ -1221,6 +1249,32 @@ function mapStandardizedToPartnerDetail(
               height: data.footerCta.media.height,
             }
           : undefined,
+        buttons: [
+          ...(data.footerCta.primaryCta?.enabled
+            ? [
+                {
+                  label: data.footerCta.primaryCta.label ?? "",
+                  href: data.footerCta.primaryCta.href ?? "",
+                  variant:
+                    ((data.footerCta.primaryCta as { variant?: "primary" | "dark" })?.variant ?? "dark") as "primary" | "dark",
+                  icon:
+                    ((data.footerCta.primaryCta as { icon?: "cube" | "arrow-up-right" })?.icon ?? "arrow-up-right") as "cube" | "arrow-up-right",
+                },
+              ]
+            : []),
+          ...(data.footerCta.secondaryCta?.enabled
+            ? [
+                {
+                  label: data.footerCta.secondaryCta.label ?? "",
+                  href: data.footerCta.secondaryCta.href ?? "",
+                  variant:
+                    ((data.footerCta.secondaryCta as { variant?: "primary" | "dark" })?.variant ?? "primary") as "primary" | "dark",
+                  icon:
+                    ((data.footerCta.secondaryCta as { icon?: "cube" | "arrow-up-right" })?.icon ?? "cube") as "cube" | "arrow-up-right",
+                },
+              ]
+            : []),
+        ],
       }
     : undefined;
 
@@ -1341,7 +1395,7 @@ function mapStandardizedToPartnerDetail(
   const aiCapabilitiesSec =
     data.slug === "salesforce"
       ? data.sections.find((s) => s.id === "ai-data-capabilities")
-      : undefined;
+      : data.sections.find((s) => s.id === "how-engagement-runs");
   if (aiCapabilitiesSec) {
     aiCapabilities = {
       heading: aiCapabilitiesSec.data.heading ?? "",
@@ -1351,6 +1405,26 @@ function mapStandardizedToPartnerDetail(
         ).padStart(2, "0"),
         title: b.title ?? "",
         description: b.body ?? "",
+      })),
+    };
+  }
+
+  let timeline: PartnerDetailData["timeline"];
+  const timelineSec = data.sections.find((s) => s.type === "ampd-timeline");
+  if (timelineSec) {
+    timeline = {
+      id: timelineSec.id,
+      heading: timelineSec.data.heading ?? undefined,
+      headingHighlight: timelineSec.data.headingStructure?.highlight ?? undefined,
+      description: timelineSec.data.description ?? undefined,
+      listLabel: timelineSec.data.supportingStatement ?? undefined,
+      items: (timelineSec.blocks ?? []).map((b, index) => ({
+        id: b.id || `milestone-${index + 1}`,
+        number: String(b.number ?? index + 1).padStart(2, "0"),
+        title: b.title ?? "",
+        subtitle: b.heading ?? undefined,
+        description: b.body ?? b.description ?? "",
+        listItems: b.items && b.items.length > 0 ? b.items : undefined,
       })),
     };
   }
@@ -1381,6 +1455,26 @@ function mapStandardizedToPartnerDetail(
     };
   }
 
+  let marketValidation: PartnerDetailData["marketValidation"];
+  const marketValidationSec = data.sections.find(
+    (s) => s.id === "market-validation"
+  );
+  if (marketValidationSec) {
+    marketValidation = {
+      heading: marketValidationSec.data.heading ?? "Market Validation",
+      description: marketValidationSec.data.description ?? "",
+      cards: (marketValidationSec.blocks ?? []).map((b) => ({
+        id: b.id,
+        title: b.title ?? undefined,
+        text: b.body ?? "",
+        ribbon: b.media?.src ?? "",
+      })),
+      closingStatement:
+        (marketValidationSec.data as { closingStatement?: string }).closingStatement ??
+        undefined,
+    };
+  }
+
   return {
     slug: data.slug,
     name: data.name ?? data.hero.partner.name,
@@ -1390,6 +1484,7 @@ function mapStandardizedToPartnerDetail(
     storyBanner,
     agentTeams,
     alternatingContent,
+    alternatingContentSecondary,
     agenticEnterprise,
     databricksAgenticExecution,
     databricksBusinessContext,
@@ -1407,7 +1502,9 @@ function mapStandardizedToPartnerDetail(
     industryEvolution,
     infrastructurePrinciples,
     capabilityPortfolio,
+    marketValidation,
     aiCapabilities,
+    timeline,
     cta,
   };
 }

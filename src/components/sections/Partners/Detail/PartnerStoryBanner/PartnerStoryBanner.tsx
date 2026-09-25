@@ -1,4 +1,5 @@
 import Image from "next/image";
+import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { Section, type SectionHeight } from "@/components/ui/Section";
 import type { PartnerStoryBannerData } from "@/types/partnerDetail";
@@ -8,6 +9,8 @@ export interface PartnerStoryBannerProps {
   data: PartnerStoryBannerData;
   height?: SectionHeight;
   className?: string;
+  /** Text alignment for heading + description. Default "left" (Shopify). */
+  align?: "left" | "center";
 }
 
 /**
@@ -24,13 +27,14 @@ export function PartnerStoryBanner({
   data,
   height = "viewport",
   className,
+  align = "left",
 }: PartnerStoryBannerProps) {
   const { image, heading, description } = data;
 
   return (
     <Section
       height={height}
-      className={styles.section}
+      className={clsx(styles.section, className)}
       id="partner-story-banner"
     >
       <Container size="xl" className={styles.container}>
@@ -47,7 +51,12 @@ export function PartnerStoryBanner({
           </div>
         )}
 
-        <div className={styles.textContent}>
+        <div
+          className={clsx(
+            styles.textContent,
+            align === "center" && styles.textContentCenter
+          )}
+        >
           <h2 className={styles.heading}>
             {heading.highlight && (
               <span className={styles.purpleText}>

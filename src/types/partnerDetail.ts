@@ -9,6 +9,7 @@
 
 import type { RunningTodayMetric } from "@/data/services";
 import type { ServiceCapabilityCardsProps } from "@/components/sections/Services/Article/ServiceCapabilityCards";
+import type { AmpdTimelineProps } from "@/components/sections/Services/AmpdTimeline";
 
 export interface PartnerHeroData {
   headingLine1: string;
@@ -140,6 +141,8 @@ export interface AcceleratorProofVideo {
  * references only — no presentation/layout values.
  */
 export interface AcceleratorProofData {
+  /** Optional small label above the headline (e.g. "Reported outcomes"). */
+  eyebrow?: string;
   headline: string;
   description: string;
   metrics?: AcceleratorProofMetric[];
@@ -198,6 +201,12 @@ export interface PartnerCTAData {
     width?: number;
     height?: number;
   };
+  buttons?: Array<{
+    label: string;
+    href: string;
+    variant: "primary" | "dark";
+    icon?: "cube" | "arrow-up-right";
+  }>;
 }
 
 export interface ProductionProofCardData {
@@ -382,6 +391,12 @@ export interface PartnerWhatAgentsDoData {
     eyebrow?: string | null;
     closingStatement?: string | null;
   };
+  /** Optional outcome panel rendered below the card grid (e.g. AWS FinOps). */
+  outcome?: {
+    label?: string | null;
+    value: string;
+    text?: string | null;
+  };
   blocks: Array<{
     id: string;
     title?: string | null;
@@ -401,6 +416,8 @@ export interface PartnerDetailData {
   storyBanner?: PartnerStoryBannerData;
   agentTeams?: PartnerAgentTeamsData;
   alternatingContent?: PartnerAlternatingContentData;
+  /** Second alternating_content section on the same page, if any. */
+  alternatingContentSecondary?: PartnerAlternatingContentData;
   agenticEnterprise?: AgenticEnterpriseData;
   databricksAgenticExecution?: DatabricksAgenticExecutionData;
   databricksBusinessContext?: DatabricksBusinessContextData;
@@ -418,7 +435,10 @@ export interface PartnerDetailData {
   industryEvolution?: NvidiaIndustryEvolutionData;
   infrastructurePrinciples?: PartnerInfrastructurePrinciplesData;
   capabilityPortfolio?: ServiceCapabilityCardsProps;
+  marketValidation?: PartnerAgentTeamsData;
   aiCapabilities?: PartnerNumberedListData;
+  /** Numbered accordion timeline (from an `ampd-timeline` section), rendered with AmpdTimeline. */
+  timeline?: AmpdTimelineProps;
   cta?: PartnerCTAData;
 }
 

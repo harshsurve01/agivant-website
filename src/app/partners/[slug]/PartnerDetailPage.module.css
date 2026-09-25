@@ -318,5 +318,30 @@
   }
 }
 
+/* ==========================================================================
+   NVIDIA Partner Page: Market Validation Section
+   Occupies 100vh baseline on desktop, natural height on smaller screens.
+   ========================================================================== */
+.nvidiaMarketValidationSection {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-20);
+}
 
+@media (max-width: 1024px) {
+  .nvidiaMarketValidationSection {
+    min-height: auto !important;
+    display: block;
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-16);
+  }
+}
+
+/* AWS FinOps: the banner and the capability cards read as one section. */
+.awsPage :global(#aws-finops) {
+  padding-top: 0;
+}
 

@@ -51,6 +51,7 @@ export function WhatAgentsDo({
   id = "what-agents-do",
   variant = "default",
   showAccentBar = false,
+  outcome,
 }: WhatAgentsDoProps) {
   if (!data || !blocks?.length) return null;
 
@@ -66,6 +67,7 @@ export function WhatAgentsDo({
       id={id}
     >
       <Container className={styles.container}>
+        {(heading || description || eyebrow) && (
         <header className={styles.header}>
           {heading && (
             showAccentBar ? (
@@ -86,6 +88,7 @@ export function WhatAgentsDo({
             <p className={styles.eyebrow}>{eyebrow}</p>
           )}
         </header>
+        )}
 
         <div className={styles.grid}>
           {blocks.map((block) => {
@@ -146,6 +149,20 @@ export function WhatAgentsDo({
             );
           })}
         </div>
+
+        {outcome?.value && (
+          <div className={styles.outcome}>
+            {outcome.label && (
+              <p className={styles.outcomeLabel}>{outcome.label}</p>
+            )}
+            <p className={styles.outcomeBody}>
+              <span className={styles.outcomeValue}>{outcome.value}</span>
+              {outcome.text && (
+                <span> {outcome.text}</span>
+              )}
+            </p>
+          </div>
+        )}
 
         {closingStatement && (
           <p className={styles.closingStatement}>{closingStatement}</p>

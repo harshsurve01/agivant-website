@@ -22,6 +22,8 @@ export interface ProductionProofProps {
   height?: SectionHeight;
   className?: string;
   id?: string;
+  /** Enforces NVIDIA page typography rules: 4xl heading, xl card title, lg body. */
+  nvidiaTypography?: boolean;
 }
 
 /**
@@ -46,6 +48,7 @@ export function ProductionProof({
   height = "viewport",
   className,
   id = "proof-from-production",
+  nvidiaTypography = false,
 }: ProductionProofProps) {
   const gridRef = useRef<HTMLDivElement>(null);
   const gridStateRef = useRef<GridState>({ ...REST });
@@ -101,7 +104,11 @@ export function ProductionProof({
   return (
     <Section
       height={height}
-      className={clsx(styles.section, className)}
+      className={clsx(
+        styles.section,
+        nvidiaTypography && styles.nvidiaTypography,
+        className
+      )}
       id={id}
     >
       <Container size="xl" className={styles.container}>
