@@ -485,11 +485,27 @@
     }
   ],
   "footerCta": {
-    "enabled": false,
-    "heading": "",
-    "description": "",
-    "columns": [],
-    "media": null,
-    "cta": null
+    "enabled": true,
+    "heading": "Put TigerGraph to work with<br>Agivant for measurable<br>business impact",
+    "subheading": "Agivant gives agents the relationships behind enterprise data and puts them into production where the business can measure the result",
+    "partner": {
+      "name": "TigerGraph",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/tigergraph.png",
+        "assetKey": "tigergraph-logo",
+        "alt": "TigerGraph",
+        "caption": null
+      }
+    },
+    "primaryCta": null,
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Book a TigerGraph assessment",
+      "href": "/contact",
+      "external": false,
+      "icon": "cube",
+      "variant": "primary"
+    }
   }
 }
