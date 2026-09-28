@@ -33,17 +33,46 @@ export interface MegaMenuCategory {
 }
 
 export interface MegaMenuBottomBar {
-  statsHighlight: string;
-  statsText: string;
+  /** Optional stats line on the left of the bar (omitted = not rendered). */
+  statsHighlight?: string;
+  statsText?: string;
   ctaPrefix: string;
   ctaHighlight: string;
   ctaHref: string;
+}
+
+export interface MegaMenuImage {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+/** One slide of the optional featured carousel (e.g. a press release). */
+export interface MegaMenuFeaturedItem {
+  id: string;
+  title: string;
+  description?: string;
+  /** Destination; empty string = not linked yet. */
+  href: string;
+  image: MegaMenuImage;
+  logos: MegaMenuImage[];
+}
+
+/** Optional featured carousel shown in the right panel instead of the item grid. */
+export interface MegaMenuFeatured {
+  heading: string;
+  items: MegaMenuFeaturedItem[];
 }
 
 export interface MegaMenuData {
   title: string;
   categories: MegaMenuCategory[];
   bottomBar: MegaMenuBottomBar;
+  /** Category selected when the menu opens. Defaults to the first category. */
+  defaultCategoryId?: string;
+  /** When present, the right panel renders this carousel instead of the item grid. */
+  featured?: MegaMenuFeatured;
 }
 
 export interface NavigationItem {
@@ -206,7 +235,100 @@ const mockNavigation: NavigationItem[] = [
   },
   { id: "client-success", label: "Client Success", href: "/client-success" },
   { id: "agent-library", label: "Agent Library", href: "/agent-library" },
-  { id: "resources", label: "Resources", href: "/resources" },
+  {
+    id: "resources",
+    label: "Resources",
+    href: "/resources", // Fallback destination if JS is disabled
+    megaMenu: {
+      title: "Resources",
+      defaultCategoryId: "talk-tech",
+      categories: [
+        {
+          id: "research",
+          label: "Research",
+          href: "",
+          featureCard: {
+            title: "Research",
+            description:
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.",
+          },
+          items: [],
+        },
+        {
+          id: "talk-tech",
+          label: "Talk Tech",
+          href: "/talktech",
+          featureCard: {
+            title: "Talk Tech",
+            description:
+              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.",
+          },
+          items: [],
+        },
+      ],
+      featured: {
+        heading: "Whats New",
+        items: [
+          {
+            id: "press-gemini-enterprise",
+            title: "Agivant partners with Google Cloud",
+            description:
+              "to set up a dedicated Gemini Enterprise practice to accelerate custom AI agent development",
+            href: "/press-releases/gemini-enterprise",
+            image: {
+              src: "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
+              alt: "Agivant partners with Google Cloud",
+              width: 874,
+              height: 558,
+            },
+            logos: [
+              { src: "/images/logo/agivant-logo.svg", alt: "Agivant", width: 167, height: 33 },
+              { src: "/images/partners/gemini.png", alt: "Gemini Enterprise", width: 249, height: 91 },
+            ],
+          },
+          {
+            id: "press-databricks",
+            title:
+              "Agivant Partners With Databricks To Help Enterprises Turn Enterprise Data Into Trusted Context For AI",
+            description:
+              "Agivant's agentic AI, data engineering and enterprise AI solutions built on the Databricks Data + AI Platform help organizations build the next generation of AI-native businesses.",
+            href: "",
+            image: {
+              src: "/images/mega-menu/card2.png",
+              alt: "Agivant and Databricks partnership",
+              width: 166,
+              height: 227,
+            },
+            logos: [
+              { src: "/images/logo/agivant-logo.svg", alt: "Agivant", width: 167, height: 33 },
+              { src: "/images/partners/databricks.png", alt: "Databricks", width: 249, height: 91 },
+            ],
+          },
+          {
+            id: "press-glean",
+            title:
+              "Agivant Technologies Announces Collaboration with Glean to Advance Enterprise Work AI and Agentic AI Transformation",
+            href: "/press-releases/glean",
+            image: {
+              src: "/images/mega-menu/card3.png",
+              alt: "Agivant and Glean collaboration",
+              width: 166,
+              height: 227,
+            },
+            logos: [
+              { src: "/images/logo/agivant-logo.svg", alt: "Agivant", width: 167, height: 33 },
+              { src: "/images/partners/glean.png", alt: "Glean", width: 249, height: 91 },
+            ],
+          },
+        ],
+      },
+      bottomBar: {
+        ctaPrefix: "Need something specific?",
+        ctaHighlight: "Let's build it together",
+        ctaHref: "/contact",
+      },
+    },
+  },
   { id: "careers", label: "Careers", href: "/careers" },
   { id: "about-us", label: "About Us", href: "/about" },
 ];

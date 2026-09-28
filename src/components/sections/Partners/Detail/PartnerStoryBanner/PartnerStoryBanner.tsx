@@ -11,6 +11,12 @@ export interface PartnerStoryBannerProps {
   className?: string;
   /** Text alignment for heading + description. Default "left" (Shopify). */
   align?: "left" | "center";
+  /**
+   * When the data has no separate highlight, render the first N words of the
+   * heading in the accent colour and the rest in the primary text colour.
+   * Unset keeps the existing heading treatment.
+   */
+  headingHighlightWords?: number;
 }
 
 /**
@@ -28,8 +34,17 @@ export function PartnerStoryBanner({
   height = "viewport",
   className,
   align = "left",
+  headingHighlightWords,
 }: PartnerStoryBannerProps) {
-  const { image, heading, description } = data;
+  const { image, description } = data;
+  let heading = data.heading;
+  if (headingHighlightWords && !heading.highlight && heading.text) {
+    const words = heading.text.split(" ");
+    heading = {
+      highlight: words.slice(0, headingHighlightWords).join(" "),
+      text: words.slice(headingHighlightWords).join(" "),
+    };
+  }
 
   return (
     <Section

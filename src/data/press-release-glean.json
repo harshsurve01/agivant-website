@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "pressRelease",
+  "slug": "glean",
+  "title": "Agivant Technologies Announces Collaboration with Glean to Advance Enterprise Work AI and Agentic AI Transformation",
+  "seo": {
+    "title": "Agivant Technologies Announces Collaboration with Glean to Advance Enterprise Work AI and Agentic AI Transformation | Agivant",
+    "description": "Agivant Technologies announces collaboration with Glean to advance enterprise Work AI and agentic AI transformation.",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Agivant Technologies Announces Collaboration with Glean to Advance Enterprise Work AI and Agentic AI Transformation",
+    "subtitle": null,
+    "summary": null,
+    "authors": [],
+    "partner": {
+      "name": "Glean",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/press-releases/glean.png",
+        "assetKey": "press-release-glean-logos",
+        "alt": "Agivant and Glean",
+        "caption": null,
+        "width": 2156,
+        "height": 396
+      }
+    },
+    "media": {
+      "kind": "image",
+      "src": "/images/press-releases/glean-hero-ribbon.png",
+      "assetKey": "press-release-glean-hero-ribbon",
+      "alt": "Flowing hero ribbon",
+      "caption": null,
+      "width": 2876,
+      "height": 690
+    },
+    "primaryCta": null,
+    "secondaryCta": null,
+    "heading": "Agivant Technologies Announces Collaboration with Glean to Advance Enterprise Work AI and Agentic AI Transformation",
+    "ribbonSrc": "/images/press-releases/glean-hero-ribbon.png",
+    "ribbonWidth": 2876,
+    "ribbonHeight": 690
+  },
+  "sections": [
+    {
+      "id": "announcement",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "headingStructure": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "announcement-copy",
+          "type": "rich_text",
+          "heading": null,
+          "body": null,
+          "paragraphs": [
+            "<strong>Palo Alto, California: 26th May, 2026 –</strong> Agivant Technologies, an AI-first engineering company specializing in enterprise AI infrastructure, agentic AI systems, data platforms, and scalable ML engineering, today announced a collaboration with Glean, the Work AI leader, to help enterprises accelerate AI adoption through context-aware AI experiences, intelligent automation, and enterprise-scale agentic workflows.",
+            "This collaboration brings together Agivant’s expertise in AI/ML engineering, AgentOps, distributed AI systems, MLOps, and enterprise data infrastructure with Glean’s Work AI platform capabilities to help organizations operationalize AI across enterprise workflows while improving productivity, knowledge accessibility, and decision-making.",
+            "As enterprises continue scaling AI initiatives, many organizations face challenges around fragmented enterprise knowledge, disconnected systems, operational complexity, and governance limitations that slow AI adoption. Businesses are increasingly looking for enterprise-ready AI platforms and engineering partners that can help move from isolated AI pilots to production-scale autonomous workflows and intelligent operational systems.",
+            "Through this collaboration, Agivant and Glean will help organizations build and operationalize AI-driven enterprise experiences by combining enterprise knowledge discovery, AI-powered assistance, intelligent agents, and workflow automation with scalable AI engineering and platform modernization capabilities."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "key-pillars",
+      "type": "numbered_list",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "The Collaboration Is Expected To Support Organizations In:",
+        "highlightCount": 4,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "outcome-1",
+          "type": "numberedItem",
+          "number": 1,
+          "title": "",
+          "body": "Enabling context-aware AI experiences grounded in enterprise knowledge, workflows and operational systems",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "outcome-2",
+          "type": "numberedItem",
+          "number": 2,
+          "title": "",
+          "body": "Accelerating deployment of intelligent agents and autonomous workflow orchestration across business functions",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "outcome-3",
+          "type": "numberedItem",
+          "number": 3,
+          "title": "",
+          "body": "Supporting enterprise-scale AI adoption through secure AI infrastructure, MLOps, governance, and operational reliability",
+          "items": [],
+          "media": null
+        }
+      ]
+    },
+    {
+      "id": "leadership-quotes",
+      "type": "quote",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "primaryCta": {
+          "enabled": true,
+          "label": "www.agivant.com",
+          "href": "https://www.agivant.com",
+          "variant": "dark",
+          "icon": "arrow-up-right",
+          "external": true
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "www.glean.com",
+          "href": "https://www.glean.com",
+          "variant": "primary",
+          "icon": "cube",
+          "external": true
+        }
+      },
+      "blocks": [
+        {
+          "id": "quote-ajay-malgaonkar",
+          "type": "quote",
+          "quote": "Enterprise AI is entering a new phase where organizations are moving beyond experimentation toward operational AI systems that can drive real business outcomes at scale. Our collaboration with Glean enables enterprises to combine Work AI with scalable AI engineering, agentic architectures, and enterprise-grade operational frameworks to accelerate intelligent automation and AI adoption across the enterprise.",
+          "authorName": "Ajay Malgaonkar",
+          "authorRole": "Chief Digital Delivery Officer, Agivant Technologies",
+          "authorImage": null
+        },
+        {
+          "id": "quote-zubin-irani",
+          "type": "quote",
+          "quote": "Glean is excited to collaborate with Agivant to help organizations accelerate enterprise AI adoption. By combining Glean’s Work AI platform with Agivant’s expertise in AI engineering and intelligent systems, organizations can create more connected, context-aware, and productive ways of working.",
+          "authorName": "Zubin Irani",
+          "authorRole": "VP of Partnerships, Glean",
+          "authorImage": null
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "type": "alternating_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "about-agivant",
+          "type": "row",
+          "eyebrow": null,
+          "title": null,
+          "headingStructure": {
+            "highlight": "About",
+            "text": "Agivant Technologies"
+          },
+          "body": "Agivant Technologies is an AI-first engineering company focused on building enterprise-grade AI systems, agentic AI architectures, scalable ML platforms, and modern data infrastructure for global enterprises. The company specializes in AgentOps, AI/ML engineering, MLOps, data engineering, distributed systems, and intelligent automation solutions that enable organizations to operationalize AI securely and at scale.\n\nAgivant delivers enterprise AI capabilities including multi-agent orchestration, event-driven architectures, RAG and LLM-based systems, scalable MLOps platforms, real-time data pipelines, observability frameworks, and AI-powered operational systems designed for next-generation autonomous business operations.",
+          "media": {
+            "kind": "image",
+            "src": "/images/press-releases/glean-card-img.png",
+            "assetKey": "agentic-enterprise-control",
+            "alt": "About Agivant Technologies",
+            "caption": null,
+            "width": 874,
+            "height": 558
+          },
+          "layout": "image-text",
+          "isCard": false
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Media Contact:",
+    "subheading": "Shree Krishna Somani\nssomani@agivant.com",
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/press-releases/glean-footer.png",
+      "assetKey": "press-release-glean-media-contact",
+      "alt": "Media contact",
+      "caption": null,
+      "width": 1748,
+      "height": 1116
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  }
+}

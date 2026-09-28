@@ -1,0 +1,283 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "pressRelease",
+  "slug": "databricks",
+  "title": "Agivant Partners With Databricks To Help Enterprises Turn Enterprise Data Into Trusted Context For AI",
+  "seo": {
+    "title": "Agivant Partners With Databricks To Help Enterprises Turn Enterprise Data Into Trusted Context For AI | Agivant",
+    "description": "Agivant partners with Databricks to help enterprises turn enterprise data into trusted context for AI.",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Agivant Partners With Databricks To Help Enterprises Turn Enterprise Data Into Trusted Context For AI",
+    "subtitle": null,
+    "summary": null,
+    "authors": [],
+    "partner": {
+      "name": "Databricks",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/press-releases/databrick.png",
+        "assetKey": "press-release-databricks-logos",
+        "alt": "Agivant and Databricks",
+        "caption": null,
+        "width": 2404,
+        "height": 316
+      }
+    },
+    "media": {
+      "kind": "image",
+      "src": "/images/press-releases/databrick-hero-ribbon.png",
+      "assetKey": "press-release-databricks-hero-ribbon",
+      "alt": "Flowing hero ribbon",
+      "caption": null,
+      "width": 2876,
+      "height": 690
+    },
+    "primaryCta": null,
+    "secondaryCta": null,
+    "heading": "Agivant Partners With Databricks<br>To Help Enterprises Turn Enterprise Data<br>Into Trusted Context For AI",
+    "ribbonSrc": "/images/press-releases/databrick-hero-ribbon.png",
+    "ribbonWidth": 2876,
+    "ribbonHeight": 690
+  },
+  "sections": [
+    {
+      "id": "announcement",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Agivant's agentic AI, data engineering and enterprise AI solutions built on the Databricks Data + AI Platform help organisations build the next generation of AI-native businesses.",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "announcement-copy",
+          "type": "rich_text",
+          "heading": null,
+          "body": null,
+          "paragraphs": [
+            "<strong>San Jose, California: 27th July, 2026 –</strong> Agivant, an agentic-first AI engineering company, today announced a partnership with Databricks, the Data and AI company, to help enterprises unify their data and AI capabilities and drive measurable business value on the Databricks Data + AI Platform.",
+            "Enterprise AI is entering a new phase, one where progress depends less on the raw power of a foundation model and more on whether that model can be trusted with real business context. Databricks has been building toward exactly that, evolving the Data + AI Platform so that governed enterprise data, semantics, and agents work together as a single, continuously learned foundation rather than a patchwork of disconnected tools. Through its Databricks practice, Agivant is investing in the engineering expertise, solution accelerators, and delivery capabilities needed to help customers put that foundation to work.",
+            "As enterprises move beyond isolated pilots to organization-wide agent deployment, success depends on more than a capable model. It requires a governed data foundation, a semantic layer that gives agents real business context, and clear controls over cost and access as agent usage scales. This is the direction Agivant sees the market heading, and its Databricks practice is built to help customers get there faster."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "key-pillars",
+      "type": "numbered_list",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "As Part Of This Practice, Agivant Will Help Customers:",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "modernize-data-platforms",
+          "type": "numberedItem",
+          "number": 1,
+          "title": "",
+          "body": "Modernize enterprise data platforms on the open Lakehouse, bringing transactional and analytical workloads onto a single foundation",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "governed-semantic-layer",
+          "type": "numberedItem",
+          "number": 2,
+          "title": "",
+          "body": "Build a governed, continuously learned semantic layer on top of Unity Catalog so agents reason over trusted business data instead of guesswork",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "pilots-to-production-agents",
+          "type": "numberedItem",
+          "number": 3,
+          "title": "",
+          "body": "Move enterprise teams from AI pilots to production agents and coworkers that can safely act on real business questions with Genie",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "agent-governance",
+          "type": "numberedItem",
+          "number": 4,
+          "title": "",
+          "body": "Put clear governance in place with Unity Catalog for agent cost, access, and behavior as adoption scales across the organization",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "industry-accelerators",
+          "type": "numberedItem",
+          "number": 5,
+          "title": "",
+          "body": "Deliver industry-specific AI accelerators for Financial Services, Healthcare, Semiconductor and Technology built on this data and agent foundation",
+          "items": [],
+          "media": null
+        }
+      ]
+    },
+    {
+      "id": "practice-summary",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "practice-summary-copy",
+          "type": "rich_text",
+          "heading": null,
+          "body": null,
+          "paragraphs": [
+            "Agivant brings together expertise in AI, cloud, platform engineering, and data engineering with a delivery-first approach that helps enterprises move from experimentation to production faster. Its growing library of reusable accelerators and AI engineering frameworks is built to shorten implementation timelines and help customers realize faster returns on their data and AI investments."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leadership-quotes",
+      "type": "quote",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "quote-ajay-malgaonkar",
+          "type": "quote",
+          "quote": "The biggest limiting factor for enterprise AI right now is not intelligence, it is context. Models are capable, but most organizations still cannot connect them reliably to the data and business logic that make an answer trustworthy. Databricks has been building toward a platform where governed data and agents work together as a single foundation, and that matches exactly what we see with our own clients. As a Databricks Bronze Partner, Agivant is focused on helping enterprises turn that foundation into production AI systems that create measurable business value.",
+          "authorName": "Ajay Malgaonkar",
+          "authorRole": "Chief Digital Delivery Officer, Agivant Technologies",
+          "authorImage": null
+        }
+      ]
+    },
+    {
+      "id": "closing",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "closing-copy",
+          "type": "rich_text",
+          "heading": null,
+          "body": null,
+          "paragraphs": [
+            "Agivant will continue investing in Databricks-certified talent, solution accelerators, and engineering best practices, working closely with Databricks to build industry-focused AI solutions that help customers modernize data platforms, operationalize AI responsibly, and accelerate digital transformation.",
+            "For more on Agivant’s AI, Data Engineering, Cloud, and Agentic AI services, visit"
+          ]
+        },
+        {
+          "id": "cta-agivant",
+          "type": "cta",
+          "enabled": true,
+          "label": "www.agivant.com",
+          "href": "https://www.agivant.com",
+          "external": true,
+          "icon": "arrow-up-right",
+          "variant": "dark"
+        },
+        {
+          "id": "cta-databricks",
+          "type": "cta",
+          "enabled": true,
+          "label": "www.databricks.com",
+          "href": "https://www.databricks.com",
+          "external": true,
+          "icon": "cube",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "type": "alternating_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "about-agivant",
+          "type": "row",
+          "eyebrow": null,
+          "title": null,
+          "heading": "About Agivant Technologies",
+          "body": "Agivant is an agentic-first AI engineering company helping enterprises build the Autonomous Agentic Enterprise. Specializing in Artificial Intelligence, Data Engineering, Cloud, Platform Engineering, Cybersecurity, and Intelligent Automation, Agivant enables organizations to build scalable, secure, production-ready digital platforms. Working with leading global enterprises across Technology, Financial Services, Semiconductors, and eCommerce, Agivant pairs engineering excellence with modern AI to accelerate innovation and deliver measurable outcomes.",
+          "media": {
+            "kind": "image",
+            "src": "/images/press-releases/databrick-card-img.png",
+            "assetKey": "press-release-databricks-about",
+            "alt": "About Agivant Technologies",
+            "caption": null,
+            "width": 1748,
+            "height": 1276
+          },
+          "layout": "image-text",
+          "isCard": false
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Media Contact:",
+    "subheading": "Shree Krishna Somani\nssomani@agivant.com",
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/press-releases/databrick-footer.png",
+      "assetKey": "press-release-databricks-media-contact",
+      "alt": "Media contact",
+      "caption": null,
+      "width": 1548,
+      "height": 1116
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  }
+}

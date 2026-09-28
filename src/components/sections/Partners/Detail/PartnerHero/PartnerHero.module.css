@@ -99,6 +99,21 @@
   height: auto;
 }
 
+/* Optional logo above the heading (logoPosition="above").
+   One contained image that keeps its aspect ratio at every width. */
+.logoWrapperAbove {
+  margin-top: 0;
+  margin-bottom: var(--space-8);
+}
+
+.partnerLogoAbove {
+  display: block;
+  width: 100%;
+  max-width: min(50rem, 90vw);
+  height: auto;
+  object-fit: contain;
+}
+
 @media (max-width: 1024px) {
   .hero {
     min-height: 720px;
@@ -379,5 +394,45 @@
 
   .nvidiaContent {
     margin-top: clamp(3rem, 10vw, 5rem);
+  }
+}
+
+/* ==========================================================================
+   Azure inline hero logo & typography
+   ========================================================================== */
+
+.azureHeadingLine {
+  color: var(--color-brand-primary);
+}
+
+.azureLogoInline {
+  --azure-logo-h: calc(0.72em * 91 / 41);
+  display: inline-block;
+  height: var(--azure-logo-h);
+  width: auto;
+  vertical-align: -0.28em;
+  margin-inline-start: 0.25rem;
+}
+
+.azureSubtitle {
+  margin-top: var(--space-8);
+  margin-bottom: 0;
+  max-width: 55rem;
+  font-family: var(--font-family-base, "Poppins", sans-serif);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .azureLogoInline {
+    vertical-align: -0.22em;
+  }
+
+  .azureSubtitle {
+    margin-top: var(--space-6);
+    font-size: var(--font-size-base);
+    padding-inline: var(--space-4);
   }
 }

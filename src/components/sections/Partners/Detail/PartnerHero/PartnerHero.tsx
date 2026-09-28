@@ -10,6 +10,13 @@ import styles from "./PartnerHero.module.css";
 
 export interface PartnerHeroProps {
   hero: PartnerHeroData;
+  /**
+   * Where the logo renders relative to the heading (standard layout only).
+   * "below" (default) keeps the existing partner-page order; "above" places
+   * the logo image first and lets it scale as one contained image
+   * (e.g. a combined multi-logo strip on a press release).
+   */
+  logoPosition?: "above" | "below";
 }
 
 /**
@@ -28,7 +35,9 @@ export interface PartnerHeroProps {
  *
  * Server Component: pure presentation, no client overhead.
  */
-export function PartnerHero({ hero }: PartnerHeroProps) {
+export function PartnerHero({ hero, logoPosition = "below" }: PartnerHeroProps) {
+  const isLogoAbove = logoPosition === "above";
+
   const isNvidia =
     hero.partnerLogo.assetKey === "nvidia-logo" ||
     hero.partnerLogo.src.includes("nvidia");
@@ -49,6 +58,11 @@ export function PartnerHero({ hero }: PartnerHeroProps) {
   const isTigerGraph =
     hero.partnerLogo.assetKey === "tigergraph-logo" ||
     hero.partnerLogo.src.includes("tigergraph");
+
+  const isAzure =
+    hero.partnerLogo.assetKey === "azure-logo" ||
+    hero.partnerLogo.assetKey === "partner-azure" ||
+    hero.partnerLogo.src.includes("azure");
 
   return (
     <section
@@ -101,6 +115,19 @@ export function PartnerHero({ hero }: PartnerHeroProps) {
             </>
           ) : (
             <>
+              {isLogoAbove && hero.partnerLogo?.src && (
+                <div className={clsx(styles.logoWrapper, styles.logoWrapperAbove)}>
+                  <Image
+                    src={hero.partnerLogo.src}
+                    alt={hero.partnerLogo.alt}
+                    width={hero.partnerLogo.width ?? 567}
+                    height={hero.partnerLogo.height ?? 67}
+                    className={styles.partnerLogoAbove}
+                    priority
+                  />
+                </div>
+              )}
+
               <h1 className={styles.heading}>
                 {hero.headingLines && hero.headingLines.length > 0 ? (
                   hero.headingLines.map((line, idx) => (
@@ -132,6 +159,21 @@ export function PartnerHero({ hero }: PartnerHeroProps) {
                           />
                         </>
                       )}
+                      {/* Azure: the logo supplies the Azure logo inline
+                          at the end of the first heading line. */}
+                      {isAzure && idx === 0 && (
+                        <>
+                          {" "}
+                          <Image
+                            src={hero.partnerLogo.src}
+                            alt={hero.partnerLogo.alt}
+                            width={hero.partnerLogo.width ?? 249}
+                            height={hero.partnerLogo.height ?? 91}
+                            className={styles.azureLogoInline}
+                            priority
+                          />
+                        </>
+                      )}
                     </span>
                   ))
                 ) : (
@@ -158,7 +200,7 @@ export function PartnerHero({ hero }: PartnerHeroProps) {
                 )}
               </h1>
 
-              {hero.partnerLogo && !isAws && (
+              {hero.partnerLogo && !isLogoAbove && !isAws && !isAzure && (
                 <div className={styles.logoWrapper}>
                   <Image
                     src={hero.partnerLogo.src}
@@ -183,7 +225,8 @@ export function PartnerHero({ hero }: PartnerHeroProps) {
                 <p
                   className={clsx(
                     styles.subtitle,
-                    isTigerGraph && styles.tigergraphSubtitle
+                    isTigerGraph && styles.tigergraphSubtitle,
+                    isAzure && styles.azureSubtitle
                   )}
                 >
                   {hero.subtitle}

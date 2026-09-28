@@ -6,7 +6,7 @@ import Image from "next/image";
 import clsx from "clsx";
 import { ChevronDown } from "@/components/ui/Icon/ChevronDown";
 import { ArrowRight } from "@/components/ui/Icon/ArrowRight";
-import type { NavigationItem } from "@/data/navigation";
+import type { NavigationItem, MegaMenuFeaturedItem } from "@/data/navigation";
 import styles from "./NavigationMenu.module.css";
 
 export interface NavigationMenuProps {
@@ -18,23 +18,36 @@ export interface NavigationMenuProps {
  *
  * Client Component for the primary navigation in the Header.
  * Owns client-side state for:
- * - Opening/closing the "What We Build" mega menu
+ * - Opening/closing a mega menu (any navigation item with `megaMenu` data,
+ *   e.g. "What We Build" and "Resources" — one shared panel, data-driven)
  * - Switching between Services, Solutions, and Partnerships categories
  * - Solutions search filtering (controlled input, real-time matching)
  * - Click-outside and Escape key dismissal
  * - Closing on item navigation
  */
 export function NavigationMenu({ navigation }: NavigationMenuProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("services");
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeFeatured, setActiveFeatured] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const isOpen = openMenuId !== null;
 
-  const triggerRef = useRef<HTMLButtonElement>(null);
+  // Pointer-drag (mouse + touch) state for the featured carousel
+  const dragStartXRef = useRef<number | null>(null);
+  const didDragRef = useRef(false);
+
+  const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // Find the item with megaMenu data (What We Build)
-  const whatWeBuildItem = navigation.find((item) => item.megaMenu);
-  const megaMenuData = whatWeBuildItem?.megaMenu;
+  // The navigation item whose mega menu is currently open
+  const openMenuItem = navigation.find(
+    (item) => item.id === openMenuId && item.megaMenu
+  );
+  const megaMenuData = openMenuItem?.megaMenu;
+  const featured = megaMenuData?.featured;
+  const featuredItem: MegaMenuFeaturedItem | undefined =
+    featured?.items[activeFeatured] ?? featured?.items[0];
 
   // Currently selected category
   const currentCategory = useMemo(() => {
@@ -63,22 +76,24 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
   useEffect(() => {
     if (!isOpen) return;
 
+    const activeTrigger = openMenuId ? triggerRefs.current[openMenuId] : null;
+
     function handleClickOutside(event: MouseEvent | TouchEvent) {
       const target = event.target as Node;
       if (
         panelRef.current &&
         !panelRef.current.contains(target) &&
-        triggerRef.current &&
-        !triggerRef.current.contains(target)
+        activeTrigger &&
+        !activeTrigger.contains(target)
       ) {
-        setIsOpen(false);
+        setOpenMenuId(null);
       }
     }
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setIsOpen(false);
-        triggerRef.current?.focus();
+        setOpenMenuId(null);
+        activeTrigger?.focus();
       }
     }
 
@@ -91,17 +106,18 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
       document.removeEventListener("touchstart", handleClickOutside);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen]);
+  }, [isOpen, openMenuId]);
 
-  const handleTriggerClick = () => {
-    setIsOpen((prev) => {
-      const nextState = !prev;
-      if (nextState) {
-        setActiveCategory("services");
-        setSearchQuery("");
-      }
-      return nextState;
-    });
+  const handleTriggerClick = (item: NavigationItem) => {
+    if (openMenuId === item.id) {
+      setOpenMenuId(null);
+      return;
+    }
+    const menu = item.megaMenu;
+    setActiveCategory(menu?.defaultCategoryId ?? menu?.categories[0]?.id ?? "");
+    setSearchQuery("");
+    setActiveFeatured(0);
+    setOpenMenuId(item.id);
   };
 
   const handleCategoryClick = (categoryId: string) => {
@@ -110,7 +126,53 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
   };
 
   const handleLinkClick = () => {
-    setIsOpen(false);
+    setOpenMenuId(null);
+  };
+
+  // ── Featured carousel drag / swipe ──
+  // Drag the card left/right past the threshold to move to the next/previous
+  // item (wraps around). A drag never triggers the card's link.
+  const DRAG_THRESHOLD_PX = 50;
+  const featuredCount = featured?.items.length ?? 0;
+
+  const handleFeaturedPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (featuredCount < 2 || (e.pointerType === "mouse" && e.button !== 0)) return;
+    dragStartXRef.current = e.clientX;
+    didDragRef.current = false;
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handleFeaturedPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (dragStartXRef.current === null) return;
+    const dx = e.clientX - dragStartXRef.current;
+    if (Math.abs(dx) > 5) didDragRef.current = true;
+    setDragOffset(dx);
+  };
+
+  const endFeaturedDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (dragStartXRef.current === null) return;
+    const dx = e.clientX - dragStartXRef.current;
+    dragStartXRef.current = null;
+    setDragOffset(0);
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+    if (Math.abs(dx) >= DRAG_THRESHOLD_PX && featuredCount > 1) {
+      setActiveFeatured((prev) =>
+        dx < 0
+          ? (prev + 1) % featuredCount
+          : (prev - 1 + featuredCount) % featuredCount
+      );
+    }
+  };
+
+  const handleFeaturedClickCapture = (e: React.MouseEvent) => {
+    // Swallow the click that ends a drag so the card link doesn't fire.
+    if (didDragRef.current) {
+      e.preventDefault();
+      e.stopPropagation();
+      didDragRef.current = false;
+    }
   };
 
   return (
@@ -118,26 +180,29 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
       <ul className={styles.navList}>
         {navigation.map((item) => {
           if (item.megaMenu) {
+            const isItemOpen = openMenuId === item.id;
             return (
               <li key={item.id} className={styles.navItem}>
                 <button
-                  ref={triggerRef}
+                  ref={(el) => {
+                    triggerRefs.current[item.id] = el;
+                  }}
                   type="button"
-                  onClick={handleTriggerClick}
+                  onClick={() => handleTriggerClick(item)}
                   className={clsx(
                     styles.navLink,
                     styles.navTrigger,
-                    isOpen && styles.navTriggerActive
+                    isItemOpen && styles.navTriggerActive
                   )}
-                  aria-expanded={isOpen}
-                  aria-controls="what-we-build-mega-menu"
+                  aria-expanded={isItemOpen}
+                  aria-controls={`${item.id}-mega-menu`}
                   aria-haspopup="true"
                 >
                   <span>{item.label}</span>
                   <ChevronDown
                     className={clsx(
                       styles.chevron,
-                      isOpen && styles.chevronOpen
+                      isItemOpen && styles.chevronOpen
                     )}
                   />
                 </button>
@@ -159,14 +224,14 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
         })}
       </ul>
 
-      {/* ── "What We Build" Mega Menu Panel ── */}
-      {isOpen && megaMenuData && (
+      {/* ── Mega Menu Panel (shared by every item with megaMenu data) ── */}
+      {isOpen && openMenuItem && megaMenuData && (
         <div
           ref={panelRef}
-          id="what-we-build-mega-menu"
+          id={`${openMenuItem.id}-mega-menu`}
           className={styles.megaMenuPanel}
           role="region"
-          aria-label="What We Build"
+          aria-label={megaMenuData.title}
         >
           <div className={styles.megaMenuInner}>
             {/* Left Sidebar */}
@@ -228,12 +293,115 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
 
             {/* Right Content Area */}
             <main className={styles.rightPanel}>
-              <h3 className={styles.rightHeading}>
-                {currentCategory?.label}
+              <h3
+                className={clsx(
+                  styles.rightHeading,
+                  featured && styles.rightHeadingFeatured
+                )}
+              >
+                {featured ? featured.heading : currentCategory?.label}
               </h3>
 
+              {/* Featured carousel (menus with `featured` data, e.g. Resources) */}
+              {featured && featuredItem && (
+                <div className={styles.featured}>
+                  <div
+                    className={clsx(
+                      styles.featuredTrack,
+                      featuredCount > 1 && styles.featuredTrackDraggable,
+                      dragOffset !== 0 && styles.featuredTrackDragging
+                    )}
+                    style={
+                      dragOffset !== 0
+                        ? { transform: `translateX(${dragOffset}px)` }
+                        : undefined
+                    }
+                    onPointerDown={handleFeaturedPointerDown}
+                    onPointerMove={handleFeaturedPointerMove}
+                    onPointerUp={endFeaturedDrag}
+                    onPointerCancel={endFeaturedDrag}
+                    onClickCapture={handleFeaturedClickCapture}
+                    onDragStart={(e) => e.preventDefault()}
+                  >
+                  {(() => {
+                    const cardContent = (
+                      <>
+                        <div className={styles.featuredImageWrapper}>
+                          <Image
+                            src={featuredItem.image.src}
+                            alt={featuredItem.image.alt}
+                            width={featuredItem.image.width}
+                            height={featuredItem.image.height}
+                            className={styles.featuredImage}
+                            draggable={false}
+                          />
+                        </div>
+                        <div className={styles.featuredContent}>
+                          {featuredItem.logos.length > 0 && (
+                            <div className={styles.featuredLogos}>
+                              {featuredItem.logos.map((logo) => (
+                                <Image
+                                  key={logo.src}
+                                  src={logo.src}
+                                  alt={logo.alt}
+                                  width={logo.width}
+                                  height={logo.height}
+                                  className={styles.featuredLogo}
+                                  draggable={false}
+                                />
+                              ))}
+                            </div>
+                          )}
+                          <h4 className={styles.featuredTitle}>
+                            {featuredItem.title}
+                          </h4>
+                          {featuredItem.description && (
+                            <p className={styles.featuredDesc}>
+                              {featuredItem.description}
+                            </p>
+                          )}
+                        </div>
+                      </>
+                    );
+                    return featuredItem.href ? (
+                      <Link
+                        key={featuredItem.id}
+                        href={featuredItem.href}
+                        onClick={handleLinkClick}
+                        className={styles.featuredCard}
+                      >
+                        {cardContent}
+                      </Link>
+                    ) : (
+                      <div key={featuredItem.id} className={styles.featuredCard}>
+                        {cardContent}
+                      </div>
+                    );
+                  })()}
+                  </div>
+
+                  {featured.items.length > 1 && (
+                    <div className={styles.featuredDots}>
+                      {featured.items.map((item, index) => (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => setActiveFeatured(index)}
+                          className={clsx(
+                            styles.featuredDot,
+                            index === activeFeatured && styles.featuredDotActive
+                          )}
+                          aria-label={`Show ${item.title}`}
+                          aria-current={index === activeFeatured}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* Search Bar (Solutions State) */}
-              {activeCategory === "solutions" && (
+              {!featured && activeCategory === "solutions" && (
                 <form
                   className={styles.searchForm}
                   onSubmit={(e) => e.preventDefault()}
@@ -253,7 +421,7 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
               )}
 
               {/* Content Grid */}
-              {activeCategory === "partnerships" ? (
+              {featured ? null : activeCategory === "partnerships" ? (
                 <div className={styles.placeholderState}>
                   <p className={styles.placeholderText}>
                     Explore our technology ecosystem partners and alliances.
@@ -323,10 +491,14 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
               {/* Bottom Information Bar */}
               <div className={styles.bottomBar}>
                 <div className={styles.bottomLeft}>
-                  <span className={styles.bottomHighlight}>
-                    {megaMenuData.bottomBar.statsHighlight}
-                  </span>{" "}
-                  <span>{megaMenuData.bottomBar.statsText}</span>
+                  {megaMenuData.bottomBar.statsHighlight && (
+                    <span className={styles.bottomHighlight}>
+                      {megaMenuData.bottomBar.statsHighlight}
+                    </span>
+                  )}{" "}
+                  {megaMenuData.bottomBar.statsText && (
+                    <span>{megaMenuData.bottomBar.statsText}</span>
+                  )}
                 </div>
                 <div className={styles.bottomRight}>
                   <span>{megaMenuData.bottomBar.ctaPrefix} </span>

@@ -55,6 +55,8 @@ export interface PartnerIntroData {
   };
   paragraphs: string[];
   leadershipQuote?: LeadershipQuoteData;
+  /** Optional stack of quote cards; when set, rendered instead of `leadershipQuote`. */
+  leadershipQuotes?: LeadershipQuoteData[];
   statementCard?: StatementCardData;
   supportingStatement?: string;
   ctaAlign?: "left" | "center";
@@ -62,7 +64,14 @@ export interface PartnerIntroData {
     label: string;
     href: string;
     icon?: string;
+    variant?: "primary" | "dark";
   };
+  ctas?: Array<{
+    label: string;
+    href: string;
+    icon?: string;
+    variant?: "primary" | "dark";
+  }>;
 }
 
 export interface AgenticEnterpriseMetricsData {
@@ -418,6 +427,8 @@ export interface PartnerDetailData {
   alternatingContent?: PartnerAlternatingContentData;
   /** Second alternating_content section on the same page, if any. */
   alternatingContentSecondary?: PartnerAlternatingContentData;
+  /** Third alternating_content section on the same page, if any. */
+  alternatingContentTertiary?: PartnerAlternatingContentData;
   agenticEnterprise?: AgenticEnterpriseData;
   databricksAgenticExecution?: DatabricksAgenticExecutionData;
   databricksBusinessContext?: DatabricksBusinessContextData;
@@ -439,6 +450,8 @@ export interface PartnerDetailData {
   aiCapabilities?: PartnerNumberedListData;
   /** Numbered accordion timeline (from an `ampd-timeline` section), rendered with AmpdTimeline. */
   timeline?: AmpdTimelineProps;
+  /** Four stacked horizontal layer cards (e.g. Azure four layers). */
+  layerCards?: PartnerLayerCardsData;
   cta?: PartnerCTAData;
 }
 
@@ -516,3 +529,21 @@ export interface PartnerInfrastructurePrinciplesData {
   metrics: RunningTodayMetric[];
 }
 
+export interface PartnerLayerCard {
+  id: string;
+  title: string;
+  body: string;
+  solution: string;
+  image: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+  };
+}
+
+export interface PartnerLayerCardsData {
+  heading: string;
+  description?: string;
+  cards: PartnerLayerCard[];
+}

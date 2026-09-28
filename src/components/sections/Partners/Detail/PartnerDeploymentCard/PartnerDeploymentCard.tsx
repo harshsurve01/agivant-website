@@ -50,6 +50,17 @@ function renderHeading(heading: PartnerDeploymentCardData["heading"]) {
   return raw;
 }
 
+function renderLines(text: string) {
+  const parts = text.split(/<br\s*\/?>/i);
+  if (parts.length === 1) return text;
+  return parts.map((part, idx) => (
+    <span key={idx}>
+      {part}
+      {idx < parts.length - 1 && <br />}
+    </span>
+  ));
+}
+
 /** Full heading as one plain string, for the accentHeading variant. */
 function headingText(heading: PartnerDeploymentCardData["heading"]) {
   if (heading.highlight) {
@@ -109,7 +120,7 @@ export function PartnerDeploymentCard({
             <h2 className={styles.heading}>
               {accentHeading ? (
                 <span className={styles.headingHighlight}>
-                  {headingText(data.heading)}
+                  {renderLines(headingText(data.heading))}
                 </span>
               ) : (
                 renderHeading(data.heading)

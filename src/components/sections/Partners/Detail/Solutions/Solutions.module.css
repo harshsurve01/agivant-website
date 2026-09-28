@@ -730,6 +730,7 @@
 
 .nvidiaTypography .cardTitle {
   font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
 }
 
 .nvidiaTypography .subheading,
@@ -742,7 +743,9 @@
 .nvidiaTypography .panelList li,
 .nvidiaTypography .panelList .panelText,
 .nvidiaTypography .highlightPill,
-.nvidiaTypography .closingStatement {
+.nvidiaTypography .closingStatement,
+.nvidiaTypography .proofEyebrow,
+.nvidiaTypography .proofDescription {
   font-size: var(--font-size-lg);
 }
 

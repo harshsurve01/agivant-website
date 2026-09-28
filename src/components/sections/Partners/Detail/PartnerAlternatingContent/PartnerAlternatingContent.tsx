@@ -28,6 +28,17 @@ export interface PartnerAlternatingContentProps {
  *
  * Server Component: all content arrives via typed props from JSON.
  */
+function renderLines(text: string) {
+  const parts = text.split(/<br\s*\/?>/i);
+  if (parts.length === 1) return text;
+  return parts.map((part, idx) => (
+    <span key={idx}>
+      {part}
+      {idx < parts.length - 1 && <br />}
+    </span>
+  ));
+}
+
 export function PartnerAlternatingContent({
   data,
   height = "viewport",
@@ -90,13 +101,17 @@ export function PartnerAlternatingContent({
             >
               <div className={styles.textContent}>
                 <h3 className={styles.heading}>
-                  <span className={styles.purpleText}>
-                    {row.heading.highlight}
-                  </span>
+                  {row.heading.highlight && (
+                    <span className={styles.purpleText}>
+                      {renderLines(row.heading.highlight)}
+                    </span>
+                  )}
                   {isTigergraph && row.heading.highlight && row.heading.text ? " " : null}
-                  <span className={styles.darkText}>
-                    {row.heading.text}
-                  </span>
+                  {row.heading.text && (
+                    <span className={styles.darkText}>
+                      {renderLines(row.heading.text)}
+                    </span>
+                  )}
                 </h3>
                 <p className={styles.description}>{row.description}</p>
               </div>

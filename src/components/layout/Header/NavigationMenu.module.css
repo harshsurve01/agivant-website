@@ -276,6 +276,154 @@
   color: var(--color-text-primary, #000000);
 }
 
+/* ── Featured Carousel (menus with `featured` data, e.g. Resources) ──
+   Rendered only when a mega menu provides featured items; What We Build
+   does not, so none of these rules apply to it. */
+.rightHeadingFeatured {
+  color: var(--color-brand-primary, #8500DF);
+  text-align: center;
+}
+
+.featured {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5, 1rem);
+  margin-bottom: var(--space-6, 1.25rem);
+}
+
+.featuredTrack {
+  width: 100%;
+  transition: transform var(--transition-base, 250ms ease);
+}
+
+/* Drag / swipe between featured items (only when there is more than one). */
+.featuredTrackDraggable {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+}
+
+.featuredTrackDragging {
+  cursor: grabbing;
+  transition: none;
+}
+
+.featuredCard {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  width: 100%;
+  min-height: 15.25rem;
+  background: var(--surface-glass-bg);
+  border: var(--surface-glass-border);
+  box-shadow:
+    var(--surface-glass-shadow),
+    0 0.125rem 0.5rem rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(var(--surface-glass-blur));
+  -webkit-backdrop-filter: blur(var(--surface-glass-blur));
+  border-radius: var(--radius-xl, 1.5rem);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  animation: featuredFadeIn var(--transition-base, 250ms ease);
+}
+
+@keyframes featuredFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.featuredImageWrapper {
+  position: relative;
+  min-height: 100%;
+}
+
+.featuredImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-xl, 1.5rem);
+}
+
+.featuredContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-4, 0.875rem);
+  padding: var(--space-8, 1.625rem) var(--space-10, 2rem);
+}
+
+.featuredLogos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4, 0.875rem);
+}
+
+.featuredLogo {
+  height: 1.5rem;
+  width: auto;
+}
+
+/* Partner logos (every logo after the first) sit on padded 249×91 canvases,
+   so they get a taller box than the tightly-cropped Agivant wordmark. */
+.featuredLogo + .featuredLogo {
+  height: 2.5rem;
+  padding-left: var(--space-4, 0.875rem);
+  border-left: 0.0625rem solid var(--color-border-default, #E5E7EB);
+}
+
+.featuredTitle {
+  margin: 0;
+  font-family: var(--font-family-base, "Poppins", sans-serif);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold, 600);
+  line-height: var(--line-height-snug, 1.25);
+  color: var(--color-brand-primary, #8500DF);
+}
+
+.featuredDesc {
+  margin: 0;
+  font-family: var(--font-family-base, "Poppins", sans-serif);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal, 1.5);
+  color: var(--color-text-primary, #000000);
+}
+
+.featuredDots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+}
+
+.featuredDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full, 9999px);
+  background: var(--color-neutral-300, #D1D5DB);
+  cursor: pointer;
+  transition: background-color var(--transition-fast, 150ms ease);
+}
+
+.featuredDotActive {
+  background: var(--color-brand-primary, #8500DF);
+}
+
+.featuredDot:focus-visible {
+  outline: 0.125rem solid var(--color-brand-primary, #8500DF);
+  outline-offset: 0.125rem;
+}
+
 /* ── Search Bar (Solutions) ── */
 .searchForm {
   display: flex;

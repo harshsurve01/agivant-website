@@ -1,0 +1,230 @@
+/* ==========================================================================
+   PressReleasePage.module.css
+   Page-scoped layout for /press-releases/[slug]: page wrapper, hero ribbon
+   position and hero spacing overrides. Shared components stay unchanged.
+   ========================================================================== */
+
+.page {
+  position: relative;
+  width: 100%;
+  overflow-x: clip;
+}
+
+/* Hero ribbon: sits across the lower part of the hero, behind the content. */
+.ribbonWrapper {
+  top: 26rem;
+  z-index: 1;
+}
+
+.ribbonImage {
+  width: 100%;
+  max-width: 120rem;
+  height: auto;
+}
+
+/* Hero spacing (this page only): logo strip → heading → subtitle. */
+.page :global(section[data-hero-interaction-root] h1) {
+  margin-bottom: var(--space-6);
+}
+
+.page :global(section[data-hero-interaction-root] h1 + p) {
+  margin-top: 0;
+  max-width: 64rem;
+  font-size: var(--font-size-4xl);
+  line-height: var(--line-height-snug);
+}
+
+@media (max-width: 1024px) {
+  .ribbonWrapper {
+    top: 20rem;
+  }
+
+  .ribbonImage {
+    min-width: 64rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ribbonWrapper {
+    top: 18rem;
+  }
+
+  .page :global(section[data-hero-interaction-root] h1 + p) {
+    font-size: var(--font-size-lg);
+  }
+
+  .ribbonImage {
+    min-width: 48rem;
+  }
+}
+
+/* Announcement section (PartnerIntro), this page only:
+   the purple highlight sits on its own line and the accent bar spans
+   both heading lines. */
+.page :global(#partner-intro h2 > span:first-child) {
+  display: block;
+}
+
+.page :global(#partner-intro span[aria-hidden="true"]:has(+ h2)) {
+  align-self: stretch;
+  height: auto;
+  margin-block: 0.35rem;
+}
+
+/* Body sections take their natural height on this page (hero keeps 100vh). */
+.page :global(main > section:not([data-hero-interaction-root])) {
+  min-height: auto;
+}
+
+.page :global(#partner-intro div:has(> h2)) {
+  margin-bottom: var(--space-16);
+}
+
+/* Key Pillars (Phase2), this page only: align to the same 75rem content
+   container as the announcement section above. */
+.page :global(#key-pillars > div) {
+  max-width: 75rem;
+  margin-inline: auto;
+}
+
+.page :global(#key-pillars h3:empty) {
+  display: none;
+}
+
+.page :global(#key-pillars div:has(> h3:empty)) {
+  align-self: center;
+  padding-block-start: 0;
+}
+
+/* About rows (PartnerAlternatingContent), this page only: wider gap between
+   the two image/text rows, matching the Figma. */
+.page :global(#about > div > div) {
+  gap: var(--space-24);
+}
+
+@media (max-width: 900px) {
+  .page :global(#about > div > div) {
+    gap: var(--space-12);
+  }
+}
+/* About rows: space between each title and its description (this page only). */
+.page :global(#about h3) {
+  margin-bottom: var(--space-4);
+}
+/* Hero content position (this page only) */
+.page :global(section[data-hero-interaction-root] div:has(> h1)) {
+  --press-hero-content-offset: 8rem;   /* ← change this */
+  transform: translateY(var(--press-hero-content-offset));
+}
+/* About rows: description size (this page only). */
+.page :global(#about h3 + p) {
+  font-size: var(--font-size-lg);
+  white-space: pre-line;
+}
+
+/* About rows: image stretches to match full text column height on desktop */
+@media (min-width: 901px) {
+  .page :global(#about [class*="row"]) {
+    align-items: stretch;
+  }
+
+  .page :global(#about [class*="textContent"]) {
+    align-self: flex-start;
+  }
+
+  .page :global(#about [class*="imageWrapper"]) {
+    height: 100%;
+    align-self: stretch;
+  }
+
+  .page :global(#about [class*="imageWrapper"] img) {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: unset;
+    object-fit: cover;
+    border-radius: var(--radius-2xl, 1.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .page :global(#about h3 + p) {
+    font-size: var(--font-size-md);
+  }
+}
+
+/* Footer card (universal Footer, partner-card variant), this page only:
+   contact lines render larger, one per line; the empty button row is hidden. */
+.footer :global(h2 + p) {
+  max-width: none;
+  font-size: var(--font-size-3xl);
+  line-height: var(--line-height-snug);
+  white-space: pre-line;
+}
+
+.footer :global(h2 + p + div:empty) {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .footer :global(h2 + p) {
+    font-size: var(--font-size-xl);
+  }
+}
+
+/* Databricks press release hero (this slug only): smaller logo row, the
+   heading keeps its three forced lines, and the ribbon sits below it. */
+.page[data-press-release="databricks"] :global(section[data-hero-interaction-root] div:has(> h1)) {
+  --press-hero-content-offset: 4rem;
+}
+
+.page[data-press-release="databricks"] :global(section[data-hero-interaction-root] div:has(> img) img) {
+  max-width: min(34rem, 90vw);
+}
+
+@media (min-width: 1280px) {
+  .page[data-press-release="databricks"] :global(section[data-hero-interaction-root] h1) {
+    max-width: none;
+    width: max-content;
+  }
+}
+
+.page[data-press-release="databricks"] .ribbonWrapper {
+  top: 38rem;
+}
+
+@media (max-width: 1279px) {
+  .page[data-press-release="databricks"] .ribbonWrapper {
+    top: 42rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .page[data-press-release="databricks"] .ribbonWrapper {
+    top: 34rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page[data-press-release="databricks"] .ribbonWrapper {
+    top: 36rem;
+  }
+}
+
+/* Databricks press release announcement (this slug only): the purple
+   highlight flows inline into the dark text, as in the Figma. */
+.page[data-press-release="databricks"] :global(#partner-intro h2 > span:first-child) {
+  display: inline;
+}
+
+/* Closing section buttons (PartnerIntro CTAs), this page only: Figma gap
+   between the two buttons, and they wrap on narrow screens. */
+.page :global(#closing div:has(> a)) {
+  flex-wrap: wrap;
+  gap: var(--space-12);
+}
+
+@media (max-width: 768px) {
+  .page :global(#closing div:has(> a)) {
+    gap: var(--space-4);
+  }
+}

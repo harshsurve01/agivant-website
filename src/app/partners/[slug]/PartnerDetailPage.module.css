@@ -151,14 +151,16 @@
   z-index: 1;
 }
 
-/* AWS page: every section after the hero sizes to its content instead of
+/* AWS and Azure pages: every section after the hero sizes to its content instead of
    the global 100vh section minimum (the hero keeps its own full height). */
-.awsPage :global(main > section:not([data-hero-interaction-root])) {
+.awsPage :global(main > section:not([data-hero-interaction-root])),
+.azurePage :global(main > section:not([data-hero-interaction-root])) {
   min-height: auto;
 }
 
-/* AWS Section 3 ("Get Amp'd ..." card): vertical breathing room. */
-.awsPage :global(#partner-alternating-content) {
+/* AWS and Azure Section 3 ("Get Amp'd ..." card): vertical breathing room. */
+.awsPage :global(#partner-alternating-content),
+.azurePage :global(#partner-alternating-content) {
   padding-top: var(--space-24);
   padding-bottom: var(--space-24);
 }
@@ -341,7 +343,41 @@
 }
 
 /* AWS FinOps: the banner and the capability cards read as one section. */
-.awsPage :global(#aws-finops) {
+.awsPage :global(#aws-finops),
+.azurePage :global(#azure-finops) {
   padding-top: 0;
+}
+
+/* ==========================================================================
+   Azure-specific Hero Ribbon positioning & Page layout
+   Positions ribbon horizontally across the lower hero, behind content.
+   ========================================================================== */
+
+.azureRibbonWrapper {
+  --azure-ribbon-top: 15rem;
+  top: var(--azure-ribbon-top);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.azureRibbonImage {
+  width: 100%;
+  max-width: 1920px;
+  height: auto;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .azureRibbonWrapper {
+    --azure-ribbon-top: 18rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .azureRibbonWrapper {
+    --azure-ribbon-top: 22rem;
+  }
 }
 

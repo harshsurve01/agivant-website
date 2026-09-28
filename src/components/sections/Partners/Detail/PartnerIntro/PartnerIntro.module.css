@@ -131,6 +131,22 @@
   overflow: hidden;
 }
 
+/* Quote card without a portrait (author.portraitSrc empty): text spans the
+   full card width. Stacked cards are separated by the normal card gap. */
+.quoteCardNoPortrait {
+  grid-template-columns: 1fr;
+  padding: var(--space-10) var(--space-10) var(--space-4);
+}
+
+.quoteCard + .quoteCard {
+  margin-top: var(--space-10);
+}
+
+.quoteCardNoPortrait .quoteText {
+  max-width: none;
+  margin-bottom: var(--space-8);
+}
+
 /* Left: Portrait anchored flush to bottom with soft purple arched backdrop */
 .portraitColumn {
   position: relative;
@@ -271,6 +287,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: var(--space-4);
   margin-top: var(--space-10);
 }
 
@@ -371,5 +388,11 @@
 
   .hasSupportingStatement {
     padding-bottom: var(--space-3);
+  }
+}
+
+@media (max-width: 1024px) {
+  .quoteCardNoPortrait {
+    padding: var(--space-6) var(--space-6) var(--space-4);
   }
 }

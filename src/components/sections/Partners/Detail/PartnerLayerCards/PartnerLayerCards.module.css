@@ -1,0 +1,232 @@
+/* ==========================================================================
+   PartnerLayerCards.module.css
+   Azure Partner Detail Page - "How the four layers run on Azure."
+   Strictly consumes design tokens from variables.css.
+   ========================================================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-20);
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  max-width: 1204px;
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------
+   Section Header
+   -------------------------------------------------------------------- */
+.header {
+  margin-bottom: var(--space-10);
+  max-width: 68rem;
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl); /* 36px (2.25rem) */
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.purpleText {
+  color: var(--color-brand-primary);
+}
+
+.darkText {
+  color: var(--color-text-primary);
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg); /* 18px */
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin: 0;
+  max-width: 58rem;
+}
+
+/* --------------------------------------------------------------------
+   Cards List
+   -------------------------------------------------------------------- */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  /* The image column stretches to the card's content height. */
+  align-items: stretch;
+  background: #F9F9FA;
+  border: 1px solid #FFFFFF;
+  border-radius: var(--radius-2xl, 1.5rem);
+  box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.04);
+  /* No card padding: the image sits flush against the card edge. */
+  padding: 0;
+  gap: var(--space-8);
+  overflow: hidden;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04), inset 0 0 4px rgba(4, 4, 4, 0.04);
+}
+
+.imageLeft {
+  flex-direction: row;
+}
+
+.imageRight {
+  flex-direction: row-reverse;
+}
+
+/* --------------------------------------------------------------------
+   Image Column
+   -------------------------------------------------------------------- */
+.imageColumn {
+  flex: 0 0 320px;
+  max-width: 320px;
+  width: 100%;
+  display: flex;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  border-radius: var(--radius-xl, 1rem);
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --------------------------------------------------------------------
+   Content Column
+   -------------------------------------------------------------------- */
+.contentColumn {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-5);
+  padding: var(--space-8) var(--space-8);
+}
+
+.layerTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl); /* 20px */
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-brand-primary);
+  margin: 0;
+}
+
+.infoGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.label {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg); /* 18px */
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.bodyText {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg); /* 18px */
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-neutral-600);
+  margin: 0;
+}
+
+.solutionText {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg); /* 18px */
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-neutral-500);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------
+   Responsive Layout
+   -------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .imageColumn {
+    flex: 0 0 260px;
+    max-width: 260px;
+  }
+
+  .card {
+    gap: var(--space-6);
+  }
+
+  .contentColumn {
+    padding: var(--space-6);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-12);
+  }
+
+  .card,
+  .imageLeft,
+  .imageRight {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+  }
+
+  .imageColumn {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .imageWrapper {
+    width: 100%;
+    height: 240px;
+  }
+
+  .contentColumn {
+    padding: var(--space-5);
+    gap: var(--space-4);
+  }
+
+  .description {
+    font-size: var(--font-size-base);
+  }
+
+  .bodyText,
+  .solutionText,
+  .label {
+    font-size: var(--font-size-base);
+  }
+}

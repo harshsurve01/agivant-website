@@ -19,6 +19,7 @@ import { ServiceNowWorkflowFamilies } from "@/components/sections/Partners/Detai
 import { WhatAgentsDo } from "@/components/sections/Solutions/Article/WhatAgentsDo";
 import { AmpdTimeline } from "@/components/sections/Services/AmpdTimeline";
 import { Solutions } from "@/components/sections/Partners/Detail/Solutions";
+import { PartnerLayerCards } from "@/components/sections/Partners/Detail/PartnerLayerCards";
 import { ProductionProof } from "@/components/sections/Partners/Detail/ProductionProof";
 import { BuiltOnGemini } from "@/components/sections/Partners/Detail/BuiltOnGemini";
 import { PartnerKeyBenefits } from "@/components/sections/Partners/Detail/PartnerKeyBenefits";
@@ -75,7 +76,8 @@ export default async function PartnerDetailPage({
           slug === "servicenow" && styles.servicenowPage,
           slug === "salesforce" && styles.salesforcePage,
           slug === "tigergraph" && styles.tigergraphPage,
-          slug === "aws" && styles.awsPage
+          slug === "aws" && styles.awsPage,
+          slug === "azure" && styles.azurePage
         )}
       >
         <Header />
@@ -93,7 +95,8 @@ export default async function PartnerDetailPage({
               slug === "nvidia" && styles.nvidiaRibbonWrapper,
               slug === "salesforce" && styles.salesforceRibbonWrapper,
               slug === "tigergraph" && styles.tigergraphRibbonWrapper,
-              slug === "aws" && styles.awsRibbonWrapper
+              slug === "aws" && styles.awsRibbonWrapper,
+              slug === "azure" && styles.azureRibbonWrapper
             )}
             imageClassName={clsx(
               styles.ribbonImage,
@@ -101,7 +104,8 @@ export default async function PartnerDetailPage({
               slug === "glean" && styles.gleanRibbonImage,
               slug === "nvidia" && styles.nvidiaRibbonImage,
               slug === "tigergraph" && styles.tigergraphRibbonImage,
-              slug === "aws" && styles.awsRibbonImage
+              slug === "aws" && styles.awsRibbonImage,
+              slug === "azure" && styles.azureRibbonImage
             )}
             priority
           />
@@ -219,10 +223,10 @@ export default async function PartnerDetailPage({
           {partner.intro && (
             <PartnerIntro
               intro={partner.intro}
-              height={slug === "glean" || slug === "aws" ? "auto" : undefined}
+              height={slug === "glean" || slug === "aws" || slug === "azure" ? "auto" : undefined}
             />
           )}
-          {slug !== "aws" && partner.storyBanner && (
+          {slug !== "aws" && slug !== "azure" && partner.storyBanner && (
             <PartnerStoryBanner
               data={partner.storyBanner}
               height={slug === "shopify" ? "auto" : undefined}
@@ -242,15 +246,15 @@ export default async function PartnerDetailPage({
           {slug !== "salesforce" && slug !== "tigergraph" && partner.alternatingContent && (
             <PartnerAlternatingContent
               data={partner.alternatingContent}
-              height={slug === "shopify" || slug === "aws" ? "auto" : undefined}
+              height={slug === "shopify" || slug === "aws" || slug === "azure" ? "auto" : undefined}
             />
           )}
-          {slug === "aws" && partner.partnerDeploymentCard && (
+          {(slug === "aws" || slug === "azure") && partner.partnerDeploymentCard && (
             <PartnerDeploymentCard
               data={partner.partnerDeploymentCard}
               imagePosition={partner.partnerDeploymentCard.imagePosition}
               height="auto"
-              id="aws-data-ai-stack"
+              id={slug === "azure" ? "azure-answers" : "aws-data-ai-stack"}
               accentHeading
               largeBodyText
             />
@@ -299,7 +303,7 @@ export default async function PartnerDetailPage({
                   data={partner.workflowFamilies}
                 />
               )}
-              {slug !== "aws" && partner.coordinatedAgents && (
+              {slug !== "aws" && slug !== "azure" && partner.coordinatedAgents && (
                 <WhatAgentsDo
                   data={partner.coordinatedAgents.data}
                   blocks={partner.coordinatedAgents.blocks}
@@ -310,7 +314,7 @@ export default async function PartnerDetailPage({
               )}
             </>
           )}
-          {slug !== "aws" && partner.solutions && (
+          {slug !== "aws" && slug !== "azure" && partner.solutions && (
             <Solutions
               data={partner.solutions}
               height={
@@ -410,12 +414,12 @@ export default async function PartnerDetailPage({
           {slug !== "shopify" && slug !== "salesforce" && partner.agentTeams && (
             <PartnerAgentTeams
               data={partner.agentTeams}
-              columns={slug === "tigergraph" || slug === "aws" ? 3 : undefined}
-              height={slug === "tigergraph" || slug === "aws" ? "auto" : undefined}
+              columns={slug === "tigergraph" || slug === "aws" || slug === "azure" ? 3 : undefined}
+              height={slug === "tigergraph" || slug === "aws" || slug === "azure" ? "auto" : undefined}
               hoverable={slug === "tigergraph" ? true : undefined}
               id={slug === "tigergraph" ? "connected-data-use-cases" : undefined}
-              hideAccentBar={slug === "aws" ? true : undefined}
-              headingHighlightWords={slug === "aws" ? 2 : undefined}
+              hideAccentBar={slug === "aws" || slug === "azure" ? true : undefined}
+              headingHighlightWords={slug === "aws" || slug === "azure" ? 2 : undefined}
             />
           )}
           {/* AWS FinOps: ribbon + heading/description, then capability cards
@@ -446,15 +450,55 @@ export default async function PartnerDetailPage({
               id={partner.alternatingContentSecondary.id}
             />
           )}
-          {slug === "aws" && partner.solutions && (
+          {(slug === "aws" || slug === "azure") && partner.solutions && (
             <Solutions
               data={partner.solutions}
               height="auto"
               align="center"
               columnDivider
+              nvidiaTypography={slug === "azure"}
             />
           )}
-          {slug === "aws" && partner.aiCapabilities && (
+          {slug === "azure" && partner.layerCards && (
+            <PartnerLayerCards
+              data={partner.layerCards}
+              height="auto"
+            />
+          )}
+          {slug === "azure" && partner.alternatingContentSecondary && (
+            <PartnerAlternatingContent
+              data={partner.alternatingContentSecondary}
+              height="auto"
+              id={partner.alternatingContentSecondary.id}
+            />
+          )}
+          {/* Azure FinOps: same composition as the AWS FinOps section. */}
+          {slug === "azure" && partner.storyBanner && (
+            <PartnerStoryBanner
+              data={partner.storyBanner}
+              height="auto"
+              align="center"
+              headingHighlightWords={3}
+            />
+          )}
+          {slug === "azure" && partner.coordinatedAgents && (
+            <WhatAgentsDo
+              data={partner.coordinatedAgents.data}
+              blocks={partner.coordinatedAgents.blocks}
+              variant="partner"
+              id="azure-finops"
+              outcome={partner.coordinatedAgents.outcome}
+            />
+          )}
+          {/* Azure Scale card: same glass-card row as the AWS "Scale on AWS" row. */}
+          {slug === "azure" && partner.alternatingContentTertiary && (
+            <PartnerAlternatingContent
+              data={partner.alternatingContentTertiary}
+              height="auto"
+              id={partner.alternatingContentTertiary.id}
+            />
+          )}
+          {(slug === "aws" || slug === "azure") && partner.aiCapabilities && (
             <Phase2
               id="how-engagement-runs"
               title={partner.aiCapabilities.heading}

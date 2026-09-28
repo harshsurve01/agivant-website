@@ -1,0 +1,230 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "pressRelease",
+  "slug": "gemini-enterprise",
+  "title": "Agivant partners with Google Cloud",
+  "seo": {
+    "title": "Agivant partners with Google Cloud | Agivant",
+    "description": "Agivant partners with Google Cloud to set up a dedicated Gemini Enterprise practice to accelerate custom AI agent development.",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Agivant partners with Google Cloud",
+    "subtitle": "to set up a dedicated Gemini Enterprise practice to accelerate custom AI agent development",
+    "summary": "to set up a dedicated Gemini Enterprise practice to accelerate custom AI agent development",
+    "authors": [],
+    "partner": {
+      "name": "Google Cloud",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/press-releases/gemini-enterprise.png",
+        "assetKey": "press-release-gemini-enterprise-logos",
+        "alt": "Agivant, Google Cloud and Gemini Enterprise",
+        "caption": null,
+        "width": 4364,
+        "height": 252
+      }
+    },
+    "media": {
+      "kind": "image",
+      "src": "/images/press-releases/hero-ribbon.png",
+      "assetKey": "press-release-hero-ribbon",
+      "alt": "Flowing hero ribbon",
+      "caption": null,
+      "width": 2879,
+      "height": 1088
+    },
+    "primaryCta": null,
+    "secondaryCta": null,
+    "heading": "Agivant partners with Google Cloud",
+    "ribbonSrc": "/images/press-releases/hero-ribbon.png",
+    "ribbonWidth": 2879,
+    "ribbonHeight": 1088
+  },
+  "sections": [
+    {
+      "id": "announcement",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "New initiative leverages Google Cloud’s ecosystem investment to deploy enterprise-ready AI agents for global clients",
+        "headingStructure": {
+          "highlight": "New initiative leverages Google Cloud’s ecosystem investment",
+          "suffix": "to deploy enterprise-ready AI agents for global clients"
+        },
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "announcement-copy",
+          "type": "rich_text",
+          "heading": null,
+          "body": null,
+          "paragraphs": [
+            "<strong>San Jose, California – April 23, 2026</strong> – Agivant Technologies today announced <strong>the launch of its dedicated Gemini Enterprise practice</strong> to help organizations accelerate their transformation in the Agentic AI era. As an AI-native technology partner, Agivant Technologies is leveraging <strong>Google Cloud’s Gemini models</strong> to build, test, and deploy agentic solutions for joint customers.",
+            "Today, businesses are increasingly moving toward the “agentic enterprise,” where AI agents are integrated directly into existing software and workflows to drive value. Agivant Technologies’s latest initiative aims to <strong>bridge the gap between AI prototyping and full-scale enterprise deployment.</strong>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "key-pillars",
+      "type": "numbered_list",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Key Pillars Of The Announcement:",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "pillar-specialized-ai-practices",
+          "type": "numberedItem",
+          "number": 1,
+          "title": "Pillar 1 – Specialized AI Practices:",
+          "body": "Agivant Technologies is launching dedicated practices focused on Gemini Enterprise, providing customers with specialized expertise in agentic AI development.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "pillar-technical-integration",
+          "type": "numberedItem",
+          "number": 2,
+          "title": "Pillar 2 – Technical Integration:",
+          "body": "Through expanded collaboration, Agivant Technologies will utilize sandbox development credits and technical upskilling to rapidly build highly-vetted, enterprise-ready agents.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "pillar-governance-and-security",
+          "type": "numberedItem",
+          "number": 3,
+          "title": "Pillar 3 – Governance and Security",
+          "body": "All solutions are designed to align with strict enterprise governance and security policies, ensuring agents are discoverable and deployable within secure frameworks.",
+          "items": [],
+          "media": null
+        }
+      ]
+    },
+    {
+      "id": "leadership-quotes",
+      "type": "quote",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "quote-ajay-malgaonkar",
+          "type": "quote",
+          "quote": "The shift to the agentic enterprise is redefining how businesses operate, innovate, and scale. At Agivant Technologies, we see this as a pivotal moment for our customers to move beyond experimentation and into real, enterprise-wide impact. Our dedicated Gemini Enterprise practice is designed to help organizations accelerate this transition- leveraging advanced AI models to build, deploy, and govern agentic solutions that are secure, scalable, and deeply integrated into business workflows. This initiative reflects our commitment to turning AI potential into measurable outcomes for our customers.",
+          "authorName": "Ajay Malgaonkar",
+          "authorRole": "Chief Digital Delivery Officer, Agivant Technologies",
+          "authorImage": null
+        },
+        {
+          "id": "quote-victor-morales",
+          "type": "quote",
+          "quote": "Our partners are the catalyst for enterprise AI adoption. Agivant Technologies’ dedicated Gemini Enterprise practice will give our mutual customers the specialized expertise they need to move from AI pilots to powerful agentic workflows that drive real business value...",
+          "authorName": "Victor Morales",
+          "authorRole": "Google Cloud",
+          "authorImage": null
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "type": "alternating_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "about-agivant",
+          "type": "row",
+          "eyebrow": null,
+          "title": null,
+          "headingStructure": {
+            "highlight": "About",
+            "text": "Agivant Technologies"
+          },
+          "body": "Agivant Technologies is an AI-native digital and cloud engineering services company, built for the era of intelligent, autonomous systems. Founded in the native AI world, Agivant empowers global enterprises to evolve into agentic organizations- driving innovation through scalable, secure, and self-operating solutions. With a vision of architecting the Autonomous Agentic Enterprise, Agivant delivers high-impact, AI-native solutions powered by next-generation data fabrics and high-velocity design. Its core capabilities span Agentic AI, AgentOps, AI and ML engineering, and cloud and data engineering.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
+            "assetKey": "agentic-enterprise-control",
+            "alt": "About Agivant Technologies",
+            "caption": null,
+            "width": 874,
+            "height": 558
+          },
+          "layout": "image-text",
+          "isCard": false
+        },
+        {
+          "id": "about-google-cloud",
+          "type": "row",
+          "eyebrow": null,
+          "title": null,
+          "headingStructure": {
+            "highlight": "About",
+            "text": "Google Cloud"
+          },
+          "body": "Google Cloud offers a powerful, optimized AI stack – including AI infrastructure, leading models like Gemini, data management capabilities, multicloud security solutions, developer tools and platform, as well as agents and applications – that enables organizations to transform their business for the Agentic Era. Customers in more than 200 countries and territories turn to Google Cloud as their trusted technology partner.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-google-cloud.png",
+            "assetKey": "agentic-enterprise-google-cloud",
+            "alt": "About Google Cloud",
+            "caption": null,
+            "width": 874,
+            "height": 558
+          },
+          "layout": "text-image",
+          "isCard": false
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Media Contact:",
+    "subheading": "Shree Krishna Somani\nssomani@agivant.com",
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/services/model-customisation.png",
+      "assetKey": "press-release-media-contact",
+      "alt": "Media contact",
+      "caption": null,
+      "width": 1146,
+      "height": 748
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  }
+}

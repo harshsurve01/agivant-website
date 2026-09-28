@@ -4,14 +4,33 @@ import clsx from "clsx";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Cube } from "@/components/ui/Icon/Cube";
+import { ArrowUpRight } from "@/components/ui/Icon/ArrowUpRight";
 import { Gradient } from "@/components/effects/Gradient";
 import { Section, type SectionHeight } from "@/components/ui/Section";
 import type { PartnerIntroData } from "@/types/partnerDetail";
 import styles from "./PartnerIntro.module.css";
 
+/**
+ * Renders inline `<strong>…</strong>` markup in paragraph copy as bold text
+ * (same "tags inside JSON strings" convention as `<br>` in headings).
+ * Strings without the tag render exactly as before. No raw HTML is injected.
+ */
+function renderInlineStrong(text: string) {
+  if (!text.includes("<strong>")) return text;
+  return text
+    .split(/(<strong>[\s\S]*?<\/strong>)/g)
+    .filter(Boolean)
+    .map((part, idx) => {
+      const match = part.match(/^<strong>([\s\S]*?)<\/strong>$/);
+      return match ? <strong key={idx}>{match[1]}</strong> : part;
+    });
+}
+
 export interface PartnerIntroProps {
   intro: PartnerIntroData;
   height?: SectionHeight;
+  /** Section id. Defaults to "partner-intro". */
+  id?: string;
 }
 
 /**
@@ -25,20 +44,28 @@ export interface PartnerIntroProps {
  * - Supports either a leadership quote card (Gemini, Databricks) or a centered statement/highlight card (Shopify).
  * - Consumes design tokens exclusively from variables.css.
  */
-export function PartnerIntro({ intro }: PartnerIntroProps) {
+export function PartnerIntro({ intro, id = "partner-intro" }: PartnerIntroProps) {
   const {
     heading,
     paragraphs,
     leadershipQuote,
+    leadershipQuotes,
     statementCard,
     supportingStatement,
     ctaAlign,
     cta,
+    ctas,
   } = intro;
 
-  const quoteText = leadershipQuote?.quote ?? "";
-  const firstLetter = quoteText.charAt(0);
-  const restOfQuote = quoteText.slice(1);
+  // One or more quote cards. `leadershipQuotes` (optional) renders a stack of
+  // cards; otherwise the single `leadershipQuote` renders as before.
+  const quotes = (
+    leadershipQuotes && leadershipQuotes.length > 0
+      ? leadershipQuotes
+      : leadershipQuote
+        ? [leadershipQuote]
+        : []
+  ).filter((q) => Boolean(q.quote));
 
   return (
     <section
@@ -47,7 +74,7 @@ export function PartnerIntro({ intro }: PartnerIntroProps) {
         statementCard && styles.hasStatementCard,
         supportingStatement && styles.hasSupportingStatement
       )}
-      id="partner-intro"
+      id={id}
     >
       {/* Soft ambient background gradients when statementCard or supportingStatement is present */}
       {(statementCard || supportingStatement) && (
@@ -106,27 +133,36 @@ export function PartnerIntro({ intro }: PartnerIntroProps) {
         <div className={styles.paragraphs}>
           {paragraphs.map((p, idx) => (
             <p key={idx} className={styles.paragraph}>
-              {p}
+              {renderInlineStrong(p)}
             </p>
           ))}
         </div>
 
-        {/* Leadership Quote Glass Card */}
-        {leadershipQuote && leadershipQuote.quote && (
+        {/* Leadership Quote Glass Card(s) */}
+        {quotes.map((quote, quoteIdx) => {
+          const firstLetter = quote.quote.charAt(0);
+          const restOfQuote = quote.quote.slice(1);
+          const hasPortrait = Boolean(quote.author.portraitSrc);
+          return (
           <div
-            className={styles.quoteCard}
+            key={quoteIdx}
+            className={clsx(
+              styles.quoteCard,
+              !hasPortrait && styles.quoteCardNoPortrait
+            )}
             style={{
               backdropFilter: "blur(10px)",
               WebkitBackdropFilter: "blur(10px)",
             }}
           >
             {/* Left Column: Arched purple backdrop + Portrait */}
+            {hasPortrait && (
             <div className={styles.portraitColumn}>
               <div className={styles.portraitBackdrop} aria-hidden="true" />
               <div className={styles.portraitWrapper}>
                 <Image
-                  src={leadershipQuote.author.portraitSrc}
-                  alt={leadershipQuote.author.name}
+                  src={quote.author.portraitSrc}
+                  alt={quote.author.name}
                   width={260}
                   height={320}
                   className={styles.portrait}
@@ -134,6 +170,7 @@ export function PartnerIntro({ intro }: PartnerIntroProps) {
                 />
               </div>
             </div>
+            )}
 
             {/* Right Column: Stylized quotation marks, quote text, author info */}
             <div className={styles.quoteContent}>
@@ -184,15 +221,16 @@ export function PartnerIntro({ intro }: PartnerIntroProps) {
 
               <div className={styles.authorMeta}>
                 <span className={styles.authorName}>
-                  {leadershipQuote.author.name}
+                  {quote.author.name}
                 </span>
                 <span className={styles.authorRole}>
-                  {leadershipQuote.author.role}
+                  {quote.author.role}
                 </span>
               </div>
             </div>
           </div>
-        )}
+          );
+        })}
 
         {/* Statement / Highlight Glass Card */}
         {statementCard && statementCard.text && (
@@ -213,22 +251,30 @@ export function PartnerIntro({ intro }: PartnerIntroProps) {
         )}
 
         {/* Accelerator CTA */}
-        {cta && (
+        {((ctas && ctas.length > 0) ? ctas : cta ? [cta] : []).length > 0 && (
           <div
             className={clsx(
               styles.ctaWrapper,
               (ctaAlign === "left" || supportingStatement) && styles.ctaLeft
             )}
           >
-            <Link href={cta.href}>
-              <Button
-                variant="primary"
-                size="lg"
-                rightIcon={cta.icon === "cube" ? <Cube /> : undefined}
-              >
-                {cta.label}
-              </Button>
-            </Link>
+            {((ctas && ctas.length > 0) ? ctas : cta ? [cta] : []).map((btn, idx) => (
+              <Link key={idx} href={btn.href}>
+                <Button
+                  variant={btn.variant ?? "primary"}
+                  size="lg"
+                  rightIcon={
+                    btn.icon === "cube" ? (
+                      <Cube />
+                    ) : btn.icon === "arrow-up-right" ? (
+                      <ArrowUpRight />
+                    ) : undefined
+                  }
+                >
+                  {btn.label}
+                </Button>
+              </Link>
+            ))}
           </div>
         )}
       </Container>

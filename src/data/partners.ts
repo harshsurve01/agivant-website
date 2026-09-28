@@ -12,6 +12,7 @@ import nvidiaDetailJson from "./partner-nvidia.json";
 import salesforceDetailJson from "./partner-salesforce.json";
 import tigergraphDetailJson from "./partner-tigergraph.json";
 import awsDetailJson from "./partner-aws.json";
+import azureDetailJson from "./partner-azure.json";
 
 /**
  * data/partners.ts
@@ -273,6 +274,7 @@ import type {
   NvidiaIndustryEvolutionData,
   PartnerInfrastructurePrinciplesData,
   PartnerNumberedListData,
+  PartnerLayerCardsData,
 } from "@/types/partnerDetail";
 
 /* ==========================================================================
@@ -464,21 +466,16 @@ export const PARTNERS_DETAIL_DATA: Record<string, StandardizedPartnerDetailPage>
   [salesforceDetailJson.slug]: salesforceDetailJson as unknown as StandardizedPartnerDetailPage,
   [tigergraphDetailJson.slug]: tigergraphDetailJson as unknown as StandardizedPartnerDetailPage,
   [awsDetailJson.slug]: awsDetailJson as unknown as StandardizedPartnerDetailPage,
+  [azureDetailJson.slug]: azureDetailJson as unknown as StandardizedPartnerDetailPage,
 };
 
 /**
- * Adapter mapping the standardized CMS partner object into the existing
- * PartnerDetailData interface consumed by page.tsx and partner section components.
- * Ensures zero frontend breaking changes while adopting the backend data standard.
+ * Maps the standardized `hero` block (partner or press-release JSON) to
+ * PartnerHeroData. Shared by partner pages and press-release pages.
  */
-function mapStandardizedToPartnerDetail(
-  data: StandardizedPartnerDetailPage
-): PartnerDetailData {
-  const meta = {
-    title: data.seo.title ?? data.title,
-    description: data.seo.description ?? "",
-  };
-
+export function mapStandardizedHero(
+  data: Pick<StandardizedPartnerDetailPage, "title" | "hero">
+): PartnerHeroData {
   const headingLines: string[] = data.hero.heading
     ? data.hero.heading.split(/<br\s*\/?>/i)
     : [];
@@ -491,7 +488,7 @@ function mapStandardizedToPartnerDetail(
     if (headingLine2) headingLines.push(headingLine2);
   }
 
-  const hero: PartnerHeroData = {
+  return {
     headingLine1,
     headingLine2,
     headingLines: headingLines.length > 0 ? headingLines : undefined,
@@ -508,6 +505,22 @@ function mapStandardizedToPartnerDetail(
     ribbonHeight: data.hero.ribbonHeight ?? (data.hero.media?.height as number | undefined),
     primaryCta: data.hero.primaryCta ?? null,
   };
+}
+
+/**
+ * Adapter mapping the standardized CMS partner object into the existing
+ * PartnerDetailData interface consumed by page.tsx and partner section components.
+ * Ensures zero frontend breaking changes while adopting the backend data standard.
+ */
+function mapStandardizedToPartnerDetail(
+  data: StandardizedPartnerDetailPage
+): PartnerDetailData {
+  const meta = {
+    title: data.seo.title ?? data.title,
+    description: data.seo.description ?? "",
+  };
+
+  const hero: PartnerHeroData = mapStandardizedHero(data);
 
   const introSec = data.sections.find((s) => s.id === "production-value");
   const quoteSec = data.sections.find((s) => s.id === "customer-quote");
@@ -607,7 +620,12 @@ function mapStandardizedToPartnerDetail(
         },
         heading: {
           highlight:
-            storyBannerSec.data.headingStructure?.highlight ?? "Get Amp'd to move",
+            storyBannerSec.data.headingStructure?.highlight ??
+            // A single heading string (no headingStructure) is split in the
+            // presentation layer; the legacy fallback applies only without one.
+            (storyBannerSec.data.headingStructure || !storyBannerSec.data.heading
+              ? "Get Amp'd to move"
+              : ""),
           text:
             storyBannerSec.data.headingStructure?.text ??
             storyBannerSec.data.heading ??
@@ -667,6 +685,11 @@ function mapStandardizedToPartnerDetail(
                 : "Get Amp'd";
               highlight = prefix;
               text = b.heading.slice(prefix.length).trim();
+            } else if (data.slug === "azure" && sec === alternatingSec) {
+              // Azure's first alternating section keeps its all-purple heading;
+              // later Azure alternating sections use the default <br> split.
+              highlight = b.heading;
+              text = "";
             } else {
               const parts = b.heading.split(/<br\s*\/?>|\n/);
               highlight = parts[0];
@@ -702,6 +725,16 @@ function mapStandardizedToPartnerDetail(
   );
   const alternatingContentSecondary: PartnerAlternatingContentData | undefined =
     alternatingSecondarySec ? mapAlternatingSection(alternatingSecondarySec) : undefined;
+
+  /** A third `alternating_content` section on the same page (none by default). */
+  const alternatingTertiarySec = data.sections.find(
+    (s) =>
+      s.type === "alternating_content" &&
+      s !== alternatingSec &&
+      s !== alternatingSecondarySec
+  );
+  const alternatingContentTertiary: PartnerAlternatingContentData | undefined =
+    alternatingTertiarySec ? mapAlternatingSection(alternatingTertiarySec) : undefined;
 
   let databricksAgenticExecution: DatabricksAgenticExecutionData | undefined;
   const databricksSec =
@@ -874,7 +907,10 @@ function mapStandardizedToPartnerDetail(
 
   let coordinatedAgents: PartnerWhatAgentsDoData | undefined;
   const coordinatedAgentsSec = data.sections.find(
-    (s) => s.id === "coordinated-agents" || s.id === "aws-finops-capabilities"
+    (s) =>
+      s.id === "coordinated-agents" ||
+      s.id === "aws-finops-capabilities" ||
+      s.id === "azure-finops-capabilities"
   );
 
   if (coordinatedAgentsSec) {
@@ -1093,6 +1129,13 @@ function mapStandardizedToPartnerDetail(
       // TigerGraph: 'Where Agivant' is purple, the rest is primary text.
       solHighlight = "Where Agivant";
       solSuffix = solutionsSec.data.heading.slice("Where Agivant".length).trim();
+    } else if (
+      data.slug === "azure" &&
+      solutionsSec.data.heading.startsWith("Featured Azure")
+    ) {
+      // Azure: 'Featured Azure' is purple, the rest is primary text.
+      solHighlight = "Featured Azure";
+      solSuffix = solutionsSec.data.heading.slice("Featured Azure".length).trim();
     } else {
       const parts = solutionsSec.data.heading.split(/<br\s*\/?>/i);
       if (parts.length >= 2) {
@@ -1144,7 +1187,7 @@ function mapStandardizedToPartnerDetail(
 
   const proofSec =
     data.sections.find((s) => s.id === "proof-from-production") ??
-    (data.slug === "servicenow" || data.slug === "aws"
+    (data.slug === "servicenow" || data.slug === "aws" || data.slug === "azure"
       ? (partnerDetailJson.sections.find(
           (s) => s.id === "proof-from-production"
         ) as StandardizedSection | undefined)
@@ -1475,6 +1518,29 @@ function mapStandardizedToPartnerDetail(
     };
   }
 
+  let layerCards: PartnerLayerCardsData | undefined;
+  const layerCardsSec = data.sections.find(
+    (s) => s.id === "azure-four-layers" || s.id === "layer-cards"
+  );
+  if (layerCardsSec) {
+    layerCards = {
+      heading: layerCardsSec.data.heading ?? "",
+      description: layerCardsSec.data.description ?? undefined,
+      cards: (layerCardsSec.blocks ?? []).map((b) => ({
+        id: b.id,
+        title: b.title ?? "",
+        body: b.body ?? "",
+        solution: (b as any).solution ?? "",
+        image: {
+          src: b.media?.src ?? "",
+          alt: b.media?.alt ?? b.title ?? "",
+          width: b.media?.width,
+          height: b.media?.height,
+        },
+      })),
+    };
+  }
+
   return {
     slug: data.slug,
     name: data.name ?? data.hero.partner.name,
@@ -1485,6 +1551,7 @@ function mapStandardizedToPartnerDetail(
     agentTeams,
     alternatingContent,
     alternatingContentSecondary,
+    alternatingContentTertiary,
     agenticEnterprise,
     databricksAgenticExecution,
     databricksBusinessContext,
@@ -1505,6 +1572,7 @@ function mapStandardizedToPartnerDetail(
     marketValidation,
     aiCapabilities,
     timeline,
+    layerCards,
     cta,
   };
 }

@@ -1,0 +1,670 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "partnershipLanding",
+  "slug": "azure",
+  "title": "Azure",
+  "name": "Azure",
+  "seo": {
+    "title": "Azure Partnership | Agivant",
+    "description": "Agivant runs a dedicated Azure practice that engineers data platforms, AI, and agents into the Microsoft tools your people already open every day. It starts with one business challenge and lands the answer where the work happens, in Teams, in Outlook, and in Copilot, with results in days and weeks.",
+    "canonical": null,
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Azure",
+    "subtitle": null,
+    "summary": "Agivant runs a dedicated Azure practice that engineers data platforms, AI, and agents into the Microsoft tools your people already open every day. It starts with one business challenge and lands the answer where the work happens, in Teams, in Outlook, and in Copilot, with results in days and weeks.",
+    "authors": [],
+    "partner": {
+      "name": "Azure",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/azure.png",
+        "assetKey": "azure-logo",
+        "alt": "Azure",
+        "caption": null,
+        "width": 249,
+        "height": 91
+      }
+    },
+    "media": {
+      "kind": "image",
+      "src": "/images/solutions/landing-page-hero.png",
+      "assetKey": "azure-hero-ribbon",
+      "alt": "Azure hero ribbon",
+      "caption": null,
+      "width": 1434,
+      "height": 757
+    },
+    "primaryCta": null,
+    "secondaryCta": null,
+    "heading": "Data and AI on<br>from Fabric to Copilot"
+  },
+  "sections": [
+    {
+      "id": "production-value",
+      "type": "rich_text",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "production-value-copy",
+          "type": "richText",
+          "heading": null,
+          "body": "Built on Microsoft Azure, with Azure Data Factory, Microsoft Fabric, Azure Synapse Analytics, Azure Data Lake Storage, Azure Machine Learning, Microsoft Foundry, and Copilot Studio, Agivant sizes running cost before anything goes live."
+        }
+      ]
+    },
+    {
+      "id": "customer-quote",
+      "type": "statement",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": {
+          "enabled": true,
+          "label": "Explore how you can build on Azure",
+          "href": "/contact",
+          "icon": "cube",
+          "external": false
+        }
+      },
+      "blocks": []
+    },
+    {
+      "id": "get-more-from-azure",
+      "type": "alternating_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "get-more-azure",
+          "type": "row",
+          "eyebrow": null,
+          "title": null,
+          "heading": "Get Amp’d to move from a<br>Microsoft data estate to agents<br>inside Microsoft 365",
+          "body": "An Azure estate earns its keep when the business can ask it something. Amp’d is how Agivant gets there. Bolt scaffolds the agent stack, Forward Deployed Engineers build inside the enterprise’s own Azure tenant, and production grade agents answer through the Copilot surface people already use. Each engagement ships with evaluation and rollback, and every hardened pipeline, semantic definition, and agent pattern becomes a reusable asset the next build starts from. Every build amplifies the next.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
+            "assetKey": "azure-get-more",
+            "alt": "Get Amp’d to move from a Microsoft data estate to agents inside Microsoft 365",
+            "caption": null,
+            "width": 874,
+            "height": 558
+          },
+          "layout": "image-text",
+          "isCard": true
+        }
+      ]
+    },
+    {
+      "id": "azure-answers",
+      "type": "deployment_card",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Why Azure puts answers where the<br>work already happens",
+        "description": "If your identity sits in Entra ID and your work happens in Microsoft 365, the shortest route to AI adoption runs through the tools already on the desk. Answers show up where people work, on a security setup the company already trusts, and nobody has to learn a new application to get them. Microsoft Fabric and Azure Synapse Analytics work from OneLake and Azure Data Lake Storage, so the data stays in one place and stays useful.",
+        "closingStatement": null,
+        "columns": [],
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/queue-card-image.png",
+          "assetKey": "azure-answers-card",
+          "alt": "Why Azure puts answers where the work already happens",
+          "caption": null,
+          "width": 553,
+          "height": 379
+        },
+        "layout": "text-image",
+        "cta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "coordinated-agent-teams",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "What Agivant brings to Azure.",
+        "description": "The same graph and agent layer extends to other decisions that depend on relationships.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "azure-capability-1",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Fabric and Synapse at the core",
+          "body": "Agivant builds the analytics estate on Microsoft Fabric and Azure Synapse Analytics, and brings in Azure Databricks where a workload calls for it.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-05.png",
+            "assetKey": "azure-capability-1",
+            "alt": "Fabric and Synapse at the core",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "azure-capability-2",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Copilot as the front door",
+          "body": "Microsoft 365 Copilot and Copilot Studio put every layer of the stack one question away for the business.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-02.png",
+            "assetKey": "azure-capability-2",
+            "alt": "Copilot as the front door",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "azure-capability-3",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Agents managed like employees",
+          "body": "Each agent gets an identity in Microsoft Entra ID, so its access is granted, reviewed, and revoked the way a person’s is.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/solution-ribbon-03.png",
+            "assetKey": "azure-capability-3",
+            "alt": "Agents managed like employees",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "azure-capability-4",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Applications as well as analytics",
+          "body": "Agivant rebuilds the manual workflows around the data as working Azure applications.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "assetKey": "azure-capability-4",
+            "alt": "Applications as well as analytics",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "azure-capability-5",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Cost sized before it lands",
+          "body": "Capacity, token budgets, and cost tags are set with the first pipeline, so spend shows up by team from the start.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/accelerators/strategic-sourcing.png",
+            "assetKey": "azure-capability-5",
+            "alt": "Cost sized before it lands",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "solutions",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Featured Azure solutions",
+        "description": "Each one starts with a business challenge and lands in the Microsoft tools your organization already runs.",
+        "columns": [
+          "Key capabilities",
+          "Built with"
+        ],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "azure-data-foundation",
+          "type": "card",
+          "eyebrow": "Data foundation",
+          "title": "Copilot-ready data foundation",
+          "body": "Give Copilot and Foundry something reliable to answer from.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+            "assetKey": "azure-data-foundation",
+            "alt": "Copilot-ready data foundation",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Data pulled from SQL Server, Oracle, SAP, and SaaS applications with Azure Data Factory",
+            "Analytics-ready tables shaped in Microsoft Fabric and served from Azure Synapse Analytics",
+            "A semantic layer holding business definitions such as recognized revenue and gross margin",
+            "Fabric Real-Time Intelligence keeping dashboards minutes behind the business"
+          ],
+          "solution": "Azure Data Factory · Azure Data Lake Storage · Microsoft Fabric · Azure Synapse Analytics",
+          "proof": {
+            "eyebrow": "Reported outcomes",
+            "headline": "up to 60%",
+            "description": "faster reporting refresh and up to 35% less duplicated data movement"
+          }
+        },
+        {
+          "id": "azure-agent-workforce",
+          "type": "card",
+          "eyebrow": "Agentic operations",
+          "title": "An agent workforce inside Microsoft 365",
+          "body": "Let agents recommend the next best action, then follow through.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/sourcex.png",
+            "assetKey": "azure-agent-workforce",
+            "alt": "An agent workforce inside Microsoft 365",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Agents built on Foundry Agent Service and Copilot Studio",
+            "Microsoft AutoGen where several agents work a problem together",
+            "Each agent identified and access-controlled in Microsoft Entra ID",
+            "Human approval on anything that carries money or risk"
+          ],
+          "solution": "Foundry Agent Service · Copilot Studio · Microsoft AutoGen · Microsoft Entra ID",
+          "proof": {
+            "eyebrow": "Reported outcomes",
+            "headline": "Up to 50%",
+            "description": "less manual follow-up per case and up to 25% faster approvals"
+          }
+        },
+        {
+          "id": "azure-predictive-planning",
+          "type": "card",
+          "eyebrow": "Forecasting and risk",
+          "title": "Predictive planning on Azure Machine Learning",
+          "body": "See demand, churn, and quality drift before they land.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/sourcex.png",
+            "assetKey": "azure-predictive-planning",
+            "alt": "Predictive planning on Azure Machine Learning",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Forecasting, churn, anomaly detection, and demand sensing built on Azure Machine Learning",
+            "Every run tracked, with automatic retraining as new data arrives",
+            "Predictions surfaced in Fabric dashboards and through Copilot",
+            "Planner review before any forecast changes a commitment"
+          ],
+          "solution": "Azure Machine Learning · Microsoft Fabric Data Science · Azure Synapse Analytics",
+          "proof": {
+            "eyebrow": "Reported outcomes",
+            "headline": "Up to 30%",
+            "description": "better forecast accuracy and up to 20% lower stock holding"
+          }
+        },
+        {
+          "id": "azure-workflow-applications",
+          "type": "card",
+          "eyebrow": "Application engineering",
+          "title": "Azure workflow applications",
+          "body": "Rebuild the work that still runs on email and spreadsheets.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/solutions/zeroqueue.png",
+            "assetKey": "azure-workflow-applications",
+            "alt": "Azure workflow applications",
+            "caption": null
+          },
+          "cta": null,
+          "items": [
+            "Flows rebuilt in Power Automate",
+            "Services exposed safely through Azure API Management",
+            "State held in Azure Cosmos DB and Azure SQL",
+            "Events streamed in as they happen with Azure Event Hubs"
+          ],
+          "solution": "Power Automate · Azure API Management · Azure Cosmos DB · Azure SQL · Azure Event Hubs",
+          "proof": {
+            "eyebrow": "Reported outcomes",
+            "headline": "Up to 70%",
+            "description": "fewer manual hand-offs and up to 40% faster cycle time"
+          }
+        }
+      ]
+    },
+    {
+      "id": "azure-four-layers",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "How the four layers run on Azure.",
+        "description": "One engineering team carries a use case across all four, so each layer is built knowing what the next one needs.",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "azure-layer-data",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Data",
+          "body": "Pipelines, lakehouse tables, and the semantic layer that gives business terms one meaning.",
+          "solution": "Azure Data Factory · Microsoft Fabric · Azure Synapse Analytics · Azure Data Lake Storage",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/data.png",
+            "assetKey": "azure-layer-data",
+            "alt": "Data",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "azure-layer-aiml",
+          "type": "card",
+          "eyebrow": null,
+          "title": "AI/ML",
+          "body": "Forecasting, churn, and anomaly detection, retrained as fresh data lands.",
+          "solution": "Azure Machine Learning · Microsoft Fabric Data Science",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/ai-ml.png",
+            "assetKey": "azure-layer-aiml",
+            "alt": "AI/ML",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "azure-layer-genai",
+          "type": "card",
+          "eyebrow": null,
+          "title": "GenAI",
+          "body": "Assistants that answer in plain English and show the source and definition behind every answer.",
+          "solution": "Microsoft Foundry · Azure OpenAI · Azure AI Search · Microsoft 365 Copilot",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/geni-ai.png",
+            "assetKey": "azure-layer-genai",
+            "alt": "GenAI",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        },
+        {
+          "id": "azure-layer-agentic-ai",
+          "type": "card",
+          "eyebrow": null,
+          "title": "Agentic AI",
+          "body": "Agents that recommend the next best action and carry it out once a person approves.",
+          "solution": "Foundry Agent Service · Copilot Studio · Microsoft AutoGen · Microsoft Entra ID",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/agentic-ai.png",
+            "assetKey": "azure-layer-agentic-ai",
+            "alt": "Agentic AI",
+            "caption": null
+          },
+          "cta": null,
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "azure-teams-in-control",
+      "type": "alternating_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "azure-teams-in-control-row",
+          "type": "row",
+          "eyebrow": null,
+          "title": null,
+          "heading": "Keep teams in control while agents<br>work inside Microsoft 365.",
+          "body": "Every Agivant agent is production grade from day one, observable and always on. Each agent holds its own identity in Microsoft Entra ID, so access is granted, reviewed, and revoked the way it is for people. Routine steps run on their own, and anything carrying money or risk waits for the person who owns the decision.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-ambition.png",
+            "assetKey": "agentic-enterprise-ambition",
+            "alt": "Keep teams in control while agents work inside Microsoft 365",
+            "caption": null,
+            "width": 874,
+            "height": 503
+          },
+          "layout": "text-image",
+          "isCard": false
+        }
+      ]
+    },
+    {
+      "id": "azure-finops",
+      "type": "split_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "FinOps, sized before workloads go live.",
+        "description": "Azure capacity is easy to buy and easy to leave running. Agivant sizes it against real workload patterns and sets token budgets before anything reaches production, so financial accountability, visibility, and cost efficiency are part of the architecture rather than a cleanup exercise two quarters later.",
+        "layout": "image-stacked",
+        "media": {
+          "kind": "image",
+          "src": "/images/partners/full-width-image.png",
+          "assetKey": "shopify-full-width-banner",
+          "alt": "FinOps sized before Azure workloads go live",
+          "caption": null,
+          "width": 4816,
+          "height": 1006
+        },
+        "columns": [],
+        "cta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "azure-finops-capabilities",
+      "type": "card_grid",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "closingStatement": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "azure-finops-1",
+          "type": "card",
+          "body": "Token budgets per agent and per use case, with prompt caching and batch processing in Azure OpenAI"
+        },
+        {
+          "id": "azure-finops-2",
+          "type": "card",
+          "body": "Provisioned throughput for steady workloads and pay-as-you-go for spiky ones, chosen per use case"
+        },
+        {
+          "id": "azure-finops-3",
+          "type": "card",
+          "body": "Microsoft Cost Management budgets and cost tags showing spend by team and use case"
+        },
+        {
+          "id": "azure-finops-4",
+          "type": "card",
+          "body": "Fabric capacity paused when idle, with Synapse serverless pools for occasional queries"
+        },
+        {
+          "id": "azure-finops-outcome",
+          "type": "metric",
+          "eyebrow": "Reported outcomes",
+          "metric": "up to 65%",
+          "body": "lower token spend and up to 30% lower Azure capacity cost"
+        }
+      ]
+    },
+    {
+      "id": "azure-identity-first",
+      "type": "alternating_content",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "azure-identity-first-row",
+          "type": "row",
+          "eyebrow": null,
+          "title": null,
+          "heading": "Scale on Azure with<br>identity-first engineering.",
+          "body": "Agivant connects through native Azure services and the Microsoft 365 surfaces the enterprise already runs, so data, agents, and applications sit inside your own tenant. Forward Deployed Engineers work in focused sprints, and every agent is registered in Microsoft Entra ID before it touches a workflow. This is what an Amp’d enterprise looks like in production.",
+          "media": {
+            "kind": "image",
+            "src": "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
+            "assetKey": "agentic-enterprise-control",
+            "alt": "Scale on Azure with identity-first engineering",
+            "caption": null,
+            "width": 874,
+            "height": 558
+          },
+          "layout": "image-text",
+          "isCard": true
+        }
+      ]
+    },
+    {
+      "id": "how-engagement-runs",
+      "type": "numbered_list",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Working With Agivant On Azure.",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "start-with-one-business-challenge",
+          "type": "numberedItem",
+          "number": 1,
+          "title": "Start with one business challenge",
+          "body": "Something a team owns, with a number the business wants moved.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "design-against-microsoft-estate",
+          "type": "numberedItem",
+          "number": 2,
+          "title": "Design it against your Microsoft estate",
+          "body": "Agivant maps the data, the Copilot surface, and the running cost before any build starts.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "ship-inside-your-tenant",
+          "type": "numberedItem",
+          "number": 3,
+          "title": "Ship inside your tenant",
+          "body": "Forward Deployed Engineers work in your own Azure tenant, with results in days and weeks.",
+          "items": [],
+          "media": null
+        },
+        {
+          "id": "carry-it-into-the-next-one",
+          "type": "numberedItem",
+          "number": 4,
+          "title": "Carry it into the next one",
+          "body": "Pipelines, semantic definitions, and agent patterns become reusable assets the next build starts from.",
+          "items": [],
+          "media": null
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Bring one business<br>challenge to Agivant",
+    "subheading": "We will show you where it sits in your Microsoft estate, what it takes to put the answer in front of people through Copilot, and what it will cost to run.",
+    "partner": {
+      "name": "Azure",
+      "logo": {
+        "kind": "logo",
+        "src": "/images/partners/azure.png",
+        "assetKey": "azure-logo",
+        "alt": "Azure",
+        "caption": null
+      }
+    },
+    "primaryCta": null,
+    "secondaryCta": {
+      "enabled": true,
+      "label": "Book a data and AI working session",
+      "href": "/contact",
+      "external": false,
+      "icon": "cube",
+      "variant": "primary"
+    }
+  }
+}
