@@ -1,0 +1,398 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "agentic-24-7-digital-front-door-it-services",
+  "title": "Round-the-clock IT support that understands, reasons, and acts through one agentic front door",
+  "summary": "A multi-agent digital front door for a global engineering software enterprise, giving employees one conversational point of access to IT support, knowledge, troubleshooting, and service operations.",
+  "client": "Global engineering software enterprise",
+  "industry": "Semiconductor and EDA",
+  "hero": {
+    "eyebrow": null,
+    "title": "Round-the-clock IT support that<br />understands, reasons, and acts<br />through one agentic front door",
+    "subtitle": null,
+    "summary": "A multi-agent digital front door for a global engineering software enterprise, giving employees one conversational point of access to IT support, knowledge, troubleshooting, and service operations.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "Round-the-clock IT support that understands, reasons, and acts through one agentic front door | Agivant Case Study",
+    "description": "A multi-agent digital front door for a global engineering software enterprise, giving employees one conversational point of access to IT support, knowledge, troubleshooting, and service operations.",
+    "canonical": "https://agivant.com/case-studies/agentic-24-7-digital-front-door-it-services",
+    "ogImage": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-02.jpg",
+      "assetKey": "case-study-02",
+      "alt": "Round-the-clock IT support that understands, reasons, and acts through one agentic front door",
+      "caption": null
+    }
+  },
+  "capability": "Agentic AI & AgentOps",
+  "techPlatform": null,
+  "showFooter": true,
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": false,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "Employees get IT help 24/7 through one conversation, repetitive service interactions are deflected, and escalations reach specialists with context and diagnostic information attached.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & industry",
+          "body": "Global engineering software enterprise, with IT support spread across multiple systems, knowledge repositories, and specialist teams"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "An agentic front door built as the intelligent first point of interaction between employees and enterprise IT services"
+        },
+        {
+          "id": "coverage",
+          "title": "Coverage",
+          "body": "24/7, handling Tier 0 and much of Tier 1 support across knowledge, troubleshooting, incidents, and requests"
+        },
+        {
+          "id": "maps-to-below-services",
+          "title": "Maps to below services",
+          "body": "Agentic AI & AgentOps"
+        }
+      ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "Modern enterprises expect IT services to be as simple and responsive as consumer digital experiences, yet employees still navigate portals, search knowledge bases, raise tickets, and wait for support teams to resolve routine issues."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "Employees navigated complex IT portals, searched fragmented knowledge sources, repeated information across interactions, and waited on routine issues. Support outside traditional service hours was limited, and the experience varied across IT services."
+        },
+        {
+          "id": "technical-barriers",
+          "type": "card",
+          "title": "Technical barriers",
+          "body": "Enterprise IT support ran across multiple systems, knowledge repositories, service processes, and specialist teams. Issues that guided troubleshooting could have resolved still escalated, adding to service desk workload and lengthening resolution cycles."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant's role",
+          "body": "Multi-agent architecture, conversational experience design, ITSM integration, and knowledge and escalation workflows"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Agivant built the front door on a multi-agent architecture, with specialized agents collaborating on each request. It understands intent, reasons over enterprise knowledge, orchestrates the right agents, executes supported IT actions, escalates with context when a person is needed, and learns from every outcome. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "orchestrator-agent",
+          "type": "card",
+          "title": "Orchestrator agent",
+          "body": "Determines the right path, coordinates the other agents, and manages the whole interaction.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Orchestrator agent",
+            "caption": null
+          }
+        },
+        {
+          "id": "knowledge-and-guidance-agent",
+          "type": "card",
+          "title": "Knowledge and guidance agent",
+          "body": "Provides trusted answers from enterprise knowledge sources.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Knowledge and guidance agent",
+            "caption": null
+          }
+        },
+        {
+          "id": "troubleshooting-agent",
+          "type": "card",
+          "title": "Troubleshooting agent",
+          "body": "Guides employees through contextual diagnostic and resolution workflows.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Troubleshooting agent",
+            "caption": null
+          }
+        },
+        {
+          "id": "service-operations-agent",
+          "type": "card",
+          "title": "Service operations agent",
+          "body": "Supports ITSM processes such as incidents, requests, and service interactions.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Service operations agent",
+            "caption": null
+          }
+        },
+        {
+          "id": "expert-agent",
+          "type": "card",
+          "title": "Expert agent",
+          "body": "Brings together deeper technical context, operational signals, and specialized enterprise capabilities.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Expert agent",
+            "caption": null
+          }
+        },
+        {
+          "id": "context-aware-escalation",
+          "type": "card",
+          "title": "Context-aware escalation",
+          "body": "Hands the interaction to a person with relevant context and diagnostic information.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Context-aware escalation",
+            "caption": null
+          }
+        },
+        {
+          "id": "learning-loop",
+          "type": "card",
+          "title": "Learning loop",
+          "body": "Captures outcomes and feedback to improve knowledge quality, agent performance, and the service experience.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Learning loop",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-architecture",
+              "label": "Architecture",
+              "value": "Multi-agent, orchestrator-led"
+            },
+            {
+              "id": "row-interface",
+              "label": "Interface",
+              "value": "Conversational, available 24/7"
+            },
+            {
+              "id": "row-knowledge",
+              "label": "Knowledge",
+              "value": "Enterprise knowledge sources and troubleshooting guidance"
+            },
+            {
+              "id": "row-service-integration",
+              "label": "Service integration",
+              "value": "ITSM incidents, requests, and service interactions"
+            },
+            {
+              "id": "row-grounding-data",
+              "label": "Grounding data",
+              "value": "The client's unified operational data platform"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "Complex portals, fragmented knowledge, repeated information, waits on routine issues, and support limited to service hours."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "One conversational front door with agent-driven reasoning and routing, direct IT actions, and context-aware handoffs, available 24/7."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "An employee describes an issue in plain language. The orchestrator identifies the intent and routes it to the troubleshooting agent, which reasons over enterprise knowledge and guides the employee to a resolution. If the issue needs an incident, the service operations agent raises it, and if it needs a specialist, the handoff carries the context and diagnostics so the employee does not repeat anything."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "Repetitive requests stay out of the service desk queue, and specialists get better-quality information at the point of escalation."
+        },
+        {
+          "id": "metric-access-to-it-assistance",
+          "type": "bento_metric",
+          "value": "24/7",
+          "label": "Access to IT assistance",
+          "variant": "small"
+        },
+        {
+          "id": "metric-front-door-across-it-services",
+          "type": "bento_metric",
+          "value": "One",
+          "label": "Front door across IT services",
+          "variant": "small"
+        },
+        {
+          "id": "metric-repetitive-service-interactions",
+          "type": "bento_metric",
+          "value": "Deflected",
+          "label": "Repetitive service interactions",
+          "variant": "small"
+        },
+        {
+          "id": "metric-escalations-with-diagnostic-information-attached",
+          "type": "bento_metric",
+          "value": "Context-rich",
+          "label": "Escalations, with diagnostic information attached",
+          "variant": "small"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "As more agents, enterprise systems, service actions, and operational data sources connect, the front door expands from AI-assisted support to increasingly autonomous service operations. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "Bringing multiple systems, knowledge repositories, and specialist teams behind one conversation, keeping the experience consistent across different IT services, and handing over to people without losing context."
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    }
+  ]
+}

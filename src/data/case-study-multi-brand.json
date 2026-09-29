@@ -38,7 +38,7 @@
   },
   "capability": null,
   "techPlatform": null,
-  "showFooter": false,
+  "showFooter": true,
   "footerCta": {
     "enabled": false,
     "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",

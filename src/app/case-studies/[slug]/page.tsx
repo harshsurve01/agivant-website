@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import styles from "./CaseStudyArticlePage.module.css";
 import type { FooterButton } from "@/data/footer";
 import { Article } from "@/components/sections/CaseStudies/Article";
 import { GradientLayerProvider } from "@/components/effects/GradientLayer";
@@ -84,7 +85,7 @@ export default async function CaseStudyArticlePage({
         <Article data={caseStudy} />
       </main>
 
-      {caseStudy.showFooter !== false && caseStudy.footerCta?.enabled && (
+      {caseStudy.showFooter !== false && caseStudy.footerCta?.enabled ? (
         <Footer
           ctaData={{
             heading: caseStudy.footerCta.heading.replace(/<br\s*\/?>/gi, "\n"),
@@ -92,7 +93,11 @@ export default async function CaseStudyArticlePage({
             buttons: footerButtons,
           }}
         />
-      )}
+      ) : caseStudy.showFooter !== false ? (
+        /* The case study carries its own FinalCTA section, so the footer
+           only adds the faded Agivant liquid logo and the copyright. */
+        <Footer variant="minimal" className={styles.minimalFooter} />
+      ) : null}
     </GradientLayerProvider>
   );
 }

@@ -7,6 +7,8 @@
   width: 100%;
   padding-top: var(--space-40);
   padding-bottom: var(--space-16);
+  /* Natural height (not the global 100vh) so At a Glance follows directly. */
+  min-height: auto;
   overflow-x: clip;
   overflow-y: visible;
 }

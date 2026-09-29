@@ -127,42 +127,41 @@ export const caseStudies: CaseStudy[] = allCaseStudies.map((cs) => ({
  * that don't correspond to the 6 identical mock records above and
  * would go stale the moment real WordPress data replaces them.
  */
+const industryOptions: FilterOptionConfig[] = Array.from(
+  new Set(allCaseStudies.map((cs) => cs.industry).filter(Boolean))
+).sort().map((ind) => ({ value: ind, label: ind }));
+
+const capabilityOptions: FilterOptionConfig[] = Array.from(
+  new Set(
+    allCaseStudies
+      .flatMap((cs) => (cs.capability ? cs.capability.split(",").map((s) => s.trim()) : []))
+      .filter(Boolean)
+  )
+).sort().map((cap) => ({ value: cap, label: cap }));
+
+const techPlatformOptions: FilterOptionConfig[] = Array.from(
+  new Set(
+    allCaseStudies
+      .flatMap((cs) => (cs.techPlatform ? cs.techPlatform.split(",").map((s) => s.trim()) : []))
+      .filter(Boolean)
+  )
+).sort().map((tp) => ({ value: tp, label: tp }));
+
 export const caseStudyFilterGroups: FilterGroupConfig[] = [
   {
     id: "industry",
     title: "Industry Segment",
-    options: [
-      { value: "BFSI", label: "BFSI" },
-      { value: "Healthcare", label: "Healthcare" },
-      { value: "Retail & E-commerce", label: "Retail & E-commerce" },
-      { value: "Logistics", label: "Logistics" },
-      { value: "Manufacturing", label: "Manufacturing" },
-    ],
+    options: industryOptions,
   },
   {
     id: "capability",
     title: "Core Capability",
-    options: [
-      { value: "Agentic AI Systems", label: "Agentic AI Systems" },
-      { value: "Physical AI & Automation", label: "Physical AI & Automation" },
-      {
-        value: "UX Strategy & Design Systems",
-        label: "UX Strategy & Design Systems",
-      },
-      { value: "AIOps & Cloud", label: "AIOps & Cloud" },
-      { value: "MLOps & Data Engineering", label: "MLOps & Data Engineering" },
-    ],
+    options: capabilityOptions,
   },
   {
     id: "techPlatform",
     title: "Tech Platform",
-    options: [
-      { value: "Python", label: "Python" },
-      { value: "OpenAI/Anthropic APIs", label: "OpenAI/Anthropic APIs" },
-      { value: "React/Node.js", label: "React/Node.js" },
-      { value: "PyTorch/TensorFlow", label: "PyTorch/TensorFlow" },
-      { value: "AWS/Azure/GCP", label: "AWS/Azure/GCP" },
-    ],
+    options: techPlatformOptions,
   },
 ];
 

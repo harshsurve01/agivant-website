@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
@@ -30,9 +31,11 @@ export async function Header() {
 
          
 
-          <Button variant="primary" size="lg" font-weight="bold" className={styles.cta}>
-            Get Amp&apos;d!
-          </Button>
+          <Link href="/ampd">
+            <Button variant="primary" size="lg" font-weight="bold" className={styles.cta}>
+              Get Amp&apos;d!
+            </Button>
+          </Link>
         </div>
       </Container>
     </StickyHeader>

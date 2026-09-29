@@ -1,0 +1,425 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "gemini-salesforce-developer-productivity",
+  "title": "User story to deployable Salesforce code in 2 hours, down from 8, with Gemini",
+  "summary": "A Gemini-powered solution that turns user stories into Apex and LWC code, test cases, and test scripts, with an engineer validating every output.",
+  "client": "Global technology leader",
+  "industry": "Technology and internet",
+  "hero": {
+    "eyebrow": null,
+    "title": "User story to deployable Salesforce<br />code in 2 hours, down from 8,<br />with Gemini",
+    "subtitle": null,
+    "summary": "A Gemini-powered solution that turns user stories into Apex and LWC code, test cases, and test scripts, with an engineer validating every output.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "User story to deployable Salesforce code in 2 hours, down from 8, with Gemini | Agivant Case Study",
+    "description": "A Gemini-powered solution that turns user stories into Apex and LWC code, test cases, and test scripts, with an engineer validating every output.",
+    "canonical": "https://agivant.com/case-studies/gemini-salesforce-developer-productivity",
+    "ogImage": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-03.jpg",
+      "assetKey": "case-study-03",
+      "alt": "User story to deployable Salesforce code in 2 hours, down from 8, with Gemini",
+      "caption": null
+    }
+  },
+  "capability": "AI & ML Engineering",
+  "techPlatform": "Google Cloud & Vertex AI, Salesforce",
+  "showFooter": true,
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": false,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "Release cycles about 35% faster, developer productivity up 30 to 40%, debugging time down more than 20%, and development costs cut 50% by automating test case and test script generation.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & industry",
+          "body": "Global technology leader, developing and deploying Salesforce features and customizations"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "Rapid prototyping of Salesforce-specific use cases, then a Salesforce-centric code, test case, and test script generation solution"
+        },
+        {
+          "id": "scope",
+          "title": "Scope",
+          "body": "Apex classes, Lightning Web Components, triggers, SOQL queries, schema, and metadata, within Salesforce governor limits"
+        },
+        {
+          "id": "maps-to-below-services",
+          "title": "Maps to below services",
+          "body": "AI & ML Engineering"
+        }
+      ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "Salesforce projects averaging three to six months, with half or more of developer time spent on repetitive work."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "Developing and deploying new Salesforce features and customizations took three to six months per project on average. Developers spent significant time on repetitive coding, and turning user stories into test cases took 50 to 60% of their time."
+        },
+        {
+          "id": "technical-barriers",
+          "type": "card",
+          "title": "Technical barriers",
+          "body": "Keeping code consistent, documented, and testable across projects was getting harder, and debugging took about 15% more time as a result."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant's role",
+          "body": "Rapid prototyping, Salesforce-aware prompt engineering, and code, test case, and test script generation with human validation"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Agivant prototyped Salesforce-specific use cases, then built a Salesforce-centric coding, test case, and test script generation solution powered by Gemini. It generates high-quality Apex and LWC code directly from user stories and automatically creates comprehensive, accurate test cases. It works from a deep understanding of Salesforce specifics, including Apex, LWC, SOQL, and governor limits, and uses advanced prompting for precise and compliant output. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "user-story-to-code",
+          "type": "card",
+          "title": "User story to code",
+          "body": "Generates high-quality Apex and LWC code directly from user stories, significantly reducing development time.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "User story to code",
+            "caption": null
+          }
+        },
+        {
+          "id": "test-case-generation",
+          "type": "card",
+          "title": "Test case generation",
+          "body": "Automatically creates comprehensive and accurate test cases, improving test coverage.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Test case generation",
+            "caption": null
+          }
+        },
+        {
+          "id": "test-script-creation",
+          "type": "card",
+          "title": "Test script creation",
+          "body": "Produces test scripts alongside the code, speeding up the QA process.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Test script creation",
+            "caption": null
+          }
+        },
+        {
+          "id": "code-context-awareness",
+          "type": "card",
+          "title": "Code context awareness",
+          "body": "Reads active Apex classes, Lightning Web Components, triggers, and metadata as input.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Code context awareness",
+            "caption": null
+          }
+        },
+        {
+          "id": "schema-and-limits-awareness",
+          "type": "card",
+          "title": "Schema and limits awareness",
+          "body": "Works from SOQL queries, the Salesforce schema of objects and fields, and governor limits.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Schema and limits awareness",
+            "caption": null
+          }
+        },
+        {
+          "id": "chain-of-thought-for-salesforce-logic",
+          "type": "card",
+          "title": "Chain-of-thought for Salesforce logic",
+          "body": "Keeps generated output compliant with Salesforce best practices.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Chain-of-thought for Salesforce logic",
+            "caption": null
+          }
+        },
+        {
+          "id": "prompt-chaining-for-complex-tasks",
+          "type": "card",
+          "title": "Prompt-chaining for complex tasks",
+          "body": "Breaks complex requirements into linked prompts for precise output.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Prompt-chaining for complex tasks",
+            "caption": null
+          }
+        },
+        {
+          "id": "human-feedback-loop",
+          "type": "card",
+          "title": "Human feedback loop",
+          "body": "The model proposes a solution, an engineer validates or corrects the reasoning, and then the final code is generated.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Human feedback loop",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-models",
+              "label": "Models",
+              "value": "Gemini 2.0 Flash, 2.5 Flash, 2.5 Pro"
+            },
+            {
+              "id": "row-platform",
+              "label": "Platform",
+              "value": "Salesforce CRM"
+            },
+            {
+              "id": "row-languages",
+              "label": "Languages",
+              "value": "Apex, Lightning Web Components, SOQL"
+            },
+            {
+              "id": "row-prompting",
+              "label": "Prompting",
+              "value": "Chain-of-thought, prompt-chaining"
+            },
+            {
+              "id": "row-controls",
+              "label": "Controls",
+              "value": "Engineer validation before final code generation"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "Three to six months per project, 50 to 60% of developer time on repetitive coding and test cases, and about 15% extra time on debugging."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "User stories turned into validated Apex, LWC, test cases, and test scripts with Gemini, and an engineer confirming the reasoning."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "An admin writes a user story, such as a contact search LWC that respects sharing rules, or error handling for DML operations in a batch Apex job. Gemini reads the Salesforce context, reasons through the logic step by step, and proposes the code with its test cases and scripts. An engineer validates the reasoning, and a user story that took 8 hours to turn into Apex is ready in 2."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "Faster Salesforce releases at half the development cost, with an engineer validating every output."
+        },
+        {
+          "id": "metric-user-story-to-apex",
+          "type": "bento_metric",
+          "value": "8 hrs to 2",
+          "label": "User story to Apex",
+          "variant": "small"
+        },
+        {
+          "id": "metric-release-cycle",
+          "type": "bento_metric",
+          "value": "~35% faster",
+          "label": "Release cycle",
+          "variant": "small"
+        },
+        {
+          "id": "metric-developer-productivity-gain",
+          "type": "bento_metric",
+          "value": "30 to 40%",
+          "label": "Developer productivity gain",
+          "variant": "small"
+        },
+        {
+          "id": "metric-development-cost-by-automating-test-cases-and-scripts",
+          "type": "bento_metric",
+          "value": "50% down",
+          "label": "Development cost, by automating test cases and scripts",
+          "variant": "small"
+        },
+        {
+          "id": "metric-debugging-time",
+          "type": "bento_metric",
+          "value": ">20% down",
+          "label": "Debugging time",
+          "variant": "wide"
+        },
+        {
+          "id": "metric-test-case-automation-within-two-weeks",
+          "type": "bento_metric",
+          "value": "90%",
+          "label": "Test-case automation within two weeks",
+          "variant": "wide"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "The Salesforce-aware prompting pattern, with org context, chain-of-thought, and human validation, now feeds Agivant's CPQ Lens accelerator. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "Getting generated code to follow Salesforce best practices and governor limits on every output, which is why chain-of-thought prompting and engineer validation sit inside the workflow."
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    }
+  ]
+}

@@ -1,0 +1,401 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "spend-analytics-vendor-risk-management",
+  "title": "Vendor briefings in under five minutes, across billions in annual spend",
+  "summary": "VIBE, the Vendor Intelligence & Briefing Engine, brings procurement data, market signals, financial health, and research for 20+ strategic vendors into one AI-powered dashboard.",
+  "client": "Fortune 20 global technology and digital platform company",
+  "industry": "Technology and internet",
+  "hero": {
+    "eyebrow": null,
+    "title": "Vendor briefings in under five<br />minutes, across billions in annual spend",
+    "subtitle": null,
+    "summary": "VIBE, the Vendor Intelligence & Briefing Engine, brings procurement data, market signals, financial health, and research for 20+ strategic vendors into one AI-powered dashboard.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "Vendor briefings in under five minutes, across billions in annual spend | Agivant Case Study",
+    "description": "VIBE, the Vendor Intelligence & Briefing Engine, brings procurement data, market signals, financial health, and research for 20+ strategic vendors into one AI-powered dashboard.",
+    "canonical": "https://agivant.com/case-studies/spend-analytics-vendor-risk-management",
+    "ogImage": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-02.jpg",
+      "assetKey": "case-study-02",
+      "alt": "Vendor briefings in under five minutes, across billions in annual spend",
+      "caption": null
+    }
+  },
+  "capability": "Data Engineering & Advanced Analytics, AI & ML Engineering",
+  "techPlatform": "Next.js / React",
+  "showFooter": true,
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": false,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "Analyst research down about 70%, from 15 to 20 hours a week to 4 to 6, vendor briefings generated in under five minutes, spend visible in real time, and an estimated $4M to $10M+ in annual cost optimization.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & industry",
+          "body": "Fortune 20 global technology and digital platform company, managing billions in annual spend across some of the world's largest technology and services vendors"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "Design, build, and run an AI-powered vendor intelligence platform, from strategy and architecture through deployment and continuous enhancement"
+        },
+        {
+          "id": "scale",
+          "title": "Scale",
+          "body": "20+ strategic vendors at launch, built to scale to 100+, across cloud infrastructure, enterprise software, AI platforms, consulting, and networking"
+        },
+        {
+          "id": "business-owner",
+          "title": "Business owner",
+          "body": "The client's vendor strategy and operations team"
+        },
+        {
+          "id": "maps-to-below-services",
+          "title": "Maps to below services",
+          "body": "Data Engineering & Advanced Analytics, AI & ML Engineering"
+        }
+      ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "Intelligence on vendor relationships worth billions, spread across five disconnected systems."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "Analysts spent 15 to 20 hours a week per vendor pulling data together by hand, and a single briefing took two to three business days. Negotiations and renewals ran on outdated information, and adding vendor coverage required proportional headcount growth as the portfolio expanded."
+        },
+        {
+          "id": "no-decision-framework",
+          "type": "card",
+          "title": "No decision framework",
+          "body": "Financial, procurement, research, news, and spreadsheet data sat in separate places with no single source of truth. Spend by business unit or cost center arrived in monthly reports, so overspend, unfavorable renewals, vendor financial risk, and pricing shifts surfaced weeks or months after they mattered."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant's role",
+          "body": "Engineering partner across strategy, architecture, dashboard design, full-stack development, LLM integration, and knowledge transfer"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Agivant worked with vendor strategy leadership to tie every feature to a business outcome, then built the full platform on the client's in-house large language model. VIBE writes vendor research on demand, pulls live spend from the procurement system, and refreshes its own content before it goes stale. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "unified-intelligence-dashboard",
+          "type": "card",
+          "title": "Unified intelligence dashboard",
+          "body": "Complete profiles for 20+ strategic vendors, with highlights, briefings, spend detail, and research in one tabbed view and instant vendor switching.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Unified intelligence dashboard",
+            "caption": null
+          }
+        },
+        {
+          "id": "ai-powered-research-automation",
+          "type": "card",
+          "title": "AI-powered research automation",
+          "body": "The in-house LLM writes executive summaries, strategic briefs, financial health assessments, technology roadmaps, competitive positioning, and risk signals.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "AI-powered research automation",
+            "caption": null
+          }
+        },
+        {
+          "id": "real-time-spend-intelligence",
+          "type": "card",
+          "title": "Real-time spend intelligence",
+          "body": "Live POs, cost-center filtering, and active and year-to-date spend straight from the procurement system, with one-click export for finance.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Real-time spend intelligence",
+            "caption": null
+          }
+        },
+        {
+          "id": "proactive-intelligence-engine",
+          "type": "card",
+          "title": "Proactive intelligence engine",
+          "body": "Checks content freshness every 24 hours, regenerates anything stale, and alerts analysts to material changes.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Proactive intelligence engine",
+            "caption": null
+          }
+        },
+        {
+          "id": "retrieval-and-knowledge-layer",
+          "type": "card",
+          "title": "Retrieval and knowledge layer",
+          "body": "RAG retrieval over a vendor knowledge graph, vector database, and document store, feeding QBR reports and an AI query interface.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Retrieval and knowledge layer",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-frontend",
+              "label": "Frontend",
+              "value": "Next.js, React, TypeScript, Recharts"
+            },
+            {
+              "id": "row-ai-engine",
+              "label": "AI engine",
+              "value": "The client's in-house large language model, at zero external AI cost"
+            },
+            {
+              "id": "row-knowledge-store",
+              "label": "Knowledge store",
+              "value": "RAG retrieval, vendor knowledge graph, vector database, document store"
+            },
+            {
+              "id": "row-data-ingestion",
+              "label": "Data ingestion",
+              "value": "Manus AI orchestration, document parsing, API connectors, research and financial feeds"
+            },
+            {
+              "id": "row-financial-data",
+              "label": "Financial data",
+              "value": "Enterprise procurement system via GraphQL"
+            },
+            {
+              "id": "row-caching",
+              "label": "Caching",
+              "value": "Generated-output cache with a five-day lifetime"
+            },
+            {
+              "id": "row-controls",
+              "label": "Controls",
+              "value": "SSO, role-based access control, secret management"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "Five-plus disconnected systems, manual research, and spend visible only in monthly reports."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "One dashboard backed by an in-house LLM, live procurement data, a knowledge layer, and a cache-first request flow with scheduled refresh."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "An analyst opens a vendor and gets highlights, a briefing, spend detail, and research in one view. A cache hit returns instantly. On a miss, the AI engine combines the LLM with live web search, generates the brief, and caches it for the next request. In the background, a scheduler checks freshness every 24 hours and regenerates anything stale before anyone asks for it."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "Coverage now grows with the vendor portfolio, without proportional headcount growth."
+        },
+        {
+          "id": "metric-weekly-research-effort-per-analyst",
+          "type": "bento_metric",
+          "value": "~70% down",
+          "label": "Weekly research effort per analyst",
+          "variant": "small"
+        },
+        {
+          "id": "metric-vendor-briefing-previously-2-to-3-business-days",
+          "type": "bento_metric",
+          "value": "Under 5 min",
+          "label": "Vendor briefing, previously 2 to 3 business days",
+          "variant": "small"
+        },
+        {
+          "id": "metric-spend-visibility-previously-monthly-reports",
+          "type": "bento_metric",
+          "value": "Real time",
+          "label": "Spend visibility, previously monthly reports",
+          "variant": "small"
+        },
+        {
+          "id": "metric-systems-consolidated-into-one-platform",
+          "type": "bento_metric",
+          "value": "5+ to 1",
+          "label": "Systems consolidated into one platform",
+          "variant": "small"
+        },
+        {
+          "id": "metric-vendors-per-analyst-up-from-2-to-3",
+          "type": "bento_metric",
+          "value": "20+",
+          "label": "Vendors per analyst, up from 2 to 3",
+          "variant": "wide"
+        },
+        {
+          "id": "metric-estimated-annual-cost-optimization",
+          "type": "bento_metric",
+          "value": "$4M to $10M+",
+          "label": "Estimated annual cost optimization",
+          "variant": "wide"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "The cache-first generation pattern, prompt-governed LLM output with scheduled freshness checks, carries to any intelligence domain where research goes stale, and coverage scales from 20+ vendors to 100+ on the same platform. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "Running core intelligence on the client's in-house LLM at zero external AI cost, bringing live procurement data into a research tool while keeping sensitive spend behind role-based access, and handing over documentation and runbooks so the client team owns the platform long term."
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    }
+  ]
+}

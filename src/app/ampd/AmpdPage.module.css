@@ -1,0 +1,190 @@
+/* ==========================================================================
+   AmpdPage.module.css
+   Page-level styling for the Amp'd landing page (/ampd). Same page/main
+   wrapper as the Services landing page.
+   ========================================================================== */
+
+.page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* ==========================================================================
+   1. Hero (shared Services Hero, Amp'd-scoped overrides only)
+   ========================================================================== */
+.ampdHero {
+  /* HERO CONTENT POSITION — vertical shift of the heading + description.
+     Bigger value = content lower; smaller (or negative) = content higher. */
+  --ampd-hero-content-offset: 2.75rem;
+
+  /* HERO RIBBON POSITION — distance from the top of the hero to the top of
+     the ribbon image. Bigger value = ribbon lower; smaller = ribbon higher. */
+  --ampd-hero-ribbon-offset: 5rem;
+
+  /* Keeps the hero's internal layering (ribbon z-index 5, content 10)
+     inside the hero, so the video section that follows paints ON TOP of
+     the ribbon instead of underneath it. */
+  isolation: isolate;
+}
+
+/* Content block (heading + description) */
+.ampdHero :global(div:has(> h1)) {
+  transform: translateY(var(--ampd-hero-content-offset));
+}
+
+/* Heading: every line purple (the shared hero darkens the first line), with
+   the Figma line spacing. */
+.ampdHero :global(h1) {
+  line-height: var(--line-height-snug);
+}
+
+.ampdHero :global(h1 > span) {
+  color: var(--color-brand-primary);
+}
+
+/* Description: Figma size and measure. */
+.ampdHero :global(h1 + p) {
+  font-size: var(--font-size-lg);
+  max-width: 64rem;
+  margin-top: var(--space-5);
+}
+
+/* Ribbon: anchored from the top of the hero so its position doesn't depend
+   on the viewport height (the shared hero anchors it at bottom: -15%). */
+.ampdHero .ampdHeroRibbon {
+  top: var(--ampd-hero-ribbon-offset);
+  bottom: auto;
+}
+
+/* Below desktop the Figma line breaks would orphan words, so the heading
+   lines flow inline (a space is inserted between them). */
+@media (max-width: 1279px) {
+  .ampdHero :global(h1 > span) {
+    display: inline;
+  }
+
+  .ampdHero :global(h1 > span + span)::before {
+    content: " ";
+  }
+}
+
+/* Per-breakpoint position values (same two variables). */
+@media (max-width: 1024px) {
+  .ampdHero {
+    --ampd-hero-content-offset: 2rem;
+    --ampd-hero-ribbon-offset: 13rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ampdHero {
+    --ampd-hero-content-offset: 1rem;
+    --ampd-hero-ribbon-offset: 10rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .ampdHero {
+    --ampd-hero-ribbon-offset: 20rem;
+  }
+}
+
+/* ==========================================================================
+   2. "Beyond automation" video (shared VideoPlayer + Button, Amp'd-scoped)
+   ========================================================================== */
+.ampdVideo {
+  /* VIDEO POSITION — pulls the video up over the hero ribbon.
+     More negative = video higher (more overlap with the ribbon);
+     closer to 0 = video lower (less overlap). */
+  --ampd-video-offset: -6rem;
+  /* VIDEO WIDTH — maximum width of the video frame. */
+  --ampd-video-max-width: 60rem;
+  /* GAP BETWEEN VIDEO AND CTA */
+  --ampd-video-cta-gap: 4rem;
+
+  position: relative;
+  margin-top: var(--ampd-video-offset);
+  padding-block: var(--space-10);
+}
+
+.ampdVideoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Frame matches the thumbnail's own proportions (4322 × 2392) instead of
+   the player's default 16:9, so the thumbnail isn't cropped. */
+.ampdVideo .ampdVideoPlayer {
+  width: 100%;
+  max-width: var(--ampd-video-max-width);
+  aspect-ratio: 4322 / 2392;
+  border-radius: var(--radius-xl);
+}
+
+/* Show the thumbnail at its true brightness (the shared poster layer adds a
+   dark scrim, which the Figma thumbnail doesn't have). Amp'd only. */
+.ampdVideo .ampdVideoPlayer :global([class*="scrim"]) {
+  display: none;
+}
+
+.ampdVideoActions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--ampd-video-cta-gap);
+}
+
+@media (max-width: 768px) {
+  .ampdVideo {
+    --ampd-video-cta-gap: var(--space-10);
+  }
+}
+
+/* ==========================================================================
+   3. "Amp'd in production" (shared RunningToday / StatsCard, Amp'd-scoped)
+   ========================================================================== */
+.ampdStats {
+  /* SECTION SPACING — space above the heading and below the cards. */
+  --ampd-stats-padding-top: var(--space-24);
+  --ampd-stats-padding-bottom: var(--space-24);
+
+  min-height: auto;
+  padding-top: var(--ampd-stats-padding-top);
+  padding-bottom: var(--ampd-stats-padding-bottom);
+}
+
+/* Card label: black, 500 weight (Figma). */
+.ampdStats :global(article > p:first-of-type) {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+/* Heading and stat values at the Figma weight (600). */
+.ampdStats :global(h2),
+.ampdStats :global(article > div) {
+  font-weight: var(--font-weight-bold);
+}
+
+/* Card row width (Figma: 4 cards across 72.5rem). */
+.ampdStats :global(article) {
+  justify-content: flex-start;
+}
+
+.ampdStats :global(h2 + *),
+.ampdStats :global(div:has(> article)) {
+  max-width: 72.5rem;
+  margin-inline: auto;
+}
+
+/* Label measure — wraps as in the Figma. */
+.ampdStats :global(article > p:first-of-type) {
+  max-width: 11rem;
+}

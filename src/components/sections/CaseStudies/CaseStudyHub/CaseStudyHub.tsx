@@ -98,7 +98,9 @@ export function CaseStudyHub({
         const activeValues = selected[groupId];
         if (activeValues.size === 0) return true;
         const val = caseStudy[FIELD_BY_GROUP[groupId]];
-        return Boolean(val && activeValues.has(val));
+        if (!val) return false;
+        const vals = val.split(",").map((s) => s.trim());
+        return vals.some((v) => activeValues.has(v));
       });
       if (!matchesEveryGroup) return false;
 
@@ -110,23 +112,7 @@ export function CaseStudyHub({
     });
   }, [caseStudies, selected, searchQuery]);
 
-  const isFilteredOrSearched = useMemo(() => {
-    const hasActiveFilter = (
-      Object.keys(selected) as FilterGroupId[]
-    ).some((groupId) => selected[groupId].size > 0);
-    const hasActiveSearch = Boolean(
-      searchQuery && searchQuery.trim().length > 0
-    );
-
-    return hasActiveFilter || hasActiveSearch;
-  }, [selected, searchQuery]);
-
-  const visibleCaseStudies = useMemo(() => {
-    if (isFilteredOrSearched) {
-      return filteredCaseStudies;
-    }
-    return filteredCaseStudies.slice(0, 6);
-  }, [filteredCaseStudies, isFilteredOrSearched]);
+  const visibleCaseStudies = filteredCaseStudies;
 
   const groupsWithState: FilterGroupState[] = useMemo(() => {
     return filterGroups.map((group) => {
@@ -141,12 +127,11 @@ export function CaseStudyHub({
           value: option.value,
           label: option.label,
           checked: activeValues.has(option.value),
-          // Computed from the full dataset, not narrowed by other
-          // active filters — a simpler v1 than cross-filtered counts.
-          // See the chat report for why this diverges from Figma's
-          // static mock numbers.
-          count: caseStudies.filter((cs) => cs[field] === option.value)
-            .length,
+          count: caseStudies.filter((cs) => {
+            const v = cs[field];
+            if (!v) return false;
+            return v.split(",").map((s) => s.trim()).includes(option.value);
+          }).length,
         })),
       };
     });

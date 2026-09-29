@@ -1,0 +1,423 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "enterprise-mlops-vertex-ai",
+  "title": "80%+ accuracy sustained a year after go-live across 5M+ transactions a month",
+  "summary": "An MLOps platform on Google Cloud Vertex AI that automates training, deployment, and monitoring for the client's audio quality models, retraining them in response to new data.",
+  "client": "Global technology leader",
+  "industry": "Technology and internet",
+  "hero": {
+    "eyebrow": null,
+    "title": "80%+ accuracy sustained a year<br />after go-live across 5M+ transactions<br />a month",
+    "subtitle": null,
+    "summary": "An MLOps platform on Google Cloud Vertex AI that automates training, deployment, and monitoring for the client's audio quality models, retraining them in response to new data.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "80%+ accuracy sustained a year after go-live across 5M+ transactions a month | Agivant Case Study",
+    "description": "An MLOps platform on Google Cloud Vertex AI that automates training, deployment, and monitoring for the client's audio quality models, retraining them in response to new data.",
+    "canonical": "https://agivant.com/case-studies/enterprise-mlops-vertex-ai",
+    "ogImage": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-05.jpg",
+      "assetKey": "case-study-05",
+      "alt": "80%+ accuracy sustained a year after go-live across 5M+ transactions a month",
+      "caption": null
+    }
+  },
+  "capability": "MLOps & Scalable ML Platforms",
+  "techPlatform": "Google Cloud & Vertex AI",
+  "showFooter": true,
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": false,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "5M+ transactions a month in live production, 80%+ accuracy held a year after go-live, drift monitored continuously, and retraining and deployment running as automated pipelines.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & industry",
+          "body": "Global technology leader, running deep learning audio quality models in production"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "MLOps platform design and implementation, with ongoing monitoring and support"
+        },
+        {
+          "id": "scale",
+          "title": "Scale",
+          "body": "5M+ transactions a month"
+        },
+        {
+          "id": "maps-to-below-services",
+          "title": "Maps to below services",
+          "body": "MLOps & Scalable ML Platforms"
+        }
+      ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "Audio quality models that needed continuous retraining, with every step handled by hand."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "The audio quality models needed to retrain continuously for audio quality issues. The ML pipeline required a scalable platform, one that could adapt to changes in ML code and handle model versioning."
+        },
+        {
+          "id": "technical-barriers",
+          "type": "card",
+          "title": "Technical barriers",
+          "body": "The framework had to deploy, monitor, and maintain the models efficiently, with a consistent process for development, testing, and deployment. Model training, deployment, and uploads to the repository needed automating. CI/CD had to cover new code, model re-creation, and continuous deployment of new models, and monitoring, logging, and alerting had to track model effectiveness over time."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant's role",
+          "body": "MLOps architecture, Vertex AI pipeline engineering, CI/CD for ML, and ongoing model monitoring and support"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Agivant implemented an MLOps process that runs the ML workflow from development to production, using Google Cloud Vertex AI as a unified platform with serverless infrastructure and low-code and no-code implementation. Every step in the ML system is automated: code pushes trigger tested builds, pipelines extract features and train and evaluate models, and new versions move through the registry to serving with monitoring attached. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "ml-development-workspace",
+          "type": "card",
+          "title": "ML development workspace",
+          "body": "Data scientists and ML engineers develop in Vertex AI Workbench, with training code, tests, Dockerfiles, scripts, and configurations in GitHub.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "ML development workspace",
+            "caption": null
+          }
+        },
+        {
+          "id": "ci-on-every-code-push",
+          "type": "card",
+          "title": "CI on every code push",
+          "body": "Each push triggers Cloud Build to run unit and integration tests, build Docker images, and compile the Kubeflow pipeline.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "CI on every code push",
+            "caption": null
+          }
+        },
+        {
+          "id": "container-and-artifact-management",
+          "type": "card",
+          "title": "Container and artifact management",
+          "body": "Container images for pipeline components go to Artifact Registry, and pipeline artifacts to Cloud Storage.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Container and artifact management",
+            "caption": null
+          }
+        },
+        {
+          "id": "automated-training-pipeline",
+          "type": "card",
+          "title": "Automated training pipeline",
+          "body": "Vertex AI Pipelines pull training and test data, extract features, train the model, and evaluate it.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Automated training pipeline",
+            "caption": null
+          }
+        },
+        {
+          "id": "feature-store",
+          "type": "card",
+          "title": "Feature store",
+          "body": "Features flow from BigQuery through Vertex AI Feature Store into training.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Feature store",
+            "caption": null
+          }
+        },
+        {
+          "id": "model-registry",
+          "type": "card",
+          "title": "Model registry",
+          "body": "Each trained model is registered with version control, audit trails, and accountability.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Model registry",
+            "caption": null
+          }
+        },
+        {
+          "id": "model-serving",
+          "type": "card",
+          "title": "Model serving",
+          "body": "Registered models deploy to Vertex AI Model Serving, powering the prediction service.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Model serving",
+            "caption": null
+          }
+        },
+        {
+          "id": "model-monitoring",
+          "type": "card",
+          "title": "Model monitoring",
+          "body": "Vertex AI Model Monitoring tracks performance, logs, and alerts, with continuous drift monitoring feeding the next retraining.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Model monitoring",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-source-and-ci",
+              "label": "Source and CI",
+              "value": "GitHub, Cloud Build, Artifact Registry"
+            },
+            {
+              "id": "row-development",
+              "label": "Development",
+              "value": "Vertex AI Workbench"
+            },
+            {
+              "id": "row-pipelines",
+              "label": "Pipelines",
+              "value": "Vertex AI Pipelines, Kubeflow"
+            },
+            {
+              "id": "row-data-and-features",
+              "label": "Data and features",
+              "value": "BigQuery, Cloud Storage, Vertex AI Feature Store"
+            },
+            {
+              "id": "row-serving",
+              "label": "Serving",
+              "value": "Vertex AI Model Registry, Model Serving"
+            },
+            {
+              "id": "row-monitoring",
+              "label": "Monitoring",
+              "value": "Vertex AI Model Monitoring"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "Manual training, deployment, and uploads, no consistent development-to-deployment process, and no ongoing view of model effectiveness."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "Tested builds on every code push, automated retraining pipelines, a versioned registry, continuous deployment, and drift monitoring."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "A data scientist pushes new training code, and Cloud Build runs the tests, builds the containers, and compiles the Kubeflow pipeline. Vertex AI trains and evaluates the model, registers the new version, and deploys it to serving. Monitoring tracks its performance and raises alerts on drift, feeding the next retraining run, and data scientists, ML engineers, IT operations, and business stakeholders all work from the same process."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "Models still accurate a year after go-live, with faster time to market, fewer resources needed for development and deployment, and every version traceable."
+        },
+        {
+          "id": "metric-transactions-a-month-in-live-production",
+          "type": "bento_metric",
+          "value": "5M+",
+          "label": "Transactions a month in live production",
+          "variant": "small"
+        },
+        {
+          "id": "metric-accuracy-sustained-a-year-after-go-live",
+          "type": "bento_metric",
+          "value": "80%+",
+          "label": "Accuracy sustained a year after go-live",
+          "variant": "small"
+        },
+        {
+          "id": "metric-retraining-and-deployment-pipelines",
+          "type": "bento_metric",
+          "value": "Automated",
+          "label": "Retraining and deployment pipelines",
+          "variant": "small"
+        },
+        {
+          "id": "metric-drift-monitoring",
+          "type": "bento_metric",
+          "value": "Continuous",
+          "label": "Drift monitoring",
+          "variant": "small"
+        },
+        {
+          "id": "metric-audit-trail-and-version-control",
+          "type": "bento_metric",
+          "value": "Full",
+          "label": "Audit trail and version control",
+          "variant": "wide"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "The MLOps framework is an approved Agivant solution on Google Cloud, built on Vertex AI and customizable for other platforms, and it keeps the audio quality engine accurate in production. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "Adapting the pipeline to frequent changes in ML code while handling model versioning, and retraining, adjusting, and redeploying models quickly in response to new data."
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    }
+  ]
+}

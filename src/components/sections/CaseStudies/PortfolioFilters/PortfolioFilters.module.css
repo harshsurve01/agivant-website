@@ -3,7 +3,9 @@
    ========================================================================== */
 
 .panel {
-  position: relative;
+  position: sticky;
+  top: 6.5rem;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
@@ -18,6 +20,10 @@
   box-shadow: 0 8px 32px rgba(133, 0, 223, 0.04),
     inset 0 0 4px rgba(4, 4, 4, 0.06);
   align-self: flex-start;
+  max-height: calc(100vh - 8rem);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(133, 0, 223, 0.2) transparent;
 }
 
 .header {
@@ -136,6 +142,9 @@
    -------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .panel {
+    position: static;
     max-width: none;
+    max-height: none;
+    overflow-y: visible;
   }
 }

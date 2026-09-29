@@ -1,0 +1,430 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "unified-data-platform-grounding-layer",
+  "title": "Pipeline maintenance down 80%, with auto-recovery in minutes",
+  "summary": "A unified, AI-ready data platform for a global engineering software enterprise, bringing enterprise applications, cloud storage, APIs, and containerized environments together on resilient pipelines that take in 250GB+ a week.",
+  "client": "Global engineering software enterprise",
+  "industry": "Semiconductor and EDA",
+  "hero": {
+    "eyebrow": null,
+    "title": "Pipeline maintenance down 80%,<br />with auto-recovery in minutes",
+    "subtitle": null,
+    "summary": "A unified, AI-ready data platform for a global engineering software enterprise, bringing enterprise applications, cloud storage, APIs, and containerized environments together on resilient pipelines that take in 250GB+ a week.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "Pipeline maintenance down 80%, with auto-recovery in minutes | Agivant Case Study",
+    "description": "A unified, AI-ready data platform for a global engineering software enterprise, bringing enterprise applications, cloud storage, APIs, and containerized environments together on resilient pipelines that take in 250GB+ a week.",
+    "canonical": "https://agivant.com/case-studies/unified-data-platform-grounding-layer",
+    "ogImage": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-04.jpg",
+      "assetKey": "case-study-04",
+      "alt": "Pipeline maintenance down 80%, with auto-recovery in minutes",
+      "caption": null
+    }
+  },
+  "capability": "Data Engineering & Advanced Analytics",
+  "techPlatform": "Snowflake",
+  "showFooter": true,
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": false,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "Pipeline maintenance down from 20 hours a week to 4, recovery in minutes where failures once meant manual 3am restarts, 80% of engineering effort redirected to new AI and ML features, and 100% of business reports on time.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & industry",
+          "body": "Global engineering software enterprise, with operational data across observability, CMDB, identity, and ticketing systems"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "Build and operation of a unified data platform, with warehousing, analytics reporting, and business communications owned by Agivant"
+        },
+        {
+          "id": "scale",
+          "title": "Scale",
+          "body": "250GB+ of new data a week from enterprise applications, cloud storage, APIs, and Kubernetes environments"
+        },
+        {
+          "id": "maps-to-below-services",
+          "title": "Maps to below services",
+          "body": "Data Engineering & Advanced Analytics"
+        }
+      ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "Pipelines that failed at 3am and waited for a person, and silent failures that produced wrong reports."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "When a pipeline failed, someone had to restart it by hand, and recovery took around three hours. Maintenance cost grew linearly with data, so more data meant more staff."
+        },
+        {
+          "id": "technical-barriers",
+          "type": "card",
+          "title": "Technical barriers",
+          "body": "Operational data sat fragmented across observability, CMDB, identity, and ticket systems. 80% of engineering effort went into keeping the lights on, with 20 hours a week spent on pipeline maintenance."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant's role",
+          "body": "Data platform engineering, multi-source ingestion, self-healing pipelines, and data quality across the consolidated warehouse"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Agivant consolidated observability, CMDB, identity, and ticket data into one governed Snowflake warehouse, then built the agent layer on top of it. The platform takes in data from enterprise applications, cloud storage, APIs, Kubernetes, and operational systems through efficient, low-latency pipelines, processing 250GB+ of new data every week. A self-healing framework recovers failures automatically within minutes, anomaly detection stops bad data at the source, and workflows are orchestrated and monitored automatically. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "unified-operational-warehouse",
+          "type": "card",
+          "title": "Unified operational warehouse",
+          "body": "Observability, CMDB, identity, and ticket history in one governed Snowflake platform, centralized for enterprise-wide use.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Unified operational warehouse",
+            "caption": null
+          }
+        },
+        {
+          "id": "multi-source-ingestion",
+          "type": "card",
+          "title": "Multi-source ingestion",
+          "body": "Pipelines take in data from enterprise applications, cloud storage, APIs, Kubernetes, and operational systems.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Multi-source ingestion",
+            "caption": null
+          }
+        },
+        {
+          "id": "self-healing-pipelines",
+          "type": "card",
+          "title": "Self-healing pipelines",
+          "body": "Failures recover automatically within minutes, leaving engineers only the edge cases.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Self-healing pipelines",
+            "caption": null
+          }
+        },
+        {
+          "id": "orchestration-and-monitoring",
+          "type": "card",
+          "title": "Orchestration and monitoring",
+          "body": "Workflows are orchestrated and monitored automatically, with operational visibility across disparate systems.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Orchestration and monitoring",
+            "caption": null
+          }
+        },
+        {
+          "id": "anomaly-detection-at-the-source",
+          "type": "card",
+          "title": "Anomaly detection at the source",
+          "body": "Enterprise-grade data quality checks stop bad data before it reaches a report.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Anomaly detection at the source",
+            "caption": null
+          }
+        },
+        {
+          "id": "scalable-architecture",
+          "type": "card",
+          "title": "Scalable architecture",
+          "body": "Supports growing data volumes and new sources, with more data running on the same staff.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Scalable architecture",
+            "caption": null
+          }
+        },
+        {
+          "id": "reporting-and-business-communications",
+          "type": "card",
+          "title": "Reporting and business communications",
+          "body": "Warehousing, analytics reporting, and business communications run by Agivant, with every report reaching the business on time.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Reporting and business communications",
+            "caption": null
+          }
+        },
+        {
+          "id": "grounding-layer-for-ai",
+          "type": "card",
+          "title": "Grounding layer for AI",
+          "body": "Trusted, analytics-ready datasets power dashboards, analytics, and the agents built on the platform, including the 24/7 IT front door.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Grounding layer for AI",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-warehouse",
+              "label": "Warehouse",
+              "value": "Snowflake"
+            },
+            {
+              "id": "row-data-domains",
+              "label": "Data domains",
+              "value": "Observability, CMDB, identity, ticket history"
+            },
+            {
+              "id": "row-ingestion-sources",
+              "label": "Ingestion sources",
+              "value": "Enterprise applications, cloud storage, APIs, Kubernetes, operational systems"
+            },
+            {
+              "id": "row-pipeline-recovery",
+              "label": "Pipeline recovery",
+              "value": "Self-healing framework with automated failure recovery"
+            },
+            {
+              "id": "row-data-quality",
+              "label": "Data quality",
+              "value": "Anomaly detection and enterprise-grade quality checks"
+            },
+            {
+              "id": "row-consumers",
+              "label": "Consumers",
+              "value": "Dashboards, analytics, and AI agents"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "Manual restarts after 3am failures, silent failures producing wrong reports, 80% of effort keeping the lights on, and cost that grew with data volume."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "Auto-recovery within minutes, anomaly detection stopping bad data, 80% of effort on new AI and ML features, and more data on the same staff."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "A pipeline fails at 3am and the self-healing framework recovers it within minutes, so data stays available to executives. Anomaly detection stops bad data at the source, which gives the business every report on time and more confidence in the GenAI outputs built on the same data. Pipeline upkeep dropped from 20 engineering hours a week to 4, edge cases only, and 80% of engineering effort now goes into new AI and ML features."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "Faster access to trusted data across teams, reduced downtime, and a cost curve that no longer tracks data volume."
+        },
+        {
+          "id": "metric-pipeline-maintenance-20-hrs-a-week-to-4",
+          "type": "bento_metric",
+          "value": "80% down",
+          "label": "Pipeline maintenance, 20 hrs a week to 4",
+          "variant": "small"
+        },
+        {
+          "id": "metric-recovery-time-previously-about-3-hours",
+          "type": "bento_metric",
+          "value": "Minutes",
+          "label": "Recovery time, previously about 3 hours",
+          "variant": "small"
+        },
+        {
+          "id": "metric-engineering-effort-redirected-to-new-ai-and-ml-features",
+          "type": "bento_metric",
+          "value": "80%",
+          "label": "Engineering effort redirected to new AI and ML features",
+          "variant": "small"
+        },
+        {
+          "id": "metric-business-reports-on-time",
+          "type": "bento_metric",
+          "value": "100%",
+          "label": "Business reports on time",
+          "variant": "small"
+        },
+        {
+          "id": "metric-new-data-ingested-every-week",
+          "type": "bento_metric",
+          "value": "250GB+",
+          "label": "New data ingested every week",
+          "variant": "wide"
+        },
+        {
+          "id": "metric-cost-overruns",
+          "type": "bento_metric",
+          "value": "Zero",
+          "label": "Cost overruns",
+          "variant": "wide"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "The unified warehouse doubles as the grounding layer, so agent output rests on defensible data, and the self-healing framework keeps recovery automatic as data volumes and sources grow. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "Consolidating observability, CMDB, identity, and ticket history into one governed model, catching silent failures before they reached a report, and scaling data volume without adding staff."
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    }
+  ]
+}

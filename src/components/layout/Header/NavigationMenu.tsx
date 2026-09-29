@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import { ChevronDown } from "@/components/ui/Icon/ChevronDown";
 import { ArrowRight } from "@/components/ui/Icon/ArrowRight";
@@ -25,19 +26,26 @@ export interface NavigationMenuProps {
  * - Click-outside and Escape key dismissal
  * - Closing on item navigation
  */
+const AUTO_ROTATE_INTERVAL_MS = 5000;
+const DRAG_START_THRESHOLD_PX = 15;
+
 export function NavigationMenu({ navigation }: NavigationMenuProps) {
+  const router = useRouter();
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("services");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFeatured, setActiveFeatured] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
+  const [isCarouselHovered, setIsCarouselHovered] = useState(false);
   const isOpen = openMenuId !== null;
 
   // Pointer-drag (mouse + touch) state for the featured carousel
   const dragStartXRef = useRef<number | null>(null);
   const didDragRef = useRef(false);
+  const isDraggingRef = useRef(false);
+  const menuLeaveTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const triggerRefs = useRef<Record<string, HTMLElement | null>>({});
   const panelRef = useRef<HTMLDivElement>(null);
 
   // The navigation item whose mega menu is currently open
@@ -108,7 +116,56 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
     };
   }, [isOpen, openMenuId]);
 
+  const clearMenuLeaveTimer = () => {
+    if (menuLeaveTimerRef.current) {
+      clearTimeout(menuLeaveTimerRef.current);
+      menuLeaveTimerRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (menuLeaveTimerRef.current) {
+        clearTimeout(menuLeaveTimerRef.current);
+      }
+    };
+  }, []);
+
+  const handleNavMouseEnter = (item: NavigationItem) => {
+    clearMenuLeaveTimer();
+    if (item.megaMenu) {
+      if (openMenuId !== item.id) {
+        setOpenMenuId(item.id);
+        setActiveCategory(
+          item.megaMenu.defaultCategoryId ??
+            item.megaMenu.categories[0]?.id ??
+            ""
+        );
+        setSearchQuery("");
+      }
+    }
+  };
+
+  const handleNavMouseLeave = () => {
+    clearMenuLeaveTimer();
+    menuLeaveTimerRef.current = setTimeout(() => {
+      setOpenMenuId(null);
+    }, 200);
+  };
+
+  const handlePanelMouseEnter = () => {
+    clearMenuLeaveTimer();
+  };
+
+  const handlePanelMouseLeave = () => {
+    clearMenuLeaveTimer();
+    menuLeaveTimerRef.current = setTimeout(() => {
+      setOpenMenuId(null);
+    }, 200);
+  };
+
   const handleTriggerClick = (item: NavigationItem) => {
+    clearMenuLeaveTimer();
     if (openMenuId === item.id) {
       setOpenMenuId(null);
       return;
@@ -116,8 +173,11 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
     const menu = item.megaMenu;
     setActiveCategory(menu?.defaultCategoryId ?? menu?.categories[0]?.id ?? "");
     setSearchQuery("");
-    setActiveFeatured(0);
     setOpenMenuId(item.id);
+  };
+
+  const handleCategoryHover = (categoryId: string) => {
+    setActiveCategory(categoryId);
   };
 
   const handleCategoryClick = (categoryId: string) => {
@@ -126,6 +186,7 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
   };
 
   const handleLinkClick = () => {
+    clearMenuLeaveTimer();
     setOpenMenuId(null);
   };
 
@@ -135,34 +196,77 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
   const DRAG_THRESHOLD_PX = 50;
   const featuredCount = featured?.items.length ?? 0;
 
+  // Auto-rotating featured carousel (continuous 5s loop, paused on card hover/drag)
+  // Kept independent of activeCategory so hovering left navigation never resets it.
+  useEffect(() => {
+    if (!isOpen || !featured || featuredCount <= 1 || isCarouselHovered) {
+      return;
+    }
+
+    const timer = setInterval(() => {
+      if (!isDraggingRef.current) {
+        setActiveFeatured((prev) => (prev + 1) % featuredCount);
+      }
+    }, AUTO_ROTATE_INTERVAL_MS);
+
+    return () => clearInterval(timer);
+  }, [isOpen, featured, featuredCount, isCarouselHovered]);
+
   const handleFeaturedPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (featuredCount < 2 || (e.pointerType === "mouse" && e.button !== 0)) return;
     dragStartXRef.current = e.clientX;
     didDragRef.current = false;
-    e.currentTarget.setPointerCapture(e.pointerId);
+    isDraggingRef.current = false;
+    // Do NOT capture pointer on pointerdown — doing so breaks click events on child <a> elements in Chromium.
   };
 
   const handleFeaturedPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (dragStartXRef.current === null) return;
     const dx = e.clientX - dragStartXRef.current;
-    if (Math.abs(dx) > 5) didDragRef.current = true;
-    setDragOffset(dx);
+    if (!didDragRef.current && Math.abs(dx) > DRAG_START_THRESHOLD_PX) {
+      didDragRef.current = true;
+      isDraggingRef.current = true;
+      try {
+        if (!e.currentTarget.hasPointerCapture(e.pointerId)) {
+          e.currentTarget.setPointerCapture(e.pointerId);
+        }
+      } catch {
+        // Fallback if not supported
+      }
+    }
+    if (didDragRef.current) {
+      setDragOffset(dx);
+    }
   };
 
   const endFeaturedDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    isDraggingRef.current = false;
     if (dragStartXRef.current === null) return;
     const dx = e.clientX - dragStartXRef.current;
+    const wasDragging = didDragRef.current;
     dragStartXRef.current = null;
     setDragOffset(0);
+
     if (e.currentTarget.hasPointerCapture(e.pointerId)) {
-      e.currentTarget.releasePointerCapture(e.pointerId);
+      try {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      } catch {
+        // Fallback
+      }
     }
-    if (Math.abs(dx) >= DRAG_THRESHOLD_PX && featuredCount > 1) {
+
+    if (wasDragging && Math.abs(dx) >= DRAG_THRESHOLD_PX && featuredCount > 1) {
       setActiveFeatured((prev) =>
         dx < 0
           ? (prev + 1) % featuredCount
           : (prev - 1 + featuredCount) % featuredCount
       );
+    }
+
+    if (wasDragging) {
+      setTimeout(() => {
+        didDragRef.current = false;
+      }, 50);
     }
   };
 
@@ -175,37 +279,104 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
     }
   };
 
+  const handleCardClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (didDragRef.current) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
+    // Allow user to use middle click or ctrl/cmd click for new tab
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) {
+      return;
+    }
+
+    e.preventDefault();
+    clearMenuLeaveTimer();
+    setOpenMenuId(null);
+    router.push(href);
+  };
+
   return (
     <nav aria-label="Primary" className={styles.nav}>
       <ul className={styles.navList}>
         {navigation.map((item) => {
           if (item.megaMenu) {
             const isItemOpen = openMenuId === item.id;
+            const isDirectLink = Boolean(
+              item.href && item.href !== "#" && item.href !== "/what-we-build"
+            );
+
             return (
-              <li key={item.id} className={styles.navItem}>
-                <button
-                  ref={(el) => {
-                    triggerRefs.current[item.id] = el;
-                  }}
-                  type="button"
-                  onClick={() => handleTriggerClick(item)}
-                  className={clsx(
-                    styles.navLink,
-                    styles.navTrigger,
-                    isItemOpen && styles.navTriggerActive
-                  )}
-                  aria-expanded={isItemOpen}
-                  aria-controls={`${item.id}-mega-menu`}
-                  aria-haspopup="true"
-                >
-                  <span>{item.label}</span>
-                  <ChevronDown
+              <li
+                key={item.id}
+                className={styles.navItem}
+                onMouseEnter={() => handleNavMouseEnter(item)}
+                onMouseLeave={handleNavMouseLeave}
+              >
+                {isDirectLink ? (
+                  <div
                     className={clsx(
-                      styles.chevron,
-                      isItemOpen && styles.chevronOpen
+                      styles.navLink,
+                      styles.navTrigger,
+                      isItemOpen && styles.navTriggerActive
                     )}
-                  />
-                </button>
+                  >
+                    <Link
+                      ref={(el) => {
+                        triggerRefs.current[item.id] = el;
+                      }}
+                      href={item.href}
+                      onClick={handleLinkClick}
+                      className={styles.navTriggerLink}
+                      aria-expanded={isItemOpen}
+                      aria-controls={`${item.id}-mega-menu`}
+                      aria-haspopup="true"
+                    >
+                      {item.label}
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => handleTriggerClick(item)}
+                      className={styles.chevronButton}
+                      aria-label={`Toggle ${item.label} menu`}
+                    >
+                      <ChevronDown
+                        className={clsx(
+                          styles.chevron,
+                          isItemOpen && styles.chevronOpen
+                        )}
+                      />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    ref={(el) => {
+                      triggerRefs.current[item.id] = el;
+                    }}
+                    type="button"
+                    onClick={() => handleTriggerClick(item)}
+                    className={clsx(
+                      styles.navLink,
+                      styles.navTrigger,
+                      isItemOpen && styles.navTriggerActive
+                    )}
+                    aria-expanded={isItemOpen}
+                    aria-controls={`${item.id}-mega-menu`}
+                    aria-haspopup="true"
+                  >
+                    <span>{item.label}</span>
+                    <ChevronDown
+                      className={clsx(
+                        styles.chevron,
+                        isItemOpen && styles.chevronOpen
+                      )}
+                    />
+                  </button>
+                )}
               </li>
             );
           }
@@ -230,8 +401,11 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
           ref={panelRef}
           id={`${openMenuItem.id}-mega-menu`}
           className={styles.megaMenuPanel}
+          data-menu-id={openMenuItem.id}
           role="region"
           aria-label={megaMenuData.title}
+          onMouseEnter={handlePanelMouseEnter}
+          onMouseLeave={handlePanelMouseLeave}
         >
           <div className={styles.megaMenuInner}>
             {/* Left Sidebar */}
@@ -244,24 +418,43 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
               <ul className={styles.categoryList}>
                 {megaMenuData.categories.map((category) => {
                   const isActive = activeCategory === category.id;
+                  const categoryContent = (
+                    <>
+                      <span
+                        className={styles.categoryArrow}
+                        aria-hidden="true"
+                      >
+                        &rarr;
+                      </span>
+                      <span>{category.label}</span>
+                    </>
+                  );
+                  const buttonClasses = clsx(
+                    styles.categoryButton,
+                    isActive && styles.categoryButtonActive
+                  );
+
                   return (
                     <li key={category.id}>
-                      <button
-                        type="button"
-                        onClick={() => handleCategoryClick(category.id)}
-                        className={clsx(
-                          styles.categoryButton,
-                          isActive && styles.categoryButtonActive
-                        )}
-                      >
-                        <span
-                          className={styles.categoryArrow}
-                          aria-hidden="true"
+                      {category.href ? (
+                        <Link
+                          href={category.href}
+                          onClick={handleLinkClick}
+                          onMouseEnter={() => handleCategoryHover(category.id)}
+                          className={buttonClasses}
                         >
-                          &rarr;
-                        </span>
-                        <span>{category.label}</span>
-                      </button>
+                          {categoryContent}
+                        </Link>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => handleCategoryClick(category.id)}
+                          onMouseEnter={() => handleCategoryHover(category.id)}
+                          className={buttonClasses}
+                        >
+                          {categoryContent}
+                        </button>
+                      )}
                     </li>
                   );
                 })}
@@ -304,7 +497,11 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
 
               {/* Featured carousel (menus with `featured` data, e.g. Resources) */}
               {featured && featuredItem && (
-                <div className={styles.featured}>
+                <div
+                  className={styles.featured}
+                  onMouseEnter={() => setIsCarouselHovered(true)}
+                  onMouseLeave={() => setIsCarouselHovered(false)}
+                >
                   <div
                     className={clsx(
                       styles.featuredTrack,
@@ -367,7 +564,7 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
                       <Link
                         key={featuredItem.id}
                         href={featuredItem.href}
-                        onClick={handleLinkClick}
+                        onClick={(e) => handleCardClick(e, featuredItem.href)}
                         className={styles.featuredCard}
                       >
                         {cardContent}

@@ -1,0 +1,442 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "ml-audio-quality-monitoring",
+  "title": "97% classification accuracy on test data, with 5M support calls a month scored in production",
+  "summary": "A deep learning engine that measures audio quality on two-way customer service calls, pinpoints the source of each issue, and maps call quality by geography and carrier.",
+  "client": "Global technology leader",
+  "industry": "Technology and internet",
+  "hero": {
+    "eyebrow": null,
+    "title": "97% classification accuracy on<br />test data, with 5M support calls<br />a month scored in production",
+    "subtitle": null,
+    "summary": "A deep learning engine that measures audio quality on two-way customer service calls, pinpoints the source of each issue, and maps call quality by geography and carrier.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "97% classification accuracy on test data, with 5M support calls a month scored in production | Agivant Case Study",
+    "description": "A deep learning engine that measures audio quality on two-way customer service calls, pinpoints the source of each issue, and maps call quality by geography and carrier.",
+    "canonical": "https://agivant.com/case-studies/ml-audio-quality-monitoring",
+    "ogImage": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-06.jpg",
+      "assetKey": "case-study-06",
+      "alt": "97% classification accuracy on test data, with 5M support calls a month scored in production",
+      "caption": null
+    }
+  },
+  "capability": "AI & ML Engineering",
+  "techPlatform": "Google Cloud & Vertex AI",
+  "showFooter": true,
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": false,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "5M calls processed a month, 97% overall classification accuracy, processing time down 50%, support hours down about 60%, customer satisfaction up 25%, and an estimated $5M saved a year.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & industry",
+          "body": "Global technology leader, with two-way customer service calls between representatives and end customers"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "Custom audio quality analysis on Vertex AI, productionized along with MLOps"
+        },
+        {
+          "id": "scale",
+          "title": "Scale",
+          "body": "5M calls a month, with 5 to 7% affected by audio quality issues"
+        },
+        {
+          "id": "business-owner",
+          "title": "Business owner",
+          "body": "The client's availability and reliability team"
+        },
+        {
+          "id": "maps-to-below-services",
+          "title": "Maps to below services",
+          "body": "AI & ML Engineering, MLOps & Scalable ML Platforms"
+        }
+      ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "Audio quality issues affecting 5 to 7% of customer service calls, with no reliable way to catch or trace them."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "Each recorded call was evaluated manually and given one overall rating based on the audio issues observed. Evaluating that many call files by hand was cumbersome and time-consuming, and support agents needed real-time help to reduce resolution time."
+        },
+        {
+          "id": "technical-barriers",
+          "type": "card",
+          "title": "Technical barriers",
+          "body": "Existing tools used RMSE and spectrograms to visualize and analyze signals, so echo, lag, low volume, and background noise went unrecognized. Issues were never captured or scored by type, root cause analysis and proactive monitoring of problem calls were missing, and call quality was never tracked at regular intervals by geography, carrier, time of day, or day of week."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant's role",
+          "body": "Deep learning model development, audio processing pipeline engineering, scoring framework design, and call insights dashboards"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Agivant built and implemented a complete audio quality solution on Vertex AI. Call recordings are copied from storage into a Dataflow pipeline, split into 30-second segments, and scored segment by segment through model inference. Speaker diarization distinguishes and labels each speaker, a weighted scoring framework combines attribute scores into one call score, and results land in BigQuery for dashboards and anomaly detection. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "multi-attribute-quality-scoring",
+          "type": "card",
+          "title": "Multi-attribute quality scoring",
+          "body": "Deep learning models measure multiple audio quality attributes on two-way calls, detecting echo, lag, low volume, and noise.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Multi-attribute quality scoring",
+            "caption": null
+          }
+        },
+        {
+          "id": "speaker-diarization",
+          "type": "card",
+          "title": "Speaker diarization",
+          "body": "Distinguishes and labels each speaker in the recording, segmenting the content by speaker so the source of an issue during a call is clear.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Speaker diarization",
+            "caption": null
+          }
+        },
+        {
+          "id": "weighted-scoring-framework",
+          "type": "card",
+          "title": "Weighted scoring framework",
+          "body": "Combines attribute scores into one customized, weighted quality score per call.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Weighted scoring framework",
+            "caption": null
+          }
+        },
+        {
+          "id": "call-insights-dashboards",
+          "type": "card",
+          "title": "Call insights dashboards",
+          "body": "Maps regular performance, with quality distribution by geography, carrier, and other call metadata, and highlights anomalies.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Call insights dashboards",
+            "caption": null
+          }
+        },
+        {
+          "id": "anomaly-detection",
+          "type": "card",
+          "title": "Anomaly detection",
+          "body": "Quantitative measures and statistical analysis flag deviations from normal patterns, such as abnormal CSAT scores or average handling time alerts.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Anomaly detection",
+            "caption": null
+          }
+        },
+        {
+          "id": "parallel-processing-pipeline",
+          "type": "card",
+          "title": "Parallel processing pipeline",
+          "body": "Dataflow processes call files in large-scale parallel runs, with copies purged after processing and accessible only to the pipeline.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Parallel processing pipeline",
+            "caption": null
+          }
+        },
+        {
+          "id": "audio-scoring-outputs",
+          "type": "card",
+          "title": "Audio scoring outputs",
+          "body": "Each call produces an audio scoring summary and segment-level details, read through the BigQuery Storage Read API.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Audio scoring outputs",
+            "caption": null
+          }
+        },
+        {
+          "id": "ml-lifecycle-on-vertex-ai",
+          "type": "card",
+          "title": "ML lifecycle on Vertex AI",
+          "body": "Model training, deployment, registry, serving, and monitoring all run on Vertex AI.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "ML lifecycle on Vertex AI",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-ml-platform",
+              "label": "ML platform",
+              "value": "Vertex AI training, deployment, registry, serving, and monitoring"
+            },
+            {
+              "id": "row-processing",
+              "label": "Processing",
+              "value": "Cloud Dataflow ML"
+            },
+            {
+              "id": "row-storage-and-results",
+              "label": "Storage and results",
+              "value": "Cloud Storage, BigQuery"
+            },
+            {
+              "id": "row-data-access",
+              "label": "Data access",
+              "value": "BigQuery Storage Read API"
+            },
+            {
+              "id": "row-orchestration",
+              "label": "Orchestration",
+              "value": "Cloud Composer, Workflows, Cloud Scheduler"
+            },
+            {
+              "id": "row-controls",
+              "label": "Controls",
+              "value": "Cloud IAM, Cloud Monitoring, Cloud Logging, file copies accessible only to the Dataflow pipeline"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "Manual call-by-call review, one overall rating, echo and lag unrecognized, and no pattern tracking."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "Every call segmented, scored per attribute and per speaker, rolled into a weighted score, and mapped by geography and carrier."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "A call recording is copied into the Dataflow pipeline and split into 30-second segments. Vertex AI predicts quality on each segment, diarization shows who was speaking when the issue occurred, and the scores land in BigQuery. Dashboards map quality by geography and carrier, anomaly detection flags unusual CSAT or handling time patterns, and the copy is purged once processing finishes."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "Call quality issues are now identified automatically and traced to their source, with fewer agent hours per call."
+        },
+        {
+          "id": "metric-calls-processed-a-month",
+          "type": "bento_metric",
+          "value": "5M",
+          "label": "Calls processed a month",
+          "variant": "small"
+        },
+        {
+          "id": "metric-overall-classification-accuracy-on-test-data-using-32-audio-metadata-attributes",
+          "type": "bento_metric",
+          "value": "97%",
+          "label": "Overall classification accuracy on test data, using 32 audio metadata attributes",
+          "variant": "small"
+        },
+        {
+          "id": "metric-accuracy-on-5-audio-quality-attributes",
+          "type": "bento_metric",
+          "value": "80%+",
+          "label": "Accuracy on 5 audio quality attributes",
+          "variant": "small"
+        },
+        {
+          "id": "metric-processing-time",
+          "type": "bento_metric",
+          "value": "50% down",
+          "label": "Processing time",
+          "variant": "small"
+        },
+        {
+          "id": "metric-support-hours",
+          "type": "bento_metric",
+          "value": "~60% down",
+          "label": "Support hours",
+          "variant": "wide"
+        },
+        {
+          "id": "metric-customer-satisfaction-score",
+          "type": "bento_metric",
+          "value": "+25%",
+          "label": "Customer satisfaction score",
+          "variant": "wide"
+        },
+        {
+          "id": "metric-annual-cost-savings",
+          "type": "bento_metric",
+          "value": "Est. $5M",
+          "label": "Annual cost savings",
+          "variant": "wide"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "The audio quality measurement framework is an approved Agivant solution on Google Cloud, and it runs on the Vertex AI MLOps platform that keeps its models accurate. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "Recognizing issues that signal-level tools missed, classifying quality across 32 audio metadata attributes in high-dimensional space, and processing call files at scale while keeping them accessible only to the pipeline."
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    }
+  ]
+}

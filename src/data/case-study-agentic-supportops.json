@@ -1,0 +1,427 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "agentic-supportops",
+  "title": "$20M+ projected annual capex saving from agentic IT support operations",
+  "summary": "A business case for agentic IT support, modelled for a Tier-1 enterprise with a 120+ person support ops team, with six agents covering the full ticket lifecycle on Gemini Enterprise.",
+  "client": "Global technology leader",
+  "industry": "Technology and internet",
+  "hero": {
+    "eyebrow": null,
+    "title": "$20M+ projected annual capex<br />saving from agentic IT support operations",
+    "subtitle": null,
+    "summary": "A business case for agentic IT support, modelled for a Tier-1 enterprise with a 120+ person support ops team, with six agents covering the full ticket lifecycle on Gemini Enterprise.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "$20M+ projected annual capex saving from agentic IT support operations | Agivant Case Study",
+    "description": "A business case for agentic IT support, modelled for a Tier-1 enterprise with a 120+ person support ops team, with six agents covering the full ticket lifecycle on Gemini Enterprise.",
+    "canonical": "https://agivant.com/case-studies/agentic-supportops",
+    "ogImage": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-06.jpg",
+      "assetKey": "case-study-06",
+      "alt": "$20M+ projected annual capex saving from agentic IT support operations",
+      "caption": null
+    }
+  },
+  "capability": "Agentic AI & AgentOps",
+  "techPlatform": "Google Cloud & Vertex AI, ServiceNow",
+  "showFooter": true,
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": false,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "Modelled for a Global technology leader: $20M+ projected annual capex saving, $2M saved a year, about 50% lower MTTR, 2x engineering team productivity, and 25 to 40% lower cost per ticket.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & industry",
+          "body": "Global technology leader, modelled on a support operations team of 120+"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "Managed agent-as-a-service on Gemini Enterprise for custom and hybrid stacks, billed only on tickets resolved"
+        },
+        {
+          "id": "coverage",
+          "title": "Coverage",
+          "body": "Ticket intake and triage, investigation and RCA, knowledge lookup and auto-resolution, lifecycle governance, and engineering support"
+        },
+        {
+          "id": "differentiators",
+          "title": "Differentiators",
+          "body": "Multi-agent and native to Vertex AI and Gemini, ITSM-agnostic, covering custom, legacy, and cloud systems, with native MCP and A2A"
+        },
+        {
+          "id": "maps-to-below-services",
+          "title": "Maps to below services",
+          "body": "Agentic AI & AgentOps"
+        }
+      ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "L1 and L2 support running on manual, siloed workflows that cost hours on every ticket in triage, rework, and unnecessary escalations."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "Manual triage forced agents to hand-read and route every ticket, which was slow, error-prone, and impossible to scale. Misrouted tickets bounced between queues, blowing past SLAs and stretching first-touch times as volumes grew. Up to 40% of tickets were repeat, self-resolvable issues that still landed on human agents, creating chronic backlog and burnout."
+        },
+        {
+          "id": "technical-barriers",
+          "type": "card",
+          "title": "Technical barriers",
+          "body": "Routine tickets took hours to days to resolve. Superficial fixes kept tickets reopening, engineers were pulled into L1 and L2 escalations daily, and a 1,000+ hour MTTR tail of zombie tickets sat with no governance."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant's role",
+          "body": "Agent design across the ticket lifecycle, platform architecture on Gemini Enterprise, and the business case model"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Agivant designed six agents mapped to the ticket lifecycle on an agentic IT support platform. An orchestration layer runs alert-triggered workflows and agent mapping on Agent Engine with the A2A protocol. An AI intelligence layer handles issue detection, resolution matching, duplicate finding, and RAG with Gemini models. Underneath, a context engine on Gemini Enterprise brings in 100+ pre-built connectors, with native MCP via ADK and real-time and batch ingestion. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "triage-and-categorization-agent",
+          "type": "card",
+          "title": "Triage and categorization agent",
+          "body": "Eliminates duplicate tickets, gathers context autonomously across systems, removes ping-pong handoffs, and brings triage time down to 15 minutes.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Triage and categorization agent",
+            "caption": null
+          }
+        },
+        {
+          "id": "investigate-agent",
+          "type": "card",
+          "title": "Investigate agent",
+          "body": "Captures the true reason for a failure immediately, prevents premature bug closure on transient issues, and blocks 80% of superficial fixes from reopening.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Investigate agent",
+            "caption": null
+          }
+        },
+        {
+          "id": "recommend-agent",
+          "type": "card",
+          "title": "Recommend agent",
+          "body": "Replaces the manual investigation phase after RCA and surfaces fix paths from internal knowledge sources.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Recommend agent",
+            "caption": null
+          }
+        },
+        {
+          "id": "auto-resolve-agent",
+          "type": "card",
+          "title": "Auto resolve agent",
+          "body": "Recommends validated remediation steps and executes them with a human in the loop.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Auto resolve agent",
+            "caption": null
+          }
+        },
+        {
+          "id": "lifecycleops-agent",
+          "type": "card",
+          "title": "LifecycleOps agent",
+          "body": "Keeps the queue clean, caps maximum ticket open time, identifies and closes transient tickets, and prevents ticket abandonment across the 1,000+ hour MTTR tail.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "LifecycleOps agent",
+            "caption": null
+          }
+        },
+        {
+          "id": "support-ops-assistant-agent",
+          "type": "card",
+          "title": "Support ops assistant agent",
+          "body": "Gives support teams instant answers without waiting on engineering, accesses documentation autonomously, and brings engineering-dependent resolution time down to minutes.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Support ops assistant agent",
+            "caption": null
+          }
+        },
+        {
+          "id": "agent-governance",
+          "type": "card",
+          "title": "Agent governance",
+          "body": "Agent registry, agent identity, agent gateway, governance policies, and AI threat and vulnerability scanning across every agent.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Agent governance",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-orchestration",
+              "label": "Orchestration",
+              "value": "Agent Engine with A2A protocol, alert-triggered workflows, agent mapping"
+            },
+            {
+              "id": "row-intelligence",
+              "label": "Intelligence",
+              "value": "Gemini models, RAG engine"
+            },
+            {
+              "id": "row-knowledge-layer",
+              "label": "Knowledge layer",
+              "value": "Hybrid search index, knowledge graph of tickets, content, and relationships"
+            },
+            {
+              "id": "row-context",
+              "label": "Context",
+              "value": "Gemini Enterprise with 100+ pre-built connectors, native MCP via ADK"
+            },
+            {
+              "id": "row-itsm",
+              "label": "ITSM",
+              "value": "ServiceNow, Jira, and any other ITSM"
+            },
+            {
+              "id": "row-observability",
+              "label": "Observability",
+              "value": "Cloud Operations Suite, Cloud Logging"
+            },
+            {
+              "id": "row-governance",
+              "label": "Governance",
+              "value": "Agent registry, agent identity, agent gateway, governance policies, AI threat and vulnerability scanning"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "MTTR of hours to days for routine tickets, manual triage with ping-pong handoffs and duplicates, engineers pulled into L1 and L2 escalations daily, high reopen rates from superficial fixes, and zombie tickets with a 1,000+ hour MTTR tail."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "MTTR in minutes through autonomous triage and RCA, autonomous context gathering and deduplication, a support assist agent answering without escalation, root-cause fixes that stay fixed, and a lifecycle agent that caps open time and cleans the queue."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "A ticket arrives and the triage agent removes duplicates, gathers context from connected systems, and routes it within 15 minutes. The investigate agent captures the true root cause, the recommend and auto resolve agents surface the fix path and run the validated steps with a person approving, and the lifecycle agent closes anything transient before it ages. Support teams get answers from the assistant agent without waiting on engineering, and true root-cause capture ends the fix-it-again-next-week cycle."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "Modelled for a Tier-1 enterprise with a 120+ person support ops team. Engineers get their week back for product work, and the same SLAs hold at a fraction of the per-ticket cost."
+        },
+        {
+          "id": "metric-projected-annual-capex-saving",
+          "type": "bento_metric",
+          "value": "$20M+",
+          "label": "Projected annual capex saving",
+          "variant": "small"
+        },
+        {
+          "id": "metric-saving-per-year",
+          "type": "bento_metric",
+          "value": "$2M",
+          "label": "Saving per year",
+          "variant": "small"
+        },
+        {
+          "id": "metric-mttr-reduction",
+          "type": "bento_metric",
+          "value": "~50%",
+          "label": "MTTR reduction",
+          "variant": "small"
+        },
+        {
+          "id": "metric-engineering-team-productivity",
+          "type": "bento_metric",
+          "value": "2x",
+          "label": "Engineering team productivity",
+          "variant": "small"
+        },
+        {
+          "id": "metric-lower-cost-per-ticket",
+          "type": "bento_metric",
+          "value": "25 to 40%",
+          "label": "Lower cost per ticket",
+          "variant": "wide"
+        },
+        {
+          "id": "metric-fewer-ticket-reopens",
+          "type": "bento_metric",
+          "value": "Up to 80%",
+          "label": "Fewer ticket reopens",
+          "variant": "wide"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "The agent library runs as a managed agent-as-a-service on Gemini Enterprise, built for Google Cloud Marketplace, ITSM-agnostic, and native to MCP and A2A, so the same six agents fit custom, legacy, and cloud stacks and plug into ServiceNow, Jira, or any other ITSM. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "Unifying context from documents, forums, ITSM, runbooks, and observability data, removing duplicate tickets before they spread across queues, and keeping every executed fix under human approval."
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    }
+  ]
+}

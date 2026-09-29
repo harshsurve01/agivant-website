@@ -1,0 +1,418 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "million-core-compute-farm-optimization",
+  "title": "Slot utilization up to 90% across a million-core compute farm",
+  "summary": "AI-driven predictive analytics for a semiconductor leader, forecasting job runtimes and resource needs across 8M jobs a day to improve scheduling efficiency and cut waste.",
+  "client": "Global semiconductor technology leader",
+  "industry": "Semiconductor and EDA",
+  "hero": {
+    "eyebrow": null,
+    "title": "Slot utilization up to 90% across<br />a million-core compute farm",
+    "subtitle": null,
+    "summary": "AI-driven predictive analytics for a semiconductor leader, forecasting job runtimes and resource needs across 8M jobs a day to improve scheduling efficiency and cut waste.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "Slot utilization up to 90% across a million-core compute farm | Agivant Case Study",
+    "description": "AI-driven predictive analytics for a semiconductor leader, forecasting job runtimes and resource needs across 8M jobs a day to improve scheduling efficiency and cut waste.",
+    "canonical": "https://agivant.com/case-studies/million-core-compute-farm-optimization",
+    "ogImage": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-02.jpg",
+      "assetKey": "case-study-02",
+      "alt": "Slot utilization up to 90% across a million-core compute farm",
+      "caption": null
+    }
+  },
+  "capability": "Cloud & Platform Engineering, AI & ML Engineering",
+  "techPlatform": null,
+  "showFooter": true,
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": false,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "Slot utilization raised to as much as 90% from a range of under 50% to 75%, downtime down 20% through proactive issue detection, and higher throughput with faster time to market.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & industry",
+          "body": "Global semiconductor technology leader, testing its products under various scenarios on a massive compute farm"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "AI-powered predictive analytics, from domain understanding and data discovery through exploratory analysis, feature engineering, and ML modeling"
+        },
+        {
+          "id": "scale",
+          "title": "Scale",
+          "body": "1 million cores, 80 petabytes of storage, and 8 million jobs a day"
+        },
+        {
+          "id": "maps-to-below-services",
+          "title": "Maps to below services",
+          "body": "Cloud & Platform Engineering, AI & ML Engineering"
+        }
+      ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "A million-core farm running below capacity, because job runtimes and resource needs were hard to predict."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "At this scale, resource optimization was hard. Job durations varied widely, which made resource allocation inefficient and left slots underused, and business units ran at utilization levels from under 50% up to 75%."
+        },
+        {
+          "id": "technical-barriers",
+          "type": "card",
+          "title": "Technical barriers",
+          "body": "CPU, memory, and core requirements were estimated manually for each job, which often meant over-provisioning or under-provisioning resources."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant's role",
+          "body": "Data discovery, predictive modeling, anomaly detection, and integration into the client's scheduling and resource allocation systems"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Agivant began with in-depth consultations with the client's experts to understand their environment. Analysis of job data, execution patterns, and infrastructure usage identified the key optimization opportunities and finalized the use cases. Exploratory analysis examined data patterns and anomalies in job behavior and resource use, feature engineering selected and refined the inputs, and machine learning models were built to predict job runtimes, memory needs, and CPU and core requirements. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "job-runtime-prediction",
+          "type": "card",
+          "title": "Job runtime prediction",
+          "body": "Models estimate job runtimes from historical data and job characteristics, so the client allocates resources more efficiently and reduces idle time.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Job runtime prediction",
+            "caption": null
+          }
+        },
+        {
+          "id": "resource-requirement-forecasting",
+          "type": "card",
+          "title": "Resource requirement forecasting",
+          "body": "Models predict memory, CPU, and core requirements for each job, for optimal allocation with minimal waste.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Resource requirement forecasting",
+            "caption": null
+          }
+        },
+        {
+          "id": "anomaly-detection",
+          "type": "card",
+          "title": "Anomaly detection",
+          "body": "AI algorithms detect unusual patterns in job behavior, identifying potential failures early and preventing costly downtime.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Anomaly detection",
+            "caption": null
+          }
+        },
+        {
+          "id": "data-collection-and-processing",
+          "type": "card",
+          "title": "Data collection and processing",
+          "body": "Pipelines collect, clean, and transform job data from logs, metrics, and job parameters.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Data collection and processing",
+            "caption": null
+          }
+        },
+        {
+          "id": "feature-engineering",
+          "type": "card",
+          "title": "Feature engineering",
+          "body": "Relevant features extracted from the data improve the accuracy and reliability of the models.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Feature engineering",
+            "caption": null
+          }
+        },
+        {
+          "id": "scheduler-integration",
+          "type": "card",
+          "title": "Scheduler integration",
+          "body": "Agivant worked closely with the client's engineering teams to integrate the models into existing scheduling and resource allocation systems.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Scheduler integration",
+            "caption": null
+          }
+        },
+        {
+          "id": "real-time-monitoring",
+          "type": "card",
+          "title": "Real-time monitoring",
+          "body": "A monitoring system tracks model performance and raises alerts on any anomalies.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Real-time monitoring",
+            "caption": null
+          }
+        },
+        {
+          "id": "continuous-improvement",
+          "type": "card",
+          "title": "Continuous improvement",
+          "body": "A feedback loop refines the models based on real-world performance data.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Continuous improvement",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-models",
+              "label": "Models",
+              "value": "Regression and time series analysis"
+            },
+            {
+              "id": "row-data-sources",
+              "label": "Data sources",
+              "value": "Job logs, metrics, and job parameters"
+            },
+            {
+              "id": "row-integration",
+              "label": "Integration",
+              "value": "Existing scheduling and resource allocation systems"
+            },
+            {
+              "id": "row-monitoring",
+              "label": "Monitoring",
+              "value": "Real-time model performance tracking and alerting"
+            },
+            {
+              "id": "row-controls",
+              "label": "Controls",
+              "value": "Security measures applied to the model to protect sensitive data"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "Manually estimated resources, unpredictable runtimes, underutilized slots, and resources over- or under-provisioned."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "Predicted runtimes and resource needs feeding the scheduler, proactive anomaly detection, and models refined on live data."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "A job enters the queue and the models estimate its runtime and its memory, CPU, and core needs, so the scheduler allocates what the job requires. If the job's behavior turns unusual, anomaly detection flags it before it becomes a failure. The monitoring system tracks every model's performance, and real-world results feed back to refine the next round of predictions. Across business units, slot utilization now reaches as much as 90%."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "Increased efficiency with an improved user experience, reduced operational overhead, and higher throughput with faster time to market."
+        },
+        {
+          "id": "metric-slot-utilization-from-under-50-to-75",
+          "type": "bento_metric",
+          "value": "Up to 90%",
+          "label": "Slot utilization, from under 50% to 75%",
+          "variant": "small"
+        },
+        {
+          "id": "metric-downtime-through-proactive-issue-detection",
+          "type": "bento_metric",
+          "value": "20% down",
+          "label": "Downtime, through proactive issue detection",
+          "variant": "small"
+        },
+        {
+          "id": "metric-jobs-a-day",
+          "type": "bento_metric",
+          "value": "8M",
+          "label": "Jobs a day",
+          "variant": "small"
+        },
+        {
+          "id": "metric-potential-annual-infrastructure-savings-from-the-custom-prediction-model",
+          "type": "bento_metric",
+          "value": "$5M",
+          "label": "Potential annual infrastructure savings from the custom prediction model",
+          "variant": "small"
+        },
+        {
+          "id": "metric-sensitive-data-with-security-measures-applied-to-the-model",
+          "type": "bento_metric",
+          "value": "Protected",
+          "label": "Sensitive data, with security measures applied to the model",
+          "variant": "wide"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "The custom prediction models stay integrated with the client's scheduler and keep improving through the feedback loop on live performance data. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "Building a deep understanding of a unique environment at a scale of 1 million cores and 80 petabytes, and predicting runtimes and resource needs for jobs whose durations varied widely."
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    }
+  ]
+}

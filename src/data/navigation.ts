@@ -238,19 +238,19 @@ const mockNavigation: NavigationItem[] = [
   {
     id: "resources",
     label: "Resources",
-    href: "/resources", // Fallback destination if JS is disabled
+    href: "/blogs",
     megaMenu: {
       title: "Resources",
-      defaultCategoryId: "talk-tech",
+      defaultCategoryId: "research",
       categories: [
         {
           id: "research",
           label: "Research",
-          href: "",
+          href: "/blogs",
           featureCard: {
             title: "Research",
             description:
-              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.",
+              "Practical insights from Agivant engineers building production-grade AI, cloud, data and autonomous agentic workflows.",
           },
           items: [],
         },
@@ -261,7 +261,7 @@ const mockNavigation: NavigationItem[] = [
           featureCard: {
             title: "Talk Tech",
             description:
-              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.",
+              "Explore the architectures, engineering decisions and technical patterns behind enterprise AI systems.",
           },
           items: [],
         },
@@ -292,12 +292,12 @@ const mockNavigation: NavigationItem[] = [
               "Agivant Partners With Databricks To Help Enterprises Turn Enterprise Data Into Trusted Context For AI",
             description:
               "Agivant's agentic AI, data engineering and enterprise AI solutions built on the Databricks Data + AI Platform help organizations build the next generation of AI-native businesses.",
-            href: "",
+            href: "/press-releases/databricks",
             image: {
               src: "/images/mega-menu/card2.png",
               alt: "Agivant and Databricks partnership",
-              width: 166,
-              height: 227,
+              width: 1264,
+              height: 1181,
             },
             logos: [
               { src: "/images/logo/agivant-logo.svg", alt: "Agivant", width: 167, height: 33 },
@@ -308,12 +308,14 @@ const mockNavigation: NavigationItem[] = [
             id: "press-glean",
             title:
               "Agivant Technologies Announces Collaboration with Glean to Advance Enterprise Work AI and Agentic AI Transformation",
+            description:
+              "Agivant Technologies announces collaboration with Glean to advance enterprise Work AI and agentic AI transformation.",
             href: "/press-releases/glean",
             image: {
               src: "/images/mega-menu/card3.png",
               alt: "Agivant and Glean collaboration",
-              width: 166,
-              height: 227,
+              width: 1264,
+              height: 1181,
             },
             logos: [
               { src: "/images/logo/agivant-logo.svg", alt: "Agivant", width: 167, height: 33 },

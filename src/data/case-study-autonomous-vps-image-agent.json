@@ -1,0 +1,390 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "autonomous-vps-image-agent",
+  "title": "Immutable, security-scanned server images from one plain-English request",
+  "summary": "A pipeline of specialized agents that researches the target software, generates Packer and Terraform templates, validates them, builds the image, and runs a security scan, with human approval at each critical gate.",
+  "client": "Global engineering software enterprise",
+  "industry": "Semiconductor and EDA",
+  "hero": {
+    "eyebrow": null,
+    "title": "Immutable, security-scanned server<br />images from one plain-English request",
+    "subtitle": null,
+    "summary": "A pipeline of specialized agents that researches the target software, generates Packer and Terraform templates, validates them, builds the image, and runs a security scan, with human approval at each critical gate.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "Immutable, security-scanned server images from one plain-English request | Agivant Case Study",
+    "description": "A pipeline of specialized agents that researches the target software, generates Packer and Terraform templates, validates them, builds the image, and runs a security scan, with human approval at each critical gate.",
+    "canonical": "https://agivant.com/case-studies/autonomous-vps-image-agent",
+    "ogImage": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-01.jpg",
+      "assetKey": "case-study-01",
+      "alt": "Immutable, security-scanned server images from one plain-English request",
+      "caption": null
+    }
+  },
+  "capability": "Cloud & Platform Engineering, Agentic AI & AgentOps",
+  "techPlatform": null,
+  "showFooter": true,
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": false,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "One request produces a hardened, scanned, review-ready image, with humans in control at every gate.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & industry",
+          "body": "Global engineering software enterprise, with a platform team shipping server images across clouds, teams, and deployment zones"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "Autonomous multi-agent image pipeline, built, deployed, and ready to use"
+        },
+        {
+          "id": "pipeline",
+          "title": "Pipeline",
+          "body": "Five agent roles, research, code generation, validation, build, and security scan, plus pull-request automation and two human approval gates"
+        },
+        {
+          "id": "maps-to-below-services",
+          "title": "Maps to below services",
+          "body": "Cloud & Platform Engineering, Agentic AI & AgentOps"
+        }
+      ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "Server images built from hand-written configuration, with environments drifting apart across deployment zones."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "Teams hand-wrote the configuration behind every server image, and each build took days. Environments drifted apart from one deployment zone to the next."
+        },
+        {
+          "id": "technical-barriers",
+          "type": "card",
+          "title": "Technical barriers",
+          "body": "Every image depended on someone reading the target software's official documentation and turning it into correct build configuration by hand."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant's role",
+          "body": "Multi-agent pipeline design, Config-as-Code generation, validation and security scanning, and pull-request automation"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Agivant built a coordinated set of agents that takes each request from research through code generation, validation, build, and security scan. Two human approval gates sit after code generation and after scanning, and the finished image arrives as a pull request ready for sign-off. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "documentation-research",
+          "type": "card",
+          "title": "Documentation research",
+          "body": "Reads the target software's official documentation and produces the exact steps needed to build its image.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Documentation research",
+            "caption": null
+          }
+        },
+        {
+          "id": "config-as-code-generation",
+          "type": "card",
+          "title": "Config-as-Code generation",
+          "body": "Generates Packer and Terraform templates, so every build is declarative, idempotent, and repeatable.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Config-as-Code generation",
+            "caption": null
+          }
+        },
+        {
+          "id": "two-phase-validation",
+          "type": "card",
+          "title": "Two-phase validation",
+          "body": "Checks generated code for syntax, then re-validates it against a documentation-derived checklist, looping back on any gap.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Two-phase validation",
+            "caption": null
+          }
+        },
+        {
+          "id": "build-and-security-scan",
+          "type": "card",
+          "title": "Build and security scan",
+          "body": "Builds the immutable image with Packer and runs a Trivy vulnerability scan, retrying automatically when a build fails.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Build and security scan",
+            "caption": null
+          }
+        },
+        {
+          "id": "pull-request-automation",
+          "type": "card",
+          "title": "Pull-request automation",
+          "body": "Opens a pull request with an auto-populated review checklist in GitHub or Stash, ready for human sign-off.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Pull-request automation",
+            "caption": null
+          }
+        },
+        {
+          "id": "observability-and-cost-tracking",
+          "type": "card",
+          "title": "Observability and cost tracking",
+          "body": "Langfuse tracks agent performance and per-model cost for every image the pipeline produces.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Observability and cost tracking",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-image-build",
+              "label": "Image build",
+              "value": "Packer"
+            },
+            {
+              "id": "row-infrastructure-as-code",
+              "label": "Infrastructure as code",
+              "value": "Terraform"
+            },
+            {
+              "id": "row-security-scanning",
+              "label": "Security scanning",
+              "value": "Trivy"
+            },
+            {
+              "id": "row-source-control",
+              "label": "Source control",
+              "value": "GitHub, Stash"
+            },
+            {
+              "id": "row-observability",
+              "label": "Observability",
+              "value": "Langfuse"
+            },
+            {
+              "id": "row-controls",
+              "label": "Controls",
+              "value": "Two human approval gates, after code generation and after scanning"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "Hand-written configuration, days per image, and environment drift across deployment zones."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "One request producing validated Packer and Terraform templates, an immutable build, a Trivy scan, and a review-ready pull request."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "In a demonstration run, one plain-English request for a Langflow image went through research, code generation, validation, build, and a clean security scan, ending in an auto-created pull request. Every stage streamed live, with human approval gates along the way, and the image was built in minutes."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "A production-ready image, minted and shipped from one request."
+        },
+        {
+          "id": "metric-image-build-time-in-the-demonstration-run",
+          "type": "bento_metric",
+          "value": "Minutes",
+          "label": "Image build time in the demonstration run",
+          "variant": "small"
+        },
+        {
+          "id": "metric-immutable-idempotent-builds-every-time",
+          "type": "bento_metric",
+          "value": "Zero drift",
+          "label": "Immutable, idempotent builds every time",
+          "variant": "small"
+        },
+        {
+          "id": "metric-security-scanned-with-trivy-before-release",
+          "type": "bento_metric",
+          "value": "Every build",
+          "label": "Security-scanned with Trivy before release",
+          "variant": "small"
+        },
+        {
+          "id": "metric-human-approval-gates-on-every-image",
+          "type": "bento_metric",
+          "value": "Two",
+          "label": "Human approval gates on every image",
+          "variant": "small"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "Declarative Packer and Terraform templates hold environment parity across every deployment zone and cloud target, so images stay standard across clouds and teams. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "Making sure only correct configuration reaches the build stage, recovering from failed builds automatically, and keeping an autonomous pipeline fully auditable through human gates."
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    }
+  ]
+}

@@ -114,6 +114,7 @@ export function RunningToday({
                 label={metric.label}
                 eyebrow={metric.eyebrow}
                 description={metric.description}
+                note={metric.detail}
                 isTinted={isLast}
               />
             );

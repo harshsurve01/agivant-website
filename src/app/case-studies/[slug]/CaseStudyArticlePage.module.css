@@ -1,0 +1,33 @@
+/* ==========================================================================
+   CaseStudyArticlePage.module.css
+   Page-scoped adjustments for /case-studies/[slug]. Shared components stay
+   unchanged.
+   ========================================================================== */
+
+/* Minimal Footer (faded Agivant liquid logo + copyright) rendered under the
+   in-page FinalCTA. Sized to its content instead of a full viewport; the top
+   padding opens the space under the CTA buttons, and the bottom padding
+   keeps the copyright clear of the logo. */
+footer.minimalFooter {
+  min-height: auto;
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-24);
+}
+
+.minimalFooter [class*="brandmark"] {
+  pointer-events: none;
+}
+
+/* The logo asset has an opaque white backdrop; fading its top strip (above
+   the letters) lets the FinalCTA glow run into it without a hard edge. */
+.minimalFooter [class*="brandmark"] img {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 12%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 12%);
+}
+
+/* When the minimal footer follows, the FinalCTA section takes its natural
+   height so the logo sits in the open area under the CTA buttons (the
+   CTA's own padding and spacing are unchanged). */
+:global(body):has(.minimalFooter) :global(section[class*="finalCTA"]) {
+  min-height: auto;
+}

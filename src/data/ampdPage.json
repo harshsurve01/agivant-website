@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "landingPage",
+  "slug": "ampd",
+  "title": "Agivant Amp'd",
+  "seo": {
+    "title": null,
+    "description": null,
+    "canonical": "/ampd",
+    "ogImage": null
+  },
+  "hero": {
+    "eyebrow": null,
+    "title": "Amplify your enterprise from<br>automation to autonomy, one build<br>at a time with Agivant Amp'd",
+    "subtitle": null,
+    "summary": "Forward Deployed Engineers build alongside your teams on Agivant Bolt, the AI-Native OS, against a specification you own. Harness engineering makes agents and solutions production-grade, with identity, observability, evaluations and guardrails built in.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/services/hero-ribbon.png",
+      "assetKey": "services-hero-ribbon",
+      "alt": "",
+      "caption": null,
+      "width": 1439,
+      "height": 768
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "sections": [
+    {
+      "id": "beyond-automation",
+      "type": "video_demo",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": null,
+        "description": null,
+        "columns": [],
+        "media": {
+          "kind": "video",
+          "src": "https://www.youtube.com/watch?v=sFzmpcG6RkY",
+          "poster": "/images/ampd/thumnail1.png",
+          "assetKey": "ampd-beyond-automation",
+          "alt": "Beyond automation",
+          "caption": null
+        },
+        "cta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    },
+    {
+      "id": "ampd-in-production",
+      "type": "stats",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Amp'd in production",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "stat-faster-to-production",
+          "type": "metric",
+          "value": "70%",
+          "label": "Faster from concept to production for client teams",
+          "detail": "Median across Amp'd builds"
+        },
+        {
+          "id": "stat-workflows-without-person",
+          "type": "metric",
+          "value": "1,000+",
+          "label": "Workflows now run without a person in the loop",
+          "detail": "Across several global enterprises"
+        },
+        {
+          "id": "stat-agents-in-client-environments",
+          "type": "metric",
+          "value": "600+",
+          "label": "Agents now run inside client environments",
+          "detail": "Counted live"
+        },
+        {
+          "id": "stat-hours-handed-back",
+          "type": "metric",
+          "value": "1M+",
+          "label": "Hours handed back to client teams each year",
+          "detail": "Client-validated, run-rate basis"
+        }
+      ]
+    }
+  ],
+  "footerCta": {
+    "enabled": true,
+    "heading": "Ready To Get Your<br>Enterprises",
+    "subheading": null,
+    "partner": null,
+    "media": {
+      "kind": "animation",
+      "src": "/videos/ampd-Logo-Animation.gif",
+      "assetKey": "ampd-logo-animation",
+      "alt": "Amp'd",
+      "caption": null
+    },
+    "primaryCta": {
+      "enabled": true,
+      "label": "Talk to an Amp'd specialist",
+      "href": "/contact",
+      "external": false
+    },
+    "secondaryCta": null
+  }
+}

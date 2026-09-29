@@ -228,3 +228,29 @@
     gap: var(--space-4);
   }
 }
+
+/* Shift the ribbon down on the Glean page so it sits below the headline */
+.page[data-press-release="glean"] .ribbonWrapper {
+  top: 36rem; /* Increase value (e.g. 34rem – 40rem) to push it lower down */
+}
+
+/* Optional responsive adjustments */
+@media (max-width: 1024px) {
+  .page[data-press-release="glean"] .ribbonWrapper {
+    top: 28rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page[data-press-release="glean"] .ribbonWrapper {
+    top: 24rem;
+  }
+}
+/* Shift the entire content block for Glean only */
+.page[data-press-release="glean"] :global(section[data-hero-interaction-root]) {
+  padding-top: 1rem; /* default is 6rem (var(--space-24)); increase to push down, decrease to pull up */
+}
+/* Adjust the logo position/spacing on the Glean page */
+.page[data-press-release="glean"] :global(section[data-hero-interaction-root] [class*="logoWrapperAbove"]) {
+  margin-bottom: 0rem;  /* space between logo and heading */
+}

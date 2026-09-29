@@ -10,6 +10,8 @@ export interface StatsCardProps {
   eyebrow?: string | null;
   /** Optional description alias for label */
   description?: string | null;
+  /** Optional footnote under a divider (e.g. source of the figure). Not rendered when absent. */
+  note?: string | null;
   /** Whether to apply the lavender/purple-tinted background (used on Card 6) */
   isTinted?: boolean;
   /** Optional class name override */
@@ -31,6 +33,7 @@ export function StatsCard({
   label,
   eyebrow,
   description,
+  note,
   isTinted = false,
   className,
 }: StatsCardProps) {
@@ -53,6 +56,7 @@ export function StatsCard({
           {displayLabel}
         </p>
       )}
+      {note && <p className={styles.note}>{note}</p>}
     </article>
   );
 }

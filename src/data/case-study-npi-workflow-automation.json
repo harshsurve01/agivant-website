@@ -1,0 +1,435 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "npi-workflow-automation",
+  "title": "50%+ less idle time in product launches, orchestrated on ServiceNow",
+  "summary": "New product introduction requests now flow between engineering and ServiceNow through automated bi-directional sync, with downstream work running in parallel lanes and SLA health visible live.",
+  "client": "Global technology leader",
+  "industry": "Technology and internet",
+  "hero": {
+    "eyebrow": null,
+    "title": "50%+ less idle time in product<br />launches, orchestrated on ServiceNow",
+    "subtitle": null,
+    "summary": "New product introduction requests now flow between engineering and ServiceNow through automated bi-directional sync, with downstream work running in parallel lanes and SLA health visible live.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "50%+ less idle time in product launches, orchestrated on ServiceNow | Agivant Case Study",
+    "description": "New product introduction requests now flow between engineering and ServiceNow through automated bi-directional sync, with downstream work running in parallel lanes and SLA health visible live.",
+    "canonical": "https://agivant.com/case-studies/npi-workflow-automation",
+    "ogImage": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-04.jpg",
+      "assetKey": "case-study-04",
+      "alt": "50%+ less idle time in product launches, orchestrated on ServiceNow",
+      "caption": null
+    }
+  },
+  "capability": "Cloud & Platform Engineering",
+  "techPlatform": "ServiceNow",
+  "showFooter": true,
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": false,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "Idle time in the launch workflow down 50%+, 100% real-time transparency across the cross-system task hierarchy, and zero disruption to in-flight operations during the switch.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & industry",
+          "body": "Global technology leader, running new product introduction across global cross-functional launch teams"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "Managed service and strategic engineering"
+        },
+        {
+          "id": "scale",
+          "title": "Scale",
+          "body": "Multi-thousand global requests across L2 to L4"
+        },
+        {
+          "id": "maps-to-below-services",
+          "title": "Maps to below services",
+          "body": "Cloud & Platform Engineering, Data Engineering & Advanced Analytics"
+        }
+      ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "Product launches moving through disconnected systems one stage at a time, with reporting that only looked backward."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "Engineering tracked launch work in its own issue tracker while the enterprise ran on ServiceNow, so every launch meant manual handoffs, data re-entry, and constant switching between forms. Status syncs needed 100% manual intervention."
+        },
+        {
+          "id": "no-decision-framework",
+          "type": "card",
+          "title": "No decision framework",
+          "body": "Workflows ran strictly in sequence, so SKU and billing tasks sat idle while upstream stages finished, with zero parallel execution. Reporting was retrospective, with no live link between an execution bug and its effect on ServiceNow SLA milestones, and no live map of how tasks connected across systems."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant's role",
+          "body": "Workflow architecture, ServiceNow engineering, cross-system integration, and SLA framework design across the launch lifecycle"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Agivant rebuilt the flow as an intelligent coexistence model: an orchestration engine in ServiceNow, kept in automated bi-directional sync with engineering's issue tracker. Intake and risk run in one lane while SKU management and NPI automation run in parallel lanes, and projects provision themselves. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "automated-bi-directional-sync",
+          "type": "card",
+          "title": "Automated bi-directional sync",
+          "body": "Status and updates move between the engineering issue tracker and ServiceNow on their own, ending manual status checks.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Automated bi-directional sync",
+            "caption": null
+          }
+        },
+        {
+          "id": "parallel-orchestration-lanes",
+          "type": "card",
+          "title": "Parallel orchestration lanes",
+          "body": "Intake and risk in one lane, SKU management and NPI automation forked in parallel, so downstream work starts early.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Parallel orchestration lanes",
+            "caption": null
+          }
+        },
+        {
+          "id": "intelligent-triage-and-routing",
+          "type": "card",
+          "title": "Intelligent triage and routing",
+          "body": "Requests are triaged automatically, and non-standard ones skip the stages that do not apply to them.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Intelligent triage and routing",
+            "caption": null
+          }
+        },
+        {
+          "id": "automated-project-provisioning",
+          "type": "card",
+          "title": "Automated project provisioning",
+          "body": "Projects and tasks spawn for each team once intake clears, with no manual data entry.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Automated project provisioning",
+            "caption": null
+          }
+        },
+        {
+          "id": "configuration-lock-at-intake",
+          "type": "card",
+          "title": "Configuration lock at intake",
+          "body": "Critical configurations lock after intake, cutting data-entry errors and cross-functional friction during launch windows.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Configuration lock at intake",
+            "caption": null
+          }
+        },
+        {
+          "id": "live-node-map-and-executive-dashboards",
+          "type": "card",
+          "title": "Live node map and executive dashboards",
+          "body": "Cross-system task hierarchy and SLA compliance tracked in real time for leadership.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Live node map and executive dashboards",
+            "caption": null
+          }
+        },
+        {
+          "id": "business-centric-sla-framework",
+          "type": "card",
+          "title": "Business-centric SLA framework",
+          "body": "MTTA, MTTR on active working time, suspension time for external dependencies, and total lifecycle velocity.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Business-centric SLA framework",
+            "caption": null
+          }
+        },
+        {
+          "id": "agile-resource-optimization",
+          "type": "card",
+          "title": "Agile resource optimization",
+          "body": "Intelligent workflow routing automatically bypasses irrelevant stages for non-standard requests, optimizing resource allocation and preventing high-value engineering talent from workflow stagnation.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Agile resource optimization",
+            "caption": null
+          }
+        },
+        {
+          "id": "enterprise-single-source-of-truth",
+          "type": "card",
+          "title": "Enterprise single source of truth",
+          "body": "Centralized data governance mechanisms lock critical configurations post-intake, reducing data-entry errors and cross-functional friction during critical launch windows.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Enterprise single source of truth",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-workflow-platform",
+              "label": "Workflow platform",
+              "value": "ServiceNow"
+            },
+            {
+              "id": "row-engineering-system",
+              "label": "Engineering system",
+              "value": "Engineering issue tracker, in automated bi-directional sync"
+            },
+            {
+              "id": "row-orchestration",
+              "label": "Orchestration",
+              "value": "Intelligent orchestration engine with parallel lanes"
+            },
+            {
+              "id": "row-launch-flow",
+              "label": "Launch flow",
+              "value": "Eight-stage flow for new requests, legacy tickets left undisturbed"
+            },
+            {
+              "id": "row-visibility",
+              "label": "Visibility",
+              "value": "Live node map and executive dashboards"
+            },
+            {
+              "id": "row-sla-metrics",
+              "label": "SLA metrics",
+              "value": "MTTA, MTTR, suspension and dependency duration, total lifecycle velocity"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "An upstream issue tracker checked by hand, feeding a sequential intake, review, and SKU flow with high idle time."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "An orchestration engine in automated sync with engineering, parallel SKU and NPI lanes, automated project provisioning, and live executive dashboards."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "A launch request arrives and is triaged automatically. SKU management and NPI automation fork in parallel as soon as intake and risk clear, and a non-standard request skips the stages it does not need. SLA clocks pause while work waits on an external vendor, so each team is measured on its own active time. Existing tickets finished on their original path while new requests used the eight-stage flow."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "Leadership now sees true operational velocity, with SLA clocks that count only active work."
+        },
+        {
+          "id": "metric-reduction-in-idle-time",
+          "type": "bento_metric",
+          "value": "50%+",
+          "label": "Reduction in idle time",
+          "variant": "small"
+        },
+        {
+          "id": "metric-real-time-transparency-live-node-map",
+          "type": "bento_metric",
+          "value": "100%",
+          "label": "Real-time transparency, live node map",
+          "variant": "small"
+        },
+        {
+          "id": "metric-disruption-to-in-flight-operations",
+          "type": "bento_metric",
+          "value": "Zero",
+          "label": "Disruption to in-flight operations",
+          "variant": "small"
+        },
+        {
+          "id": "metric-status-syncs-previously-100-manual",
+          "type": "bento_metric",
+          "value": "Automated",
+          "label": "Status syncs, previously 100% manual",
+          "variant": "small"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "The business-centric SLA framework, with active-time MTTR and dependency-aware clock pausing, carries to any cross-functional ServiceNow workflow, and the parallel-lane pattern fits any launch process built on sequential handoffs. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "Switching to the new flow while legacy tickets stayed undisturbed, measuring every team fairly when much of the elapsed time sat with external vendors, and keeping senior engineers out of stages that did not apply to their requests."
+        },
+        {
+          "id": "client-quote",
+          "type": "quote_card",
+          "body": "Agivant's turnaround transformed our NPI onboarding from a fragmented checklist into a high-velocity orchestration engine. The seamless cross-platform integration and live visibility have fundamentally modernized how our global cross-functional teams launch products.",
+          "author": "Client leadership"
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    }
+  ]
+}

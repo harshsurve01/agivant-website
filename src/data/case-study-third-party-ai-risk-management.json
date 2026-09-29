@@ -1,0 +1,448 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "third-party-ai-risk-management",
+  "title": "95% faster risk assessment across 250+ third-party AI vendors",
+  "summary": "A centralized platform for monitoring, assessing, and managing the risk posed by external AI vendors, combining automated detection, AI-powered assessment, human-in-the-loop decisions, and a real-time operational dashboard.",
+  "client": "Global technology and digital platform company",
+  "industry": "Technology and internet",
+  "hero": {
+    "eyebrow": null,
+    "title": "95% faster risk assessment<br />across 250+ third-party<br />AI vendors",
+    "subtitle": null,
+    "summary": "A centralized platform for monitoring, assessing, and managing the risk posed by external AI vendors, combining automated detection, AI-powered assessment, human-in-the-loop decisions, and a real-time operational dashboard.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "95% Faster Risk Assessment Across 250+ Third-Party AI Vendors | Agivant Case Study",
+    "description": "A centralized platform for monitoring, assessing, and managing the risk posed by external AI vendors, combining automated detection, AI-powered assessment, human-in-the-loop decisions, and a real-time operational dashboard.",
+    "canonical": "https://agivant.com/case-studies/third-party-ai-risk-management",
+    "ogImage": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-01.jpg",
+      "assetKey": "case-study-01",
+      "alt": "95% faster risk assessment across 250+ third-party AI vendors",
+      "caption": null
+    }
+  },
+  "capability": "Agentic AI & AgentOps",
+  "techPlatform": "n8n and workflow automation, Next.js / React",
+  "showFooter": true,
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": false,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "250+ AI vendors under continuous watch, vendor risk assessment down from two to three weeks of manual review to minutes of AI analysis plus hours of human review, and a structured audit trail of every decision for compliance reporting.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & industry",
+          "body": "Global technology and digital platform company, with AI tooling in use across engineering, content, marketing, and operations teams"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "Fixed scope, design and build a Third-Party AI Risk Management (3P-AIRM) platform, from problem discovery and architecture through production rollout"
+        },
+        {
+          "id": "scale",
+          "title": "Scale",
+          "body": "250+ third-party AI vendors in active use, assessed across data privacy, security, compliance, operational, and financial risk"
+        },
+        {
+          "id": "regulatory-context",
+          "title": "Regulatory context",
+          "body": "EU AI Act, Digital Services Act, and GDPR obligations covering every third-party AI vendor that processes client data"
+        },
+        {
+          "id": "business-owner",
+          "title": "Business owner",
+          "body": "The client's vendor strategy and operations function, working alongside security, legal, procurement, and engineering"
+        },
+        {
+          "id": "maps-to",
+          "title": "Maps to below services",
+          "body": "Agentic AI & AgentOps, AI & ML Engineering, Data Engineering & Advanced Analytics, Cloud & Platform Engineering"
+        }
+      ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "A governance blind spot opening up as AI adoption accelerated across the enterprise, ahead of any central system for tracking external AI vendors."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "Teams across the business adopted third-party AI tools on their own, spanning generative image and audio tools, AI coding assistants, and other categories. Leadership could answer none of the basic governance questions: which vendors are in use, by whom, and what data they access."
+        },
+        {
+          "id": "lack-of-decision-framework",
+          "type": "card",
+          "title": "Lack of decision framework",
+          "body": "Each review ran manually and took two to three weeks, so the backlog grew faster than the team could clear it. Approvals, rejections, and remediations were handled case by case, the audit trail lived in email, and a change in a vendor's risk profile, a breach or a contract deviation, surfaced only after the fact."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant's role",
+          "body": "Architecture, agent engineering, workflow design, and production rollout across detection, assessment, decisioning, and remediation"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Forward Deployed Engineers embedded with the vendor strategy and operations function through problem discovery, architecture, workflow design, and production rollout. Risk signals arrive continuously, an LLM drafts the assessment, an analyst rules on it through the dashboard, and the workflow engine executes the approved action. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "automated-risk-detection",
+          "type": "card",
+          "title": "Automated risk detection",
+          "body": "Continuously monitors vendor risk signals pulled from multiple data sources, raising an alert as each one appears.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Automated risk detection",
+            "caption": null
+          }
+        },
+        {
+          "id": "ai-powered-assessment",
+          "type": "card",
+          "title": "AI-powered assessment",
+          "body": "An LLM scores severity, proposes a remediation path, and recommends an owner, turning a raw alert into an actionable recommendation.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "AI-powered assessment",
+            "caption": null
+          }
+        },
+        {
+          "id": "human-in-the-loop-decisions",
+          "type": "card",
+          "title": "Human-in-the-loop decisions",
+          "body": "Analysts review every AI-generated recommendation through an interactive dashboard and can approve it, reject it, or send it back for replanning.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Human-in-the-loop decisions",
+            "caption": null
+          }
+        },
+        {
+          "id": "iterative-replan-loop",
+          "type": "card",
+          "title": "Iterative replan loop",
+          "body": "On a replan request the AI agent revises its recommendation and its reasoning, for as many rounds as the analyst needs.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Iterative replan loop",
+            "caption": null
+          }
+        },
+        {
+          "id": "automated-remediation-orchestration",
+          "type": "card",
+          "title": "Automated remediation orchestration",
+          "body": "Once a decision is approved, the workflow engine executes the remediation action automatically.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Automated remediation orchestration",
+            "caption": null
+          }
+        },
+        {
+          "id": "audit-and-compliance-logging",
+          "type": "card",
+          "title": "Audit and compliance logging",
+          "body": "Every decision, human and AI, is captured in a structured log built to support regulatory and compliance reporting.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Audit and compliance logging",
+            "caption": null
+          }
+        },
+        {
+          "id": "real-time-notifications",
+          "type": "card",
+          "title": "Real-time notifications",
+          "body": "Risk owners and stakeholders are alerted the moment a decision or an action is needed.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Real-time notifications",
+            "caption": null
+          }
+        },
+        {
+          "id": "error-handling-and-escalation",
+          "type": "card",
+          "title": "Error handling and escalation",
+          "body": "Failed actions are caught, logged, and escalated along a defined path, so nothing disappears silently.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Error handling and escalation",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-architecture",
+              "label": "Architecture",
+              "value": "Three layers, data, orchestration, and presentation, each able to evolve independently"
+            },
+            {
+              "id": "row-workflow-engine",
+              "label": "Workflow engine",
+              "value": "n8n, orchestrating risk assessment, decision routing, and remediation execution"
+            },
+            {
+              "id": "row-dashboard",
+              "label": "Dashboard",
+              "value": "Next.js, the interactive human-in-the-loop interface for risk analysts"
+            },
+            {
+              "id": "row-ai-risk-scanning",
+              "label": "AI risk scanning",
+              "value": "PromptArmor, for third-party AI security scanning and vulnerability detection"
+            },
+            {
+              "id": "row-data-store",
+              "label": "Data store",
+              "value": "Enterprise data warehouse tables plus a configuration sheet, holding alert logs, decision logs, and error tracking"
+            },
+            {
+              "id": "row-production-workflows",
+              "label": "Production workflows",
+              "value": "Orchestrator as the HITL decision router, executor as the remediation engine"
+            },
+            {
+              "id": "row-notifications",
+              "label": "Notifications",
+              "value": "Chat API integration, alerting risk owners in real time"
+            },
+            {
+              "id": "row-security",
+              "label": "Security",
+              "value": "JWT (HS256) signed webhooks, a secure reverse proxy for external API calls, keychain-managed secrets"
+            },
+            {
+              "id": "row-governance-controls",
+              "label": "Governance controls",
+              "value": "Analyst approval required on every action before it executes"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "A manual, ad hoc review process tracked in email, with each function keeping its own separate view of vendor risk."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "An agent layer feeding AI-drafted assessments into the analyst dashboard, approved decisions executing and logging automatically, and one shared governance record across security, legal, procurement, and engineering."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "An alert reaches an analyst carrying vendor, severity, priority, risk category, a plain-language summary, the AI confidence score, a remediation path, an owner, an effort estimate, and an SLA. The analyst approves, rejects, or requests a replan, and the agent returns a revised plan with its reasoning. Approved decisions route to the executor, which runs the action, logs it, and notifies stakeholders."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "The same team of analysts, using the same judgment they always brought to vendor risk, now covers 10x the ground because the AI does the first-pass analysis and the workflow engine handles execution."
+        },
+        {
+          "id": "metric-vendor-risk-assessment-time",
+          "type": "bento_metric",
+          "value": "~95% down",
+          "label": "Vendor risk assessment time",
+          "variant": "small"
+        },
+        {
+          "id": "metric-assessments-per-analyst",
+          "type": "bento_metric",
+          "value": "5 to 50+",
+          "label": "Assessments per analyst each week",
+          "variant": "small"
+        },
+        {
+          "id": "metric-mean-time-to-remediate",
+          "type": "bento_metric",
+          "value": "~70% faster",
+          "label": "Mean time to remediate",
+          "variant": "small"
+        },
+        {
+          "id": "metric-risk-visibility-coverage",
+          "type": "bento_metric",
+          "value": "100%",
+          "label": "Risk visibility coverage",
+          "variant": "small"
+        },
+        {
+          "id": "metric-third-party-ai-vendors",
+          "type": "bento_metric",
+          "value": "250+",
+          "label": "Third-party AI vendors monitored",
+          "variant": "wide"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "A reusable HITL pattern, AI proposes, human decides, system executes, that extends to any governance domain needing AI-assisted recommendations with human accountability, and lays the foundation for an AI Consumption Control Tower across all external AI usage. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "Keeping a human ruling on every decision while clearing the bottleneck the manual process had created. The AI first pass had to arrive complete enough for an analyst to act in minutes, and the replan loop covers the cases that need a second look before anything executes."
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    }
+  ]
+}

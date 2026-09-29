@@ -1,0 +1,349 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "ai-driven-technical-documentation",
+  "title": "Faster, consistent technical documentation through an AI-assisted publishing workflow",
+  "summary": "A documentation workflow that pairs technical writer expertise with AI-assisted authoring, automated quality and version checks, managed review, and approval-gated publishing.",
+  "client": "Global technology leader",
+  "industry": "Technology and internet",
+  "hero": {
+    "eyebrow": null,
+    "title": "Faster, consistent technical<br />documentation through an AI-assisted<br />publishing workflow",
+    "subtitle": null,
+    "summary": "A documentation workflow that pairs technical writer expertise with AI-assisted authoring, automated quality and version checks, managed review, and approval-gated publishing.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "Faster, consistent technical documentation through an AI-assisted publishing workflow | Agivant Case Study",
+    "description": "A documentation workflow that pairs technical writer expertise with AI-assisted authoring, automated quality and version checks, managed review, and approval-gated publishing.",
+    "canonical": "https://agivant.com/case-studies/ai-driven-technical-documentation",
+    "ogImage": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-03.jpg",
+      "assetKey": "case-study-03",
+      "alt": "Faster, consistent technical documentation through an AI-assisted publishing workflow",
+      "caption": null
+    }
+  },
+  "capability": "AI & ML Engineering",
+  "techPlatform": null,
+  "showFooter": true,
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": false,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "Documentation moved from a largely manual process to a standardized, AI-assisted, governed workflow, with faster authoring and reviews, consistent quality, and approval gates before anything reaches production.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & industry",
+          "body": "Global technology leader, documenting fast-moving developer products and APIs"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "Technical documentation services, run through an AI-driven authoring, review, and publishing workflow"
+        },
+        {
+          "id": "scope",
+          "title": "Scope",
+          "body": "API documentation, feature documentation, and greenfield projects, with the workflow adapting to the engineering inputs available"
+        },
+        {
+          "id": "maps-to-below-services",
+          "title": "Maps to below services",
+          "body": "AI & ML Engineering"
+        }
+      ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "Documentation trying to keep pace with fast-moving products through manual handoffs and repeated review cycles."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "Writers depended on manual collaboration with developers and several rounds of review to keep content aligned with the product. Content fell out of sync as the product changed, and standards varied from one writer to the next."
+        },
+        {
+          "id": "no-decision-framework",
+          "type": "card",
+          "title": "No decision framework",
+          "body": "Version conflicts surfaced late, once content was already in engineering review, and reviewer feedback was worked through by hand. Nothing checked repository status before submission, which stretched each review cycle."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant's role",
+          "body": "Technical writing, AI-assisted workflow design, and publication automation across API, feature, and greenfield documentation"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Agivant's technical writers built an AI-driven documentation workflow that keeps final judgment with the human author. An AI assistant validates content as it is written, automation checks repository status before review, AI helps resolve reviewer feedback, and approved content publishes itself. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "ai-powered-authoring",
+          "type": "card",
+          "title": "AI-powered authoring",
+          "body": "An integrated assistant enforces client and industry style guides and flags grammar, terminology, and formatting issues as writers work.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "AI-powered authoring",
+            "caption": null
+          }
+        },
+        {
+          "id": "automated-quality-and-version-control",
+          "type": "card",
+          "title": "Automated quality and version control",
+          "body": "Checks repository status and detects conflicting changes before content enters engineering review.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Automated quality and version control",
+            "caption": null
+          }
+        },
+        {
+          "id": "intelligent-review-and-resolution",
+          "type": "card",
+          "title": "Intelligent review and resolution",
+          "body": "AI interprets reviewer feedback and suggests context-aware fixes, while automated notifications keep reviewers aligned through each iteration.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Intelligent review and resolution",
+            "caption": null
+          }
+        },
+        {
+          "id": "automated-publication",
+          "type": "card",
+          "title": "Automated publication",
+          "body": "Once every required approval lands, the workflow compiles and publishes the documentation to production.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Automated publication",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-workflow-stages",
+              "label": "Workflow stages",
+              "value": "AI-assisted authoring, automated validation, AI-assisted review, automated publication"
+            },
+            {
+              "id": "row-controls",
+              "label": "Controls",
+              "value": "Writer owns every final decision, required approvals before production"
+            },
+            {
+              "id": "row-next-stage-planned",
+              "label": "Next stage (planned)",
+              "value": "Source-code repository integration for automatic change detection"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "Manual handoffs, inconsistent standards, late version conflicts, lengthy review cycles, and documentation lagging the product."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "An AI-assisted workflow with real-time validation, automated conflict checks, assisted review resolution, and approval-gated publishing."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "A writer drafts a page while the AI assistant checks it against style, terminology, and formatting rules. Before review, automation confirms the repository is in sync and flags conflicts for the writer to resolve. Reviewer comments come back with suggested fixes the writer accepts or rewrites, and once every approval is in, the page compiles and publishes on its own."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "The solution transforms documentation from a largely manual process into a standardized, AI-assisted, and governed workflow."
+        },
+        {
+          "id": "metric-authoring-with-repetitive-editing-reduced-through-ai-assistance",
+          "type": "bento_metric",
+          "value": "Faster",
+          "label": "Authoring, with repetitive editing reduced through AI assistance",
+          "variant": "small"
+        },
+        {
+          "id": "metric-quality-with-documentation-standards-enforced-automatically",
+          "type": "bento_metric",
+          "value": "Consistent",
+          "label": "Quality, with documentation standards enforced automatically",
+          "variant": "small"
+        },
+        {
+          "id": "metric-risk-through-automated-version-and-conflict-validation",
+          "type": "bento_metric",
+          "value": "Reduced",
+          "label": "Risk, through automated version and conflict validation",
+          "variant": "small"
+        },
+        {
+          "id": "metric-workflow-across-products-and-engineering-teams",
+          "type": "bento_metric",
+          "value": "Repeatable",
+          "label": "Workflow, across products and engineering teams",
+          "variant": "small"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "The workflow repeats across products and engineering teams. Its planned next stage connects to source-code repositories, so documentation-impacting code changes route to the right writer automatically and documentation stays in step with the product. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "Supporting API, feature, and greenfield documentation in one workflow when each starts from different engineering inputs, and bringing AI into authoring and review while keeping every final call with the human writer."
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    }
+  ]
+}

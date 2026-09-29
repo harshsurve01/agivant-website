@@ -72,6 +72,27 @@ box-shadow: 0 4px 8px rgba(4, 4, 4, 0.15);
   max-width: 20rem;
 }
 
+/* Optional footnote (only rendered when a `note` is passed): dotted divider
+   above, small purple text. */
+.note {
+  width: 100%;
+  margin: var(--space-5) 0 0;
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-brand-primary);
+}
+
+.note::before {
+  content: "";
+  display: block;
+  width: 11rem;
+  max-width: 100%;
+  margin: 0 auto var(--space-4);
+  border-top: 1px dotted var(--color-border-strong);
+}
+
 .descriptionWithEyebrow {
   margin-top: var(--space-2);
   font-size: var(--font-size-sm);

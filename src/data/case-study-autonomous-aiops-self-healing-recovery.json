@@ -1,0 +1,453 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "autonomous-aiops-self-healing-recovery",
+  "title": "30% OPEX savings from AI-driven auto-recovery across 200+ microservices",
+  "summary": "An AIOps framework for a large telecommunications provider that identifies anomalies, classifies each problem, suggests the recovery, and auto-recovers known patterns.",
+  "client": "Large telecommunications provider",
+  "industry": "Telecommunications",
+  "hero": {
+    "eyebrow": null,
+    "title": "30% OPEX savings from AI-driven<br />auto-recovery across 200+ microservices",
+    "subtitle": null,
+    "summary": "An AIOps framework for a large telecommunications provider that identifies anomalies, classifies each problem, suggests the recovery, and auto-recovers known patterns.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "30% OPEX savings from AI-driven auto-recovery across 200+ microservices | Agivant Case Study",
+    "description": "An AIOps framework for a large telecommunications provider that identifies anomalies, classifies each problem, suggests the recovery, and auto-recovers known patterns.",
+    "canonical": "https://agivant.com/case-studies/autonomous-aiops-self-healing-recovery",
+    "ogImage": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-01.jpg",
+      "assetKey": "case-study-01",
+      "alt": "30% OPEX savings from AI-driven auto-recovery across 200+ microservices",
+      "caption": null
+    }
+  },
+  "capability": "MLOps & Scalable ML Platforms, Cloud & Platform Engineering",
+  "techPlatform": "BigPanda",
+  "showFooter": true,
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": false,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "Incoming tickets down from 2,500 to 3,000 a month to 500 to 600, average process time cut from 30 minutes to 3, 30% of fallout handled automatically, 30% OPEX savings, and a 5% revenue increase.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & industry",
+          "body": "Large telecommunications provider, with 200+ microservices and applications integrated"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "AIOps framework build to identify anomalies, classify problems, suggest recovery, and provide single-click recovery action"
+        },
+        {
+          "id": "scale",
+          "title": "Scale",
+          "body": "5 to 6 million Splunk logs, with 500K to 1.2M exceptions and 300 to 600 incidents a day"
+        },
+        {
+          "id": "algorithms",
+          "title": "Algorithms",
+          "body": "Linear regression and SVM, with NLP for problem categorization"
+        },
+        {
+          "id": "maps-to-below-services",
+          "title": "Maps to below services",
+          "body": "MLOps & Scalable ML Platforms, Cloud & Platform Engineering"
+        }
+      ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "Orders stuck in problem states and thousands of tickets a month, all resolved by hand."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "Between 3% and 10% of orders ran into problems and needed manual fixing. 2,500 to 3,000 tickets arrived every month, and every incident was resolved manually."
+        },
+        {
+          "id": "technical-barriers",
+          "type": "card",
+          "title": "Technical barriers",
+          "body": "Every monitoring tool had to feed its data in, with thresholds set carefully enough to avoid false-positive alerts across 200+ microservices and applications."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant's role",
+          "body": "AIOps architecture, ML and NLP model development, integration across 200+ microservices, and automated recovery"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Agivant built the framework on a BigPanda-based architecture for monitoring, event correlation, de-duplication, enrichment, and escalation, and integrated 200+ microservices and applications. Models train on data gathered from every relevant source and retrain regularly. In production, each incoming incident or alert runs through the models, which predict its category and its solution and publish both to a dashboard where the support team acts. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "bigpanda-event-pipeline",
+          "type": "card",
+          "title": "BigPanda event pipeline",
+          "body": "Monitoring, event correlation, de-duplication, enrichment, and escalation for 200+ integrated microservices and applications.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "BigPanda event pipeline",
+            "caption": null
+          }
+        },
+        {
+          "id": "anomaly-detection",
+          "type": "card",
+          "title": "Anomaly detection",
+          "body": "AIOps identifies anomalies across the integrated estate.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Anomaly detection",
+            "caption": null
+          }
+        },
+        {
+          "id": "problem-categorization",
+          "type": "card",
+          "title": "Problem categorization",
+          "body": "AI, ML, and NLP models classify each incoming incident.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Problem categorization",
+            "caption": null
+          }
+        },
+        {
+          "id": "solution-prediction",
+          "type": "card",
+          "title": "Solution prediction",
+          "body": "Models predict the likely solution for each incident and suggest the recovery action.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Solution prediction",
+            "caption": null
+          }
+        },
+        {
+          "id": "single-click-recovery",
+          "type": "card",
+          "title": "Single-click recovery",
+          "body": "The support team triggers the suggested recovery from the dashboard with one click.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Single-click recovery",
+            "caption": null
+          }
+        },
+        {
+          "id": "auto-recovery-for-known-patterns",
+          "type": "card",
+          "title": "Auto-recovery for known patterns",
+          "body": "Known failure patterns recover automatically, with no manual step.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Auto-recovery for known patterns",
+            "caption": null
+          }
+        },
+        {
+          "id": "defects-from-application-logs",
+          "type": "card",
+          "title": "Defects from application logs",
+          "body": "Code and data issues found in application logs are raised as defects, and the code fixes that follow reduce incoming tickets.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Defects from application logs",
+            "caption": null
+          }
+        },
+        {
+          "id": "single-pane-dashboard",
+          "type": "card",
+          "title": "Single-pane dashboard",
+          "body": "Health information on systems, applications, and incidents in one view.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Single-pane dashboard",
+            "caption": null
+          }
+        },
+        {
+          "id": "train-and-retrain-loop",
+          "type": "card",
+          "title": "Train and retrain loop",
+          "body": "Models train on data from all relevant sources and retrain regularly, with support team feedback feeding each cycle.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Train and retrain loop",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-monitoring-and-correlation",
+              "label": "Monitoring and correlation",
+              "value": "BigPanda"
+            },
+            {
+              "id": "row-microservices",
+              "label": "Microservices",
+              "value": "Java and Spring Boot, 200+ integrated"
+            },
+            {
+              "id": "row-databases",
+              "label": "Databases",
+              "value": "MongoDB NoSQL, Oracle for order metrics"
+            },
+            {
+              "id": "row-log-source",
+              "label": "Log source",
+              "value": "Splunk, 5 to 6 million logs"
+            },
+            {
+              "id": "row-ai-and-ml",
+              "label": "AI and ML",
+              "value": "Python, linear regression, SVM, NLP"
+            },
+            {
+              "id": "row-models",
+              "label": "Models",
+              "value": "Multiple models, Model 1 through Model N, with a feedback loop"
+            },
+            {
+              "id": "row-recovery",
+              "label": "Recovery",
+              "value": "Auto-recovery for known patterns, single-click recovery for the rest"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "Manual incident resolution, 2,500 to 3,000 tickets a month, and 3% to 10% of orders needing hand fixes."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "Correlated events feeding ML predictions, auto-recovery for known patterns, defects raised from logs, and one health dashboard."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "Data from every relevant source trains the models, and they retrain regularly. When an incident or alert comes in, the models predict its category and its solution and publish both to the dashboard. Known patterns recover automatically, and the support team acts on the rest with a single click. Code and data issues found in application logs become defects, and the code fixes that follow brought incoming tickets from 2,500 to 3,000 a month down to 500 to 600, with average process time down from 30 minutes to 3."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "Incident resolution moved from manual work to AIOps-driven handling, with 90% savings."
+        },
+        {
+          "id": "metric-opex-savings-from-auto-recovery",
+          "type": "bento_metric",
+          "value": "30%",
+          "label": "OPEX savings from auto-recovery",
+          "variant": "small"
+        },
+        {
+          "id": "metric-monthly-tickets-down-from-2500-to-3000",
+          "type": "bento_metric",
+          "value": "500 to 600",
+          "label": "Monthly tickets, down from 2,500 to 3,000",
+          "variant": "small"
+        },
+        {
+          "id": "metric-average-process-time",
+          "type": "bento_metric",
+          "value": "30 to 3 min",
+          "label": "Average process time",
+          "variant": "small"
+        },
+        {
+          "id": "metric-fallout-handled-automatically",
+          "type": "bento_metric",
+          "value": "30%",
+          "label": "Fallout handled automatically",
+          "variant": "small"
+        },
+        {
+          "id": "metric-savings-on-incident-resolution",
+          "type": "bento_metric",
+          "value": "90%",
+          "label": "Savings on incident resolution",
+          "variant": "wide"
+        },
+        {
+          "id": "metric-revenue",
+          "type": "bento_metric",
+          "value": "+5%",
+          "label": "Revenue",
+          "variant": "wide"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "The trained models and their retraining loop stay with the framework, so every new incident and every support team action feeds the next prediction. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "The AIOps service needed receiver and feeder APIs into a cloud-based solution, and those APIs had to clear security review before integration could proceed."
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    }
+  ]
+}

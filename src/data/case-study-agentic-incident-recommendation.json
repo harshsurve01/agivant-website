@@ -1,0 +1,403 @@
+{
+  "schemaVersion": "1.0",
+  "pageType": "caseStudy",
+  "slug": "agentic-incident-recommendation",
+  "title": "50% lower MTTR with an agent that recommends the fix and runs it on approval",
+  "summary": "An incident recommendation agent for a global engineering software enterprise that analyzes real-time incident data against historical resolutions, surfaces fix paths from internal knowledge, and executes validated steps with a human in the loop.",
+  "client": "Global engineering software enterprise",
+  "industry": "Semiconductor and EDA",
+  "hero": {
+    "eyebrow": null,
+    "title": "50% lower MTTR with an agent<br />that recommends the fix and runs<br />it on approval",
+    "subtitle": null,
+    "summary": "An incident recommendation agent for a global engineering software enterprise that analyzes real-time incident data against historical resolutions, surfaces fix paths from internal knowledge, and executes validated steps with a human in the loop.",
+    "authors": [],
+    "partner": null,
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/hero-ribbon.png",
+      "assetKey": null,
+      "alt": "Hero Ribbon",
+      "caption": null
+    },
+    "primaryCta": null,
+    "secondaryCta": null
+  },
+  "seo": {
+    "title": "50% lower MTTR with an agent that recommends the fix and runs it on approval | Agivant Case Study",
+    "description": "An incident recommendation agent for a global engineering software enterprise that analyzes real-time incident data against historical resolutions, surfaces fix paths from internal knowledge, and executes validated steps with a human in the loop.",
+    "canonical": "https://agivant.com/case-studies/agentic-incident-recommendation",
+    "ogImage": null
+  },
+  "thumbnail": {
+    "media": {
+      "kind": "image",
+      "src": "/images/case-studies/case-study-03.jpg",
+      "assetKey": "case-study-03",
+      "alt": "50% lower MTTR with an agent that recommends the fix and runs it on approval",
+      "caption": null
+    }
+  },
+  "capability": "MLOps & Scalable ML Platforms, Agentic AI & AgentOps",
+  "techPlatform": "Google Cloud & Vertex AI, ServiceNow",
+  "showFooter": true,
+  "footerCta": {
+    "enabled": false,
+    "heading": "Ready To Get Your Enterprise Amp'd With Agivant?",
+    "description": "Book a discovery session to evaluate agentic workflows for your commerce or software architecture.",
+    "primaryCta": {
+      "enabled": false,
+      "label": "Get Amp'd!",
+      "href": "/contact",
+      "external": false
+    }
+  },
+  "sections": [
+    {
+      "id": "outcome-summary",
+      "type": "outcome_summary",
+      "enabled": true,
+      "data": {
+        "heading": "Outcome",
+        "description": "MTTR down 50%, alert noise down 30%, and root cause analysis running automatically, with the manual investigation phase after RCA handled by the agent.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "See the results",
+          "href": "#solution"
+        },
+        "secondaryCta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "at-a-glance",
+      "type": "at_a_glance",
+      "enabled": true,
+      "data": {
+        "heading": "At a glance"
+      },
+      "blocks": [
+        {
+          "id": "client-industry",
+          "title": "Client & industry",
+          "body": "Global engineering software enterprise, with incident knowledge spread across tickets, documents, forums, and runbooks"
+        },
+        {
+          "id": "engagement",
+          "title": "Engagement",
+          "body": "Agentic incident recommendation, from knowledge lookup to auto-resolution with human approval"
+        },
+        {
+          "id": "maps-to-below-services",
+          "title": "Maps to below services",
+          "body": "MLOps & Scalable ML Platforms, Agentic AI & AgentOps"
+        }
+      ]
+    },
+    {
+      "id": "where-it-started",
+      "type": "where_it_started",
+      "enabled": true,
+      "data": {
+        "heading": "Where it started",
+        "description": "Every incident meant hunting across fragmented tools before anyone could start on the fix."
+      },
+      "blocks": [
+        {
+          "id": "business-problem",
+          "type": "card",
+          "title": "Business problem",
+          "body": "Engineers spent critical time searching ITSM, CMDB, monitoring, and chat logs just to understand a problem. Without unified context, even simple incidents turned into multi-hour investigations, and MTTR climbed."
+        },
+        {
+          "id": "technical-barriers",
+          "type": "card",
+          "title": "Technical barriers",
+          "body": "MTTR was dominated by alert noise, manual root cause analysis, and slow escalation chains. After RCA, the fix path still had to be found by hand across internal knowledge."
+        },
+        {
+          "id": "agivants-role",
+          "type": "role_summary",
+          "title": "Agivant's role",
+          "body": "Agent engineering, hybrid search and knowledge graph design, and human-in-the-loop remediation workflows"
+        }
+      ]
+    },
+    {
+      "id": "what-agivant-built",
+      "type": "what_agivant_built",
+      "enabled": true,
+      "data": {
+        "heading": "What Agivant built",
+        "description": "Agivant built the recommendation agent to analyze real-time incident data against historical resolutions. An AI intelligence layer handles issue detection, resolution matching, duplicate finding, and RAG with Gemini models. It draws on a hybrid search index of keyword and semantic vectors and a knowledge graph of tickets, content, and their relationships, fed by documents, forums, runbooks, ITSM tickets, and observability data through real-time and batch ingestion. Validated remediation steps run once a person approves. Value in days and weeks."
+      },
+      "blocks": [
+        {
+          "id": "alert-triggered-workflows",
+          "type": "card",
+          "title": "Alert-triggered workflows",
+          "body": "Incidents start the agent automatically through alert-triggered workflows in the orchestration layer.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Alert-triggered workflows",
+            "caption": null
+          }
+        },
+        {
+          "id": "resolution-matching",
+          "type": "card",
+          "title": "Resolution matching",
+          "body": "Compares each live incident against historical resolutions to find the closest proven fix.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Resolution matching",
+            "caption": null
+          }
+        },
+        {
+          "id": "automatic-root-cause-analysis",
+          "type": "card",
+          "title": "Automatic root cause analysis",
+          "body": "Identifies the root cause automatically before a fix is recommended.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Automatic root cause analysis",
+            "caption": null
+          }
+        },
+        {
+          "id": "knowledge-lookup",
+          "type": "card",
+          "title": "Knowledge lookup",
+          "body": "Surfaces fix paths from internal knowledge sources, replacing the manual investigation phase after RCA.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/qa-regression-agent.png",
+            "assetKey": null,
+            "alt": "Knowledge lookup",
+            "caption": null
+          }
+        },
+        {
+          "id": "validated-remediation-steps",
+          "type": "card",
+          "title": "Validated remediation steps",
+          "body": "Recommends remediation steps drawn from proven resolutions and internal knowledge.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-migration-agent.png",
+            "assetKey": null,
+            "alt": "Validated remediation steps",
+            "caption": null
+          }
+        },
+        {
+          "id": "human-in-the-loop-execution",
+          "type": "card",
+          "title": "Human-in-the-loop execution",
+          "body": "Executes the recommended steps once an engineer approves them.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/data-validation-agent.png",
+            "assetKey": null,
+            "alt": "Human-in-the-loop execution",
+            "caption": null
+          }
+        },
+        {
+          "id": "noise-and-duplicate-reduction",
+          "type": "card",
+          "title": "Noise and duplicate reduction",
+          "body": "Issue detection and duplicate finding cut alert noise before incidents reach the agent.",
+          "media": {
+            "kind": "image",
+            "src": "/images/case-studies/seo-url-mapping.png",
+            "assetKey": null,
+            "alt": "Noise and duplicate reduction",
+            "caption": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "how-it-is-built",
+      "type": "how_it_is_built",
+      "enabled": true,
+      "data": {
+        "heading": "How it is built"
+      },
+      "blocks": [
+        {
+          "id": "architecture-table",
+          "type": "table",
+          "rows": [
+            {
+              "id": "row-orchestration",
+              "label": "Orchestration",
+              "value": "Alert-triggered workflows, Agent Engine with A2A protocol"
+            },
+            {
+              "id": "row-models",
+              "label": "Models",
+              "value": "Gemini, RAG engine"
+            },
+            {
+              "id": "row-search",
+              "label": "Search",
+              "value": "Hybrid index, keyword and semantic vectors"
+            },
+            {
+              "id": "row-knowledge-graph",
+              "label": "Knowledge graph",
+              "value": "Tickets, content, and relationships, on Spanner Graph and BigQuery"
+            },
+            {
+              "id": "row-knowledge-sources",
+              "label": "Knowledge sources",
+              "value": "Documents, forums, runbooks, ServiceNow and Jira tickets, Cloud Logging"
+            },
+            {
+              "id": "row-ingestion",
+              "label": "Ingestion",
+              "value": "Application Integration, Dataflow, Document AI, real-time and batch sync"
+            },
+            {
+              "id": "row-controls",
+              "label": "Controls",
+              "value": "Engineer approval before execution"
+            }
+          ]
+        },
+        {
+          "id": "before-card",
+          "type": "before_after_card",
+          "title": "Before",
+          "body": "Engineers hunting across fragmented tools, noisy alerts, manual RCA, slow escalation chains, and fix paths found by hand."
+        },
+        {
+          "id": "after-card",
+          "type": "before_after_card",
+          "title": "After",
+          "body": "Incidents matched to historical resolutions, root cause captured automatically, and validated fixes executed after human approval."
+        }
+      ]
+    },
+    {
+      "id": "proof-and-results",
+      "type": "proof_and_results",
+      "enabled": true,
+      "data": {
+        "heading": "Proof in production",
+        "description": "An alert fires and the agent checks the incident against historical resolutions in the knowledge graph and hybrid index. It confirms the root cause, pulls the matching fix path from internal knowledge, and lays out validated remediation steps. An engineer approves, and the agent executes them."
+      },
+      "blocks": [
+        {
+          "id": "measured-results-header",
+          "type": "subheading_block",
+          "heading": "Measured results",
+          "description": "Faster resolution with less noise, and engineers approving fixes the agent has already researched."
+        },
+        {
+          "id": "metric-mttr-reduction",
+          "type": "bento_metric",
+          "value": "50%",
+          "label": "MTTR reduction",
+          "variant": "small"
+        },
+        {
+          "id": "metric-less-alert-noise",
+          "type": "bento_metric",
+          "value": "30%",
+          "label": "Less alert noise",
+          "variant": "small"
+        },
+        {
+          "id": "metric-root-cause-analysis",
+          "type": "bento_metric",
+          "value": "Automatic",
+          "label": "Root cause analysis",
+          "variant": "small"
+        },
+        {
+          "id": "metric-every-executed-fix",
+          "type": "bento_metric",
+          "value": "Human-approved",
+          "label": "Every executed fix",
+          "variant": "small"
+        }
+      ]
+    },
+    {
+      "id": "repeatable-pattern",
+      "type": "repeatable_pattern",
+      "enabled": true,
+      "data": {
+        "heading": "The repeatable pattern"
+      },
+      "blocks": [
+        {
+          "id": "reusable-asset",
+          "type": "card",
+          "title": "Reusable asset",
+          "body": "The recommendation agent is one of the ticket-lifecycle agents in Agivant's agentic IT support platform, working alongside the triage, investigate, lifecycle, and support assist agents. Every build amplifies the next."
+        },
+        {
+          "id": "challenges-overcome",
+          "type": "card",
+          "title": "Challenges overcome",
+          "body": "Matching each live incident to the right historical resolution through heavy alert noise, and keeping every executed fix under engineer approval."
+        },
+        {
+          "id": "enterprise-movement",
+          "type": "enterprise_movement",
+          "heading": "Enterprise movement",
+          "stages": [
+            {
+              "id": "stage-foundational",
+              "label": "Foundational",
+              "status": "default"
+            },
+            {
+              "id": "stage-operational",
+              "label": "Operational",
+              "status": "active"
+            },
+            {
+              "id": "stage-autonomous",
+              "label": "Autonomous",
+              "status": "default"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final-cta",
+      "type": "final_cta",
+      "enabled": true,
+      "data": {
+        "heading": "Ready to get your enterprise Amp'd?",
+        "description": "See how Agivant engineers this for the autonomous agentic enterprise.",
+        "primaryCta": {
+          "enabled": true,
+          "label": "Find your Amp'd score",
+          "href": "/ampd-score",
+          "external": false
+        },
+        "secondaryCta": {
+          "enabled": true,
+          "label": "Talk to an Amp'd specialist",
+          "href": "/contact",
+          "external": false
+        }
+      },
+      "blocks": []
+    }
+  ]
+}

@@ -94,6 +94,25 @@
   color: var(--color-brand-primary, #8500DF);
 }
 
+.chevronButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  line-height: 1;
+}
+
+.navTriggerLink {
+  color: inherit;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+
 /* ── Mega Menu Panel ── */
 .megaMenuPanel {
   position: absolute;
@@ -184,6 +203,7 @@
   font-size: var(--font-size-base, 0.9375rem);
   font-weight: var(--font-weight-medium, 400);
   color: #374151;
+  text-decoration: none;
   cursor: pointer;
   text-align: left;
   transition: all var(--transition-fast, 150ms ease);
@@ -192,6 +212,17 @@
 .categoryButton:hover {
   background: transparent;
   color: var(--color-black, #000000);
+}
+
+/* Resources submenu hover: "Research" and "Talk Tech" switch to brand purple */
+.megaMenuPanel[data-menu-id="resources"] .categoryButton:hover,
+:global(#resources-mega-menu) .categoryButton:hover {
+  color: var(--color-brand-primary, #8500DF);
+}
+
+.megaMenuPanel[data-menu-id="resources"] .categoryButton:hover .categoryArrow,
+:global(#resources-mega-menu) .categoryButton:hover .categoryArrow {
+  color: var(--color-brand-primary, #8500DF);
 }
 
 .categoryButtonActive {
