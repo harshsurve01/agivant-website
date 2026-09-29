@@ -1,0 +1,222 @@
+/* ==========================================================================
+   AgenticEngineeringNow.module.css
+   Amp'd landing page — "Agentic engineering now".
+   Left: two-tone heading, statement, body. Right: staggered 2×2 stat cards.
+   ========================================================================== */
+
+.section {
+  /* SECTION SPACING */
+  --aen-padding-top: var(--space-24);
+  --aen-padding-bottom: var(--space-24);
+  /* CARD SIZE / GRID */
+  --aen-card-width: 17rem;
+  --aen-card-height: 14.75rem;
+  --aen-card-gap-x: 2rem;
+  --aen-card-gap-y: 2.5rem;
+  /* RIGHT-COLUMN STAGGER (how far column 2 sits below column 1) */
+  --aen-card-stagger: 2.5rem;
+  /* RIBBON POSITION (distance from the section top) */
+  --aen-ribbon-offset: 18rem;
+
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  padding-top: var(--aen-padding-top);
+  padding-bottom: var(--aen-padding-bottom);
+  overflow-x: clip;
+  isolation: isolate;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  column-gap: var(--space-16);
+}
+
+/* --------------------------------------------------------------------
+   Left column
+   -------------------------------------------------------------------- */
+.copy {
+  padding-top: var(--space-5);
+  max-width: 36rem;
+}
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-7xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.18;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.headingAccent,
+.headingPrimary {
+  display: block;
+}
+
+.headingAccent {
+  color: var(--color-brand-primary);
+}
+
+.headingPrimary {
+  color: var(--color-text-primary);
+}
+
+.statement {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.15;
+  color: var(--color-text-primary);
+  margin: var(--space-16) 0 0;
+}
+
+.body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: var(--space-10) 0 0;
+}
+
+/* --------------------------------------------------------------------
+   Stat cards (2 columns, second column staggered down)
+   -------------------------------------------------------------------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, var(--aen-card-width));
+  column-gap: var(--aen-card-gap-x);
+  row-gap: var(--aen-card-gap-y);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: var(--aen-card-height);
+  padding: var(--space-6) var(--space-8) var(--space-8);
+  border-radius: 1.25rem;
+  background: color-mix(in srgb, var(--color-white) 70%, transparent);
+  border: 1px solid var(--color-white);
+  box-shadow: 0 4px 8px rgba(4, 4, 4, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.card:nth-child(2n) {
+  transform: translateY(var(--aen-card-stagger));
+}
+
+.value {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  color: var(--color-brand-primary);
+  margin: 0;
+}
+
+/* Second-column values: warm accent (Figma). */
+.card:nth-child(2n) .value {
+  color: var(--color-bg-gradient-start);
+}
+
+.label {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.25;
+  color: color-mix(in srgb, var(--color-text-primary) 60%, transparent);
+  margin: var(--space-6) 0 0;
+}
+
+/* --------------------------------------------------------------------
+   Optional decorative ribbon (PageRibbon)
+   -------------------------------------------------------------------- */
+.ribbonWrapper {
+  top: var(--aen-ribbon-offset);
+  z-index: 1;
+}
+
+.ribbonImage {
+  width: 100%;
+  height: auto;
+}
+
+/* --------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .container {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-12);
+  }
+
+  .copy {
+    max-width: 44rem;
+  }
+
+  .cards {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    --aen-padding-top: var(--space-12);
+    --aen-padding-bottom: var(--space-16);
+  }
+
+  .heading {
+    font-size: var(--font-size-5xl);
+  }
+
+  .statement {
+    font-size: var(--font-size-2xl);
+    margin-top: var(--space-6);
+  }
+
+  .body {
+    font-size: var(--font-size-base);
+    margin-top: var(--space-6);
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-4);
+    row-gap: var(--space-5);
+  }
+
+  .card {
+    min-height: 12rem;
+    padding: var(--space-5);
+  }
+
+  .value {
+    font-size: var(--font-size-4xl);
+  }
+
+  .label {
+    font-size: var(--font-size-sm);
+    margin-top: var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card:nth-child(2n) {
+    transform: none;
+  }
+
+  .card {
+    min-height: auto;
+  }
+}

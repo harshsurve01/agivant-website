@@ -33,7 +33,7 @@
     "primaryCta": {
       "enabled": true,
       "label": "See client success in action",
-      "href": "/client-success",
+      "href": "/case-studies",
       "external": false
     },
     "secondaryCta": {
@@ -849,7 +849,7 @@
   "footer": {
     "navigation": [
       { "label": "What We Build", "href": "/what-we-build" },
-      { "label": "Client Success", "href": "/client-success" },
+      { "label": "Client Success", "href": "/case-studies" },
       { "label": "Agent Library", "href": "/agent-library" },
       { "label": "Resources", "href": "/resources" },
       { "label": "Careers", "href": "/careers" },

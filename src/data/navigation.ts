@@ -233,7 +233,7 @@ const mockNavigation: NavigationItem[] = [
       },
     },
   },
-  { id: "client-success", label: "Client Success", href: "/client-success" },
+  { id: "client-success", label: "Client Success", href: "/case-studies" },
   { id: "agent-library", label: "Agent Library", href: "/agent-library" },
   {
     id: "resources",

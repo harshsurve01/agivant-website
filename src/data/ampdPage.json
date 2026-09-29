@@ -99,6 +99,56 @@
           "detail": "Client-validated, run-rate basis"
         }
       ]
+    },
+    {
+      "id": "agentic-engineering-now",
+      "type": "stats",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Agentic<br>engineering now",
+        "description": "Agentic engineering is already reshaping how enterprises build",
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "agentic-engineering-now-copy",
+          "type": "rich_text",
+          "heading": null,
+          "body": "What decides the value is how quickly agents reach production inside the systems, controls and workflows the enterprise already runs."
+        },
+        {
+          "id": "stat-spec-first-platforms",
+          "type": "metric",
+          "value": "15+",
+          "label": "major engineering platforms launched spec-first tooling for AI agents inside a single year",
+          "detail": null
+        },
+        {
+          "id": "stat-a2a-organizations",
+          "type": "metric",
+          "value": "150+",
+          "label": "organizations back the open agent-to-agent protocol, now under neutral Linux Foundation stewardship",
+          "detail": null
+        },
+        {
+          "id": "stat-enterprises-expect-agents",
+          "type": "metric",
+          "value": "74%",
+          "label": "of enterprises expect to be running AI agents in production by 2027",
+          "detail": null
+        },
+        {
+          "id": "stat-agentic-roi",
+          "type": "metric",
+          "value": "171%",
+          "label": "average reported return on agentic AI deployments",
+          "detail": null
+        }
+      ]
     }
   ],
   "footerCta": {

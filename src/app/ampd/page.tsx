@@ -5,6 +5,10 @@ import { GradientLayerProvider } from "@/components/effects/GradientLayer";
 import Link from "next/link";
 import { Hero } from "@/components/sections/Services/Hero";
 import { RunningToday } from "@/components/sections/Services/RunningToday";
+import {
+  AgenticEngineeringNow,
+  type AgenticEngineeringMetric,
+} from "@/components/sections/Ampd/AgenticEngineeringNow";
 import type { RunningTodayMetric } from "@/data/services";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
@@ -42,6 +46,21 @@ export default function AmpdPage() {
   const statsSection = getAmpdSection("ampd-in-production");
   const statsHeading = statsSection?.data.heading ?? "";
   const statsHighlight = statsHeading.split(" ").slice(0, -1).join(" ");
+
+  // 4. "Agentic engineering now": rich_text block = body copy, metric blocks = cards.
+  const agenticSection = getAmpdSection("agentic-engineering-now");
+  const agenticBlocks = (agenticSection?.blocks ?? []) as {
+    id: string;
+    type: string;
+    body?: string | null;
+    value?: string;
+    label?: string;
+  }[];
+  const agenticBody =
+    agenticBlocks.find((b) => b.type === "rich_text")?.body ?? null;
+  const agenticMetrics: AgenticEngineeringMetric[] = agenticBlocks
+    .filter((b) => b.type === "metric")
+    .map((b) => ({ id: b.id, value: b.value ?? "", label: b.label ?? "" }));
 
   const youtubeId =
     videoMedia?.src.match(
@@ -112,6 +131,18 @@ export default function AmpdPage() {
               columns={4}
               tintLastCard={false}
               className={styles.ampdStats}
+            />
+          )}
+
+          {/* 4. "Agentic engineering now" — Amp'd section component. */}
+          {agenticSection && (
+            <AgenticEngineeringNow
+              id={agenticSection.id}
+              heading={agenticSection.data.heading ?? ""}
+              description={agenticSection.data.description}
+              body={agenticBody}
+              metrics={agenticMetrics}
+              ribbon={agenticSection.data.media}
             />
           )}
         </main>
