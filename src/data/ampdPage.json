@@ -110,7 +110,15 @@
         "heading": "Agentic<br>engineering now",
         "description": "Agentic engineering is already reshaping how enterprises build",
         "columns": [],
-        "media": null,
+        "media": {
+          "kind": "image",
+          "src": "/images/ampd/section-bg1.png",
+          "assetKey": "ampd-agentic-engineering-ribbon",
+          "alt": "",
+          "caption": null,
+          "width": 5760,
+          "height": 3220
+        },
         "cta": null
       },
       "blocks": [
@@ -147,6 +155,401 @@
           "value": "171%",
           "label": "average reported return on agentic AI deployments",
           "detail": null
+        }
+      ]
+    },
+    {
+      "id": "what-changes",
+      "type": "tabs",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "What changes when your enterprise gets Amp'd",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "agivant-bolt",
+          "type": "tab",
+          "eyebrow": "Agivant Bolt, The AI – Native OS",
+          "title": "Agivant Bolt",
+          "heading": "Every build runs against a specification you own",
+          "body": "Agivant Bolt is the AI-Native OS underneath Amp'd, running on a governed harness. The specification is the single source of truth, ahead of the code.",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/accelerator-as.png",
+            "assetKey": "ampd-tab-agivant-bolt",
+            "alt": "",
+            "caption": null,
+            "width": 1146,
+            "height": 748
+          },
+          "cta": null,
+          "items": [
+            {
+              "id": "spec-first",
+              "type": "numberedItem",
+              "number": 1,
+              "title": "Spec-first",
+              "body": "The behavior is written down and versioned before the build starts, and everything downstream is generated from it"
+            },
+            {
+              "id": "one-playbook",
+              "type": "numberedItem",
+              "number": 2,
+              "title": "One playbook across the build",
+              "body": "Every stage of the AI-native engineering lifecycle runs the same steps, so quality holds across teams and engagements"
+            },
+            {
+              "id": "right-tool",
+              "type": "numberedItem",
+              "number": 3,
+              "title": "The right tool at the right stage",
+              "body": "A build matrix shows an engineer exactly which tools fit each stage of the work"
+            },
+            {
+              "id": "change-the-spec",
+              "type": "numberedItem",
+              "number": 4,
+              "title": "Change the spec, the build follows",
+              "body": "Engineers update the spec and the build follows, so speed and cost stay predictable"
+            },
+            {
+              "id": "governed-at-runtime",
+              "type": "numberedItem",
+              "number": 5,
+              "title": "Governed at runtime, traced to the spec",
+              "body": "Runtime controls set what agents can do, and every action traces back to the specification, giving security and engineering teams a clear record of what changed, why, and which controls applied"
+            }
+          ]
+        },
+        {
+          "id": "forward-deployed-engineers",
+          "type": "tab",
+          "eyebrow": "Forward Deployed Engineers",
+          "title": "Forward<br>Deployed Engineers",
+          "heading": "Week one is a build week",
+          "body": "Forward Deployed Engineers work alongside your teams, inside your environment. One pod brings domain, architecture, AI and data expertise around the same outcome from the start.",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/autonomous-support.png",
+            "assetKey": "ampd-tab-forward-deployed-engineers",
+            "alt": "",
+            "caption": null,
+            "width": 1146,
+            "height": 748
+          },
+          "cta": null,
+          "items": [
+            {
+              "id": "role-domain-expert",
+              "type": "tag",
+              "title": "Domain expert"
+            },
+            {
+              "id": "role-solution-architect",
+              "type": "tag",
+              "title": "Solution architect"
+            },
+            {
+              "id": "role-ai-engineer",
+              "type": "tag",
+              "title": "AI engineer"
+            },
+            {
+              "id": "role-data-engineer",
+              "type": "tag",
+              "title": "Data engineer"
+            },
+            {
+              "id": "agent-native",
+              "type": "card",
+              "title": "Agent-native from day one",
+              "body": "Engineers arrive ready to work with agentic systems, so the first week moves into the build instead of a long onboarding cycle",
+              "media": {
+                "kind": "image",
+                "src": "/images/case-studies/solution-ribbon-05.png",
+                "assetKey": null,
+                "alt": "",
+                "caption": null
+              }
+            },
+            {
+              "id": "one-pod",
+              "type": "card",
+              "title": "One pod around the problem",
+              "body": "Domain experts, solution architects, AI engineers and data engineers work toward the same outcome",
+              "media": {
+                "kind": "image",
+                "src": "/images/case-studies/solution-ribbon-02.png",
+                "assetKey": null,
+                "alt": "",
+                "caption": null
+              }
+            },
+            {
+              "id": "real-constraints",
+              "type": "card",
+              "title": "Real constraints shape the spec",
+              "body": "Data residency and security requirements shape the spec from the start, and core systems set its boundaries",
+              "media": {
+                "kind": "image",
+                "src": "/images/case-studies/solution-ribbon-03.png",
+                "assetKey": null,
+                "alt": "",
+                "caption": null
+              }
+            },
+            {
+              "id": "autonomy-line",
+              "type": "card",
+              "title": "Set the autonomy line early",
+              "body": "Token budgets, cost tags, spend alerts, and right-sized compute go in with the first pipeline.",
+              "media": {
+                "kind": "image",
+                "src": "/images/partners/gemini/solutions/agentic-quote-accelerator.png",
+                "assetKey": null,
+                "alt": "",
+                "caption": null
+              }
+            },
+            {
+              "id": "built-for-ownership",
+              "type": "card",
+              "title": "Built for ownership",
+              "body": "The team that builds the system still runs it a year later, and client engineers extend and own it from there",
+              "media": {
+                "kind": "image",
+                "src": "/images/partners/gemini/accelerators/strategic-sourcing.png",
+                "assetKey": null,
+                "alt": "",
+                "caption": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "production-grade-agents",
+          "type": "tab",
+          "eyebrow": "Production Grade AI Agents and Solutions",
+          "title": "Production Grade<br>AI Agents",
+          "heading": "Every agent is engineered as part of a working system",
+          "body": "Harness engineering is what makes an agent safe to run inside an enterprise system. Agivant engineers the surrounding controls first, then widens what the agent is allowed to do as the evidence arrives.",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/ai-powered.png",
+            "assetKey": "ampd-tab-production-grade-agents",
+            "alt": "",
+            "caption": null,
+            "width": 1146,
+            "height": 748
+          },
+          "cta": null,
+          "items": [
+            {
+              "id": "ampd-build-environment",
+              "type": "embed",
+              "title": "Inside the Amp'd build environment",
+              "media": {
+                "kind": "embed",
+                "src": "/animations/inside-the-Ampd-build-environment-Section.html",
+                "assetKey": "ampd-build-environment",
+                "alt": "Inside the Amp'd build environment",
+                "caption": null
+              }
+            },
+            {
+              "id": "foundation",
+              "type": "section",
+              "title": "Foundation For The Agentic Enterprise"
+            }
+          ]
+        },
+        {
+          "id": "every-build-amplifies",
+          "type": "tab",
+          "eyebrow": "Every Build Amplifies The Next",
+          "title": "Every Build<br>Amplifies",
+          "heading": "The next build starts ahead of the last",
+          "body": "Each build leaves proven patterns, specifications and assets ready to reuse. The next workflow starts with more context, more evidence and less repeat work.",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/enterprise-integration.png",
+            "assetKey": "ampd-tab-every-build-amplifies",
+            "alt": "",
+            "caption": null,
+            "width": 1146,
+            "height": 748
+          },
+          "cta": {
+            "enabled": true,
+            "label": "See Client Success in Action",
+            "href": "/case-studies",
+            "external": false
+          },
+          "items": [
+            {
+              "id": "every-build-illustration",
+              "type": "image",
+              "title": null,
+              "media": {
+                "kind": "image",
+                "src": null,
+                "assetKey": "ampd-every-build-amplifies",
+                "alt": "Reuse cycle",
+                "caption": null,
+                "width": null,
+                "height": null
+              }
+            },
+            {
+              "id": "workshop-keeps-growing",
+              "type": "feature",
+              "title": "A workshop that keeps growing",
+              "body": "Proven tools and patterns from one engagement stay ready for the next"
+            },
+            {
+              "id": "proven-under-real-conditions",
+              "type": "feature",
+              "title": "Proven under real conditions",
+              "body": "Every reusable block comes from work that already runs in production and has cleared enterprise review"
+            },
+            {
+              "id": "agents-arrive-prepared",
+              "type": "feature",
+              "title": "Agents arrive prepared",
+              "body": "Agivant agents draw on proven specifications before they enter a new workflow"
+            },
+            {
+              "id": "assets-stay-with-client",
+              "type": "feature",
+              "title": "The assets stay with the client",
+              "body": "Everything Agivant builds stays inside the client's own systems, where internal teams extend and reuse it"
+            },
+            {
+              "id": "each-build-reduces-repeat-work",
+              "type": "feature",
+              "title": "Each build reduces repeat work",
+              "body": "As the library grows, teams spend more of their time on new problems and less on rebuilding solved ones"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inside-ampd-build-environment",
+      "type": "html_embed",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Inside the Amp'd build environment",
+        "subheading": "See what changes at every stage of the build",
+        "description": "Agivant Bolt connects business intent, solution specification, agentic build, verification and learning across architecture, engineering, QA and operations. Each stage moves the work forward with the controls, evidence and reusable assets the next stage needs.",
+        "columns": [],
+        "media": {
+          "kind": "embed",
+          "src": "/animations/inside-the-Ampd-build-environment-Section.html",
+          "assetKey": "ampd-build-environment",
+          "alt": "Inside the Amp'd build environment — interactive build matrix",
+          "caption": null
+        },
+        "cta": null
+      },
+      "blocks": []
+    },
+    {
+      "id": "foundation",
+      "type": "ai-stack",
+      "enabled": true,
+      "conditions": null,
+      "data": {
+        "eyebrow": null,
+        "heading": "Foundation For The Agentic Enterprise",
+        "description": null,
+        "columns": [],
+        "media": null,
+        "cta": null
+      },
+      "blocks": [
+        {
+          "id": "harness-engineering",
+          "type": "card",
+          "title": "Harness engineering around every agent",
+          "description": "Tool contracts, identity, memory, observability, evaluations and guardrails are engineered around the agent, defining what it can do, what it can access and how its actions are verified",
+          "layout": "agentic",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/ai-native-card.png",
+            "assetKey": "service-ai-native-card",
+            "alt": "Harness engineering around every agent",
+            "caption": null
+          },
+          "bullets": []
+        },
+        {
+          "id": "identity-starts-with-build",
+          "type": "card",
+          "title": "Identity starts with the build",
+          "description": "Each agent gets a distinct identity, scoped access and an execution trace, so every action can be attributed and verified",
+          "layout": "data",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/cloud-modern-card.png",
+            "assetKey": "service-cloud-modern-card",
+            "alt": "Identity starts with the build",
+            "caption": null
+          },
+          "bullets": []
+        },
+        {
+          "id": "agents-work-as-a-team",
+          "type": "card",
+          "title": "Agents work as a team",
+          "description": "Every production-grade agentic solution runs on multi-agent orchestration",
+          "layout": "cloud",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/zero-trust-card.png",
+            "assetKey": "service-zero-trust-card",
+            "alt": "Agents work as a team",
+            "caption": null
+          },
+          "bullets": []
+        },
+        {
+          "id": "autonomy-grows-with-evidence",
+          "type": "card",
+          "title": "Autonomy grows with evidence",
+          "description": "Bounded autonomy keeps people involved where judgment matters, then widens the agent's scope as evidence builds",
+          "layout": "data",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/container-card.png",
+            "assetKey": "service-container-card",
+            "alt": "Autonomy grows with evidence",
+            "caption": null
+          },
+          "bullets": []
+        },
+        {
+          "id": "agent-or-full-solution",
+          "type": "card",
+          "title": "Use the agent or the full solution",
+          "description": "An agent runs on its own and moves between solutions. A solution adds the surrounding capability to run a broader business process",
+          "layout": "data",
+          "media": {
+            "kind": "image",
+            "src": "/images/services/compute-economics-card.png",
+            "assetKey": "service-compute-economics-card",
+            "alt": "Use the agent or the full solution",
+            "caption": null
+          },
+          "bullets": []
         }
       ]
     }

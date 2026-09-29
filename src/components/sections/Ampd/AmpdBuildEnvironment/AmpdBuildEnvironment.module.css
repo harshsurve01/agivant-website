@@ -1,0 +1,469 @@
+/* ==========================================================================
+   AmpdBuildEnvironment.module.css
+   Amp'd landing page — "What changes when your enterprise gets Amp'd":
+   tab cards, the single glass panel with its pointer, and the small panel
+   renderers (intro, spec cards, HTML embed).
+   ========================================================================== */
+
+.section {
+  /* SECTION SPACING */
+  --abe-padding-top: var(--space-16);
+  --abe-padding-bottom: var(--space-24);
+  /* TITLE → TABS → PANEL */
+  --abe-title-gap: var(--space-16);
+  --abe-tabs-gap: 2.25rem;
+  --abe-tabs-to-panel: var(--space-8);
+  /* PANEL */
+  --abe-panel-padding-block: 4.5rem;
+  --abe-panel-padding-inline: 4rem;
+  --abe-panel-border: color-mix(in srgb, var(--color-brand-primary) 60%, transparent);
+  --abe-panel-bg: color-mix(in srgb, var(--color-white) 72%, transparent);
+  /* POINTER */
+  --abe-pointer-size: 1.25rem;
+  /* INTRO → CONTENT */
+  --abe-content-gap: var(--space-24);
+
+  position: relative;
+  padding-top: var(--abe-padding-top);
+  padding-bottom: var(--abe-padding-bottom);
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+  text-align: center;
+  margin: 0 0 var(--abe-title-gap);
+}
+
+.titleAccent {
+  color: var(--color-brand-primary);
+}
+
+/* --------------------------------------------------------------------
+   Tab cards
+   -------------------------------------------------------------------- */
+.tabs {
+  position: relative; /* offset parent for the mobile scroll-to-tab maths */
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--abe-tabs-gap);
+  align-items: stretch;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-5);
+  padding: var(--space-3) var(--space-3) var(--space-8);
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--color-neutral-100);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.tab:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.tab:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.tabMedia {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* Inactive: muted grey artwork; active: full colour. */
+.tabImage {
+  object-fit: cover;
+  filter: grayscale(1);
+  opacity: 0.85;
+  transition: filter var(--transition-base), opacity var(--transition-base);
+}
+
+.tab:hover .tabImage {
+  filter: grayscale(0.4);
+  opacity: 1;
+}
+
+.tabActive .tabImage {
+  filter: none;
+  opacity: 1;
+}
+
+.tabTitle {
+  /* Centred in the space under the artwork (one- and two-line titles). */
+  margin-block: auto;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+  transition: color var(--transition-base);
+}
+
+.tabTitleLine {
+  display: block;
+}
+
+.tabActive .tabTitle {
+  color: var(--color-brand-primary);
+}
+
+/* --------------------------------------------------------------------
+   Glass panel + pointer
+   -------------------------------------------------------------------- */
+.panel {
+  position: relative;
+  margin-top: calc(var(--abe-tabs-to-panel) + var(--abe-pointer-size) / 2);
+  padding: var(--abe-panel-padding-block) var(--abe-panel-padding-inline);
+  border: 1px solid var(--abe-panel-border);
+  border-radius: var(--radius-xl);
+  background: var(--abe-panel-bg);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(14px);
+}
+
+/* Small outlined notch on the panel's top edge, under the active tab. */
+.pointer {
+  position: absolute;
+  top: calc(var(--abe-pointer-size) / -2 - 1px);
+  left: var(--abe-pointer-x, 12.5%);
+  width: var(--abe-pointer-size);
+  height: var(--abe-pointer-size);
+  border-top: 1px solid var(--abe-panel-border);
+  border-left: 1px solid var(--abe-panel-border);
+  border-top-left-radius: 0.25rem;
+  background: var(--color-white);
+  transform: translateX(-50%) rotate(45deg);
+  transition: left var(--transition-base);
+  pointer-events: none;
+}
+
+.panelBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--abe-content-gap);
+}
+
+.panelBody:focus-visible {
+  outline: none;
+}
+
+.panelBody[hidden] {
+  display: none;
+}
+
+/* --------------------------------------------------------------------
+   Panel intro (eyebrow, rule, heading, body)
+   -------------------------------------------------------------------- */
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.introCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.introHead {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.introEyebrow {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-snug);
+  color: var(--color-brand-primary);
+  margin: 0;
+}
+
+.introRule {
+  display: block;
+  width: 18.75rem;
+  max-width: 100%;
+  height: 1px;
+  margin: var(--space-8) 0 var(--space-12);
+  background: var(--color-border-strong);
+}
+
+.introHeading {
+  max-width: 30rem;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.introBody {
+  max-width: 32rem;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: var(--space-10) 0 0;
+}
+
+/* Copy column in the right half (Forward Deployed Engineers). */
+.introOffset {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.introOffset > .introCopy {
+  grid-column: 2;
+}
+
+.introOffset .introBody {
+  margin-top: var(--space-6);
+}
+
+/* Heading left, body right (Production Grade AI Agents). */
+.introSplit {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--space-20);
+}
+
+.introSplit .introHeading {
+  max-width: 34rem;
+}
+
+.introSplit .introBody {
+  margin: 0;
+}
+
+/* Copy left, illustration right (Every Build Amplifies). */
+.introMedia {
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--space-20);
+}
+
+.introAside {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.introAside img {
+  object-fit: cover;
+}
+
+/* Extras under the body. */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-5);
+  margin: var(--space-8) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pill {
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-200);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-snug);
+  color: var(--color-brand-primary);
+}
+
+.cta {
+  margin-top: var(--space-12);
+}
+
+/* --------------------------------------------------------------------
+   Spec cards (Agivant Bolt)
+   -------------------------------------------------------------------- */
+.specCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-12) var(--space-20);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* An odd last card spans the full row. */
+.specCard:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.specCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-10) var(--space-10) var(--space-8);
+  border-radius: var(--radius-md);
+  background: var(--color-neutral-50);
+  box-shadow: var(--shadow-md);
+}
+
+.specMarker {
+  flex: none;
+  width: 0.875rem;
+  height: 1.5rem;
+  background: var(--color-brand-primary);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.specTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-brand-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.specBody {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------
+   HTML embed (Production Grade AI Agents build matrix)
+   -------------------------------------------------------------------- */
+.embed {
+  width: 100%;
+  min-width: 0;
+}
+
+.embedFrame {
+  display: block;
+  width: 100%;
+  min-height: 20rem;
+  border: 0;
+  background: transparent;
+}
+
+/* --------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .section {
+    --abe-tabs-gap: var(--space-5);
+    --abe-panel-padding-block: var(--space-16);
+    --abe-panel-padding-inline: var(--space-10);
+    --abe-content-gap: var(--space-16);
+  }
+
+  .tabTitle {
+    font-size: var(--font-size-lg);
+  }
+
+  .introOffset,
+  .introSplit,
+  .introMedia {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-10);
+  }
+
+  .introOffset > .introCopy {
+    grid-column: auto;
+  }
+
+  .introAside {
+    max-width: 24rem;
+  }
+
+  .specCards {
+    column-gap: var(--space-10);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    --abe-padding-top: var(--space-12);
+    --abe-padding-bottom: var(--space-16);
+    --abe-title-gap: var(--space-10);
+    --abe-panel-padding-block: var(--space-10);
+    --abe-panel-padding-inline: var(--space-5);
+    --abe-content-gap: var(--space-12);
+  }
+
+  .title {
+    font-size: var(--font-size-2xl);
+  }
+
+  /* Tabs become a horizontally scrolling row (inside the container only). */
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: var(--space-2);
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    flex: 0 0 13.5rem;
+    scroll-snap-align: start;
+    padding-bottom: var(--space-6);
+  }
+
+  .tabTitle {
+    font-size: var(--font-size-md);
+  }
+
+  .introHeading {
+    font-size: var(--font-size-2xl);
+  }
+
+  .introBody {
+    font-size: var(--font-size-base);
+  }
+
+  .introRule {
+    margin: var(--space-5) 0 var(--space-6);
+  }
+
+  .specCards {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-6);
+  }
+
+  .specCard {
+    gap: var(--space-5);
+    padding: var(--space-6) var(--space-6) var(--space-6) var(--space-5);
+  }
+
+}

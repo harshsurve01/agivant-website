@@ -65,8 +65,8 @@ export async function getFooterContent(): Promise<FooterContent> {
           kind: (footerCta.media.kind as FooterBrandMedia["kind"]) ?? "animation",
           src: footerCta.media.src,
           alt: footerCta.media.alt ?? "Amp'd",
-          width: 240,
-          height: 80.46,
+          width: footerCta.media.src.endsWith(".gif") ? 400 : 282,
+          height: footerCta.media.src.endsWith(".gif") ? 225 : 94,
         }
       : undefined,
     buttons: [

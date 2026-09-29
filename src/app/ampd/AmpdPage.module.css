@@ -113,6 +113,11 @@
   position: relative;
   margin-top: var(--ampd-video-offset);
   padding-block: var(--space-10);
+  /* Full-viewport section (min-height 100vh via Section height="viewport");
+     video + CTA centred vertically inside it. */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .ampdVideoContainer {
@@ -159,6 +164,10 @@
   min-height: auto;
   padding-top: var(--ampd-stats-padding-top);
   padding-bottom: var(--ampd-stats-padding-bottom);
+  /* Drop the section-bound radial tint: it paints only inside this
+     section's box and leaves a hard edge where the next section starts.
+     Glows come from the shared, unclipped GradientLayer instead. */
+  background: none;
 }
 
 /* Card label: black, 500 weight (Figma). */
@@ -187,4 +196,160 @@
 /* Label measure — wraps as in the Figma. */
 .ampdStats :global(article > p:first-of-type) {
   max-width: 11rem;
+}
+
+/* ==========================================================================
+   5. "What changes when your enterprise gets Amp'd" (AmpdBuildEnvironment)
+      — Amp'd-scoped overrides for the shared components inside its panels.
+   ========================================================================== */
+.ampdPanelCta :global(span) {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* ==========================================================================
+   5b. "What changes…" sub-section cards — shared PartnerAgentTeams (same
+       grid as Azure's "What Agivant brings to Azure."), without its own
+       heading or section padding inside the glass card.
+   ========================================================================== */
+.ampdSubCards :global(section) {
+  min-height: auto;
+  padding-block: 0;
+}
+
+.ampdSubCards :global(section > div) {
+  max-width: none;
+  padding-inline: 0;
+}
+
+.ampdSubCards :global(section > div > div:has(> h2)) {
+  display: none;
+}
+
+.ampdSubCards :global(section > div > div:has(> div + div)) {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   5c. "What changes…" sub-section CTA + embedded Foundation bento
+       (shared AIStack, service variant, Amp'd-scoped spacing)
+   ========================================================================== */
+.ampdFoundation {
+  margin-top: 0;
+}
+
+.ampdFoundation :global(section) {
+  min-height: auto;
+  padding-block: 0;
+}
+
+.ampdFoundation :global(section > div) {
+  max-width: none;
+  padding-inline: 0;
+}
+
+/* ==========================================================================
+   5d. "Every build amplifies the next" — uppercase sub-section title and the
+       shared DatabricksBusinessContext card grid in a 3 + 2 layout.
+   ========================================================================== */
+.ampdFeatureCards {
+  margin-top: 0;
+}
+
+.ampdFeatureCards :global(section) {
+  min-height: auto;
+  padding-block: 0;
+}
+
+.ampdFeatureCards :global(section > div) {
+  max-width: none;
+  padding-inline: 0;
+}
+
+.ampdFeatureCards :global(section h2) {
+  display: none;
+}
+
+@media (min-width: 1025px) {
+  .ampdFeatureCards :global(section > div > div) {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--space-12) var(--space-16);
+  }
+
+  .ampdFeatureCards :global(section > div > div > *) {
+    grid-column: span 2;
+    min-height: auto;
+  }
+
+  .ampdFeatureCards :global(section > div > div > :nth-child(n + 4)) {
+    grid-column: span 3;
+  }
+}
+
+/* ==========================================================================
+   6. "Inside the Amp'd build environment" — heading, subheading and
+      description over the existing interactive build-matrix HTML
+      (AmpdHtmlEmbed). Natural height, not 100vh.
+   ========================================================================== */
+.ampdBuildEnv {
+  --ampd-build-env-padding-top: var(--space-16);
+  --ampd-build-env-padding-bottom: var(--space-24);
+  --ampd-build-env-embed-gap: var(--space-16);
+
+  padding-top: var(--ampd-build-env-padding-top);
+  padding-bottom: var(--ampd-build-env-padding-bottom);
+}
+
+.ampdBuildEnvTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.ampdBuildEnvAccent {
+  color: var(--color-brand-primary);
+}
+
+.ampdBuildEnvSubtitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+  margin: var(--space-3) 0 0;
+}
+
+.ampdBuildEnvText {
+  max-width: 64rem;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin: var(--space-12) 0 0;
+}
+
+.ampdBuildEnvEmbed {
+  margin-top: var(--ampd-build-env-embed-gap);
+}
+
+@media (max-width: 768px) {
+  .ampdBuildEnv {
+    --ampd-build-env-padding-top: var(--space-12);
+    --ampd-build-env-padding-bottom: var(--space-16);
+    --ampd-build-env-embed-gap: var(--space-10);
+  }
+
+  .ampdBuildEnvTitle,
+  .ampdBuildEnvSubtitle {
+    font-size: var(--font-size-2xl);
+  }
+
+  .ampdBuildEnvText {
+    font-size: var(--font-size-base);
+    margin-top: var(--space-8);
+  }
 }

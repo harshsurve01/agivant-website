@@ -30,7 +30,7 @@ export interface PreloaderData {
 
 export const defaultPreloaderData: PreloaderData = {
   enabled: true,
-  animationUrl: "/animations/preloader.json",
+  animationUrl: "/animations/preloader-new.json",
   speed: 1,
   loop: false,
   autoplay: true,

@@ -36,12 +36,47 @@ export interface AmpdSection {
   data: {
     eyebrow: string | null;
     heading: string | null;
+    /** Optional line under the heading. */
+    subheading?: string | null;
     description: string | null;
     columns: unknown[];
     media: (StandardizedMediaObject & { poster?: string | null }) | null;
     cta: StandardizedCTAObject | null;
   };
   blocks: unknown[];
+}
+
+/** Media object whose `src` may be empty until the asset is supplied. */
+export type AmpdOptionalMedia = Omit<StandardizedMediaObject, "src"> & {
+  src: string | null;
+};
+
+/**
+ * One item inside a `tab` block (section type `tabs`). `type` decides the
+ * renderer: numberedItem → spec cards, tag → role pills, card → image cards,
+ * embed → same-origin HTML embed, section → another page section by `id`,
+ * image → panel illustration, feature → icon cards.
+ */
+export interface AmpdTabItem {
+  id: string;
+  type: "numberedItem" | "tag" | "card" | "embed" | "section" | "image" | "feature";
+  number?: number;
+  title: string | null;
+  body?: string | null;
+  media?: AmpdOptionalMedia | null;
+}
+
+/** One tab of a `tabs` section: tab card (title + media) and its panel content. */
+export interface AmpdTabBlock {
+  id: string;
+  type: "tab";
+  eyebrow: string | null;
+  title: string;
+  heading: string | null;
+  body: string | null;
+  media: AmpdOptionalMedia | null;
+  cta: StandardizedCTAObject | null;
+  items: AmpdTabItem[];
 }
 
 export interface AmpdPageDocument {

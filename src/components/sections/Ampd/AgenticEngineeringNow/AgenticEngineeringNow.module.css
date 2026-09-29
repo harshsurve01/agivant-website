@@ -16,7 +16,7 @@
   /* RIGHT-COLUMN STAGGER (how far column 2 sits below column 1) */
   --aen-card-stagger: 2.5rem;
   /* RIBBON POSITION (distance from the section top) */
-  --aen-ribbon-offset: 18rem;
+  --aen-ribbon-offset: 16.5rem;
 
   position: relative;
   width: 100%;
@@ -101,11 +101,13 @@
   min-height: var(--aen-card-height);
   padding: var(--space-6) var(--space-8) var(--space-8);
   border-radius: 1.25rem;
-  background: color-mix(in srgb, var(--color-white) 70%, transparent);
+  /* Glass card (same surface as the shared StatsCard): translucent grey
+     fill + backdrop blur, so the ribbon behind reads through softly. */
+  background: #d9d9d920;
   border: 1px solid var(--color-white);
   box-shadow: 0 4px 8px rgba(4, 4, 4, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .card:nth-child(2n) {
@@ -136,10 +138,12 @@
 }
 
 /* --------------------------------------------------------------------
-   Optional decorative ribbon (PageRibbon)
+   Decorative ribbon (PageRibbon) — sits BEHIND the text and cards
+   (z-index 1 < container 2); the cards' backdrop blur softens it.
    -------------------------------------------------------------------- */
 .ribbonWrapper {
   top: var(--aen-ribbon-offset);
+  bottom: auto;
   z-index: 1;
 }
 

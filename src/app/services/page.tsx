@@ -120,8 +120,8 @@ export default async function ServicesPage() {
                             | "video") ?? "animation",
                         src: footerCta.media.src,
                         alt: footerCta.media.alt ?? "Amp'd",
-                        width: 240,
-                        height: 80,
+                        width: footerCta.media.src.endsWith(".gif") ? 400 : 282,
+                        height: footerCta.media.src.endsWith(".gif") ? 225 : 94,
                       }
                     : undefined,
                   buttons: [

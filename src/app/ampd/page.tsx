@@ -2,9 +2,21 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { GradientLayerProvider } from "@/components/effects/GradientLayer";
+import { Gradient } from "@/components/effects/Gradient";
 import Link from "next/link";
 import { Hero } from "@/components/sections/Services/Hero";
 import { RunningToday } from "@/components/sections/Services/RunningToday";
+import {
+  AmpdBuildEnvironment,
+  AmpdBuildIntro,
+  AmpdSpecCards,
+  AmpdHtmlEmbed,
+  type AmpdBuildIntroLayout,
+} from "@/components/sections/Ampd/AmpdBuildEnvironment";
+import { PartnerAgentTeams } from "@/components/sections/Partners/Detail/PartnerAgentTeams";
+import { DatabricksBusinessContext } from "@/components/sections/Partners/Detail/DatabricksBusinessContext";
+import { AIStack } from "@/components/sections/Homepage/AIStack";
+import { Cube } from "@/components/ui/Icon/Cube";
 import {
   AgenticEngineeringNow,
   type AgenticEngineeringMetric,
@@ -15,10 +27,20 @@ import { Container } from "@/components/ui/Container";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { Button } from "@/components/ui/Button";
 import { ArrowUpRight } from "@/components/ui/Icon/ArrowUpRight";
-import { getAmpdPage, getAmpdSection } from "@/data/ampd";
+import Image from "next/image";
+import {
+  getAmpdPage,
+  getAmpdSection,
+  type AmpdTabBlock,
+  type AmpdTabItem,
+} from "@/data/ampd";
 import styles from "./AmpdPage.module.css";
 
 const pageData = getAmpdPage();
+
+// The build-matrix HTML carries its own title/intro; the Amp'd panel already
+// provides them, so the embed hides these elements (source file untouched).
+const EMBED_HIDDEN_INTRO = [".wrap > h1", ".wrap > .bar", ".wrap > .sub", ".wrap > .intro"];
 
 export const metadata: Metadata = {
   title: pageData.seo.title ?? pageData.title,
@@ -62,11 +84,192 @@ export default function AmpdPage() {
     .filter((b) => b.type === "metric")
     .map((b) => ({ id: b.id, value: b.value ?? "", label: b.label ?? "" }));
 
+  // 5. "What changes when your enterprise gets Amp'd": tab cards + one glass
+  // panel; every `tab` block renders its own panel from its items.
+  const whatChangesSection = getAmpdSection("what-changes");
+  const tabBlocks = (whatChangesSection?.blocks ?? []).filter(
+    (block): block is AmpdTabBlock =>
+      (block as AmpdTabBlock).type === "tab"
+  );
+  // 6. "Inside the Amp'd build environment": the first three heading words
+  // ("Inside the Amp'd") render in brand purple.
+  const buildEnvSection = getAmpdSection("inside-ampd-build-environment");
+  const buildEnvWords = (buildEnvSection?.data.heading ?? "").split(" ");
+  const buildEnvAccent = buildEnvWords.slice(0, 3).join(" ");
+  const buildEnvRest = buildEnvWords.slice(3).join(" ");
+
+  // Foundation bento (shared AIStack, MLOps service layouts/images) — shown
+  // where a tab lists `{ "type": "section", "id": "foundation" }`.
+  const foundationSection = getAmpdSection("foundation");
+  const foundationCards = (
+    (foundationSection?.blocks ?? []) as {
+      id: string;
+      title?: string;
+      description?: string;
+      bullets?: string[];
+      layout?: string;
+      media?: { src: string } | null;
+    }[]
+  ).map((block) => ({
+    id: block.id,
+    title: block.title ?? "",
+    description: block.description ?? "",
+    bullets: block.bullets ?? [],
+    backgroundImage: block.media?.src ?? "",
+    accentColor: "var(--color-brand-primary, #8500DF)",
+    layout: (block.layout ?? "data") as "data",
+  }));
+
   const youtubeId =
     videoMedia?.src.match(
       /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/
     )?.[1] ?? videoMedia?.src;
   const [line1, ...rest] = (footerCta?.heading ?? "").split(/<br\s*\/?>/i);
+
+  // One tab panel: intro (layout follows its content), then each item group
+  // in data order — numberedItem → spec cards, card → PartnerAgentTeams,
+  // embed → HTML embed, section → Foundation (AIStack), feature → icon cards.
+  // `tag` items become the intro's pills, an `image` item with a src its
+  // illustration; the tab's CTA sits under the copy.
+  const renderTabPanel = (tab: AmpdTabBlock) => {
+    const itemsOf = (type: AmpdTabItem["type"]) =>
+      tab.items.filter((item) => item.type === type);
+    const tags = itemsOf("tag");
+    const illustration = itemsOf("image").find((item) => item.media?.src);
+    const layout: AmpdBuildIntroLayout = illustration
+      ? "media"
+      : tags.length > 0
+        ? "offset"
+        : itemsOf("embed").length > 0
+          ? "split"
+          : "stacked";
+    const groups = tab.items
+      .map((item) => item.type)
+      .filter((type, i, all) => all.indexOf(type) === i);
+
+    const renderGroup = (type: AmpdTabItem["type"]) => {
+      const items = itemsOf(type);
+      switch (type) {
+        case "numberedItem":
+          return (
+            <AmpdSpecCards
+              key={type}
+              cards={items.map((item) => ({
+                id: item.id,
+                title: item.title ?? "",
+                body: item.body ?? "",
+              }))}
+            />
+          );
+        case "card":
+          return (
+            <div key={type} className={styles.ampdSubCards}>
+              {/* Same card grid as the Azure partner page's
+                  "What Agivant brings to Azure." section. */}
+              <PartnerAgentTeams
+                id={`${tab.id}-cards`}
+                data={{
+                  heading: "",
+                  description: "",
+                  cards: items.map((item) => ({
+                    id: item.id,
+                    title: item.title ?? "",
+                    text: item.body ?? "",
+                    ribbon: item.media?.src ?? "",
+                  })),
+                }}
+                columns={3}
+                height="auto"
+                hideAccentBar
+              />
+            </div>
+          );
+        case "embed":
+          return items.map((item) =>
+            item.media?.src ? (
+              <AmpdHtmlEmbed
+                key={item.id}
+                src={item.media.src}
+                title={item.title ?? item.media.alt ?? ""}
+                hideSelectors={EMBED_HIDDEN_INTRO}
+              />
+            ) : null
+          );
+        case "section":
+          return items.some((item) => item.id === "foundation") &&
+            foundationSection &&
+            foundationCards.length > 0 ? (
+            <div key={type} className={styles.ampdFoundation}>
+              <AIStack
+                variant="service"
+                heading={foundationSection.data.heading ?? undefined}
+                showCta={false}
+                cards={foundationCards}
+              />
+            </div>
+          ) : null;
+        case "feature":
+          return (
+            <div key={type} className={styles.ampdFeatureCards}>
+              {/* Shared DatabricksBusinessContext icon cards (3 + 2). */}
+              <DatabricksBusinessContext
+                id={`${tab.id}-cards`}
+                height="auto"
+                data={{
+                  heading: "",
+                  description: "",
+                  closingStatement: "",
+                  cards: items.map((item) => ({
+                    id: item.id,
+                    title: item.title ?? "",
+                    description: item.body ?? "",
+                  })),
+                }}
+              />
+            </div>
+          );
+        default:
+          return null;
+      }
+    };
+
+    return (
+      <>
+        <AmpdBuildIntro
+          eyebrow={tab.eyebrow}
+          heading={tab.heading}
+          body={tab.body}
+          layout={layout}
+          tags={tags.map((tag) => tag.title ?? "").filter(Boolean)}
+          action={
+            tab.cta?.enabled ? (
+              <Link href={tab.cta.href}>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  rightIcon={<Cube />}
+                  className={styles.ampdPanelCta}
+                >
+                  {tab.cta.label}
+                </Button>
+              </Link>
+            ) : null
+          }
+          aside={
+            illustration?.media?.src ? (
+              <Image
+                src={illustration.media.src}
+                alt={illustration.media.alt ?? ""}
+                fill
+                sizes="(max-width: 1024px) 24rem, 30rem"
+              />
+            ) : null
+          }
+        />
+        {groups.map(renderGroup)}
+      </>
+    );
+  };
 
   return (
     <GradientLayerProvider>
@@ -90,7 +293,7 @@ export default function AmpdPage() {
               loads (and then plays) after the click. */}
           {videoSection && videoMedia?.poster && youtubeId && (
             <Section
-              height="auto"
+              height="viewport"
               id={videoSection.id}
               className={styles.ampdVideo}
             >
@@ -145,6 +348,71 @@ export default function AmpdPage() {
               ribbon={agenticSection.data.media}
             />
           )}
+
+          {/* 5. "What changes when your enterprise gets Amp'd" — tab cards
+              and one glass panel (AmpdBuildEnvironment); each panel is
+              rendered here on the server from its `tab` block. */}
+          {whatChangesSection && tabBlocks.length > 0 && (
+            <AmpdBuildEnvironment
+              id={whatChangesSection.id}
+              heading={whatChangesSection.data.heading ?? ""}
+              highlightWords={3}
+              tabs={tabBlocks.map((tab) => ({
+                id: tab.id,
+                title: tab.title,
+                media: tab.media,
+              }))}
+              panels={tabBlocks.map((tab) => renderTabPanel(tab))}
+            />
+          )}
+
+          {/* 6. "Inside the Amp'd build environment" — heading, subheading and
+              description, then the existing interactive build-matrix HTML
+              (same-origin AmpdHtmlEmbed; its own title/intro are hidden). */}
+          {buildEnvSection?.data.media?.src && (
+            <Section
+              height="auto"
+              id={buildEnvSection.id}
+              className={styles.ampdBuildEnv}
+            >
+              <Gradient
+                top="-6rem"
+                left="-14rem"
+                size="30rem"
+                stops={["#f6048d 0%", "#b31aef 45%", "transparent 72%"]}
+                opacity={0.14}
+                blur="90px"
+              />
+              <Container size="xl">
+                <h2 className={styles.ampdBuildEnvTitle}>
+                  <span className={styles.ampdBuildEnvAccent}>
+                    {buildEnvAccent}
+                  </span>{" "}
+                  {buildEnvRest}
+                </h2>
+                {buildEnvSection.data.subheading && (
+                  <p className={styles.ampdBuildEnvSubtitle}>
+                    {buildEnvSection.data.subheading}
+                  </p>
+                )}
+                {buildEnvSection.data.description && (
+                  <p className={styles.ampdBuildEnvText}>
+                    {buildEnvSection.data.description}
+                  </p>
+                )}
+                <AmpdHtmlEmbed
+                  src={buildEnvSection.data.media.src}
+                  title={
+                    buildEnvSection.data.media.alt ??
+                    buildEnvSection.data.heading ??
+                    ""
+                  }
+                  hideSelectors={EMBED_HIDDEN_INTRO}
+                  className={styles.ampdBuildEnvEmbed}
+                />
+              </Container>
+            </Section>
+          )}
         </main>
 
         <Footer
@@ -165,8 +433,8 @@ export default function AmpdPage() {
                             | "video") ?? "animation",
                         src: footerCta.media.src,
                         alt: footerCta.media.alt ?? "Amp'd",
-                        width: 240,
-                        height: 80,
+                        width: footerCta.media.src.endsWith(".gif") ? 400 : 282,
+                        height: footerCta.media.src.endsWith(".gif") ? 225 : 94,
                       }
                     : undefined,
                   buttons: footerCta.primaryCta?.enabled

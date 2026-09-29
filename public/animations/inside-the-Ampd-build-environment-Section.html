@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inside the Amp'd build environment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#31439b; --purple:#8500df;
+  --ink:#16192b; --body:#3d4256; --muted:#71778d;
+  --line:#e2e5f0; --line-soft:#eef0f7;
+  --bg:#ffffff; --panel:#fbfbfe; --panel-2:#f6f4fd; --head:#f4f2fc; --rowlab:#f7f8fc;
+  --shadow:rgba(22,25,43,.14);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --blue:#93a2ee; --purple:#c58cf7; --ink:#f2f3f8; --body:#c6cade; --muted:#9aa0b8;
+    --line:#2c3049; --line-soft:#232740;
+    --bg:#101223; --panel:#171a2e; --panel-2:#221d3a; --head:#1d1a33; --rowlab:#171a2e;
+    --shadow:rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --blue:#93a2ee; --purple:#c58cf7; --ink:#f2f3f8; --body:#c6cade; --muted:#9aa0b8;
+  --line:#2c3049; --line-soft:#232740;
+  --bg:#101223; --panel:#171a2e; --panel-2:#221d3a; --head:#1d1a33; --rowlab:#171a2e;
+  --shadow:rgba(0,0,0,.6);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0;background:var(--bg);color:var(--body);
+  font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1280px;margin:0 auto;padding:56px 24px 96px}
+h1{font-size:clamp(26px,3.4vw,38px);line-height:1.2;font-weight:600;color:var(--blue);margin:0 0 12px;letter-spacing:-.01em}
+.bar{height:3px;width:64px;border-radius:3px;background:linear-gradient(90deg,var(--blue),var(--purple));margin:0 0 24px}
+.sub{font-size:clamp(16px,1.7vw,19px);font-weight:500;color:var(--ink);margin:0 0 16px}
+.intro{max-width:78ch;font-size:15.5px;margin:0 0 34px}
+
+.scroll{overflow-x:auto;overflow-y:visible;padding-bottom:6px}
+.grid{
+  display:grid;
+  grid-template-columns:190px repeat(5,minmax(168px,1fr));
+  gap:8px;
+  min-width:1080px;
+}
+
+/* corner + column headers */
+.corner{background:transparent}
+.colhead{
+  background:var(--head);
+  border-radius:9px;
+  padding:12px 13px;
+}
+.colhead .n{display:block;font-size:12.5px;font-weight:600;color:var(--purple);margin-bottom:4px}
+.colhead .s{display:block;font-size:11.6px;color:var(--muted);line-height:1.4}
+
+/* row headers */
+.rowhead{
+  background:var(--rowlab);
+  border-radius:9px;
+  padding:12px 13px;
+  position:sticky;left:0;z-index:5;
+  display:flex;align-items:center;
+}
+.rowhead .n{font-size:13.5px;font-weight:600;color:var(--blue);line-height:1.3}
+
+/* cells */
+.cell{
+  position:relative;
+  display:flex;align-items:center;
+  width:100%;text-align:left;font-family:inherit;
+  background:var(--panel);
+  border:1px solid var(--line-soft);
+  border-radius:9px;
+  padding:14px 13px;
+  min-height:62px;
+  cursor:pointer;
+  color:var(--ink);
+  font-size:13.5px;font-weight:500;line-height:1.35;
+  transition:border-color .15s,background .15s,box-shadow .15s;
+}
+.cell::after{
+  content:"";position:absolute;right:11px;top:11px;
+  width:5px;height:5px;border-radius:50%;
+  background:var(--purple);opacity:.32;transition:opacity .15s;
+}
+.cell:hover,.cell:focus-visible,.cell[data-open="true"]{
+  background:var(--panel-2);border-color:var(--purple);
+  box-shadow:0 2px 12px rgba(133,0,223,.10);outline:none;z-index:40;
+}
+.cell:hover::after,.cell[data-open="true"]::after{opacity:1}
+
+/* hover panel */
+.detail{
+  position:absolute;top:calc(100% + 7px);left:0;
+  width:310px;max-width:82vw;
+  background:var(--bg);
+  border:1px solid var(--purple);
+  border-radius:11px;
+  padding:14px 15px 15px;
+  box-shadow:0 14px 34px var(--shadow);
+  opacity:0;visibility:hidden;transform:translateY(-4px);
+  transition:opacity .16s ease,transform .16s ease,visibility .16s;
+  z-index:60;pointer-events:none;
+  cursor:default;
+}
+.cell:hover .detail,.cell:focus-within .detail,.cell[data-open="true"] .detail{
+  opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;
+}
+.grid > .cell:nth-child(6n) .detail,
+.grid > .cell:nth-child(6n+5) .detail{left:auto;right:0}
+.detail .outcome{font-size:13px;font-weight:400;color:var(--body);line-height:1.52;margin:0}
+.detail ul{margin:11px 0 0;padding:11px 0 0;list-style:none;border-top:1px solid var(--line)}
+.detail li{font-size:11.6px;font-weight:400;color:var(--muted);line-height:1.4;padding-left:12px;position:relative;margin-bottom:4px}
+.detail li:last-child{margin-bottom:0}
+.detail li::before{content:"";position:absolute;left:0;top:7px;width:4px;height:4px;border-radius:50%;background:var(--purple);opacity:.7}
+
+@media (max-width:820px){
+  .wrap{padding:34px 16px 72px}
+  .grid{grid-template-columns:150px repeat(5,minmax(152px,1fr));min-width:940px}
+  .detail{width:270px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Inside the Amp'd build environment</h1>
+  <div class="bar"></div>
+  <p class="sub">See what changes at every stage of the build</p>
+  <p class="intro">Agivant Bolt connects business intent, solution specification, agentic build, verification and learning across architecture, engineering, QA and operations. Each stage moves the work forward with the controls, evidence and reusable assets the next stage needs.</p>
+
+  <div class="scroll">
+    <div class="grid" id="grid"></div>
+  </div>
+</div>
+
+<script>
+const COLS = [
+  ["Business intent","Agree the outcome and the constraints first"],
+  ["Solution spec","Write the behavior down and version it"],
+  ["Agentic build","Generate against the spec, permissions attached"],
+  ["Verification","Prove every change holds"],
+  ["Learning ops","Feed what works back so the next build starts ahead"]
+];
+
+const ROWS = [
+  { d:"Architecture and solution design", cells:[
+    ["Outcome design","The success metric is written before the architecture, so scope arguments happen on paper at zero build cost.",["Enterprise knowledge retrieval","Requirements and success-metric definition"]],
+    ["Architecture design","Target architecture is drawn against the systems that already exist, so integration surprises surface while they are still cheap to fix.",["Architecture diagramming","Non-functional requirement modeling"]],
+    ["Agent orchestration","Options are generated and scored against the spec, and permissioning is set at the same time as the design.",["Autonomous architecture generation and evaluation","Agent guardrails and permissioning"]],
+    ["Design review","Cost and conformance are checked before code exists, which is the point where architecture change is still inexpensive.",["Cost and capacity impact review","Architecture conformance rule testing"]],
+    ["Pattern optimization","Approved patterns are captured once and reused, so the second solution starts from a reference architecture.",["Reference architecture capture and reuse","Design documentation auto-sync"]]
+  ]},
+  { d:"Development and engineering", cells:[
+    ["Goal translation","Business objectives arrive as a prioritized backlog, so engineering starts on the work that carries value.",["Objective into backlog","Discovery and prioritization"]],
+    ["Technical design","Interfaces and data models are designed with the repository in context, which keeps the build inside the systems already in place.",["Repository-aware technical design","Data model and schema design"]],
+    ["Autonomous coding","Agents take tickets to pull request, and engineers spend their hours on the decisions.",["Terminal-native autonomous build agents","Ticket-to-PR autonomous task execution"]],
+    ["Code validation","Every pull request is reviewed and scanned before a human opens it, so review time goes to design quality.",["Automated PR review and comment generation","Source-code vulnerability scanning"]],
+    ["Engineering insights","Codebase knowledge stays searchable as teams rotate, and proven patterns get mined for the next build.",["Large-scale codebase semantic search","Reusable code-pattern mining"]]
+  ]},
+  { d:"QA and cybersecurity", cells:[
+    ["Quality goals","Coverage and compliance targets are set at the start, so quality becomes a build constraint instead of a release-week negotiation.",["Coverage targets set upfront","Compliance and regulatory requirement scoping"]],
+    ["Test design","Scenarios are authored from the spec, including the risk cases a manual pass usually skips.",["Test design authored by AI","Risk-based test prioritization"]],
+    ["Test generation","Suites are generated from source and specification together, so new behavior arrives with its own tests.",["Test-suite generation from source code","Edge-case and boundary scenario generation"]],
+    ["Test execution","Pipelines repair their own selectors and test data, which keeps a failing suite from blocking a release for reasons unrelated to the change.",["Self-healing pipeline test execution","Runtime and dynamic security scanning"]],
+    ["Defect learning","Defect patterns feed back into standards and test selection, so the same class of failure stops returning.",["Defect pattern analysis","Predictive test selection"]]
+  ]},
+  { d:"Operations and support", cells:[
+    ["Operational goals","Uptime, recovery and security posture targets are agreed with the business before the system carries load.",["Uptime and recovery targets","Security and compliance posture targets"]],
+    ["Runbook design","Runbooks and infrastructure are written as code alongside the build, so day one operations are ready on day one.",["Incident policy and runbook design","Infrastructure-as-code definition"]],
+    ["Incident automation","Routine incidents are remediated and routed automatically, and people are called in for the ones that need judgment.",["Automated remediation workflows","On-call routing and escalation orchestration"]],
+    ["Root cause validation","Anomalies are correlated to a probable cause with the evidence attached, which shortens the gap between alert and fix.",["Anomaly detection and root cause correlation","SLO and service-standard compliance checks"]],
+    ["Continuous optimization","Post-incident findings update the runbooks and the knowledge base automatically, so the service gets steadier each quarter.",["Post-incident timeline reconstruction and learning","Operational knowledge base and runbook sync"]]
+  ]}
+];
+
+const esc = t => String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+let html = '<div class="corner"></div>';
+COLS.forEach(c => { html += `<div class="colhead"><span class="n">${esc(c[0])}</span><span class="s">${esc(c[1])}</span></div>`; });
+ROWS.forEach(r => {
+  html += `<div class="rowhead"><span class="n">${esc(r.d)}</span></div>`;
+  r.cells.forEach(c => {
+    html += `<button class="cell" type="button" data-open="false" aria-expanded="false">${esc(c[0])}
+      <span class="detail"><span class="outcome">${esc(c[1])}</span>
+      <ul>${c[2].map(x=>`<li>${esc(x)}</li>`).join("")}</ul></span>
+    </button>`;
+  });
+});
+document.getElementById("grid").innerHTML = html;
+
+document.getElementById("grid").addEventListener("click", e => {
+  const cell = e.target.closest(".cell");
+  if (!cell || e.target.closest(".detail")) return;
+  const open = cell.getAttribute("data-open") !== "true";
+  document.querySelectorAll(".cell").forEach(c => { c.setAttribute("data-open","false"); c.setAttribute("aria-expanded","false"); });
+  cell.setAttribute("data-open", open);
+  cell.setAttribute("aria-expanded", open);
+});
+document.addEventListener("click", e => {
+  if (!e.target.closest(".cell")) {
+    document.querySelectorAll('.cell[data-open="true"]').forEach(c => { c.setAttribute("data-open","false"); c.setAttribute("aria-expanded","false"); });
+  }
+});
+</script>
+</body>
+</html>

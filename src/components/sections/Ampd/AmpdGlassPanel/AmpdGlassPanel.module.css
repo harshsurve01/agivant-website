@@ -1,0 +1,172 @@
+/* ==========================================================================
+   AmpdGlassPanel.module.css
+   Amp'd landing page — main section title + one large glass panel, and the
+   sub-section layout used inside it (AmpdSubSection).
+   ========================================================================== */
+
+.section {
+  /* SECTION SPACING */
+  --agp-padding-top: var(--space-16);
+  --agp-padding-bottom: var(--space-24);
+  /* TITLE → PANEL GAP */
+  --agp-title-gap: 4.5rem;
+  /* PANEL INNER SPACING */
+  --agp-panel-padding-block: 3.5rem;
+  --agp-panel-padding-inline: 4.25rem;
+  /* GAP BETWEEN THE SUB-SECTION CARDS */
+  --agp-subsection-gap: var(--space-16);
+
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: auto;
+  padding-top: var(--agp-padding-top);
+  padding-bottom: var(--agp-padding-bottom);
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+  text-align: center;
+  margin: 0 0 var(--agp-title-gap);
+}
+
+.titleAccent {
+  color: var(--color-brand-primary);
+}
+
+/* Stack of sub-section cards. */
+.panels {
+  display: flex;
+  flex-direction: column;
+  gap: var(--agp-subsection-gap);
+}
+
+/* One translucent glass card per sub-section (same surface language as the Amp'd glass
+   cards: #d9d9d920 fill + backdrop blur + white edge + soft shadow). */
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--agp-panel-padding-block) var(--agp-panel-padding-inline);
+  border-radius: var(--radius-lg);
+  background: #d9d9d920;
+  border: 1px solid var(--color-white);
+  box-shadow: 0 4px 8px rgba(4, 4, 4, 0.15);
+  backdrop-filter: blur(14px);
+  --webkit-backdrop-filter: blur(14px);
+}
+
+/* --------------------------------------------------------------------
+   Sub-section
+   -------------------------------------------------------------------- */
+.subSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.subTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-brand-primary);
+  margin: 0 0 var(--space-16);
+}
+
+.intro {
+  display: grid;
+  /* Lead column width sets where the divider sits (Figma: lead wraps after
+     "against"). */
+  grid-template-columns: minmax(0, 28rem) auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--space-16);
+}
+
+.introLead {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.15;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Each `<br>`-separated lead line on its own row. */
+.introLeadLine {
+  display: block;
+}
+
+.introDivider {
+  align-self: stretch;
+  width: 1px;
+  background: var(--color-border-strong);
+}
+
+.introBody {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.subContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  margin-top: var(--space-10);
+}
+
+/* --------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .section {
+    --agp-panel-padding-block: var(--space-12);
+    --agp-panel-padding-inline: var(--space-10);
+    --agp-title-gap: var(--space-12);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    --agp-padding-top: var(--space-12);
+    --agp-padding-bottom: var(--space-16);
+    --agp-panel-padding-block: var(--space-8);
+    --agp-panel-padding-inline: var(--space-5);
+    --agp-title-gap: var(--space-8);
+    --agp-subsection-gap: var(--space-16);
+  }
+
+  .title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .subTitle {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-8);
+  }
+
+  .intro {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-5);
+  }
+
+  .introDivider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .introLead {
+    font-size: var(--font-size-2xl);
+  }
+
+  .introBody {
+    font-size: var(--font-size-base);
+  }
+}

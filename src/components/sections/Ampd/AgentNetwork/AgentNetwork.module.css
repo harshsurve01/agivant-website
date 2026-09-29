@@ -1,0 +1,166 @@
+/* ==========================================================================
+   AgentNetwork.module.css — Amp'd hub-and-spoke agent diagram.
+   ========================================================================== */
+
+.network {
+  /* DIAGRAM HEIGHT (width follows the container) */
+  --an-height: 30rem;
+
+  position: relative;
+  width: 100%;
+  height: var(--an-height);
+  border-radius: var(--radius-xl);
+  border: 1px solid color-mix(in srgb, var(--color-brand-primary) 12%, transparent);
+  background:
+    radial-gradient(
+      ellipse 38% 45% at 50% 50%,
+      color-mix(in srgb, var(--color-brand-primary) 14%, transparent) 0%,
+      transparent 100%
+    ),
+    color-mix(in srgb, var(--color-brand-primary) 4%, var(--color-white));
+  overflow: hidden;
+}
+
+.label {
+  position: absolute;
+  top: var(--space-5);
+  left: var(--space-5);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-brand-primary) 55%, var(--color-text-primary));
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: var(--radius-full);
+  background: #0f9d7a;
+}
+
+.dotPending {
+  background: #f5b82e;
+}
+
+/* Dashed connectors (SVG stretched over the box; stroke width stays 1.5px). */
+.links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.links line {
+  stroke: color-mix(in srgb, var(--color-brand-primary) 45%, transparent);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 6;
+  vector-effect: non-scaling-stroke;
+}
+
+.links .peerLink {
+  stroke-width: 2.5;
+  stroke-dasharray: 4 5;
+}
+
+/* Centre hub */
+.hub {
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg, #2a14c9 0%, #5a16c4 55%, #8a2a8a 100%);
+  box-shadow: 0 0.5rem 1.5rem color-mix(in srgb, var(--color-brand-primary) 35%, transparent);
+  color: var(--color-white);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.hubEyebrow {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.hubTitle {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Agent chips */
+.agents {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.agent {
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  box-shadow: 0 0.25rem 0.75rem rgba(4, 4, 4, 0.08);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------
+   Mobile: stacked layout (hub, then agents in two columns), no lines.
+   -------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .network {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-12) var(--space-4) var(--space-6);
+  }
+
+  .links {
+    display: none;
+  }
+
+  .hub,
+  .agent {
+    position: static;
+    transform: none;
+  }
+
+  .agents {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+    width: 100%;
+  }
+
+  .agent {
+    justify-content: flex-start;
+    white-space: normal;
+    font-size: var(--font-size-xs);
+    padding: var(--space-3);
+  }
+}

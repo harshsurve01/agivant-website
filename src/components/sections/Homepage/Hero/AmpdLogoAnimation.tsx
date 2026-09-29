@@ -55,6 +55,7 @@ export function AmpdLogoAnimation({ data }: AmpdLogoAnimationProps) {
         unoptimized={isGif}
         priority
         className={styles.ampdImage}
+        style={{ width: "auto" }}
       />
     </span>
   );

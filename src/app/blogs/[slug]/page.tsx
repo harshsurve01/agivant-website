@@ -117,8 +117,8 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                   kind: (article.footerCta.media.kind as FooterBrandMedia["kind"]) ?? "animation",
                   src: article.footerCta.media.src,
                   alt: article.footerCta.media.alt ?? "Amp'd",
-                  width: 240,
-                  height: 80.46,
+                  width: article.footerCta.media.src.endsWith(".gif") ? 400 : 282,
+                  height: article.footerCta.media.src.endsWith(".gif") ? 225 : 94,
                 }
               : null,
             buttons: footerButtons,

@@ -245,9 +245,10 @@ export function FooterCTA({
                         <Image
                           src={brandMedia.src}
                           alt={brandMedia.alt}
-                          width={brandMedia.width ?? 360}
-                          height={brandMedia.height ?? 150}
+                          width={brandMedia.width ?? (brandMedia.src.endsWith(".gif") ? 400 : 360)}
+                          height={brandMedia.height ?? (brandMedia.src.endsWith(".gif") ? 225 : 150)}
                           className={styles.brandMedia}
+                          style={{ height: "auto" }}
                           unoptimized={brandMedia.src.endsWith(".svg") || brandMedia.src.endsWith(".gif")}
                           priority
                         />
@@ -275,9 +276,10 @@ export function FooterCTA({
                           <Image
                             src={brandMedia.src}
                             alt={brandMedia.alt}
-                            width={brandMedia.width ?? 360}
-                            height={brandMedia.height ?? 150}
+                            width={brandMedia.width ?? (brandMedia.src.endsWith(".gif") ? 400 : 360)}
+                            height={brandMedia.height ?? (brandMedia.src.endsWith(".gif") ? 225 : 150)}
                             className={styles.brandMedia}
+                            style={{ height: "auto" }}
                             unoptimized={brandMedia.src.endsWith(".svg") || brandMedia.src.endsWith(".gif")}
                             priority
                           />
@@ -289,9 +291,10 @@ export function FooterCTA({
                           <Image
                             src={brandMedia.src}
                             alt={brandMedia.alt}
-                            width={brandMedia.width ?? 360}
-                            height={brandMedia.height ?? 150}
+                            width={brandMedia.width ?? (brandMedia.src.endsWith(".gif") ? 400 : 360)}
+                            height={brandMedia.height ?? (brandMedia.src.endsWith(".gif") ? 225 : 150)}
                             className={styles.brandMedia}
+                            style={{ height: "auto" }}
                             unoptimized={brandMedia.src.endsWith(".svg") || brandMedia.src.endsWith(".gif")}
                             priority
                           />
@@ -341,9 +344,10 @@ export function FooterCTA({
                     <Image
                       src={brandMedia.src}
                       alt={brandMedia.alt}
-                      width={brandMedia.width ?? 240}
-                      height={brandMedia.height ?? 80}
+                      width={brandMedia.width ?? (brandMedia.src.endsWith(".gif") ? 400 : 360)}
+                      height={brandMedia.height ?? (brandMedia.src.endsWith(".gif") ? 225 : 150)}
                       className={styles.brandMedia}
+                      style={{ height: "auto" }}
                       unoptimized={brandMedia.src.endsWith(".svg") || brandMedia.src.endsWith(".gif")}
                       priority
                     />

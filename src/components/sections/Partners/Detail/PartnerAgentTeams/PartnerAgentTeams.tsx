@@ -15,7 +15,7 @@ export interface PartnerAgentTeamsProps {
   columns?: 3 | 4;
   /** Header alignment. "center" centers heading + description and hides the accent bar. Defaults to "left". */
   align?: "left" | "center";
-  /** Adds a subtle lift (2px up + shadow) on card hover. Defaults to false. */
+  /** Adds a subtle lift (2px up + shadow) on card hover. Defaults to true (all card grids); pass false to turn it off. */
   hoverable?: boolean;
   /** Enforces NVIDIA page typography rules: 4xl heading, xl card title, lg body. */
   nvidiaTypography?: boolean;
@@ -80,7 +80,7 @@ export function PartnerAgentTeams({
   id,
   columns = 4,
   align = "left",
-  hoverable = false,
+  hoverable = true,
   nvidiaTypography = false,
   hideAccentBar = false,
   headingHighlightWords,
