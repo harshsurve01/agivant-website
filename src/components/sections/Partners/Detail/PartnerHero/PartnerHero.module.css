@@ -9,6 +9,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh; /* Figma: 958px Frame 14 height minus Header height */
+  min-height: 100svh; /* small-viewport height on mobile (excludes the browser bars); same as 100vh on desktop */
   padding-top: var(--space-24);
   padding-bottom: var(--space-16);
   display: flex;

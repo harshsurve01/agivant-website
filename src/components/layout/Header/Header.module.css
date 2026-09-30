@@ -233,3 +233,32 @@
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.08em;
 }
+
+/* --------------------------------------------------------------------
+   Desktop nav / actions wrappers (added for the mobile navigation).
+   `display: contents` keeps the desktop layout exactly as before; at
+   ≤1024px the desktop nav is replaced by MobileNav's menu button, and
+   at ≤640px the header CTA moves into the menu panel.
+   -------------------------------------------------------------------- */
+.desktopNav {
+  display: contents;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: none;
+}
+
+@media (max-width: 1024px) {
+  .desktopNav {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .ctaLink {
+    display: none;
+  }
+}

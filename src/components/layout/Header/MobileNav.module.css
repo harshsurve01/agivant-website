@@ -1,0 +1,236 @@
+/* ==========================================================================
+   MobileNav.module.css
+   Menu button and slide-down navigation panel for ≤1024px.
+   The button is hidden on desktop widths; Header.module.css hides the
+   desktop NavigationMenu at the same breakpoint.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------
+   Menu button (44×44 tap target, three bars → X when open)
+   -------------------------------------------------------------------- */
+.toggle {
+  display: none;
+  position: relative;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.bar {
+  position: absolute;
+  left: 50%;
+  width: 1.375rem;
+  height: 0.125rem;
+  border-radius: var(--radius-full);
+  background: currentColor;
+  transform: translateX(-50%);
+  transition:
+    transform var(--transition-base),
+    opacity var(--transition-base),
+    top var(--transition-base);
+}
+
+.bar:nth-child(1) {
+  top: calc(50% - 0.4375rem);
+}
+
+.bar:nth-child(2) {
+  top: calc(50% - 0.0625rem);
+}
+
+.bar:nth-child(3) {
+  top: calc(50% + 0.3125rem);
+}
+
+.toggleOpen .bar:nth-child(1) {
+  top: calc(50% - 0.0625rem);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.toggleOpen .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.toggleOpen .bar:nth-child(3) {
+  top: calc(50% - 0.0625rem);
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+@media (max-width: 1024px) {
+  .toggle {
+    display: inline-block;
+  }
+}
+
+/* --------------------------------------------------------------------
+   Panel (portaled to <body>; `top` is set inline to the header bottom)
+   -------------------------------------------------------------------- */
+.panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-6) var(--space-5) var(--space-12);
+  background: var(--color-bg-primary);
+  border-top: 1px solid var(--color-border-default);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  animation: panelIn 200ms ease-out;
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+
+  .bar {
+    transition: none;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+/* Top-level link or accordion button: full-width 3.25rem row. */
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 3.25rem;
+  padding: var(--space-3) 0;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link:hover,
+.link[aria-expanded="true"] {
+  color: var(--color-brand-primary);
+}
+
+.chevron {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  transition: transform var(--transition-base);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* Accordion content */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: 0 0 var(--space-6) var(--space-4);
+}
+
+.group[hidden] {
+  display: none;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.categoryLink {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-brand-primary);
+  text-decoration: none;
+}
+
+.subList {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0 0 0 var(--space-4);
+  list-style: none;
+  border-left: 1px solid var(--color-border-default);
+}
+
+.subLink {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: var(--space-1) 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.subLink:hover {
+  color: var(--color-brand-primary);
+}
+
+/* Bottom call to action (same look as the header's primary button). */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  min-height: 3rem;
+  padding: var(--space-3) var(--space-8);
+  border-radius: var(--radius-full);
+  background: var(--color-brand-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  text-decoration: none;
+}

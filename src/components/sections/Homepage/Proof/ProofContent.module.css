@@ -53,5 +53,7 @@
 
   .description {
     font-size: var(--font-size-base);
+    width: auto; /* the fixed 25rem forced the stacked column wider than a phone */
+    max-width: 25rem;
   }
 }

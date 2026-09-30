@@ -30,6 +30,19 @@ function getAdapter(provider: VideoPlayerProps["source"]["provider"]): ProviderA
 
 const CONTROLS_IDLE_DELAY_MS = 2200;
 
+type FullscreenElement = HTMLElement & {
+  webkitRequestFullscreen?: () => Promise<void> | void;
+};
+type FullscreenDocument = Document & {
+  webkitFullscreenElement?: Element | null;
+  webkitExitFullscreen?: () => Promise<void> | void;
+};
+
+const getFullscreenElement = () => {
+  const doc = document as FullscreenDocument;
+  return doc.fullscreenElement ?? doc.webkitFullscreenElement ?? null;
+};
+
 export function VideoPlayer({
   source,
   poster,
@@ -46,6 +59,9 @@ export function VideoPlayer({
   const [controlsRevealed, setControlsRevealed] = useState(true);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const idleTimerRef = useRef<number | null>(null);
+  // True when the browser has no element Fullscreen API (iPhone Safari):
+  // the stage then fills the viewport with CSS instead.
+  const [cssFullscreen, setCssFullscreen] = useState(false);
 
   const adapter = getAdapter(source.provider);
 
@@ -93,34 +109,77 @@ export function VideoPlayer({
     const stage = stageRef.current;
     if (!stage) return;
 
-    if (state.isFullscreen && document.fullscreenElement !== stage) {
-      stage.requestFullscreen?.().catch(() => {
-        // Fullscreen can be denied by the browser/user gesture policy;
-        // state already reflects intent, so just let the request fail
-        // silently rather than throwing in the render path.
-      });
-    } else if (!state.isFullscreen && document.fullscreenElement === stage) {
-      document.exitFullscreen?.().catch(() => {});
+    const el = stage as FullscreenElement;
+    const doc = document as FullscreenDocument;
+    // Standard API first, then Safari's prefixed one (older iPadOS/macOS).
+    const request = el.requestFullscreen
+      ? () => el.requestFullscreen()
+      : el.webkitRequestFullscreen
+        ? () => el.webkitRequestFullscreen!()
+        : null;
+    const exit = doc.exitFullscreen
+      ? () => doc.exitFullscreen()
+      : doc.webkitExitFullscreen
+        ? () => doc.webkitExitFullscreen!()
+        : null;
+
+    if (state.isFullscreen && getFullscreenElement() !== stage) {
+      if (request) {
+        Promise.resolve(request()).catch(() => {
+          // Fullscreen can be denied by the browser/user gesture policy;
+          // state already reflects intent, so just let the request fail
+          // silently rather than throwing in the render path.
+        });
+      } else {
+        // No element Fullscreen API (iPhone Safari): fill the viewport.
+        setCssFullscreen(true);
+      }
+    } else if (!state.isFullscreen) {
+      setCssFullscreen(false);
+      if (getFullscreenElement() === stage && exit) {
+        Promise.resolve(exit()).catch(() => {});
+      }
     }
   }, [state.isFullscreen]);
+
+  // CSS fullscreen: lock page scroll and allow Escape to leave it.
+  useEffect(() => {
+    if (!cssFullscreen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") controller?.exitFullscreen();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [cssFullscreen, controller]);
 
   // Keep state in sync if the user exits fullscreen via Escape/browser UI
   // rather than our own button.
   useEffect(() => {
     const handleChange = () => {
-      const isNowFullscreen = document.fullscreenElement === stageRef.current;
-      if (!isNowFullscreen && state.isFullscreen) {
+      const isNowFullscreen = getFullscreenElement() === stageRef.current;
+      if (!isNowFullscreen && state.isFullscreen && !cssFullscreen) {
         controller?.exitFullscreen();
       }
     };
     document.addEventListener("fullscreenchange", handleChange);
-    return () => document.removeEventListener("fullscreenchange", handleChange);
-  }, [controller, state.isFullscreen]);
+    document.addEventListener("webkitfullscreenchange", handleChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", handleChange);
+      document.removeEventListener("webkitfullscreenchange", handleChange);
+    };
+  }, [controller, state.isFullscreen, cssFullscreen]);
 
   return (
     <div
       ref={stageRef}
-      className={[styles.stage, className].filter(Boolean).join(" ")}
+      className={[styles.stage, cssFullscreen && styles.cssFullscreen, className]
+        .filter(Boolean)
+        .join(" ")}
       role="region"
       aria-label={title}
       onMouseMove={wake}

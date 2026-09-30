@@ -31,6 +31,7 @@
      white gap" and the off-center card. Filling the viewport and
      centering the content here fixes both in one place. */
   min-height: 100vh;
+  min-height: 100svh; /* small-viewport height on mobile (excludes the browser bars); same as 100vh on desktop */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -144,4 +145,20 @@
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
   z-index: 3;
+}
+
+/* --------------------------------------------------------------------
+   Mobile (≤767px): the stack + dots are replaced by TrustMobileSlider
+   (no ScrollTrigger pin there, see TrustAnimation), and the section
+   sizes to its content instead of filling the screen for the pin.
+   Tablet and desktop are unaffected.
+   -------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .trust {
+    min-height: auto;
+  }
+
+  .layout {
+    display: none;
+  }
 }

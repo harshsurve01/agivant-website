@@ -34,3 +34,14 @@
   max-width: 90rem;
   margin-inline: auto;
 }
+/* Logo strip wrapper: full row width on tablet/desktop; on mobile the
+   PartnerLogoMarquee (auto-scrolling, two logos across) replaces it. */
+.logoStripDesktop {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .logoStripDesktop {
+    display: none;
+  }
+}

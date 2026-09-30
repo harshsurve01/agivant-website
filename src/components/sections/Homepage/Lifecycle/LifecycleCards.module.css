@@ -39,3 +39,97 @@
     min-height: auto;
   }
 }
+
+/* --------------------------------------------------------------------
+   Opt-in mobile carousel (LifecycleCards mobileCarousel prop, ≤768px).
+   Cards sit in one swipeable row that snaps each card to the centre,
+   with the next card peeking in. All cards share one height so the row
+   doesn't jump as the active card changes. Above 768px these classes
+   have no effect.
+   -------------------------------------------------------------------- */
+.carouselDots {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .gridCarousel {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    max-width: none;
+    width: 100%;
+    margin-inline: 0;
+    padding-inline: var(--space-4);
+    scroll-padding-inline: var(--space-4);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gridCarousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Height grows with the longest description; align-items: stretch
+     keeps every card in the row the same height. */
+  .gridCarousel > article {
+    flex: 0 0 88%;
+    max-width: 20rem;
+    height: auto;
+    min-height: 27.5rem;
+    scroll-snap-align: center;
+  }
+
+  .gridCarousel > article > div:last-child {
+    height: 12.5rem;
+    min-height: 12.5rem;
+    max-height: 12.5rem;
+  }
+
+  .carouselDots {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-1);
+  }
+
+  /* 44px tap target around an 8px dot */
+  .carouselDot {
+    position: relative;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .carouselDot::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-neutral-300, #D1D5DB);
+    transform: translate(-50%, -50%);
+    transition: background-color var(--transition-fast, 150ms ease),
+      transform var(--transition-fast, 150ms ease);
+  }
+
+  .carouselDotActive::before {
+    background-color: var(--color-brand-primary, #8500DF);
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+
+  .carouselDot:focus-visible {
+    outline: none;
+  }
+
+  .carouselDot:focus-visible::before {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand-primary, #8500DF) 30%, transparent);
+  }
+}

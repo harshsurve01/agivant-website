@@ -51,8 +51,8 @@
    internal padding. Columns: image 1/3, content 2/3. */
 .cardRow {
   background: rgba(217, 217, 217, 0.2);
-  backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   border: 1px solid #ffffff;
   border-radius: var(--radius-2xl, 1.5rem);
   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.08);
@@ -214,8 +214,8 @@
 
 .tigergraphCard.cardRow {
   background: rgba(217, 217, 217, 0.2);
-  backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   border: 1px solid #ffffff;
   border-radius: var(--radius-2xl, 1.5rem);
   box-shadow: inset 0 0 4px rgba(4, 4, 4, 0.08);

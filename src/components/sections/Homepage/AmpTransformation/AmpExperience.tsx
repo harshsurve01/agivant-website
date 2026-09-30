@@ -82,16 +82,28 @@ export function AmpExperience({ header, leftColumn, hub, rightColumn }: AmpExper
 
     if (!logoEl || !blobEl) return;
 
+    // Phones: the stacked layout is taller than the screen, so pinning it
+    // would hide its lower half for the whole pin. There the same timeline
+    // plays while the block scrolls past normally (no pin).
+    const isPhone = window.matchMedia("(max-width: 768px)").matches;
+
     ctx = gsap.context(() => {
       const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: experience,
-          start: "top 17%",
-          end: `+=${PIN_SCROLL_DISTANCE}`,
-          pin: true,
-          pinSpacing: true,
-          scrub: true,
-        },
+        scrollTrigger: isPhone
+          ? {
+              trigger: experience,
+              start: "top 80%",
+              end: "center 50%",
+              scrub: true,
+            }
+          : {
+              trigger: experience,
+              start: "top 17%",
+              end: `+=${PIN_SCROLL_DISTANCE}`,
+              pin: true,
+              pinSpacing: true,
+              scrub: true,
+            },
       });
 
       const viewportWidth = window.innerWidth;

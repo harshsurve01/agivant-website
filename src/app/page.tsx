@@ -31,8 +31,8 @@ export default async function Home() {
       <Hero />
       <Trust />
       <AmpTransformation />
-      <Lifecycle />
-      <AIStack />
+      <Lifecycle mobileCarousel />
+      <AIStack mobileCarousel />
       <Partners />
       <ProofSection
         header={proofData.header}

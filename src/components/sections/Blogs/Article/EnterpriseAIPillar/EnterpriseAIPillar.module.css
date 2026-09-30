@@ -76,8 +76,8 @@
   background-color: var(--surface-glass-bg, #d9d9d920);
   border: var(--surface-glass-border, 1px solid #ffffff);
   box-shadow: var(--surface-glass-shadow, inset 0 0 4px rgba(4, 4, 4, 0.1));
-  backdrop-filter: blur(var(--surface-glass-blur, 16px));
   -webkit-backdrop-filter: blur(var(--surface-glass-blur, 16px));
+  backdrop-filter: blur(var(--surface-glass-blur, 16px));
   box-sizing: border-box;
 }
 

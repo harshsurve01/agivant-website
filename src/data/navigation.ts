@@ -30,6 +30,10 @@ export interface MegaMenuCategory {
   href: string;
   featureCard: MegaMenuFeatureCard;
   items: MegaMenuItem[];
+  /** Hide the mega menu's bottom bar while this category is selected. Defaults to false (bar shown). */
+  hideBottomBar?: boolean;
+  /** Placeholder for the search field shown on this category (Solutions). */
+  searchPlaceholder?: string;
 }
 
 export interface MegaMenuBottomBar {
@@ -98,40 +102,41 @@ const mockNavigation: NavigationItem[] = [
           id: "services",
           label: "Services",
           href: "/services",
+          hideBottomBar: true,
           featureCard: {
             title: "Services",
             description:
-              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.",
+              "Agivant engineers every layer of the AI stack, so isolated AI wins become an enterprise-wide advantage.",
           },
           items: [
             {
-              id: "agentic-ai-agentops",
-              title: "Agentic AI & AgentOps",
-              description: "Lorem ipsum dolor sitLorem ipsum dolor",
+              id: "cloud-platform-engineering",
+              title: "Cloud & Platform Engineering",
+              description: "The infrastructure data, models and agents all run on",
+              href: "/services",
+            },
+            {
+              id: "data-engineering-data-science",
+              title: "Data Engineering & Advanced Analytics",
+              description: "Clean, reliable data and analytics teams can act on",
               href: "/services",
             },
             {
               id: "ai-ml-engineering",
               title: "AI & ML Engineering",
-              description: "Lorem ipsum dolor sitLorem ipsum dolor",
+              description: "Models and RAG systems tuned to the domain, from spec to production",
               href: "/services",
             },
             {
               id: "ai-ml-operations",
-              title: "AI & ML Operations",
-              description: "Lorem ipsum dolor sitLorem ipsum dolor",
+              title: "MLOps & Scalable ML Platforms",
+              description: "The release path that takes a model from notebook to production",
               href: "/services",
             },
             {
-              id: "cloud-platform-engineering",
-              title: "Cloud & Platform Engineering",
-              description: "Lorem ipsum dolor sitLorem ipsum dolor",
-              href: "/services",
-            },
-            {
-              id: "data-engineering-data-science",
-              title: "Data Engineering & Data Science",
-              description: "Lorem ipsum dolor sitLorem ipsum dolor",
+              id: "agentic-ai-agentops",
+              title: "Agentic AI & AgentOps",
+              description: "Agents that run the work and answer for every action",
               href: "/services",
             },
           ],
@@ -140,73 +145,75 @@ const mockNavigation: NavigationItem[] = [
           id: "solutions",
           label: "Solutions",
           href: "/solutions",
+          hideBottomBar: true,
+          searchPlaceholder: "Search solutions by industry or domains",
           featureCard: {
             title: "Solutions",
             description:
-              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.",
+              "Agentic AI solutions engineered for real business value, already running in production.",
           },
           items: [
             {
-              id: "goal-driven-enterprise-agents",
-              title: "Goal-Driven Enterprise Agents",
+              id: "agentic-ai-autonomous-operations",
+              title: "Agentic AI for autonomous operations",
               description:
-                "Agivant builds agentic AI systems that read a goal, work across enterprise tools.",
-              href: "/solutions/goal-driven-agents-enterprise-workflows",
-            },
-            {
-              id: "verbatim-ai-customer-intelligence",
-              title: "Verbatim AI Customer Intelligence",
-              description:
-                "Transforms omnichannel customer conversations into automated insights.",
-              href: "/solutions/verbatim-ai",
-            },
-            {
-              id: "autonomous-operations-platform",
-              title: "Autonomous Operations Platform",
-              description:
-                "Autonomous operations platform with agent mesh across business processes.",
+                "Goal-driven agents working the tools that hold the task",
               href: "/solutions/agentic-ai-autonomous-operations",
             },
             {
-              id: "operations-brain-intelligence",
-              title: "Operations Brain Intelligence",
+              id: "agentic-mesh-deployment",
+              title: "Agentic Mesh Deployment",
               description:
-                "Unified telemetry and reasoning across multi-agent enterprise deployments.",
-              href: "/solutions/operations-brain-intelligence",
+                "One agent network holding context across the enterprise",
+              href: "/solutions/agentic-mesh-deployment",
             },
             {
-              id: "salesforce-velocity-platform",
-              title: "Salesforce Velocity Platform",
+              id: "agentic-silicon-lifecycle-platform",
+              title: "Agentic Silicon Lifecycle Platform",
               description:
-                "Accelerate quote-to-cash with agent-assisted enterprise CRM workflows.",
-              href: "/solutions/salesforce-velocity-platform",
+                "Design verification and yield correlation under one policy layer",
+              href: "/solutions/agentic-silicon-lifecycle-platform",
+            },
+            {
+              id: "autonomous-operations-brain",
+              title: "Autonomous Operations Brain",
+              description:
+                "Incidents explained, then resolved inside the shift they open in",
+              href: "/solutions/autonomous-operations-brain",
+            },
+            {
+              id: "agentic-salesforce-velocity-platform",
+              title: "Agentic Salesforce Velocity Platform",
+              description:
+                "Coordinated agent teams working inside Salesforce",
+              href: "/solutions/agentic-salesforce-velocity-platform",
             },
             {
               id: "servicenow-workflow-automation",
-              title: "ServiceNow Workflow Automation",
+              title: "Workflow automation",
               description:
-                "Modernize enterprise service management with cognitive incident resolution.",
+                "Launch confidence, predicted weeks ahead of the date",
               href: "/solutions/servicenow-workflow-automation",
             },
             {
               id: "ai-product-tech-support",
-              title: "AI Product Tech Support",
+              title: "AI product tech support",
               description:
-                "Next-generation customer support with cognitive agent assist and resolution.",
+                "AI products kept accurate and affordable in production",
               href: "/solutions/ai-product-tech-support",
             },
             {
               id: "agivant-spend-ai",
               title: "Agivant Spend AI",
               description:
-                "Procurement intelligence and FinOps cost optimization driven by AI agents.",
+                "Idle licenses reclaimed, demand forecast ahead of renewal",
               href: "/solutions/agivant-spend-ai",
             },
             {
               id: "view-all-solutions",
-              title: "View all 49 solutions",
+              title: "Explore all key solutions",
               description:
-                "Browse functional domains, technology stacks, and solution canvases.",
+                "30 to 70% shorter cycle times, with first results in days and weeks",
               href: "/solutions",
               isViewAll: true,
             },
@@ -216,17 +223,78 @@ const mockNavigation: NavigationItem[] = [
           id: "partnerships",
           label: "Partnerships",
           href: "/partners",
+          hideBottomBar: true,
           featureCard: {
-            title: "Partnerships",
+            title: "Ecosystem partnerships",
             description:
-              "Collaborating with leading technology ecosystem partners to deliver scalable AI solutions.",
+              "Agivant is trusted by global partners across the cloud, data, AI and workflow platforms enterprises depend on.",
           },
-          items: [],
+          items: [
+            {
+              id: "gemini-enterprise",
+              title: "Gemini Enterprise",
+              description: "Agents built on Google's Agent Development Kit",
+              href: "/partners/gemini-enterprise",
+            },
+            {
+              id: "databricks",
+              title: "Databricks",
+              description: "Bronze Partner, building agents on the Lakehouse",
+              href: "/partners/databricks",
+            },
+            {
+              id: "aws",
+              title: "AWS",
+              description: "Well-Architected practice for every migration",
+              href: "/partners/aws",
+            },
+            {
+              id: "azure",
+              title: "Azure",
+              description: "Optimization practice, built on Agivant's own AOAF",
+              href: "/partners/azure",
+            },
+            {
+              id: "salesforce",
+              title: "Salesforce",
+              description: "Agent teams working inside Data Cloud and Agentforce",
+              href: "/partners/salesforce",
+            },
+            {
+              id: "glean",
+              title: "Glean",
+              description: "Work AI collaboration, built on domain accelerators",
+              href: "/partners/glean",
+            },
+            {
+              id: "servicenow",
+              title: "ServiceNow",
+              description: "AI-first migration and automation practice",
+              href: "/partners/servicenow",
+            },
+            {
+              id: "nvidia",
+              title: "NVIDIA",
+              description: "GPU-native AI practice on the full CUDA stack",
+              href: "/partners/nvidia",
+            },
+            {
+              id: "shopify",
+              title: "Shopify",
+              description: "Agentic commerce on the Shopify platform",
+              href: "/partners/shopify",
+            },
+            {
+              id: "tigergraph",
+              title: "TigerGraph",
+              description: "Named Global Engineering Center partner",
+              href: "/partners/tigergraph",
+            },
+          ],
         },
       ],
       bottomBar: {
-        statsHighlight: "45 solutions",
-        statsText: "across industries and business functions",
+        statsText: "Solutions engineered across industries and business functions",
         ctaPrefix: "Need something specific?",
         ctaHighlight: "Let's build it together",
         ctaHref: "/contact",
@@ -250,7 +318,7 @@ const mockNavigation: NavigationItem[] = [
           featureCard: {
             title: "Research",
             description:
-              "Practical insights from Agivant engineers building production-grade AI, cloud, data and autonomous agentic workflows.",
+              "Field notes and decision frameworks from the engineers putting AI into production.",
           },
           items: [],
         },
@@ -261,19 +329,20 @@ const mockNavigation: NavigationItem[] = [
           featureCard: {
             title: "Talk Tech",
             description:
-              "Explore the architectures, engineering decisions and technical patterns behind enterprise AI systems.",
+              "The agentic AI era, explained by the engineers building it.",
           },
           items: [],
         },
       ],
       featured: {
-        heading: "Whats New",
+        heading: "What's new",
         items: [
           {
             id: "press-gemini-enterprise",
-            title: "Agivant partners with Google Cloud",
+            title:
+              "Agivant partners with Google Cloud on a dedicated Gemini Enterprise practice",
             description:
-              "to set up a dedicated Gemini Enterprise practice to accelerate custom AI agent development",
+              "A dedicated practice built to accelerate custom AI agent development on Google Cloud.",
             href: "/press-releases/gemini-enterprise",
             image: {
               src: "/images/partners/gemini/agentic-enterprise/agentic-enterprise-control.png",
@@ -289,9 +358,9 @@ const mockNavigation: NavigationItem[] = [
           {
             id: "press-databricks",
             title:
-              "Agivant Partners With Databricks To Help Enterprises Turn Enterprise Data Into Trusted Context For AI",
+              "Agivant partners with Databricks to turn enterprise data into trusted context for AI",
             description:
-              "Agivant's agentic AI, data engineering and enterprise AI solutions built on the Databricks Data + AI Platform help organizations build the next generation of AI-native businesses.",
+              "Agentic AI, data engineering and enterprise AI solutions built on the Databricks Data + AI Platform.",
             href: "/press-releases/databricks",
             image: {
               src: "/images/mega-menu/card2.png",
@@ -307,9 +376,9 @@ const mockNavigation: NavigationItem[] = [
           {
             id: "press-glean",
             title:
-              "Agivant Technologies Announces Collaboration with Glean to Advance Enterprise Work AI and Agentic AI Transformation",
+              "Agivant announces a collaboration with Glean to advance enterprise Work AI",
             description:
-              "Agivant Technologies announces collaboration with Glean to advance enterprise Work AI and agentic AI transformation.",
+              "A collaboration to put enterprise knowledge in reach of agents that can act on it.",
             href: "/press-releases/glean",
             image: {
               src: "/images/mega-menu/card3.png",

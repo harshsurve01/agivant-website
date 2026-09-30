@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { PartnersHeader } from "./PartnersHeader";
 import { PartnerLogoStrip, type PartnerLogoSlotTiming } from "./PartnerLogoStrip";
+import { PartnerLogoMarquee } from "./PartnerLogoMarquee";
 import {
   getPartnersHeader,
   getPartnerLogoPairs,
@@ -63,7 +64,13 @@ export async function Partners() {
         <div className={styles.inner}>
           <PartnersHeader heading={header.heading} description={header.description} />
 
-          <PartnerLogoStrip slots={pairs} slotTimings={PARTNER_SLOT_TIMINGS} />
+          {/* Tablet / desktop: logo slots that swap in place (hidden ≤768px). */}
+          <div className={styles.logoStripDesktop}>
+            <PartnerLogoStrip slots={pairs} slotTimings={PARTNER_SLOT_TIMINGS} />
+          </div>
+
+          {/* Mobile (≤768px): the same logos as an auto-scrolling row, two across. */}
+          <PartnerLogoMarquee logos={pairs.flat()} />
 
           <Link href={cta.href}>
             <Button variant="primary" size="lg" rightIcon={<ArrowUpRight />}>

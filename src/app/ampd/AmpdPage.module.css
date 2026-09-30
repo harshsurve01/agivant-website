@@ -8,6 +8,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
+  min-height: 100svh; /* small-viewport height on mobile (excludes the browser bars); same as 100vh on desktop */
   overflow-x: clip;
 }
 
@@ -352,5 +353,14 @@
   .ampdBuildEnvText {
     font-size: var(--font-size-base);
     margin-top: var(--space-8);
+  }
+}
+
+/* Phones: the video section sizes to its content (the video is short on a
+   narrow screen, so a full-screen section leaves large empty bands).
+   Doubled class so it beats the shared Section height="viewport" rule. */
+@media (max-width: 768px) {
+  .ampdVideo.ampdVideo {
+    min-height: auto;
   }
 }

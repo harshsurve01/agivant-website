@@ -317,6 +317,11 @@
   }
 }
 
+/* TABLET / MOBILE (≤1024px): editorial column on top, then the cards.
+   The tall card runs full width first, the two short cards sit side by
+   side (≥641px) or stack (≤640px). Cards take their content height: the
+   artwork becomes a top band and the body flows below it, so no text is
+   cropped by a fixed card height or fixed text widths. */
 @media (max-width: 1024px) {
   .layout {
     grid-template-columns: 1fr;
@@ -325,6 +330,88 @@
 
   .editorial {
     position: static;
+  }
+
+  .heading {
+    white-space: normal;
+  }
+
+  .editorial .description {
+    width: auto;
+    max-width: 40rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+    gap: var(--space-5);
+    height: auto;
+    max-width: none;
+    margin-left: 0;
+  }
+
+  .largeSlot {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    order: -1;
+  }
+
+  .topLeftSlot {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .bottomLeftSlot {
+    grid-column: 2;
+    grid-row: auto;
+  }
+
+  .topLeftSlot .card,
+  .bottomLeftSlot .card,
+  .largeSlot .card,
+  .cardShort,
+  .cardTall {
+    height: auto;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg-primary);
+  }
+
+  .artwork {
+    position: relative;
+    inset: auto;
+    height: 12rem;
+    flex: none;
+  }
+
+  /* `position: static` makes the desktop `top` offsets inert. */
+  .body {
+    position: static;
+    border-radius: 0;
+    box-shadow: none;
+    padding: var(--space-6);
+  }
+
+  .bodyContent .description,
+  .rightCol .description,
+  .rightCol .metric {
+    width: auto;
+  }
+
+  /* Touch: a tap leaves :hover stuck — no sibling blur, no lift. */
+  .grid:has(.cardLink:hover, .cardLink:focus-visible)
+    .cardLink:not(:hover):not(:focus-visible) {
+    filter: none;
+    opacity: 1;
+  }
+
+  .cardLink:hover .card {
+    transform: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -336,34 +423,26 @@
 
   .heading {
     font-size: var(--font-size-2xl);
-    white-space: normal;
   }
+}
 
+@media (max-width: 640px) {
   .grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--space-4);
-    height: auto;
   }
 
   .topLeftSlot,
-  .bottomLeftSlot,
-  .largeSlot {
+  .bottomLeftSlot {
     grid-column: 1;
-    grid-row: auto;
   }
 
-  .topLeftSlot .card,
-  .bottomLeftSlot .card,
-  .largeSlot .card,
-  .cardShort,
-  .cardTall {
-    height: 321px;
+  .artwork {
+    height: 10rem;
   }
 
-  .bodyShort,
-  .bodyTall {
-    top: 32%;
+  .body {
+    padding: var(--space-5);
   }
 }
 

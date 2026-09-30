@@ -149,8 +149,8 @@
   width: 100%;
   max-height: calc(var(--card-height) - 6rem);
   background: #d9d9d920;
-  backdrop-filter: blur(var(--surface-glass-blur, 1rem));
   -webkit-backdrop-filter: blur(var(--surface-glass-blur, 1rem));
+  backdrop-filter: blur(var(--surface-glass-blur, 1rem));
   border: 1px solid #ffffff;
   padding: 1.25rem 1.625rem 1.375rem;
   display: flex;

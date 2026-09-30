@@ -215,6 +215,7 @@
 
 .tigergraphPage {
   min-height: 100vh;
+  min-height: 100svh; /* small-viewport height on mobile (excludes the browser bars); same as 100vh on desktop */
 }
 
 /* ==========================================================================
@@ -226,6 +227,7 @@
 
 .salesforcePage :global(#ai-data-capabilities) {
   min-height: 100vh;
+  min-height: 100svh; /* small-viewport height on mobile (excludes the browser bars); same as 100vh on desktop */
 }
 
 .salesforcePage :global(#ai-data-capabilities),
@@ -326,6 +328,7 @@
    ========================================================================== */
 .nvidiaMarketValidationSection {
   min-height: 100vh;
+  min-height: 100svh; /* small-viewport height on mobile (excludes the browser bars); same as 100vh on desktop */
   display: flex;
   flex-direction: column;
   justify-content: center;

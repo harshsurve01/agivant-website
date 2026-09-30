@@ -1,11 +1,14 @@
 import clsx from "clsx";
 import { AIStackCard } from "./AIStackCard";
+import { AIStackCarouselTrack } from "./AIStackCarouselTrack";
 import type { AIStackCardData } from "@/data/ai-stack";
 import styles from "./AIStackGrid.module.css";
 
 interface AIStackGridProps {
   cards: AIStackCardData[];
   variant?: "default" | "service";
+  /** Mobile only (≤768px): swipeable card carousel with dots. Off by default. */
+  mobileCarousel?: boolean;
 }
 
 /**
@@ -28,19 +31,32 @@ interface AIStackGridProps {
  * Component) — Server Components can render Client Components, just
  * not the reverse.
  */
-export function AIStackGrid({ cards, variant = "default" }: AIStackGridProps) {
-  return (
-    <div
-      className={clsx(
-        styles.grid,
-        variant === "service" && styles.gridService
-      )}
-    >
-      {cards.map((card) => (
-        <div key={card.id} className={styles.gridItem}>
-          <AIStackCard card={card} />
-        </div>
-      ))}
-    </div>
+export function AIStackGrid({
+  cards,
+  variant = "default",
+  mobileCarousel = false,
+}: AIStackGridProps) {
+  const gridClassName = clsx(
+    styles.grid,
+    variant === "service" && styles.gridService,
+    mobileCarousel && styles.gridCarousel
   );
+  const items = cards.map((card) => (
+    <div key={card.id} className={styles.gridItem}>
+      <AIStackCard card={card} />
+    </div>
+  ));
+
+  if (mobileCarousel) {
+    return (
+      <AIStackCarouselTrack
+        className={gridClassName}
+        labels={cards.map((card) => card.title)}
+      >
+        {items}
+      </AIStackCarouselTrack>
+    );
+  }
+
+  return <div className={gridClassName}>{items}</div>;
 }

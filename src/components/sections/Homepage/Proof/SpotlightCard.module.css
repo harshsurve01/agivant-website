@@ -331,3 +331,66 @@
   font-weight: var(--font-weight-regular);
   color: var(--color-text-link);
 }
+
+/* --------------------------------------------------------------------
+   TABLET / MOBILE (≤1024px)
+   There is no hover here, so the desktop "cropped panel that grows on
+   hover" can't reveal anything. Instead the card flows naturally: the
+   artwork becomes a top band and the content panel sits below it with
+   ALL of its content (full description, metric, footer) visible. The
+   card's height comes from its content, so the grid slot never
+   collapses to 0 (the reason the cards disappeared on mobile before).
+   -------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .cardLink,
+  .card {
+    height: auto;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg-primary);
+  }
+
+  .artwork {
+    position: relative;
+    inset: auto;
+    height: 12rem;
+    flex: none;
+  }
+
+  /* `position: static` makes every desktop/hover `top` offset inert. */
+  .body {
+    position: static;
+    padding: var(--space-6);
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .cardLink[data-slot] .description {
+    display: block;
+    overflow: visible;
+  }
+
+  /* A tap leaves :hover stuck on touch devices — no lift. */
+  .cardLink:hover .card {
+    transform: none;
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+@media (max-width: 640px) {
+  .artwork {
+    height: 10rem;
+  }
+
+  .body {
+    padding: var(--space-5);
+  }
+
+  .metricValue {
+    font-size: var(--font-size-2xl);
+  }
+}

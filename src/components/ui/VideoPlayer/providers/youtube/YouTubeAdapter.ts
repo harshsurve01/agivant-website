@@ -86,6 +86,24 @@ export const youtubeAdapter: ProviderAdapter = {
 
             startPolling(ytPlayer);
 
+            // Safari / iOS block unmuted autoplay once the tap that
+            // started loading has been "used up" by the async API load.
+            // If playback hasn't started shortly after ready, retry muted
+            // (always allowed); the viewer can unmute from the controls.
+            if (autoPlay && !muted) {
+              window.setTimeout(() => {
+                if (
+                  state.status === "ready" ||
+                  state.status === "paused" ||
+                  state.status === "loading"
+                ) {
+                  ytPlayer.mute();
+                  emit({ muted: true });
+                  ytPlayer.playVideo();
+                }
+              }, 1500);
+            }
+
             const controller: PlayerController = {
               play: () => ytPlayer.playVideo(),
               pause: () => ytPlayer.pauseVideo(),

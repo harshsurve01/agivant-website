@@ -11,6 +11,7 @@
   background-color: transparent;
   padding-block: var(--space-24) var(--space-4);
   min-height: 100vh;
+  min-height: 100svh; /* small-viewport height on mobile (excludes the browser bars); same as 100vh on desktop */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,4 +126,11 @@
 
 .minimal [class*="brandmark"] {
   margin-top: var(--space-4);
+}
+
+/* Phones: footer sizes to its content instead of a full screen. */
+@media (max-width: 768px) {
+  .footer {
+    min-height: auto;
+  }
 }

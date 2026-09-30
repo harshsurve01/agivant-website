@@ -62,8 +62,8 @@
   background-color: var(--surface-glass-bg, #d9d9d920);
   border: var(--surface-glass-border, 1px solid #ffffff);
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.06), var(--surface-glass-shadow);
-  backdrop-filter: blur(var(--surface-glass-blur, 16px));
   -webkit-backdrop-filter: blur(var(--surface-glass-blur, 16px));
+  backdrop-filter: blur(var(--surface-glass-blur, 16px));
   overflow: hidden;
 }
 

@@ -49,6 +49,8 @@
 
 @media (max-width: 1024px) {
   .inner {
-    grid-template-columns: 1fr;
+    /* minmax(0, …) so no child's min-content width can widen the column */
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-10);
   }
 }

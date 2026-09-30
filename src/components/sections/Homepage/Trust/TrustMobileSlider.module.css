@@ -1,0 +1,105 @@
+/* ==========================================================================
+   TrustMobileSlider.module.css
+   Mobile-only (≤767px) Swiper slider for the Trust cards. Hidden on
+   tablet/desktop, where Trust.module.css keeps the ScrollTrigger stack.
+   ========================================================================== */
+
+.slider {
+  display: none;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .slider {
+    display: block;
+  }
+}
+
+/* Coverflow rotates the neighbouring cards in 3D; let them show while
+   they turn (the Trust section itself clips at its edges). */
+.swiper {
+  width: 100%;
+  overflow: visible;
+}
+
+.slide {
+  width: 100%;
+  border-radius: var(--radius-xl, var(--radius-lg));
+  overflow: hidden;
+}
+
+/* Card typography sized for a phone screen (desktop card unchanged). */
+.slide :global(article) {
+  padding: 6.875rem var(--space-5) 4.5rem;
+}
+
+.slide :global(article h3) {
+  font-size: clamp(2.125rem, 8vw, 3.5rem);
+}
+
+.slide :global(article p) {
+  font-size: var(--font-size-base);
+}
+
+/* Prev / dots / next row under the card */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  margin-top: var(--space-5);
+}
+
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+}
+
+.arrow:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  min-width: 2.5rem;
+  height: 2.5rem;
+}
+
+.pagination:global(.swiper-pagination) {
+  position: static;
+  width: auto;
+}
+
+.pagination :global(.swiper-pagination-bullet) {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: 0 !important;
+  border-radius: var(--radius-full);
+  background: rgb(212 212 212);
+  opacity: 1;
+  transition: all 280ms ease;
+}
+
+.pagination :global(.swiper-pagination-bullet-active) {
+  width: 0.75rem;
+  height: 0.75rem;
+  background: var(--color-brand-primary);
+}

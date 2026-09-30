@@ -27,6 +27,8 @@ export interface AIStackProps {
   className?: string;
   /** Render the section's ambient background glows. Defaults to true. */
   showGradients?: boolean;
+  /** Mobile only (≤768px): show the cards as a swipeable carousel. Defaults to false. */
+  mobileCarousel?: boolean;
 }
 
 /**
@@ -47,6 +49,7 @@ export async function AIStack({
   gridVariant,
   className,
   showGradients = true,
+  mobileCarousel = false,
 }: AIStackProps = {}) {
   const isHomepage = !propCards;
   const effectiveGridVariant = gridVariant ?? (variant === "service" ? "service" : "default");
@@ -105,7 +108,11 @@ export async function AIStack({
             description={resolvedDescription}
           />
 
-          <AIStackGrid cards={resolvedCards} variant={effectiveGridVariant} />
+          <AIStackGrid
+            cards={resolvedCards}
+            variant={effectiveGridVariant}
+            mobileCarousel={mobileCarousel}
+          />
 
           {showCta && cta && (
             <Link href={cta.href} className={styles.cta}>

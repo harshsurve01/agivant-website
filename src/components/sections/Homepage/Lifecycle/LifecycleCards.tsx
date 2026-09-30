@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import clsx from "clsx";
 import { LifecycleCard, type LifecycleCardStage } from "./LifecycleCard";
 import { LifecycleIndicator } from "./LifecycleIndicator";
 import { NumberedIndicator } from "./NumberedIndicator";
@@ -8,6 +9,8 @@ import { LifecycleModal } from "./LifecycleModal";
 import styles from "./LifecycleCards.module.css";
 
 const AUTO_ROTATE_INTERVAL_MS = 5000;
+/** Width at which the opt-in mobile carousel replaces the stacked cards. */
+const MOBILE_CAROUSEL_QUERY = "(max-width: 768px)";
 
 export interface LifecycleCardsProps {
   stages: LifecycleCardStage[];
@@ -17,6 +20,12 @@ export interface LifecycleCardsProps {
   enableModal?: boolean;
   showLearnMore?: boolean;
   indicatorVariant?: "dots" | "numbered";
+  /**
+   * Mobile only (≤768px): show the stages as a swipeable, snapping
+   * carousel with dots instead of a vertical stack. Off by default, so
+   * every other usage keeps the stacked mobile layout.
+   */
+  mobileCarousel?: boolean;
   renderIndicator?: (props: {
     totalStages: number;
     activeIndex: number;
@@ -42,6 +51,7 @@ export function LifecycleCards({
   enableModal = true,
   showLearnMore,
   indicatorVariant = "dots",
+  mobileCarousel = false,
   renderIndicator,
 }: LifecycleCardsProps) {
   const [activeIndex, setActiveIndex] = useState<number>(initialActiveIndex);
@@ -49,6 +59,47 @@ export function LifecycleCards({
   const [isInView, setIsInView] = useState<boolean>(false);
   const [activeModalStage, setActiveModalStage] = useState<LifecycleCardStage | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const [isCarousel, setIsCarousel] = useState<boolean>(false);
+
+  // Carousel mode = opt-in prop AND a mobile-width viewport.
+  useEffect(() => {
+    if (!mobileCarousel) return;
+    const query = window.matchMedia(MOBILE_CAROUSEL_QUERY);
+    const update = () => setIsCarousel(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, [mobileCarousel]);
+
+  // Carousel: scroll a stage's card to the centre of the track.
+  const scrollToIndex = useCallback((index: number) => {
+    const track = gridRef.current;
+    const card = track?.children[index] as HTMLElement | undefined;
+    if (!track || !card) return;
+    track.scrollTo({
+      left: card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2,
+      behavior: "smooth",
+    });
+  }, []);
+
+  // Carousel: the card nearest the track centre is the active stage.
+  const handleTrackScroll = useCallback(() => {
+    const track = gridRef.current;
+    if (!track) return;
+    const centre = track.scrollLeft + track.clientWidth / 2;
+    let nearest = 0;
+    let nearestDistance = Infinity;
+    Array.from(track.children).forEach((child, index) => {
+      const el = child as HTMLElement;
+      const distance = Math.abs(el.offsetLeft + el.offsetWidth / 2 - centre);
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearest = index;
+      }
+    });
+    setActiveIndex((prev) => (prev === nearest ? prev : nearest));
+  }, []);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -66,7 +117,8 @@ export function LifecycleCards({
   }, []);
 
   useEffect(() => {
-    if (!autoRotate || !isInView || isPaused || activeModalStage !== null || stages.length <= 1) {
+    // No auto-rotation in the mobile carousel: the user's swipe drives it.
+    if (!autoRotate || isCarousel || !isInView || isPaused || activeModalStage !== null || stages.length <= 1) {
       return;
     }
 
@@ -75,7 +127,7 @@ export function LifecycleCards({
     }, autoRotateIntervalMs);
 
     return () => clearInterval(timer);
-  }, [autoRotate, autoRotateIntervalMs, isInView, isPaused, activeModalStage, stages.length]);
+  }, [autoRotate, isCarousel, autoRotateIntervalMs, isInView, isPaused, activeModalStage, stages.length]);
 
   return (
     <div
@@ -86,7 +138,11 @@ export function LifecycleCards({
       onFocusCapture={() => setIsPaused(true)}
       onBlurCapture={() => setIsPaused(false)}
     >
-      <div className={styles.grid}>
+      <div
+        ref={gridRef}
+        className={clsx(styles.grid, mobileCarousel && styles.gridCarousel)}
+        onScroll={isCarousel ? handleTrackScroll : undefined}
+      >
         {stages.map((stage, index) => (
           <LifecycleCard
             key={stage.id}
@@ -94,7 +150,10 @@ export function LifecycleCards({
             isActive={activeIndex === index}
             showLearnMore={showLearnMore ?? enableModal}
             onMouseEnter={() => setActiveIndex(index)}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => {
+              setActiveIndex(index);
+              if (isCarousel) scrollToIndex(index);
+            }}
             onLearnMore={() => {
               if (enableModal) {
                 setActiveModalStage(stage);
@@ -103,6 +162,27 @@ export function LifecycleCards({
           />
         ))}
       </div>
+
+      {mobileCarousel && (
+        <div className={styles.carouselDots} role="group" aria-label="Lifecycle stages">
+          {stages.map((stage, index) => (
+            <button
+              key={stage.id}
+              type="button"
+              className={clsx(
+                styles.carouselDot,
+                activeIndex === index && styles.carouselDotActive
+              )}
+              aria-label={`Show ${stage.title}`}
+              aria-current={activeIndex === index}
+              onClick={() => {
+                setActiveIndex(index);
+                scrollToIndex(index);
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {renderIndicator ? (
         renderIndicator({

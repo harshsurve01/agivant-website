@@ -27,3 +27,15 @@
 .stage:fullscreen {
   border-radius: 0;
 }
+
+/* Fullscreen fallback for browsers without the element Fullscreen API
+   (iPhone Safari): the stage fills the viewport with CSS. */
+.cssFullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 500);
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: 0;
+}

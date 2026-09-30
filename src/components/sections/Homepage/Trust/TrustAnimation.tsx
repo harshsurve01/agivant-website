@@ -135,110 +135,121 @@ export function TrustAnimation({ totalCards, accentColors }: TrustAnimationProps
 
     if (items.length === 0) return;
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Tablet and desktop only. On mobile (≤767px) TrustMobileSlider
+    // replaces the stack, so no pin, ScrollTrigger or tweens are created
+    // there. gsap.matchMedia builds/reverts this setup automatically when
+    // the viewport crosses the breakpoint, so resizing switches safely.
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 768px)", () => {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // ------------------------------------------------------------------
-    // Reduced motion: no pin, no scroll-linked sequence. The stack
-    // still reads as a stack — front card sharp, the rest peeking
-    // behind it — it just never moves. This is the same resting frame
-    // as the CSS fallback in Trust.module.css; setting it again here
-    // just guarantees it even if JS re-runs after CSS was overridden.
-    // ------------------------------------------------------------------
-    if (reduceMotion) {
-      items.forEach((el, i) => {
-        applyDepth(el, i);
-        el.style.zIndex = String(1000 - i * 10);
-        el.style.pointerEvents = i === 0 ? "auto" : "none";
-      });
-      return;
-    }
-
-    const ctx = gsap.context(() => {
-      let lastFrontIndex = -1;
-
-      // continuous, stateless: given only the current scroll progress,
-      // compute every card's transform. This is what makes reverse
-      // scroll perfectly reconstruct the stack — there's no stored
-      // "previous state" to get out of sync.
-      const updateStack = (progress: number) => {
-        const continuous = progress * (totalCards - 1);
-
+      // ------------------------------------------------------------------
+      // Reduced motion: no pin, no scroll-linked sequence. The stack
+      // still reads as a stack — front card sharp, the rest peeking
+      // behind it — it just never moves. This is the same resting frame
+      // as the CSS fallback in Trust.module.css; setting it again here
+      // just guarantees it even if JS re-runs after CSS was overridden.
+      // ------------------------------------------------------------------
+      if (reduceMotion) {
         items.forEach((el, i) => {
-          const relativeDepth = i - continuous;
-          if (relativeDepth >= 0) {
-            applyDepth(el, relativeDepth);
-          } else {
-            applyExit(el, -relativeDepth);
-          }
-          el.style.zIndex = String(Math.round(1000 - relativeDepth * 10));
+          applyDepth(el, i);
+          el.style.zIndex = String(1000 - i * 10);
+          el.style.pointerEvents = i === 0 ? "auto" : "none";
         });
-
-        const frontIndex = gsap.utils.clamp(0, totalCards - 1, Math.round(continuous));
-
-        items.forEach((el, i) => {
-          el.style.pointerEvents = i === frontIndex ? "auto" : "none";
-        });
-
-        if (glow) {
-          const lower = Math.max(0, Math.min(totalCards - 1, Math.floor(continuous)));
-          const upper = Math.min(totalCards - 1, lower + 1);
-          const t = clamp01(continuous - lower);
-          const color = mixColor(
-            accentColors[lower] ?? accentColors[0],
-            accentColors[upper] ?? accentColors[accentColors.length - 1],
-            t
-          );
-          glow.style.setProperty("--trust-glow-color", color);
-        }
-
-         if (frontIndex !== lastFrontIndex) {
-          dots.forEach((dot, i) => {
-            if (i === frontIndex) {
-              gsap.to(dot, {
-                backgroundColor: "#8d8c8c",
-                width: 12,
-                height: 12,
-                duration: 0.3,
-              });
-              gsap.fromTo(
-                dot,
-                { scale: 1 },
-                { scale: 1.6, duration: 0.18, ease: "power2.out", yoyo: true, repeat: 1 }
-              );
-            } else {
-              gsap.to(dot, {
-                backgroundColor: "#cfc9c9",
-                width: 8,
-                height: 8,
-                duration: 0.3,
-              });
-            }
-          });
-          lastFrontIndex = frontIndex;
-        }
-      };
-
-      // paint the resting state before any scroll happens
-      updateStack(0);
-
-      const transitions = Math.max(totalCards - 1, 0);
-
-      if (transitions > 0) {
-        ScrollTrigger.create({
-          trigger: root,
-          start: "top top",
-          end: () => `+=${transitions * window.innerHeight}`,
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => updateStack(self.progress),
-        });
+        return;
       }
-    }, root);
+
+      const ctx = gsap.context(() => {
+        let lastFrontIndex = -1;
+
+        // continuous, stateless: given only the current scroll progress,
+        // compute every card's transform. This is what makes reverse
+        // scroll perfectly reconstruct the stack — there's no stored
+        // "previous state" to get out of sync.
+        const updateStack = (progress: number) => {
+          const continuous = progress * (totalCards - 1);
+
+          items.forEach((el, i) => {
+            const relativeDepth = i - continuous;
+            if (relativeDepth >= 0) {
+              applyDepth(el, relativeDepth);
+            } else {
+              applyExit(el, -relativeDepth);
+            }
+            el.style.zIndex = String(Math.round(1000 - relativeDepth * 10));
+          });
+
+          const frontIndex = gsap.utils.clamp(0, totalCards - 1, Math.round(continuous));
+
+          items.forEach((el, i) => {
+            el.style.pointerEvents = i === frontIndex ? "auto" : "none";
+          });
+
+          if (glow) {
+            const lower = Math.max(0, Math.min(totalCards - 1, Math.floor(continuous)));
+            const upper = Math.min(totalCards - 1, lower + 1);
+            const t = clamp01(continuous - lower);
+            const color = mixColor(
+              accentColors[lower] ?? accentColors[0],
+              accentColors[upper] ?? accentColors[accentColors.length - 1],
+              t
+            );
+            glow.style.setProperty("--trust-glow-color", color);
+          }
+
+           if (frontIndex !== lastFrontIndex) {
+            dots.forEach((dot, i) => {
+              if (i === frontIndex) {
+                gsap.to(dot, {
+                  backgroundColor: "#8d8c8c",
+                  width: 12,
+                  height: 12,
+                  duration: 0.3,
+                });
+                gsap.fromTo(
+                  dot,
+                  { scale: 1 },
+                  { scale: 1.6, duration: 0.18, ease: "power2.out", yoyo: true, repeat: 1 }
+                );
+              } else {
+                gsap.to(dot, {
+                  backgroundColor: "#cfc9c9",
+                  width: 8,
+                  height: 8,
+                  duration: 0.3,
+                });
+              }
+            });
+            lastFrontIndex = frontIndex;
+          }
+        };
+
+        // paint the resting state before any scroll happens
+        updateStack(0);
+
+        const transitions = Math.max(totalCards - 1, 0);
+
+        if (transitions > 0) {
+          ScrollTrigger.create({
+            trigger: root,
+            start: "top top",
+            end: () => `+=${transitions * window.innerHeight}`,
+            pin: true,
+            scrub: 1,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => updateStack(self.progress),
+          });
+        }
+      }, root);
+
+      return () => {
+        ctx.revert();
+      };
+    });
 
     return () => {
-      ctx.revert();
+      mm.revert();
     };
   }, [totalCards, accentColors]);
 

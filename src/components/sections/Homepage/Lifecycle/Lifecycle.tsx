@@ -34,6 +34,8 @@ export interface LifecycleProps {
   enableModal?: boolean;
   showLearnMore?: boolean;
   indicatorVariant?: "dots" | "numbered";
+  /** Mobile only: swipeable carousel of the stage cards (see LifecycleCards). Off by default. */
+  mobileCarousel?: boolean;
   ribbon?: LifecycleRibbonData | null;
   showBackgroundArtwork?: boolean;
   className?: string;
@@ -63,6 +65,7 @@ export async function Lifecycle({
   enableModal = true,
   showLearnMore = true,
   indicatorVariant = "dots",
+  mobileCarousel = false,
   ribbon,
   showBackgroundArtwork = true,
   className,
@@ -148,6 +151,7 @@ export async function Lifecycle({
             enableModal={enableModal}
             showLearnMore={showLearnMore}
             indicatorVariant={indicatorVariant}
+            mobileCarousel={mobileCarousel}
           />
 
           {showConnector && (

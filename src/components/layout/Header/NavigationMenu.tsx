@@ -92,7 +92,10 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
         panelRef.current &&
         !panelRef.current.contains(target) &&
         activeTrigger &&
-        !activeTrigger.contains(target)
+        // The whole nav item (link + chevron button) counts as the trigger,
+        // so tapping the chevron again toggles the menu closed instead of
+        // closing it here and reopening it on the click that follows.
+        !(activeTrigger.closest("li") ?? activeTrigger).contains(target)
       ) {
         setOpenMenuId(null);
       }
@@ -314,8 +317,16 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
               <li
                 key={item.id}
                 className={styles.navItem}
-                onMouseEnter={() => handleNavMouseEnter(item)}
-                onMouseLeave={handleNavMouseLeave}
+                // Hover-open only for a real mouse/pen. On touch, the
+                // emulated hover fired before the tap's click opened the
+                // menu and the click then toggled it shut; touch now
+                // opens/closes through the chevron's click alone.
+                onPointerEnter={(event) => {
+                  if (event.pointerType !== "touch") handleNavMouseEnter(item);
+                }}
+                onPointerLeave={(event) => {
+                  if (event.pointerType !== "touch") handleNavMouseLeave();
+                }}
               >
                 {isDirectLink ? (
                   <div
@@ -607,9 +618,9 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search all 45 solutions"
+                    placeholder={currentCategory?.searchPlaceholder ?? "Search solutions"}
                     className={styles.searchInput}
-                    aria-label="Search all 45 solutions"
+                    aria-label={currentCategory?.searchPlaceholder ?? "Search solutions"}
                   />
                   <button type="submit" className={styles.searchButton}>
                     Search
@@ -618,7 +629,8 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
               )}
 
               {/* Content Grid */}
-              {featured ? null : activeCategory === "partnerships" ? (
+              {featured ? null : activeCategory === "partnerships" &&
+                displayItems.length === 0 ? (
                 <div className={styles.placeholderState}>
                   <p className={styles.placeholderText}>
                     Explore our technology ecosystem partners and alliances.
@@ -685,30 +697,32 @@ export function NavigationMenu({ navigation }: NavigationMenuProps) {
                 </div>
               )}
 
-              {/* Bottom Information Bar */}
-              <div className={styles.bottomBar}>
-                <div className={styles.bottomLeft}>
-                  {megaMenuData.bottomBar.statsHighlight && (
-                    <span className={styles.bottomHighlight}>
-                      {megaMenuData.bottomBar.statsHighlight}
-                    </span>
-                  )}{" "}
-                  {megaMenuData.bottomBar.statsText && (
-                    <span>{megaMenuData.bottomBar.statsText}</span>
-                  )}
+              {/* Bottom Information Bar (a category can opt out via hideBottomBar) */}
+              {!currentCategory?.hideBottomBar && (
+                <div className={styles.bottomBar}>
+                  <div className={styles.bottomLeft}>
+                    {megaMenuData.bottomBar.statsHighlight && (
+                      <span className={styles.bottomHighlight}>
+                        {megaMenuData.bottomBar.statsHighlight}
+                      </span>
+                    )}{" "}
+                    {megaMenuData.bottomBar.statsText && (
+                      <span>{megaMenuData.bottomBar.statsText}</span>
+                    )}
+                  </div>
+                  <div className={styles.bottomRight}>
+                    <span>{megaMenuData.bottomBar.ctaPrefix} </span>
+                    <Link
+                      href={megaMenuData.bottomBar.ctaHref}
+                      onClick={handleLinkClick}
+                      className={styles.bottomCta}
+                    >
+                      <span>{megaMenuData.bottomBar.ctaHighlight}</span>
+                      <ArrowRight className={styles.bottomArrowIcon} />
+                    </Link>
+                  </div>
                 </div>
-                <div className={styles.bottomRight}>
-                  <span>{megaMenuData.bottomBar.ctaPrefix} </span>
-                  <Link
-                    href={megaMenuData.bottomBar.ctaHref}
-                    onClick={handleLinkClick}
-                    className={styles.bottomCta}
-                  >
-                    <span>{megaMenuData.bottomBar.ctaHighlight}</span>
-                    <ArrowRight className={styles.bottomArrowIcon} />
-                  </Link>
-                </div>
-              </div>
+              )}
             </main>
           </div>
         </div>

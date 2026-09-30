@@ -12,6 +12,7 @@
 /* Default viewport-filling baseline (100vh) */
 .viewport {
   min-height: 100vh;
+  min-height: 100svh; /* small-viewport height on mobile (excludes the browser bars); same as 100vh on desktop */
 }
 
 /* Explicit content-driven auto height */

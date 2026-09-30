@@ -3,6 +3,7 @@ import { getTrustCards } from "@/data/trust";
 import { TrustCard } from "./TrustCard";
 import { TrustProgress } from "./TrustProgress";
 import { TrustAnimation } from "./TrustAnimation";
+import { TrustMobileSlider } from "./TrustMobileSlider";
 import { Gradient } from "@/components/effects/Gradient";
 import styles from "./Trust.module.css";
 
@@ -87,6 +88,10 @@ export async function Trust() {
             <TrustProgress total={cards.length} activeIndex={0} />
           </div>
         </div>
+
+        {/* Mobile only (≤767px): swipe/autoplay slider of the same cards.
+            Replaces the scroll-pinned stack above, which CSS hides there. */}
+        <TrustMobileSlider cards={cards} />
       </Container>
 
       {/* Behavior-only: renders nothing, drives the DOM above via GSAP. */}
