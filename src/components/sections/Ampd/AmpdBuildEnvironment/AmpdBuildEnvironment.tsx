@@ -12,7 +12,6 @@ import Image from "next/image";
 import clsx from "clsx";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
-import { Gradient } from "@/components/effects/Gradient";
 import type { AmpdBuildEnvironmentProps } from "./types";
 import styles from "./AmpdBuildEnvironment.module.css";
 
@@ -24,7 +23,7 @@ const splitLines = (text: string) =>
  * enterprise gets Amp'd")
  *
  * One section: heading, a row of tab cards, and ONE glass panel whose content
- * switches with the selected tab. Owns only the interactive shell — tab
+ * switches with the selected tab (on hover, click/tap or arrow keys). Owns only the interactive shell — tab
  * state, keyboard navigation, the pointer under the active card and the
  * panel frame. Each panel's content arrives pre-rendered (server side) via
  * `panels`, so this client component carries no content of its own.
@@ -119,24 +118,6 @@ export function AmpdBuildEnvironment({
 
   return (
     <Section height="auto" id={id} className={clsx(styles.section, className)}>
-      {/* Soft background glows (shared page-wide layer, never clipped by the section). */}
-      <Gradient
-        top="35%"
-        left="-18%"
-        size="34rem"
-        stops={["#f6048d 0%", "#edbf79 45%", "transparent 72%"]}
-        opacity={0.22}
-        blur="90px"
-      />
-      <Gradient
-        top="20%"
-        right="10%"
-        size="32rem"
-        stops={["#8500df 0%", "#f6048d 45%", "transparent 72%"]}
-        opacity={0.14}
-        blur="90px"
-      />
-
       <Container size="xl" className={styles.container}>
         <h2 className={styles.title}>
           {accent && <span className={styles.titleAccent}>{accent}</span>}
@@ -167,6 +148,11 @@ export function AmpdBuildEnvironment({
                 tabIndex={isActive ? 0 : -1}
                 className={clsx(styles.tab, isActive && styles.tabActive)}
                 onClick={() => selectTab(index)}
+                // Hovering a card switches the panel too (pointer devices);
+                // click/tap and the keyboard still work as before.
+                onMouseEnter={() => {
+                  if (index !== activeIndex) setActiveIndex(index);
+                }}
               >
                 {tab.media?.src && (
                   <span className={styles.tabMedia}>

@@ -202,9 +202,10 @@
    5. "What changes when your enterprise gets Amp'd" (AmpdBuildEnvironment)
       — Amp'd-scoped overrides for the shared components inside its panels.
    ========================================================================== */
+/* Panel CTA label: no underline. */
+.ampdPanelCta,
 .ampdPanelCta :global(span) {
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
+  text-decoration: none;
 }
 
 /* ==========================================================================

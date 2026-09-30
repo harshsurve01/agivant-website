@@ -21,6 +21,8 @@ export interface PartnerAgentTeamsProps {
   nvidiaTypography?: boolean;
   /** Hides the vertical accent bar beside a left-aligned heading. Defaults to false. */
   hideAccentBar?: boolean;
+  /** Render the section's ambient background glows. Defaults to true. */
+  showGradients?: boolean;
   /** Renders the first N words of the heading in purple and the rest in the primary text colour. Unset keeps the existing heading treatment. */
   headingHighlightWords?: number;
 }
@@ -83,6 +85,7 @@ export function PartnerAgentTeams({
   hoverable = true,
   nvidiaTypography = false,
   hideAccentBar = false,
+  showGradients = true,
   headingHighlightWords,
 }: PartnerAgentTeamsProps) {
   const { heading, description, cards, closingStatement } = data;
@@ -100,6 +103,8 @@ export function PartnerAgentTeams({
       id={id ?? (isBuiltOn ? "built-on-platform" : isMarket ? "market-validation" : "partner-agent-teams")}
     >
       {/* Soft ambient background gradients positioned behind content */}
+      {showGradients && (
+        <>
       <Gradient
         kind="linear"
         angle="180deg"
@@ -121,6 +126,8 @@ export function PartnerAgentTeams({
         opacity={0.28}
         blur="75px"
       />
+        </>
+      )}
 
       <Container size="xl" className={styles.container}>
         {/* Heading with vertical accent bar (if applicable) */}

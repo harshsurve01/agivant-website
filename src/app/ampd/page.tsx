@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -181,6 +182,7 @@ export default function AmpdPage() {
                 columns={3}
                 height="auto"
                 hideAccentBar
+                showGradients={false}
               />
             </div>
           );
@@ -205,6 +207,7 @@ export default function AmpdPage() {
                 heading={foundationSection.data.heading ?? undefined}
                 showCta={false}
                 cards={foundationCards}
+                showGradients={false}
               />
             </div>
           ) : null;
@@ -233,8 +236,9 @@ export default function AmpdPage() {
       }
     };
 
+    // Keyed: the panels are passed to AmpdBuildEnvironment as an array.
     return (
-      <>
+      <Fragment key={tab.id}>
         <AmpdBuildIntro
           eyebrow={tab.eyebrow}
           heading={tab.heading}
@@ -267,7 +271,7 @@ export default function AmpdPage() {
           }
         />
         {groups.map(renderGroup)}
-      </>
+      </Fragment>
     );
   };
 
@@ -376,7 +380,7 @@ export default function AmpdPage() {
               className={styles.ampdBuildEnv}
             >
               <Gradient
-                top="-6rem"
+                top="0"
                 left="-14rem"
                 size="30rem"
                 stops={["#f6048d 0%", "#b31aef 45%", "transparent 72%"]}

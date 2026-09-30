@@ -25,6 +25,8 @@ export interface AIStackProps {
   variant?: "default" | "service";
   gridVariant?: "default" | "service";
   className?: string;
+  /** Render the section's ambient background glows. Defaults to true. */
+  showGradients?: boolean;
 }
 
 /**
@@ -44,6 +46,7 @@ export async function AIStack({
   variant = "default",
   gridVariant,
   className,
+  showGradients = true,
 }: AIStackProps = {}) {
   const isHomepage = !propCards;
   const effectiveGridVariant = gridVariant ?? (variant === "service" ? "service" : "default");
@@ -70,6 +73,8 @@ export async function AIStack({
         className
       )}
     >
+      {showGradients && (
+        <>
       <Gradient
         top="5%"
         right="15%"
@@ -91,6 +96,8 @@ export async function AIStack({
         opacity={0.5}
         blur="60px"
       />
+        </>
+      )}
       <Container>
         <div className={styles.inner}>
           <AIStackHeader
